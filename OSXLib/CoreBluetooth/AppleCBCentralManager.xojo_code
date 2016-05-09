@@ -5,7 +5,7 @@ Inherits AppleObject
 		Private Declare Sub cancelPeripheralConnection Lib CoreBluetoothLibName Selector "cancelPeripheralConnection:" (id as ptr, peripheral as ptr)
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 45737461626C69736865732061206C6F63616C20636F6E6E656374696F6E20746F2061207065726970686572616C2E0A5468652073797374656D2073686F756C6420646973706C6179206120646973636F6E6E656374696F6E20616C65727420666F72206120676976656E207065726970686572616C20696620746865206170702069732073757370656E646564206174207468652074696D65206F662074686520646973636F6E6E656374696F6E20696620796F75207061737320547275652E
 		Sub Connect(Peripheral As AppleCBPeripheral, NotifyOnDisconnect as boolean = false)
 		  dim optdict as new AppleMutableDictionary(1)
 		  optdict.setValue(kCBConnectPeripheralOptionNotifyOnDisconnectionKey, new applenumber(NotifyOnDisconnect))
@@ -17,7 +17,7 @@ Inherits AppleObject
 		Private Declare Sub connectPeripheralOptions Lib CoreBluetoothLibName Selector "connectPeripheral:options:" (id as ptr, peripheral as ptr, options as ptr)
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 496E697469616C697A6573207468652063656E7472616C206D616E61676572207769746820696E697469616C697A6174696F6E206F7074696F6E732E
 		Sub Constructor(AlertIfPoweredOff as Boolean = false)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
@@ -34,6 +34,7 @@ Inherits AppleObject
 		  end if
 		  MHasownership = true
 		  release tempid
+		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
 		  CBCentralManagerDelegate = self
 		End Sub
 	#tag EndMethod
@@ -152,19 +153,31 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOncentralManagerdidFailToConnectPeripheral(Peripheral as AppleCBPeripheral, error as appleerror)
-		  RaiseEvent FailedToConnect (Peripheral, error)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOncentralManagerdidFailToConnectPeripheral(Peripheral, error)
+		  else
+		    RaiseEvent FailedToConnect (Peripheral, error)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOncentralManagerdidRetrieveConnectedPeripherals(Peripherals as applearray)
-		  RaiseEvent ConnectedPeripheralsRetrieved (Peripherals)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOncentralManagerdidRetrieveConnectedPeripherals(Peripherals)
+		  else
+		    RaiseEvent ConnectedPeripheralsRetrieved (Peripherals)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informoncentralManagerdidRetrievePeripherals(Peripherals as applearray)
-		  RaiseEvent PeripheralsRetrieved (Peripherals)
+		  if parentcontrol <> nil then
+		    parentcontrol.informoncentralManagerdidRetrievePeripherals(Peripherals)
+		  else
+		    RaiseEvent PeripheralsRetrieved (Peripherals)
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -180,7 +193,11 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnCentralManagerwillRestoreState(StateDictionary as AppleDictionary)
-		  RaiseEvent WillRestoreState (StateDictionary)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnCentralManagerwillRestoreState(StateDictionary)
+		  else
+		    RaiseEvent WillRestoreState (StateDictionary)
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -207,13 +224,13 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RegisterControl(ParentControl As control)
+		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
 		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RemoveControl()
+		Attributes( hidden )  Sub RemoveControl()
 		  XojoControls.Remove (id)
 		End Sub
 	#tag EndMethod
@@ -239,17 +256,17 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		Sub Scan(PeripheralUUIDs as AppleArray =nil, options as AppleDictionary = nil)
-		  scanForPeripheralsWithServices id, if (PeripheralUUIDs = nil, nil, PeripheralUUIDs.id), if (options = nil, nil, options.id)
+		Sub Scan(PeripheralCBUUIDs as AppleArray =nil, options as AppleDictionary = nil)
+		  scanForPeripheralsWithServices id, if (PeripheralCBUUIDs = nil, nil, PeripheralCBUUIDs.id), if (options = nil, nil, options.id)
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub Scan(PeripheralUUIDs as AppleArray =nil, allowDuplicates as Boolean, ServiceCBUUIDs as Applearray = nil)
+	#tag Method, Flags = &h0, Description = 5363616E7320666F72207065726970686572616C73207468617420617265206164766572746973696E672073657276696365732E200A5065726970686572616C4342555549447320697320616E206172726179206F6620434255554944206F626A656374732074686174207468652061707020697320696E746572657374656420696E2E20496E207468697320636173652C206561636820434255554944206F626A65637420726570726573656E7473207468652055554944206F662061207365727669636520746861742061207065726970686572616C206973206164766572746973696E672E0A416C6C6F774475706C6963617465732064697361626C65732066696C746572696E6720616E64206120646973636F76657279206576656E742069732067656E65726174656420656163682074696D65207468652063656E7472616C20726563656976657320616E206164766572746973696E67207061636B65742C206E6F74206F6E6C79207468652066697273742074696D652E0A536572766963654342555549447320697320616E20617272617920206F662073657276696365205555494473207468617420796F752077616E7420746F207363616E20666F722E2053706563696679696E672074686973207363616E206F7074696F6E20636175736573207468652063656E7472616C206D616E6167657220746F20616C736F207363616E20666F72207065726970686572616C7320736F6C69636974696E6720616E79206F662074686520736572766963657320636F6E7461696E656420696E207468652061727261792E
+		Sub Scan(PeripheralCBUUIDs as AppleArray =nil, allowDuplicates as Boolean, ServiceCBUUIDs as Applearray = nil)
 		  dim optdict as new AppleMutableDictionary(2)
 		  optdict.setValue(kCBCentralManagerScanOptionAllowDuplicatesKey, new AppleNumber(allowDuplicates))
 		  if ServiceCBUUIDs <> nil then optdict.setValue(kCBCentralManagerScanOptionSolicitedServiceUUIDsKey, ServiceCBUUIDs)
-		  scanForPeripheralsWithServices id, if (PeripheralUUIDs = nil, nil, PeripheralUUIDs.id),  optdict.id
+		  scanForPeripheralsWithServices id, if (PeripheralCBUUIDs = nil, nil, PeripheralCBUUIDs.id),  optdict.id
 		End Sub
 	#tag EndMethod
 
@@ -384,10 +401,6 @@ Inherits AppleObject
 		Private Shared kCBConnectPeripheralOptionNotifyOnDisconnectionKey As Text
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private Shared mXojoControls As xojo.Core.Dictionary
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
@@ -397,15 +410,9 @@ Inherits AppleObject
 		State As CBCentralManagerState
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  if mXojoControls = nil then mXojoControls = new xojo.Core.Dictionary
-			  return mXojoControls
-			End Get
-		#tag EndGetter
-		Shared XojoControls As xojo.Core.Dictionary
-	#tag EndComputedProperty
+	#tag Property, Flags = &h21
+		Private Shared XojoControls As xojo.Core.Dictionary
+	#tag EndProperty
 
 
 	#tag Enum, Name = CBCentralManagerState, Type = Integer, Flags = &h0

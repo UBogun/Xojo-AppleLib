@@ -30,7 +30,7 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GeneralID() As Ptr
+		Attributes( hidden )  Function GeneralID() As Ptr
 		  // Part of the AppleGeneralObject interface.
 		  
 		  return mId
@@ -64,8 +64,8 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RegisterControl(ParentControl As control)
-		  mXojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
+		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
+		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
 		End Sub
 	#tag EndMethod
 
@@ -74,8 +74,8 @@ Implements AppleGeneralObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		Sub RemoveControl()
-		  mXojoControls.Remove (id)
+		Attributes( hidden )  Sub RemoveControl()
+		  XojoControls.Remove (id)
 		End Sub
 	#tag EndMethod
 
@@ -150,10 +150,6 @@ Implements AppleGeneralObject
 		Private mId As Ptr
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private Shared mXojoControls As xojo.Core.Dictionary
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E2809973207265666572656E636520636F756E742E
 		#tag Getter
 			Get
@@ -174,15 +170,9 @@ Implements AppleGeneralObject
 		SuperClass As AppleObject
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  if mXojoControls = nil then mXojoControls = new xojo.Core.Dictionary
-			  return mXojoControls
-			End Get
-		#tag EndGetter
-		Shared XojoControls As xojo.Core.Dictionary
-	#tag EndComputedProperty
+	#tag Property, Flags = &h21
+		Private Shared XojoControls As xojo.Core.Dictionary
+	#tag EndProperty
 
 
 	#tag ViewBehavior

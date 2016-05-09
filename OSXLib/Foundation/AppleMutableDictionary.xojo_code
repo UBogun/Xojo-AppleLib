@@ -31,15 +31,11 @@ Inherits AppleDictionary
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithCapacity(Alloc(ClassPtr), Capacity))
+		  Super.Constructor (FoundationFrameWork.initWithCapacity(Alloc(ClassPtr), Capacity))
 		  mhasownership = true
 		  
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function initWithCapacity Lib foundationlibname Selector "initWithCapacity:" (id as ptr, capacity as uinteger) As ptr
-	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
 		Sub MakeCopyOf(Dictionary as AppleDictionary)

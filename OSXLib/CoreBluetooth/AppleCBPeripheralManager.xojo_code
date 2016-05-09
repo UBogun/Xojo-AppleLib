@@ -29,6 +29,7 @@ Inherits AppleObject
 		  end if
 		  MHasownership = true
 		  release tempid
+		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
 		  CBPeripheralManagerDelegate = self
 		End Sub
 	#tag EndMethod
@@ -136,61 +137,101 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheraldidDiscoverServices(Peripheral as AppleCBPeripheral, error as appleerror)
-		  RaiseEvent PeripheralDiscoveredServices (Peripheral, error)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidDiscoverServices(Peripheral, error)
+		  else
+		    RaiseEvent PeripheralDiscoveredServices (Peripheral, error)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralDidStartAdvertising(error as appleerror)
-		  RaiseEvent StartedAdvertising (error)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheralDidStartAdvertising(error)
+		  else
+		    RaiseEvent StartedAdvertising (error)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnperipheralManagercentraldidSubscribeToCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
-		  RaiseEvent SubscribedToCharacteristic (central, characteristic)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnperipheralManagercentraldidSubscribeToCharacteristic(central, characteristic)
+		  else
+		    RaiseEvent SubscribedToCharacteristic (central, characteristic)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnperipheralManagercentraldidUnSubscribefromCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
-		  RaiseEvent UnsubscribedFromCharacteristic (central, characteristic)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnperipheralManagercentraldidUnSubscribefromCharacteristic(central, characteristic)
+		  else
+		    RaiseEvent UnsubscribedFromCharacteristic (central, characteristic)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralManagerDidAddService(Service as AppleCBService, error as appleerror)
-		  RaiseEvent ServiceAdded (Service, error)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheralManagerDidAddService(Service, error)
+		  else
+		    RaiseEvent ServiceAdded (Service, error)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralManagerdidReceiveReadRequest(Request as AppleCBATTRequest)
-		  RaiseEvent ReadRequest (Request)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheralManagerdidReceiveReadRequest(Request)
+		  else
+		    RaiseEvent ReadRequest (Request)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralManagerdidReceiveWriteRequest(Request as AppleCBATTRequest)
-		  RaiseEvent WriteRequest (Request)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheralManagerdidReceiveWriteRequest(Request)
+		  else
+		    RaiseEvent WriteRequest (Request)
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralManagerDidUpdateState()
-		  RaiseEvent StateChanged
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheralManagerDidUpdateState
+		  else
+		    RaiseEvent StateChanged
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralManagerIsReadyToUpdateSubscribers()
-		  RaiseEvent ReadyToUpdateSubscribers
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheralManagerIsReadyToUpdateSubscribers
+		  else
+		    RaiseEvent ReadyToUpdateSubscribers
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralManagerwillRestoreState(StateDictionary as AppleDictionary)
-		  RaiseEvent WillRestoreState (Statedictionary)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheralManagerwillRestoreState(Statedictionary)
+		  else
+		    RaiseEvent WillRestoreState (Statedictionary)
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -198,6 +239,20 @@ Inherits AppleObject
 		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBPeripheralManager
 		  return if (aptr = nil, nil, new AppleCBPeripheralManager(aptr))
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 496E7465726E616C3A205468652075736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
+		Attributes( hidden )  Function ParentControl() As OSXLibCBPeripheralManager
+		  dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
+		  return if (wr = nil, nil,  OSXLibCBPeripheralManager(wr.Value))
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
+		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52656D6F76657320616C6C207075626C69736865642073657276696365732066726F6D20746865206C6F63616C20474154542064617461626173652E
@@ -209,6 +264,12 @@ Inherits AppleObject
 	#tag ExternalMethod, Flags = &h21
 		Private Declare Sub removeAllServices Lib CoreBluetoothLibName Selector "removeAllServices" (id as ptr)
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub RemoveControl()
+		  XojoControls.Remove (id)
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52656D6F766573206120737065636966696564207075626C697368656420736572766963652066726F6D20746865206C6F63616C20474154542064617461626173652E
 		Sub RemoveService(Service as AppleCBMutableService)
@@ -423,6 +484,10 @@ Inherits AppleObject
 		#tag EndGetter
 		State As CBPeripheralManagerState
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private Shared XojoControls As xojo.Core.Dictionary
+	#tag EndProperty
 
 
 	#tag Enum, Name = CBPeripheralManagerAuthorizationStatus, Type = Integer, Flags = &h0

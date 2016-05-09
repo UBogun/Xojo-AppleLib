@@ -40,6 +40,67 @@ Begin Window Window1
       _mPanelIndex    =   0
       _mWindow        =   "0"
    End
+   Begin TextArea TextArea1
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   True
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   360
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   560
+   End
+   Begin OSXLibCBPeripheralManager OSXLibCBPeripheralManager1
+      Handle          =   0
+      Index           =   -2147483648
+      LockedInPosition=   False
+      MouseX          =   0
+      MouseY          =   0
+      PanelIndex      =   0
+      Scope           =   0
+      TabPanelIndex   =   0
+      Window          =   "0"
+      _mIndex         =   0
+      _mPanelIndex    =   0
+      _mWindow        =   "0"
+   End
 End
 #tag EndWindow
 
@@ -50,10 +111,14 @@ End
 		  // cb.Scan (false)
 		  // dim uuid as new AppleUUID
 		  // pm = new AppleCBPeripheralManager(true, uuid.UUIDString)
-		  OSXLibCBCentralManager1.AppleObject.Scan(false)
 		  
 		End Sub
 	#tag EndEvent
+
+
+	#tag Property, Flags = &h0
+		PeripheralCentral As AppleCBPeripheralManager
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -61,12 +126,81 @@ End
 #tag Events OSXLibCBCentralManager1
 	#tag Event
 		Sub StateChanged()
-		  system.debuglog "Manager State change: "+integer(me.AppleObject.State).ToText
+		  TextArea1.AppendText "CentralManager State change: "+integer(me.AppleObject.State).ToText+EndOfLine
+		  me.Scan(false)
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub DiscoveredPeripheral(Peripheral as AppleCBPeripheral, AdvertisementData as AppleCBAdvertisementDataDictionary, RSSI as double)
-		  system.DebugLog "Peripheral discovered: "+Peripheral.Name+" Data: "+AdvertisementData.DebugDescription
+		  TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+EndOfLine
+		  Peripheral.PeripheralDelegate = OSXLibCBPeripheralManager1.appleobject
+		  me.Connect Peripheral, true
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Connected(Peripheral as AppleCBPeripheral)
+		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Disonnected(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Disconnected from "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub FailedToConnect(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Failed to connect to "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  me.Scan(False)
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub PeripheralsRetrieved(Peripherals() As AppleCBPeripheral)
+		  dim count as uinteger = Peripherals.Ubound + 1
+		  TextArea1.AppendText count.totext + "Peripherals retrieved"
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OSXLibCBPeripheralManager1
+	#tag Event
+		Sub Open()
+		  me.AppleObject.StartAdvertising
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub StateChanged()
+		  TextArea1.AppendText "Peripheral Manager State change: "+integer(me.AppleObject.State).ToText+EndOfLine
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DiscoveredServices(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Discovered Services: "+Peripheral.Services.DebugDescription+" – Error: "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub AdvertisingStarted(errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Started advertising with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ReadRequest(Request as AppleCBATTRequest)
+		  TextArea1.AppendText "Read Request: "+Request.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WriteRequest(Request as AppleCBATTRequest)
+		  TextArea1.AppendText "Write Request: "+Request.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ReadyToUpdateSubscribers()
+		  TextArea1.AppendText "Ready for subsriber update"+EndOfLine
 		End Sub
 	#tag EndEvent
 #tag EndEvents

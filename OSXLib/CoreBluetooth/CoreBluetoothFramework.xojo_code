@@ -1,7 +1,19 @@
 #tag Module
 Protected Module CoreBluetoothFramework
-	#tag Method, Flags = &h1, Description = 436F6E766572747320616E204170706C6541727261792077697468204342755549447320746F204170706C654342757549442829
-		Protected Function CBUUIDtoXojoArray(extends a as AppleArray) As AppleCBUUID()
+	#tag Method, Flags = &h0, Description = 436F6E766572747320616E204170706C6541727261792077697468204342755549447320746F204170706C654342757549442829
+		Function CBPeripheralsToXojoArray(extends a as AppleArray) As AppleCBPeripheral()
+		  dim result() as AppleCBPeripheral
+		  dim count as uinteger = a.Count -1
+		  for q  as uinteger = 0 to count
+		    result.Append new AppleCBPeripheral (a.PtrAtIndex(q))
+		  next
+		  return result
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 436F6E766572747320616E204170706C6541727261792077697468204342755549447320746F204170706C654342757549442829
+		Function CBUUIDtoXojoArray(extends a as AppleArray) As AppleCBUUID()
 		  dim result() as AppleCBUUID
 		  dim count as uinteger = a.Count -1
 		  for q  as uinteger = 0 to count
