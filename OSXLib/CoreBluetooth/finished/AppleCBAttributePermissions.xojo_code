@@ -113,16 +113,6 @@ Protected Class AppleCBAttributePermissions
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="AuthenticatedSignedWrites"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ExtendedProperties"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Id"
 			Group="Behavior"
 			Type="UInteger"
@@ -133,16 +123,6 @@ Protected Class AppleCBAttributePermissions
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Indicate"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="IndicateEncryptionRequired"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -156,16 +136,6 @@ Protected Class AppleCBAttributePermissions
 			Visible=true
 			Group="ID"
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Notify"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="NotifyEncryptionRequired"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Readable"

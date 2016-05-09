@@ -226,7 +226,17 @@ Protected Class AppleCBCharacteristicProperties
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AuthenticatedSignedWrites"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Broadcast"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ExtendedProperties"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -243,6 +253,16 @@ Protected Class AppleCBCharacteristicProperties
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Indicate"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IndicateEncryptionRequired"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -254,6 +274,16 @@ Protected Class AppleCBCharacteristicProperties
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Notify"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotifyEncryptionRequired"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Read"
@@ -272,6 +302,16 @@ Protected Class AppleCBCharacteristicProperties
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Write"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WriteWithoutResponse"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -251,6 +251,22 @@ Inherits AppleObject
 			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="RSSI"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="State"
+			Group="Behavior"
+			Type="CBPeripheralState"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Disconnected"
+				"1 - Connecting"
+				"2 - Connected"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"

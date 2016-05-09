@@ -1,7 +1,20 @@
 #tag Class
 Protected Class AppleCBUUID
 Inherits AppleObject
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 4372656174657320616E642072657475726E73206120434255554944206F626A6563742066726F6D20612031362D626974206F72203132382D6269742055554944206461746120636F6E7461696E65722E
+		Sub Constructor(UUID as AppleData)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  Super.Constructor (UUIDWithData(classptr, uuid.id))
+		  RetainClassObject
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4372656174657320616E642072657475726E73206120434255554944206F626A6563742066726F6D20616E204170706C6555554944206F626A6563742E
 		Sub Constructor(UUID as AppleUUID)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
@@ -14,7 +27,7 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 4372656174657320616E642072657475726E73206120434255554944206F626A6563742066726F6D20612031362D626974206F72203132382D626974205555494420737472696E672E
 		Sub Constructor(UUID as cfstringRef)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
@@ -28,6 +41,10 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Declare Function getdata Lib CoreBluetoothLibName Selector "data" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Declare Function getUUIDString Lib CoreBluetoothLibName Selector "UUIDString" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
@@ -36,6 +53,10 @@ Inherits AppleObject
 		  return if (aptr = nil, nil, new AppleCBUUID(aptr))
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Declare Function UUIDWithData Lib CoreBluetoothLibName Selector "UUIDWithData:" (id as ptr, data as ptr) As Ptr
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
 		Private Declare Function UUIDWithNSUUID Lib CoreBluetoothLibName Selector "UUIDWithNSUUID:" (id as ptr, UUID as ptr) As Ptr
@@ -59,7 +80,16 @@ Inherits AppleObject
 		Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064617461206F662074686520555549442E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return appledata.MakefromPtr(getdata(id))
+			End Get
+		#tag EndGetter
+		Data As AppleData
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865205555494420726570726573656E746564206173206120737472696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
 			  return getUUIDString(id)
@@ -122,6 +152,11 @@ Inherits AppleObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UUIDString"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

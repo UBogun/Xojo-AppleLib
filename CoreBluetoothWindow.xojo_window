@@ -1,5 +1,5 @@
 #tag Window
-Begin Window Window1
+Begin Window CoreBluetoothWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -23,7 +23,7 @@ Begin Window Window1
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "CoreBluetooth"
    Visible         =   True
    Width           =   600
    Begin OSXLibCBCentralManager OSXLibCBCentralManager1
@@ -34,9 +34,12 @@ Begin Window Window1
       MouseY          =   0
       PanelIndex      =   0
       Scope           =   0
+      State           =   ""
       TabPanelIndex   =   0
       Window          =   "0"
       _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
       _mPanelIndex    =   0
       _mWindow        =   "0"
    End
@@ -95,9 +98,12 @@ Begin Window Window1
       MouseY          =   0
       PanelIndex      =   0
       Scope           =   0
+      State           =   ""
       TabPanelIndex   =   0
       Window          =   "0"
       _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
       _mPanelIndex    =   0
       _mWindow        =   "0"
    End

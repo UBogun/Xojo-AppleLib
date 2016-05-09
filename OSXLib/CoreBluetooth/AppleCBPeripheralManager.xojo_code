@@ -532,6 +532,11 @@ Inherits AppleObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="IsAdvertising"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -557,7 +562,7 @@ Inherits AppleObject
 		#tag ViewProperty
 			Name="State"
 			Group="Behavior"
-			Type="CBCentralManagerState"
+			Type="CBPeripheralManagerState"
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Unknown"

@@ -103,6 +103,11 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Offset"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"

@@ -168,6 +168,11 @@ Inherits appledictionary
 			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DataIsConnectable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
@@ -190,6 +195,11 @@ Inherits appledictionary
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="LocalName"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mHasOwnership"
@@ -224,6 +234,11 @@ Inherits appledictionary
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TxPowerLevel"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

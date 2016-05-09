@@ -79,6 +79,11 @@ Inherits AppleObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="MaximumUpdateValueLength"
+			Group="Behavior"
+			Type="Uinteger"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="mHasOwnership"
 			Group="Behavior"
 			Type="boolean"
