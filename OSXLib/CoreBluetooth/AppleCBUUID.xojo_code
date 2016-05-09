@@ -89,6 +89,146 @@ Inherits AppleObject
 		Data As AppleData
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDAppearanceString as text = SystemConstantName("CBUUIDAppearanceString", CoreBluetoothPath)
+			  return mCBUUIDAppearanceString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDAppearanceString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDCharacteristicAggregateFormatString as text = SystemConstantName("CBUUIDCharacteristicAggregateFormatString", CoreBluetoothPath)
+			  return mCBUUIDCharacteristicAggregateFormatString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDCharacteristicAggregateFormatString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDCharacteristicExtendedPropertiesString as text = SystemConstantName("CBUUIDCharacteristicExtendedPropertiesString", CoreBluetoothPath)
+			  return mCBUUIDCharacteristicExtendedPropertiesString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDCharacteristicExtendedPropertiesString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDCharacteristicFormatString as text = SystemConstantName("CBUUIDCharacteristicFormatString", CoreBluetoothPath)
+			  return mCBUUIDCharacteristicFormatString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDCharacteristicFormatString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDCharacteristicUserDescriptionString as text = SystemConstantName("CBUUIDCharacteristicUserDescriptionString", CoreBluetoothPath)
+			  return mCBUUIDCharacteristicUserDescriptionString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDCharacteristicUserDescriptionString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDClientCharacteristicConfigurationString as text = SystemConstantName("CBUUIDClientCharacteristicConfigurationString", CoreBluetoothPath)
+			  return mCBUUIDClientCharacteristicConfigurationString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDClientCharacteristicConfigurationString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDDeviceNameString as text = SystemConstantName("CBUUIDDeviceNameString", CoreBluetoothPath)
+			  return mCBUUIDDeviceNameString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDDeviceNameString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDGenericAccessProfileString as text = SystemConstantName("CBUUIDGenericAccessProfileString", CoreBluetoothPath)
+			  return mCBUUIDGenericAccessProfileString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDGenericAccessProfileString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDGenericAttributeProfileString as text = SystemConstantName("CBUUIDGenericAttributeProfileString", CoreBluetoothPath)
+			  return mCBUUIDGenericAttributeProfileString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDGenericAttributeProfileString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDPeripheralPreferredConnectionParametersString as text = SystemConstantName("CBUUIDPeripheralPreferredConnectionParametersString", CoreBluetoothPath)
+			  return mCBUUIDPeripheralPreferredConnectionParametersString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDPeripheralPreferredConnectionParametersString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDPeripheralPrivacyFlagString as text = SystemConstantName("CBUUIDPeripheralPrivacyFlagString", CoreBluetoothPath)
+			  return mCBUUIDPeripheralPrivacyFlagString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDPeripheralPrivacyFlagString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDReconnectionAddressString as text = SystemConstantName("CBUUIDReconnectionAddressString", CoreBluetoothPath)
+			  return mCBUUIDReconnectionAddressString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDReconnectionAddressString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDServerCharacteristicConfigurationString as text = SystemConstantName("CBUUIDServerCharacteristicConfigurationString", CoreBluetoothPath)
+			  return mCBUUIDServerCharacteristicConfigurationString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDServerCharacteristicConfigurationString As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mCBUUIDServiceChangedString as text = SystemConstantName("CBUUIDServiceChangedString", CoreBluetoothPath)
+			  return mCBUUIDServiceChangedString
+			End Get
+		#tag EndGetter
+		Shared kCBUUIDServiceChangedString As Text
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 546865205555494420726570726573656E746564206173206120737472696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
