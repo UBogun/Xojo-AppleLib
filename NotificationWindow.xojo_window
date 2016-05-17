@@ -1,5 +1,5 @@
 #tag Window
-Begin Window CoreBluetoothWindow
+Begin Window NotificationWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -16,33 +16,25 @@ Begin Window CoreBluetoothWindow
    MaxHeight       =   32000
    MaximizeButton  =   True
    MaxWidth        =   32000
-   MenuBar         =   142303231
+   MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "CoreBluetooth"
+   Title           =   "AppleNotificationCenter"
    Visible         =   True
    Width           =   600
-   Begin OSXLibCBCentralManager OSXLibCBCentralManager1
-      Enabled         =   True
-      Handle          =   0
+   Begin AppleNotificationCenter AppleNotificationCenter1
+      DebugDescription=   ""
+      HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
-      MouseX          =   0
-      MouseY          =   0
-      PanelIndex      =   0
+      mHasOwnership   =   False
+      RetainCount     =   ""
       Scope           =   0
-      State           =   ""
       TabPanelIndex   =   0
-      Window          =   "0"
-      _mIndex         =   0
-      _mInitialParent =   ""
-      _mName          =   ""
-      _mPanelIndex    =   0
-      _mWindow        =   "0"
    End
    Begin TextArea TextArea1
       AcceptTabs      =   False
@@ -80,7 +72,7 @@ Begin Window CoreBluetoothWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "Make a rightclick on this textarea or on the IDE. The notificationCenter catches the NSMenuDidAdItemNotifications.\n\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -91,124 +83,21 @@ Begin Window CoreBluetoothWindow
       Visible         =   True
       Width           =   560
    End
-   Begin OSXLibCBPeripheralManager OSXLibCBPeripheralManager1
-      Enabled         =   True
-      Handle          =   0
-      Index           =   -2147483648
-      LockedInPosition=   False
-      MouseX          =   0
-      MouseY          =   0
-      PanelIndex      =   0
-      Scope           =   0
-      State           =   ""
-      TabPanelIndex   =   0
-      Window          =   "0"
-      _mIndex         =   0
-      _mInitialParent =   ""
-      _mName          =   ""
-      _mPanelIndex    =   0
-      _mWindow        =   "0"
-   End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Sub Open()
-		  // cb= new AppleCBCentralManager
-		  // cb.Scan (false)
-		  // dim uuid as new AppleUUID
-		  // pm = new AppleCBPeripheralManager(true, uuid.UUIDString)
-		  
-		End Sub
-	#tag EndEvent
-
-
-	#tag Property, Flags = &h0
-		PeripheralCentral As AppleCBPeripheralManager
-	#tag EndProperty
-
-
 #tag EndWindowCode
 
-#tag Events OSXLibCBCentralManager1
+#tag Events AppleNotificationCenter1
 	#tag Event
-		Sub StateChanged()
-		  TextArea1.AppendText "CentralManager State change: "+integer(me.AppleObject.State).ToText+EndOfLine
-		  me.Scan(false)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub DiscoveredPeripheral(Peripheral as AppleCBPeripheral, AdvertisementData as AppleCBAdvertisementDataDictionary, RSSI as double)
-		  TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+EndOfLine
-		  Peripheral.PeripheralDelegate = OSXLibCBPeripheralManager1.appleobject
-		  me.Connect Peripheral, true
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Connected(Peripheral as AppleCBPeripheral)
-		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Disonnected(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
-		  TextArea1.AppendText "Disconnected from "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub FailedToConnect(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
-		  TextArea1.AppendText "Failed to connect to "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine
+		Sub Notification(Notification as AppleNotification)
+		  TextArea1.AppendText Notification.Name+" received"+EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  me.Scan(False)
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub PeripheralsRetrieved(Peripherals() As AppleCBPeripheral)
-		  dim count as uinteger = Peripherals.Ubound + 1
-		  TextArea1.AppendText count.totext + "Peripherals retrieved"
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events OSXLibCBPeripheralManager1
-	#tag Event
-		Sub Open()
-		  me.AppleObject.StartAdvertising
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub StateChanged()
-		  TextArea1.AppendText "Peripheral Manager State change: "+integer(me.AppleObject.State).ToText+EndOfLine
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub DiscoveredServices(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
-		  TextArea1.AppendText "Discovered Services: "+Peripheral.Services.DebugDescription+" – Error: "+ErrorDescription+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub AdvertisingStarted(errornumber as integer, ErrorDescription as Text)
-		  TextArea1.AppendText "Started advertising with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub ReadRequest(Request as AppleCBATTRequest)
-		  TextArea1.AppendText "Read Request: "+Request.DebugDescription+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub WriteRequest(Request as AppleCBATTRequest)
-		  TextArea1.AppendText "Write Request: "+Request.DebugDescription+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub ReadyToUpdateSubscribers()
-		  TextArea1.AppendText "Ready for subsriber update"+EndOfLine
+		  me.NotifyForNotification "NSMenuDidAddItemNotification"
 		End Sub
 	#tag EndEvent
 #tag EndEvents

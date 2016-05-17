@@ -41,7 +41,7 @@ Protected Module CoreBluetoothFramework
 	#tag EndExternalMethod
 
 
-	#tag Constant, Name = CoreBluetoothLibName, Type = Text, Dynamic = False, Default = \"CoreBluetooth.framework", Scope = Public
+	#tag Constant, Name = CoreBluetoothLibName, Type = Text, Dynamic = False, Default = \"CoreBluetooth", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = CoreBluetoothPath, Type = Text, Dynamic = False, Default = \"com.apple.CoreBluetooth", Scope = Public
