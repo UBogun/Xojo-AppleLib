@@ -179,7 +179,7 @@ End
 	#tag Event
 		Sub WillRestoreState(StateDictionary As xojo.Core.Dictionary)
 		  TextArea1.AppendText "Will restore State "+EndOfLine
-		  
+		   
 		End Sub
 	#tag EndEvent
 #tag EndEvents
