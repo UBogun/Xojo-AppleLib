@@ -1,19 +1,15 @@
 #tag Module
-Protected Module ArrayExtension
-	#tag Method, Flags = &h0
-		Function toAppleArray(extends d() as appleobject) As AppleMutableArray
-		  if d <> nil then
-		    dim count as uinteger = d.Ubound
-		    dim result as new AppleMutableArray(count + 1)
-		    for q as uinteger = 0 to count
-		      result.Addobject d(q)
-		    next
-		    return result
-		  else
-		    return nil
-		  end if
-		End Function
-	#tag EndMethod
+Protected Module CoreGraphicsFramework
+	#tag ExternalMethod, Flags = &h0
+		Declare Sub CGColorRelease Lib coreGraphicsLibName (id as ptr)
+	#tag EndExternalMethod
+
+
+	#tag Constant, Name = CoreGraphicsLibName, Type = Text, Dynamic = False, Default = \"CoreGraphics.framework", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = CoreGraphicsPath, Type = Text, Dynamic = False, Default = \"com.apple.CoreGraphics", Scope = Public
+	#tag EndConstant
 
 
 	#tag ViewBehavior

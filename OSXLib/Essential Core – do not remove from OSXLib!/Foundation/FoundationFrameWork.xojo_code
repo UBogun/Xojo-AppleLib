@@ -53,6 +53,14 @@ Protected Module FoundationFrameWork
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getSize Lib foundationlibname Selector "size" (id as ptr) As FoundationFrameWork.NSSize
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getsupportsSecureCoding Lib FoundationLibName Selector "supportsSecureCoding" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getUserInfo Lib FoundationLibName Selector "userInfo" (id as ptr) As ptr
 	#tag EndExternalMethod
 
@@ -127,6 +135,10 @@ Protected Module FoundationFrameWork
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setName Lib FoundationLibName Selector "setName:" (id as ptr, value as CFStringref)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setSize Lib foundationlibname Selector "setSize:" (id as ptr, value as FoundationFrameWork . NSSize)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

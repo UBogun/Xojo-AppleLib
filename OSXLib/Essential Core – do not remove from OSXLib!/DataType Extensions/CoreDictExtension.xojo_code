@@ -10,15 +10,16 @@ Protected Module CoreDictExtension
 
 	#tag Method, Flags = &h0
 		Function TextKeyDicttoCoreDictionary(extends d as AppleDictionary) As xojo.Core.Dictionary
-		  dim result as new xojo.Core.Dictionary
-		  dim keys as AppleArray = d.Allkeys
-		  dim count as uinteger = keys.Count -1
-		  for q as uinteger = 0 to count
-		    dim key as text = keys.TextAtIndex(q)
-		    result.Value(key) = d.ValueForKey(key)
-		  next
-		  return result
-		  
+		  #if TargetMacOS
+		    dim result as new xojo.Core.Dictionary
+		    dim keys as AppleArray = d.Allkeys
+		    dim count as uinteger = keys.Count -1
+		    for q as uinteger = 0 to count
+		      dim key as text = keys.TextAtIndex(q)
+		      result.Value(key) = d.ValueForKey(key)
+		    next
+		    return result
+		  #endif
 		End Function
 	#tag EndMethod
 

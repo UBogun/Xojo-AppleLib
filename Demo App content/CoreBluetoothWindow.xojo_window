@@ -27,7 +27,6 @@ Begin Window CoreBluetoothWindow
    Visible         =   True
    Width           =   600
    Begin OSXLibCBCentralManager OSXLibCBCentralManager1
-      Enabled         =   True
       Handle          =   0
       Index           =   -2147483648
       LockedInPosition=   False
@@ -49,7 +48,7 @@ Begin Window CoreBluetoothWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFFFF00
+      BackColor       =   &cFFFF00FF
       Bold            =   False
       Border          =   True
       DataField       =   ""
@@ -92,7 +91,6 @@ Begin Window CoreBluetoothWindow
       Width           =   560
    End
    Begin OSXLibCBPeripheralManager OSXLibCBPeripheralManager1
-      Enabled         =   True
       Handle          =   0
       Index           =   -2147483648
       LockedInPosition=   False
@@ -172,6 +170,18 @@ End
 		  TextArea1.AppendText count.totext + "Peripherals retrieved"
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub ConnectedPeripheralsRetrieved(Peripherals() As AppleCBPeripheral)
+		  TextArea1.AppendText "connected Peripherals retrieved: "+Peripherals.Ubound.ToText
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WillRestoreState(StateDictionary As xojo.Core.Dictionary)
+		  TextArea1.AppendText "Will restore State "+EndOfLine
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events OSXLibCBPeripheralManager1
 	#tag Event
@@ -209,6 +219,81 @@ End
 	#tag Event
 		Sub ReadyToUpdateSubscribers()
 		  TextArea1.AppendText "Ready for subsriber update"+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DiscoveredCharacteristics(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Discovered characteristics for "+service.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DiscoveredIncludedServices(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Discovered includes service "+service.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ServiceAdded(Service as AppleCBService, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Added "+service.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub SubscribedToCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
+		  TextArea1.AppendText "subscribed to "+characteristic.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub UnsubscribedFromCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
+		  TextArea1.AppendText "unsubscribed from "+characteristic.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WillRestoreState(StateDictionary As xojo.Core.Dictionary)
+		  TextArea1.AppendText "will restore state "+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DiscoveredDescriptors(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Discovered descriptors for "+Characteristic.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Charactersistics update for "+Peripheral.DebugDescription+Characteristic.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DescriptorValueUpdate(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Descriptor value update for "+Peripheral.DebugDescription+Descriptor.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ModifiedServices(Peripheral as ApplecBPeripheral, Services() As APpleCBService)
+		  TextArea1.AppendText "Modified services for "+Peripheral.DebugDescription+" "+services.Ubound.ToText+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub NameUpdate(Peripheral as AppleCBPeripheral)
+		  TextArea1.AppendText "Name update for "+Peripheral.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub NotificationStateUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Notification state update for "+Peripheral.DebugDescription+Characteristic.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub RSSIUpdate(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "RSSI update for "+Peripheral.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Wrote Characteristics value for "+Peripheral.DebugDescription+Characteristic.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WroteDescriptorValue(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Wrote Descriptor value for "+Peripheral.DebugDescription+descriptor.DebugDescription+" with"+if (errornumber = 0, "out","")+" error "+ErrorDescription+EndOfLine
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -74,7 +74,7 @@ Inherits AppleObject
 			Get
 			  declare function totalBounds lib FoundationLibName  selector "totalBounds" (id as ptr)  as FoundationFramework.NSRect
 			  return totalBounds (id)
-			  // 
+			  //
 			End Get
 		#tag EndGetter
 		TotalBounds As FoundationFramework.NSRect

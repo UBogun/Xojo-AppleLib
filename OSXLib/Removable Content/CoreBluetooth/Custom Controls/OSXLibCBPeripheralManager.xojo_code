@@ -22,6 +22,39 @@ Inherits control
 
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidDiscoverCharacteristicsForService(Peripheral as AppleCBPeripheral, Service As AppleCBService, error as appleerror)
+		  if error = nil then
+		    RaiseEvent DiscoveredCharacteristics (Peripheral, Service, 0, "")
+		  else
+		    RaiseEvent DiscoveredCharacteristics (Peripheral, Service, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidDiscoverDescriptorsForCharacteristic(Peripheral as AppleCBPeripheral, characteristic As AppleCBCharacteristic, error as appleerror)
+		  if error = nil then
+		    RaiseEvent DiscoveredDescriptors (Peripheral, characteristic, 0, "")
+		  else
+		    RaiseEvent DiscoveredDescriptors (Peripheral, characteristic, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidDiscoverIncludedServicesForService(Peripheral as AppleCBPeripheral, Service As AppleCBService, error as appleerror)
+		  if error = nil then
+		    RaiseEvent DiscoveredIncludedServices (Peripheral, Service, 0, "")
+		  else
+		    RaiseEvent DiscoveredIncludedServices (Peripheral, Service, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheraldidDiscoverServices(Peripheral as AppleCBPeripheral, error as appleerror)
 		  if error = nil then
 		    RaiseEvent DiscoveredServices (Peripheral, 0, "")
@@ -33,12 +66,91 @@ Inherits control
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheraldidModifyServices(Peripheral as AppleCBPeripheral, Services As Applearray)
+		  RaiseEvent ModifiedServices (Peripheral, services.cbservicestoXojoarray)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralDidStartAdvertising(error as appleerror)
 		  if error = nil then
 		    RaiseEvent AdvertisingStarted (0, "")
 		  else
 		    RaiseEvent AdvertisingStarted (error.code, error.localizedDescription)
 		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheralDidUpdateName(Peripheral as AppleCBPeripheral)
+		  RaiseEvent NameUpdate (Peripheral) 
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidUpdateNotificationStateForCharacteristic(Peripheral as AppleCBPeripheral, characteristic As AppleCBCharacteristic, error as appleerror)
+		  if error = nil then
+		    RaiseEvent NotificationStateUpdate (Peripheral, characteristic, 0, "")
+		  else
+		    RaiseEvent NotificationStateUpdate (Peripheral, characteristic, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheralDidUpdateRSSI(Peripheral as AppleCBPeripheral, error as appleerror)
+		  if error = nil then
+		    RaiseEvent RSSIUpdate (Peripheral, 0, "")
+		  else
+		    RaiseEvent RSSIUpdate (Peripheral, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidUpdateValueForDescriptor(Peripheral as AppleCBPeripheral, Descriptor As AppleCBDescriptor, error as appleerror)
+		  if error = nil then
+		    RaiseEvent DescriptorValueUpdate (Peripheral, Descriptor, 0, "")
+		  else
+		    RaiseEvent DescriptorValueUpdate (Peripheral, Descriptor, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidWriteValueForCharacteristic(Peripheral as AppleCBPeripheral, characteristic As AppleCBCharacteristic, error as appleerror)
+		  if error = nil then
+		    RaiseEvent WroteCharacteristicValue (Peripheral, characteristic, 0, "")
+		  else
+		    RaiseEvent WroteCharacteristicValue (Peripheral, characteristic, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidWriteValueForDescriptor(Peripheral as AppleCBPeripheral, Descriptor As AppleCBDescriptor, error as appleerror)
+		  if error = nil then
+		    RaiseEvent WroteDescriptorValue (Peripheral, Descriptor, 0, "")
+		  else
+		    RaiseEvent WroteDescriptorValue (Peripheral, Descriptor, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraleripheraldidUpdateValueForCharacteristic(Peripheral as AppleCBPeripheral, characteristic As AppleCBCharacteristic, error as appleerror)
+		  if error = nil then
+		    RaiseEvent CharacteristicUpdate (Peripheral, characteristic, 0, "")
+		  else
+		    RaiseEvent CharacteristicUpdate (Peripheral, characteristic, error.code, error.localizedDescription)
+		  end if
+		  
 		End Sub
 	#tag EndMethod
 
@@ -104,11 +216,43 @@ Inherits control
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event Close()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event DescriptorValueUpdate(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event DiscoveredCharacteristics(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event DiscoveredDescriptors(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event DiscoveredIncludedServices(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event DiscoveredServices(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event ModifiedServices(Peripheral as ApplecBPeripheral, Services() As APpleCBService)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event NameUpdate(Peripheral as AppleCBPeripheral)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event NotificationStateUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -117,6 +261,10 @@ Inherits control
 
 	#tag Hook, Flags = &h0
 		Event ReadyToUpdateSubscribers()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event RSSIUpdate(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -141,6 +289,14 @@ Inherits control
 
 	#tag Hook, Flags = &h0
 		Event WriteRequest(Request as AppleCBATTRequest)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event WroteDescriptorValue(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
 	#tag EndHook
 
 

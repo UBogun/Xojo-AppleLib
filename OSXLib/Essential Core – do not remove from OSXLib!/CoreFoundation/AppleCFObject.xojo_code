@@ -42,7 +42,7 @@ Implements AppleGeneralObject
 		  mCFTypeRef = aTypeRef
 		  
 		  // Due to the Create Rule, whenever a CF method with "create" or "copy" in its name is used, it has ownership and does not need to retian it, but release it
-		  //Therefore creation method call this Constructor with a "true" for "dontretain"
+		  //Therefore creation method calls this Constructor with a "true" for "dontretain"
 		  // The Haswonership flag is set separately by the cunstructors if however the need for getting an object without retaining it should arise.
 		  // When hasownership is true, the object gets released.
 		  

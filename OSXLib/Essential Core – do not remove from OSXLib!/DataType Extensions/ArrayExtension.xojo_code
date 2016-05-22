@@ -1,16 +1,21 @@
 #tag Module
-Protected Module AppKitFramework
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getdelegate Lib appkitlibname Selector "delegate" (id as ptr) As ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setdelegate Lib appkitlibname Selector "setDelegate:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
-
-
-	#tag Constant, Name = AppKitLibName, Type = Text, Dynamic = False, Default = \"Appkit.framework", Scope = Public
-	#tag EndConstant
+Protected Module ArrayExtension
+	#tag Method, Flags = &h0
+		Function toAppleArray(extends d() as appleobject) As AppleMutableArray
+		  #if Targetmacos
+		    if d <> nil then
+		      dim count as uinteger = d.Ubound
+		      dim result as new AppleMutableArray(count + 1)
+		      for q as uinteger = 0 to count
+		        result.Addobject d(q)
+		      next
+		      return result
+		    else
+		      return nil
+		    end if
+		  #endif
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior

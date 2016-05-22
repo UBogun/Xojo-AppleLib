@@ -79,6 +79,12 @@ Implements AppleGeneralObject
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub Retain()
+		  call retain id
+		End Sub
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function retain Lib foundationlibname Selector "retain" (id as ptr) As ptr
 	#tag EndExternalMethod
@@ -147,7 +153,7 @@ Implements AppleGeneralObject
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mId As Ptr
+		Attributes( hidden ) Private mId As Ptr
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E2809973207265666572656E636520636F756E742E

@@ -52,13 +52,7 @@ Inherits AppleObject
 	#tag Method, Flags = &h0
 		Sub NotificationHandlerBlock(notification as ptr)
 		  #pragma StackOverflowChecking false
-		  if me <> nil then RaiseEvent Notification (AppleNotification.MakefromPtr(notification))
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub NotifyForNotification(NotificationName As CFStringRef)
-		  NotificationObject = AddObserver (NotificationName, nil, nil, new AppleBlock(addressof NotificationHandlerBlock))
+		  #Pragma unused notification
 		End Sub
 	#tag EndMethod
 
@@ -90,26 +84,40 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
+		 Shared Sub RemoveObserver(observer as AppleNotificationObject)
+		  removeObserver DefaultCenter.Id, observer.Id
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
+		 Shared Sub RemoveObserver(observer as AppleNotificationObject, notificationName as cfstringRef, Sender As AppleObject)
+		  removeObservername DefaultCenter.Id, observer.id, notificationName, if (sender = nil, nil, sender.id)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
 		 Shared Sub RemoveObserver(observer as AppleObject)
-		  declare sub removeObserver lib FoundationLibName  selector "removeObserver:" (id as ptr, observer as ptr)
 		  removeObserver DefaultCenter.Id, observer.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
 		 Shared Sub RemoveObserver(observer as AppleObject, notificationName as cfstringRef, Sender As AppleObject)
-		  declare sub removeObserverName lib FoundationLibName  selector "removeObserver:name:object:" (id as ptr, observer as ptr, name as cfstringref, obj as ptr)
 		  removeObservername DefaultCenter.Id, observer.id, notificationName, if (sender = nil, nil, sender.id)
 		End Sub
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h0
+		Attributes( hidden ) Declare Sub removeObserver Lib foundationlibname Selector "removeObserver:" (id as ptr, observer as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h0
+		Attributes( hidden ) Declare Sub removeObserverName Lib foundationlibname Selector "removeObserver:name:object:" (id as ptr, observer as ptr, name as CFStringRef, sender as ptr)
+	#tag EndExternalMethod
+
 
 	#tag Hook, Flags = &h0
 		Event Close()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event Notification(Notification as AppleNotification)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -118,8 +126,8 @@ Inherits AppleObject
 
 
 	#tag Note, Name = Status complete & documented
+		OS X 10.11.5
 		
-		iOs 9.2
 	#tag EndNote
 
 
@@ -142,10 +150,6 @@ Inherits AppleObject
 		#tag EndGetter
 		Shared DefaultCenter As AppleNotificationCenter
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h0
-		NotificationObject As AppleNotificationObject
-	#tag EndProperty
 
 
 	#tag ViewBehavior

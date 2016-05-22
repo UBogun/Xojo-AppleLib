@@ -4,8 +4,6 @@ Inherits AppleObject
 	#tag Method, Flags = &h0, Description = 5075626C69736865732061207365727669636520616E6420616E79206F6620697473206173736F6369617465642063686172616374657269737469637320616E642063686172616374657269737469632064657363726970746F727320746F20746865206C6F63616C20474154542064617461626173652E
 		Sub AddService(Service as AppleCBMutableService)
 		  AddService id, service.id
-		  
-		  
 		End Sub
 	#tag EndMethod
 
@@ -49,9 +47,97 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_didUpdateNotificationStateForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraldidUpdateNotificationStateForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverCharacteristicsForService(pid as ptr, sel as ptr, peripheral as ptr, service as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraldidDiscoverCharacteristicsForService (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBService.MakefromPtr(service), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverDescriptorsForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraldidDiscoverDescriptorsForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverIncludedServicesForService(pid as ptr, sel as ptr, peripheral as ptr, service as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraldidDiscoverIncludedServicesForService (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBService.MakefromPtr(service), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverServices(pid as ptr, sel as ptr, peripheral as ptr, error as ptr)
 		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidDiscoverServices (AppleCBPeripheral.MakeFromPtr(peripheral), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_peripheraldidModifyServices(pid as ptr, sel as ptr, peripheral as ptr, services as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnperipheraldidModifyServices (AppleCBPeripheral.MakeFromPtr(peripheral), applearray.MakefromPtr(services))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_peripheralDidUpdateName(pid as ptr, sel as ptr, peripheral as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnperipheralDidUpdateName (AppleCBPeripheral.MakeFromPtr(peripheral))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_peripheralDidUpdateRSSI(pid as ptr, sel as ptr, peripheral as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnperipheralDidUpdateRSSI (AppleCBPeripheral.MakeFromPtr(peripheral), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_PeripheraldidUpdateValueForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraleripheraldidUpdateValueForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_PeripheraldidUpdateValueForDescriptor(pid as ptr, sel as ptr, peripheral as ptr, descriptor as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraldidUpdateValueForDescriptor (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBDescriptor.MakefromPtr(descriptor), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_PeripheraldidWriteValueForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraldidWriteValueForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
+		  #pragma unused sel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Shared Sub impl_PeripheraldidWriteValueForDescriptor(pid as ptr, sel as ptr, peripheral as ptr, descriptor as ptr, error as ptr)
+		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  if cm <> nil then cm.informOnPeripheraldidWriteValueForDescriptor (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBDescriptor.MakefromPtr(descriptor), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
 	#tag EndMethod
@@ -138,6 +224,36 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidDiscoverCharacteristicsForService(Peripheral as AppleCBPeripheral, service as applecbservice, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidDiscoverCharacteristicsForService (Peripheral, service, error)
+		  else
+		    RaiseEvent PeripheralDiscoveredCharacteristics (Peripheral, service, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidDiscoverDescriptorsForCharacteristic(Peripheral as AppleCBPeripheral, characteristic as applecbcharacteristic, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidDiscoverDescriptorsForCharacteristic (Peripheral, characteristic, error)
+		  else
+		    RaiseEvent PeripheralDiscoveredDescriptors (Peripheral, characteristic, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidDiscoverIncludedServicesForService(Peripheral as AppleCBPeripheral, service as applecbservice, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidDiscoverIncludedServicesForService (Peripheral, service, error)
+		  else
+		    RaiseEvent PeripheralDiscoveredIncludedServices (Peripheral, service, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheraldidDiscoverServices(Peripheral as AppleCBPeripheral, error as appleerror)
 		  if parentcontrol <> nil then
 		    parentcontrol.informOnPeripheraldidDiscoverServices(Peripheral, error)
@@ -148,11 +264,91 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheraldidModifyServices(Peripheral as AppleCBPeripheral, Services as AppleArray)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnperipheraldidModifyServices(Peripheral, services)
+		  else
+		    RaiseEvent ModifiedServices (Peripheral, Services)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnPeripheralDidStartAdvertising(error as appleerror)
 		  if parentcontrol <> nil then
 		    parentcontrol.informOnPeripheralDidStartAdvertising(error)
 		  else
 		    RaiseEvent StartedAdvertising (error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheralDidUpdateName(Peripheral as AppleCBPeripheral)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnperipheralDidUpdateName(Peripheral)
+		  else
+		    RaiseEvent NameUpdate (Peripheral)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidUpdateNotificationStateForCharacteristic(Peripheral as AppleCBPeripheral, characteristic as applecbcharacteristic, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidUpdateNotificationStateForCharacteristic (Peripheral, characteristic, error)
+		  else
+		    RaiseEvent NotificationSateUpdate (Peripheral, characteristic, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheralDidUpdateRSSI(Peripheral as AppleCBPeripheral, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnperipheralDidUpdateRSSI(Peripheral, error)
+		  else
+		    RaiseEvent RSSIUpdate (Peripheral, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidUpdateValueForDescriptor(Peripheral as AppleCBPeripheral, descriptor as applecbdescriptor, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidUpdateValueForDescriptor (Peripheral, descriptor, error)
+		  else
+		    RaiseEvent DescriptorValueUpdate (Peripheral, descriptor, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidWriteValueForCharacteristic(Peripheral as AppleCBPeripheral, characteristic as applecbcharacteristic, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidWriteValueForCharacteristic (Peripheral, characteristic, error)
+		  else
+		    RaiseEvent WroteCharacteristicValue (Peripheral, characteristic, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraldidWriteValueForDescriptor(Peripheral as AppleCBPeripheral, descriptor as applecbdescriptor, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraldidWriteValueForDescriptor (Peripheral, descriptor, error)
+		  else
+		    RaiseEvent WroteDescriptorValue (Peripheral, descriptor, error)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheraleripheraldidUpdateValueForCharacteristic(Peripheral as AppleCBPeripheral, characteristic as applecbcharacteristic, error as appleerror)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnPeripheraleripheraldidUpdateValueForCharacteristic (Peripheral, characteristic, error)
+		  else
+		    RaiseEvent CharacteristicUpdate (Peripheral, characteristic, error)
 		  end if
 		End Sub
 	#tag EndMethod
@@ -335,6 +531,38 @@ Inherits AppleObject
 
 
 	#tag Hook, Flags = &h0
+		Event CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic As AppleCBCharacteristic, Error as AppleError)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event DescriptorValueUpdate(Peripheral as AppleCBPeripheral, Descriptor As AppleCBDescriptor, Error as AppleError)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event ModifiedServices(Peripheral as AppleCBPeripheral, Services as Applearray)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event NameUpdate(Peripheral as AppleCBPeripheral)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event NotificationSateUpdate(Peripheral as AppleCBPeripheral, Characteristic As AppleCBCharacteristic, Error as AppleError)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event PeripheralDiscoveredCharacteristics(Peripheral as AppleCBPeripheral, Service As AppleCBService, Error as AppleError)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event PeripheralDiscoveredDescriptors(Peripheral as AppleCBPeripheral, Characteristic As AppleCBCharacteristic, Error as AppleError)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event PeripheralDiscoveredIncludedServices(Peripheral as AppleCBPeripheral, Service As AppleCBService, Error as AppleError)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event PeripheralDiscoveredServices(Peripheral as AppleCBPeripheral, Error as AppleError)
 	#tag EndHook
 
@@ -344,6 +572,10 @@ Inherits AppleObject
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865204D616E61676572E2809973207374617465206368616E676573
 		Event ReadyToUpdateSubscribers()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event RSSIUpdate(Peripheral as AppleCBPeripheral, Error as AppleError)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -372,6 +604,14 @@ Inherits AppleObject
 
 	#tag Hook, Flags = &h0
 		Event WriteRequest(Request as AppleCBATTRequest)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic As AppleCBCharacteristic, Error as AppleError)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event WroteDescriptorValue(Peripheral as AppleCBPeripheral, Descriptor As AppleCBDescriptor, Error as AppleError)
 	#tag EndHook
 
 
@@ -420,6 +660,17 @@ Inherits AppleObject
 			    methods.Append new TargetClassMethodHelper("peripheralManager:didReceiveWriteRequest:", AddressOf impl_peripheralManagerdidReceiveWriteRequest, "v@:@@")
 			    //CBPeripheral Delegate Protocol:
 			    methods.Append new TargetClassMethodHelper("peripheral:didDiscoverServices:", AddressOf impl_PeripheraldidDiscoverServices, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didDiscoverIncludedServicesForService:error:", AddressOf impl_PeripheraldidDiscoverIncludedServicesForService, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didDiscoverCharacteristicsForService:error:", AddressOf impl_PeripheraldidDiscoverCharacteristicsForService, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didDiscoverDescriptorsForCharacteristic:error:", AddressOf impl_PeripheraldidDiscoverDescriptorsForCharacteristic, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didUpdateValueForCharacteristic:error:", AddressOf impl_PeripheraldidUpdateValueForCharacteristic, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didUpdateValueForDescriptor:error:", AddressOf impl_PeripheraldidUpdateValueForDescriptor, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didWriteValueForCharacteristic:error:", AddressOf impl_PeripheraldidWriteValueForCharacteristic, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didWriteValueForDescriptor:error:", AddressOf impl_PeripheraldidWriteValueForDescriptor, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didUpdateNotificationStateForCharacteristic:error:", AddressOf impl_didUpdateNotificationStateForCharacteristic, "v@:@@@")
+			    methods.Append new TargetClassMethodHelper("peripheralDidUpdateRSSI:error:", AddressOf impl_peripheralDidUpdateRSSI, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("peripheralDidUpdateName:", AddressOf impl_peripheralDidUpdateName, "v@:@")
+			    methods.Append new TargetClassMethodHelper("peripheral:didModifyServices:", AddressOf impl_peripheraldidModifyServices, "v@:@@")
 			    
 			    mClassPtr = BuildTargetClass ("CBPeripheralManager", "OSXLibCBPeripheralManager",methods)
 			  end if

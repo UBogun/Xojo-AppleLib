@@ -26,8 +26,9 @@ Begin Window NotificationWindow
    Title           =   "AppleNotificationCenter"
    Visible         =   True
    Width           =   600
-   Begin AppleNotificationCenter AppleNotificationCenter1
+   Begin OSXLibNotificationCenter AppleNotificationCenter1
       DebugDescription=   ""
+      Enabled         =   True
       HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
@@ -41,14 +42,14 @@ Begin Window NotificationWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFFFF00
+      BackColor       =   &cFFFF00FF
       Bold            =   False
       Border          =   True
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   360
+      Height          =   335
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -92,12 +93,14 @@ End
 #tag Events AppleNotificationCenter1
 	#tag Event
 		Sub Notification(Notification as AppleNotification)
-		  TextArea1.AppendText Notification.Name+" received"+EndOfLine
+		  TextArea1.AppendText Notification.DebugDescription+" received"+EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  me.NotifyForNotification "NSMenuDidAddItemNotification"
+		  me.RegisterNotification "NSMenuDidAddItemNotification"
+		  dim a as new applecolor (0.4, 0.1, 0.8)
+		  break
 		End Sub
 	#tag EndEvent
 #tag EndEvents

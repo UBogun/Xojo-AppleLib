@@ -70,10 +70,6 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h0
-		Attributes( hidden ) Declare Function getSize Lib foundationlibname Selector "size" (id as ptr) As FoundationFrameWork.NSSize
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0
 		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleAttributedString
 		  return if (aptr = nil, nil, new AppleAttributedString (aptr))
@@ -104,7 +100,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getSize (id)
+			  return FoundationFrameWork.getSize (id)
 			End Get
 		#tag EndGetter
 		Size_ As FoundationFramework.NSSize
