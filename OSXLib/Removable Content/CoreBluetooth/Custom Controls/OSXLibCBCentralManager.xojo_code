@@ -228,6 +228,12 @@ Inherits control
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 53746F7073207363616E6E696E6720666F72207065726970686572616C732E
+		Sub StopScan()
+		  AppleObject.StopScan
+		End Sub
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0
 		Event AdvertisingStarted(errornumber as integer, ErrorDescription as Text)

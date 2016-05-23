@@ -9,7 +9,7 @@ Inherits AppleObject
 		Sub Connect(Peripheral As AppleCBPeripheral, NotifyOnDisconnect as boolean = false)
 		  dim optdict as new AppleMutableDictionary(1)
 		  optdict.setValue(kCBConnectPeripheralOptionNotifyOnDisconnectionKey, new applenumber(NotifyOnDisconnect))
-		  connectPeripheralOptions id, Peripheral.id, optdict.id
+		  connectPeripheralOptions id, Peripheral.id, nil
 		End Sub
 	#tag EndMethod
 

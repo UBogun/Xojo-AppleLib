@@ -132,28 +132,63 @@ End
 #tag Events OSXLibCBCentralManager1
 	#tag Event
 		Sub StateChanged()
-		  TextArea1.AppendText "CentralManager State change: "+integer(me.AppleObject.State).ToText+EndOfLine
-		  me.Scan(false)
+		  TextArea1.AppendText "CentralManager State change: "
+		  select case me.AppleObject.State
+		  case AppleCBCentralManager.CBCentralManagerState.PoweredOff
+		    TextArea1.AppendText "Powered off"
+		    me.AppleObject.StopScan
+		  case AppleCBCentralManager.CBCentralManagerState.PoweredOn
+		    TextArea1.AppendText "Powered on and ready"
+		    me.Scan(false)
+		  case AppleCBCentralManager.CBCentralManagerState.Resetting
+		    TextArea1.AppendText "Resetting"
+		  case AppleCBCentralManager.CBCentralManagerState.Unauthorized
+		    TextArea1.AppendText "Unauthorized BLE state"
+		  case AppleCBCentralManager.CBCentralManagerState.Unknown
+		    TextArea1.AppendText "Unknown state"
+		  case AppleCBCentralManager.CBCentralManagerState.Unsupported
+		    TextArea1.AppendText "CoreBluetooth BLW hardware unspported"
+		  end select
+		  TextArea1.AppendText EndOfLine+EndOfLine
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub DiscoveredPeripheral(Peripheral as AppleCBPeripheral, AdvertisementData as AppleCBAdvertisementDataDictionary, RSSI as double)
 		  TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+endofline + _
 		  if (AdvertisementData.DataIsConnectable, "", "Not ")+"connectable · " + _
-		  "RSSI: "+rssi.ToText+EndOfLine
-		  Peripheral.PeripheralDelegate = me.appleobject
-		  self.Peripheral =Peripheral
-		  me.Connect Peripheral, true
+		  "RSSI: "+rssi.ToText+EndOfLine+EndOfLine
+		  if AdvertisementData.DataIsConnectable then
+		    if Peripheral.Services <> nil then 
+		      dim uuidarray as new AppleMutableArray
+		      for q as integer = 0 to Peripheral.Services.Count -1
+		        dim curService as new AppleCBService (Peripheral.Services.PtrAtIndex(q))
+		        uuidarray.Addobject curService.UUID
+		      next
+		      Peripheral.DiscoverServices(uuidarray)
+		    end if
+		    Peripheral.PeripheralDelegate = me.appleobject
+		    if self.Peripheral = nil then 
+		      
+		      self.Peripheral =Peripheral
+		      TextArea1.AppendText "Connection attempt"+EndOfLine+EndOfLine
+		      me.AppleObject.Connect self.Peripheral, true
+		    end if
+		  end if
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Connected(Peripheral as AppleCBPeripheral)
 		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol
+		  me.StopScan
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Disonnected(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Disconnected from "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine
+		  self.Peripheral = nil
+		  me.Scan(false)
 		End Sub
 	#tag EndEvent
 	#tag Event
