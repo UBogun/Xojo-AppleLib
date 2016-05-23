@@ -616,6 +616,7 @@ End
 		  av.WantsLayer = true
 		  av.Layer.BorderWidth = 10
 		  av.layer.BackgroundColor = PatternImg
+		  
 		End Sub
 	#tag EndEvent
 

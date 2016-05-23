@@ -123,7 +123,7 @@ End
 
 
 	#tag Property, Flags = &h0
-		PeripheralCentral As AppleCBPeripheralManager
+		Peripheral As AppleCBPeripheral
 	#tag EndProperty
 
 
@@ -138,8 +138,11 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub DiscoveredPeripheral(Peripheral as AppleCBPeripheral, AdvertisementData as AppleCBAdvertisementDataDictionary, RSSI as double)
-		  TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+EndOfLine
-		  Peripheral.PeripheralDelegate = OSXLibCBPeripheralManager1.appleobject
+		  TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+endofline + _
+		  if (AdvertisementData.DataIsConnectable, "", "Not ")+"connectable · " + _
+		  "RSSI: "+rssi.ToText+EndOfLine
+		  Peripheral.PeripheralDelegate = me.appleobject
+		  self.Peripheral =Peripheral
 		  me.Connect Peripheral, true
 		End Sub
 	#tag EndEvent
@@ -160,7 +163,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  me.Scan(False)
+		  me.Scan(true)
 		  
 		End Sub
 	#tag EndEvent
@@ -179,7 +182,12 @@ End
 	#tag Event
 		Sub WillRestoreState(StateDictionary As xojo.Core.Dictionary)
 		  TextArea1.AppendText "Will restore State "+EndOfLine
-		   
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DiscoveredServices(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
+		  break
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -69,12 +69,29 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function colorWithCGColor Lib appkitlibname Selector "colorWithCGColor:" (id as ptr, CGColor as Ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function colorWithDeviceRed Lib appkitlibname Selector "colorWithDeviceRed:green:blue:alpha:" (id as ptr, red as cgfloat, green as cgfloat, blue as cgfloat, alpha as cgfloat) As ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function colorWithPatternImage Lib appkitlibname Selector "colorWithPatternImage:" (id as ptr, img as ptr) As Ptr
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720636F6C6F722066726F6D20616E204170706C654347436F6C6F722E
+		Sub Constructor(col as applecgcolor)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  Super.Constructor (colorWithCGColor(classptr, col.CFTypeRef))
+		  RetainClassObject
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061207061747465726E20636F6C6F722066726F6D20616E20696D6167652E
 		Sub Constructor(img as appleimage)
@@ -114,6 +131,12 @@ Inherits AppleObject
 		  dim Result As new AppleColor(colorWithCalibratedHue (ClassPtr, red, green, blue, Alpha))
 		  Result.retainClassObject
 		  Return Result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204170706C65436F6C6F722066726F6D20616E204170706C654347436F6C6F72
+		 Shared Function FromCGColor(aColor as AppleCGColor) As AppleColor
+		  return new AppleColor(acolor)
 		End Function
 	#tag EndMethod
 
@@ -227,6 +250,12 @@ Inherits AppleObject
 	#tag Method, Flags = &h0
 		 Shared Function MakefromPtr(aPtr as Ptr) As AppleColor
 		  return if (aptr = nil, nil, new applecolor(aptr))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Operator_convert(aColor As AppleColor) As AppleCGColor
+		  Return acolor.CGColor
 		End Function
 	#tag EndMethod
 

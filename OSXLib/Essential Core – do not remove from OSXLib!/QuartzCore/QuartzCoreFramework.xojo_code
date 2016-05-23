@@ -67,6 +67,54 @@ Protected Module QuartzCoreFramework
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethidden Lib QuartzCoreLib Selector "hidden" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getopacity Lib QuartzCoreLib Selector "opacity" (id as ptr) As cgfloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshadowColor Lib QuartzCoreLib Selector "shadowColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshadowOffset Lib QuartzCoreLib Selector "shadowOffset" (id as ptr) As FoundationFrameWork.NSSize
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshadowOpacity Lib QuartzCoreLib Selector "shadowOpacity" (id as ptr) As cgfloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshadowRadius Lib QuartzCoreLib Selector "shadowRadius" (id as ptr) As cgfloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setHidden Lib QuartzCoreLib Selector "setHidden:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setopacity Lib QuartzCoreLib Selector "setOpacity:" (id as ptr, value as cgfloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshadowColor Lib QuartzCoreLib Selector "setShadowColor:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshadowOffset Lib QuartzCoreLib Selector "setShadowOffset:" (id as ptr, value as FoundationFrameWork . NSSize)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshadowOpacity Lib QuartzCoreLib Selector "setShadowOpacity:" (id as ptr, value as cgfloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshadowRadius Lib QuartzCoreLib Selector "setShadowRadius:" (id as ptr, value as cgfloat)
+	#tag EndExternalMethod
+
 
 	#tag Constant, Name = QuartzCoreLib, Type = Text, Dynamic = False, Default = \"QuartzCore.framework", Scope = Public
 	#tag EndConstant
