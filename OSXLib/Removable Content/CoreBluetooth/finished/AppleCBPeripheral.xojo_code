@@ -32,13 +32,13 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 446973636F766572732074686520737065636966696564207365727669636573206F6620746865207065726970686572616C2E
-		Sub DiscoverServices(ServiceCBUUIDs as applearray)
-		  discoverServices id, ServiceCBUUIDs.id
+		Sub DiscoverServices(ServiceCBUUIDs as applearray = nil)
+		  discoverServices id, if (ServiceCBUUIDs = nil, nil,  ServiceCBUUIDs.id)
 		End Sub
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub discoverServices Lib CoreBluetoothLibName Selector "discoverServices" (id as ptr, CBUUIDArray as ptr)
+		Protected Declare Sub discoverServices Lib CoreBluetoothLibName Selector "discoverServices:" (id as ptr, CBUUIDArray as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

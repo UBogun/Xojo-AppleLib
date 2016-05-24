@@ -1,5 +1,5 @@
 #tag Class
-Protected Class AppleCBPeripheralManager
+Protected Class AppleCBPeripheralManagerForControl
 Inherits AppleObject
 	#tag Method, Flags = &h0, Description = 5075626C69736865732061207365727669636520616E6420616E79206F6620697473206173736F6369617465642063686172616374657269737469637320616E642063686172616374657269737469632064657363726970746F727320746F20746865206C6F63616C20474154542064617461626173652E
 		Sub AddService(Service as AppleCBMutableService)
@@ -48,7 +48,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_didUpdateNotificationStateForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidUpdateNotificationStateForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -56,7 +56,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverCharacteristicsForService(pid as ptr, sel as ptr, peripheral as ptr, service as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidDiscoverCharacteristicsForService (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBService.MakefromPtr(service), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -64,7 +64,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverDescriptorsForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidDiscoverDescriptorsForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -72,7 +72,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverIncludedServicesForService(pid as ptr, sel as ptr, peripheral as ptr, service as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidDiscoverIncludedServicesForService (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBService.MakefromPtr(service), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -80,7 +80,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidDiscoverServices(pid as ptr, sel as ptr, peripheral as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidDiscoverServices (AppleCBPeripheral.MakeFromPtr(peripheral), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -88,7 +88,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheraldidModifyServices(pid as ptr, sel as ptr, peripheral as ptr, services as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnperipheraldidModifyServices (AppleCBPeripheral.MakeFromPtr(peripheral), applearray.MakefromPtr(services))
 		  #pragma unused sel
 		End Sub
@@ -96,7 +96,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralDidUpdateName(pid as ptr, sel as ptr, peripheral as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnperipheralDidUpdateName (AppleCBPeripheral.MakeFromPtr(peripheral))
 		  #pragma unused sel
 		End Sub
@@ -104,7 +104,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralDidUpdateRSSI(pid as ptr, sel as ptr, peripheral as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnperipheralDidUpdateRSSI (AppleCBPeripheral.MakeFromPtr(peripheral), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -112,7 +112,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidUpdateValueForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraleripheraldidUpdateValueForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -120,7 +120,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidUpdateValueForDescriptor(pid as ptr, sel as ptr, peripheral as ptr, descriptor as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidUpdateValueForDescriptor (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBDescriptor.MakefromPtr(descriptor), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -128,7 +128,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidWriteValueForCharacteristic(pid as ptr, sel as ptr, peripheral as ptr, characteristic as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidWriteValueForCharacteristic (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBCharacteristic.MakefromPtr(characteristic), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -136,7 +136,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_PeripheraldidWriteValueForDescriptor(pid as ptr, sel as ptr, peripheral as ptr, descriptor as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheraldidWriteValueForDescriptor (AppleCBPeripheral.MakeFromPtr(peripheral), AppleCBDescriptor.MakefromPtr(descriptor), appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		End Sub
@@ -144,7 +144,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagercentraldidSubscribeToCharacteristic(pid as ptr, sel as ptr, manager as ptr, central as ptr, characteristic as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnperipheralManagercentraldidSubscribeToCharacteristic (applecbcentral.MakefromPtr(central), applecbcharacteristic.MakefromPtr(characteristic))
 		  #pragma unused manager
 		  #pragma unused sel
@@ -153,7 +153,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagercentraldidUnsubscribeFromCharacteristic(pid as ptr, sel as ptr, manager as ptr, central as ptr, characteristic as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnperipheralManagercentraldidUnSubscribefromCharacteristic (applecbcentral.MakefromPtr(central), applecbcharacteristic.MakefromPtr(characteristic))
 		  #pragma unused manager
 		  #pragma unused sel
@@ -162,7 +162,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagerdidAddService(pid as ptr, sel as ptr, manager as ptr, service as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheralManagerDidAddService (AppleCBService.MakefromPtr(service), AppleError.MakefromPtr(error))
 		  #pragma unused manager
 		  #pragma unused sel
@@ -171,7 +171,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagerdidReceiveReadRequest(pid as ptr, sel as ptr, manager as ptr, request as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheralManagerdidReceiveReadRequest (AppleCBATTRequest.MakeFromPtr(request))
 		  #pragma unused manager
 		  #pragma unused sel
@@ -180,7 +180,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagerdidReceiveWriteRequest(pid as ptr, sel as ptr, manager as ptr, request as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheralManagerdidReceiveWriteRequest (AppleCBATTRequest.MakeFromPtr(request))
 		  #pragma unused manager
 		  #pragma unused sel
@@ -189,7 +189,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagerDidStartAdvertising(pid as ptr, sel as ptr,  manager as ptr, error as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheralDidStartAdvertising (appleerror.MakefromPtr(error))
 		  #pragma unused sel
 		  #pragma unused manager
@@ -198,7 +198,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagerDidUpdateState(pid as ptr, sel as ptr, manager as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheralManagerDidUpdateState 
 		  #pragma unused manager
 		  #pragma unused sel
@@ -207,7 +207,8 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagerIsReadyToUpdateSubscribers(pid as ptr, sel as ptr, manager as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
+		  
 		  if cm <> nil then cm.informOnPeripheralManagerIsReadyToUpdateSubscribers
 		  #pragma unused manager
 		  #pragma unused sel
@@ -216,7 +217,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Shared Sub impl_peripheralManagerwillRestoreState(pid as ptr, sel as ptr, manager as ptr, state as ptr)
-		  dim cm as AppleCBPeripheralManager = AppleCBPeripheralManager.MakeFromPtr(pid)
+		  dim cm as AppleCBPeripheralManagerForControl = AppleCBPeripheralManagerForControl.MakeFromPtr(pid)
 		  if cm <> nil then cm.informOnPeripheralManagerwillRestoreState (AppleDictionary.MakeFromPtr(state))
 		  #pragma unused manager
 		  #pragma unused sel
@@ -434,15 +435,15 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBPeripheralManager
-		  return if (aptr = nil, nil, new AppleCBPeripheralManager(aptr))
+		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBPeripheralManagerForControl
+		  return if (aptr = nil, nil, new AppleCBPeripheralManagerForControl(aptr))
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21, Description = 496E7465726E616C3A205468652075736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden ) Private Function ParentControl() As OSXLibCBPeripheralManager
+	#tag Method, Flags = &h0, Description = 496E7465726E616C3A205468652075736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
+		Attributes( hidden )  Function ParentControl() As OSXLibCoreBluetoothController
 		  dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		  return if (wr = nil, nil,  OSXLibCBPeripheralManager(wr.Value))
+		  return if (wr = nil, nil,  OSXLibCoreBluetoothController(wr.Value))
 		  
 		End Function
 	#tag EndMethod

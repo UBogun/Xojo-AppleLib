@@ -430,6 +430,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Blend"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -464,6 +465,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   15
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Alpha"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -498,6 +500,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   16
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Highlight"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -532,6 +535,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Shadow"
       TextAlign       =   1
       TextColor       =   &c00000000

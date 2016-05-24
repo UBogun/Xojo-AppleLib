@@ -14,6 +14,7 @@ Inherits control
 		  #if TargetMacOS
 		    mappleobject = new AppleCBCentralManager(true)
 		    mAppleObject.RegisterControl self
+		    RaiseEvent CreatePane
 		  #else
 		    #pragma  warning OSXLibModule.kOSXOnlyClassWarning
 		  #endif
@@ -24,6 +25,7 @@ Inherits control
 	#tag Method, Flags = &h0, Description = 45737461626C69736865732061206C6F63616C20636F6E6E656374696F6E20746F2061207065726970686572616C2E0A5468652073797374656D2073686F756C6420646973706C6179206120646973636F6E6E656374696F6E20616C65727420666F72206120676976656E207065726970686572616C20696620746865206170702069732073757370656E646564206174207468652074696D65206F662074686520646973636F6E6E656374696F6E20696620796F75207061737320547275652E
 		Sub Connect(Peripheral As AppleCBPeripheral, NotifyOnDisconnect as boolean = false)
 		  CurPeripheral = Peripheral
+		  Peripheral.PeripheralDelegate = me.AppleObject
 		  AppleObject.Connect (Peripheral, NotifyOnDisconnect)
 		End Sub
 	#tag EndMethod
@@ -222,6 +224,62 @@ Inherits control
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheralManagercentraldidSubscribeToCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
+		  RaiseEvent SubscribedToCharacteristic (central, characteristic)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnperipheralManagercentraldidUnSubscribefromCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
+		  RaiseEvent UnsubscribedFromCharacteristic (central, characteristic)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheralManagerDidAddService(Service as AppleCBService, error as appleerror)
+		  if error = nil then
+		    RaiseEvent ServiceAdded (Service, 0, "")
+		  else
+		    RaiseEvent ServiceAdded (Service, error.code, error.localizedDescription)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheralManagerdidReceiveReadRequest(Request as AppleCBATTRequest)
+		  raiseevent ReadRequest (request)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheralManagerdidReceiveWriteRequest(Request as AppleCBATTRequest)
+		  raiseevent WriteRequest (request)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheralManagerDidUpdateState()
+		  RaiseEvent PeripheralManagerStateChanged 
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheralManagerIsReadyToUpdateSubscribers()
+		  raiseevent ReadyToUpdateSubscribers
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnPeripheralManagerwillRestoreState(StateDictionary as AppleDictionary)
+		  RaiseEvent WillRestoreState (StateDictionary.TextKeyDicttoCoreDictionary)
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 5363616E7320666F72207065726970686572616C73207468617420617265206164766572746973696E672073657276696365732E200A5065726970686572616C4342555549447320697320616E206172726179206F6620434255554944206F626A656374732074686174207468652061707020697320696E746572657374656420696E2E20496E207468697320636173652C206561636820434255554944206F626A65637420726570726573656E7473207468652055554944206F662061207365727669636520746861742061207065726970686572616C206973206164766572746973696E672E0A416C6C6F774475706C6963617465732064697361626C65732066696C746572696E6720616E64206120646973636F76657279206576656E742069732067656E65726174656420656163682074696D65207468652063656E7472616C20726563656976657320616E206164766572746973696E67207061636B65742C206E6F74206F6E6C79207468652066697273742074696D652E0A536572766963654342555549447320697320616E20617272617920206F662073657276696365205555494473207468617420796F752077616E7420746F207363616E20666F722E2053706563696679696E672074686973207363616E206F7074696F6E20636175736573207468652063656E7472616C206D616E6167657220746F20616C736F207363616E20666F72207065726970686572616C7320736F6C69636974696E6720616E79206F662074686520736572766963657320636F6E7461696E656420696E207468652061727261792E
 		Sub Scan(PeripheralCBUUIDs() as appleCBuuid =nil, allowDuplicates as Boolean, ServiceCBUUIDs() as applecbuuid = nil)
 		  AppleObject.Scan (PeripheralCBUUIDs.toAppleArray, allowDuplicates, ServiceCBUUIDs.toAppleArray)
@@ -248,15 +306,15 @@ Inherits control
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event Close1()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
 		Event Connected(Peripheral as AppleCBPeripheral)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event ConnectedPeripheralsRetrieved(Peripherals() As AppleCBPeripheral)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event CreatePane()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -304,6 +362,10 @@ Inherits control
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event PeripheralManagerStateChanged()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event PeripheralsRetrieved(Peripherals() As AppleCBPeripheral)
 	#tag EndHook
 
@@ -328,10 +390,6 @@ Inherits control
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event StateChanged1()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
 		Event SubscribedToCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
 	#tag EndHook
 
@@ -341,10 +399,6 @@ Inherits control
 
 	#tag Hook, Flags = &h0
 		Event WillRestoreState(StateDictionary As xojo.Core.Dictionary)
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event WillRestoreState1(StateDictionary As xojo.Core.Dictionary)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
