@@ -39,6 +39,12 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Destructor()
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub Disconnect(Peripheral As AppleCBPeripheral)
 		  cancelPeripheralConnection id, Peripheral.id
@@ -652,10 +658,6 @@ Inherits AppleObject
 		#tag EndGetter
 		Shared ClassPtr As Ptr
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h0
-		CurrentPeripheral As AppleCBPeripheral
-	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter

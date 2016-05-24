@@ -2,6 +2,10 @@
 Protected Class AppleData
 Inherits AppleObject
 	#tag ExternalMethod, Flags = &h21
+		Private Declare Function base64EncodedStringWithOptions Lib FoundationLibName Selector "base64EncodedStringWithOptions:" (id as ptr, options as uinteger) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Declare Function CFDataGetBytePtr Lib FoundationLibName (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -51,14 +55,6 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetBase64String(options as Base64DecodingOptions = base64Decodingoptions.None) As cfstringref
-		  declare function base64EncodedStringWithOptions lib FoundationLibName  selector "base64EncodedStringWithOptions:" (id as ptr, options as Base64DecodingOptions) as cfstringref
-		  return base64EncodedStringWithOptions (id, options)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub GetBytes(byref buffer as xojo.Core.MutableMemoryBlock, Range as FoundationFramework.NSRange)
 		  declare sub getBytes lib FoundationLibName  selector "getBytes:range:" (id as ptr, buffer as ptr, range as FoundationFramework.NSRange)
 		  if buffer.Size >= length then getBytes id, buffer.Data, Range
@@ -74,6 +70,10 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h21
+		Private Declare Function getdescription Lib FoundationLibName Selector "description" (id as ptr) As cfstringref
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0
 		 Shared Function MakefromPtr(aPtr as Ptr) As AppleData
 		  return if (aptr = nil, nil, new AppleData(aPtr))
@@ -84,19 +84,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return GetBase64String
+			  return base64EncodedStringWithOptions (id, 0)
 			End Get
 		#tag EndGetter
-		Base64StringDefault As cfstringref
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return GetBase64String (Base64DecodingOptions.IgnoreUnknownCharacters)
-			End Get
-		#tag EndGetter
-		Base64StringIngoreUnknownChars As cfstringref
+		Base64String As Text
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -127,6 +118,15 @@ Inherits AppleObject
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return getdescription (id)
+			End Get
+		#tag EndGetter
+		Description As Text
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0

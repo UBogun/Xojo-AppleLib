@@ -67,6 +67,12 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 
+	#tag Note, Name = Status incomplete
+		
+		CFUUID constructor missing (because of CFUUID class being not yet implemented)
+	#tag EndNote
+
+
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070747220746F2074686520637573746F6D20636C61737320646572697665642066726F6D204E534F626A656374
 		#tag Getter
 			Get

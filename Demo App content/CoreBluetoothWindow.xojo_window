@@ -47,7 +47,7 @@ Begin Window CoreBluetoothWindow
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
+      AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFF00FF
       Bold            =   False
       Border          =   True
@@ -79,7 +79,7 @@ Begin Window CoreBluetoothWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "Make sure you have a compatible BLE enabled device connected to your Mac. This demo tries to connect to every available peripheral and subscribe to its properties.\n\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -166,6 +166,7 @@ End
 		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol+eol
 		  me.StopScan
 		  Peripheral.DiscoverServices
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -213,6 +214,7 @@ End
 		    dim uu as AppleCBService = AppleCBService.MakefromPtr(Peripheral.Services.PtrAtIndex(q))
 		    Peripheral.DiscoverCharacteristics(uu)
 		    TextArea1.AppendText uu.DebugDescription+EndOfLine
+		    Peripheral.DiscoverIncludedServices(uu)
 		  next
 		  TextArea1.AppendText EndOfLine
 		End Sub
@@ -261,6 +263,8 @@ End
 		        dim c as AppleCBCharacteristic = AppleCBCharacteristic.MakefromPtr(uu.Characteristics.PtrAtIndex(p))
 		        TextArea1.AppendText c.DebugDescription+EndOfLine
 		        Peripheral.SetNotifyValue(c, true)
+		        Peripheral.DiscoverDescriptors(c)
+		        
 		      next
 		    end if
 		  next
@@ -271,7 +275,103 @@ End
 		Sub CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Characteristic update with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
 		  TextArea1.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
+		  Peripheral.ReadRSSI
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DiscoveredIncludedServices(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
+		  dim count as integer
+		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
+		  TextArea1.AppendText "Discovered included service from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
+		  TextArea1.AppendText service.DebugDescription+EndOfLine
+		  TextArea1.AppendText EndOfLine
 		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DiscoveredDescriptors(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  dim count as integer = Characteristic.Descriptors.Count
+		  TextArea1.AppendText "Discovered "+count.ToText+" descriptors for "+Peripheral.Name+" with"+ if(errornumber = 0, "out ", " ")+"error "+ErrorDescription+EndOfLine
+		  for q as integer = 0 to count -1
+		    dim desc as AppleCBDescriptor = AppleCBDescriptor.MakefromPtr(Characteristic.Descriptors.PtrAtIndex(q))
+		    TextArea1.AppendText desc.DebugDescription+EndOfLine
+		    Peripheral.ReadValue(desc)
+		  next
+		  TextArea1.AppendText EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub SubscribedToCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
+		  TextArea1.AppendText "Subscribed to characteristic "+characteristic.DebugDescription+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DescriptorValueUpdate(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Descriptor value update for "+Descriptor.DebugDescription+ _
+		  " with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub RSSIUpdate(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "RSSI update for "+Peripheral.Name+" with"+if (errornumber = 0,"out ", " ")+"error "+ErrorDescription+EndOfLine
+		  TextArea1.AppendText "RSSI: "+Peripheral.RSSI.ToText+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub NotificationStateUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Did update notification state for "+Characteristic.DebugDescription+" with"+if (errornumber = 0,"out ", " ")+ _
+		  "error "+ErrorDescription+EndOfLine+EndOfLine
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ModifiedServices(Peripheral as ApplecBPeripheral, Services() As APpleCBService)
+		  dim count as Integer = services.Ubound +1
+		  TextArea1.AppendText "Modified Services for "+count.ToText+" Services"+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub NameUpdate(Peripheral as AppleCBPeripheral)
+		  TextArea1.AppendText "Name update for "+Peripheral.Name+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub UnsubscribedFromCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
+		  TextArea1.AppendText "Unsubscribed from characteristic "+characteristic.DebugDescription+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ReadRequest(Request as AppleCBATTRequest)
+		  TextArea1.AppendText "Read Request "+Request.DebugDescription+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WriteRequest(Request as AppleCBATTRequest)
+		  TextArea1.AppendText "Write Request "+Request.DebugDescription+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ReadyToUpdateSubscribers()
+		  TextArea1.AppendText "Ready to update subscribers "+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ServiceAdded(Service as AppleCBService, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "service added: "+service.DebugDescription+" with"+if (errornumber = 0,"out ", " ")+ _
+		  "error "+ErrorDescription+EndOfLine+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Wrote Characteristic value with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
+		  TextArea1.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub WroteDescriptorValue(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
+		  TextArea1.AppendText "Wrote Descriptor value for "+Descriptor.DebugDescription+ _
+		  " with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -491,7 +491,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 5365747320746865206465736972656420636F6E6E656374696F6E206C6174656E637920666F7220616E206578697374696E6720636F6E6E656374696F6E20746F20612063656E7472616C206465766963652E
-		Sub SetDesiredConnectionLatency(ForCentral as AppleCBCentral, latency as CBPeripheralManagerConnectionLatency)
+		Sub SetConnectionLatency(ForCentral as AppleCBCentral, latency as CBPeripheralManagerConnectionLatency)
 		  setDesiredConnectionLatency id, latency, ForCentral.id
 		End Sub
 	#tag EndMethod
