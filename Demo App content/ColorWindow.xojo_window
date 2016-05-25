@@ -430,7 +430,6 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Blend"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -465,7 +464,6 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   15
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Alpha"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -500,7 +498,6 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   16
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Highlight"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -535,7 +532,6 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Shadow"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -606,6 +602,34 @@ Begin Window ColorWindow
       Underline       =   False
       Visible         =   True
       Width           =   80
+   End
+   Begin ac ac1
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   250077183
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   322
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   -62
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   20
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   382
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   445
    End
 End
 #tag EndWindow

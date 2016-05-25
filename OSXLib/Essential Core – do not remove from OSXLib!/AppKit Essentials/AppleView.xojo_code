@@ -127,6 +127,10 @@ Inherits AppleResponder
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function convertPointToView Lib appkitlibname Selector "convertPoint.toView:" (id as ptr, point as FoundationFrameWork . NSPoint, view as ptr) As FoundationFrameWork.NSPoint
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 436F6E766572747320612072656374616E676C652066726F6D2069747320706978656C20616C69676E6564206261636B696E672073746F726520636F6F7264696E6174652073797374656D20746F207468652076696577E280997320696E746572696F7220636F6F7264696E6174652073797374656D2E
 		Function ConvertRectFromBacking(Rect As FoundationFrameWork.NSRect) As FoundationFrameWork.NSRect
 		  return convertRectFromBacking(id,rect)
@@ -1072,6 +1076,11 @@ Inherits AppleResponder
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Alpha"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AutoresizesSubviews"
 			Group="Behavior"
 			Type="Boolean"
@@ -1082,9 +1091,24 @@ Inherits AppleResponder
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawSubviewsIntoLayer"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FrameCenterRotation"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FrameRotation"
@@ -1097,6 +1121,11 @@ Inherits AppleResponder
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="HeightAdjustLimit"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -1107,11 +1136,39 @@ Inherits AppleResponder
 			Name="LayerContentsPlacement"
 			Group="Behavior"
 			Type="NSViewLayerContentsPlacement"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - ScaleAxesIndependently"
+				"1 - ScaleProprtionallyToFit"
+				"2 - ScaleProprtionallyToFill"
+				"3 - Center"
+				"4 - Top"
+				"5 - TopRight"
+				"6 - Right"
+				"7 - BottomRight"
+				"8 - Bottom"
+				"9 - BottomLeft"
+				"10 - Left"
+				"11 - TopLeft"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LayerContentsRedrawPolicy"
 			Group="Behavior"
-			Type="LayerContentsRedrawPolicy"
+			Type="NSViewLayerContentsRedrawPolicy"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Never"
+				"1 - OnSetNeedsDisplay"
+				"2 - DuringResize"
+				"3 - BeforeResize"
+				"4 - Crossfade"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="LayerUsesCoreImageFilters"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1130,6 +1187,11 @@ Inherits AppleResponder
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsDisplay"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"
@@ -1153,6 +1215,11 @@ Inherits AppleResponder
 			Name="WantsLayer"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WidthAdjustLimit"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

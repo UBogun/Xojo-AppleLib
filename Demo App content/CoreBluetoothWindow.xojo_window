@@ -28,10 +28,6 @@ Begin Window CoreBluetoothWindow
    Width           =   956
    Begin OSXLibCoreBluetoothController OSXLibCBCentralManager1
       CentralManagerState=   ""
-<<<<<<< HEAD
-      Enabled         =   True
-=======
->>>>>>> 0f5cc4b56b403774e4c7b28a4f85e8093c965eec
       Handle          =   0
       Index           =   -2147483648
       IsAdvertising   =   False
@@ -315,34 +311,6 @@ Begin Window CoreBluetoothWindow
       Underline       =   False
       Visible         =   True
       Width           =   100
-   End
-   Begin ac ac1
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   250077183
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   322
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   13
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Scope           =   2
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   388
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   445
    End
 End
 #tag EndWindow
