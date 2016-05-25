@@ -177,6 +177,15 @@ Inherits OSXLibCBCentralManager
 			Name="CentralManagerState"
 			Group="Behavior"
 			Type="AppleCBCentralManager.CBCentralManagerState"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Unknown"
+				"1 - Resetting"
+				"2 - Unsupported"
+				"3 - Unauthorized"
+				"4 - PoweredOff"
+				"5 - PoweredOn"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Handle"
@@ -231,6 +240,15 @@ Inherits OSXLibCBCentralManager
 			Name="PeripheralManagerState"
 			Group="Behavior"
 			Type="AppleCBPeripheralManagerforControl.CBPeripheralManagerState"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Unknown"
+				"1 - Resetting"
+				"2 - Unsupported"
+				"3 - Unauthorized"
+				"4 - PoweredOff"
+				"5 - PoweredOn"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="State"
