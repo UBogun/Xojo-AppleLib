@@ -1,9 +1,10 @@
 #tag Class
-Protected Class ac
-Inherits canvas
+Protected Class OSXLibCanvas
+Inherits osxlibcontrol
 	#tag Event
 		Sub Open()
 		  mAppleObject = new appleview (FoundationFrameWork.NSMakeRect(me.Left,me.Top,me.Width, me.Height))
+		  mAppleObject.registercontrol self
 		  mAppleObject.WantsLayer = true
 		  mAppleObject.LayerContentsRedrawPolicy = appleview.NSViewLayerContentsRedrawPolicy.Crossfade
 		  mAppleObject.Layer.BorderWidth = 5
@@ -23,16 +24,29 @@ Inherits canvas
 	#tag EndEvent
 
 
-	#tag Method, Flags = &h21
-		Private Sub ExchangeViews()
-		  dim origview as new appleview (self)
-		  break
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informOnAcceptsTouchEvents() As Boolean
+		  return RaiseEvent AcceptsTouchEvents
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnviewDidMoveToWindow()
+		  RaiseEvent Shown
 		End Sub
 	#tag EndMethod
 
 
 	#tag Hook, Flags = &h0
+		Event AcceptsTouchEvents() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event Open()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Shown()
 	#tag EndHook
 
 

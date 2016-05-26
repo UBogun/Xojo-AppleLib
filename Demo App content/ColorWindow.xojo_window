@@ -603,8 +603,8 @@ Begin Window ColorWindow
       Visible         =   True
       Width           =   80
    End
-   Begin ac ac1
-      AcceptFocus     =   False
+   Begin OSXLibCanvas ac1
+      AcceptFocus     =   True
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   250077183
@@ -630,6 +630,34 @@ Begin Window ColorWindow
       UseFocusRing    =   True
       Visible         =   True
       Width           =   445
+   End
+   Begin OSXLibCanvas ac2
+      AcceptFocus     =   True
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   250077183
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   223
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   130
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   21
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   55
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   385
    End
 End
 #tag EndWindow
@@ -800,6 +828,26 @@ End
 		  for q as integer = 1 to 100000
 		    dim cgc as  AppleCGColor  = patternimg.CGColor
 		  next
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ac1
+	#tag Event
+		Sub MouseDown(anEvent As AppleNSEvent)
+		  dim error as new appleerror( "Foo bar", -100)
+		  call me.AppleObject.PreSentError (error)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function AcceptsTouchEvents() As Boolean
+		  return true
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events ac2
+	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865206C656674206D6F75736520627574746F6E2E
+		Sub MouseDown(anEvent As AppleNSEvent)
+		  me.AppleObject.Animator.FrameCenterRotation = 80
 		End Sub
 	#tag EndEvent
 #tag EndEvents

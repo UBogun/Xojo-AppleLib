@@ -18,10 +18,11 @@ Implements AppleGeneralObject
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub Destructor()
+	#tag Method, Flags = &h1
+		Protected Sub Destructor()
 		  if mHasOwnership then
 		    if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
+		    if XojoControls <> nil and XojoControls.HasKey(id) then XojoControls.Remove(id)
 		    call release id
 		  else
 		    if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
@@ -65,6 +66,7 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
+		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
 		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
 		End Sub
 	#tag EndMethod

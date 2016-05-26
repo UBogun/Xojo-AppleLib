@@ -397,7 +397,27 @@ Protected Class AppleAlignmentOptions
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AlignHeightNearest"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignHeightOutward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AlignMaxXInward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMaxXNearest"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMaxXOutward"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -407,7 +427,47 @@ Protected Class AppleAlignmentOptions
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AlignMaxYNearest"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMaxYOutward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMinXInward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMinXNearest"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMinXOutward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AlignMinYInward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMinYNearest"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignMinYOutward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignRectFlipped"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -417,9 +477,19 @@ Protected Class AppleAlignmentOptions
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AlignWidthNearest"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AlignWidthOutward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ID"
 			Group="Behavior"
-			Type="uinteger"
+			Type="uint64"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -453,11 +523,6 @@ Protected Class AppleAlignmentOptions
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Width"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

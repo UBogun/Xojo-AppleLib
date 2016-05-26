@@ -17,6 +17,18 @@ Protected Module AppKitFramework
 	#tag EndConstant
 
 
+	#tag Enum, Name = NSFocusRingType, Type = UInteger, Flags = &h1
+		Default = 0
+		  None = 1
+		Exterior = 2
+	#tag EndEnum
+
+	#tag Enum, Name = NSUserInterfaceLayoutDirection, Type = Integer, Flags = &h1
+		LeftToRight
+		RightToLeft
+	#tag EndEnum
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Index"

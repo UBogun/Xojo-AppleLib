@@ -1,11 +1,15 @@
-#tag Module
-Protected Module RectControlExtension
+#tag Interface
+Protected Interface OSXLibControlledObject
 	#tag Method, Flags = &h0
-		Function AppleObject(extends r as RectControl) As AppleView
-		  #if targetmacos
-		    return new AppleView(r)
-		  #endif
-		End Function
+		Sub RegisterControl(ParentControl As control)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RemoveControl()
+		  
+		End Sub
 	#tag EndMethod
 
 
@@ -44,5 +48,5 @@ Protected Module RectControlExtension
 			Type="Integer"
 		#tag EndViewProperty
 	#tag EndViewBehavior
-End Module
-#tag EndModule
+End Interface
+#tag EndInterface

@@ -41,7 +41,10 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
-		  
+		  if mHasOwnership then
+		    if XojoControls <> nil and XojoControls.HasKey(id) then XojoControls.Remove(id)
+		    super.Destructor
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -458,12 +461,14 @@ Inherits AppleObject
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
 		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
+		  super.registercontrol(parentcontrol)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RemoveControl()
 		  XojoControls.Remove (id)
+		  super.removecontrol
 		End Sub
 	#tag EndMethod
 

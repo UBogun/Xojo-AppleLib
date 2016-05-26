@@ -28,6 +28,7 @@ Begin Window CoreBluetoothWindow
    Width           =   956
    Begin OSXLibCoreBluetoothController OSXLibCBCentralManager1
       CentralManagerState=   ""
+      Enabled         =   True
       Handle          =   0
       Index           =   -2147483648
       IsAdvertising   =   False
@@ -300,6 +301,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Data log"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -415,7 +417,7 @@ End
 		      
 		      self.Peripheral =Peripheral
 		      TextArea1.AppendText "Connection attempt"+EndOfLine+EndOfLine
-		      me.AppleObject.Connect self.Peripheral, true
+		      me.Connect self.Peripheral, true
 		    end if
 		  end if
 		End Sub
@@ -426,6 +428,7 @@ End
 		  
 		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol+eol
 		  me.StopScan
+		  
 		  Peripheral.DiscoverServices
 		  
 		End Sub
