@@ -10,7 +10,7 @@ Begin Window NotificationWindow
    FullScreenButton=   False
    HasBackColor    =   False
    Height          =   400
-   ImplicitInstance=   True
+   ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
@@ -28,7 +28,6 @@ Begin Window NotificationWindow
    Width           =   600
    Begin OSXLibNotificationCenter AppleNotificationCenter1
       DebugDescription=   ""
-      Enabled         =   True
       HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
@@ -73,7 +72,7 @@ Begin Window NotificationWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Make a rightclick on this textarea or on the IDE. The notificationCenter catches the NSMenuDidAdItemNotifications.\n\n"
+      Text            =   "Make a rightclick on this textarea or on the IDE. The notificationCenter catches the NSMenuDidAdItemNotifications.\n\nYou can attach as many OSXLibNotificationCenter Controls to your project and register each number of notifications to each. \n\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -99,8 +98,6 @@ End
 	#tag Event
 		Sub Open()
 		  me.RegisterNotification "NSMenuDidAddItemNotification"
-		  dim a as new applecolor (0.4, 0.1, 0.8)
-		  break
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -177,6 +177,12 @@ Inherits canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub InformOnNSAnimationFinished()
+		  RaiseEvent AnimationFinished
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnotherMouseDown(anEvent as applensevent)
 		  raiseevent OtherMouseDown (anEvent)
 		End Sub
@@ -272,6 +278,10 @@ Inherits canvas
 		End Sub
 	#tag EndMethod
 
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061204E53416E696D6174696F6E436F6E7465787420616E696D6174696F6E2066696E69736865642E
+		Event AnimationFinished()
+	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520757365722068617320626567756E206120746F75636820676573747572652E
 		Event BeginGesture(anEvent As AppleNSEvent)

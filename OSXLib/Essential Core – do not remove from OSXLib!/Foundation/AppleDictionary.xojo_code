@@ -40,14 +40,6 @@ Inherits Appleobject
 		Protected Declare Function getTextForKey Lib foundationlibname Selector "objectForKey:" (id as ptr, key as Ptr) As CFStringRef
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getvalueForKey Lib foundationlibname Selector "valueForKey:" (id as ptr, key as cfstringref) As ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getvalueForKey Lib foundationlibname Selector "valueForKey:" (id as ptr, key as Ptr) As ptr
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0
 		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleDictionary
 		  return if (aptr <> NIL, new AppleDictionary (aptr), NIL)
@@ -98,7 +90,7 @@ Inherits Appleobject
 
 	#tag Method, Flags = &h0
 		Function ValueForKey(Key as CFstringRef) As appleobject
-		  return appleobject.MakeFromPtr(getvalueForKey (id, key))
+		  return appleobject.MakeFromPtr(FoundationFrameWork.getvalueForKey (id, key))
 		  
 		End Function
 	#tag EndMethod

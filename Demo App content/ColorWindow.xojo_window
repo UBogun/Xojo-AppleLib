@@ -10,7 +10,7 @@ Begin Window ColorWindow
    FullScreenButton=   False
    HasBackColor    =   False
    Height          =   648
-   ImplicitInstance=   True
+   ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
@@ -25,7 +25,7 @@ Begin Window ColorWindow
    Resizeable      =   True
    Title           =   "Color Extension Demo"
    Visible         =   True
-   Width           =   515
+   Width           =   827
    Begin ColorCanvas ColorCanvas1
       AcceptFocus     =   False
       AcceptTabs      =   False
@@ -552,11 +552,11 @@ Begin Window ColorWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   224
+      Height          =   244
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   27
+      Left            =   0
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -570,113 +570,46 @@ Begin Window ColorWindow
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   468
+      Width           =   827
    End
-   Begin PushButton PushButton1
+   Begin Label Label5
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "OK"
-      Default         =   True
+      DataField       =   ""
+      DataSource      =   ""
       Enabled         =   True
-      Height          =   20
+      Height          =   337
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   415
+      Left            =   507
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
-      Scope           =   0
-      TabIndex        =   19
+      Multiline       =   True
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
+      Text            =   "Here are some NSColor / AppleColor features that are implemented transparently as new color features for MacOS desktop projects: Color Blending, Alpha value change and two different kinds of brightening and darkening colors that influence the alpha value too.\nBelow I used an image as Color. See how it behaves when you scale the window.\n\nThe module inserted methods are\nColor.BlendWithcolor (AnotherColor As Color, Fraction As Double) As Color\nColor.ChangeAlpha (NewAlpha As Double) As Color\nColor.HightlightColor (Level As Double) As Color and\nColor.ShadowColor (Level As Double) As Color"
+      TextAlign       =   0
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   372
+      Top             =   33
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   80
-   End
-   Begin OSXLibCanvas ac1
-      AcceptFocus     =   True
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   250077183
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   322
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   -62
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Scope           =   2
-      TabIndex        =   20
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   382
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   445
-   End
-   Begin OSXLibCanvas ac2
-      AcceptFocus     =   True
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   250077183
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   223
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   130
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Scope           =   2
-      TabIndex        =   21
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   55
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   385
+      Width           =   300
    End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Sub Open()
-		  dim a as AppleImage = AppleImage.fromPicture(OSXLibLogo)
-		  a.Size = FoundationFrameWork.NSMakeSize(a.size.width/15, a.size.height/15)
-		  patternimg = new AppleColor(a)
-		  dim av as new AppleView(ColorCanvas10)
-		  av.WantsLayer = true
-		  av.Layer.BorderWidth = 10
-		  av.layer.BackgroundColor = PatternImg
-		  
-		End Sub
-	#tag EndEvent
-
-
 	#tag Property, Flags = &h1
 		Protected PatternImg As applecolor
 	#tag EndProperty
@@ -690,6 +623,7 @@ End
 		  me.BGColor = me.BGColor.changealpha(Slider4.Value)
 		  ColorCanvas4.Invalidate
 		  ColorCanvas7.Invalidate
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -818,36 +752,15 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events PushButton1
+#tag Events ColorCanvas10
 	#tag Event
-		Sub Action()
-		  dim a as AppleImage = AppleImage.fromPicture(OSXLibLogo)
-		  a.Size = FoundationFrameWork.NSMakeSize(a.size.width/5, a.size.height/5)
-		  patternimg = new AppleColor(a)
-		  // dim av as new AppleView(ColorCanvas10)
-		  for q as integer = 1 to 100000
-		    dim cgc as  AppleCGColor  = patternimg.CGColor
-		  next
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events ac1
-	#tag Event
-		Sub MouseDown(anEvent As AppleNSEvent)
-		  dim error as new appleerror( "Foo bar", -100)
-		  call me.AppleObject.PreSentError (error)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function AcceptsTouchEvents() As Boolean
-		  return true
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events ac2
-	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865206C656674206D6F75736520627574746F6E2E
-		Sub MouseDown(anEvent As AppleNSEvent)
-		  me.AppleObject.Animator.FrameCenterRotation = 80
+		Sub Open()
+		  dim a as AppleImage = AppleImage.fromPicture(OSXLibLogo) // Dim a new picture
+		  a.Size = FoundationFrameWork.NSMakeSize(a.size.width/15, a.size.height/15) // and resize it
+		  patternimg = new AppleColor(a) // now make a color that tiles it
+		  dim av as  AppleView = me.AppleObject // Addressing the Canvas as NSView object
+		  av.WantsLayer = true // Making it layer-backed
+		  av.layer.BackgroundColor = PatternImg // and finally set its layer backgroundcolor to the new color. No Paint event included!
 		End Sub
 	#tag EndEvent
 #tag EndEvents

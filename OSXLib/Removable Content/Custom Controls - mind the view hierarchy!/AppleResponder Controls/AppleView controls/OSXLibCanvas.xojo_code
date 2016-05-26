@@ -3,11 +3,8 @@ Protected Class OSXLibCanvas
 Inherits osxlibcontrol
 	#tag Event
 		Sub Open()
-		  mAppleObject = new appleview (FoundationFrameWork.NSMakeRect(me.Left,me.Top,me.Width, me.Height))
+		  mAppleObject = new appleview (AppleObject.fromControl(self).Frame)
 		  mAppleObject.registercontrol self
-		  mAppleObject.WantsLayer = true
-		  mAppleObject.LayerContentsRedrawPolicy = appleview.NSViewLayerContentsRedrawPolicy.Crossfade
-		  mAppleObject.Layer.BorderWidth = 5
 		  dim origview as new appleview(self)
 		  dim controller as appleview = origview.SuperView
 		  for q as integer = 0 to controller.Subviews.Count -1
@@ -50,13 +47,13 @@ Inherits osxlibcontrol
 	#tag EndHook
 
 
-	#tag ComputedProperty, Flags = &h1
+	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
 			  return mAppleObject
 			End Get
 		#tag EndGetter
-		Protected AppleObject As AppleView
+		AppleObject As AppleView
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21

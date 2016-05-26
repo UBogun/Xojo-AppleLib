@@ -4,7 +4,7 @@ Inherits control
 	#tag Event
 		Sub Close()
 		  raiseevent close
-		  mAppleObject.RemoveControl
+		  // mAppleObject.RemoveControl
 		  
 		End Sub
 	#tag EndEvent

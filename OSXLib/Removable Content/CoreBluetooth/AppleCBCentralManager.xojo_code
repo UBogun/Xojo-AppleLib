@@ -43,7 +43,6 @@ Inherits AppleObject
 		Protected Sub Destructor()
 		  if mHasOwnership then
 		    if XojoControls <> nil and XojoControls.HasKey(id) then XojoControls.Remove(id)
-		    super.Destructor
 		  end if
 		End Sub
 	#tag EndMethod

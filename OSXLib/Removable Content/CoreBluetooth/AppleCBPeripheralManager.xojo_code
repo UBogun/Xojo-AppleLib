@@ -34,6 +34,14 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub Destructor()
+		  if mHasOwnership then
+		    if XojoControls <> nil and XojoControls.HasKey(id) then XojoControls.Remove(id)
+		  end if
+		End Sub
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h21
 		Private Declare Function getauthorizationStatus Lib CoreBluetoothLibName Selector "authorizationStatus" (id as ptr) As CBPeripheralManagerAuthorizationStatus
 	#tag EndExternalMethod

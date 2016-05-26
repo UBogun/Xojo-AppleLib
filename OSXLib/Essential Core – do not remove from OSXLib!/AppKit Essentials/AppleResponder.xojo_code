@@ -2,6 +2,18 @@
 Protected Class AppleResponder
 Inherits AppleObject
 Implements OSXLibControlledObject
+	#tag Method, Flags = &h0
+		Sub AnimationContextCompletionBlock()
+		  if me <> Nil then
+		    if parentcontrol <> nil then
+		      parentcontrol.InformOnNSAnimationFinished
+		    else
+		      raiseevent AnimationFinished
+		    end if
+		  end if
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
 		  if mHasOwnership then
@@ -9,6 +21,10 @@ Implements OSXLibControlledObject
 		  end if
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getanimations Lib appkitlibname Selector "animations" (id as ptr) As Ptr
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getanimator Lib appkitlibname Selector "animator" (id as ptr) As Ptr
@@ -629,6 +645,10 @@ Implements OSXLibControlledObject
 		End Sub
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setanimations Lib appkitlibname Selector "setAnimations:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 417474656D70747320746F20706572666F726D2074686520616374696F6E20696E64696361746564206D6574686F64207769746820612073706563696669656420617267756D656E742E0A49662074686520726563656976657220726573706F6E647320746F20616E416374696F6E2C20697420696E766F6B657320746865206D6574686F64207769746820616E4F626A6563742061732074686520617267756D656E7420616E642072657475726E73205945532E2049662074686520726563656976657220646F65736EE280997420726573706F6E642C2069742073656E64732074686973206D65737361676520746F20697473206E65787420726573706F6E6465722077697468207468652073616D652073656C6563746F7220616E64206F626A6563742E
 		Function TryToPerform(AnActionSelector As Ptr, Anobject As AppleGeneralObject) As Boolean
 		  return tryToPerform (id, AnActionSelector, Anobject.GeneralID)
@@ -642,6 +662,10 @@ Implements OSXLibControlledObject
 
 	#tag Hook, Flags = &h0, Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
 		Event AcceptsFirstResponder() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061204E53416E696D6174696F6E436F6E7465787420616E696D6174696F6E2066696E697368657320616E64206E6F20637573746F6D20636F6D706C6574696F6E48616E646C657220776173207370656369666965642E
+		Event AnimationFinished()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
@@ -838,6 +862,26 @@ Implements OSXLibControlledObject
 			End Get
 		#tag EndGetter
 		Shared ClassPtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mNSAnimationTriggerOrderIn as text= SystemConstantName("NSAnimationTriggerOrderIn", AppKitPath)
+			  return mNSAnimationTriggerOrderIn
+			End Get
+		#tag EndGetter
+		Shared kNSAnimationTriggerOrderIn As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mNSAnimationTriggerOrderOut as text= SystemConstantName("NSAnimationTriggerOrderOut", AppKitPath)
+			  return mNSAnimationTriggerOrderOut
+			End Get
+		#tag EndGetter
+		Shared kNSAnimationTriggerOrderOut As Text
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21

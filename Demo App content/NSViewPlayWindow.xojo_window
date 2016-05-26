@@ -1,5 +1,5 @@
 #tag Window
-Begin Window SelectionWindow
+Begin Window NSViewPlayWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -9,7 +9,7 @@ Begin Window SelectionWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   576
+   Height          =   632
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -21,134 +21,38 @@ Begin Window SelectionWindow
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
-   Placement       =   1
+   Placement       =   0
    Resizeable      =   True
-   Title           =   "Welcome to OSXLib · written 2016 by Ulrich Bogun, xojoblog.me"
+   Title           =   "Untitled"
    Visible         =   True
-   Width           =   750
-   Begin PopupMenu PopupMenu1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   20
-      ListIndex       =   0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Scope           =   0
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   536
-      Underline       =   False
-      Visible         =   True
-      Width           =   606
-   End
-   Begin PushButton PushButton1
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "OK"
-      Default         =   True
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   650
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      Scope           =   2
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   536
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
-   End
-   Begin Label Label1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      Text            =   "Select a demo:"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   512
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   304
-   End
-   Begin osxlibcanvas ImageWell1
-      AcceptFocus     =   False
+   Width           =   804
+   Begin OSXLibCanvas ac2
+      AcceptFocus     =   True
       AcceptTabs      =   False
       AutoDeactivate  =   True
-      Backdrop        =   0
+      Backdrop        =   250077183
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   500
+      Height          =   455
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   0
+      Left            =   37
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
       Scope           =   2
-      TabIndex        =   3
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   0
+      Top             =   65
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   750
+      Width           =   747
    End
 End
 #tag EndWindow
@@ -156,49 +60,15 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events PopupMenu1
+#tag Events ac2
 	#tag Event
-		Sub Open()
-		  me.AddRow("Color Additions")
-		  me.AddRow("NSView Additions")
-		  me.AddRow("Notifications")
-		  me.AddRow("CoreBluetooth")
-		  me.ListIndex = 0
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events PushButton1
-	#tag Event
-		Sub Action()
-		  dim w as window
-		  select case PopupMenu1.Text
-		  case "Color Additions"
-		    w = new ColorWindow
-		  case "Notifications"
-		    w = new NotificationWindow
-		  case "CoreBluetooth"
-		    w= new CoreBluetoothWindow
-		  end select
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events ImageWell1
-	#tag Event
-		Sub Open()
-		  me.AppleObject.WantsLayer = true
-		  me.AppleObject.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
-		  dim bgpic as AppleImage = AppleImage.fromPicture(OSXLibLogo)
-		  me.AppleObject.Layer.Contents =bgpic
+		Sub MouseDown(anEvent As AppleNSEvent)
+		  Using xojo.Math
+		  dim cont as new AppleAnimationContext(me.AppleObject)
+		  cont.Duration = 1
+		  me.appleobject.Animator.Frame = FoundationFrameWork.NSMakeRect(RandomInt(-100,500), RandomInt(-100, 600), RandomInt (10, 500), randomint (10, 800))
 		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Shown()
-		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
-		  dim ac as new AppleAnimationContext 
-		  ac.Duration = 8
-		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
-		  
+		  // me.AppleObject.Display
 		End Sub
 	#tag EndEvent
 #tag EndEvents

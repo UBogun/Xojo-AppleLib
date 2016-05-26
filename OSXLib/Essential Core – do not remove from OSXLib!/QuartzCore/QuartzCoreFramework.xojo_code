@@ -68,6 +68,10 @@ Protected Module QuartzCoreFramework
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getduration Lib QuartzCoreLib Selector "double" (id as ptr) As Double
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function gethidden Lib QuartzCoreLib Selector "hidden" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -89,6 +93,10 @@ Protected Module QuartzCoreFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getshadowRadius Lib QuartzCoreLib Selector "shadowRadius" (id as ptr) As cgfloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setDuration Lib QuartzCoreLib Selector "setDuration:" (id as ptr, value as Double)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

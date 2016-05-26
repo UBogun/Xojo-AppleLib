@@ -16,6 +16,9 @@ Protected Module AppKitFramework
 	#tag Constant, Name = AppKitLibName, Type = Text, Dynamic = False, Default = \"Appkit.framework", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = AppKitPath, Type = Text, Dynamic = False, Default = \"com.apple.AppKit", Scope = Public
+	#tag EndConstant
+
 
 	#tag Enum, Name = NSFocusRingType, Type = UInteger, Flags = &h1
 		Default = 0

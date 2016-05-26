@@ -1111,6 +1111,20 @@ Inherits AppleResponder
 		Alpha As Double
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 546865206F7074696F6E616C2064696374696F6E6172792074686174206D617073206576656E742074726967676572206B65797320746F20616E696D6174696F6E206F626A656374732E
+		#tag Getter
+			Get
+			  return AppleDictionary.MakeFromPtr(getanimations(id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setanimations id, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		Animations As AppleDictionary
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 412070726F7879206F626A65637420666F722074686520726563656976657220746861742063616E206265207573656420746F20696E69746961746520696D706C69656420616E696D6174696F6E20666F722070726F7065727479206368616E6765732E
 		#tag Getter
 			Get
