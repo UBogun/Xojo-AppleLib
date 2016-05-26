@@ -40,8 +40,36 @@ Protected Module FoundationFrameWork
 		Protected Declare Function getCount Lib FoundationLibName Selector "count" (id as ptr) As UInteger
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getdictionaryWithValuesForKeys Lib foundationlibname Selector "dictionaryWithValuesForKeys:" (id as ptr, keys as ptr) As ptr
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getlocalizedDescription Lib FoundationLibName Selector "localizedDescription" (id as ptr) As cfstringref
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmutableArrayValueForKey Lib foundationlibname Selector "mutableArrayValueForKey:" (id as ptr, key as cfstringref) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmutableArrayValueForKeyPath Lib foundationlibname Selector "mutableArrayValueForKeyPath:" (id as ptr, key as cfstringref) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmutableOrderedSetValueForKey Lib foundationlibname Selector "mutableOrderedSetValueForKey:" (id as ptr, key as cfstringref) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmutableOrderedSetValueForKeyPath Lib foundationlibname Selector "mutableOrderedSetValueForKeyPath:" (id as ptr, key as cfstringref) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmutableSetValueForKey Lib foundationlibname Selector "mutableSetValueForKey:" (id as ptr, key as cfstringref) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmutableSetValueForKeyPath Lib foundationlibname Selector "mutableSetValueForKeyPath:" (id as ptr, key as cfstringref) As ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -62,6 +90,18 @@ Protected Module FoundationFrameWork
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getUserInfo Lib FoundationLibName Selector "userInfo" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getvalueForKey Lib foundationlibname Selector "valueForKey:" (id as ptr, key as cfstringref) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getvalueForKey Lib foundationlibname Selector "valueForKey:" (id as ptr, key as Ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getvalueForKeyPath Lib foundationlibname Selector "valueForKeyPath:" (id as ptr, key as cfstringref) As ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -137,12 +177,36 @@ Protected Module FoundationFrameWork
 		Protected Declare Sub setName Lib FoundationLibName Selector "setName:" (id as ptr, value as CFStringref)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setNilValueForKey Lib foundationlibname Selector "setNilValueForKey:" (id as ptr, Key as cfstringref)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setSize Lib foundationlibname Selector "setSize:" (id as ptr, value as FoundationFrameWork . NSSize)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function setUserInfo Lib FoundationLibName Selector "setUserInfo:" (id as ptr, value as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setValueforKey Lib foundationlibname Selector "setValue:forKey:" (id as ptr, anObject as cfstringref, Key as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setValueforKey Lib foundationlibname Selector "setValue:forKey:" (id as ptr, anObject as Ptr, Key as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setValueforKeyPath Lib foundationlibname Selector "setValue:forKeyPath:" (id as ptr, anObject as cfstringref, Key as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setValueforKeyPath Lib foundationlibname Selector "setValue:forKeyPath:" (id as ptr, anObject as Ptr, Key as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setValuesForKeysWithDictionary Lib foundationlibname Selector "setValuesForKeysWithDictionary:" (id as ptr, KeyedValues as Ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0

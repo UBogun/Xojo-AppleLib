@@ -110,23 +110,15 @@ Inherits AppleDictionary
 
 	#tag Method, Flags = &h0
 		Sub setValue(Key as CFstringRef , value as AppleGeneralObject)
-		  setValueforKey(id, value.GeneralID, key)
+		  FoundationFrameWork.setValueforKey(id, value.GeneralID, key)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setValue(Key as CFstringRef , value as CFStringRef)
-		  setValueforKey(id, value, key)
+		  FoundationFrameWork.setValueforKey(id, value, key)
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Sub setValueforKey Lib foundationlibname Selector "setValue:forKey:" (id as ptr, anObject as cfstringref, Key as CFStringRef)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Sub setValueforKey Lib foundationlibname Selector "setValue:forKey:" (id as ptr, anObject as Ptr, Key as CFStringRef)
-	#tag EndExternalMethod
 
 
 	#tag ComputedProperty, Flags = &h1

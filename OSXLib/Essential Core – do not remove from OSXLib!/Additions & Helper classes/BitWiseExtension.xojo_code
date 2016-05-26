@@ -31,14 +31,14 @@ Protected Module BitWiseExtension
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function SetBit(i as UInt64, bit as integer) As UInt64
+		Function SetBit(i as uint32, bit as integer) As uint32
 		  dim compare as uinteger = 2 ^ bit
 		  return  i or compare
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function SetBit(i as UInteger, bit as integer) As UInteger
+		Function SetBit(i as UInt64, bit as integer) As UInt64
 		  dim compare as uinteger = 2 ^ bit
 		  return  i or compare
 		End Function

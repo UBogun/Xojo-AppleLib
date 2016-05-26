@@ -10,7 +10,7 @@ Begin Window CoreBluetoothWindow
    FullScreenButton=   False
    HasBackColor    =   False
    Height          =   536
-   ImplicitInstance=   True
+   ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
@@ -415,7 +415,7 @@ End
 		      
 		      self.Peripheral =Peripheral
 		      TextArea1.AppendText "Connection attempt"+EndOfLine+EndOfLine
-		      me.AppleObject.Connect self.Peripheral, true
+		      me.Connect self.Peripheral, true
 		    end if
 		  end if
 		End Sub
@@ -426,6 +426,7 @@ End
 		  
 		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol+eol
 		  me.StopScan
+		  
 		  Peripheral.DiscoverServices
 		  
 		End Sub

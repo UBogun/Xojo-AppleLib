@@ -96,15 +96,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function duration lib QuartzCoreLib selector "duration" (id as ptr) as Double
-			  return duration (id)
+			  return QuartzCoreFramework.getduration (id)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setDuration lib QuartzCoreLib selector "setDuration:" (id as ptr, value as Double)
-			  setDuration (id, value)
+			  QuartzCoreFramework.setDuration (id, value)
 			  
 			End Set
 		#tag EndSetter

@@ -10,8 +10,8 @@ Inherits OSXLibCBCentralManager
 		  next 
 		  mConnectedPeripherals.RemoveAll
 		  AppleObject.CBCentralManagerDelegate = nil
-		  mPeripheralManager.Removecontrol 
-		  mPeripheralManager = nil
+		  // mPeripheralManager.Removecontrol 
+		  // mPeripheralManager = nil
 		  
 		End Sub
 	#tag EndEvent
