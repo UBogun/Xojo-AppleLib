@@ -3,7 +3,7 @@ Protected Class AppleResponder
 Inherits AppleObject
 Implements OSXLibControlledObject
 	#tag Method, Flags = &h0
-		Sub AnimationContextCompletionBlock()
+		Attributes( hidden )  Sub AnimationContextCompletionBlock()
 		  if me <> Nil then
 		    if parentcontrol <> nil then
 		      parentcontrol.InformOnNSAnimationFinished

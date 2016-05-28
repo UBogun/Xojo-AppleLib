@@ -150,10 +150,46 @@ Begin Window SelectionWindow
       Visible         =   True
       Width           =   750
    End
+   Begin PushButton PushButton2
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Button"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   546
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   504
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Property, Flags = &h21
+		Private SecondaryWindow As Window
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
 #tag Events PopupMenu1
@@ -163,6 +199,8 @@ End
 		  me.AddRow("NSView Additions")
 		  me.AddRow("Notifications")
 		  me.AddRow("CoreBluetooth")
+		  me.AddRow("TestWindow")
+		  
 		  me.ListIndex = 0
 		End Sub
 	#tag EndEvent
@@ -170,14 +208,28 @@ End
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
-		  dim w as window
+		  if SecondaryWindow <> nil then 
+		    SecondaryWindow.Close
+		    try
+		      appleobject.release Ptr(SecondaryWindow.Handle)
+		      System.DebugLog "Released Window"
+		      SecondaryWindow = nil
+		    catch
+		      System.DebugLog "Release cause exception"
+		      
+		    end try
+		  end if
 		  select case PopupMenu1.Text
 		  case "Color Additions"
-		    w = new ColorWindow
+		    SecondaryWindow = new ColorWindow
 		  case "Notifications"
-		    w = new NotificationWindow
+		    SecondaryWindow = new NotificationWindow
 		  case "CoreBluetooth"
-		    w= new CoreBluetoothWindow
+		    SecondaryWindow= new CoreBluetoothWindow
+		  case "NSView Additions"
+		    SecondaryWindow= new NSViewPlayWindow
+		  case "TestWindow"
+		    SecondaryWindow = new TestWindow
 		  end select
 		End Sub
 	#tag EndEvent
@@ -188,6 +240,7 @@ End
 		  me.AppleObject.WantsLayer = true
 		  me.AppleObject.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
 		  dim bgpic as AppleImage = AppleImage.fromPicture(OSXLibLogo)
+		  bgpic.retain
 		  me.AppleObject.Layer.Contents =bgpic
 		  
 		End Sub
@@ -195,10 +248,19 @@ End
 	#tag Event
 		Sub Shown()
 		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
-		  dim ac as new AppleAnimationContext 
+		  dim ac as new AppleAnimationContext (me.AppleObject)
 		  ac.Duration = 8
 		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton2
+	#tag Event
+		Sub Action()
+		  for q as integer = 0 to 100000
+		    dim c as  new AppleAnimationContext
+		  next
 		End Sub
 	#tag EndEvent
 #tag EndEvents

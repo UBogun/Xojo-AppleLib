@@ -176,12 +176,22 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Base64String"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="CFTypeID"
 			Group="Behavior"
 			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Description"
 			Group="Behavior"
 			Type="Text"
 		#tag EndViewProperty
