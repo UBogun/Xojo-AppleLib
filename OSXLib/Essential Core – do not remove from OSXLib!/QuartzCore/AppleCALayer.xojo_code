@@ -664,9 +664,39 @@ Inherits AppleCAMediaTimingObject
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ContentGravity"
+			Group="Behavior"
+			Type="CaLayerContentPosition"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Center"
+				"1 - Top"
+				"2 - Bottom"
+				"3 - Left"
+				"4 - Right"
+				"5 - TopLeft"
+				"6 - TopRight"
+				"7 - BottomLeft"
+				"8 - BottomRight"
+				"9 - Resize"
+				"10 - ResizeProportionally"
+				"11 - FillProportionally"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CornerRadius"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DoubleSided"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Duration"
@@ -689,6 +719,11 @@ Inherits AppleCAMediaTimingObject
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Hidden"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -714,6 +749,11 @@ Inherits AppleCAMediaTimingObject
 				"1 - Nearest"
 				"2 - Trilinear"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MasksToBounds"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mHasOwnership"
@@ -743,6 +783,11 @@ Inherits AppleCAMediaTimingObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Opacity"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RepeatCount"
 			Group="Behavior"
 			Type="Single"
@@ -756,6 +801,16 @@ Inherits AppleCAMediaTimingObject
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ShadowOpacity"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ShadowRadius"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Speed"

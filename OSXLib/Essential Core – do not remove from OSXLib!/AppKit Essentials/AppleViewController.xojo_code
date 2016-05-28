@@ -1,19 +1,17 @@
 #tag Class
-Protected Class AppleMutableData
-Inherits AppleData
-	#tag Method, Flags = &h1000
-		Sub Constructor(Capacity as UInteger)
-		  super.Constructor (FoundationFrameWork.initWithCapacity (alloc(ClassPtr), Capacity))
-		  mHasownership = true
-		  
-		End Sub
+Protected Class AppleViewController
+Inherits AppleResponder
+	#tag Method, Flags = &h0
+		 Shared Function MakefromPtr(aPtr as Ptr) As AppleViewController
+		  return if (aptr = nil, nil, new appleviewcontroller(aptr))
+		End Function
 	#tag EndMethod
 
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSMutableData")
+			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSViewController")
 			  return mClassPtr
 			End Get
 		#tag EndGetter
@@ -23,22 +21,7 @@ Inherits AppleData
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="Base64String"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="CFTypeID"
-			Group="Behavior"
-			Type="UInteger"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Description"
 			Group="Behavior"
 			Type="Text"
 		#tag EndViewProperty
@@ -60,11 +43,6 @@ Inherits AppleData
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Length"
-			Group="Behavior"
-			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mHasOwnership"
@@ -94,11 +72,6 @@ Inherits AppleData
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ToText"
-			Group="Behavior"
-			Type="Text"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

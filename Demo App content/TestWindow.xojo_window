@@ -1,5 +1,5 @@
 #tag Window
-Begin Window NotificationWindow
+Begin osxlibwindow TestWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -23,85 +23,15 @@ Begin Window NotificationWindow
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "AppleNotificationCenter"
+   Title           =   "Untitled"
    Visible         =   True
    Width           =   600
-   Begin OSXLibNotificationCenter AppleNotificationCenter1
-      DebugDescription=   ""
-      Enabled         =   True
-      HasOwnership    =   False
-      Index           =   -2147483648
-      LockedInPosition=   False
-      mHasOwnership   =   False
-      RetainCount     =   ""
-      Scope           =   0
-      TabPanelIndex   =   0
-   End
-   Begin TextArea TextArea1
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFF00FF
-      Bold            =   False
-      Border          =   True
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   335
-      HelpTag         =   ""
-      HideSelection   =   True
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LimitText       =   0
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Mask            =   ""
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   True
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Make a rightclick on this textarea or on the IDE. The notificationCenter catches the NSMenuDidAdItemNotifications.\n\nYou can attach as many OSXLibNotificationCenter Controls to your project and register each number of notifications to each. \n\n"
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   20
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   560
-   End
 End
 #tag EndWindow
 
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events AppleNotificationCenter1
-	#tag Event
-		Sub Notification(Notification as AppleNotification)
-		  TextArea1.AppendText Notification.DebugDescription+" received"+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  me.RegisterNotification "NSMenuDidAddItemNotification"
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"

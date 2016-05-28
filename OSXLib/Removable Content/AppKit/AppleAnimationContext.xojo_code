@@ -43,11 +43,11 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h0
-		Attributes( hidden ) Declare Function getcurrentContext Lib AppKitLibName Selector "currentContext" (id as ptr) As Ptr
+		Attributes( hidden ) Declare Function getallowsImplicitAnimation Lib AppKitLibName Selector "allowsImplicitAnimation" (id as ptr) As boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h0
-		Attributes( hidden ) Declare Function gettimingFunction Lib AppKitLibName Selector "timingFunction" (id as ptr) As Ptr
+		Attributes( hidden ) Declare Function getcurrentContext Lib AppKitLibName Selector "currentContext" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -57,13 +57,35 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h0
-		Attributes( hidden ) Declare Sub setcompletionHandler Lib AppKitLibName Selector "setCompletionHandler:" (id as ptr, value as ptr)
+		Attributes( hidden ) Declare Sub setallowsImplicitAnimation Lib AppKitLibName Selector "setAllowsImplicitAnimation:" (id as ptr, value as boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h0
-		Attributes( hidden ) Declare Sub settimingFunction Lib AppKitLibName Selector "setTimingFunction:" (id as ptr, value as ptr)
+		Attributes( hidden ) Declare Sub setcompletionHandler Lib AppKitLibName Selector "setCompletionHandler:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
+
+	#tag Note, Name = Status complete
+		
+		
+	#tag EndNote
+
+
+	#tag ComputedProperty, Flags = &h0, Description = 496620616E696D6174696F6E732061726520656E61626C6564206F72206E6F7420666F7220616E696D6174696F6E732074686174206F63637572206173206120726573756C74206F6620616E6F746865722070726F7065727479206368616E67652E2044656661756C742046616C73652E0A54686973206973206F6E6C79206170706C696361626C65207768656E206C61796572206261636B6564206F6E204F53207631302E3820616E64206C617465722E
+		#tag Getter
+			Get
+			  return getallowsImplicitAnimation (id)
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setallowsImplicitAnimation (id, value)
+			  
+			End Set
+		#tag EndSetter
+		AllowsImplicitAnimation As Boolean
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
@@ -106,13 +128,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206475726174696F6E207573656420627920616E696D6174696F6E732063726561746564206173206120726573756C74206F662073657474696E67206E65772076616C75657320666F7220616E20616E696D617461626C652070726F70657274792E
 		#tag Getter
 			Get
-			  return AppleCAMediaTimingFunction.MakeFromPtr(gettimingfunction (id))
+			  return AppleCAMediaTimingFunction.MakeFromPtr(QuartzCoreFramework.gettimingfunction (id))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  settimingFunction id, value.id
+			  QuartzCoreFramework.settimingFunction id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		TimingFunction As AppleCAMediaTimingFunction
@@ -121,9 +143,19 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="AllowsImplicitAnimation"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Duration"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"

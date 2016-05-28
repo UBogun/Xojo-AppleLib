@@ -9,8 +9,8 @@ Begin Window NSViewPlayWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   632
-   ImplicitInstance=   True
+   Height          =   800
+   ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
@@ -23,9 +23,9 @@ Begin Window NSViewPlayWindow
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "NSView Demo"
    Visible         =   True
-   Width           =   804
+   Width           =   1000
    Begin OSXLibCanvas ac2
       AcceptFocus     =   True
       AcceptTabs      =   False
@@ -34,7 +34,7 @@ Begin Window NSViewPlayWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   455
+      Height          =   623
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -52,23 +52,252 @@ Begin Window NSViewPlayWindow
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   747
+      Width           =   943
+   End
+   Begin Label StaticLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   73
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   37
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   True
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      Text            =   "This is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Click on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second."
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   700
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   943
+   End
+   Begin PushButton PushButton1
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Click for error"
+      Default         =   True
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   37
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Underline       =   False
+      Visible         =   True
+      Width           =   113
+   End
+   Begin Label Label1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   170
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      Text            =   ""
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   943
    End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Method, Flags = &h21
+		Private Sub Animate()
+		  Using xojo.Math
+		  dim cont as new AppleAnimationContext(ac2.AppleObject)
+		  cont.Duration = 1
+		  ac2.appleobject.Animator.Frame = FoundationFrameWork.NSMakeRect(RandomInt(-0,ac2.Width-10), RandomInt(-0, ac2.Height-100), RandomInt (10, ac2.Width), randomint (10, ac2.Height))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub DoHideLabel()
+		  label1.AppleObject.Animator.Alpha = 0
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub HideLabel()
+		  xojo.core.timer.CallLater 500, Addressof DoHideLabel
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub ShowLabel()
+		  xojo.core.timer.CancelCall(Addressof DoHideLabel)
+		  label1.AppleObject.Animator.Alpha = 1
+		  
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events ac2
 	#tag Event
 		Sub MouseDown(anEvent As AppleNSEvent)
-		  Using xojo.Math
-		  dim cont as new AppleAnimationContext(me.AppleObject)
-		  cont.Duration = 1
-		  me.appleobject.Animator.Frame = FoundationFrameWork.NSMakeRect(RandomInt(-100,500), RandomInt(-100, 600), RandomInt (10, 500), randomint (10, 800))
+		  Label1.text ="Left Mouse Down"
+		  ShowLabel
+		  HideLabel
+		  Animate
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Shown()
+		  me.AppleObject.WantsLayer = true
+		  me.AppleObject.layer.BorderWidth = 5
+		  me.AppleObject.Layer.CornerRadius = 10
+		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cEFFFC900)
+		  me.AppleObject.Layer.Contents = new AppleImage(OSXLibLogo)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function AcceptsTouchEvents() As Boolean
+		  return true
+		End Function
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2061204E53416E696D6174696F6E436F6E7465787420616E696D6174696F6E2066696E69736865642E
+		Sub AnimationFinished()
+		  Label1.text ="Animation finished"
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120737769706520676573747572652E
+		Sub SwipeGesture(anEvent As AppleNSEvent)
+		  Label1.text ="That was a swipe gesture of type "+Integer(anEvent.Type).ToText
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120746F75636820676573747572652E
+		Sub BeginGesture(anEvent As AppleNSEvent)
+		  Label1.text ="You started a gesture of type "+Integer(anEvent.Type).ToText
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E207468652074686520757365722068617320626567756E20612070696E636820676573747572652E
+		Sub MagnifyGesture(anEvent As AppleNSEvent)
+		  Label1.text ="Magnify Gesture"
+		  ShowLabel
+		  HideLabel
 		  
-		  // me.AppleObject.Display
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E207468652075736572206861732070726573736564206F722072656C65617365642061206D6F646966696572206B6579202853686966742C20436F6E74726F6C2C20616E6420736F206F6E292E
+		Sub ModifierKeysChange(anEvent As AppleNSEvent)
+		  Label1.text ="Modifiers Key Change"
+		  ShowLabel
+		  HideLabel
+		  Animate
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E207468652075736572206861732066696E6973686564206120746F75636820676573747572652E
+		Sub EndGesture(anEvent As AppleNSEvent)
+		  Label1.text ="Ended gesture of type "+Integer(anEvent.Type).ToText
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E20746865207573657220686173206D6F76656420746865206D6F757365207769746820746865206C65667420627574746F6E20707265737365642E
+		Sub MouseDrag(anEvent As AppleNSEvent)
+		  Label1.text ="Mouse Drag"
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865207269676874206D6F75736520627574746F6E2E
+		Sub RightMouseDown(anEvent As AppleNSEvent)
+		  Label1.text ="Right Mouse Down"
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2061206E657720736574206F6620746F756368657320686173206265656E207265636F676E697A65642E0A546F206765742074686520736574206F6620746F7563686573207468617420626567616E20666F722074686973207669657720286F722064657363656E64616E7473206F6620746869732076696577292073656E64205B6576656E7420746F75636865734D61746368696E6750686173653A4E53546F7563685068617365426567616E20696E566965773A73656C665D2E
+		Sub TouchesBegan(anEvent As AppleNSEvent)
+		  Label1.text ="Touches began!"
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120726F746174696F6E20676573747572652E
+		Sub RotationGesture(anEvent As AppleNSEvent)
+		  Label1.text ="Rotation gesture!"
+		  ShowLabel
+		  HideLabel
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520757365722068617320707265737365642061206B65792E
+		Sub KeyDown(anEvent As AppleNSEvent)
+		  Label1.text ="Key Down for "+anEvent.Characters
+		  ShowLabel
+		  HideLabel
+		  Animate
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  call me.AppleObject.presentError(new appleerror( "Each responder subclass can display a custom error and modify it in the willShowError event", -999999))
 		End Sub
 	#tag EndEvent
 #tag EndEvents

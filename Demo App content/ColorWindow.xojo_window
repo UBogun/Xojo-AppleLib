@@ -430,6 +430,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Blend"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -464,6 +465,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   15
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Alpha"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -498,6 +500,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   16
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Highlight"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -532,6 +535,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Shadow"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -594,6 +598,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Here are some NSColor / AppleColor features that are implemented transparently as new color features for MacOS desktop projects: Color Blending, Alpha value change and two different kinds of brightening and darkening colors that influence the alpha value too.\nBelow I used an image as Color. See how it behaves when you scale the window.\n\nThe module inserted methods are\nColor.BlendWithcolor (AnotherColor As Color, Fraction As Double) As Color\nColor.ChangeAlpha (NewAlpha As Double) As Color\nColor.HightlightColor (Level As Double) As Color and\nColor.ShadowColor (Level As Double) As Color"
       TextAlign       =   0
       TextColor       =   &c00000000

@@ -22,7 +22,11 @@ Implements AppleGeneralObject
 		Protected Sub Destructor()
 		  if mHasOwnership then
 		    if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
-		    if XojoControls <> nil and XojoControls.HasKey(id) then XojoControls.Remove(id)
+		    // if DebugDescription.IndexOf ("RGBColorSpace") > -1 then 
+		    if XojoControls <> nil and XojoControls.HasKey(id) then 
+		      XojoControls.Remove(id)
+		      if LibDebug then system.DebugLog "Released control too"
+		    end if
 		    call release id
 		  else
 		    if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
@@ -71,8 +75,8 @@ Implements AppleGeneralObject
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub release Lib foundationlibname Selector "release" (id as ptr)
+	#tag ExternalMethod, Flags = &h0
+		Declare Sub release Lib foundationlibname Selector "release" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0

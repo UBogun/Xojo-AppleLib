@@ -7,8 +7,18 @@ Inherits AppleResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 496E73657274732061207669657720616D6F6E67207468652076696577E280997320737562766965777320736F206974E280997320646973706C6179656420696D6D6564696174656C792061626F7665206F722062656C6F7720616E6F7468657220766965772E
+		Sub AddSubview(Subview as appleView, positioned as AppleWindow.NSWindowOrderingMode, otherView as AppleWindow)
+		  addSubviewpositioned id, subview.id, positioned, otherview.id
+		End Sub
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub addSubview Lib appkitlibname Selector "addSubview:" (id as ptr, subview as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub addSubviewPositioned Lib appkitlibname Selector "addSubview:positioned:relativeTo:" (id as ptr, subview as ptr, positioned as AppleWindow . NSWindowOrderingMode, OtherWindow as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 43726561746573206120746F6F6C74697020666F72206120646566696E6564206172656120746865207669657720616E642072657475726E732061207461672074686174206964656E7469666965732074686520746F6F6C7469702072656374616E676C652E0A4F776E65724F626A65637420697320616E206F626A6563742066726F6D20776869636820746F206F627461696E2074686520746F6F6C74697020737472696E672E20546865206F626A6563742073686F756C642065697468657220696D706C656D656E7420766965773A737472696E67466F72546F6F6C5469703A706F696E743A75736572446174613A2C206F722072657475726E2061207375697461626C6520737472696E672066726F6D20697473206465736372697074696F6E206D6574686F642E20757365724461746120697320616E206F7074696F6E616C206F626A656374206966204F776E65724F626A65637420737570706F727473206120706172616D65746572206F662074686174206B696E642E
@@ -83,7 +93,6 @@ Inherits AppleResponder
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  Super.Constructor(ptr(aControl.Handle))
-		  
 		End Sub
 	#tag EndMethod
 
@@ -297,6 +306,10 @@ Inherits AppleResponder
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function defaultAnimationForKey Lib appkitlibname Selector "defaultAnimationForKey:" (id as ptr, key as cfstringRef) As Ptr
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
 		  if mHasOwnership then
@@ -448,6 +461,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getfittingSize Lib appkitlibname Selector "fittingSize" (id as ptr) As FoundationFrameWork.NSSize
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getfocusRingType Lib appkitlibname Selector "focusRingType" (id as ptr) As AppKitframework.NSFocusRingType
 	#tag EndExternalMethod
 
@@ -477,6 +494,10 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getinLiveResize Lib appkitlibname Selector "inLiveResize" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getintrinsicContentSize Lib appkitlibname Selector "intrinsicContentSize" (id as ptr) As FoundationFrameWork.NSSize
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -595,10 +616,65 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_didAddSubview(pid as ptr, sel as ptr, subview as ptr) As Boolean
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOndidAddSubview(AppleView.MakefromPtr(subview))
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_viewDidMoveToSuperview(pid as ptr, sel as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnviewidMoveToSuperview
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewDidMoveToWindow(pid as ptr, sel as ptr)
 		  dim view as AppleView = appleview.MakefromPtr(pid)
 		  if view <> nil then 
 		    view.informOnviewDidMoveToWindow
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_viewWillMoveToSuperview(pid as ptr, sel as ptr, superview as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnviewWillMoveToSuperview(appleview.MakefromPtr(superview))
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_viewWillMoveToWindow(pid as ptr, sel as ptr, superview as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnviewWillMoveToWindow(applewindow.MakefromPtr(superview))
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_willRemoveSubview(pid as ptr, sel as ptr, subview as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnwillRemoveSubview(appleview.MakefromPtr(subview))
 		  end if
 		  #pragma unused sel
 		  
@@ -616,6 +692,16 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOndidAddSubview(subview as appleview)
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOndidAddSubview (subview)
+		  else
+		    RaiseEvent DidAddSubview (subview)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewDidMoveToWindow()
 		  if parentcontrol <> nil then 
 		    parentcontrol.informOnviewDidMoveToWindow
@@ -625,8 +711,58 @@ Inherits AppleResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnviewidMoveToSuperview()
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnviewidMoveToSuperview
+		  else
+		    RaiseEvent ViewDidMoveToSuperView
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnviewWillMoveToSuperview(superview as appleview)
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnviewWillMoveToSuperview(superview)
+		  else
+		    RaiseEvent viewWillMoveToSuperview(superview)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnviewWillMoveToWindow(Window as applewindow)
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnviewWillMoveToWindow(window)
+		  else
+		    RaiseEvent viewWillMoveToWindow(window)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnwillRemoveSubview(subview as appleview)
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnwillRemoveSubview(subview)
+		  else
+		    RaiseEvent willRemoveSubview(subview)
+		  end if
+		End Sub
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function initWithFrame Lib appkitlibname Selector "initWithFrame:" (id as ptr, frame as foundationframework . nsrect) As ptr
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 496E76616C696461746573207468652076696577E280997320696E7472696E73696320636F6E74656E742073697A652E0A43616C6C2074686973207768656E20736F6D657468696E67206368616E67657320696E20796F757220637573746F6D2076696577207468617420696E76616C6964617465732069747320696E7472696E73696320636F6E74656E742073697A652E205468697320616C6C6F77732074686520636F6E73747261696E742D6261736564206C61796F75742073797374656D20746F2074616B6520746865206E657720696E7472696E73696320636F6E74656E742073697A6520696E746F206163636F756E7420696E20697473206E657874206C61796F757420706173732E
+		Sub InvalidateIntrinsicContentSize()
+		  invalidateIntrinsicContentSize (id)
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub invalidateIntrinsicContentSize Lib appkitlibname Selector "invalidateIntrinsicContentSize" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73205472756520696620746865207669657720697320612073756276696577206F66206120676976656E2076696577206F72206966206974E2809973206964656E746963616C20746F207468617420766965773B206F74686572776973652C2069742072657475726E732046616C73652E
@@ -681,8 +817,8 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Function needsToDrawRect Lib appkitlibname Selector "needsToDrawRect:" (id as ptr, aRect as foundationframework . nsrect) As Boolean
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h21, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden ) Private Function ParentControl() As OSXLibCanvas
+	#tag Method, Flags = &h1, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
+		Attributes( hidden ) Protected Function ParentControl() As OSXLibCanvas
 		  dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
 		  return if (wr = nil, nil,  OSXLibCanvas(wr.Value))
 		  
@@ -1024,8 +1160,28 @@ Inherits AppleResponder
 		Event AcceptsTouchEvents() As Boolean
 	#tag EndHook
 
+	#tag Hook, Flags = &h0
+		Event DidAddSubview(Subviev as appleview)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+		Event ViewDidMoveToSuperview()
+	#tag EndHook
+
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
 		Event ViewDidMoveToWindow()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+		Event ViewWillMoveToSuperview(Superview as AppleView)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+		Event ViewWillMoveToWindow(Window as AppleWindow)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+		Event willRemoveSubview(Subview as AppleView)
 	#tag EndHook
 
 
@@ -1033,8 +1189,6 @@ Inherits AppleResponder
 		
 		missin:g
 		
-		window
-		addsubviewpositioned
 		sortsubviews
 		enclosingmenuitem
 		wantsupdatelayer
@@ -1255,7 +1409,7 @@ Inherits AppleResponder
 		CanDrawSubviewsIntoLayer As Boolean
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h1
+	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
 			  // static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSView")
@@ -1299,13 +1453,19 @@ Inherits AppleResponder
 			    // NsView "delegate" methods
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToWindow", AddressOf impl_viewDidMoveToWindow, "v@:")
 			    methods.Append new TargetClassMethodHelper("acceptsTouchEvents", AddressOf impl_acceptsTouchEvents, "c@:")
+			    methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_didAddSubview, "v@:@")
+			    methods.Append new TargetClassMethodHelper("viewDidMoveToSuperview", AddressOf impl_viewDidMoveToSuperview, "v@:")
+			    methods.Append new TargetClassMethodHelper("viewWillMoveToSuperview:", AddressOf impl_viewWillMoveToSuperview, "v@:@")
+			    methods.Append new TargetClassMethodHelper("viewWillMoveToWindow:", AddressOf impl_viewWillMoveToWindow, "v@:@")
+			    methods.Append new TargetClassMethodHelper("willRemoveSubview:", AddressOf impl_willRemoveSubview, "v@:@")
+			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect, "v@:{CGRect}")
 			    
 			    mClassPtr = BuildTargetClass ("NSView", "OSXLibView",methods)
 			  end if
 			  Return mClassPtr
 			End Get
 		#tag EndGetter
-		Protected Shared ClassPtr As Ptr
+		Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F6620436F726520496D6167652066696C7465727320746F206170706C7920746F2074686520636F6E74656E7473206F6620746865207669657720616E6420697473207375626C61796572732E
@@ -1329,6 +1489,15 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		Shared DefaultFocusRingType As Appkitframework.NSFocusRingType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206D696E696D756D2073697A65206F662074686520766965772074686174207361746973666965732074686520636F6E73747261696E747320697420686F6C64732E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getfittingSize(id)
+			End Get
+		#tag EndGetter
+		FittingSize As FoundationFrameWork.NSSize
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652074797065206F6620666F6375732072696E6720647261776E2061726F756E642074686520766965772E
@@ -1445,6 +1614,15 @@ Inherits AppleResponder
 			End Set
 		#tag EndSetter
 		Hidden As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206E61747572616C2073697A6520666F722074686520726563656976696E6720766965772C20636F6E7369646572696E67206F6E6C792070726F70657274696573206F6620746865207669657720697473656C662E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getintrinsicContentSize(id)
+			End Get
+		#tag EndGetter
+		IntrinsicContentSize As FoundationFrameWork.NSSize
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206F72206F6E65206F662069747320616E636573746F7273206973206265696E6720647261776E20666F7220612066696E6420696E64696361746F722E2028726561642D6F6E6C7929
@@ -1720,6 +1898,15 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		WidthAdjustLimit As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E28099732077696E646F77206F626A6563742C20696620697420697320696E7374616C6C656420696E20612077696E646F772E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return applewindow.MakeFromPtr(AppKitFramework.GetWindow(id))
+			End Get
+		#tag EndGetter
+		Window As AppleWindow
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h21

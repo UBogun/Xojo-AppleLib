@@ -28,7 +28,12 @@ Inherits AppleNotificationCenter
 	#tag Method, Flags = &h1
 		Protected Sub NotificationHandlerBlock(notification as ptr)
 		  #pragma StackOverflowChecking false
-		  if me <> nil then RaiseEvent Notification (AppleNotification.MakefromPtr(notification))
+		  #pragma BreakOnExceptions false
+		  try 
+		    RaiseEvent Notification (AppleNotification.MakefromPtr(notification))
+		  catch
+		    
+		  end try
 		End Sub
 	#tag EndMethod
 

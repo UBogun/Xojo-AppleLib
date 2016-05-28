@@ -121,8 +121,7 @@ Inherits AppleObject
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  Super.Constructor (colorWithCalibratedRed(ClassPtr, red, Green, Blue, Alpha))
-		  RetainClassObject
-		  
+		  retainclassobject
 		End Sub
 	#tag EndMethod
 
@@ -366,7 +365,9 @@ Inherits AppleObject
 		#tag Getter
 			Get
 			  try
-			    return AppleColorSpace.MakeFromPtr(getcolorSpace(id))
+			    dim result as AppleColorSpace = AppleColorSpace.MakeFromPtr(getcolorSpace(id))
+			    // result.MHasOwnership = true
+			    return result
 			  catch
 			    
 			  end try

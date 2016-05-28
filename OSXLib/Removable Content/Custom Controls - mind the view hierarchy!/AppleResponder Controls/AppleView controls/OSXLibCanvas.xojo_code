@@ -20,6 +20,12 @@ Inherits osxlibcontrol
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  
+		End Sub
+	#tag EndEvent
+
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Function informOnAcceptsTouchEvents() As Boolean
@@ -28,8 +34,44 @@ Inherits osxlibcontrol
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOndidAddSubview(Subview as appleview)
+		  RaiseEvent AddedSubview (subview)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnDrawRect(Rect as FoundationFrameWork.NSrect)
+		  RaiseEvent Paint (Rect)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnviewDidMoveToWindow()
 		  RaiseEvent Shown
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnviewidMoveToSuperview()
+		  RaiseEvent BecameSubview
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnviewWillMoveToSuperview(SuperView as appleview)
+		  RaiseEvent WillBecomeSubview (SuperView)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnviewWillMoveToWindow(Window as AppleWindow)
+		  RaiseEvent WillShow (Window)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnwillRemoveSubview(SubView as appleview)
+		  RaiseEvent WillRemoveSubview (SubView)
 		End Sub
 	#tag EndMethod
 
@@ -38,12 +80,36 @@ Inherits osxlibcontrol
 		Event AcceptsTouchEvents() As Boolean
 	#tag EndHook
 
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
+		Event AddedSubview(Subview as AppleView)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Event BecameSubview()
+	#tag EndHook
+
 	#tag Hook, Flags = &h0
 		Event Open()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event Paint(Rect as FoundationFrameWork.NSRect)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event Shown()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Event WillBecomeSubview(SuperView as AppleView)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Event WillRemoveSubview(SubView as AppleView)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Event WillShow(Window As Applewindow)
 	#tag EndHook
 
 
