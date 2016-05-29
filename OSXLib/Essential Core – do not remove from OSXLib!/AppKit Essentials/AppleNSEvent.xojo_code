@@ -261,7 +261,7 @@ Inherits AppleObject
 		  
 		  dim EventPhase as new AppleEventPhase(phase)
 		  if me <> nil then
-		     stop =  raiseevent SwipeEvent (GestureAmount, EventPhase, isComplete)
+		    stop =  raiseevent SwipeEvent (GestureAmount, EventPhase, isComplete)
 		  end if
 		  
 		End Sub
@@ -829,7 +829,7 @@ Inherits AppleObject
 			Get
 			  #pragma BreakOnExceptions false
 			  try
-			     return getstage(id)
+			    return getstage(id)
 			  catch
 			    return -1
 			  end try
@@ -1052,6 +1052,12 @@ Inherits AppleObject
 	#tag EndComputedProperty
 
 
+	#tag Enum, Name = NSEventGestureAxis, Type = Integer, Flags = &h0
+		None = 0
+		  Horizontal
+		Vertical
+	#tag EndEnum
+
 	#tag Enum, Name = NSEventType, Type = UInteger, Flags = &h0
 		LeftMouseDown = 1
 		  LeftMouseUp = 2
@@ -1107,14 +1113,99 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="AbsoluteX"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AbsoluteY"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AbsoluteZ"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ButtonNumber"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CapabilityMask"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Characters"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CharactersIgnoringModifiers"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ClickCount"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Data1"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Data2"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DeltaX"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DeltaY"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DeltaZ"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DeviceID"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DirectionInvertedFromDevice"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EventNumber"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasPreciseScrollingDeltas"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -1124,11 +1215,31 @@ Inherits AppleObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="IsARepeatEvent"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IsEnteringProximity"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="KeyCode"
+			Group="Behavior"
+			Type="UInt16"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Magnification"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mHasOwnership"
@@ -1142,9 +1253,59 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="PointingDeviceID"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PointingDeviceSerialNumber"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PointingDeviceType"
+			Group="Behavior"
+			Type="NSPointingDeviceType"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Pressure"
+			Group="Behavior"
+			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PressureBehavior"
+			Group="Behavior"
+			Type="NSPressureBehavior"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Rotation"
+			Group="Behavior"
+			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ScrollingDeltaX"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ScrollingDeltaY"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Stage"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StageTransition"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
@@ -1153,10 +1314,35 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SystemTabletID"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TabletID"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TangentialPressure"
+			Group="Behavior"
+			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Timestamp"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
 			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TrackingNumber"
+			Group="Behavior"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -1198,6 +1384,26 @@ Inherits AppleObject
 				"33 - QuickLook"
 				"34 - Pressure"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UniqueID"
+			Group="Behavior"
+			Type="UInt64"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VendorID"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VendorPointingDeviceType"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WindowNumber"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

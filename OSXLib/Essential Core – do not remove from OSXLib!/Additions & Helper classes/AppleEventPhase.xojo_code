@@ -170,6 +170,11 @@ Protected Class AppleEventPhase
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="MayBegin"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
@@ -192,11 +197,6 @@ Protected Class AppleEventPhase
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="TruncatesLastVisibleLine"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

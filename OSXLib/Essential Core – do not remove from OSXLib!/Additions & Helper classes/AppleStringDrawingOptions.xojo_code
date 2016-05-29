@@ -22,7 +22,7 @@ Protected Class AppleStringDrawingOptions
 		#tag Setter
 			Set
 			  if value then
-			    mid = setbit (mid, 5)
+			    mid = setbitint (mid, 5)
 			  else
 			    mid = clearbit(mid, 5)
 			  end if
@@ -40,7 +40,7 @@ Protected Class AppleStringDrawingOptions
 		#tag Setter
 			Set
 			  if value then
-			    mid = setbit (mid, 3)
+			    mid = setbitint (mid, 3)
 			  else
 			    mid = clearbit(mid, 3)
 			  end if
@@ -58,7 +58,7 @@ Protected Class AppleStringDrawingOptions
 		#tag Setter
 			Set
 			  if value then
-			    mid = setbit (mid, 1)
+			    mid = setbitint (mid, 1)
 			  else
 			    mid = clearbit(mid, 1)
 			  end if
@@ -76,7 +76,7 @@ Protected Class AppleStringDrawingOptions
 		#tag Setter
 			Set
 			  if value then
-			    mid = setbit (mid, 0)
+			    mid = setbitint (mid, 0)
 			  else
 			    mid = clearbit(mid, 0)
 			  end if

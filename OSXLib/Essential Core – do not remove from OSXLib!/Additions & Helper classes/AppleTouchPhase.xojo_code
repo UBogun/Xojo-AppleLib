@@ -154,6 +154,11 @@ Protected Class AppleTouchPhase
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Cancelled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Ended"
 			Group="Behavior"
 			Type="Boolean"
@@ -161,7 +166,7 @@ Protected Class AppleTouchPhase
 		#tag ViewProperty
 			Name="Id"
 			Group="Behavior"
-			Type="Integer"
+			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -187,6 +192,11 @@ Protected Class AppleTouchPhase
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Stationary"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

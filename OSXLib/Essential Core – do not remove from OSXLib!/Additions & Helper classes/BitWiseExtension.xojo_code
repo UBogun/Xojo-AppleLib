@@ -45,6 +45,13 @@ Protected Module BitWiseExtension
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function SetBitInt(i as integer, bit as integer) As integer
+		  dim compare as integer = 2 ^ bit
+		  return  i or compare
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function ShiftLeft(Extends I as Uinteger, bits as integer) As UInteger
 		  Return I *(2^bits)
 		End Function
