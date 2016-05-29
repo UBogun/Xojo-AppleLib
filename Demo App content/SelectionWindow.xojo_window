@@ -110,7 +110,6 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -123,7 +122,7 @@ Begin Window SelectionWindow
       Visible         =   True
       Width           =   304
    End
-   Begin osxlibcanvas ImageWell1
+   Begin OSXLibCanvas ImageWell1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -259,9 +258,8 @@ End
 #tag Events PushButton2
 	#tag Event
 		Sub Action()
-		  for q as integer = 0 to 100000
-		    dim c as  new AppleAnimationContext
-		  next
+		  dim t as text = AppleMenu.kNSMenuDidAddItemNotification
+		  break
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -509,10 +509,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getHidden Lib appkitlibname Selector "isHidden" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getinLiveResize Lib appkitlibname Selector "inLiveResize" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -530,10 +526,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getisFlipped Lib appkitlibname Selector "isFlipped" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getisHiddenOrHasHiddenAncestor Lib appkitlibname Selector "isHiddenOrHasHiddenAncestor" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -597,18 +589,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getTag Lib appkitlibname Selector "tag" (id as ptr) As Integer
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function gettoolTip Lib appkitlibname Selector "toolTip" (id as ptr) As CFStringRef
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getuserInterfaceLayoutDirection Lib appkitlibname Selector "userInterfaceLayoutDirection" (id as ptr) As Appkitframework.NSUserInterfaceLayoutdirection
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getviewWithTag Lib appkitlibname Selector "viewWithTag:" (id as ptr, tag as Integer) As ptr
 	#tag EndExternalMethod
 
@@ -636,6 +616,17 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_allowsVibrancy(pid as ptr, sel as ptr) As Boolean
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    return view.informOnAllowsVibrancy()
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_didAddSubview(pid as ptr, sel as ptr, subview as ptr) As Boolean
 		  dim view as AppleView = appleview.MakefromPtr(pid)
 		  if view <> nil then 
@@ -644,6 +635,39 @@ Inherits AppleResponder
 		  #pragma unused sel
 		  
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_opaque(pid as ptr, sel as ptr) As Boolean
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    return view.informOnopaque()
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_ViewDidEndLiveResize(pid as ptr, sel as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnViewDidEndLiveResize()
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_viewDidHide(pid as ptr, sel as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnViewDidhide()
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
@@ -662,6 +686,17 @@ Inherits AppleResponder
 		  dim view as AppleView = appleview.MakefromPtr(pid)
 		  if view <> nil then 
 		    view.informOnviewDidMoveToWindow
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_viewDidUnhide(pid as ptr, sel as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnViewDidUnhide()
 		  end if
 		  #pragma unused sel
 		  
@@ -691,6 +726,17 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_viewWillStartLiveResize(pid as ptr, sel as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnviewWillStartLiveResize()
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_willRemoveSubview(pid as ptr, sel as ptr, subview as ptr)
 		  dim view as AppleView = appleview.MakefromPtr(pid)
 		  if view <> nil then 
@@ -712,6 +758,16 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnAllowsVibrancy() As Boolean
+		  if parentcontrol <> nil then 
+		    return parentcontrol.informOnAllowsVibrancy()
+		  else
+		    return RaiseEvent AllowsVibrancy()
+		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOndidAddSubview(subview as appleview)
 		  if parentcontrol <> nil then 
 		    parentcontrol.informOndidAddSubview (subview)
@@ -722,11 +778,51 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnopaque() As Boolean
+		  if parentcontrol <> nil then 
+		    return parentcontrol.informOnopaque()
+		  else
+		    return RaiseEvent Opaque()
+		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnViewDidEndLiveResize()
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnViewDidEndLiveResize()
+		  else
+		    RaiseEvent DidResize()
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnViewDidhide()
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnViewDidhide()
+		  else
+		    RaiseEvent ViewDidHide()
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewDidMoveToWindow()
 		  if parentcontrol <> nil then 
 		    parentcontrol.informOnviewDidMoveToWindow
 		  else
 		    RaiseEvent ViewDidMoveToWindow
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnViewDidUnhide()
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnViewDidUnhide()
+		  else
+		    RaiseEvent ViewDidUnHide()
 		  end if
 		End Sub
 	#tag EndMethod
@@ -757,6 +853,16 @@ Inherits AppleResponder
 		    parentcontrol.informOnviewWillMoveToWindow(window)
 		  else
 		    RaiseEvent viewWillMoveToWindow(window)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnviewWillStartLiveResize()
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnviewWillStartLiveResize()
+		  else
+		    RaiseEvent WillResize()
 		  end if
 		End Sub
 	#tag EndMethod
@@ -1061,10 +1167,6 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Sub setFrameSize Lib appkitlibname Selector "setFrameSize:" (id as ptr, value as FoundationFrameWork . NSSize)
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setHidden Lib appkitlibname Selector "setHidden:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0, Description = 496E76616C6964617465732074686520617265612061726F756E642074686520666F6375732072696E672E
 		Sub SetKeyboardFocusRingNeedsDisplayInRect(Rect As FoundationFrameWork.NSRect)
 		  setKeyboardFocusRingNeedsDisplayInRect(id,rect)
@@ -1111,18 +1213,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setpostsFrameChangedNotifications Lib appkitlibname Selector "setPostsFrameChangedNotifications:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setTag Lib appkitlibname Selector "setTag:" (id as ptr, value as Integer)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setToolTip Lib appkitlibname Selector "setToolTip:" (id as ptr, value as cfstringRef)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setuserInterfaceLayoutDirection Lib appkitlibname Selector "setUserInterfaceLayoutDirection:" (id as ptr, value as Appkitframework . NSUserInterfaceLayoutdirection)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1181,7 +1271,23 @@ Inherits AppleResponder
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event AllowsVibrancy() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event DidAddSubview(Subviev as appleview)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event DidResize()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Opaque() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event ViewDidHide()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
@@ -1190,6 +1296,10 @@ Inherits AppleResponder
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
 		Event ViewDidMoveToWindow()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event ViewDidUnhide()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
@@ -1202,6 +1312,10 @@ Inherits AppleResponder
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
 		Event willRemoveSubview(Subview as AppleView)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event WillResize()
 	#tag EndHook
 
 
@@ -1230,7 +1344,6 @@ Inherits AppleResponder
 		drawSheetBorderWithSize
 		adjustPageWidth and the rest of the pagination section
 		displayRect…Context
-		Opaque
 		resizeSubviewsWithOldSize
 		resizeWithOldSuperviewSize
 		anchors , constraints  & layoutguide up to debugging auto layout sections
@@ -1238,14 +1351,10 @@ Inherits AppleResponder
 		focusRingMaskBounds
 		drawFocusRingMask
 		noteFocusRingMaskChanged
-		allowsVibrancy
 		FullScrenmode methods & dictionary
-		viewdidhide
-		viewdidunhide
 		preservesContentDuringLiveResize
 		getRectsExposedDuringLiveResize
 		rectPreservedDuringLiveResize
-		viewwillstart & endliveresize
 		gesturerecognizers & event handling sections
 		isCompatibleWithResponsiveScrolling
 		prepareContentInRect
@@ -1470,8 +1579,9 @@ Inherits AppleResponder
 			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf impl_swipeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesBeganWithEvent:", AddressOf impl_touchesBeganWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
+			    methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
 			    
-			    // NsView "delegate" methods
+			    // NSView "delegate" methods
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToWindow", AddressOf impl_viewDidMoveToWindow, "v@:")
 			    methods.Append new TargetClassMethodHelper("acceptsTouchEvents", AddressOf impl_acceptsTouchEvents, "c@:")
 			    methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_didAddSubview, "v@:@")
@@ -1479,6 +1589,12 @@ Inherits AppleResponder
 			    methods.Append new TargetClassMethodHelper("viewWillMoveToSuperview:", AddressOf impl_viewWillMoveToSuperview, "v@:@")
 			    methods.Append new TargetClassMethodHelper("viewWillMoveToWindow:", AddressOf impl_viewWillMoveToWindow, "v@:@")
 			    methods.Append new TargetClassMethodHelper("willRemoveSubview:", AddressOf impl_willRemoveSubview, "v@:@")
+			    methods.Append new TargetClassMethodHelper("opaque", AddressOf impl_opaque, "c@:")
+			    methods.Append new TargetClassMethodHelper("allowsVibrancy", AddressOf impl_allowsVibrancy, "c@:")
+			    methods.Append new TargetClassMethodHelper("viewWillStartLiveResize", AddressOf impl_viewWillStartLiveResize, "v@:")
+			    methods.Append new TargetClassMethodHelper("viewDidEndLiveResize", AddressOf impl_viewDidEndLiveResize, "v@:")
+			    methods.Append new TargetClassMethodHelper("viewDidHide", AddressOf impl_viewDidHide, "v@:")
+			    methods.Append new TargetClassMethodHelper("viewDidUnhide", AddressOf impl_viewDidUnhide, "v@:")
 			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect, "v@:{CGRect}")
 			    
 			    mClassPtr = BuildTargetClass ("NSView", "OSXLibView",methods)
@@ -1626,12 +1742,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520766965772069732068696464656E2E
 		#tag Getter
 			Get
-			  return getHidden (id)
+			  return appkitframework.getHidden (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setHidden id,value
+			  AppKitFramework.setHidden id,value
 			End Set
 		#tag EndSetter
 		Hidden As Boolean
@@ -1667,7 +1783,7 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520766965772069732068696464656E2066726F6D20736967687420626563617573652069742C206F72206F6E65206F662069747320616E636573746F72732C206973206D61726B65642061732068696464656E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getisHiddenOrHasHiddenAncestor (id)
+			  return AppKitFramework.getisHiddenOrHasHiddenAncestor (id)
 			End Get
 		#tag EndGetter
 		IsHiddenOrHasHiddenAncestor As Boolean
@@ -1870,12 +1986,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E2809973207461672C20776869636820697320616E20696E7465676572207468617420796F752075736520746F206964656E746966792074686520766965772077697468696E20796F7572206170702E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return gettag(id)
+			  return AppKitFramework.gettag(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  settag id, value
+			  AppKitFramework.settag id, value
 			End Set
 		#tag EndSetter
 		Tag As Integer
@@ -1884,12 +2000,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865207465787420666F72207468652076696577E280997320746F6F6C7469702E0A5468652076616C7565206F6620746869732070726F7065727479206973206E696C20696620746865207669657720646F6573206E6F742063757272656E746C7920646973706C617920746F6F6C74697020746578742E2041737369676E696E6720612076616C756520746F20746869732070726F7065727479206361757365732074686520746F6F6C74697020746F20626520646973706C6179656420666F722074686520766965772E20
 		#tag Getter
 			Get
-			  return gettoolTip(id)
+			  return AppKitFramework.gettoolTip(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  settoolTip id, value
+			  AppKitFramework.settoolTip id, value
 			End Set
 		#tag EndSetter
 		ToolTip As Text
@@ -1898,12 +2014,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C61796F757420646972656374696F6E20666F7220636F6E74656E7420696E2074686520766965772E
 		#tag Getter
 			Get
-			  return getuserInterfaceLayoutDirection(id)
+			  return AppKitFramework.getuserInterfaceLayoutDirection(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setuserInterfaceLayoutDirection id, value
+			  AppKitFramework.setuserInterfaceLayoutDirection id, value
 			End Set
 		#tag EndSetter
 		UserInterfaceLayoutdirection As Appkitframework.NSUserInterfaceLayoutdirection
