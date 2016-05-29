@@ -437,7 +437,15 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getbackgroundColor Lib appkitlibname Selector "backgroundColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getbackgroundFilters Lib appkitlibname Selector "backgroundFilters" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getborderType Lib appkitlibname Selector "borderType" (id as ptr) As NSBorderType
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -450,10 +458,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getcanDraw Lib appkitlibname Selector "canDraw" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getcanDraw1 Lib appkitlibname Selector "canDraw" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -478,6 +482,14 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getdefaultFocusRingType Lib appkitlibname Selector "defaultFocusRingType" (id as ptr) As AppKitframework.NSFocusRingType
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getdrawsBackground Lib appkitlibname Selector "drawsBackground" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getenclosingMenuItem Lib appkitlibname Selector "enclosingMenuItem" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1116,7 +1128,15 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setbackgroundColor Lib appkitlibname Selector "setBackgroundColor:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setbackgroundFilters Lib appkitlibname Selector "setBackgroundFilters:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setborderType Lib appkitlibname Selector "setBorderType:" (id as ptr, value as NSBorderType)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1141,6 +1161,10 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setcontentFilters Lib appkitlibname Selector "setContentFilters:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setdrawsBackground Lib appkitlibname Selector "setDrawsBackground:" (id as ptr, value as boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1324,7 +1348,6 @@ Inherits AppleResponder
 		missin:g
 		
 		sortsubviews
-		enclosingmenuitem
 		wantsupdatelayer
 		compositingfilter
 		shadow
@@ -1626,6 +1649,15 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		Shared DefaultFocusRingType As Appkitframework.NSFocusRingType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206D656E75206974656D20636F6E7461696E696E67207468652076696577206F7220616E79206F6620697473207375706572766965777320696E207468652076696577206869657261726368792E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleNSMenuItem.MakeFromPtr(getenclosingMenuItem(id))
+			End Get
+		#tag EndGetter
+		EnclosingMenuItem As AppleNSMenuItem
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D696E696D756D2073697A65206F662074686520766965772074686174207361746973666965732074686520636F6E73747261696E747320697420686F6C64732E2028726561642D6F6E6C7929
@@ -2082,6 +2114,13 @@ Inherits AppleResponder
 		Private Shared XojoControls As xojo.Core.Dictionary
 	#tag EndComputedProperty
 
+
+	#tag Enum, Name = NSBorderType, Type = UInteger, Flags = &h0
+		None
+		  Line
+		  Bezel
+		Groove
+	#tag EndEnum
 
 	#tag Enum, Name = NSViewLayerContentsPlacement, Type = Integer, Flags = &h0
 		ScaleAxesIndependently

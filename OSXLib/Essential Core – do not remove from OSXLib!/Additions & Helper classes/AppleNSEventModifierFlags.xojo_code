@@ -177,12 +177,22 @@ Protected Class AppleNSEventModifierFlags
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="CommandKey"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ControlKey"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FunctionKey"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HelpKey"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

@@ -1,5 +1,5 @@
 Type=Desktop
-RBProjectVersion=2016.02
+RBProjectVersion=2016.011
 MinIDEVersion=20070100
 Folder=Demo App content;Demo App content;&h6E92FFF;&h0;false
 Window=ColorWindow;Demo App content/ColorWindow.xojo_window;&hE63FFFF;&h6E92FFF;false
@@ -142,6 +142,7 @@ Class=AppleNSMenuItem;OSXLib/Essential Core – do not remove from OSXLib!/AppKi
 Module=MenuItemExtension;OSXLib/Essential Core – do not remove from OSXLib!/DataType Extensions/MenuItemExtension.xojo_code;&h5CCD9FFF;&h198B67FF;false
 Class=AppleMenu;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleMenu.xojo_code;&h5D5BFFFF;&h6FCD57FF;false
 Class=AppleMenuProperties;OSXLib/Essential Core – do not remove from OSXLib!/Additions & Helper classes/AppleMenuProperties.xojo_code;&h55FBCFFF;&h72ACF7FF;false
+Class=AppleScrollView;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleScrollView.xojo_code;&h38E51FFF;&h6FCD57FF;false
 DefaultWindow=SelectionWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1

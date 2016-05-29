@@ -203,6 +203,16 @@ Protected Class AppleTrackingAreaOptions
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="ActiveAlways"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ActiveInActiveApp"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ActiveInKeyWindow"
 			Group="Behavior"
 			Type="Boolean"
@@ -213,12 +223,17 @@ Protected Class AppleTrackingAreaOptions
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="BottomMargin"
+			Name="AssumeInside"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CursorUpdate"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EnabledDuringMouseDrag"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -233,6 +248,11 @@ Protected Class AppleTrackingAreaOptions
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InVisibleRect"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"

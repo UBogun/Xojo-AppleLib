@@ -141,9 +141,14 @@ Protected Class AppleMenuProperties
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Enabled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Id"
 			Group="Behavior"
-			Type="Integer"
+			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Image"
@@ -156,6 +161,11 @@ Protected Class AppleMenuProperties
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="KeyEquivalent"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
