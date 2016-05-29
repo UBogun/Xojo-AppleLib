@@ -62,7 +62,7 @@ Inherits AppleView
 		
 		missing:
 		documentCursor
-		 
+		 impl. for SendActionOn (EventMask)
 		
 		changes:
 		contentView & documentView must be NSClipView, not NSView
@@ -180,6 +180,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BorderType"
+			Group="Behavior"
+			Type="NSBorderType"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BoundsRotation"
 			Group="Behavior"
 			Type="Double"
@@ -198,6 +203,11 @@ Inherits AppleView
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DrawsBackground"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FocusRingType"

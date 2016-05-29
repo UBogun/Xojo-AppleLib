@@ -45,6 +45,10 @@ Protected Module FoundationFrameWork
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdoubleValue Lib FoundationLibName Selector "doubleValue" (id as ptr) As Double
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getlocalizedDescription Lib FoundationLibName Selector "localizedDescription" (id as ptr) As cfstringref
 	#tag EndExternalMethod
 
@@ -168,6 +172,10 @@ Protected Module FoundationFrameWork
 		  
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setdoubleValue Lib FoundationLibName Selector "setDoubleValue:" (id as ptr, value as Double)
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setlocalizedDescription Lib FoundationLibName Selector "setLocalizedDescription:" (id as ptr, value as CFStringRef)
