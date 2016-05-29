@@ -258,8 +258,7 @@ End
 #tag Events PushButton2
 	#tag Event
 		Sub Action()
-		  dim t as text = AppleMenu.kNSMenuDidAddItemNotification
-		  break
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

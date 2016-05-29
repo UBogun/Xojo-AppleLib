@@ -13,24 +13,35 @@ Inherits osxlibcontrol
 		  
 		  
 		  mAppleObject = new appleview (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		  mAppleObject.registercontrol self
-		  dim origview as new appleview(self)
-		  dim controller as appleview = origview.SuperView
-		  for q as integer = 0 to controller.Subviews.Count -1
-		    dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q))
-		    if subview.id = origview.id then
-		      dim mask as new AppleAutoresizingMask(self)
-		      mAppleObject.AutoResizingMask = mask
-		      controller.ReplaceSubview origview, mAppleObject
+		  mAppleObject.registercontrol self // and register this instance so it receives the events.
+		  // Please note the internal events of the declared class will not fire anymore.
+		  // This is to avoid confusions where an event expects a return value.
+		  mAppleObject.WantsLayer = true // This is the layered version of a canvas where you can use the layer fully but have no paint event available.
+		  // Its subclass ApplePaintView will follow soon!
+		  dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
+		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		  for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
+		    dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
+		    if subview.id = origview.id then // is this our control?
+		      dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
+		      mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
+		      controller.ReplaceSubview origview, mAppleObject // and kick of the canvas by replacing it with our view
 		      exit 
 		    end if
 		  next
-		  RaiseEvent open
+		  RaiseEvent open // Anything more to initialize?
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #pragma unused g
+		  #pragma unused areas
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub ScaleFactorChanged()
 		  
 		End Sub
 	#tag EndEvent

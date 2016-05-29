@@ -34,7 +34,7 @@ Inherits AppleCAMEdiaTimingObject
 
 	#tag Method, Flags = &h0
 		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleCAAnimation
-		  
+		  return if (aptr = nil, nil, new AppleCAAnimation (aptr))
 		End Function
 	#tag EndMethod
 

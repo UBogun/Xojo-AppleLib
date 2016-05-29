@@ -3,25 +3,31 @@ Protected Class OSXLibControl
 Inherits canvas
 	#tag Event
 		Sub DoubleClick(X As Integer, Y As Integer)
-		  
+		  #pragma Unused X
+		  #pragma Unused Y
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function DragEnter(obj As DragItem, action As Integer) As Boolean
-		  
+		  #pragma Unused obj
+		  #pragma Unused action
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub DragExit(obj As DragItem, action As Integer)
-		  
+		  #pragma Unused obj
+		  #pragma Unused action
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function DragOver(x As Integer, y As Integer, obj As DragItem, action As Integer) As Boolean
-		  
+		  #pragma Unused x
+		  #pragma Unused y
+		  #pragma Unused obj
+		  #pragma Unused action
 		End Function
 	#tag EndEvent
 
@@ -33,13 +39,13 @@ Inherits canvas
 
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  
+		  #pragma Unused key
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub KeyUp(Key As String)
-		  
+		  #pragma Unused key
 		End Sub
 	#tag EndEvent
 
@@ -51,12 +57,15 @@ Inherits canvas
 
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  
+		  #pragma Unused x
+		  #pragma Unused y
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub MouseDrag(X As Integer, Y As Integer)
+		  #pragma Unused x
+		  #pragma Unused y
 		  
 		End Sub
 	#tag EndEvent
@@ -75,19 +84,24 @@ Inherits canvas
 
 	#tag Event
 		Sub MouseMove(X As Integer, Y As Integer)
-		  
+		  #pragma Unused x
+		  #pragma Unused y
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  
+		  #pragma Unused x
+		  #pragma Unused y
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
-		  
+		  #pragma Unused x
+		  #pragma Unused y
+		  #pragma Unused deltaX
+		  #pragma Unused DeltaY
 		End Function
 	#tag EndEvent
 
