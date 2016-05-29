@@ -44,6 +44,28 @@ Implements OSXLibControlledObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_animationDidStart(pid as ptr, sel as ptr, animation as ptr) As ptr
+		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  if responder <> nil then 
+		    responder.informOnanimationDidStart (AppleCAAnimation.MakeFromPtr(animation))
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_animationDidStop(pid as ptr, sel as ptr, animation as ptr, finished as Boolean) As ptr
+		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  if responder <> nil then 
+		    responder.informanimationDidStop (AppleCAAnimation.MakeFromPtr(animation), finished)
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_becomeFirstResponder(pid as ptr, sel as ptr) As Boolean
 		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
 		  if responder <> nil then return responder.informOnbecomeFirstResponder
@@ -308,6 +330,16 @@ Implements OSXLibControlledObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informanimationDidStop(animation as AppleCAAnimation, finished as Boolean)
+		  if parentcontrol <> nil then
+		    parentcontrol.informanimationDidStop  (animation, finished)
+		  else
+		    RaiseEvent animationDidStop (animation, finished)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnAcceptsFirstResponder() As Boolean
 		  if parentcontrol <> nil then
 		    return parentcontrol.informOnAcceptsFirstResponder
@@ -315,6 +347,16 @@ Implements OSXLibControlledObject
 		    return RaiseEvent AcceptsFirstResponder
 		  end if
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnanimationDidStart(animation as AppleCAAnimation)
+		  if parentcontrol <> nil then
+		    parentcontrol.informOnanimationdidstart (animation)
+		  else
+		    RaiseEvent animationDidStart (animation)
+		  end if
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
@@ -664,6 +706,14 @@ Implements OSXLibControlledObject
 		Event AcceptsFirstResponder() As Boolean
 	#tag EndHook
 
+	#tag Hook, Flags = &h0
+		Event AnimationDidStart(Animation As AppleCAAnimation)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event AnimationDidStop(Animation As AppleCAAnimation, Finished As Boolean)
+	#tag EndHook
+
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061204E53416E696D6174696F6E436F6E7465787420616E696D6174696F6E2066696E697368657320616E64206E6F20637573746F6D20636F6D706C6574696F6E48616E646C657220776173207370656369666965642E
 		Event AnimationFinished()
 	#tag EndHook
@@ -855,6 +905,11 @@ Implements OSXLibControlledObject
 			    methods.Append new TargetClassMethodHelper("rotateWithEvent:", AddressOf impl_rotateWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf impl_swipeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesBeganWithEvent:", AddressOf impl_touchesBeganWithEvent, "v@:@")
+			    
+			    
+			    // CAAnimation "Delegate" methods
+			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
+			    methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
 			    
 			    mClassPtr = BuildTargetClass ("NSResponder", "OSXLibResponder",methods)
 			  end if

@@ -61,6 +61,12 @@ Inherits AppleResponder
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520616E696D6174696F6E20746861742073686F756C6420626520706572666F726D656420666F722074686520737065636966696564206B65792E
+		Function Animation(Key as CFStringRef) As AppleCAAnimation
+		  return AppleCAAnimation.MakeFromPtr(getanimationForKey (id, key))
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function BackingAlignedRect(rect as FoundationFrameWork.NSRect, options as AppleAlignmentOptions) As FoundationFrameWork.NSRect
 		  return backingAlignedRect(id, rect, options.id)
@@ -306,6 +312,12 @@ Inherits AppleResponder
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652064656661756C7420616E696D6174696F6E20746861742073686F756C6420626520706572666F726D656420666F722074686520737065636966696564206B65792E
+		 Shared Function DefaultAnimationForKey(Key as CFStringRef) As AppleCAAnimation
+		  return AppleCAAnimation.MakeFromPtr(getdefaultanimationForKey (ClassPtr, key))
+		End Function
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function defaultAnimationForKey Lib appkitlibname Selector "defaultAnimationForKey:" (id as ptr, key as cfstringRef) As Ptr
 	#tag EndExternalMethod
@@ -413,6 +425,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getanimationForKey Lib appkitlibname Selector "animationForKey:" (id as ptr, key as CFStringRef) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getautoresizesSubviews Lib appkitlibname Selector "autoresizesSubviews" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -454,6 +470,10 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getdataWithPDFInsideRect Lib appkitlibname Selector "dataWithPDFInsideRect:" (id as ptr, rect as FoundationFrameWork . NSRect) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getdefaultAnimationForKey Lib appkitlibname Selector "defaultAnimationForKey:" (id as ptr, key as CFStringRef) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1449,6 +1469,7 @@ Inherits AppleResponder
 			    methods.Append new TargetClassMethodHelper("rotateWithEvent:", AddressOf impl_rotateWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf impl_swipeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesBeganWithEvent:", AddressOf impl_touchesBeganWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
 			    
 			    // NsView "delegate" methods
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToWindow", AddressOf impl_viewDidMoveToWindow, "v@:")
@@ -1686,6 +1707,26 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		IsRotatedOrScaledFromBase As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mNSAnimationTriggerOrderIn as text = SystemConstantName("NSAnimationTriggerOrderIn", QuartzCorePath)
+			  return mNSAnimationTriggerOrderIn
+			End Get
+		#tag EndGetter
+		Shared kNSAnimationTriggerOrderIn As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  static mNSAnimationTriggerOrderOut as text = SystemConstantName("NSAnimationTriggerOrderOut", QuartzCorePath)
+			  return mNSAnimationTriggerOrderOut
+			End Get
+		#tag EndGetter
+		Shared kNSAnimationTriggerOrderOut As Text
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720757365732061206C6179657220617320697473206261636B696E672073746F72652E
