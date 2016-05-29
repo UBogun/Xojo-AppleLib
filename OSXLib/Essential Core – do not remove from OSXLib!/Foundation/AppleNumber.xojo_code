@@ -78,22 +78,6 @@ Inherits AppleValue
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getdoubleValue Lib foundationlibname Selector "doubleValue" (id as ptr) As Double
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getfloatValue Lib foundationlibname Selector "floatValue" (id as ptr) As SINGLE
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getintegerValue Lib foundationlibname Selector "integerValue" (id as ptr) As Integer
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getintValue Lib foundationlibname Selector "intValue" (id as ptr) As INT32
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getisEqualToNumber Lib foundationlibname Selector "isEqualToNumber:" (id as ptr, value as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -103,10 +87,6 @@ Inherits AppleValue
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getshortValue Lib foundationlibname Selector "shortValue" (id as ptr) As int16
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getstringValue Lib foundationlibname Selector "stringValue" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -183,7 +163,7 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getDoubleValue (id)
+			  return FoundationFrameWork.getDoubleValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -203,7 +183,7 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getintValue (id)
+			  return AppKitFramework.getintValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -233,7 +213,7 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getintegerValue (id)
+			  return AppKitFramework.getintegerValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -271,7 +251,7 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getfloatValue (id)
+			  return AppKitFramework.getfloatValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -290,7 +270,7 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getstringValue (id)
+			  return AppKitFramework.getstringValue (id)
 			  
 			End Get
 		#tag EndGetter
