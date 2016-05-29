@@ -122,7 +122,7 @@ Begin Window SelectionWindow
       Visible         =   True
       Width           =   304
    End
-   Begin osxlibcanvas ImageWell1
+   Begin OSXLibCanvas ImageWell1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -258,9 +258,7 @@ End
 #tag Events PushButton2
 	#tag Event
 		Sub Action()
-		  for q as integer = 0 to 100000
-		    dim c as  new AppleAnimationContext
-		  next
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

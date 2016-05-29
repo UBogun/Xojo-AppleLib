@@ -440,11 +440,15 @@ End
 		  TextArea1.AppendText "Disconnected from "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine+EndOfLine
 		  self.Peripheral = nil
 		  me.Scan(false)
+		  
+		  #pragma Unused errornumber
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub FailedToConnect(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Failed to connect to "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine
+		  
+		  #pragma Unused errornumber
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -469,6 +473,7 @@ End
 		Sub WillRestoreState(StateDictionary As xojo.Core.Dictionary)
 		  TextArea1.AppendText "Will restore State "+EndOfLine
 		  
+		  #pragma Unused StateDictionary
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -535,6 +540,8 @@ End
 		    end if
 		  next
 		  TextArea1.AppendText EndOfLine
+		  #pragma Unused service
+		  #pragma Unused errornumber
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -569,12 +576,17 @@ End
 	#tag Event
 		Sub SubscribedToCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
 		  TextArea1.AppendText "Subscribed to characteristic "+characteristic.DebugDescription+EndOfLine+EndOfLine
+		  
+		  #pragma Unused central
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub DescriptorValueUpdate(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Descriptor value update for "+Descriptor.DebugDescription+ _
 		  " with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
+		  #pragma Unused Peripheral
+		  
+		  #pragma Unused  ErrorDescription
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -587,13 +599,15 @@ End
 		Sub NotificationStateUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Did update notification state for "+Characteristic.DebugDescription+" with"+if (errornumber = 0,"out ", " ")+ _
 		  "error "+ErrorDescription+EndOfLine+EndOfLine
-		  
+		  #pragma Unused Peripheral
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub ModifiedServices(Peripheral as ApplecBPeripheral, Services() As APpleCBService)
 		  dim count as Integer = services.Ubound +1
 		  TextArea1.AppendText "Modified Services for "+count.ToText+" Services"+EndOfLine+EndOfLine
+		  
+		  #pragma Unused Peripheral
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -604,6 +618,7 @@ End
 	#tag Event
 		Sub UnsubscribedFromCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
 		  TextArea1.AppendText "Unsubscribed from characteristic "+characteristic.DebugDescription+EndOfLine+EndOfLine
+		  #pragma Unused Central
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -631,13 +646,15 @@ End
 		Sub WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Wrote Characteristic value with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
 		  TextArea1.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
-		  
+		  #pragma Unused Peripheral
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub WroteDescriptorValue(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Wrote Descriptor value for "+Descriptor.DebugDescription+ _
 		  " with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
+		  #pragma Unused Peripheral
+		  #pragma Unused ErrorDescription
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -648,7 +665,10 @@ End
 		  '
 		  'msgbox("connect how ?? UUID ="+me.Cell(me.ListIndex,1))
 		  
-		  
+		  #pragma Unused row
+		  #pragma Unused column
+		  #pragma Unused x
+		  #pragma Unused y
 		End Function
 	#tag EndEvent
 #tag EndEvents

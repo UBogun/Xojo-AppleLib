@@ -109,6 +109,7 @@ Inherits OSXLibCBCentralManager
 	#tag Method, Flags = &h0, Description = 53656E647320616E20757064617465642063686172616374657269737469632076616C756520746F206F6E65206F72206D6F726520737562736372696265642063656E7472616C732C207669612061206E6F74696669636174696F6E206F7220696E6469636174696F6E2E2052657475726E732073656E6420737563636573732E
 		Function UpdateValue(Characteristic as AppleCBMutableCharacteristic, subscribedCentrals as AppleArray = nil, value as AppleData) As Boolean
 		  return  PeripheralManager.updateValue( Characteristic,nil, value)
+		  #pragma Unused subscribedCentrals
 		End Function
 	#tag EndMethod
 

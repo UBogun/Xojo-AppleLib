@@ -8,7 +8,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E697469616C697A657320616E642072657475726E7320616E206F626A65637420646566696E696E67206120726567696F6E206F662061207669657720746F2072656365697665206D6F7573652D747261636B696E67206576656E74732C206D6F7573652D6D6F766564206576656E74732C20637572736F722D757064617465206576656E74732C206F7220706F737369626C7920616C6C207468657365206576656E74732E
-		Sub Constructor(Rect as FoundationFrameWork.NSRect, optionas as AppleTrackingAreaOptions, oner as AppleResponder, userinfo as AppleDictionary = nil)
+		Sub Constructor(Rect as FoundationFrameWork.NSRect, options as AppleTrackingAreaOptions, owner as AppleResponder, userinfo as AppleDictionary = nil)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
@@ -16,7 +16,8 @@ Inherits AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  Super.Constructor(initWithRect(alloc(classptr),rect, options.id, if (userinfo = nil,nil, userinfo.id)))
 		  MHasOwnership = true
-		  
+		  #pragma Unused options
+		  #pragma Unused owner
 		End Sub
 	#tag EndMethod
 

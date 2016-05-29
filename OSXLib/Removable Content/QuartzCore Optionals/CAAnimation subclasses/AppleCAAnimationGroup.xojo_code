@@ -1,59 +1,62 @@
 #tag Class
-Protected Class AppleImage
-Inherits AppleObject
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function blendedColorWithFraction Lib appkitlibname Selector "blendedColorWithFraction:ofColor:" (id as ptr, fraction as cgfloat, OtherColor As Ptr) As Ptr
-	#tag EndExternalMethod
-
-	#tag Method, Flags = &h0, Description = 437265617465732061204E53496D6167652066726F6D206120506963747572652E
-		Sub Constructor(Pic as picture)
+Protected Class AppleCAAnimationGroup
+Inherits AppleCAAnimation
+	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204341416E696D6174696F6E20696E7374616E63652E
+		Sub Constructor()
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(pic.CopyOSHandle (picture.HandleType.macNSImage))
-		  // RetainClassobject
+		  Super.Constructor(animation(classptr))
+		  RetainClassObject
+		  
 		End Sub
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getanimations Lib QuartzCoreLib Selector "animations" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0
-		 Shared Function fromPicture(aPic as Picture) As AppleImage
-		  #if targetmacos
-		    return new AppleImage(apic)
-		  #endif
+		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCAAnimationGroup
+		  return if (aptr = nil, nil, new AppleCAAnimationGroup(aptr))
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleImage
-		  return if (aptr = nil, nil, new appleimage(aptr))
-		End Function
-	#tag EndMethod
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setanimations Lib QuartzCoreLib Selector "setAnimations:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
 
 
-	#tag ComputedProperty, Flags = &h1
+	#tag Note, Name = Status complete
+		
+		
+	#tag EndNote
+
+
+	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F66204341416E696D6174696F6E206F626A6563747320746F206265206576616C756174656420696E207468652074696D65207370616365206F66207468652072656365697665722E
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSImage")
-			  return mClassPtr
-			End Get
-		#tag EndGetter
-		Protected Shared ClassPtr As Ptr
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F662074686520696D6167652E
-		#tag Getter
-			Get
-			  return FoundationFrameWork.getSize(id)
+			  return AppleArray.MakeFromPtr(getanimations(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  FoundationFrameWork.setsize id,value
+			  setanimations id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
-		Size As FoundationFrameWork.NSSize
+		Animations As AppleArray
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("CAAnimationGroup")
+			  return mClassPtr
+			End Get
+		#tag EndGetter
+		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
 
@@ -92,6 +95,11 @@ Inherits AppleObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RemovedOnCompletion"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"

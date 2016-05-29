@@ -6,6 +6,8 @@ Inherits AppleObject
 		  declare function attributesAtIndex lib FoundationLibName  selector "attributesAtIndex:effectiveRange:" (id as ptr,  rangeptr as ptr) as Ptr
 		  dim result as ptr = attributesAtIndex(id, nil)
 		  return AppleDictionary.MakeFromPtr (result)
+		  
+		  #pragma Unused index
 		End Function
 	#tag EndMethod
 
@@ -39,6 +41,8 @@ Inherits AppleObject
 		  AttDict.ObjectForKey (StringAttributes.Value(BasellneOffset).StringValue) = new AppleNumber (offset)
 		  super.Constructor (initWithStringattributes (alloc(classptr), astring, AttDict.id))
 		  mHasOwnership = true
+		  
+		  #pragma Unused fontname
 		End Sub
 	#tag EndMethod
 

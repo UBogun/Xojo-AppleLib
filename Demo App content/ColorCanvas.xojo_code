@@ -14,6 +14,7 @@ Inherits Canvas
 		  g.DrawString BGColor.totext,10, g.Height - 20
 		  g.DrawString label,10,  20
 		  
+		  #pragma Unused areas
 		  
 		End Sub
 	#tag EndEvent

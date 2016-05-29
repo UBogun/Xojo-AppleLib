@@ -34,7 +34,7 @@ Begin Window NSViewPlayWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   623
+      Height          =   368
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -48,7 +48,7 @@ Begin Window NSViewPlayWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   65
+      Top             =   320
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
@@ -153,6 +153,290 @@ Begin Window NSViewPlayWindow
       Visible         =   True
       Width           =   943
    End
+   Begin OSXLibCanvas ac3
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   32
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   308
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   45
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   32
+   End
+   Begin Slider Slider1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   23
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   620
+      LineStep        =   1
+      LiveScroll      =   False
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Maximum         =   720
+      Minimum         =   0
+      PageStep        =   20
+      Scope           =   2
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TickStyle       =   "0"
+      Top             =   73
+      Value           =   360
+      Visible         =   True
+      Width           =   174
+   End
+   Begin Label Label2
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   620
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      Text            =   "FrameCenterRotation"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   45
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   174
+   End
+   Begin Label FCRotationValueLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   620
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      Text            =   "0"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   90
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   174
+   End
+   Begin Label FRotationValueLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   114
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      Text            =   "0"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   90
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   174
+   End
+   Begin Label Label3
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   114
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      Text            =   "BoundsRotation"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   45
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   174
+   End
+   Begin Slider Slider2
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   23
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   114
+      LineStep        =   1
+      LiveScroll      =   False
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Maximum         =   720
+      Minimum         =   0
+      PageStep        =   20
+      Scope           =   2
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TickStyle       =   "0"
+      Top             =   73
+      Value           =   360
+      Visible         =   True
+      Width           =   174
+   End
+   Begin CheckBox CheckBox1
+      AutoDeactivate  =   True
+      Bold            =   False
+      Caption         =   "MasksToBounds"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   114
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      State           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   122
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   174
+   End
+   Begin CheckBox CheckBox2
+      AutoDeactivate  =   True
+      Bold            =   False
+      Caption         =   "Hidden"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   114
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      State           =   0
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   154
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   174
+   End
 End
 #tag EndWindow
 
@@ -197,6 +481,8 @@ End
 		  ShowLabel
 		  HideLabel
 		  Animate
+		  
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -240,6 +526,7 @@ End
 		  ShowLabel
 		  HideLabel
 		  
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E207468652075736572206861732070726573736564206F722072656C65617365642061206D6F646966696572206B6579202853686966742C20436F6E74726F6C2C20616E6420736F206F6E292E
@@ -248,6 +535,8 @@ End
 		  ShowLabel
 		  HideLabel
 		  Animate
+		  
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E207468652075736572206861732066696E6973686564206120746F75636820676573747572652E
@@ -262,6 +551,8 @@ End
 		  Label1.text ="Mouse Drag"
 		  ShowLabel
 		  HideLabel
+		  
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865207269676874206D6F75736520627574746F6E2E
@@ -269,6 +560,8 @@ End
 		  Label1.text ="Right Mouse Down"
 		  ShowLabel
 		  HideLabel
+		  
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2061206E657720736574206F6620746F756368657320686173206265656E207265636F676E697A65642E0A546F206765742074686520736574206F6620746F7563686573207468617420626567616E20666F722074686973207669657720286F722064657363656E64616E7473206F6620746869732076696577292073656E64205B6576656E7420746F75636865734D61746368696E6750686173653A4E53546F7563685068617365426567616E20696E566965773A73656C665D2E
@@ -276,6 +569,7 @@ End
 		  Label1.text ="Touches began!"
 		  ShowLabel
 		  HideLabel
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120726F746174696F6E20676573747572652E
@@ -283,6 +577,8 @@ End
 		  Label1.text ="Rotation gesture!"
 		  ShowLabel
 		  HideLabel
+		  
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320707265737365642061206B65792E
@@ -298,6 +594,53 @@ End
 	#tag Event
 		Sub Action()
 		  call me.AppleObject.presentError(new appleerror( "Each responder subclass can display a custom error and modify it in the willShowError event", -999999))
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ac3
+	#tag Event
+		Sub Shown()
+		  me.AppleObject.WantsLayer = true
+		  me.AppleObject.layer.BorderWidth = 2
+		  me.AppleObject.Layer.CornerRadius = 40
+		  me.AppleObject.layer.bordercolor = AppleColor.FromColor (&cBFFFC100)
+		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cB1D9FE00)
+		  me.AppleObject.Layer.Contents = new AppleImage(OSXLibLogo)
+		  me.AppleObject.LayerContentsPlacement = AppleView.NSViewLayerContentsPlacement.Center
+		  me.AppleObject.Layer.MasksToBounds =false
+		  me.AppleObject.AutoResizingMask = new AppleAutoresizingMask(0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Slider1
+	#tag Event
+		Sub ValueChanged()
+		  dim val as double = ( me.value-360)/10
+		  ac3.AppleObject.FrameCenterRotation  = val
+		  FCRotationValueLabel.text = val.ToText
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Slider2
+	#tag Event
+		Sub ValueChanged()
+		  dim val as double = ( me.value-360)/10
+		  ac3.AppleObject.BoundsRotation  = val
+		  FRotationValueLabel.text = val.ToText
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckBox1
+	#tag Event
+		Sub Action()
+		  ac3.AppleObject.layer.MasksToBounds = me.value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckBox2
+	#tag Event
+		Sub Action()
+		  ac3.AppleObject.layer.Hidden = me.value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
