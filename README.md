@@ -23,3 +23,6 @@ All this stuff eats a tremendous amount of time. If you want to contribute to th
 It would be nice to include a "uses OSXLib" hint in your splash or info screen, and a license for an app created with OSXLib is gratefully taken. 
 If you use SpriteKit or SceneKit to create games or simulations for a free or commercial but not restricted customer base, consider sending me a license part of the librarie’s license.
 And, of course: Contributions to this library are always welcome! With combined effort we could create libraries for all supported platforms in a short period of time. 
+
+## Adding your own controls
+Please see the Readme in the OSXLibCanvas class!
