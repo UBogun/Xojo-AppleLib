@@ -8,7 +8,7 @@ OSXLib tries to make advanced use of Apple’s API features transparent, easy an
 This library uses the CGFloat datatype, external declares and IDE descriptions. Xojo 2015r3 is therefore the minimum required version. It should be checking for the availability of methods from OS X 10.10 onwards, but I might have overseen a few version hints. If you should be running OSXLib on an older system and experience crashes, please file a bug report. In othercases too of course.
 
 # Important!
-> **You need to install Joe Ranieri’s OBJC blocks plugin: https://www.dropbox.com/s/rif5r34r15xhaxc/Blocks%20Plugin.zip**
+> **You need to install Joe Ranieri’s OBJC blocks plugin: https://www.dropbox.com/s/rif5r34r15xhaxc/Blocks%20Plugin.zip**  
 Here’s the forum discussion about it: https://forum.xojo.com/3586-obj-c-blocks-as-callbacks/0
 
 ## Disclaimer
