@@ -9,6 +9,7 @@ This library uses the CGFloat datatype, external declares and IDE descriptions. 
 
 # Important!
 > **You need to install Joe Ranieri’s OBJC blocks plugin: https://www.dropbox.com/s/rif5r34r15xhaxc/Blocks%20Plugin.zip**
+Here’s the forum discussion about it: https://forum.xojo.com/3586-obj-c-blocks-as-callbacks/0
 
 ## Disclaimer
 Written 2016 by Ulrich Bogun, xojoblog.me. You are entitled to use this library AS IS and on your own risk. I do not take responsibility for anything harmful that could happen to your computer, but I can assure you there are no backdoors, traps or intended bugs of this and different kinds and I am using this library myself without my computer blowing up or similar things.
