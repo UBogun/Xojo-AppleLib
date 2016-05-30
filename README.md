@@ -11,7 +11,7 @@ This library uses the CGFloat datatype, external declares and IDE descriptions. 
 > **You need to install Joe Ranieri’s OBJC blocks plugin: https://www.dropbox.com/s/rif5r34r15xhaxc/Blocks%20Plugin.zip**  
 Here’s the forum discussion about it: https://forum.xojo.com/3586-obj-c-blocks-as-callbacks/0  
   
-  ** A current bug in Xojo (probably) prevents CoreBluetooth from running on 64Bit. I hope that the next release will contain a fix for that. Until now, if you need 64bit: Kick out CoreBluetooth from the RemovableContent Folder and the CoreBluetooth demo window and comment ot the lines in Selectionwindow/pushbutton1 that invoke that window.**
+  **A current bug in Xojo (probably) prevents CoreBluetooth from running on 64Bit. I hope that the next release will contain a fix for that. Until now, if you need 64bit: Kick out CoreBluetooth from the RemovableContent Folder and the CoreBluetooth demo window and comment ot the lines in Selectionwindow/pushbutton1 that invoke that window.**
     
 Do not be alarmed that newer version warning might appear from tine to time. I check compatibility with the recent beta and it can happen that this version will be used for save accidentally. Anyway, I made sure OSXLib builds with 2016r1.1 when you remove CoreBluetooth.  
 
