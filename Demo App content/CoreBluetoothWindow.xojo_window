@@ -28,7 +28,6 @@ Begin Window CoreBluetoothWindow
    Width           =   956
    Begin OSXLibCoreBluetoothController OSXLibCBCentralManager1
       CentralManagerState=   ""
-      Enabled         =   True
       Handle          =   0
       Index           =   -2147483648
       IsAdvertising   =   False
@@ -301,7 +300,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Data log"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -398,27 +396,36 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub DiscoveredPeripheral(Peripheral as AppleCBPeripheral, AdvertisementData as AppleCBAdvertisementDataDictionary, RSSI as double)
-		  devices_statusupdate(Peripheral,"discovered")
 		  
-		  TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+endofline + _
-		  if (AdvertisementData.DataIsConnectable, "", "Not ")+"connectable · " + _
-		  "RSSI: "+rssi.ToText+EndOfLine+EndOfLine
-		  if AdvertisementData.DataIsConnectable then
-		    if Peripheral.Services <> nil then 
-		      dim uuidarray as new AppleMutableArray
-		      for q as integer = 0 to Peripheral.Services.Count -1
-		        dim curService as new AppleCBService (Peripheral.Services.PtrAtIndex(q))
-		        uuidarray.Addobject curService.UUID
-		      next
-		      Peripheral.DiscoverServices(uuidarray)
+		  
+		  
+		  // only if not apple tv
+		  if Peripheral.Name<>"Apple TV" and Peripheral.Name<>"" then
+		    devices_statusupdate(Peripheral,"discovered")
+		    
+		    TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+endofline + _
+		    if (AdvertisementData.DataIsConnectable, "", "Not ")+"connectable · " + _
+		    "RSSI: "+rssi.ToText+EndOfLine+EndOfLine
+		    if AdvertisementData.DataIsConnectable then
+		      if Peripheral.Services <> nil then 
+		        dim uuidarray as new AppleMutableArray
+		        for q as integer = 0 to Peripheral.Services.Count -1
+		          dim curService as new AppleCBService (Peripheral.Services.PtrAtIndex(q))
+		          uuidarray.Addobject curService.UUID
+		        next
+		        Peripheral.DiscoverServices(uuidarray)
+		      end if
+		      Peripheral.PeripheralDelegate = me.appleobject
+		      if self.Peripheral = nil then 
+		        
+		        
+		        self.Peripheral =Peripheral
+		        TextArea1.AppendText "Connection attempt"+EndOfLine+EndOfLine
+		        me.Connect self.Peripheral, true
+		        
+		      end if
 		    end if
-		    Peripheral.PeripheralDelegate = me.appleobject
-		    if self.Peripheral = nil then 
-		      
-		      self.Peripheral =Peripheral
-		      TextArea1.AppendText "Connection attempt"+EndOfLine+EndOfLine
-		      me.Connect self.Peripheral, true
-		    end if
+		    
 		  end if
 		End Sub
 	#tag EndEvent
