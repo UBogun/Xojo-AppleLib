@@ -604,8 +604,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub NotificationStateUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  
 		  TextArea1.AppendText "Did update notification state for "+Characteristic.DebugDescription+" with"+if (errornumber = 0,"out ", " ")+ _
 		  "error "+ErrorDescription+EndOfLine+EndOfLine
+		  datalog.AppendText Peripheral.Name+" "+Characteristic.DebugDescription+EndOfLine
 		  #pragma Unused Peripheral
 		End Sub
 	#tag EndEvent
