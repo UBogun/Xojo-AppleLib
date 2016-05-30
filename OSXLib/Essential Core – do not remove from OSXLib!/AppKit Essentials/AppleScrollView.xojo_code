@@ -34,6 +34,10 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getautohidesScrollers Lib appkitlibname Selector "autohidesScrollers" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcontentSize Lib appkitlibname Selector "contentSize" (id as ptr) As FoundationFrameWork.NSSize
 	#tag EndExternalMethod
 
@@ -50,11 +54,55 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethasHorizontalScroller Lib appkitlibname Selector "hasHorizontalScroller" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethasVerticalScroller Lib appkitlibname Selector "hasVerticalScroller" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethorizontalScroller Lib appkitlibname Selector "horizontalScroller" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrulerViewClass Lib appkitlibname Selector "rulerViewClass" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getverticalScroller Lib appkitlibname Selector "verticalScroller" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setautohidesScrollers Lib appkitlibname Selector "setAutohidesScrollers:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setcontentView Lib appkitlibname Selector "setContentView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setdocumentView Lib appkitlibname Selector "setDocumentView:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sethasHorizontalScroller Lib appkitlibname Selector "setHasHorizontalScroller:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sethasVerticalScroller Lib appkitlibname Selector "setHasVerticalScroller:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sethorizontalScroller Lib appkitlibname Selector "setHorizontalScroller:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setRulerViewClass Lib appkitlibname Selector "setRulerViewClass:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setverticalScroller Lib appkitlibname Selector "setVerticalScroller:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 
@@ -68,6 +116,20 @@ Inherits AppleView
 		contentView & documentView must be NSClipView, not NSView
 	#tag EndNote
 
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C2076696577206175746F6D61746963616C6C7920686964657320697473207363726F6C6C2062617273207768656E207468657920617265206E6F74206E65656465642E
+		#tag Getter
+			Get
+			  return getautohidesScrollers(id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setautohidesScrollers id, value
+			End Set
+		#tag EndSetter
+		AutohidesScrollers As Boolean
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520636F6E74656E742076696577E2809973206261636B67726F756E642E
 		#tag Getter
@@ -165,6 +227,76 @@ Inherits AppleView
 			End Set
 		#tag EndSetter
 		DrawsBackground As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C207669657720686173206120686F72697A6F6E74616C207363726F6C6C65722E
+		#tag Getter
+			Get
+			  return gethasHorizontalScroller(id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  sethasHorizontalScroller id, value
+			End Set
+		#tag EndSetter
+		HasHorizontalScroller As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C207669657720686173206120766572746963616C207363726F6C6C65722E
+		#tag Getter
+			Get
+			  return gethasVerticalScroller(id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  sethasVerticalScroller id, value
+			End Set
+		#tag EndSetter
+		HasVerticalScroller As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320686F72697A6F6E74616C207363726F6C6C65722E
+		#tag Getter
+			Get
+			  return AppleScroller.MakefromPtr(gethorizontalScroller(id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  sethorizontalScroller id, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		HorizontalScroller As AppleScroller
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064656661756C7420636C61737320746F206265207573656420666F722072756C6572206F626A6563747320696E204E535363726F6C6C56696577732E
+		#tag Getter
+			Get
+			  return AppleObject.MakefromPtr(getrulerViewClass(classptr))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setrulerViewClass classptr, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		Shared RulerViewClass As AppleObject
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320766572746963616C207363726F6C6C65722E
+		#tag Getter
+			Get
+			  return AppleScroller.MakefromPtr(getverticalScroller(id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setverticalScroller id, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		VerticalScroller As AppleScroller
 	#tag EndComputedProperty
 
 
