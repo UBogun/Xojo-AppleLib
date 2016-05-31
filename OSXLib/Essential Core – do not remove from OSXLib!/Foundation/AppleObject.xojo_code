@@ -77,6 +77,12 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function OperatorConvert() As Ptr
+		  return mid
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
 		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
 		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)

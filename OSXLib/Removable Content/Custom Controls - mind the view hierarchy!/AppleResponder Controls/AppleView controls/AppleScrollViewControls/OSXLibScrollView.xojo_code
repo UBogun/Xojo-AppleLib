@@ -1,6 +1,24 @@
 #tag Class
 Protected Class OSXLibScrollView
 Inherits OSXLibView
+	#tag Event , Description = 52657475726E207472756520746F20616C6C6F772076696272616E63792063616C63756C6174696F6E7320666F7220796F757220766965772E
+		Function AllowsVibrancy() As Boolean
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C20676574732074686520666F6375732E2052657475726E207472756520746F2064656E7920746869732E
+		Function DontAcceptFocus() As Boolean
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C2073686F756C64206C6F73652074686520666F6375732E2052657475726E207472756520746F2064656E7920746869732E
+		Function DontLoseFocus() As Boolean
+		  
+		End Function
+	#tag EndEvent
+
 	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
 		Function InitControl() As Boolean
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
@@ -28,10 +46,29 @@ Inherits OSXLibView
 		        exit 
 		      end if
 		    next
-		    return true
 		  end if
 		  
+		  return true
+		  
 		End Function
+	#tag EndEvent
+
+	#tag Event , Description = 4669726573207768656E20746865207573657220686173206D6F76656420746865206D6F757365E2809973207363726F6C6C20776865656C2E
+		Sub MouseWheel(anEvent As AppleNSEvent)
+		  #pragma Unused anEvent
+		End Sub
+	#tag EndEvent
+
+	#tag Event , Description = 52657475726E207472756520746F20696E646963617465207468617420796F757220636F6E74656E7420636F76657273207468652077686F6C652076696577206672616D6520776974686F7574207472616E73706172656E636965732E
+		Function Opaque() As Boolean
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub Paint(Rect as FoundationFrameWork.NSRect)
+		  #pragma unused rect
+		End Sub
 	#tag EndEvent
 
 	#tag Event , Description = 466972657320696620746865207573657220686173207374617274656420726573697A696E672074686520766965772E
@@ -82,8 +119,8 @@ Inherits OSXLibView
 		AppleObject As AppleScrollView
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private mAppleObject As AppleScrollView
+	#tag Property, Flags = &h1
+		Protected mAppleObject As AppleScrollView
 	#tag EndProperty
 
 

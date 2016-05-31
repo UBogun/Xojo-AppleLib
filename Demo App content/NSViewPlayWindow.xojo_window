@@ -728,13 +728,13 @@ End
 		  miii = new MenuItem ("Please note the tooltip on the cell with the big image!")
 		  miii.AppleObject.IndentationLevel = 10
 		  mi.append miii
-		  dim result as menuitem = mi.PopUp
-		  
+		  call mi.PopUp
+		  #pragma unused anevent
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Paint(Rect as FoundationFrameWork.NSRect)
-		  
+		  #pragma unused rect
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -754,16 +754,6 @@ End
 		  me.AppleObject.Layer.BorderWidth = 2
 		  
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub WillOpenMenuForEvent(Menu As AppleMenu, AnEvent As AppleNSEvent)
-		  break
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MenuForEvent(AnEvent As AppleNSEvent) As AppleMenu
-		  break
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
