@@ -9,7 +9,7 @@ Begin Window TableViewWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   400
+   Height          =   394
    ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
@@ -34,7 +34,7 @@ Begin Window TableViewWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   400
+      Height          =   394
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -79,6 +79,13 @@ End
 		Sub Shown()
 		  me.TableViewObject.DataSource = AppleTableViewDataSource1.AppleObject
 		  me.TableViewObject.AddTableColumn "TestColumn!"
+		  me.TableViewObject.UsesAlternatingRowBackgroundColors = true
+		  me.TableViewObject.GridStyleMask = new AppleTableViewGridStyleMask(3)
+		  me.TableViewObject.GridColor = AppleColor.FromColor(&cFDC58200)
+		  dim smallimg as AppleImage = AppleImage.fromPicture(OSXLibLogo)
+		  smallimg.size = FoundationFrameWork.NSMakeSize(12, 12)
+		  me.TableViewObject.IndicatorImage(me.TableViewObject.TableColumn("TestColumn!"))=smallimg
+		  me.TableViewObject.RowSizeStyle = appletableview.NSTableViewRowSizeStyle.Large
 		End Sub
 	#tag EndEvent
 #tag EndEvents

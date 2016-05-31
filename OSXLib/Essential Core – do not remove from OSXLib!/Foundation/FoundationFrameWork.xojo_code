@@ -130,6 +130,19 @@ Protected Module FoundationFrameWork
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Function NSMakeRange(Location as UInteger, Length as UInteger) As FoundationFRamework.NSRange
+		  #pragma DisableBackgroundTasks
+		  #pragma DisableBoundsChecking
+		  #Pragma NilObjectChecking false
+		  
+		  dim NP as foundationframework.NSRange
+		  NP.location = location
+		  NP.length = Length
+		  return np
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Function NSMakeRect(x as double, y as double, w as double, h as double) As FoundationFramework.NSRect
 		  dim NP  as FoundationFramework.NSRect
 		  NP.Origin.x = x

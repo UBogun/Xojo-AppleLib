@@ -250,7 +250,7 @@ Inherits AppleView
 		Attributes( hidden ) Protected Shared Sub impl_scrollviewDidEndLiveResize(pid as ptr, sel as ptr)
 		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
 		  if view <> nil then 
-		    if not view.informOnviewDidEndLiveResize() then tile(pid)
+		    if not view.informOnviewDidEndLiveResize() then appkitframework.tile(pid)
 		  end if
 		  #pragma unused sel
 		  
@@ -261,7 +261,7 @@ Inherits AppleView
 		Attributes( hidden ) Protected Shared Sub impl_scrollviewWillStartLiveResize(pid as ptr, sel as ptr)
 		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
 		  if view <> nil then 
-		    if not view.informOnviewWillStartLiveResize() then tile(pid)
+		    if not view.informOnviewWillStartLiveResize() then appkitframework.tile(pid)
 		  end if
 		  #pragma unused sel
 		  
@@ -456,13 +456,9 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 4C617973206F75742074686520636F6D706F6E656E7473206F66207468652072656365697665723A2074686520636F6E74656E7420766965772C20746865207363726F6C6C6572732C20616E64207468652072756C65722076696577732E
 		Sub Tile()
-		  tile id
+		  AppKitFramework.tile id
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub tile Lib appkitlibname Selector "tile" (id as ptr)
-	#tag EndExternalMethod
 
 
 	#tag Hook, Flags = &h0

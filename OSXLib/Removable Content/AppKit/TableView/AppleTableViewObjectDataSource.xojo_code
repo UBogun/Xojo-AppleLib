@@ -1,6 +1,6 @@
 #tag Class
-Protected Class AppleTableViewDataSource
-Inherits AppleObject
+Protected Class AppleTableViewObjectDataSource
+Inherits AppleTableViewDataSource
 	#tag Method, Flags = &h0
 		Sub Constructor()
 		  // Calling the overridden superclass constructor.
@@ -15,33 +15,14 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1
-		Protected Shared Function impl_numberOfRowsInTableView(pid as ptr, sel as ptr, tableview as ptr) As Integer
-		  dim obj as new AppleTableViewDataSource(pid)
-		  if obj <> nil then
-		    return obj.informOnNumberOfRows (AppleTableView.MakefromPtr(tableview))
-		  end if
-		  #pragma unused sel
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h21
-		Private Shared Function impl_textValueForTableColumn(pid as ptr, sel as ptr, tableview as ptr, tablecolumn as ptr, row as Integer) As cfstringRef
-		  dim obj as new AppleTableViewDataSource(pid)
+		Private Shared Function impl_objectValueForTableColumn(pid as ptr, sel as ptr, tableview as ptr, tablecolumn as ptr, row as Integer) As Ptr
+		  dim obj as new AppleTableViewobjectDataSource(pid)
 		  if obj <> nil then
-		    return obj.TextValueForTableColumn (AppleTableView.MakefromPtr(tableview), tablecolumn, row)
+		    dim result as appleobject = obj.objectValueForTableColumn (AppleTableView.MakefromPtr(tableview), tablecolumn, row)
+		    return if (result = nil, nil, result.id)
 		  end if
 		  #pragma unused sel
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informOnNumberOfRows(TableView as AppleTableView) As Integer
-		  if ParentControl <> nil then
-		    return ParentControl.informOnNumberOfRows(TableView)
-		  else
-		    return RaiseEvent NumberOfRows(TableView)
-		  end if
 		End Function
 	#tag EndMethod
 
@@ -51,33 +32,29 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function objectValueForTableColumn(TableView as AppleTableView, column as ptr, row as Integer) As Appleobject
+		  if ParentControl <> nil then
+		    return ParentControl.objectValueForTableColumn(TableView, column, row)
+		  else
+		    return RaiseEvent ObjectValue(TableView, column, row)
+		  end if
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
-		Private Function ParentControl() As OSXLibTableViewDataSource
+		Private Function ParentControl() As OSXLibTableViewObjectDataSource
 		  if XojoControls <> nil then
 		    dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		    return if (wr = nil, nil,  OSXLibTableViewDataSource(wr.Value))
+		    return if (wr = nil, nil,  OSXLibTableViewObjectDataSource(wr.Value))
 		  end if
 		  
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function textValueForTableColumn(TableView as AppleTableView, column as ptr, row as Integer) As cfstringRef
-		  if ParentControl <> nil then
-		    return ParentControl.textValueForTableColumn(TableView, column, row)
-		  else
-		    return RaiseEvent textValue(TableView, column, row)
-		  end if
-		End Function
-	#tag EndMethod
-
 
 	#tag Hook, Flags = &h0, Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
-		Event NumberOfRows(TableView As AppleTableView) As Integer
-	#tag EndHook
-
-	#tag Hook, Flags = &h0, Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
-		Event TextValue(TableView As AppleTableView, column as ptr, row as Integer) As cfstringRef
+		Event ObjectValue(TableView As AppleTableView, column as ptr, row as Integer) As Appleobject
 	#tag EndHook
 
 
@@ -93,7 +70,7 @@ Inherits AppleObject
 			    
 			    //TableViewDataSource methods:
 			    methods.Append new TargetClassMethodHelper("numberOfRowsInTableView:", AddressOf impl_numberOfRowsInTableView, "i@:@")
-			    methods.Append new TargetClassMethodHelper("tableView:objectValueForTableColumn:row:", AddressOf impl_textValueForTableColumn, "@@:@@i")
+			    methods.Append new TargetClassMethodHelper("tableView:objectValueForTableColumn:row:", AddressOf impl_objectValueForTableColumn, "@@:@@i")
 			    
 			    mClassPtr = BuildTargetClass ("NSObject", "OSXLibTableViewDataSource",methods)
 			  end if

@@ -284,6 +284,10 @@ Protected Module AppKitFramework
 		Protected Declare Sub setView Lib appkitlibname Selector "setView:" (id as ptr, value as Ptr)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub tile Lib appkitlibname Selector "tile" (id as ptr)
+	#tag EndExternalMethod
+
 
 	#tag Constant, Name = AppKitLibName, Type = Text, Dynamic = False, Default = \"Appkit.framework", Scope = Public
 	#tag EndConstant
