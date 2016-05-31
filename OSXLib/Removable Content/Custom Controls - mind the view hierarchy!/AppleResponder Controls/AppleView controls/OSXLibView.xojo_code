@@ -38,6 +38,7 @@ Inherits OSXLibResponder
 		    next
 		  end if
 		  RaiseEvent open
+		  
 		End Sub
 	#tag EndEvent
 

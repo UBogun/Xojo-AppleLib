@@ -1,14 +1,7 @@
 #tag Class
-Protected Class OSXLibCanvas
-Inherits OSXLibView
-	#tag Event
-		Sub Close()
-		  mAppleObject = nil
-		  RaiseEvent Close
-		End Sub
-	#tag EndEvent
-
-	#tag Event
+Protected Class OSXLibTableView
+Inherits OSXLibScrollView
+	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
 		Function InitControl() As Boolean
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
 		  // The Xojo engineers always warned that messing with the view hierarchy of Xojo controls could lead to problems in the future.
@@ -19,8 +12,10 @@ Inherits OSXLibView
 		  
 		  
 		  if not Raiseevent InitControl then
-		    mAppleObject = new ApplePaintView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
+		    mAppleObject = new AppleScrollView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
 		    mAppleObject.registercontrol self // and register this instance so it receives the events.
+		    mTableViewObject = new AppleTableView(mappleobject.frame)
+		    mappleobject.documentview = mTableViewObject
 		    // Please note the internal events of the declared class will not fire anymore.
 		    // This is to avoid confusions where an event expects a return value.
 		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
@@ -30,7 +25,8 @@ Inherits OSXLibView
 		      if subview.id = origview.id then // is this our control?
 		        dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
 		        mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
-		        controller.ReplaceSubview origview, mAppleObject // and kick of the canvas by replacing it with our view
+		        mAppleObject.TranslatesAutoresizingMaskIntoConstraints = true
+		        controller.ReplaceSubview origview, mAppleObject // and kick out the canvas by replacing it with our view
 		        exit 
 		      end if
 		    next
@@ -42,26 +38,22 @@ Inherits OSXLibView
 
 
 	#tag Hook, Flags = &h0
-		Event Close()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
 		Event InitControl() As Boolean
 	#tag EndHook
 
 
+	#tag Property, Flags = &h21
+		Private mTableViewObject As AppleTableView
+	#tag EndProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return mAppleObject
+			  return mTableViewObject
 			End Get
 		#tag EndGetter
-		AppleObject As ApplePaintView
+		TableViewObject As AppleTableView
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mAppleObject As ApplePaintView
-	#tag EndProperty
 
 
 	#tag ViewBehavior

@@ -27,7 +27,7 @@ Begin window ScrollWindow
    Visible         =   True
    Width           =   600
    Begin OSXLibScrollView OSXLibScrollView1
-      AcceptFocus     =   False
+      AcceptFocus     =   True
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
@@ -88,7 +88,7 @@ Begin window ScrollWindow
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   76
+      Height          =   268
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -113,7 +113,7 @@ Begin window ScrollWindow
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "This is a first rough scrollview implementation. Events have to follow. I created the content from the imagewell, but you can do so programmatically only too. \nAnd what you see here is a floating view."
+      Text            =   "This is a first rough scrollview implementation. Events have to follow. I created the content from the imagewell, but you can do so programmatically only too. \nAnd what you see here is a floating view.\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -122,7 +122,7 @@ Begin window ScrollWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   289
+      Width           =   140
    End
 End
 #tag EndWindow
@@ -144,11 +144,74 @@ End
 		  me.AppleObject.DocumentView = ContentView
 		  me.AppleObject.HasHorizontalScroller = true
 		  me.AppleObject.HasVerticalScroller = true
+		  me.AppleObject.HasHorizontalRuler = true
 		  dim newview as new appleview(TextArea1)
 		  newview.left = 50
 		  newview.top = 100
 		  me.AppleObject.AddFloatingSubview(newview, AppleNSEvent.NSEventGestureAxis.None)
 		  
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
+		Sub AddedSubview(Subview as AppleView)
+		  TextArea1.AppendText "Added Subview "+subview.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function AcceptsTouchEvents() As Boolean
+		  return true
+		End Function
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Sub BecameSubview()
+		  TextArea1.AppendText "Became Subview"+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Sub WillBecomeSubview(SuperView as AppleView)
+		  TextArea1.AppendText "Will become Subview of "+superview.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Sub WillShow(Window As Applewindow)
+		  TextArea1.AppendText "Will show in "+window.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E20746865207573657220706572666F726D6564206120736D617274207A6F6F6D20676573747572652028646F75626C652D746170292E203634626974206F6E6C7921
+		Sub SmartMagnifyGesture(anEvent As AppleNSEvent)
+		  TextArea1.AppendText "Smart Magnify requested "+anEvent.Magnification.ToText+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E207468652074686520757365722068617320626567756E20612070696E636820676573747572652E
+		Sub MagnifyGesture(anEvent As AppleNSEvent)
+		  // TextArea1.AppendText "Magnify gesture"+EndOfLine
+		  me.AppleObject.Magnification =me.AppleObject.Magnification+ anEvent.Magnification
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Sub WillRemoveSubview(SubView as AppleView)
+		  TextArea1.AppendText "Removing Subview "+subview.DebugDescription+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865206C656674206D6F75736520627574746F6E2E
+		Sub MouseDown(anEvent As AppleNSEvent)
+		  TextArea1.AppendText anEvent.ClickCount.ToText+" left click at "+anEvent.LocationInWindow.x.ToText+", "+anEvent.LocationInWindow.y.ToText+ EndOfLine
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120726F746174696F6E20676573747572652E
+		Sub RotationGesture(anEvent As AppleNSEvent)
+		  me.AppleObject.DocumentView.FrameRotation = anEvent.Rotation
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120746F75636820676573747572652E
+		Sub BeginGesture(anEvent As AppleNSEvent)
+		  TextArea1.AppendText "Gesture received, type "+Integer(anEvent.Type).ToText+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120737769706520676573747572652E
+		Sub SwipeGesture(anEvent As AppleNSEvent)
+		  TextArea1.AppendText "Swipe Gesture received "+Integer(anEvent.type).ToText+EndOfLine
 		End Sub
 	#tag EndEvent
 #tag EndEvents

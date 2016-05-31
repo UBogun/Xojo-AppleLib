@@ -1,5 +1,5 @@
 #tag Window
-Begin Window SelectionWindow
+Begin Window TableViewWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -9,8 +9,8 @@ Begin Window SelectionWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   576
-   ImplicitInstance=   True
+   Height          =   400
+   ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
@@ -21,108 +21,12 @@ Begin Window SelectionWindow
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
-   Placement       =   1
+   Placement       =   0
    Resizeable      =   True
-   Title           =   "Welcome to OSXLib · written 2016 by Ulrich Bogun, xojoblog.me"
+   Title           =   "Untitled"
    Visible         =   True
-   Width           =   750
-   Begin PopupMenu PopupMenu1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   20
-      ListIndex       =   0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Scope           =   0
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   536
-      Underline       =   False
-      Visible         =   True
-      Width           =   606
-   End
-   Begin PushButton PushButton1
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "OK"
-      Default         =   True
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   650
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      Scope           =   2
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   536
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
-   End
-   Begin Label Label1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      Text            =   "Select a demo:"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   512
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   304
-   End
-   Begin OSXLibView ImageWell1
+   Width           =   600
+   Begin OSXLibTableView OSXLibTableView1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -130,7 +34,7 @@ Begin Window SelectionWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   500
+      Height          =   400
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -141,121 +45,53 @@ Begin Window SelectionWindow
       LockRight       =   True
       LockTop         =   True
       Scope           =   2
-      TabIndex        =   3
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   0
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   750
+      Width           =   600
    End
-   Begin PushButton PushButton2
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "Button"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
+   Begin OSXLibTableViewDataSource AppleTableViewDataSource1
+      Handle          =   0
       Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   546
-      LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      MouseX          =   0
+      MouseY          =   0
+      PanelIndex      =   0
       Scope           =   0
-      TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   504
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
+      Window          =   "0"
+      _mIndex         =   0
+      _mPanelIndex    =   0
+      _mWindow        =   "0"
    End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Property, Flags = &h21
-		Private SecondaryWindow As Window
-	#tag EndProperty
-
-
 #tag EndWindowCode
 
-#tag Events PopupMenu1
-	#tag Event
-		Sub Open()
-		  me.AddRow("Color Additions")
-		  me.AddRow("NSView Additions")
-		  me.AddRow("Notifications")
-		  me.AddRow("CoreBluetooth")
-		  me.AddRow("ScrollView")
-		  me.AddRow("TableView")
-		  
-		  me.ListIndex = 0
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events PushButton1
-	#tag Event
-		Sub Action()
-		  if SecondaryWindow <> nil then 
-		    SecondaryWindow.Close
-		    try
-		      appleobject.release Ptr(SecondaryWindow.Handle)
-		      System.DebugLog "Released Window"
-		      SecondaryWindow = nil
-		    catch
-		      System.DebugLog "Release cause exception"
-		      
-		    end try
-		  end if
-		  select case PopupMenu1.Text
-		  case "Color Additions"
-		    SecondaryWindow = new ColorWindow
-		  case "Notifications"
-		    SecondaryWindow = new NotificationWindow
-		  case "CoreBluetooth"
-		    SecondaryWindow= new CoreBluetoothWindow
-		  case "NSView Additions"
-		    SecondaryWindow= new NSViewPlayWindow
-		  case "ScrollView"
-		    SecondaryWindow = new ScrollWindow
-		  case "TableView"
-		    SecondaryWindow = new TableViewWindow
-		  end select
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events ImageWell1
+#tag Events OSXLibTableView1
 	#tag Event
 		Sub Shown()
-		  me.AppleObject.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
-		  dim bgpic as AppleImage = AppleImage.fromPicture(OSXLibLogo)
-		  me.AppleObject.Layer.Contents =bgpic
-		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
-		  dim ac as new AppleAnimationContext (me.AppleObject)
-		  ac.Duration = 8
-		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
-		  
+		  me.TableViewObject.DataSource = AppleTableViewDataSource1.AppleObject
+		  me.TableViewObject.AddTableColumn "TestColumn!"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events PushButton2
-	#tag Event
-		Sub Action()
-		  
-		End Sub
+#tag Events AppleTableViewDataSource1
+	#tag Event , Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
+		Function NumberOfRows(TableView As AppleTableView) As Integer
+		  Return 500
+		End Function
+	#tag EndEvent
+	#tag Event , Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
+		Function TextValue(TableView As AppleTableView, column as ptr, row as Integer) As cfstringRef
+		  return (row.ToText)
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
