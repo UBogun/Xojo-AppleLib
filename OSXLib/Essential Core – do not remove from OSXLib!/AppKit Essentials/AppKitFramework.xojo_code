@@ -8,6 +8,14 @@ Protected Module AppKitFramework
 		Protected Declare Function getalignment Lib appkitlibname Selector "alignment" (id as ptr) As AppleText.NSTextAlignment
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getallowsCutCopyPaste Lib appkitlibname Selector "allowsCutCopyPaste" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getanimates Lib appkitlibname Selector "animates" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getattributedStringValue Lib foundationlibname Selector "attributedStringValue" (id as ptr) As Ptr
 	#tag EndExternalMethod
@@ -17,7 +25,15 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getautomaticallyAdjustsContentInsets Lib appkitlibname Selector "automaticallyAdjustsContentInsets" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getbaseWritingDirection Lib appkitlibname Selector "baseWritingDirection" (id as ptr) As AppleText.NSWritingDirection
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcontentInsets Lib appkitlibname Selector "contentInsets" (id as ptr) As Appkitframework.NSEdgeInsets
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -26,6 +42,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getdelegate Lib appkitlibname Selector "delegate" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getEditable Lib appkitlibname Selector "isEditable" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -46,6 +66,18 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getImage Lib appkitlibname Selector "image" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimageAlignment Lib appkitlibname Selector "imageAlignment" (id as ptr) As NSImageAlignment
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimageFrameStyle Lib appkitlibname Selector "imageFrameStyle" (id as ptr) As NSImageFrameStyle
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimageScaling Lib appkitlibname Selector "imageScaling" (id as ptr) As NSImageScaling
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -128,6 +160,14 @@ Protected Module AppKitFramework
 		Protected Declare Sub setalignment Lib appkitlibname Selector "setAlignment:" (id as ptr, value as AppleText . NSTextAlignment)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setallowsCutCopyPaste Lib appkitlibname Selector "setAllowsCutCopyPaste:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setanimates Lib appkitlibname Selector "setAnimates:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setattributedStringValue Lib foundationlibname Selector "setAttributedStringValue:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
@@ -137,7 +177,15 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setautomaticallyAdjustsContentInsets Lib appkitlibname Selector "setAutomaticallyAdjustsContentInsets:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setbaseWritingDirection Lib appkitlibname Selector "setBaseWritingDirection:" (id as ptr, value as AppleText . NSWritingDirection)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setcontentInsets Lib appkitlibname Selector "setContentInsets:" (id as ptr, value as AppkitFramework . NSEdgeInsets)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -146,6 +194,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setdelegate Lib appkitlibname Selector "setDelegate:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setEditable Lib appkitlibname Selector "setEditable:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -166,6 +218,18 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setImage Lib appkitlibname Selector "setImage:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimageAlignment Lib appkitlibname Selector "setImageAlignment:" (id as ptr, value as NSImageAlignment)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimageFrameStyle Lib appkitlibname Selector "setImageFrameStyle:" (id as ptr, value as NSImageFrameStyle)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimageScaling Lib appkitlibname Selector "setImageScaling:" (id as ptr, value as NSImageScaling)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -240,6 +304,33 @@ Protected Module AppKitFramework
 		Default = 0
 		  None = 1
 		Exterior = 2
+	#tag EndEnum
+
+	#tag Enum, Name = NSImageAlignment, Type = UInteger, Flags = &h1
+		Center = 0
+		  Top
+		  TopLeft
+		  TopRight
+		  Left
+		  Bottom
+		  BottomLeft
+		  BottomRight
+		Right
+	#tag EndEnum
+
+	#tag Enum, Name = NSImageFrameStyle, Type = UInteger, Flags = &h1
+		None = 0
+		  Photo
+		  GrayBezel
+		  Groove
+		Button
+	#tag EndEnum
+
+	#tag Enum, Name = NSImageScaling, Type = UInteger, Flags = &h1
+		ProportionallyDown = 0
+		  AxesIndependently
+		  None
+		ProportionallyUpOrDown
 	#tag EndEnum
 
 	#tag Enum, Name = NSUserInterfaceLayoutDirection, Type = Integer, Flags = &h1

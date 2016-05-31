@@ -46,7 +46,7 @@ Inherits AppleView
 		Attributes( hidden ) Protected Function ParentControl() As OSXLibCanvas
 		  if XojoControls <> nil then
 		    dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		    return if (wr = nil, nil,  OSXLibPaintCanvas(wr.Value))
+		    return if (wr = nil, nil,  OSXLibCanvas(wr.Value))
 		  end if
 		  
 		End Function

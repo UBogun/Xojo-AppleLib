@@ -45,7 +45,7 @@ Begin Window SelectionWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -76,7 +76,7 @@ Begin Window SelectionWindow
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
-      Scope           =   "2"
+      Scope           =   2
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
@@ -106,14 +106,14 @@ Begin Window SelectionWindow
       LockRight       =   False
       LockTop         =   False
       Multiline       =   False
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -123,7 +123,7 @@ Begin Window SelectionWindow
       Visible         =   True
       Width           =   304
    End
-   Begin OSXLibCanvas ImageWell1
+   Begin OSXLibView ImageWell1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -141,7 +141,7 @@ Begin Window SelectionWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Scope           =   "2"
+      Scope           =   2
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
@@ -170,7 +170,7 @@ Begin Window SelectionWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True

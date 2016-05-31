@@ -70,14 +70,6 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getautomaticallyAdjustsContentInsets Lib appkitlibname Selector "automaticallyAdjustsContentInsets" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getcontentInsets Lib appkitlibname Selector "contentInsets" (id as ptr) As Appkitframework.NSEdgeInsets
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcontentSize Lib appkitlibname Selector "contentSize" (id as ptr) As FoundationFrameWork.NSSize
 	#tag EndExternalMethod
 
@@ -250,14 +242,6 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setautomaticallyAdjustsContentInsets Lib appkitlibname Selector "setAutomaticallyAdjustsContentInsets:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setcontentInsets Lib appkitlibname Selector "setContentInsets:" (id as ptr, value as AppkitFramework . NSEdgeInsets)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setcontentView Lib appkitlibname Selector "setContentView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
@@ -425,12 +409,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C2076696577206175746F6D61746963616C6C792061646A757374732069747320636F6E74656E7420696E736574732E
 		#tag Getter
 			Get
-			  return getautomaticallyAdjustsContentInsets(id)
+			  return AppKitFramework.getautomaticallyAdjustsContentInsets(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setautomaticallyAdjustsContentInsets id, value
+			  AppKitFramework.setautomaticallyAdjustsContentInsets id, value
 			End Set
 		#tag EndSetter
 		AutomaticallyAdjustsContentInsets As Boolean
@@ -534,12 +518,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E6365207468617420746865207363726F6C6C2076696577E28099732073756276696577732061726520696E7365742066726F6D2074686520656E636C6F73696E67207363726F6C6C207669657720647572696E672074696C696E672E
 		#tag Getter
 			Get
-			  return getcontentInsets(id)
+			  return AppKitFramework.getcontentInsets(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcontentInsets id, value
+			  AppKitFramework.setcontentInsets id, value
 			End Set
 		#tag EndSetter
 		ContentInsets As AppkitFramework.NSEdgeInsets

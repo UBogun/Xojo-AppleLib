@@ -663,10 +663,10 @@ Implements OSXLibControlledObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h21, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden ) Private Function ParentControl() As OSXLibControl
+		Attributes( hidden ) Private Function ParentControl() As OSXLibResponder
 		  if XojoControls <> nil then
 		    dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		    return if (wr = nil, nil,  OSXLibControl(wr.Value))
+		    return if (wr = nil, nil,  OSXLibResponder(wr.Value))
 		  end if
 		  
 		End Function

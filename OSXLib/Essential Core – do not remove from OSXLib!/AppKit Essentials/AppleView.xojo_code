@@ -999,10 +999,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden ) Protected Function ParentControl() As OSXLibCanvas
+		Attributes( hidden ) Protected Function ParentControl() As OSXLibView
 		  if XojoControls <> nil then
 		    dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		    return if (wr = nil, nil,  OSXLibCanvas(wr.Value))
+		    return if (wr = nil, nil,  OSXLibView(wr.Value))
 		  end if
 		  
 		End Function
