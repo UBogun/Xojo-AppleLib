@@ -27,6 +27,16 @@ Inherits AppleControl
 		Protected Declare Sub beginUpdates Lib AppKitLibName Selector "beginUpdates" (id as ptr)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C756520696E6469636174696E67207768657468657220746865207461626C65207669657720616C6C6F7773206472616767696E672074686520726F7773206174207769746820746865206472616720696E69746961746564206174207468652073706563696669656420706F696E742E
+		Function CanDragRowsWithIndexes(Indexes as appleindexset, Point as FoundationFrameWork.NSPoint) As Boolean
+		  return canDragRowsWithIndexes(id, indexes.id, point)
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function canDragRowsWithIndexes Lib AppKitLibName Selector "canDragRowsWithIndexes:atPoint:" (id as ptr, index as ptr, point as FoundationFrameWork . NSPoint) As Boolean
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320612072656374616E676C65206C6F636174696E67207468652063656C6C2074686174206C6965732061742074686520696E74657273656374696F6E206F66207468652073706563696669656420636F6C756D6E20616E6420726F772E
 		Function CellRect(column as integer, row as Integer) As FoundationFrameWork.NSRect
 		  return getframeOfCellAtColumn (id, column, row)
@@ -109,6 +119,16 @@ Inherits AppleControl
 		Protected Declare Sub deselectRow Lib AppKitLibName Selector "deselectRow:" (id as ptr, row as integer)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 436F6D707574657320616E642072657475726E7320616E20696D61676520746F2075736520666F72206472616767696E672E
+		Function DragImage(DragRows as AppleIndexSet, TableColumns as AppleArray, anEvent as AppleNSEvent, Offset as FoundationFrameWork.NSPoint) As AppleImage
+		  return appleimage.MakeFromPtr(dragImageForRowsWithIndexes(id, DragRows.id, TableColumns.id, if (anevent = nil, nil, anEvent.id), offset))
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function dragImageForRowsWithIndexes Lib AppKitLibName Selector "dragImageForRowsWithIndexes:tableColumns:event:offset:" (id as ptr, dragwors as ptr, columns as ptr, anEvent as ptr, offset as FoundationFrameWork . NSPoint) As Ptr
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 4564697473207468652063656C6C206174207468652073706563696669656420636F6C756D6E20616E6420726F77207573696E672074686520737065636966696564206576656E7420616E642073656C656374696F6E206265686176696F722E
 		Sub EditColumn(column as integer, row as integer, anEvent as appleNSEvent = nil, selectContents as Boolean = False)
 		  editColumn id, column, row, if (anevent = nil, nil, anevent.id), SelectContents
@@ -180,6 +200,14 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getautosaveName Lib AppKitLibName Selector "autosaveName" (id as ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getautosaveTableColumns Lib AppKitLibName Selector "autosaveTableColumns" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getclickedColumn Lib AppKitLibName Selector "clickedColumn" (id as ptr) As Integer
 	#tag EndExternalMethod
 
@@ -216,6 +244,10 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdraggingDestinationFeedbackStyle Lib AppKitLibName Selector "draggingDestinationFeedbackStyle" (id as ptr) As NSTableViewDraggingDestinationFeedbackStyle
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function geteditedColumn Lib AppKitLibName Selector "editedColumn" (id as ptr) As Integer
 	#tag EndExternalMethod
 
@@ -245,6 +277,14 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getheaderView Lib AppKitLibName Selector "headerView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethiddenRowIndexes Lib AppKitLibName Selector "hiddenRowIndexes" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethighlightedTableColumn Lib AppKitLibName Selector "highlightedTableColumn" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -285,6 +325,10 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getrectOfRow Lib AppKitLibName Selector "rectOfRow:" (id as ptr, row as Integer) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrowActionsVisible Lib AppKitLibName Selector "rowActionsVisible" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -341,6 +385,20 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getusesStaticContents Lib AppKitLibName Selector "usesStaticContents" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getverticalMotionCanBeginDrag Lib AppKitLibName Selector "verticalMotionCanBeginDrag:" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 48696465732074686520737065636966696564207461626C6520726F77732E
+		Sub HideRows(Indexes as AppleIndexSet, Animation as AppleTableViewAnimationOptions)
+		  hideRowsAtIndexes id, Indexes.id, Animation.Id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub hideRowsAtIndexes Lib AppKitLibName Selector "hideRowsAtIndexes:withAnimations:" (id as ptr, indexset as ptr, animations as uinteger)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E64696361746F7220696D616765206F662074686520737065636966696564207461626C6520636F6C756D6E2E
@@ -503,6 +561,26 @@ Inherits AppleControl
 		Protected Declare Function rowViewAtRow Lib AppKitLibName Selector "rowViewAtRow:makeIfNecessary:" (id as ptr, row as Integer, MakeIfNEcessary As Boolean) As Ptr
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub scrollColumnToVisible Lib AppKitLibName Selector "scrollColumnToVisible:" (id as ptr, column as integer)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub scrollRowToVisible Lib AppKitLibName Selector "scrollRowToVisible:" (id as ptr, row as integer)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 5363726F6C6C7320746865207669657720736F207468652073706563696669656420636F6C756D6E2069732076697369626C652E
+		Sub ScrollToColumn(column as Integer)
+		  scrollColumnToVisible id, column
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5363726F6C6C7320746865207669657720736F207468652073706563696669656420726F772069732076697369626C652E
+		Sub ScrollToRow(row as Integer)
+		  scrollRowToVisible id, row
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 53656C6563747320616C6C20726F7773206F7220616C6C20636F6C756D6E732C206163636F7264696E6720746F207768657468657220726F7773206F7220636F6C756D6E732077657265206D6F737420726563656E746C792073656C65637465642E
 		Sub SelectAll()
 		  selectAll id
@@ -558,6 +636,14 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setautosaveName Lib AppKitLibName Selector "setAutosaveName:" (id as ptr, value as cfstringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 5768657468657220746865206F7264657220616E64207769647468206F6620746865207461626C652076696577E280997320636F6C756D6E7320617265206175746F6D61746963616C6C792073617665642E
+		Protected Declare Sub setautosaveTableColumns Lib AppKitLibName Selector "setAutosaveTableColumns:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setcolumnAutoresizingStyle Lib AppKitLibName Selector "setColumnAutoresizingStyle:" (id as ptr, value as NSTableViewColumnAutoresizingStyle)
 	#tag EndExternalMethod
 
@@ -571,6 +657,10 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setdoubleAction Lib AppKitLibName Selector "setDoubleAction:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setdraggingDestinationFeedbackStyle Lib AppKitLibName Selector "setDraggingDestinationFeedbackStyle:" (id as ptr, value as NSTableViewDraggingDestinationFeedbackStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -590,11 +680,19 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sethighlightedTableColumn Lib AppKitLibName Selector "setHighlightedTableColumn:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setindicatorImageInTableColumn Lib AppKitLibName Selector "setIndicatorImage:inTableColumn:" (id as ptr, value as Ptr, column as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setintercellSpacing Lib AppKitLibName Selector "setIntercellSpacing:" (id as ptr, value as FoundationFrameWork . NSSize)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setrowActionsVisible Lib AppKitLibName Selector "setRowActionsVisible:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -615,6 +713,10 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setusesStaticContents Lib AppKitLibName Selector "setUsesStaticContents:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setverticalMotionCanBeginDrag Lib AppKitLibName Selector "setVerticalMotionCanBeginDrag:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 526573697A657320746865206C61737420636F6C756D6E20736F20746865207461626C65207669657720666974732065786163746C792077697468696E2069747320656E636C6F73696E6720636C697020766965772E
@@ -639,6 +741,16 @@ Inherits AppleControl
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 556E68696465732074686520737065636966696564207461626C6520726F77732E
+		Sub UnhideRows(Indexes as AppleIndexSet, Animation as AppleTableViewAnimationOptions)
+		  unhideRowsAtIndexes id, Indexes.id, Animation.Id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub unhideRowsAtIndexes Lib AppKitLibName Selector "unhideRowsAtIndexes:withAnimations:" (id as ptr, indexset as ptr, animations as uinteger)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320612076696577206174207468652073706563696669656420726F7720616E6420636F6C756D6E20696E64657865732C206372656174696E67206F6E65206966206E65636573736172792E
 		Function ViewAtColumn(column as integer, row as integer, MakeIfNecessary As Boolean) As AppleView
 		  return AppleView.MakeFromPtr(viewAtColumn( id, column, row, MakeIfNecessary))
@@ -656,7 +768,13 @@ Inherits AppleControl
 		Nib methods
 		didAddRow
 		didRemoveRow
-		
+		drawRow
+		drawGrid
+		highlightSelection
+		drawBackground
+		setDraggingSourceOperationMask
+		setDropRow
+		sortDescriptors
 	#tag EndNote
 
 
@@ -742,6 +860,34 @@ Inherits AppleControl
 			End Set
 		#tag EndSetter
 		AllowsTypeSelect As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D6520756E646572207768696368207461626C6520696E666F726D6174696F6E206973206175746F6D61746963616C6C792073617665642E0A4576656E207768656E2061207461626C6520766965772068617320616E206175746F73617665206E616D652C206974206F6E6C7920736176657320746865207461626C6520696E666F726D6174696F6E207768656E20746865206175746F736176655461626C65436F6C756D6E732070726F706572747920697320547275652E
+		#tag Getter
+			Get
+			  return getautosaveName (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setautosaveName id,value
+			End Set
+		#tag EndSetter
+		AutosaveName As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865206F7264657220616E64207769647468206F6620746865207461626C652076696577E280997320636F6C756D6E7320617265206175746F6D61746963616C6C792073617665642E
+		#tag Getter
+			Get
+			  return getautosaveTableColumns (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setautosaveTableColumns id,value
+			End Set
+		#tag EndSetter
+		AutosaveTableColumns As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72207573656420746F206472617720746865206261636B67726F756E64206F6620746865207461626C652E
@@ -843,6 +989,20 @@ Inherits AppleControl
 		DoubleAction As Ptr
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520666565646261636B207374796C6520646973706C61796564207768656E207468652075736572206472616773206F76657220746865207461626C6520766965772E
+		#tag Getter
+			Get
+			  return getDraggingDestinationFeedbackStyle (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setDraggingDestinationFeedbackStyle id,value
+			End Set
+		#tag EndSetter
+		DraggingDestinationFeedbackStyle As NSTableViewDraggingDestinationFeedbackStyle
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520636F6C756D6E206265696E67206564697465642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
@@ -927,6 +1087,29 @@ Inherits AppleControl
 		HeaderView As AppleTableHeaderView
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520696E6465786573206F6620616C6C2068696464656E207461626C6520726F77732E
+		#tag Getter
+			Get
+			  return appleindexset.MakeFRomPtr(gethiddenRowIndexes (id))
+			End Get
+		#tag EndGetter
+		HiddenRowIndexes As Appleindexset
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C756D6E20686967686C69676874656420696E20746865207461626C652E
+		#tag Getter
+			Get
+			  return AppleTableColumn.MakefromPtr(gethighlightedTableColumn (id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  sethighlightedTableColumn id, if (value =nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		HighlightedTableColumn As AppleTableColumn
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 54686520686F72697A6F6E74616C20616E6420766572746963616C2073706163696E67206265747765656E2063656C6C732E
 		#tag Getter
 			Get
@@ -939,6 +1122,46 @@ Inherits AppleControl
 			End Set
 		#tag EndSetter
 		IntercellSpacing As FoundationFrameWork.NSSize
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  const mNSTableViewColumnDidMoveNotification = "NSTableViewColumnDidMoveNotification"
+			  return mNSTableViewColumnDidMoveNotification
+			End Get
+		#tag EndGetter
+		Shared kNSTableViewColumnDidMoveNotification As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  const mNSTableViewColumnDidResizeNotification = "NSTableViewColumnDidResizeNotification"
+			  return mNSTableViewColumnDidResizeNotification
+			End Get
+		#tag EndGetter
+		Shared kNSTableViewColumnDidResizeNotification As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  const mNSTableViewSelectionDidChangeNotification = "NSTableViewSelectionDidChangeNotification"
+			  return mNSTableViewSelectionDidChangeNotification
+			End Get
+		#tag EndGetter
+		Shared kNSTableViewSelectionDidChangeNotification As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  const mNSTableViewSelectionIsChangingNotification = "NSTableViewSelectionIsChangingNotification"
+			  return mNSTableViewSelectionIsChangingNotification
+			End Get
+		#tag EndGetter
+		Shared kNSTableViewSelectionIsChangingNotification As Text
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F6620636F6C756D6E7320696E20746865207461626C652E2028726561642D6F6E6C7929
@@ -975,6 +1198,20 @@ Inherits AppleControl
 			End Get
 		#tag EndGetter
 		NumberOfSelectedRows As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 576865746865722061207461626C6520726F77E280997320616374696F6E73206172652076697369626C652E20746865207461626C65207669657720616C6C6F777320746865207573657220746F2073656C656374206D6F7265207468616E206F6E6520636F6C756D6E206F7220726F7720617420612074696D652E
+		#tag Getter
+			Get
+			  return getrowActionsVisible (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setrowActionsVisible id,value
+			End Set
+		#tag EndSetter
+		RowActionsVisible As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 54686520686569676874206F66206561636820726F7720696E20746865207461626C652E2044656661756C742031362E302E
@@ -1064,6 +1301,20 @@ Inherits AppleControl
 		TableColumns As AppleArray
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C652076696577E28099732064656C65676174652E
+		#tag Getter
+			Get
+			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			End Set
+		#tag EndSetter
+		TableViewDelegate As AppleObject
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C652076696577207573657320616C7465726E6174696E6720726F7720636F6C6F727320666F7220697473206261636B67726F756E642E
 		#tag Getter
 			Get
@@ -1092,6 +1343,20 @@ Inherits AppleControl
 		UsesStaticContents As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220766572746963616C206D6F74696F6E206973207472656174656420617320612064726167206F722073656C656374696F6E206368616E67652E
+		#tag Getter
+			Get
+			  return getverticalMotionCanBeginDrag (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setverticalMotionCanBeginDrag id,value
+			End Set
+		#tag EndSetter
+		VerticalMotionCanBeginDrag As Boolean
+	#tag EndComputedProperty
+
 
 	#tag Enum, Name = NSTableViewColumnAutoresizingStyle, Type = UInteger, Flags = &h0
 		NoColumnAutoresizing = 0
@@ -1100,6 +1365,13 @@ Inherits AppleControl
 		  ReverseSequentialColumn
 		  LastColumnOnly
 		FirstColumnOnly
+	#tag EndEnum
+
+	#tag Enum, Name = NSTableViewDraggingDestinationFeedbackStyle, Type = Integer, Flags = &h0
+		None = -1
+		  Regular = 0
+		  SourceList = 1
+		Gap = 2
 	#tag EndEnum
 
 	#tag Enum, Name = NSTableViewRowSizeStyle, Type = Integer, Flags = &h0
