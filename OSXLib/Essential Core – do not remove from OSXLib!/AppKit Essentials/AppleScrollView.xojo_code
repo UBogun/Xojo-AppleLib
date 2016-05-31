@@ -1,6 +1,19 @@
 #tag Class
 Protected Class AppleScrollView
 Inherits AppleView
+	#tag Event
+		Sub DidResize()
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub WillResize()
+		  
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0, Description = 41646473206120666C6F6174696E67207375627669657720746F2074686520646F63756D656E7420766965772E
 		Sub AddFloatingSubview(SubView as AppleView, GestureAxis As AppleNSEvent.NSEventGestureAxis)
 		  addFloatingSubview id, subview.id, GestureAxis
@@ -197,6 +210,48 @@ Inherits AppleView
 		Protected Declare Function getverticalScroller Lib appkitlibname Selector "verticalScroller" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_scrollviewDidEndLiveResize(pid as ptr, sel as ptr)
+		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
+		  if view <> nil then 
+		    if not view.informOnviewDidEndLiveResize() then tile(pid)
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_scrollviewWillStartLiveResize(pid as ptr, sel as ptr)
+		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
+		  if view <> nil then 
+		    if not view.informOnviewWillStartLiveResize() then tile(pid)
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnviewDidEndLiveResize() As Boolean
+		  if parentcontrol <> nil then 
+		    return parentcontrol.informOnviewDidEndLiveResize()
+		  else
+		    return RaiseEvent DidResize()
+		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnviewWillStartLiveResize() As Boolean
+		  if parentcontrol <> nil then 
+		    return parentcontrol.informOnviewWillStartLiveResize()
+		  else
+		    return RaiseEvent WillResize()
+		  end if
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 4D61676E69666965732074686520636F6E74656E7420766965772070726F706F7274696F6E616C6C79207375636820746861742074686520676976656E2072656374616E676C6520666974732063656E746572656420696E20746865207363726F6C6C20766965772E0A54686520726573756C74696E67206D61676E696669636174696F6E2076616C756520697320636C697070656420746F20746865206D696E4D61676E696669636174696F6E20616E64206D61784D61676E696669636174696F6E2076616C7565732E20546F20616E696D61746520746865206D61676E696669636174696F6E2C2075736520746865207363726F6C6C76696577E280997320616E696D61746F722E
 		Sub Magnify(toRect As FoundationFrameWork.NSRect)
 		  magnifyToFitRect id, torect
@@ -363,6 +418,25 @@ Inherits AppleView
 		Protected Declare Sub setverticalScroller Lib appkitlibname Selector "setVerticalScroller:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 4C617973206F75742074686520636F6D706F6E656E7473206F66207468652072656365697665723A2074686520636F6E74656E7420766965772C20746865207363726F6C6C6572732C20616E64207468652072756C65722076696577732E
+		Sub Tile()
+		  tile id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub tile Lib appkitlibname Selector "tile" (id as ptr)
+	#tag EndExternalMethod
+
+
+	#tag Hook, Flags = &h0
+		Event DidResize() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event WillResize() As Boolean
+	#tag EndHook
+
 
 	#tag Note, Name = Status incomplete
 		
@@ -457,9 +531,9 @@ Inherits AppleView
 			    dim methods() as TargetClassMethodHelper
 			    
 			    //NSResponder "delegate" methods
-			    methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf impl_acceptsFirstResponder, "c@:")
-			    methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
-			    methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
+			    // methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf impl_acceptsFirstResponder, "c@:")
+			    // methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
+			    // methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
 			    'methods.Append new TargetClassMethodHelper("smartMagnifyWithEvent:", AddressOf impl_smartMagnifyWithEvent, "v@:@")
 			    'methods.Append new TargetClassMethodHelper("mouseDown:", AddressOf impl_mouseDown, "v@:@")
 			    'methods.Append new TargetClassMethodHelper("mouseDragged:", AddressOf impl_mouseDragged, "v@:@")
@@ -479,7 +553,7 @@ Inherits AppleView
 			    'methods.Append new TargetClassMethodHelper("flagsChanged:", AddressOf impl_flagsChanged, "v@:@")
 			    'methods.Append new TargetClassMethodHelper("tabletPoint:", AddressOf impl_tabletPoint, "v@:@")
 			    'methods.Append new TargetClassMethodHelper("scrollWheel:", AddressOf impl_scrollWheel, "v@:@")
-			    methods.Append new TargetClassMethodHelper("willPresentError:", AddressOf impl_willPresentError, "@@:@")
+			    // methods.Append new TargetClassMethodHelper("willPresentError:", AddressOf impl_willPresentError, "@@:@")
 			    'methods.Append new TargetClassMethodHelper("beginGestureWithEvent:", AddressOf impl_beginGestureWithEvent, "v@:@")
 			    'methods.Append new TargetClassMethodHelper("endGestureWithEvent:", AddressOf impl_endGestureWithEvent, "v@:@")
 			    'methods.Append new TargetClassMethodHelper("magnifyWithEvent:", AddressOf impl_magnifyWithEvent, "v@:@")
@@ -493,14 +567,14 @@ Inherits AppleView
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToWindow", AddressOf impl_viewDidMoveToWindow, "v@:")
 			    'methods.Append new TargetClassMethodHelper("acceptsTouchEvents", AddressOf impl_acceptsTouchEvents, "c@:")
 			    'methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_didAddSubview, "v@:@")
-			    methods.Append new TargetClassMethodHelper("viewDidMoveToSuperview", AddressOf impl_viewDidMoveToSuperview, "v@:")
-			    methods.Append new TargetClassMethodHelper("viewWillMoveToSuperview:", AddressOf impl_viewWillMoveToSuperview, "v@:@")
+			    // methods.Append new TargetClassMethodHelper("viewDidMoveToSuperview", AddressOf impl_viewDidMoveToSuperview, "v@:")
+			    // methods.Append new TargetClassMethodHelper("viewWillMoveToSuperview:", AddressOf impl_viewWillMoveToSuperview, "v@:@")
 			    methods.Append new TargetClassMethodHelper("viewWillMoveToWindow:", AddressOf impl_viewWillMoveToWindow, "v@:@")
 			    'methods.Append new TargetClassMethodHelper("willRemoveSubview:", AddressOf impl_willRemoveSubview, "v@:@")
-			    methods.Append new TargetClassMethodHelper("opaque", AddressOf impl_opaque, "c@:")
-			    methods.Append new TargetClassMethodHelper("allowsVibrancy", AddressOf impl_allowsVibrancy, "c@:")
-			    'methods.Append new TargetClassMethodHelper("viewWillStartLiveResize", AddressOf impl_viewWillStartLiveResize, "v@:")
-			    'methods.Append new TargetClassMethodHelper("viewDidEndLiveResize", AddressOf impl_viewDidEndLiveResize, "v@:")
+			    // methods.Append new TargetClassMethodHelper("opaque", AddressOf impl_opaque, "c@:")
+			    // methods.Append new TargetClassMethodHelper("allowsVibrancy", AddressOf impl_allowsVibrancy, "c@:")
+			    methods.Append new TargetClassMethodHelper("viewWillStartLiveResize", AddressOf impl_scrollviewWillStartLiveResize, "v@:")
+			    methods.Append new TargetClassMethodHelper("viewDidEndLiveResize", AddressOf impl_scrollviewDidEndLiveResize, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewDidHide", AddressOf impl_viewDidHide, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewDidUnhide", AddressOf impl_viewDidUnhide, "v@:")
 			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect, "v@:{CGRect}")

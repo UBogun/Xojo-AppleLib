@@ -23,6 +23,26 @@ Inherits AppleControl
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Constructor(w as imagewell)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor(aControl as control) -- From AppleView
+		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  Super.Constructor(ptr(w.Handle))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		 Shared Function FromControl(c as ImageWell) As AppleImageView
+		  return new AppleImageView(c)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		 Shared Function MakefromPtr(aPtr as Ptr) As AppleImageView
 		  return if (aptr = nil, nil, new AppleImageView(aptr))
 		End Function

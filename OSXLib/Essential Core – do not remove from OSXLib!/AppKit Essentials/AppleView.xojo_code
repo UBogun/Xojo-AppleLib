@@ -597,6 +597,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function gettranslatesAutoresizingMaskIntoConstraints Lib appkitlibname Selector "translatesAutoresizingMaskIntoConstraints" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getviewWithTag Lib appkitlibname Selector "viewWithTag:" (id as ptr, tag as Integer) As ptr
 	#tag EndExternalMethod
 
@@ -1295,6 +1299,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub settranslatesAutoresizingMaskIntoConstraints Lib appkitlibname Selector "setTranslatesAutoresizingMaskIntoConstraints:" (id as ptr, value as boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setWantsLayer Lib appkitlibname Selector "setWantsLayer:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -1838,6 +1846,20 @@ Inherits AppleResponder
 		FrameSize As FoundationFrameWork.NSSize
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 546865206865696768742076616C7565206F66204672616D652E53697A655F
+		#tag Getter
+			Get
+			  return Frame.Size_.height
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Frame = FoundationFrameWork.NSMakerect(FrameOrigin.x, FrameOrigin.y, frame.size_.width, value )
+			End Set
+		#tag EndSetter
+		Height As Double
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 546865206672616374696F6E206F6620746865207061676520746861742063616E20626520707573686564206F6E746F20746865206E657874207061676520647572696E67206175746F6D6174696320706167696E6174696F6E20746F2070726576656E74206974656D732073756368206173206C696E6573206F6620746578742066726F6D206265696E672064697669646564206163726F73732070616765732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
@@ -2009,6 +2031,20 @@ Inherits AppleResponder
 		LayerUsesCoreImageFilters As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520782076616C7565206F66204672616D654F726967696E
+		#tag Getter
+			Get
+			  return FrameOrigin.x
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  FrameOrigin = FoundationFrameWork.NSMakePoint(value, FrameOrigin.y)
+			End Set
+		#tag EndSetter
+		Left As Double
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206E6565647320746F206265207265647261776E206265666F7265206265696E6720646973706C617965642E200A53657474696E67207468652076616C756520746F207472756520697320746865206571756976616C656E746F66206120586F6A6F20696E76616C69646174652063616C6C2E
 		#tag Getter
 			Get
@@ -2115,6 +2151,34 @@ Inherits AppleResponder
 		ToolTip As Text
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520792076616C7565206F66204672616D654F726967696E
+		#tag Getter
+			Get
+			  return FrameOrigin.y
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  FrameOrigin = FoundationFrameWork.NSMakePoint(FrameOrigin.x, value)
+			End Set
+		#tag EndSetter
+		Top As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577E2809973206175746F726573697A696E67206D61736B206973207472616E736C6174656420696E746F20636F6E73747261696E747320666F722074686520636F6E73747261696E742D6261736564206C61796F75742073797374656D2E53657474696E67207468652076616C756520746F207472756520697320746865206571756976616C656E746F66206120586F6A6F20696E76616C69646174652063616C6C2E
+		#tag Getter
+			Get
+			  return gettranslatesAutoresizingMaskIntoConstraints (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  settranslatesAutoresizingMaskIntoConstraints id,value
+			End Set
+		#tag EndSetter
+		TranslatesAutoresizingMaskIntoConstraints As Boolean
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C61796F757420646972656374696F6E20666F7220636F6E74656E7420696E2074686520766965772E
 		#tag Getter
 			Get
@@ -2150,6 +2214,20 @@ Inherits AppleResponder
 			End Set
 		#tag EndSetter
 		WantsLayer As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652077696474682076616C7565206F66204672616D652E53697A655F
+		#tag Getter
+			Get
+			  return Frame.Size_.width
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Frame = FoundationFrameWork.NSMakerect(FrameOrigin.x, FrameOrigin.y, value, frame.size_.height)
+			End Set
+		#tag EndSetter
+		Width As Double
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206672616374696F6E206F6620746865207061676520746861742063616E20626520707573686564206F6E746F20746865206E657874207061676520647572696E67206175746F6D6174696320706167696E6174696F6E20746F2070726576656E74206974656D73207375636820617320736D616C6C20696D61676573206F72207465787420636F6C756D6E732066726F6D206265696E672064697669646564206163726F73732070616765732E2028726561642D6F6E6C7929

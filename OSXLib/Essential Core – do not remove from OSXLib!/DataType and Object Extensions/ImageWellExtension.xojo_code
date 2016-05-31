@@ -2,7 +2,10 @@
 Protected Module ImageWellExtension
 	#tag Method, Flags = &h0
 		Function AppleObject(extends w as ImageWell) As AppleImageView
-		  return new AppleImageView(ptr(w.Handle))
+		  
+		  #if targetmacos
+		    return new AppleImageView(ptr(w.Handle))
+		  #endif
 		End Function
 	#tag EndMethod
 

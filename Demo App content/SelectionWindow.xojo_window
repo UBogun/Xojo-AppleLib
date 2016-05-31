@@ -110,7 +110,6 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -200,7 +199,7 @@ End
 		  me.AddRow("NSView Additions")
 		  me.AddRow("Notifications")
 		  me.AddRow("CoreBluetooth")
-		  me.AddRow("TestWindow")
+		  me.AddRow("ScrollView")
 		  
 		  me.ListIndex = 0
 		End Sub
@@ -229,8 +228,8 @@ End
 		    SecondaryWindow= new CoreBluetoothWindow
 		  case "NSView Additions"
 		    SecondaryWindow= new NSViewPlayWindow
-		  case "TestWindow"
-		    SecondaryWindow = new TestWindow
+		  case "ScrollView"
+		    SecondaryWindow = new ScrollWindow
 		  end select
 		End Sub
 	#tag EndEvent
