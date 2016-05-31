@@ -16,8 +16,11 @@ Implements OSXLibControlledObject
 
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
-		  if mHasOwnership then
-		    if XojoControls <> nil and XojoControls.HasKey(id) then XojoControls.Remove(id)
+		  if id <> nil and mHasOwnership then
+		    if XojoControls <> nil and XojoControls.HasKey(id) then 
+		      XojoControls.Remove(id)
+		      if libdebug then System.DebugLog "removed control for" +me.DebugDescription
+		    end if
 		  end if
 		End Sub
 	#tag EndMethod
@@ -28,6 +31,10 @@ Implements OSXLibControlledObject
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getanimator Lib appkitlibname Selector "animator" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getmenu Lib appkitlibname Selector "menu" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -657,8 +664,10 @@ Implements OSXLibControlledObject
 
 	#tag Method, Flags = &h21, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
 		Attributes( hidden ) Private Function ParentControl() As OSXLibControl
-		  dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		  return if (wr = nil, nil,  OSXLibControl(wr.Value))
+		  if XojoControls <> nil then
+		    dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
+		    return if (wr = nil, nil,  OSXLibControl(wr.Value))
+		  end if
 		  
 		End Function
 	#tag EndMethod
@@ -673,22 +682,12 @@ Implements OSXLibControlledObject
 		Protected Declare Function presentError Lib appkitlibname Selector "presentError:" (id as ptr, error as ptr) As Boolean
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
-		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
-		  Super.registercontrol(parentcontrol)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RemoveControl()
-		  XojoControls.Remove (id)
-		  super.removecontrol
-		End Sub
-	#tag EndMethod
-
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setanimations Lib appkitlibname Selector "setAnimations:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setMenu Lib appkitlibname Selector "setMenu:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 417474656D70747320746F20706572666F726D2074686520616374696F6E20696E64696361746564206D6574686F64207769746820612073706563696669656420617267756D656E742E0A49662074686520726563656976657220726573706F6E647320746F20616E416374696F6E2C20697420696E766F6B657320746865206D6574686F64207769746820616E4F626A6563742061732074686520617267756D656E7420616E642072657475726E73205945532E2049662074686520726563656976657220646F65736EE280997420726573706F6E642C2069742073656E64732074686973206D65737361676520746F20697473206E65787420726573706F6E6465722077697468207468652073616D652073656C6563746F7220616E64206F626A6563742E
@@ -939,9 +938,19 @@ Implements OSXLibControlledObject
 		Shared kNSAnimationTriggerOrderOut As Text
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private Shared mXojoControls As xojo.Core.Dictionary
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0, Description = 546865206E65787420726573706F6E6465722061667465722074686973206F6E652C206F72206E696C20696620697420686173206E6F6E652E
+		#tag Getter
+			Get
+			  return AppleMenu.MakefromPtr (getmenu(id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setMenu id, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		Menu As AppleMenu
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E65787420726573706F6E6465722061667465722074686973206F6E652C206F72206E696C20696620697420686173206E6F6E652E
 		#tag Getter
@@ -950,22 +959,6 @@ Implements OSXLibControlledObject
 			End Get
 		#tag EndGetter
 		NextResponder As AppleResponder
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  if mXojoControls = nil then mXojoControls = new xojo.Core.Dictionary
-			  return mXojoControls
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  if mXojoControls = nil then mXojoControls = new xojo.Core.Dictionary
-			  mXojoControls = value
-			End Set
-		#tag EndSetter
-		Private Shared XojoControls As xojo.Core.Dictionary
 	#tag EndComputedProperty
 
 

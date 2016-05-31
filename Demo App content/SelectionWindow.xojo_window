@@ -45,7 +45,7 @@ Begin Window SelectionWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
-      Scope           =   0
+      Scope           =   "0"
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -76,7 +76,7 @@ Begin Window SelectionWindow
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
-      Scope           =   2
+      Scope           =   "2"
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
@@ -106,13 +106,14 @@ Begin Window SelectionWindow
       LockRight       =   False
       LockTop         =   False
       Multiline       =   False
-      Scope           =   2
+      Scope           =   "2"
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
-      TextColor       =   &c00000000
+      TextColor       =   
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -140,7 +141,7 @@ Begin Window SelectionWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Scope           =   2
+      Scope           =   "2"
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
@@ -169,7 +170,7 @@ Begin Window SelectionWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   0
+      Scope           =   "0"
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
@@ -236,17 +237,10 @@ End
 #tag EndEvents
 #tag Events ImageWell1
 	#tag Event
-		Sub Open()
-		  me.AppleObject.WantsLayer = true
+		Sub Shown()
 		  me.AppleObject.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
 		  dim bgpic as AppleImage = AppleImage.fromPicture(OSXLibLogo)
-		  bgpic.retain
 		  me.AppleObject.Layer.Contents =bgpic
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Shown()
 		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
 		  dim ac as new AppleAnimationContext (me.AppleObject)
 		  ac.Duration = 8

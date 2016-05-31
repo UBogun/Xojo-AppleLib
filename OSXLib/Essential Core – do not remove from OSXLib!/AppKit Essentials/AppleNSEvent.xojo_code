@@ -1266,6 +1266,13 @@ Inherits AppleObject
 			Name="PointingDeviceType"
 			Group="Behavior"
 			Type="NSPointingDeviceType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Unknown"
+				"1 - Pen"
+				"2 - Cursor"
+				"3 - Eraser"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Pressure"
@@ -1276,6 +1283,16 @@ Inherits AppleObject
 			Name="PressureBehavior"
 			Group="Behavior"
 			Type="NSPressureBehavior"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - Unknown"
+				"0 - Default"
+				"1 - Click"
+				"2 - Generic"
+				"3 - Accelerator"
+				"5 - DeepClick"
+				"6 - DeepDrag"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"

@@ -291,6 +291,11 @@ Inherits AppleCAPropertyAnimation
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="CalculationMode"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Cumulative"
 			Group="Behavior"
 			Type="Boolean"
@@ -398,6 +403,11 @@ Inherits AppleCAPropertyAnimation
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RotationMode"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Speed"
