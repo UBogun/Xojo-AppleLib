@@ -1,9 +1,10 @@
 #tag Module
-Protected Module ScrollBarExtension
+Protected Module ImageWellExtension
 	#tag Method, Flags = &h0
-		Function AppleObject(extends s as ScrollBar) As AppleScroller
+		Function AppleObject(extends w as ImageWell) As AppleImageView
+		  
 		  #if targetmacos
-		    return new AppleScroller(ptr(s.Handle))
+		    return new AppleImageView(ptr(w.Handle))
 		  #endif
 		End Function
 	#tag EndMethod

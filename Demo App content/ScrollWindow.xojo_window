@@ -1,5 +1,5 @@
 #tag Window
-Begin osxlibwindow TestWindow
+Begin window ScrollWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -23,7 +23,7 @@ Begin osxlibwindow TestWindow
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "ScrollView"
    Visible         =   True
    Width           =   600
    Begin OSXLibScrollView OSXLibScrollView1
@@ -44,7 +44,7 @@ Begin osxlibwindow TestWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -54,6 +54,76 @@ Begin osxlibwindow TestWindow
       Visible         =   True
       Width           =   600
    End
+   Begin ImageWell ImageWell1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   605
+      HelpTag         =   ""
+      Image           =   250077183
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   604
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   -184
+      Visible         =   True
+      Width           =   671
+   End
+   Begin TextArea TextArea1
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   True
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   76
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "This is a first rough scrollview implementation. Events have to follow. I created the content from the imagewell, but you can do so programmatically only too. \nAnd what you see here is a floating view."
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   -106
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   289
+   End
 End
 #tag EndWindow
 
@@ -62,20 +132,23 @@ End
 
 #tag Events OSXLibScrollView1
 	#tag Event
-		Sub Open()
+		Sub Shown()
 		  me.AppleObject.AutoresizesSubviews = false
-		  dim ContentView as new AppleView(FoundationFrameWork.NSMakeRect(0,0,300,300))
-		  ContentView.WantsLayer = true
-		  ContentView.Layer.BorderWidth = 2
-		  ContentView.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.TopLeft
-		  ContentView.Layer.Contents = AppleImage.fromPicture(OSXLibLogo)
-		  dim am as  new AppleAutoresizingMask(0)
-		  contentview.AutoResizingMask = am
+		  dim ContentView as new AppleImageView(ImageWell1)
+		  // ContentView.WantsLayer = true
+		  // ContentView.Layer.BorderWidth = 2
+		  // ContentView.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.TopLeft
+		  // ContentView.Layer.Contents = AppleImage.fromPicture(OSXLibLogo)
+		  // dim am as  new AppleAutoresizingMask(0)
+		  // contentview.AutoResizingMask = am
 		  me.AppleObject.DocumentView = ContentView
-		  me.AppleObject.Magnification = 0.05
 		  me.AppleObject.HasHorizontalScroller = true
 		  me.AppleObject.HasVerticalScroller = true
-		  me.AppleObject.FlashScrollers
+		  dim newview as new appleview(TextArea1)
+		  newview.left = 50
+		  newview.top = 100
+		  me.AppleObject.AddFloatingSubview(newview, AppleNSEvent.NSEventGestureAxis.None)
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

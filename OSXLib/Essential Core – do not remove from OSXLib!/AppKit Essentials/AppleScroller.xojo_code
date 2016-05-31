@@ -24,11 +24,11 @@ Inherits AppleControl
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getarrowsPosition Lib foundationlibname Selector "arrowsPosition" (id as ptr) As NSScrollArrowPosition
+		Protected Declare Function getarrowsPosition Lib appkitlibname Selector "arrowsPosition" (id as ptr) As NSScrollArrowPosition
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getknobProportion Lib foundationlibname Selector "knobProportion" (id as ptr) As CGFloat
+		Protected Declare Function getknobProportion Lib appkitlibname Selector "knobProportion" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -36,19 +36,19 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getpreferredScrollerStyle Lib foundationlibname Selector "preferredScrollerStyle" (id as ptr) As NSScrollerStyle
+		Protected Declare Function getpreferredScrollerStyle Lib appkitlibname Selector "preferredScrollerStyle" (id as ptr) As NSScrollerStyle
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getRectforPart Lib foundationlibname Selector "rectForPart:" (id as ptr, part as NSScrollerPart) As FoundationFrameWork.NSRect
+		Protected Declare Function getRectforPart Lib appkitlibname Selector "rectForPart:" (id as ptr, part as NSScrollerPart) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getscrollerStyle Lib foundationlibname Selector "preferredScrollerStyle" (id as ptr) As NSScrollerStyle
+		Protected Declare Function getscrollerStyle Lib appkitlibname Selector "preferredScrollerStyle" (id as ptr) As NSScrollerStyle
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getusableParts Lib foundationlibname Selector "usableParts" (id as ptr) As NSUsableScrollerParts
+		Protected Declare Function getusableParts Lib appkitlibname Selector "usableParts" (id as ptr) As NSUsableScrollerParts
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -70,27 +70,27 @@ Inherits AppleControl
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function scrollerWidthForControlSize Lib foundationlibname Selector "scrollerWidthForControlSize:scrollerStyle:" (id as ptr, size as nscontrolsize, style as NSScrollerStyle) As cgfloat
+		Protected Declare Function scrollerWidthForControlSize Lib appkitlibname Selector "scrollerWidthForControlSize:scrollerStyle:" (id as ptr, size as nscontrolsize, style as NSScrollerStyle) As cgfloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setarrowsPosition Lib foundationlibname Selector "setArrowsPosition:" (id as ptr, value as NSScrollArrowPosition)
+		Protected Declare Sub setarrowsPosition Lib appkitlibname Selector "setArrowsPosition:" (id as ptr, value as NSScrollArrowPosition)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setknobProportion Lib foundationlibname Selector "setKnobProportion:" (id as ptr, value as CGFloat)
+		Protected Declare Sub setknobProportion Lib appkitlibname Selector "setKnobProportion:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setknobStyle Lib foundationlibname Selector "setKnobStyle:" (id as ptr, value as NSScrollerKnobStyle)
+		Protected Declare Sub setknobStyle Lib appkitlibname Selector "setKnobStyle:" (id as ptr, value as NSScrollerKnobStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setpreferredScrollerStyle Lib foundationlibname Selector "setPreferredScrollerStyle:" (id as ptr, value as NSScrollerStyle)
+		Protected Declare Sub setpreferredScrollerStyle Lib appkitlibname Selector "setPreferredScrollerStyle:" (id as ptr, value as NSScrollerStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setscrollerStyle Lib foundationlibname Selector "setScrollerStyle:" (id as ptr, value as NSScrollerStyle)
+		Protected Declare Sub setscrollerStyle Lib appkitlibname Selector "setScrollerStyle:" (id as ptr, value as NSScrollerStyle)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652070617274207468617420776F756C64206265206869742062792061206D6F7573652D646F776E206576656E742061742061506F696E74202865787072657373656420696E207468652077696E646F77E280997320636F6F7264696E6174652073797374656D292E
@@ -100,7 +100,7 @@ Inherits AppleControl
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function testPart Lib foundationlibname Selector "testPart:" (id as ptr, point as FoundationFrameWork . NSPoint) As NSScrollerPart
+		Protected Declare Function testPart Lib appkitlibname Selector "testPart:" (id as ptr, point as FoundationFrameWork . NSPoint) As NSScrollerPart
 	#tag EndExternalMethod
 
 

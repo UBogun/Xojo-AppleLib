@@ -1,6 +1,6 @@
 #tag Class
 Protected Class OSXLibScrollView
-Inherits OSXLibCanvas
+Inherits OSXLibView
 	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
 		Function InitControl() As Boolean
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
@@ -23,6 +23,7 @@ Inherits OSXLibCanvas
 		      if subview.id = origview.id then // is this our control?
 		        dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
 		        mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
+		        mAppleObject.TranslatesAutoresizingMaskIntoConstraints = true
 		        controller.ReplaceSubview origview, mAppleObject // and kick out the canvas by replacing it with our view
 		        exit 
 		      end if
@@ -33,9 +34,42 @@ Inherits OSXLibCanvas
 		End Function
 	#tag EndEvent
 
+	#tag Event , Description = 466972657320696620746865207573657220686173207374617274656420726573697A696E672074686520766965772E
+		Sub Resize()
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event , Description = 4669726573207768656E207468652075736572206861732066696E697368656420726573697A696E672074686520766965772E
+		Sub Resized()
+		  
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informOnviewDidEndLiveResize() As Boolean
+		  return RaiseEvent Resized
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informOnviewWillStartLiveResize() As Boolean
+		  return RaiseEvent Resize
+		End Function
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0
 		Event InitControl() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 5468652075736572207374617274656420726573697A696E672074686520706172616E657420636F6E74726F6C2E2052657475726E207472756520746F206F76657272696465206175746F6D61746963207363726F6C6C7669657720656C656D656E747320706C6163656D656E742E
+		Event Resize() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 54686520757365722066696E697368656420726573697A696E672074686520706172616E657420636F6E74726F6C2E2052657475726E207472756520746F206F76657272696465206175746F6D61746963207363726F6C6C7669657720656C656D656E747320706C6163656D656E742E
+		Event Resized() As Boolean
 	#tag EndHook
 
 

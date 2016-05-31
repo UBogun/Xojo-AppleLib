@@ -1,5 +1,5 @@
 #tag Class
-Protected Class OSXLibControl
+Protected Class OSXLibResponder
 Inherits canvas
 	#tag Event
 		Sub DoubleClick(X As Integer, Y As Integer)

@@ -26,7 +26,7 @@ Begin Window NSViewPlayWindow
    Title           =   "NSView Demo"
    Visible         =   True
    Width           =   1000
-   Begin OSXLibCanvas ac2
+   Begin OSXLibView ac2
       AcceptFocus     =   True
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -44,7 +44,7 @@ Begin Window NSViewPlayWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Scope           =   "2"
+      Scope           =   2
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -72,14 +72,13 @@ Begin Window NSViewPlayWindow
       LockRight       =   True
       LockTop         =   False
       Multiline       =   True
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "This is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Click on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second."
       TextAlign       =   0
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -108,7 +107,7 @@ Begin Window NSViewPlayWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
@@ -138,14 +137,13 @@ Begin Window NSViewPlayWindow
       LockRight       =   True
       LockTop         =   False
       Multiline       =   False
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   ""
       TextAlign       =   0
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -155,7 +153,7 @@ Begin Window NSViewPlayWindow
       Visible         =   True
       Width           =   943
    End
-   Begin OSXLibCanvas ac3
+   Begin OSXLibView ac3
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -173,7 +171,7 @@ Begin Window NSViewPlayWindow
       LockLeft        =   False
       LockRight       =   False
       LockTop         =   False
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -201,7 +199,7 @@ Begin Window NSViewPlayWindow
       Maximum         =   720
       Minimum         =   0
       PageStep        =   20
-      Scope           =   "2"
+      Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
@@ -229,14 +227,13 @@ Begin Window NSViewPlayWindow
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   6
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "FrameCenterRotation"
       TextAlign       =   1
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -264,14 +261,13 @@ Begin Window NSViewPlayWindow
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "0"
       TextAlign       =   1
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -299,14 +295,13 @@ Begin Window NSViewPlayWindow
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   8
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "0"
       TextAlign       =   1
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -334,14 +329,13 @@ Begin Window NSViewPlayWindow
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   9
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "BoundsRotation"
       TextAlign       =   1
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -369,7 +363,7 @@ Begin Window NSViewPlayWindow
       Maximum         =   720
       Minimum         =   0
       PageStep        =   20
-      Scope           =   "2"
+      Scope           =   2
       TabIndex        =   10
       TabPanelIndex   =   0
       TabStop         =   True
@@ -397,7 +391,7 @@ Begin Window NSViewPlayWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   "2"
+      Scope           =   2
       State           =   0
       TabIndex        =   11
       TabPanelIndex   =   0
@@ -429,7 +423,7 @@ Begin Window NSViewPlayWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   "2"
+      Scope           =   2
       State           =   0
       TabIndex        =   12
       TabPanelIndex   =   0
@@ -461,14 +455,13 @@ Begin Window NSViewPlayWindow
       LockRight       =   True
       LockTop         =   True
       Multiline       =   True
-      Scope           =   "2"
+      Scope           =   2
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "To the right is a OSXLibPaintCanvas. Currently the paint event delivers no graphics object. This will follow soon.\nThe Paint event fires anyway, as do the Resize and Resized events (not so on the OSXLibCanvas superclass). You can still access a layer but not the layer’s content. Rightklick on it for a simple Menuitem extension!"
       TextAlign       =   0
-      TextColor       =   
+      TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -478,7 +471,7 @@ Begin Window NSViewPlayWindow
       Visible         =   True
       Width           =   617
    End
-   Begin OSXLibPaintCanvas OSXLibPaintCanvas1
+   Begin OSXLibCanvas OSXLibPaintCanvas1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -496,7 +489,7 @@ Begin Window NSViewPlayWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   15
       TabPanelIndex   =   0
       TabStop         =   True
