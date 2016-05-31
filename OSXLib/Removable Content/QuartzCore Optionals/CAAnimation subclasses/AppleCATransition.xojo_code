@@ -225,6 +225,11 @@ Inherits AppleCAAnimation
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="EndProgress"
+			Group="Behavior"
+			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FillMode"
 			Group="Behavior"
 			Type="FillModes"
@@ -319,6 +324,16 @@ Inherits AppleCAAnimation
 			Type="Single"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="StartProgress"
+			Group="Behavior"
+			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Subtype"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
@@ -335,6 +350,11 @@ Inherits AppleCAAnimation
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Type"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -448,12 +448,6 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
-		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52656D6F76657320616C6C207075626C69736865642073657276696365732066726F6D20746865206C6F63616C20474154542064617461626173652E
 		Sub RemoveAllServices()
 		  removeAllServices id
@@ -463,12 +457,6 @@ Inherits AppleObject
 	#tag ExternalMethod, Flags = &h21
 		Private Declare Sub removeAllServices Lib CoreBluetoothLibName Selector "removeAllServices" (id as ptr)
 	#tag EndExternalMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RemoveControl()
-		  XojoControls.Remove (id)
-		End Sub
-	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52656D6F766573206120737065636966696564207075626C697368656420736572766963652066726F6D20746865206C6F63616C20474154542064617461626173652E
 		Sub RemoveService(Service as AppleCBMutableService)
@@ -738,10 +726,6 @@ Inherits AppleObject
 		#tag EndGetter
 		State As CBPeripheralManagerState
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private Shared XojoControls As xojo.Core.Dictionary
-	#tag EndProperty
 
 
 	#tag Enum, Name = CBPeripheralManagerAuthorizationStatus, Type = Integer, Flags = &h0

@@ -20,16 +20,24 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
-		  if mHasOwnership then
-		    if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
-		    // if DebugDescription.IndexOf ("RGBColorSpace") > -1 then 
-		    if XojoControls <> nil and XojoControls.HasKey(id) then 
-		      XojoControls.Remove(id)
-		      if LibDebug then system.DebugLog "Released control too"
-		    end if
-		    call release id
-		  else
-		    if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
+		  if id <> nil then
+		    #if DebugBuild
+		      if mHasOwnership then
+		        if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
+		        if XojoControls <> nil and XojoControls.HasKey(id) then 
+		          XojoControls.Remove(id)
+		          if LibDebug then system.DebugLog "Released control too"
+		        end if
+		        call release id
+		      else
+		        if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
+		      end if
+		    #else
+		      if mhasownership then
+		        removecontrol
+		        call release id
+		      end if
+		    #endif
 		  end if
 		End Sub
 	#tag EndMethod
@@ -81,7 +89,7 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RemoveControl()
-		  XojoControls.Remove (id)
+		  if XojoControls <> nil and xojocontrols.HasKey(id) then XojoControls.Remove (id)
 		End Sub
 	#tag EndMethod
 
@@ -182,8 +190,8 @@ Implements AppleGeneralObject
 		SuperClass As AppleObject
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private Shared XojoControls As xojo.Core.Dictionary
+	#tag Property, Flags = &h1
+		Protected Shared XojoControls As xojo.Core.Dictionary
 	#tag EndProperty
 
 

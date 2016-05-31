@@ -1,78 +1,39 @@
 #tag Class
-Protected Class ApplePaintView
+Protected Class AppleClipView
 Inherits AppleView
-	#tag Method, Flags = &h0, Description = 437265617465732061206E6577207669657720696E2074686520737065636966696564206672616D652E
-		Sub Constructor(Frame as FoundationFrameWork.nsrect)
+	#tag Method, Flags = &h21
+		Private Sub Constructor()
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(Frame as FoundationFrameWork.NSRect)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
+		  // Constructor(aControl as control) -- From AppleView
+		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithFrame(alloc(classptr), frame))
+		  Super.Constructor(initwithFrame(alloc(classptr), frame))
 		  MHasOwnership = true
 		  
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Shared Sub impl_DrawRect(pid as ptr, sel as ptr, rect as FoundationFrameWork.nsrect)
-		  dim view as ApplePaintView = ApplePaintView.MakefromPtr(pid)
-		  if view <> nil then 
-		    view.informOnDrawRect(rect)
-		  end if
-		  #pragma unused sel
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub informOnDrawRect(rect as FoundationFrameWork.NSRect)
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnDrawRect(rect)
-		  else
-		    RaiseEvent drawRect(rect)
-		  end if
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Protected Shared Function MakefromPtr(aPtr as Ptr) As ApplePaintView
-		  return if (aptr = nil, nil, new applepaintview(aptr))
+	#tag Method, Flags = &h0
+		 Shared Function MakefromPtr(aPtr as Ptr) As AppleClipView
+		  return if (aptr = nil, nil, new AppleClipView(aptr))
 		End Function
 	#tag EndMethod
-
-	#tag Method, Flags = &h1, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden ) Protected Function ParentControl() As OSXLibCanvas
-		  if XojoControls <> nil then
-		    dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		    return if (wr = nil, nil,  OSXLibPaintCanvas(wr.Value))
-		  end if
-		  
-		End Function
-	#tag EndMethod
-
-
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
-		Event DrawRect(Rect as FoundationFrameWork.nsrect)
-	#tag EndHook
 
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  // subclassing OSXLibView here with a DrawRect event handler
-			  
-			  static mClassPtr as ptr
-			  if mClassPtr = Nil and appleview.classptr <> nil then
-			    dim methods() as TargetClassMethodHelper
-			    
-			    // NSview additional "delegate" methods
-			    methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect, "v@:{CGRect}")
-			    
-			    mClassPtr = BuildTargetClass ("OSXLibView", "OSXLibPaintView",methods)
-			  end if
-			  Return mClassPtr
+			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSClipView")
+			  return mClassPtr
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr

@@ -265,6 +265,14 @@ Inherits AppleControl
 			Name="Alignment"
 			Group="Behavior"
 			Type="AppleText.NSTextAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Left"
+				"2 - Center"
+				"1 - Right"
+				"3 - Justified"
+				"4 - Natural"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AllowExpansionTooltips"
@@ -277,6 +285,17 @@ Inherits AppleControl
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ArrowsPosition"
+			Group="Behavior"
+			Type="NSScrollArrowPosition"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - MinEnd_Deprecated"
+				"2 - None"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AutoresizesSubviews"
 			Group="Behavior"
 			Type="Boolean"
@@ -285,6 +304,12 @@ Inherits AppleControl
 			Name="BaseWritingDirection"
 			Group="Behavior"
 			Type="AppleText.NSWritingDirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - Natural"
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BoundsRotation"
@@ -305,6 +330,17 @@ Inherits AppleControl
 			Name="Continuous"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ControlSize"
+			Group="Behavior"
+			Type="NSControlSize"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Regular"
+				"1 - Small"
+				"2 - Mini"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"
@@ -420,6 +456,22 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="KnobProportion"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="KnobStyle"
+			Group="Behavior"
+			Type="NSScrollerKnobStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - Dark"
+				"2 - Light"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="LayerContentsPlacement"
 			Group="Behavior"
 			Type="NSViewLayerContentsPlacement"
@@ -468,6 +520,15 @@ Inherits AppleControl
 			Name="LineBreakMode"
 			Group="Behavior"
 			Type="AppleText.NSLineBreakMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - WordWrap"
+				"1 - CharacterWrap"
+				"2 - Clip"
+				"3 - TruncateHead"
+				"4 - TruncateTail"
+				"5 - TruncateMiddle"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mHasOwnership"
@@ -506,6 +567,16 @@ Inherits AppleControl
 			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ScrollerStyle"
+			Group="Behavior"
+			Type="NSScrollerStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Legacy"
+				"1 - Overlay"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="SingleValue"
 			Group="Behavior"
 			Type="Single"
@@ -537,6 +608,17 @@ Inherits AppleControl
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UsableParts"
+			Group="Behavior"
+			Type="NSUsableScrollerParts"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NoParts"
+				"1 - OnlyScrollerArrows"
+				"2 - AllParts"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserInterfaceLayoutdirection"

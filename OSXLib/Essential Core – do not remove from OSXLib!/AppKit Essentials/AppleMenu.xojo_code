@@ -224,7 +224,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 43617573657320746865206170706C69636174696F6E20746F2073656E642074686520616374696F6E206D657373616765206F66206120737065636966696564206D656E75206974656D20746F20697473207461726765742E
 		Sub PerformActionForItem(Index as Integer)
-		   performActionForItemAtIndex ( id, Index)
+		  performActionForItemAtIndex ( id, Index)
 		End Sub
 	#tag EndMethod
 
@@ -320,7 +320,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 41737369676E732061206D656E7520746F2062652061207375626D656E75206F6620746865206D656E7520636F6E74726F6C6C6564206279206120676976656E206D656E75206974656D2E
 		Sub SetSubmenu(Submenu As Applemenu, Item as AppleNSMenuItem)
-		   setSubmenu ( id, submenu.id,item.Id )
+		  setSubmenu ( id, submenu.id,item.Id )
 		End Sub
 	#tag EndMethod
 
@@ -606,6 +606,16 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="AllowsContextMenuPlugIns"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutoenablesItems"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
@@ -614,6 +624,11 @@ Inherits AppleObject
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HenuBarHeight"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -635,15 +650,30 @@ Inherits AppleObject
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="MinimumWidth"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NumberOfItems"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ShowsStateColumn"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
@@ -652,11 +682,26 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Title"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UserInterfaceLayoutdirection"
+			Group="Behavior"
+			Type="Appkitframework.NSUserInterfaceLayoutdirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -583,6 +583,14 @@ Inherits AppleView
 			Name="Alignment"
 			Group="Behavior"
 			Type="AppleText.NSTextAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Left"
+				"2 - Center"
+				"1 - Right"
+				"3 - Justified"
+				"4 - Natural"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AllowExpansionTooltips"
@@ -603,6 +611,12 @@ Inherits AppleView
 			Name="BaseWritingDirection"
 			Group="Behavior"
 			Type="AppleText.NSWritingDirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - Natural"
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BoundsRotation"
@@ -623,6 +637,17 @@ Inherits AppleView
 			Name="Continuous"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ControlSize"
+			Group="Behavior"
+			Type="NSControlSize"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Regular"
+				"1 - Small"
+				"2 - Mini"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"
@@ -786,6 +811,15 @@ Inherits AppleView
 			Name="LineBreakMode"
 			Group="Behavior"
 			Type="AppleText.NSLineBreakMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - WordWrap"
+				"1 - CharacterWrap"
+				"2 - Clip"
+				"3 - TruncateHead"
+				"4 - TruncateTail"
+				"5 - TruncateMiddle"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mHasOwnership"

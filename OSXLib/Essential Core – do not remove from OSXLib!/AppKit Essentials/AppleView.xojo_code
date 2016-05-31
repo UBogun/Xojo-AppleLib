@@ -322,14 +322,6 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Function defaultAnimationForKey Lib appkitlibname Selector "defaultAnimationForKey:" (id as ptr, key as cfstringRef) As Ptr
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h1
-		Protected Sub Destructor()
-		  if mHasOwnership then
-		    if XojoControls <> nil and XojoControls.HasKey(id) then XojoControls.Remove(id)
-		  end if
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 446973706C61797320746865207669657720616E6420616C6C2069747320737562766965777320696620706F737369626C652C20696E766F6B696E672065616368206F6620746865204E5356696577206D6574686F6473206C6F636B466F6375732C2064726177526563743A2C20616E6420756E6C6F636B466F637573206173206E65636573736172792E200A496E2073686F72742C207468697320697320746865206571756976616C656E74206F66206120586F6A6F20726566726573682063616C6C2E
 		Sub Display()
 		  display id
@@ -493,6 +485,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getenclosingScrollView Lib appkitlibname Selector "enclosingScrollView" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getfittingSize Lib appkitlibname Selector "fittingSize" (id as ptr) As FoundationFrameWork.NSSize
 	#tag EndExternalMethod
 
@@ -650,6 +646,18 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_menuForEvent(pid as ptr, sel as ptr, anevent as ptr) As Ptr
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    dim result as applemenu = view.informOnmenuForEvent(AppleNSEvent.MakeFromPtr(anevent))
+		    return if (result = nil,nil, result.id)
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_opaque(pid as ptr, sel as ptr) As Boolean
 		  dim view as AppleView = appleview.MakefromPtr(pid)
 		  if view <> nil then 
@@ -749,6 +757,17 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_willOpenMenu(pid as ptr, sel as ptr, menu as ptr, anevent as ptr)
+		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  if view <> nil then 
+		    view.informOnwillOpenMenu(AppleMenu.MakefromPtr(menu), AppleNSEvent.MakeFromPtr(anevent))
+		  end if
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_willRemoveSubview(pid as ptr, sel as ptr, subview as ptr)
 		  dim view as AppleView = appleview.MakefromPtr(pid)
 		  if view <> nil then 
@@ -787,6 +806,18 @@ Inherits AppleResponder
 		    RaiseEvent DidAddSubview (subview)
 		  end if
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnmenuForEvent(anEvent As AppleNSEvent) As AppleMenu
+		  dim result as applemenu
+		  if parentcontrol <> nil then 
+		    result = parentcontrol.informOnmenuForEvent(anEvent)
+		  else
+		    result = RaiseEvent MenuForEvent (anevent)
+		  end if
+		  return if (result = nil, me.Menu, result)
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
@@ -880,6 +911,18 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOnwillOpenMenu(Menu as applemenu, anEvent As AppleNSEvent)
+		  
+		  if parentcontrol <> nil then 
+		    parentcontrol.informOnwillOpenMenu(menu, anEvent)
+		  else
+		    RaiseEvent WillOpenMenuForEvent (menu, anevent)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnwillRemoveSubview(subview as appleview)
 		  if parentcontrol <> nil then 
 		    parentcontrol.informOnwillRemoveSubview(subview)
@@ -957,8 +1000,10 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
 		Attributes( hidden ) Protected Function ParentControl() As OSXLibCanvas
-		  dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
-		  return if (wr = nil, nil,  OSXLibCanvas(wr.Value))
+		  if XojoControls <> nil then
+		    dim  wr as xojo.core.weakref = XojoControls.Lookup (id, nil)  
+		    return if (wr = nil, nil,  OSXLibCanvas(wr.Value))
+		  end if
 		  
 		End Function
 	#tag EndMethod
@@ -983,12 +1028,15 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Sub print Lib appkitlibname Selector "print:" (id as ptr, sender as ptr)
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
-		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
-		  Super.registercontrol(parentcontrol)
+	#tag Method, Flags = &h0, Description = 4E6F746966696573206120636C69702076696577E2809973207375706572766965772074686174206569746865722074686520636C69702076696577E280997320626F756E64732072656374616E676C65206F722074686520646F63756D656E742076696577E2809973206672616D652072656374616E676C6520686173206368616E6765642C20616E64207468617420616E7920696E64696361746F7273206F6620746865207363726F6C6C20706F736974696F6E206E65656420746F2062652061646A75737465642E
+		Sub ReflectScrolledClipView(ClipView As AppleView)
+		  reflectScrolledClipView  id, ClipView.id
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub reflectScrolledClipView Lib appkitlibname Selector "reflectScrolledClipView:" (id as ptr, clipview as ptr)
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 436F6E766572742074686520706F696E742066726F6D20746865206C61796572277320696E746572696F7220636F6F7264696E6174652073797374656D20746F207468652076696577E280997320696E746572696F7220636F6F7264696E6174652073797374656D2E
 		Sub RegisterForDraggedTypes(Types As AppleArray)
@@ -1009,13 +1057,6 @@ Inherits AppleResponder
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub removeAllToolTips Lib appkitlibname Selector "removeAllToolTips" (id as ptr)
 	#tag EndExternalMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RemoveControl()
-		  XojoControls.Remove (id)
-		  super.removecontrol
-		End Sub
-	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 556E6C696E6B732074686520766965772066726F6D206974732073757065727669657720616E64206974732077696E646F772C2072656D6F7665732069742066726F6D2074686520726573706F6E64657220636861696E2C20616E6420696E76616C6964617465732069747320637572736F722072656374616E676C652E0A52656D6F76657320636F6E73747261696E747320746F6F20616E642072656C656173657320746865207669657720696620796F7520646F6EE2809974206275666665722069742E
 		Sub RemoveFromSuperview(dontInvalidate as boolean = false)
@@ -1083,6 +1124,16 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function scaleUnitSquareToSize Lib appkitlibname Selector "scaleUnitSquareToSize:" (id as ptr, size as FoundationFrameWork . NSSize) As FoundationFrameWork.NSSize
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 4E6F7469666965732074686520737570657276696577206F66206120636C6970207669657720746861742074686520636C69702076696577206E6565647320746F20726573657420746865206F726967696E206F662069747320626F756E64732072656374616E676C652E
+		Sub ScrollClipView(ClipView As AppleView, Point As FoundationFrameWork.NSPoint)
+		  ScrollClipViewtoPoint  id, ClipView.id, Point
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub scrollClipViewtoPoint Lib appkitlibname Selector "scrollClipView:toPoint:" (id as ptr, clipview as ptr, point as FoundationFrameWork . NSPoint)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 5363726F6C6C73207468652076696577E280997320636C6F7365737420616E636573746F72204E53436C697056696577206F626A65637420736F206120706F696E7420696E207468652076696577206C69657320617420746865206F726967696E206F662074686520636C69702076696577277320626F756E64732072656374616E676C652E
@@ -1165,6 +1216,10 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setdrawsBackground Lib appkitlibname Selector "setDrawsBackground:" (id as ptr, value as boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setenclosingScrollView Lib appkitlibname Selector "setEnclosingScrollView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1307,6 +1362,10 @@ Inherits AppleResponder
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event MenuForEvent(anEvent As AppleNSEvent) As AppleMenu
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event Opaque() As Boolean
 	#tag EndHook
 
@@ -1332,6 +1391,10 @@ Inherits AppleResponder
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
 		Event ViewWillMoveToWindow(Window as AppleWindow)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event WillOpenMenuForEvent(Menu as AppleMenu, anEvent As AppleNSEvent)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
@@ -1384,8 +1447,6 @@ Inherits AppleResponder
 		preparedContentRect
 		autoscroll
 		adjustscroll
-		enclosingScrollView
-		scrollClipView
 		reflectScrolledClipView
 		beginDraggingSessionWithItems
 		dragFile
@@ -1400,6 +1461,10 @@ Inherits AppleResponder
 		DefinitionWindows Section
 		wantsBestResolutionOpenGLSurface
 		pressureConfiguration
+		
+		changes
+		scrollClipView: parameter nees to be clipview, not NSView
+		
 	#tag EndNote
 
 
@@ -1619,6 +1684,8 @@ Inherits AppleResponder
 			    methods.Append new TargetClassMethodHelper("viewDidHide", AddressOf impl_viewDidHide, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewDidUnhide", AddressOf impl_viewDidUnhide, "v@:")
 			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect, "v@:{CGRect}")
+			    methods.Append new TargetClassMethodHelper("menuForEvent:", AddressOf impl_menuForEvent, "@@:@")
+			    methods.Append new TargetClassMethodHelper("willOpenMenu:withEvent:", AddressOf impl_willOpenMenu, "v@:@@")
 			    
 			    mClassPtr = BuildTargetClass ("NSView", "OSXLibView",methods)
 			  end if
@@ -1658,6 +1725,15 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		EnclosingMenuItem As AppleNSMenuItem
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206E65617265737420616E636573746F72207363726F6C6C2076696577207468617420636F6E7461696E73207468652063757272656E7420766965772E2028726561642D6F6E6C79290A546869732070726F706572747920646F6573206E6F7420636F6E7461696E207468652063757272656E742076696577206966207468652063757272656E74207669657720697320697473656C662061207363726F6C6C20766965772E20497420616C7761797320636F6E7461696E7320616E20616E636573746F72207363726F6C6C20766965772E
+		#tag Getter
+			Get
+			  return AppleScrollView.MakeFromPtr(getenclosingScrollView(id))
+			End Get
+		#tag EndGetter
+		EnclosingScrollView As AppleView
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D696E696D756D2073697A65206F662074686520766965772074686174207361746973666965732074686520636F6E73747261696E747320697420686F6C64732E2028726561642D6F6E6C7929
@@ -1933,10 +2009,6 @@ Inherits AppleResponder
 		LayerUsesCoreImageFilters As Boolean
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private Shared mXojoControls As xojo.Core.Dictionary
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206E6565647320746F206265207265647261776E206265666F7265206265696E6720646973706C617965642E200A53657474696E67207468652076616C756520746F207472756520697320746865206571756976616C656E746F66206120586F6A6F20696E76616C69646174652063616C6C2E
 		#tag Getter
 			Get
@@ -2096,22 +2168,6 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		Window As AppleWindow
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  if mXojoControls = nil then mXojoControls = new xojo.Core.Dictionary
-			  return mXojoControls
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  if mXojoControls = nil then mXojoControls = new xojo.Core.Dictionary
-			  mXojoControls = value
-			End Set
-		#tag EndSetter
-		Private Shared XojoControls As xojo.Core.Dictionary
 	#tag EndComputedProperty
 
 

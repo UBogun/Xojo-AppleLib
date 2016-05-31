@@ -26,12 +26,59 @@ Begin osxlibwindow TestWindow
    Title           =   "Untitled"
    Visible         =   True
    Width           =   600
+   Begin OSXLibScrollView OSXLibScrollView1
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   400
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   "0"
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   0
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   600
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 #tag EndWindowCode
 
+#tag Events OSXLibScrollView1
+	#tag Event
+		Sub Open()
+		  me.AppleObject.AutoresizesSubviews = false
+		  dim ContentView as new AppleView(FoundationFrameWork.NSMakeRect(0,0,300,300))
+		  ContentView.WantsLayer = true
+		  ContentView.Layer.BorderWidth = 2
+		  ContentView.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.TopLeft
+		  ContentView.Layer.Contents = AppleImage.fromPicture(OSXLibLogo)
+		  dim am as  new AppleAutoresizingMask(0)
+		  contentview.AutoResizingMask = am
+		  me.AppleObject.DocumentView = ContentView
+		  me.AppleObject.Magnification = 0.05
+		  me.AppleObject.HasHorizontalScroller = true
+		  me.AppleObject.HasVerticalScroller = true
+		  me.AppleObject.FlashScrollers
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"

@@ -72,6 +72,10 @@ Protected Module AppKitFramework
 		Protected Declare Function getlocalizedName Lib appkitlibname Selector "localizedName" (id as ptr) As cfstringref
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmagnification Lib foundationlibname Selector "magnification" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getobjectValue Lib foundationlibname Selector "objectValue" (id as ptr) As Ptr
 	#tag EndExternalMethod
@@ -180,6 +184,10 @@ Protected Module AppKitFramework
 		Protected Declare Sub setlineBreakMode Lib appkitlibname Selector "setLineBreakMode:" (id as ptr, value as AppleText . NSLineBreakMode)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setmagnification Lib foundationlibname Selector "setMagnification:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setobjectValue Lib foundationlibname Selector "setObjectValue:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
@@ -218,6 +226,14 @@ Protected Module AppKitFramework
 
 	#tag Constant, Name = AppKitPath, Type = Text, Dynamic = False, Default = \"com.apple.AppKit", Scope = Public
 	#tag EndConstant
+
+
+	#tag Structure, Name = NSEdgeInsets, Flags = &h1
+		top as CGFloat
+		  left as CGFloat
+		  bottom as CGFloat
+		right As CGFloat
+	#tag EndStructure
 
 
 	#tag Enum, Name = NSFocusRingType, Type = UInteger, Flags = &h1

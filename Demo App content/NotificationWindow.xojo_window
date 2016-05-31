@@ -28,21 +28,21 @@ Begin Window NotificationWindow
    Width           =   600
    Begin OSXLibNotificationCenter AppleNotificationCenter1
       DebugDescription=   ""
-      Enabled         =   True
+      Enabled         =   "True"
       HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
       mHasOwnership   =   False
       RetainCount     =   ""
-      Scope           =   0
-      TabPanelIndex   =   0
+      Scope           =   "0"
+      TabPanelIndex   =   "0"
    End
    Begin TextArea TextArea1
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFF00FF
+      BackColor       =   
       Bold            =   False
       Border          =   True
       DataField       =   ""
@@ -66,7 +66,7 @@ Begin Window NotificationWindow
       Mask            =   ""
       Multiline       =   True
       ReadOnly        =   False
-      Scope           =   0
+      Scope           =   "0"
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
       Styled          =   True
@@ -74,7 +74,7 @@ Begin Window NotificationWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Make a rightclick on this textarea or on the IDE. The notificationCenter catches the NSMenuDidAdItemNotifications.\n\nYou can attach as many OSXLibNotificationCenter Controls to your project and register each number of notifications to each. \n\n"
-      TextColor       =   &c00000000
+      TextColor       =   
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0

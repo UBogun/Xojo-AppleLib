@@ -458,20 +458,6 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
-		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
-		  super.registercontrol(parentcontrol)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RemoveControl()
-		  XojoControls.Remove (id)
-		  super.removecontrol
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function RetrieveConnectedPeripherals(PeripheralServiceCBUUIDs as Applearray) As applearray
 		  return applearray.MakeFromPtr(retrieveConnectedPeripheralsWithServices( id, PeripheralServiceCBUUIDs.id))
 		End Function
@@ -711,10 +697,6 @@ Inherits AppleObject
 		#tag EndGetter
 		State As CBCentralManagerState
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private Shared XojoControls As xojo.Core.Dictionary
-	#tag EndProperty
 
 
 	#tag Enum, Name = CBCentralManagerState, Type = Integer, Flags = &h0

@@ -5,9 +5,9 @@ Inherits Window
 		Sub Constructor()
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
-		  dim aWindow as new AppleWindow(self)
-		  self.AppleObject.AnimationContextCompletionBlock
-		  mAppleObject = new AppleWindow(aWindow.contentViewController)
+		  'dim aWindow as new AppleWindow(self)
+		  'self.AppleObject.AnimationContextCompletionBlock
+		  'mAppleObject = new AppleWindow(aWindow.contentViewController)
 		  
 		End Sub
 	#tag EndMethod
