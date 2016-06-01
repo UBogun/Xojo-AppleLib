@@ -143,13 +143,9 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 526573697A65732074686520636F6E74726F6CE2809973206672616D6520736F207468617420697420697320746865206D696E696D756D2073697A65206E656564656420746F20636F6E7461696E206974732063656C52657475726E2074727565206966207468657265207761732061206669656C6420656469746F72206173736F63696174656420776974682074686520636F6E7472
 		Sub SizeToFit()
-		  sizeToFit id
+		  AppKitFramework.sizeToFit id
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub sizeToFit Lib foundationlibname Selector "sizeToFit" (id as ptr)
-	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F206120646F75626C652D707265636973696F6E20666C6F6174696E672D706F696E742076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeDoubleValueFrom(Obj As AppleObject)
@@ -691,6 +687,11 @@ Inherits AppleView
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Height"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HeightAdjustLimit"
 			Group="Behavior"
 			Type="Double"
@@ -891,6 +892,11 @@ Inherits AppleView
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="TranslatesAutoresizingMaskIntoConstraints"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="UserInterfaceLayoutdirection"
 			Group="Behavior"
 			Type="Appkitframework.NSUserInterfaceLayoutdirection"
@@ -904,6 +910,11 @@ Inherits AppleView
 			Name="WantsLayer"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Width"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WidthAdjustLimit"

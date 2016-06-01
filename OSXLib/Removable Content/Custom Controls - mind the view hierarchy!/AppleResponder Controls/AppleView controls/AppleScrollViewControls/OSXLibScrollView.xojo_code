@@ -32,6 +32,7 @@ Inherits OSXLibView
 		  if not Raiseevent InitControl then
 		    mAppleObject = new AppleScrollView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
 		    mAppleObject.registercontrol self // and register this instance so it receives the events.
+		    mAppleObject.AutoresizesSubviews = true
 		    // Please note the internal events of the declared class will not fire anymore.
 		    // This is to avoid confusions where an event expects a return value.
 		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.

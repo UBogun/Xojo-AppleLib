@@ -429,10 +429,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getbackgroundColor Lib appkitlibname Selector "backgroundColor" (id as ptr) As Ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getbackgroundFilters Lib appkitlibname Selector "backgroundFilters" (id as ptr) As ptr
 	#tag EndExternalMethod
 
@@ -474,10 +470,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getdefaultFocusRingType Lib appkitlibname Selector "defaultFocusRingType" (id as ptr) As AppKitframework.NSFocusRingType
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getdrawsBackground Lib appkitlibname Selector "drawsBackground" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1183,10 +1175,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setbackgroundColor Lib appkitlibname Selector "setBackgroundColor:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setbackgroundFilters Lib appkitlibname Selector "setBackgroundFilters:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
@@ -1216,10 +1204,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setcontentFilters Lib appkitlibname Selector "setContentFilters:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setdrawsBackground Lib appkitlibname Selector "setDrawsBackground:" (id as ptr, value as boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -2338,6 +2322,11 @@ Inherits AppleResponder
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Height"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HeightAdjustLimit"
 			Group="Behavior"
 			Type="Double"
@@ -2489,6 +2478,11 @@ Inherits AppleResponder
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="TranslatesAutoresizingMaskIntoConstraints"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="UserInterfaceLayoutdirection"
 			Group="Behavior"
 			Type="Appkitframework.NSUserInterfaceLayoutdirection"
@@ -2502,6 +2496,11 @@ Inherits AppleResponder
 			Name="WantsLayer"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Width"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WidthAdjustLimit"

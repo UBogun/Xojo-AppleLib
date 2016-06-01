@@ -94,12 +94,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520636C69702076696577E2809973206261636B67726F756E642E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr(getbackgroundColor(id))
+			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setbackgroundColor id, if (value = nil, nil, value.id)
+			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor
@@ -164,12 +164,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520636C6970207669657720647261777320697473206261636B67726F756E6420636F6C6F722E
 		#tag Getter
 			Get
-			  return GetdrawsBackground (id)
+			  return AppKitFramework.GetdrawsBackground (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setdrawsBackground id, value
+			  AppKitFramework.setdrawsBackground id, value
 			End Set
 		#tag EndSetter
 		DrawsBackground As Boolean

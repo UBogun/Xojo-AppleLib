@@ -244,10 +244,6 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getdraggingDestinationFeedbackStyle Lib AppKitLibName Selector "draggingDestinationFeedbackStyle" (id as ptr) As NSTableViewDraggingDestinationFeedbackStyle
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function geteditedColumn Lib AppKitLibName Selector "editedColumn" (id as ptr) As Integer
 	#tag EndExternalMethod
 
@@ -301,10 +297,6 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getisRowSelected Lib AppKitLibName Selector "isRowSelected:" (id as ptr, row as Integer) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getnumberOfColumns Lib AppKitLibName Selector "numberOfColumns" (id as ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -365,10 +357,6 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getselectedRowIndexes Lib AppKitLibName Selector "selectedRowIndexes" (id as ptr) As Ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getselectionHighlightStyle Lib AppKitLibName Selector "selectionHighlightStyle" (id as ptr) As NSTableViewSelectionHighlightStyle
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -660,10 +648,6 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setdraggingDestinationFeedbackStyle Lib AppKitLibName Selector "setDraggingDestinationFeedbackStyle:" (id as ptr, value as NSTableViewDraggingDestinationFeedbackStyle)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setfloatsGroupRows Lib AppKitLibName Selector "setFloatsGroupRows:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -701,10 +685,6 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setrowSizeStyle Lib AppKitLibName Selector "setRowSizeStyle:" (id as ptr, value as NSTableViewRowSizeStyle)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setselectionHighlightStyle Lib AppKitLibName Selector "setSelectionHighlightStyle:" (id as ptr, value as NSTableViewSelectionHighlightStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -893,12 +873,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72207573656420746F206472617720746865206261636B67726F756E64206F6620746865207461626C652E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr(getbackgroundColor(id))
+			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setbackgroundColor id, if (value = nil, nil, value.id)
+			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor
@@ -992,12 +972,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520666565646261636B207374796C6520646973706C61796564207768656E207468652075736572206472616773206F76657220746865207461626C6520766965772E
 		#tag Getter
 			Get
-			  return getDraggingDestinationFeedbackStyle (id)
+			  return TableViewAdditionsForAppkit.getDraggingDestinationFeedbackStyle (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setDraggingDestinationFeedbackStyle id,value
+			  TableViewAdditionsForAppkit.setDraggingDestinationFeedbackStyle id,value
 			End Set
 		#tag EndSetter
 		DraggingDestinationFeedbackStyle As NSTableViewDraggingDestinationFeedbackStyle
@@ -1167,7 +1147,7 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F6620636F6C756D6E7320696E20746865207461626C652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getnumberOfColumns (id)
+			  return TableViewAdditionsForAppkit.getnumberOfColumns (id)
 			End Get
 		#tag EndGetter
 		NumberOfColumns As Integer
@@ -1281,12 +1261,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073656C656374696F6E20686967686C69676874207374796C65207573656420627920746865207461626C65207669657720746F20696E64696361746520726F7720616E6420636F6C756D6E2073656C656374696F6E2E
 		#tag Getter
 			Get
-			  return getselectionHighlightStyle (id)
+			  return TableViewAdditionsForAppkit.getselectionHighlightStyle (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setselectionHighlightStyle id,value
+			  TableViewAdditionsForAppkit.setselectionHighlightStyle id,value
 			End Set
 		#tag EndSetter
 		SelectionHighlightStyle As NSTableViewSelectionHighlightStyle

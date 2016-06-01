@@ -1,5 +1,5 @@
 #tag Class
-Protected Class AppleTableViewGridStyleMask
+Protected Class AppleTableColumnResizingOptions
 	#tag Method, Flags = &h0
 		Sub Constructor(value as uinteger)
 		  mid = value
@@ -10,19 +10,19 @@ Protected Class AppleTableViewGridStyleMask
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return hasbit (mid, 3)
+			  return hasbit (mid, 0)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
 			  if value then
-			    mid = setbit (mid, 3)
+			    mid = setbit (mid, 0)
 			  else
-			    mid = clearbit(mid, 3)
+			    mid = clearbit(mid, 0)
 			  end if
 			End Set
 		#tag EndSetter
-		DashedHorizontal As Boolean
+		Autoresizing As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -53,29 +53,16 @@ Protected Class AppleTableViewGridStyleMask
 			  end if
 			End Set
 		#tag EndSetter
-		SolidHorizontal As Boolean
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return hasbit (mid, 0)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  if value then
-			    mid = setbit (mid, 0)
-			  else
-			    mid = clearbit(mid, 0)
-			  end if
-			End Set
-		#tag EndSetter
-		SolidVertical As Boolean
+		UserResizing As Boolean
 	#tag EndComputedProperty
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Autoresizing"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DashedHorizontal"
 			Group="Behavior"
@@ -107,31 +94,6 @@ Protected Class AppleTableViewGridStyleMask
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="SlideLeft"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="SlideRight"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="SlideUp"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="SolidHorizontal"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="SolidVertical"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
@@ -143,6 +105,11 @@ Protected Class AppleTableViewGridStyleMask
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UserResizing"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
