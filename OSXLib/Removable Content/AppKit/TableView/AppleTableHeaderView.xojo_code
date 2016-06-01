@@ -45,10 +45,6 @@ Inherits AppleView
 		Protected Declare Function getresizedColumn Lib AppKitLibName Selector "resizedColumn" (id as ptr) As Integer
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function gettableView Lib AppKitLibName Selector "tableView" (id as ptr) As Ptr
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652072656374616E676C6520636F6E7461696E696E6720746865206865616465722074696C6520666F722074686520636F6C756D6E20617420636F6C756D6E496E6465782E
 		Function HeaderRectOfColumn(column as Integer) As FoundationFrameWork.NSRect
 		  return getheaderRectOfColumn (id, column)
@@ -60,10 +56,6 @@ Inherits AppleView
 		  return if (aptr = nil, nil, new AppleTableHeaderView(aptr))
 		End Function
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setTableView Lib AppKitLibName Selector "setTableView:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
 
 
 	#tag Note, Name = Status complete
@@ -121,12 +113,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865204170706C655461626C655669657720696E7374616E636520746861742074686973207461626C652068656164657220766965772062656C6F6E677320746F2E
 		#tag Getter
 			Get
-			  return AppleTableView.MakefromPtr(gettableView(id))
+			  return AppleTableView.MakefromPtr(TableViewAdditionsForAppkit.gettableView(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setTableView id, if (value = nil, nil, value.id)
+			  TableViewAdditionsForAppkit.setTableView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		TableView As AppleTableView

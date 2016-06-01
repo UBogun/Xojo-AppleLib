@@ -29,6 +29,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getbackgroundColor Lib appkitlibname Selector "backgroundColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getbaseWritingDirection Lib appkitlibname Selector "baseWritingDirection" (id as ptr) As AppleText.NSWritingDirection
 	#tag EndExternalMethod
 
@@ -42,6 +46,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getdelegate Lib appkitlibname Selector "delegate" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdrawsBackground Lib appkitlibname Selector "drawsBackground" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -62,6 +70,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getHighlighted Lib appkitlibname Selector "isHighlighted" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getidentifier Lib appkitlibname Selector "identifier" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -108,6 +120,14 @@ Protected Module AppKitFramework
 		Protected Declare Function getmagnification Lib foundationlibname Selector "magnification" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getmaxWidth Lib appkitlibname Selector "maxWidth" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getminWidth Lib appkitlibname Selector "minWidth" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getobjectValue Lib foundationlibname Selector "objectValue" (id as ptr) As Ptr
 	#tag EndExternalMethod
@@ -125,6 +145,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettextColor Lib appkitlibname Selector "textColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getTitle Lib appkitlibname Selector "title" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
@@ -138,6 +162,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getView Lib appkitlibname Selector "view" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getWidth Lib foundationlibname Selector "width" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -181,6 +209,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setbackgroundColor Lib appkitlibname Selector "setBackgroundColor:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setbaseWritingDirection Lib appkitlibname Selector "setBaseWritingDirection:" (id as ptr, value as AppleText . NSWritingDirection)
 	#tag EndExternalMethod
 
@@ -194,6 +226,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setdelegate Lib appkitlibname Selector "setDelegate:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setdrawsBackground Lib appkitlibname Selector "setDrawsBackground:" (id as ptr, value as boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -214,6 +250,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setHighlighted Lib appkitlibname Selector "setHighlighted:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setidentifier Lib appkitlibname Selector "setIdentifier:" (id as ptr, value as CFStringRef)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -252,6 +292,14 @@ Protected Module AppKitFramework
 		Protected Declare Sub setmagnification Lib foundationlibname Selector "setMagnification:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setMaxWidth Lib appkitlibname Selector "setMaxWidth:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setMinWidth Lib appkitlibname Selector "setMinWidth:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setobjectValue Lib foundationlibname Selector "setObjectValue:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
@@ -269,6 +317,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setTextColor Lib appkitlibname Selector "setTextColor:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setTitle Lib appkitlibname Selector "setTitle:" (id as ptr, value as CFStringRef)
 	#tag EndExternalMethod
 
@@ -282,6 +334,14 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setView Lib appkitlibname Selector "setView:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setWidth Lib foundationlibname Selector "setWidth:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sizeToFit Lib appkitlibname Selector "sizeToFit" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

@@ -86,6 +86,7 @@ End
 		  smallimg.size = FoundationFrameWork.NSMakeSize(12, 12)
 		  me.TableViewObject.IndicatorImage(me.TableViewObject.TableColumn("TestColumn!"))=smallimg
 		  me.TableViewObject.RowSizeStyle = appletableview.NSTableViewRowSizeStyle.Large
+		  me.TableViewObject.HeaderView.Height = me.TableViewObject.HeaderView.Height*2
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -100,6 +101,7 @@ End
 		Function TextValue(TableView As AppleTableView, column as ptr, row as Integer) As cfstringRef
 		  return (row.ToText)
 		  #pragma unused TableView
+		  #pragma unused column
 		End Function
 	#tag EndEvent
 #tag EndEvents
