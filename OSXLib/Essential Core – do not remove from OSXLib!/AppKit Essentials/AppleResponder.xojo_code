@@ -34,10 +34,6 @@ Implements OSXLibControlledObject
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getmenu Lib appkitlibname Selector "menu" (id as ptr) As Ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getnextResponder Lib appkitlibname Selector "nextResponder" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -686,10 +682,6 @@ Implements OSXLibControlledObject
 		Protected Declare Sub setanimations Lib appkitlibname Selector "setAnimations:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setMenu Lib appkitlibname Selector "setMenu:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0, Description = 417474656D70747320746F20706572666F726D2074686520616374696F6E20696E64696361746564206D6574686F64207769746820612073706563696669656420617267756D656E742E0A49662074686520726563656976657220726573706F6E647320746F20616E416374696F6E2C20697420696E766F6B657320746865206D6574686F64207769746820616E4F626A6563742061732074686520617267756D656E7420616E642072657475726E73205945532E2049662074686520726563656976657220646F65736EE280997420726573706F6E642C2069742073656E64732074686973206D65737361676520746F20697473206E65787420726573706F6E6465722077697468207468652073616D652073656C6563746F7220616E64206F626A6563742E
 		Function TryToPerform(AnActionSelector As Ptr, Anobject As AppleGeneralObject) As Boolean
 		  return tryToPerform (id, AnActionSelector, Anobject.GeneralID)
@@ -941,12 +933,12 @@ Implements OSXLibControlledObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E65787420726573706F6E6465722061667465722074686973206F6E652C206F72206E696C20696620697420686173206E6F6E652E
 		#tag Getter
 			Get
-			  return AppleMenu.MakefromPtr (getmenu(id))
+			  return AppleMenu.MakefromPtr (AppKitFramework.getmenu(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setMenu id, if (value = nil, nil, value.id)
+			  AppKitFramework.setMenu id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Menu As AppleMenu

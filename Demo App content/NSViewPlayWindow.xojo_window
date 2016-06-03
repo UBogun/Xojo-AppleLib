@@ -76,6 +76,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "This is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Click on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -141,6 +142,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -231,6 +233,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   6
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "FrameCenterRotation"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -265,6 +268,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "0"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -299,6 +303,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   8
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "0"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -333,6 +338,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   9
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "BoundsRotation"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -459,6 +465,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "To the right is a OSXLibPaintCanvas. Currently the paint event delivers no graphics object. This will follow soon.\nThe Paint event fires anyway, as do the Resize and Resized events (not so on the OSXLibCanvas superclass). You can still access a layer but not the layer’s content. Rightklick on it for a simple Menuitem extension!"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -668,7 +675,7 @@ End
 		  me.AppleObject.layer.bordercolor = AppleColor.FromColor (&cBFFFC100)
 		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cB1D9FE00)
 		  me.AppleObject.Layer.Contents = new AppleImage(OSXLibLogo)
-		  me.AppleObject.LayerContentsPlacement = AppleView.NSViewLayerContentsPlacement.ScaleProprtionallyToFit
+		  me.AppleObject.LayerContentsPlacement = AppleView.NSViewLayerContentsPlacement.TopLeft
 		  me.AppleObject.Layer.MasksToBounds =false
 		  me.AppleObject.AutoResizingMask = new AppleAutoresizingMask(0)
 		End Sub

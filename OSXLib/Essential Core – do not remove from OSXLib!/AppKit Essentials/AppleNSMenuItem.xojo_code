@@ -63,14 +63,6 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getrepresentedObject Lib appkitlibname Selector "representedObject" (id as ptr) As Ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getState Lib appkitlibname Selector "state" (id as ptr) As Integer
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getuserKeyEquivalent Lib appkitlibname Selector "userKeyEquivalent" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
@@ -122,14 +114,6 @@ Inherits AppleObject
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setonStateImage Lib appkitlibname Selector "setOnStateImage:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setrepresentedObject Lib appkitlibname Selector "setRepresentedObject:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setState Lib appkitlibname Selector "setState:" (id as ptr, value as Integer)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -372,12 +356,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A65637420726570726573656E746564206279207468652072656365697665722E0A42792073657474696E67206120726570726573656E746564206F626A65637420666F722061206D656E75206974656D2C20796F75206D616B6520616E206173736F63696174696F6E206265747765656E20746865206D656E75206974656D20616E642074686174206F626A6563742E2054686520726570726573656E746564206F626A6563742066756E6374696F6E732061732061206D6F726520737065636966696320666F726D206F6620746167207468617420616C6C6F777320796F7520746F206173736F636961746520616E79206F626A6563742C206E6F74206A75737420616E2061726269747261727920696E74656765722C207769746820746865206974656D7320696E2061206D656E752E
 		#tag Getter
 			Get
-			  return appleobject.MakeFromPtr(getrepresentedObject (id))
+			  return appleobject.MakeFromPtr(AppKitFramework.getrepresentedObject (id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setrepresentedObject id, if (value = nil, nil, value.id)
+			  AppKitFramework.setrepresentedObject id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		RepresentedObject As Appleobject
@@ -386,12 +370,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207374617465206F6620746865206D656E756974656D2E
 		#tag Getter
 			Get
-			  return getState(id)
+			  return AppKitFramework.getState(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setState id, value
+			  AppKitFramework.setState id, value
 			End Set
 		#tag EndSetter
 		State As Integer

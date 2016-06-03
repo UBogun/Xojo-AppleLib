@@ -113,7 +113,7 @@ Begin window ScrollWindow
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "This is a first rough scrollview implementation. Events have to follow. I created the content from the imagewell, but you can do so programmatically only too. \nAnd what you see here is a floating view.\n"
+      Text            =   "This is a first rough scrollview implementation. Try scrolling and gestures. I created the content from the imagewell, but you can do so programmatically only too. And what you see here is a floating view.\nFor a better resizing behavior I probably need Layoutconstraints.\nBelow are some event notifications.\n\n\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0

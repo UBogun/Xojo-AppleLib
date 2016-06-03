@@ -1267,6 +1267,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Height"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HeightAdjustLimit"
 			Group="Behavior"
 			Type="Double"
@@ -1495,6 +1500,11 @@ Inherits AppleView
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="TranslatesAutoresizingMaskIntoConstraints"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="UserInterfaceLayoutdirection"
 			Group="Behavior"
 			Type="Appkitframework.NSUserInterfaceLayoutdirection"
@@ -1534,6 +1544,11 @@ Inherits AppleView
 			Name="WantsLayer"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Width"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WidthAdjustLimit"

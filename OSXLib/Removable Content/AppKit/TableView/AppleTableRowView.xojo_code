@@ -40,10 +40,6 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getinteriorBackgroundStyle Lib appkitlibname Selector "interiorBackgroundStyle" (id as Ptr) As AppleCell.NSBackgroundStyle
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getSelected Lib AppKitLibName Selector "isSelected" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -199,7 +195,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 53706563696669657320686F77207468652073756276696577732073686F756C6420647261772E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getinteriorBackgroundstyle (id)
+			  return AppKitFramework.getinteriorBackgroundstyle (id)
 			End Get
 		#tag EndGetter
 		InteriorBackgroundStyle As AppleCell.NSBackgroundStyle
@@ -289,6 +285,28 @@ Inherits AppleView
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DraggingDestinationFeedbackStyle"
+			Group="Behavior"
+			Type="AppleTableView.NSTableViewDraggingDestinationFeedbackStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - None"
+				"0 - Regular"
+				"1 - SourceList"
+				"2 - Gap"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Emphasized"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Floating"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FocusRingType"
 			Group="Behavior"
 			Type="Appkitframework.NSFocusRingType"
@@ -308,6 +326,11 @@ Inherits AppleView
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="GroupRowStyle"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -330,11 +353,28 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="IndentationForDropOperation"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InteriorBackgroundStyle"
+			Group="Behavior"
+			Type="AppleCell.NSBackgroundStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Light"
+				"1 - Dark"
+				"2 - Raised"
+				"3 - Lowered"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsDrawingFindIndicator"
@@ -433,6 +473,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NumberOfColumns"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="PostsBoundsChangedNotifications"
 			Group="Behavior"
 			Type="Boolean"
@@ -448,6 +493,22 @@ Inherits AppleView
 			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Selected"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectionHighlightStyle"
+			Group="Behavior"
+			Type="AppleTableView.NSTableViewSelectionHighlightStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - None"
+				"0 - Regular"
+				"1 - SourceList"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
@@ -457,6 +518,11 @@ Inherits AppleView
 			Name="Tag"
 			Group="Behavior"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TargetForDropOperation"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ToolTip"

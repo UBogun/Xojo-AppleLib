@@ -110,6 +110,7 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -201,6 +202,7 @@ End
 		  me.AddRow("CoreBluetooth")
 		  me.AddRow("ScrollView")
 		  me.AddRow("TableView")
+		  me.AddRow ("OutlineView")
 		  
 		  me.ListIndex = 0
 		End Sub
@@ -233,6 +235,8 @@ End
 		    SecondaryWindow = new ScrollWindow
 		  case "TableView"
 		    SecondaryWindow = new TableViewWindow
+		  case "OutlineView"
+		    SecondaryWindow = new OutlineViewWindow
 		  end select
 		End Sub
 	#tag EndEvent

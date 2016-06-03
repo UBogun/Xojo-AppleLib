@@ -10,15 +10,26 @@ Inherits Control
 
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Function objectValueForTableColumn(TableView as AppleTableView, column as ptr, row as Integer) As AppleObject
+		Attributes( hidden )  Function objectValueForTableColumn(TableView as AppleTableView, column as appletablecolumn, row as Integer) As AppleObject
 		  return RaiseEvent ObjectValue(TableView, column, row)
 		  
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub setobjectValueForTableColumn(TableView as AppleTableView, column as appletablecolumn, row as Integer, value as appleobject)
+		  RaiseEvent setObjectValue(TableView, column, row, value)
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0, Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
-		Event ObjectValue(TableView As AppleTableView, column as ptr, row as Integer) As AppleObject
+		Event ObjectValue(TableView As AppleTableView, column as appletablecolumn, row as Integer) As AppleObject
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 5573652074686973206576656E7420746F20736176652076616C756520696E20796F75722044617461736F757263652E
+		Event SetObjectValue(TableView As AppleTableView, column as appletablecolumn, row as Integer, value as appleobject)
 	#tag EndHook
 
 

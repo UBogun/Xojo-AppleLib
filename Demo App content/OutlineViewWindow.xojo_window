@@ -1,5 +1,5 @@
 #tag Window
-Begin Window TableViewWindow
+Begin Window OutlineViewWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -9,7 +9,7 @@ Begin Window TableViewWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   394
+   Height          =   400
    ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
@@ -23,10 +23,27 @@ Begin Window TableViewWindow
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "AppleOutlineView"
    Visible         =   True
    Width           =   600
-   Begin OSXLibTableView OSXLibTableView1
+   Begin OSXLibTableViewDataSource OSXLibTableViewDataSource1
+      Enabled         =   True
+      Handle          =   0
+      Index           =   -2147483648
+      LockedInPosition=   False
+      MouseX          =   0
+      MouseY          =   0
+      PanelIndex      =   0
+      Scope           =   2
+      TabPanelIndex   =   0
+      Window          =   "0"
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
+      _mWindow        =   "0"
+   End
+   Begin OSXLibOutlineView OSXLibOutlineView1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -34,7 +51,7 @@ Begin Window TableViewWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   394
+      Height          =   400
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -54,58 +71,37 @@ Begin Window TableViewWindow
       Visible         =   True
       Width           =   600
    End
-   Begin OSXLibTableViewDataSource AppleTableViewDataSource1
-      Enabled         =   True
-      Handle          =   0
-      Index           =   -2147483648
-      LockedInPosition=   False
-      MouseX          =   0
-      MouseY          =   0
-      PanelIndex      =   0
-      Scope           =   0
-      TabPanelIndex   =   0
-      Window          =   "0"
-      _mIndex         =   0
-      _mInitialParent =   ""
-      _mName          =   ""
-      _mPanelIndex    =   0
-      _mWindow        =   "0"
-   End
 End
 #tag EndWindow
 
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events OSXLibTableView1
-	#tag Event
-		Sub Shown()
-		  me.TableViewObject.DataSource = AppleTableViewDataSource1.AppleObject
-		  me.TableViewObject.AddTableColumn "TestColumn!"
-		  me.TableViewObject.UsesAlternatingRowBackgroundColors = true
-		  me.TableViewObject.GridStyleMask = new AppleTableViewGridStyleMask(3)
-		  me.TableViewObject.GridColor = AppleColor.FromColor(&cFDC58200)
-		  dim smallimg as AppleImage = AppleImage.fromPicture(OSXLibLogo)
-		  smallimg.size = FoundationFrameWork.NSMakeSize(12, 12)
-		  me.TableViewObject.IndicatorImage(me.TableViewObject.TableColumn("TestColumn!"))=smallimg
-		  me.TableViewObject.RowSizeStyle = appletableview.NSTableViewRowSizeStyle.Large
-		  me.TableViewObject.HeaderView.Height = me.TableViewObject.HeaderView.Height*2
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events AppleTableViewDataSource1
+#tag Events OSXLibTableViewDataSource1
 	#tag Event , Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
 		Function NumberOfRows(TableView As AppleTableView) As Integer
-		  Return 500
-		  #Pragma unused TableView
+		  return 10
+		  #pragma unused tableview
 		End Function
 	#tag EndEvent
 	#tag Event , Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
 		Function TextValue(TableView As AppleTableView, column as ptr, row as Integer) As cfstringRef
-		  return (row.ToText)
-		  #pragma unused TableView
+		  return row.ToText
+		  #pragma unused tableview
 		  #pragma unused column
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events OSXLibOutlineView1
+	#tag Event
+		Sub Open()
+		  me.TableViewObject.DataSource= OSXLibTableViewDataSource1.AppleObject
+		  me.TableViewObject.AddTableColumn ("Test")
+		  me.TableViewObject.AddTableColumn ("Test1")
+		  me.TableViewObject.AddTableColumn ("Test3")
+		  
+		  break
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

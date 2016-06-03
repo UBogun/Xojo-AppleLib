@@ -107,21 +107,6 @@ Protected Class AppleTableViewGridStyleMask
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="SlideLeft"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="SlideRight"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="SlideUp"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="SolidHorizontal"
 			Group="Behavior"
 			Type="Boolean"

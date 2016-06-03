@@ -1,166 +1,22 @@
 #tag Class
-Protected Class AppleImageView
+Protected Class AppleTextField
 Inherits AppleControl
-	#tag Method, Flags = &h21
-		Private Sub Constructor()
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0
-		Sub Constructor(Frame as FoundationFrameWork.NSRect)
-		  // Calling the overridden superclass constructor.
-		  // Note that this may need modifications if there are multiple constructor choices.
-		  // Possible constructor calls:
-		  // Constructor(aControl as control) -- From AppleView
-		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
-		  // Constructor() -- From AppleObject
-		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Constructor(w as imagewell)
-		  // Calling the overridden superclass constructor.
-		  // Note that this may need modifications if there are multiple constructor choices.
-		  // Possible constructor calls:
-		  // Constructor(aControl as control) -- From AppleView
-		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
-		  // Constructor() -- From AppleObject
-		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(ptr(w.Handle))
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		 Shared Function FromControl(c as ImageWell) As AppleImageView
-		  return new AppleImageView(c)
+		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTextField
+		  return if (aptr = nil, nil, new AppleTextField(aptr))
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleImageView
-		  return if (aptr = nil, nil, new AppleImageView(aptr))
-		End Function
-	#tag EndMethod
-
-
-	#tag Note, Name = Untitled, Description = 53746174757320636F6D706C6574652062757420657874656E6461626C65
-		
-		Only the pure Classptr, no events integrated yet.
-	#tag EndNote
-
-
-	#tag ComputedProperty, Flags = &h0, Description = 4120426F6F6C65616E2076616C756520696E6469636174696E6720776865746865722074686520696D6167652076696577206C657473207468652075736572206375742C20636F70792C20616E642070617374652074686520696D61676520636F6E74656E74732E
-		#tag Getter
-			Get
-			  return AppKitFramework.getallowsCutCopyPaste (id)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.setallowsCutCopyPaste id, value
-			End Set
-		#tag EndSetter
-		AllowsCutCopyPaste As Boolean
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696D6167652076696577206175746F6D61746963616C6C7920706C61797320616E696D6174656420696D616765732E
-		#tag Getter
-			Get
-			  return AppKitFramework.getanimates (id)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.setanimates id, value
-			End Set
-		#tag EndSetter
-		Animates As Boolean
-	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSImageView")
+			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSTextField")
 			  return mClassPtr
+			  
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696D6167652076696577206175746F6D61746963616C6C7920706C61797320616E696D6174656420696D616765732E
-		#tag Getter
-			Get
-			  return AppKitFramework.geteditable (id)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.seteditable id, value
-			End Set
-		#tag EndSetter
-		Editable As Boolean
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 54686520696D61676520646973706C617965642062792074686520696D61676520766965772E
-		#tag Getter
-			Get
-			  return appleimage.MakeFromPtr(AppKitFramework.getImage (id))
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.setImage id, if (value = nil, nil, value.id)
-			End Set
-		#tag EndSetter
-		Image As AppleImage
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 54686520616C69676E6D656E74206F66207468652063656C6CE280997320696D61676520696E736964652074686520696D61676520766965772E
-		#tag Getter
-			Get
-			  return AppKitFramework.getimageAlignment (id)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.setimageAlignment id, value
-			End Set
-		#tag EndSetter
-		ImageAlignment As appkitframework.NSImageAlignment
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 546865207374796C65206F66206672616D65207468617420617070656172732061726F756E642074686520696D6167652E
-		#tag Getter
-			Get
-			  return AppKitFramework.getimageFrameStyle (id)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.setimageFrameStyle id, value
-			End Set
-		#tag EndSetter
-		ImageFrameStyle As appkitframework.NSImageFrameStyle
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 546865207363616C696E67206D6F6465206170706C69656420746F206D616B65207468652063656C6CE280997320696D6167652066697420746865206672616D65206F662074686520696D61676520766965772E
-		#tag Getter
-			Get
-			  return AppKitFramework.getimageScaling (id)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.setimageScaling id, value
-			End Set
-		#tag EndSetter
-		ImageScaling As appkitframework.NSImagescaling
 	#tag EndComputedProperty
 
 
@@ -184,19 +40,9 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="AllowsCutCopyPaste"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Alpha"
 			Group="Behavior"
 			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Animates"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AutoresizesSubviews"
@@ -256,11 +102,6 @@ Inherits AppleControl
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Editable"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Enabled"
 			Group="Behavior"
 			Type="Boolean"
@@ -315,48 +156,6 @@ Inherits AppleControl
 			Name="IgnoresMultiClick"
 			Group="Behavior"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ImageAlignment"
-			Group="Behavior"
-			Type="appkitframework.NSImageAlignment"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Center"
-				"1 - Top"
-				"2 - TopLeft"
-				"3 - TopRight"
-				"4 - Left"
-				"5 - Bottom"
-				"6 - BottomLeft"
-				"7 - BottomRight"
-				"8 - Right"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ImageFrameStyle"
-			Group="Behavior"
-			Type="appkitframework.NSImageFrameStyle"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - None"
-				"1 - Photo"
-				"2 - GrayBezel"
-				"3 - Groove"
-				"4 - Button"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ImageScaling"
-			Group="Behavior"
-			Type="appkitframework.NSImagescaling"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - ProportionallyDown"
-				"1 - AxesIndependently"
-				"2 - None"
-				"3 - ProportionallyUpOrDown"
-			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"

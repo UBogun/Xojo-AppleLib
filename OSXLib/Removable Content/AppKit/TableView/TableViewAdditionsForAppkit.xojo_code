@@ -13,6 +13,10 @@ Protected Module TableViewAdditionsForAppkit
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrowSizeStyle Lib AppKitLibName Selector "rowSizeStyle" (id as ptr) As AppleTableView.NSTableViewRowSizeStyle
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getselectionHighlightStyle Lib AppKitLibName Selector "selectionHighlightStyle" (id as ptr) As AppleTableView.NSTableViewSelectionHighlightStyle
 	#tag EndExternalMethod
 
@@ -22,6 +26,10 @@ Protected Module TableViewAdditionsForAppkit
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setdraggingDestinationFeedbackStyle Lib AppKitLibName Selector "setDraggingDestinationFeedbackStyle:" (id as ptr, value as AppleTableView . NSTableViewDraggingDestinationFeedbackStyle)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setrowSizeStyle Lib AppKitLibName Selector "setRowSizeStyle:" (id as ptr, value as AppleTableView . NSTableViewRowSizeStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

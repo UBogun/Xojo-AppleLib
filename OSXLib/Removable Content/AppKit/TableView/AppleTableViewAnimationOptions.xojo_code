@@ -145,7 +145,7 @@ Protected Class AppleTableViewAnimationOptions
 		#tag ViewProperty
 			Name="Id"
 			Group="Behavior"
-			Type="Integer"
+			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -169,6 +169,16 @@ Protected Class AppleTableViewAnimationOptions
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SlideDown"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SlideLeft"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SlideRight"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

@@ -469,10 +469,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getdefaultFocusRingType Lib appkitlibname Selector "defaultFocusRingType" (id as ptr) As AppKitframework.NSFocusRingType
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getenclosingMenuItem Lib appkitlibname Selector "enclosingMenuItem" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -482,10 +478,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getfittingSize Lib appkitlibname Selector "fittingSize" (id as ptr) As FoundationFrameWork.NSSize
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getfocusRingType Lib appkitlibname Selector "focusRingType" (id as ptr) As AppKitframework.NSFocusRingType
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -558,10 +550,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getneedsDisplay Lib appkitlibname Selector "needsDisplay" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getopaque Lib appkitlibname Selector "isOpaque" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1211,10 +1199,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setfocusRingType Lib appkitlibname Selector "setFocusRingType:" (id as ptr, value as AppKitframework . NSFocusRingType)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setframe Lib appkitlibname Selector "setFrame:" (id as ptr, value as FoundationFrameWork . NSRect)
 	#tag EndExternalMethod
 
@@ -1704,7 +1688,7 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656661756C7420666F6375732072696E6720747970652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getdefaultFocusRingType (classptr)
+			  return AppKitFramework.getdefaultFocusRingType (classptr)
 			End Get
 		#tag EndGetter
 		Shared DefaultFocusRingType As Appkitframework.NSFocusRingType
@@ -1740,12 +1724,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 5468652074797065206F6620666F6375732072696E6720647261776E2061726F756E642074686520766965772E
 		#tag Getter
 			Get
-			  return getfocusRingType(id)
+			  return AppKitFramework.getfocusRingType(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setfocusRingType id, value
+			  AppKitFramework.setfocusRingType id, value
 			End Set
 		#tag EndSetter
 		FocusRingType As Appkitframework.NSFocusRingType
@@ -1937,26 +1921,6 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		IsRotatedOrScaledFromBase As Boolean
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  static mNSAnimationTriggerOrderIn as text = SystemConstantName("NSAnimationTriggerOrderIn", QuartzCorePath)
-			  return mNSAnimationTriggerOrderIn
-			End Get
-		#tag EndGetter
-		Shared kNSAnimationTriggerOrderIn As Text
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  static mNSAnimationTriggerOrderOut as text = SystemConstantName("NSAnimationTriggerOrderOut", QuartzCorePath)
-			  return mNSAnimationTriggerOrderOut
-			End Get
-		#tag EndGetter
-		Shared kNSAnimationTriggerOrderOut As Text
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720757365732061206C6179657220617320697473206261636B696E672073746F72652E
@@ -2231,6 +2195,13 @@ Inherits AppleResponder
 		#tag EndGetter
 		Window As AppleWindow
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = kNSAnimationTriggerOrderIn, Type = Text, Dynamic = False, Default = \"NSAnimationTriggerOrderIn", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSAnimationTriggerOrderOut, Type = Text, Dynamic = False, Default = \"NSAnimationTriggerOrderOut", Scope = Public
+	#tag EndConstant
 
 
 	#tag Enum, Name = NSBorderType, Type = UInteger, Flags = &h0
