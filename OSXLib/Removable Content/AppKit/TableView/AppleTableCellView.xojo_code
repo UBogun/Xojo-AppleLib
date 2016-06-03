@@ -1,178 +1,149 @@
 #tag Class
-Protected Class AppleClipView
+Protected Class AppleTableCellView
 Inherits AppleView
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub autoscroll Lib appkitlibname Selector "autoscroll:" (id as ptr, anEvent as Ptr)
-	#tag EndExternalMethod
-
-	#tag Method, Flags = &h0, Description = 436F6E73747261696E732074686520626F756E6473206F662074686520636C69702076696577207768696C65207468652075736572206973206D61676E696679696E6720616E64207363726F6C6C696E672E
-		Function ConstrainBounds(rect as FoundationFrameWork.NSRect) As FoundationFrameWork.NSRect
-		  return constrainBoundsRect (id, rect)
-		End Function
-	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constrainBoundsRect Lib appkitlibname Selector "constrainBoundsRect:" (id as ptr, Rect as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
-	#tag EndExternalMethod
-
-	#tag Method, Flags = &h21
+	#tag Method, Flags = &h21, Description = 437265617465732061206E6577207669657720696E2074686520737065636966696564206672616D652E
 		Private Sub Constructor()
 		  
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub Constructor(Frame as FoundationFrameWork.NSRect)
+	#tag Method, Flags = &h0, Description = 437265617465732061206E6577207669657720696E2074686520737065636966696564206672616D652E
+		Sub Constructor(Frame as FoundationFrameWork.nsrect)
+		  
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
-		  // Constructor(aControl as control) -- From AppleView
-		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithFrame(alloc(classptr), frame))
+		  Super.Constructor(initWithFrame(alloc(classptr), frame))
 		  MHasOwnership = true
 		  
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getcopiesOnScroll Lib appkitlibname Selector "copiesOnScroll" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getdocumentRect Lib appkitlibname Selector "documentRect" (id as ptr) As FoundationFrameWork.NSRect
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getdocumentVisibleRect Lib appkitlibname Selector "documentVisibleRect" (id as ptr) As FoundationFrameWork.NSRect
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleClipView
-		  return if (aptr = nil, nil, new AppleClipView(aptr))
+		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTableCellView
+		  return if (aptr = nil, nil, new AppleTableCellView(aptr))
 		End Function
 	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 4368616E67657320746865206F726967696E206F662074686520636C69702076696577E280997320626F756E64732072656374616E676C6520746F206E65774F726967696E2E
-		Sub ScrollToPoint(Point as FoundationFrameWork.NSPoint)
-		  ScrollToPoint id, point
-		End Sub
-	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub scrollToPoint Lib appkitlibname Selector "scrollToPoint:" (id as ptr, point as FoundationFrameWork . NSPoint)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setcopiesOnScroll Lib appkitlibname Selector "setCopiesOnScroll:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
 
 
 	#tag Note, Name = Status incomplete
 		
-		missing:
-		documentCursor
-		dragging methods
+		draggingimagecomponents missing
 	#tag EndNote
 
 
-	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520636C69702076696577206175746F6D61746963616C6C79206163636F756E747320666F72206F74686572207363726F6C6C20766965772073756276696577732E
+	#tag ComputedProperty, Flags = &h0, Description = 412070726F7879206F626A65637420666F722074686520726563656976657220746861742063616E206265207573656420746F20696E69746961746520696D706C69656420616E696D6174696F6E20666F722070726F7065727479206368616E6765732E
 		#tag Getter
 			Get
-			  return AppKitFramework.getautomaticallyAdjustsContentInsets(id)
+			  return AppleTableCellView.MakeFromPtr(getanimator(id))
 			End Get
 		#tag EndGetter
-		#tag Setter
-			Set
-			  AppKitFramework.setautomaticallyAdjustsContentInsets id, value
-			End Set
-		#tag EndSetter
-		AutomaticallyAdjustsContentInsets As Boolean
+		Animator As AppleTableCellView
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520636C69702076696577E2809973206261636B67726F756E642E
+	#tag ComputedProperty, Flags = &h0, Description = 54686520617070656172616E6365206F66207468652043656C6C566965772C20696E20616E204E53417070656172616E6365206F626A6563742E0A5468652064656661756C742076616C756520666F7220746869732070726F7065727479206973206E696C2C207768696368206D65616E7320746861742074686520726563656976657220757365732074686520617070656172616E636520697420696E6865726974732066726F6D20746865206E65617265737420616E636573746F722074686174206861732073657420616E20617070656172616E63652E205768656E20796F752073657420617070656172616E636520746F2061206E6F6E2D6E696C2076616C75652C2074686520726563656976657220616E642074686520766965777320697420636F6E7461696E7320757365207468652073706563696669656420617070656172616E63652E0A417661696C61626C652073696E6365204F53582031302E392E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			  return AppleTableCellView.MakeFromPtr(AppKitFramework.getappearance (id))
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
+			  AppKitFramework.setappearance id, value.id
 			End Set
 		#tag EndSetter
-		BackgroundColor As AppleColor
+		Appearance As AppleTableCellView
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546869732070726F7065727479206973206175746F6D61746963616C6C79207365742062792074686520656E636C6F73696E6720726F77207669657720746F206C657420746869732076696577206B6E6F77207768617420697473206261636B67726F756E64206C6F6F6B73206C696B652E
+		#tag Getter
+			Get
+			  return AppKitFramework.getBackgroundstyle (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setBackgroundStyle id, value
+			End Set
+		#tag EndSetter
+		BackgroundStyle As AppleCell.NSBackgroundStyle
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSClipView")
+			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSTableCellView")
 			  return mClassPtr
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E636520746861742074686520636F6E74656E74207669657720697320696E7365742066726F6D2074686520656E636C6F73696E67207363726F6C6C20766965772E
+	#tag ComputedProperty, Flags = &h0, Description = 54686520617070656172616E636520746861742077696C6C2062652075736564207768656E2074686520726563656976657220697320647261776E206F6E73637265656E2C20696E20616E204E53417070656172616E6365206F626A6563742E2028726561642D6F6E6C79290A5468652064656661756C742076616C756520666F7220746869732070726F70657274792069732070726F766964656420627920746865206E65617265737420616E636573746F72206F66207468652072656365697665722074686174206861732073657420616E20617070656172616E63652E0A596F752063616E2075736520746869732070726F706572747920746F20656E73757265207468617420616E206F666673637265656E207669657720736574732074686520617070726F7072696174652063757272656E7420617070656172616E6365207768656E206974206472617773206F6E73637265656E2E
 		#tag Getter
 			Get
-			  return AppKitFramework.getcontentInsets(id)
+			  return AppleTableCellView.MakeFromPtr(AppKitFramework.geteffectiveappearance (id))
+			  
+			End Get
+		#tag EndGetter
+		EffectiveAppearance As AppleTableCellView
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A656374207468617420726570726573656E7473207468652063656C6C20646174612E
+		#tag Getter
+			Get
+			  return AppleImageView.MakeFromPtr(AppKitFramework.getimageView (id))
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setcontentInsets id, value
+			  AppKitFramework.setimageView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
-		ContentInsets As AppkitFramework.NSEdgeInsets
+		ImageView As AppleImageView
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 49662074686520636C6970207669657720636F706965732072656E646572656420696D61676573207768696C65207363726F6C6C696E672E
+	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A656374207468617420726570726573656E7473207468652063656C6C20646174612E
 		#tag Getter
 			Get
-			  return getcopiesOnScroll (id)
+			  return AppleObject.MakeFromPtr(AppKitFramework.getobjectValue (id))
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcopiesOnScroll id, value
+			  AppKitFramework.setobjectValue id, if (value = nil, nil, value.GeneralID)
 			End Set
 		#tag EndSetter
-		CopiesOnScroll As Boolean
+		ObjectValue As AppleGeneralObject
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 5468652072656374616E676C6520646566696E696E672074686520646F63756D656E742076696577E2809973206672616D652C2061646A757374656420746F207468652073697A65206F662074686520636C697020766965772069662074686520646F63756D656E74207669657720697320736D616C6C65722E2028726561642D6F6E6C7929
+	#tag ComputedProperty, Flags = &h0, Description = 54686520726F772073697A65207374796C652E2028726561642D6F6E6C79290A557365204170706C655461626C65566965772E456666656374697665526F7753697A655374796C6520746F206368616E67652E
 		#tag Getter
 			Get
-			  return getdocumentRect(id)
+			  return TableViewAdditionsForAppkit.getrowSizeStyle (id)
 			End Get
 		#tag EndGetter
-		DocumentRect As FoundationFrameWork.NSRect
+		RowSizeStyle As AppleTableView.NSTableViewRowSizeStyle
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 5468652072656374616E676C6520646566696E696E672074686520646F63756D656E742076696577E2809973206672616D652C2061646A757374656420746F207468652073697A65206F662074686520636C697020766965772069662074686520646F63756D656E74207669657720697320736D616C6C65722E2028726561642D6F6E6C7929
+	#tag ComputedProperty, Flags = &h0, Description = 5465787420646973706C61796564206279207468652063656C6C2E
 		#tag Getter
 			Get
-			  return getdocumentVisibleRect(id)
-			End Get
-		#tag EndGetter
-		DocumentVisibleRect As FoundationFrameWork.NSRect
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520636C6970207669657720647261777320697473206261636B67726F756E6420636F6C6F722E
-		#tag Getter
-			Get
-			  return AppKitFramework.GetdrawsBackground (id)
+			  return AppleTextField.MakeFromPtr(AppKitFramework.gettextField (id))
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setdrawsBackground id, value
+			  AppKitFramework.settextField id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
-		DrawsBackground As Boolean
+		TextField As AppleTextField
 	#tag EndComputedProperty
 
 
@@ -183,14 +154,21 @@ Inherits AppleView
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="AutomaticallyAdjustsContentInsets"
+			Name="AutoresizesSubviews"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="AutoresizesSubviews"
+			Name="BackgroundStyle"
 			Group="Behavior"
-			Type="Boolean"
+			Type="AppleCell.NSBackgroundStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Light"
+				"1 - Dark"
+				"2 - Raised"
+				"3 - Lowered"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BoundsRotation"
@@ -208,19 +186,9 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="CopiesOnScroll"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="DrawsBackground"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FocusRingType"
@@ -380,6 +348,19 @@ Inherits AppleView
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RowSizeStyle"
+			Group="Behavior"
+			Type="AppleTableView.NSTableViewRowSizeStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - Default"
+				"0 - Custom"
+				"1 - Small"
+				"2 - Medium"
+				"3 - Large"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

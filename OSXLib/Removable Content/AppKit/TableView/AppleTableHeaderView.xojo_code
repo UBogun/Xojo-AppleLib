@@ -157,6 +157,16 @@ Inherits AppleView
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DraggedColumn"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DraggedDistance"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FocusRingType"
 			Group="Behavior"
 			Type="Appkitframework.NSFocusRingType"
@@ -309,6 +319,11 @@ Inherits AppleView
 			Name="PostsFrameChangedNotifications"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ResizedColumn"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"

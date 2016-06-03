@@ -64,11 +64,6 @@ Protected Class AppleTableColumnResizingOptions
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DashedHorizontal"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Id"
 			Group="Behavior"
 			Type="UInteger"

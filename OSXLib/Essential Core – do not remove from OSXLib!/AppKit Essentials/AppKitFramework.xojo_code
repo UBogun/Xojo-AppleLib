@@ -1,6 +1,22 @@
 #tag Module
 Protected Module AppKitFramework
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function drawingRectForBounds Lib appkitlibname Selector "drawingRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub drawInteriorWithFrameInView Lib appkitlibname Selector "drawInteriorWithFrame:inView:" (id as ptr, frame as FoundationFrameWork . NSRect, view as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub drawWithExpansionFrame Lib appkitlibname Selector "drawWithExpansionFrame:inView:" (id as ptr, frame as FoundationFrameWork . NSRect, view as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub drawWithFrameinView Lib appkitlibname Selector "drawWithFrame:inView:" (id as ptr, frame as FoundationFrameWork . NSRect, view as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getAction Lib appkitlibname Selector "action" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -13,7 +29,23 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getallowsEditingTextAttributes Lib appkitlibname Selector "allowsEditingTextAttributes" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getallowsMixedState Lib appkitlibname Selector "allowsMixedState" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getallowsUndo Lib appkitlibname Selector "allowsUndo" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getanimates Lib appkitlibname Selector "animates" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getappearance Lib appkitlibname Selector "appearance" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -33,7 +65,19 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getBackgroundStyle Lib appkitlibname Selector "backgroundStyle" (id as Ptr) As AppleCell.NSBackgroundStyle
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getbaseWritingDirection Lib appkitlibname Selector "baseWritingDirection" (id as ptr) As AppleText.NSWritingDirection
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getBezeled Lib appkitlibname Selector "isBezeled" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getBordered Lib appkitlibname Selector "isBordered" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -42,6 +86,26 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getContinuous Lib appkitlibname Selector "isContinuous" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcontrolSize Lib foundationlibname Selector "controlSize" (id as ptr) As applecontrol.NSControlSize
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcontrolTint Lib appkitlibname Selector "controlTint" (id as ptr) As AppleCell.NSControlTint
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcontrolView Lib appkitlibname Selector "controlView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdefaultFocusRingType Lib appkitlibname Selector "defaultFocusRingType" (id as ptr) As AppKitframework.NSFocusRingType
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdefaultMenu Lib appkitlibname Selector "defaultMenu" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -57,7 +121,15 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function geteffectiveAppearance Lib appkitlibname Selector "effectiveAppearance" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getenabled Lib appkitlibname Selector "isEnabled" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getexpansionFrameWithFrame Lib appkitlibname Selector "expansionFrameWithFrame:inView:" (id as ptr, frame as FoundationFrameWork . NSRect, view as ptr) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -65,7 +137,15 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getfocusRingType Lib appkitlibname Selector "focusRingType" (id as ptr) As AppKitframework.NSFocusRingType
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getHidden Lib appkitlibname Selector "isHidden" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethighlightColorWithFrame Lib appkitlibname Selector "highlightColorWithFrame:inView:" (id as ptr, frame as FoundationFrameWork . NSRect, view as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -92,8 +172,20 @@ Protected Module AppKitFramework
 		Protected Declare Function getimageScaling Lib appkitlibname Selector "imageScaling" (id as ptr) As NSImageScaling
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimageView Lib appkitlibname Selector "imageView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimportsGraphics Lib appkitlibname Selector "importsGraphics" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getintegerValue Lib foundationlibname Selector "integerValue" (id as ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getinteriorBackgroundStyle Lib appkitlibname Selector "interiorBackgroundStyle" (id as Ptr) As AppleCell.NSBackgroundStyle
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -124,12 +216,44 @@ Protected Module AppKitFramework
 		Protected Declare Function getmaxWidth Lib appkitlibname Selector "maxWidth" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getmenu Lib appkitlibname Selector "menu" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getminWidth Lib appkitlibname Selector "minWidth" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getobjectValue Lib foundationlibname Selector "objectValue" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getopaque Lib appkitlibname Selector "isOpaque" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrefusesFirstResponder Lib foundationlibname Selector "refusesFirstResponder" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrepresentedObject Lib appkitlibname Selector "representedObject" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getScrollable Lib appkitlibname Selector "isScrollable" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getSelectable Lib appkitlibname Selector "isSelectable" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshowsFirstResponder Lib appkitlibname Selector "showsFirstResponder" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getState Lib appkitlibname Selector "state" (id as ptr) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -149,11 +273,19 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettextField Lib appkitlibname Selector "textField" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getTitle Lib appkitlibname Selector "title" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function gettoolTip Lib appkitlibname Selector "toolTip" (id as ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettruncatesLastVisibleLine Lib appkitlibname Selector "truncatesLastVisibleLine" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -177,6 +309,26 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getwraps Lib appkitlibname Selector "wraps" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub highlightWithFrameinView Lib appkitlibname Selector "highlight:withFrame:inView:" (id as ptr, highlight as boolean, frame as FoundationFrameWork . NSRect, view as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function imageRectForBounds Lib appkitlibname Selector "imageRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub performClick Lib appkitlibname Selector "performClick:" (id as ptr, sender as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sendActionOn Lib foundationlibname Selector "sendActionOn:" (id as ptr, mask as Integer)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub sendActionTo Lib appkitlibname Selector "sendAction:to:" (id as ptr, action as ptr, target as ptr)
 	#tag EndExternalMethod
 
@@ -193,7 +345,23 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setallowsEditingTextAttributes Lib appkitlibname Selector "setAllowsEditingTextAttributes:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setallowsMixedState Lib appkitlibname Selector "setAllowsMixedState:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setallowsUndo Lib appkitlibname Selector "setAllowsUndo:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setanimates Lib appkitlibname Selector "setAnimates:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setappearance Lib appkitlibname Selector "setAppearance:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -213,7 +381,19 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setBackgroundStyle Lib appkitlibname Selector "setBackgroundStyle:" (id as Ptr, value as applecell . NSBackgroundStyle)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setbaseWritingDirection Lib appkitlibname Selector "setBaseWritingDirection:" (id as ptr, value as AppleText . NSWritingDirection)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setBezeled Lib appkitlibname Selector "setBezeled:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setBordered Lib appkitlibname Selector "setBordered:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -222,6 +402,18 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setContinuous Lib appkitlibname Selector "setContinuous:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setcontrolSize Lib foundationlibname Selector "setControlSize:" (id as ptr, value as applecontrol . NSControlSize)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setcontrolTint Lib appkitlibname Selector "setControlTint:" (id as ptr, value as AppleCell . NSControlTint)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setControlView Lib appkitlibname Selector "setControlView:" (id as ptr, view as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -242,6 +434,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setfloatvalue Lib foundationlibname Selector "setFloatValue:" (id as ptr, value as single)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setfocusRingType Lib appkitlibname Selector "setFocusRingType:" (id as ptr, value as AppKitframework . NSFocusRingType)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -272,6 +468,14 @@ Protected Module AppKitFramework
 		Protected Declare Sub setimageScaling Lib appkitlibname Selector "setImageScaling:" (id as ptr, value as NSImageScaling)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setImageView Lib appkitlibname Selector "setImageView:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimportsGraphics Lib appkitlibname Selector "setImportsGraphics:" (id as ptr, value as boolean)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setIntegerValue Lib foundationlibname Selector "setIntegerValue:" (id as ptr, value as Integer)
 	#tag EndExternalMethod
@@ -296,12 +500,40 @@ Protected Module AppKitFramework
 		Protected Declare Sub setMaxWidth Lib appkitlibname Selector "setMaxWidth:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setMenu Lib appkitlibname Selector "setMenu:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setMinWidth Lib appkitlibname Selector "setMinWidth:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setobjectValue Lib foundationlibname Selector "setObjectValue:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setrefusesFirstResponder Lib foundationlibname Selector "setRefusesFirstResponder:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setrepresentedObject Lib appkitlibname Selector "setRepresentedObject:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setScrollable Lib appkitlibname Selector "setScrollable:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setSelectable Lib appkitlibname Selector "setSelectable:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshowsFirstResponder Lib appkitlibname Selector "setShowsFirstResponder:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setState Lib appkitlibname Selector "setState:" (id as ptr, value as Integer)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -321,11 +553,23 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub settextField Lib appkitlibname Selector "setTextField:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setTitle Lib appkitlibname Selector "setTitle:" (id as ptr, value as CFStringRef)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setToolTip Lib appkitlibname Selector "setToolTip:" (id as ptr, value as cfstringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub settruncatesLastVisibleLine Lib appkitlibname Selector "setTruncatesLastVisibleLine:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function setUpFieldEditorAttributes Lib appkitlibname Selector "setUpFieldEditorAttributes:" (id as ptr, edtitor as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -341,11 +585,43 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setWraps Lib appkitlibname Selector "setWraps:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub sizeToFit Lib appkitlibname Selector "sizeToFit" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub takeDoubleValueFrom Lib appkitlibname Selector "takeDoubleValueFrom:" (id as ptr, obj as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub takeFloatValueFrom Lib appkitlibname Selector "takeFloatValueFrom:" (id as ptr, obj as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub takeIntegerValueFrom Lib appkitlibname Selector "takeIntegerValueFrom:" (id as ptr, obj as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub takeIntValueFrom Lib appkitlibname Selector "takeIntValueFrom:" (id as ptr, obj as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub takeObjectValueFrom Lib appkitlibname Selector "takeObjectValueFrom:" (id as ptr, obj as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub takeStringValueFrom Lib appkitlibname Selector "takeStringValueFrom:" (id as ptr, obj as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub tile Lib appkitlibname Selector "tile" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function titleRectForBounds Lib appkitlibname Selector "titleRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
 

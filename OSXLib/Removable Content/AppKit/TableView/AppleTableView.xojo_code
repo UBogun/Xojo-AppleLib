@@ -73,6 +73,22 @@ Inherits AppleControl
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E6577206F72206578697374696E67207669657720776974682074686520737065636966696564206964656E7469666965722E
+		Sub Constructor(Identifer As CFStringRef, Owner As AppleObject)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleControl
+		  // Constructor(aControl as control) -- From AppleView
+		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  Super.Constructor(makeViewWithIdentifier(alloc(classptr),Identifer,if (owner = nil, nil, owner.id)))
+		  MHasOwnership = true
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub Constructor(rect as FoundationFrameWork.NSRect)
 		  // Calling the overridden superclass constructor.
@@ -340,10 +356,6 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getrowSizeStyle Lib AppKitLibName Selector "rowSizeStyle" (id as ptr) As NSTableViewRowSizeStyle
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getselectedColumn Lib AppKitLibName Selector "selectedColumn" (id as ptr) As Integer
 	#tag EndExternalMethod
 
@@ -428,6 +440,10 @@ Inherits AppleControl
 		  return if (aptr= nil, nil, new AppleTableView(aptr))
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function makeViewWithIdentifier Lib AppKitLibName Selector "makeViewWithIdentifier:owner:" (id as ptr, identifier as CFStringRef, Owner As Ptr) As Ptr
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 4D6F7665732074686520636F6C756D6E20616E642068656164696E67206174207468652073706563696669656420696E64657820746F20746865206E65772073706563696669656420696E6465782E
 		Sub MoveColumn(OldIndex as Integer, NewIndex as Integer)
@@ -681,10 +697,6 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setrowHeight Lib AppKitLibName Selector "setRowHeight:" (id as ptr, value as CGFloat)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setrowSizeStyle Lib AppKitLibName Selector "setRowSizeStyle:" (id as ptr, value as NSTableViewRowSizeStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1211,12 +1223,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652065666665637469766520726F772073697A65207374796C6520666F7220746865207461626C652E2028726561642D6F6E6C79292E2053657420696E2073797374656D2070726566732E
 		#tag Getter
 			Get
-			  return getrowSizeStyle (id)
+			  return TableViewAdditionsForAppkit.getrowSizeStyle (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setrowSizeStyle id, value
+			  TableViewAdditionsForAppkit.setrowSizeStyle id, value
 			End Set
 		#tag EndSetter
 		RowSizeStyle As NSTableViewRowSizeStyle
@@ -1389,12 +1401,52 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AllowsColumnReordering"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowsColumnResizing"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowsColumnSelection"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowsEmptySelection"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowsMultipleSelection"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowsTypeSelect"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Alpha"
 			Group="Behavior"
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AutoresizesSubviews"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutosaveName"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutosaveTableColumns"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -1425,6 +1477,30 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ClickedColumn"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ClickedRow"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ColumnAutoresizingStyle"
+			Group="Behavior"
+			Type="NSTableViewColumnAutoresizingStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NoColumnAutoresizing"
+				"1 - UniformColumn"
+				"2 - SequentialColumn"
+				"3 - ReverseSequentialColumn"
+				"4 - LastColumnOnly"
+				"5 - FirstColumnOnly"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Continuous"
 			Group="Behavior"
 			Type="Boolean"
@@ -1451,7 +1527,47 @@ Inherits AppleControl
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DraggingDestinationFeedbackStyle"
+			Group="Behavior"
+			Type="NSTableViewDraggingDestinationFeedbackStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - None"
+				"0 - Regular"
+				"1 - SourceList"
+				"2 - Gap"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EditedColumn"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EditedRow"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EffectiveRowSizeStyle"
+			Group="Behavior"
+			Type="NSTableViewRowSizeStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - Default"
+				"0 - Custom"
+				"1 - Small"
+				"2 - Medium"
+				"3 - Large"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Enabled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FloatsGroupRows"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -1634,6 +1750,26 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NumberOfColumns"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NumberOfRows"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NumberOfSelectedColumns"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NumberOfSelectedRows"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="PostsBoundsChangedNotifications"
 			Group="Behavior"
 			Type="Boolean"
@@ -1652,6 +1788,50 @@ Inherits AppleControl
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RowActionsVisible"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RowHeight"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RowSizeStyle"
+			Group="Behavior"
+			Type="NSTableViewRowSizeStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - Default"
+				"0 - Custom"
+				"1 - Small"
+				"2 - Medium"
+				"3 - Large"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectedColumn"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectedRow"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectionHighlightStyle"
+			Group="Behavior"
+			Type="NSTableViewSelectionHighlightStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - None"
+				"0 - Regular"
+				"1 - SourceList"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SingleValue"
@@ -1700,6 +1880,21 @@ Inherits AppleControl
 				"0 - LeftToRight"
 				"1 - RightToLeft"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UsesAlternatingRowBackgroundColors"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UsesStaticContents"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalMotionCanBeginDrag"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WantsLayer"

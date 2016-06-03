@@ -384,6 +384,11 @@ Inherits AppleControl
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Height"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HeightAdjustLimit"
 			Group="Behavior"
 			Type="Double"
@@ -610,6 +615,11 @@ Inherits AppleControl
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="TranslatesAutoresizingMaskIntoConstraints"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="UsableParts"
 			Group="Behavior"
 			Type="NSUsableScrollerParts"
@@ -634,6 +644,11 @@ Inherits AppleControl
 			Name="WantsLayer"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Width"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WidthAdjustLimit"

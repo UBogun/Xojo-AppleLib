@@ -44,6 +44,22 @@ Inherits Control
 	#tag EndHook
 
 
+	#tag Note, Name = Status incomplete
+		
+		Pasteboard and drag events not implemented
+	#tag EndNote
+
+	#tag Note, Name = Why two classes? Read me!
+		
+		Basically, two types of TableViews exist: View-based ones (the standard) and cell-based ones. 
+		The Standard tableview uses NSView objects, or rather the subclass Apple/NSTableCellView, to display usually text content. 
+		You set these values with an OXLibTableViewDataSoure Control which returns text values in its TextValue event which is called when you need to set the view textvalue.
+		
+		With a cell-based tableview, for which NSNib has to be ported from iOSLib, the OSXLibTableViewObjectDataSource has to be used  which does not return text but the data to display in the appropriate cell.
+		Also, the latter class delivers this object (as AppleObject) so you can save it during the SetObject event.
+	#tag EndNote
+
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get

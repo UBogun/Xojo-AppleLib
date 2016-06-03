@@ -23,16 +23,6 @@ Inherits AppleCell
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 5365747320746865207265636569766572277320636F6E74726F6C20766965772C20746865207669657720696E20776869636820697420697320647261776E2E
-		Sub SetControlView(view as AppleView)
-		  setControlView id, if(view = nil, nil, view.id)
-		End Sub
-	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setControlView Lib appkitlibname Selector "setControlView:" (id as ptr, view as ptr)
-	#tag EndExternalMethod
-
 
 	#tag Note, Name = Status complete
 		
@@ -105,14 +95,91 @@ Inherits AppleCell
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Alignment"
+			Group="Behavior"
+			Type="AppleText.NSTextAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Left"
+				"2 - Center"
+				"1 - Right"
+				"3 - Justified"
+				"4 - Natural"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowsMixedState"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowsUndo"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BackgroundStyle"
+			Group="Behavior"
+			Type="AppleCell.NSBackgroundStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Light"
+				"1 - Dark"
+				"2 - Raised"
+				"3 - Lowered"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Bezeled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Bordered"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ControlTint"
+			Group="Behavior"
+			Type="NSControlTint"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - Blue"
+				"6 - Graphite"
+				"7 - Clear"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DoubleValue"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Editable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Enabled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasValidObjectValue"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -122,9 +189,26 @@ Inherits AppleCell
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Int32Value"
+			Group="Behavior"
+			Type="Int32"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="IntegerValue"
 			Group="Behavior"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InteriorBackgroundStyle"
+			Group="Behavior"
+			Type="AppleCell.NSBackgroundStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Light"
+				"1 - Dark"
+				"2 - Raised"
+				"3 - Lowered"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -132,6 +216,20 @@ Inherits AppleCell
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="LineBreakMode"
+			Group="Behavior"
+			Type="AppleText.NSLineBreakMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - WordWrap"
+				"1 - CharacterWrap"
+				"2 - Clip"
+				"3 - TruncateHead"
+				"4 - TruncateTail"
+				"5 - TruncateMiddle"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mHasOwnership"
@@ -145,9 +243,51 @@ Inherits AppleCell
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NextState"
+			Group="Behavior"
+			Type="NSCellStateValue"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - Mixed"
+				"0 - Off"
+				"1 - On"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Opaque"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Scrollable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Selectable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SingleValue"
+			Group="Behavior"
+			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="State"
+			Group="Behavior"
+			Type="NSCellStateValue"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - Mixed"
+				"0 - Off"
+				"1 - On"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
@@ -161,11 +301,32 @@ Inherits AppleCell
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="TextValue"
+			Group="Behavior"
+			Type="text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TruncatesLastVisibleLine"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Type"
+			Group="Behavior"
+			Type="NSCellType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NullCell"
+				"1 - TextCell"
+				"2 - ImageCell"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

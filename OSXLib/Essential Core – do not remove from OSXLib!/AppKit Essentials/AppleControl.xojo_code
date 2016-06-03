@@ -62,10 +62,6 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getcontrolSize Lib foundationlibname Selector "controlSize" (id as ptr) As NSControlSize
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcontrolTint Lib foundationlibname Selector "controlTint" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -78,22 +74,14 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getrefusesFirstResponder Lib foundationlibname Selector "refusesFirstResponder" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getsizeThatFits Lib foundationlibname Selector "sizeThatFits:" (id as ptr, size as FoundationFrameWork . NSSize) As FoundationFrameWork.NSSize
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 53696D756C6174657320612073696E676C65206D6F75736520636C69636B206F6E207468652072656365697665722E
 		Sub PerformClick(Sender as appleobject)
-		  performClick id, sender.id
+		  AppKitFramework.performClick id, sender.id
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub performClick Lib foundationlibname Selector "performClick:" (id as ptr, sender as ptr)
-	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 53656C65637473207468652073706563696669656420746578742072616E676520696E207468652072656365697665722773206669656C6420656469746F722E
 		Sub SelectWithFrame(Frame as FoundationFrameWork.NSREct, editor as appletext, delegateObj as AppleObject, start As Integer, length as integer)
@@ -112,15 +100,7 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub sendActionOn Lib foundationlibname Selector "sendActionOn:" (id as ptr, mask as Integer)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setallowsExpansionToolTips Lib foundationlibname Selector "setAllowsExpansionToolTips:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setcontrolSize Lib foundationlibname Selector "setControlSize:" (id as ptr, value as NSControlSize)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -129,10 +109,6 @@ Inherits AppleView
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setignoresMultiClick Lib foundationlibname Selector "setIgnoresMultiClick:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setrefusesFirstResponder Lib foundationlibname Selector "setRefusesFirstResponder:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 41736B732074686520636F6E74726F6C20746F2063616C63756C61746520616E642072657475726E207468652073697A6520746861742062657374206669747320746865207370656369666965642073697A652E52657475726E2074727565206966207468657265207761732061206669656C6420656469746F72206173736F63696174656420776974682074686520636F6E7472
@@ -149,63 +125,39 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F206120646F75626C652D707265636973696F6E20666C6F6174696E672D706F696E742076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeDoubleValueFrom(Obj As AppleObject)
-		  takeDoubleValueFrom id, obj.id
+		  AppKitFramework.takeDoubleValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub takeDoubleValueFrom Lib foundationlibname Selector "takeDoubleValueFrom:" (id as ptr, obj as ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub takeFloatValueFrom Lib foundationlibname Selector "takeFloatValueFrom:" (id as ptr, obj as ptr)
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F206120496E7433322076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeInt32ValueFrom(Obj As AppleObject)
-		  takeIntValueFrom id, obj.id
+		  AppKitFramework.takeIntValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F206120496E74656765722076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeIntegerValueFrom(Obj As AppleObject)
-		  takeIntegerValueFrom id, obj.id
+		  AppKitFramework.takeIntegerValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub takeIntegerValueFrom Lib foundationlibname Selector "takeIntegerValueFrom:" (id as ptr, obj as ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub takeIntValueFrom Lib foundationlibname Selector "takeIntValueFrom:" (id as ptr, obj as ptr)
-	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F20616E206F626A6563742076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeObjectValueFrom(Obj As AppleObject)
-		  takeObjectValueFrom id, obj.id
+		  AppKitFramework.takeObjectValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub takeObjectValueFrom Lib foundationlibname Selector "takeObjectValueFrom:" (id as ptr, obj as ptr)
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F20612073696E676C652D707265636973696F6E20666C6F6174696E672D706F696E742076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeSingleValueFrom(Obj As AppleObject)
-		  takeFloatValueFrom id, obj.id
+		  AppKitFramework.takeFloatValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F2074686520737472696E672076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeStringValueFrom(Obj As AppleObject)
-		  takeStringValueFrom id, obj.id
+		  AppKitFramework.takeStringValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub takeStringValueFrom Lib foundationlibname Selector "takeStringValueFrom:" (id as ptr, obj as ptr)
-	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 56616C696461746573206368616E67657320746F20616E7920757365722D747970656420746578742E0A56616C69646174696F6E207365747320746865206F626A6563742076616C7565206F66207468652063656C6C20746F207468652063757272656E7420636F6E74656E7473206F66207468652063656C6CE280997320656469746F722028746865204E5354657874206F626A656374207573656420666F722065646974696E67292C2073746F72696E6720697420617320612073696D706C65204E53537472696E67206F7220616E206174747269627574656420737472696E67206F626A656374206261736564206F6E207468652061747472696275746573206F662074686520656469746F722E
 		Function ValidateEditing() As Boolean
@@ -214,7 +166,7 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub validateEditing Lib foundationlibname Selector "validateEditing" (id as ptr)
+		Protected Declare Sub validateEditing Lib appkitlibname Selector "validateEditing" (id as ptr)
 	#tag EndExternalMethod
 
 
@@ -270,6 +222,20 @@ Inherits AppleView
 			End Set
 		#tag EndSetter
 		AllowExpansionTooltips As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C20616C6C6F7773207468652065646974696E67206F662069747320636F6E74656E74E2809973207465787420617474726962757465732062792074686520757365722E
+		#tag Getter
+			Get
+			  return AppKitFramework.getallowsEditingTextAttributes (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setallowsEditingTextAttributes id, value
+			End Set
+		#tag EndSetter
+		AllowsEditingTextAttributes As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20617320616E206174747269627574656420737472696E672E
@@ -331,12 +297,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F662074686520636F6E74726F6C2E
 		#tag Getter
 			Get
-			  return getcontrolSize(id)
+			  return AppKitFramework.getcontrolSize(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcontrolSize id, value
+			  AppKitFramework.setcontrolSize id, value
 			End Set
 		#tag EndSetter
 		ControlSize As NSControlSize
@@ -410,6 +376,20 @@ Inherits AppleView
 		IgnoresMultiClick As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C20737570706F7274732074686520696D706F72746174696F6E206F6620696D6167657320696E746F2069747320746578742E
+		#tag Getter
+			Get
+			  return AppKitFramework.getimportsGraphics (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setimportsGraphics id, value
+			End Set
+		#tag EndSetter
+		ImportsGraphics As Boolean
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20617320616E20496E7433322E
 		#tag Getter
 			Get
@@ -470,7 +450,7 @@ Inherits AppleView
 		Shared kNSControlTextDidEndEditingNotification As Text
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 54686520616C69676E6D656E74206D6F6465206F6620746865207465787420696E2074686520636F6E74726F6CE28099732063656C6C2E
+	#tag ComputedProperty, Flags = &h0, Description = 546865206C696E6520627265616B206D6F646520746F20757365207768656E2064726177696E67207465787420696E207468652063656C6C2E
 		#tag Getter
 			Get
 			  return AppKitFramework.getlineBreakMode (id)
@@ -503,13 +483,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520726563656976657220726566757365732074686520666972737420726573706F6E64657220726F6C65
 		#tag Getter
 			Get
-			  return getrefusesFirstResponder (id)
+			  return AppKitFramework.getrefusesFirstResponder (id)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setrefusesFirstResponder id, value
+			  AppKitFramework.setrefusesFirstResponder id, value
 			End Set
 		#tag EndSetter
 		RefusesFirstResponder As Boolean

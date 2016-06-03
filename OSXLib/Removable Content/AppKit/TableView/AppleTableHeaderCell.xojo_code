@@ -67,6 +67,11 @@ Inherits AppleTextFieldCell
 			Name="BezelStyle"
 			Group="Behavior"
 			Type="NSTextFieldBezelStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Square"
+				"1 - Rounded"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"
