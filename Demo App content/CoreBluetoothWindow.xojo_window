@@ -98,9 +98,9 @@ Begin Window CoreBluetoothWindow
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   4
+      ColumnCount     =   5
       ColumnsResizable=   False
-      ColumnWidths    =   "15%,15%,50%,10%"
+      ColumnWidths    =   "15%,15%,45%,15%,10%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -111,12 +111,12 @@ Begin Window CoreBluetoothWindow
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   308
+      Height          =   172
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "STATE	DEVICE	UUID	SERVICE1"
+      InitialValue    =   "STATE	DEVICE	UUID	SERVICE1	Connect"
       Italic          =   False
       Left            =   20
       LockBottom      =   False
@@ -300,7 +300,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Data log"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -312,6 +311,442 @@ Begin Window CoreBluetoothWindow
       Underline       =   False
       Visible         =   True
       Width           =   100
+   End
+   Begin Label Label4
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      Text            =   "Heart rate"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   204
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   74
+   End
+   Begin Label blt_power2
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   106
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &cFF000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   204
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
+   End
+   Begin Label Label5
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   158
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      Text            =   "Speed"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   204
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   74
+   End
+   Begin Label blt_power3
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   244
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &cFF000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   204
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
+   End
+   Begin Label Label6
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   296
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      Text            =   "Cadanze"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   204
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   74
+   End
+   Begin Label blt_power4
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   382
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &cFF000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   204
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
+   End
+   Begin Label Label7
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   16
+      TabPanelIndex   =   0
+      Text            =   "Kickr power"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   236
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   74
+   End
+   Begin Label blt_power5
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   106
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &c0080FF00
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   236
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
+   End
+   Begin Label Label8
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   158
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      Text            =   "Kickr speed"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   236
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   74
+   End
+   Begin Label blt_power6
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   244
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &c0080FF00
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   236
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
+   End
+   Begin Slider Slider1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   23
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   382
+      LineStep        =   1
+      LiveScroll      =   False
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Maximum         =   600
+      Minimum         =   1
+      PageStep        =   20
+      Scope           =   0
+      TabIndex        =   20
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TickStyle       =   "0"
+      Top             =   236
+      Value           =   0
+      Visible         =   True
+      Width           =   138
+   End
+   Begin Label Label9
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   296
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   21
+      TabPanelIndex   =   0
+      Text            =   "Kickr output"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   236
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   74
+   End
+   Begin Label blt_watt
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   532
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   22
+      TabPanelIndex   =   0
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &c0080FF00
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   233
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
    End
 End
 #tag EndWindow
@@ -349,15 +784,27 @@ End
 		  dim found as Boolean=false
 		  
 		  for x =0 to devices.ListCount-1 
-		    if devices.Cell(x,2)=Peripheral.Identifier.UUIDString and Peripheral.Identifier.UUIDString<>"" then
+		    
+		    if devices.Cell(x,2)=Peripheral.Identifier.UUIDString then
+		      
 		      devices.Cell(x,0)=status
 		      found=true
+		      
+		      devices.RowTag(x) = Peripheral 
+		      
 		    end if
+		    
 		  next
 		  
 		  // new
 		  if found=false then
+		    
 		    devices.AddRow status, Peripheral.Name, Peripheral.Identifier.UUIDString, ""
+		    devices.CellType( devices.LastIndex, 4 ) = Listbox.TypeCheckbox
+		    devices.CellCheck( devices.LastIndex, 4 ) = False
+		    
+		    devices.RowTag(devices.LastIndex) = Peripheral 
+		    
 		  end if
 		End Sub
 	#tag EndMethod
@@ -399,30 +846,41 @@ End
 		Sub DiscoveredPeripheral(Peripheral as AppleCBPeripheral, AdvertisementData as AppleCBAdvertisementDataDictionary, RSSI as double)
 		  
 		  
-		  
 		  // only if not apple tv
-		  if Peripheral.Name<>"Apple TV" and Peripheral.Name<>"" then
+		  if Peripheral.Name<>"Apple TV" and Peripheral.Name <> "Apple Watch van Ronald" and Peripheral.Name<>"" then
+		    
 		    devices_statusupdate(Peripheral,"discovered")
 		    
 		    TextArea1.AppendText "Peripheral discovered: "+Peripheral.Name + " Data: "+AdvertisementData.DebugDescription+endofline + _
 		    if (AdvertisementData.DataIsConnectable, "", "Not ")+"connectable · " + _
 		    "RSSI: "+rssi.ToText+EndOfLine+EndOfLine
+		    
 		    if AdvertisementData.DataIsConnectable then
+		      
 		      if Peripheral.Services <> nil then 
+		        
 		        dim uuidarray as new AppleMutableArray
+		        
 		        for q as integer = 0 to Peripheral.Services.Count -1
+		          
 		          dim curService as new AppleCBService (Peripheral.Services.PtrAtIndex(q))
 		          uuidarray.Addobject curService.UUID
+		          
 		        next
+		        
 		        Peripheral.DiscoverServices(uuidarray)
+		        
 		      end if
+		      
 		      Peripheral.PeripheralDelegate = me.appleobject
+		      
 		      if self.Peripheral = nil then 
 		        
-		        
 		        self.Peripheral =Peripheral
+		        
 		        TextArea1.AppendText "Connection attempt"+EndOfLine+EndOfLine
-		        me.Connect self.Peripheral, true
+		        
+		        'me.Connect self.Peripheral, true
 		        
 		      end if
 		    end if
@@ -435,7 +893,7 @@ End
 		  devices_statusupdate(Peripheral,"connected")
 		  
 		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol+eol
-		  me.StopScan
+		  //me.StopScan
 		  
 		  Peripheral.DiscoverServices
 		  
@@ -531,6 +989,7 @@ End
 		Sub DiscoveredCharacteristics(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
 		  dim count as integer
 		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
+		  
 		  
 		  TextArea1.AppendText "Discovered characteristics for "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
 		  for q as integer = 0 to count -1
@@ -680,6 +1139,33 @@ End
 		  #pragma Unused x
 		  #pragma Unused y
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub CellAction(row As Integer, column As Integer)
+		  Dim p As AppleCBPeripheral
+		  
+		  if column = 4 Then
+		    
+		    p = me.RowTag(row)
+		    
+		    If me.CellCheck( row, column ) Then
+		      
+		      OSXLibCBCentralManager1.Connect p, True
+		      
+		    Else
+		      
+		      OSXLibCBCentralManager1.Disconnect( p )
+		      
+		    End If
+		    
+		  end if
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events button_clear
