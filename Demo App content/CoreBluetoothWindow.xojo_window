@@ -438,7 +438,7 @@ Begin Window CoreBluetoothWindow
       TabPanelIndex   =   0
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &cFF000000
+      TextColor       =   &c40800000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -482,7 +482,7 @@ Begin Window CoreBluetoothWindow
       Visible         =   True
       Width           =   74
    End
-   Begin Label blt_power4
+   Begin Label blt_cadanze
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -506,7 +506,7 @@ Begin Window CoreBluetoothWindow
       TabPanelIndex   =   0
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &cFF000000
+      TextColor       =   &c40800000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -606,7 +606,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
-      Text            =   "Kickr rpm"
+      Text            =   "Kickr speed"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -659,7 +659,7 @@ Begin Window CoreBluetoothWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   425
+      Left            =   382
       LineStep        =   1
       LiveScroll      =   False
       LockBottom      =   False
@@ -667,7 +667,7 @@ Begin Window CoreBluetoothWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Maximum         =   999
+      Maximum         =   600
       Minimum         =   1
       PageStep        =   20
       Scope           =   0
@@ -678,7 +678,7 @@ Begin Window CoreBluetoothWindow
       Top             =   236
       Value           =   0
       Visible         =   True
-      Width           =   133
+      Width           =   138
    End
    Begin Label Label9
       AutoDeactivate  =   True
@@ -702,7 +702,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   21
       TabPanelIndex   =   0
-      Text            =   "Kickr resistance"
+      Text            =   "Kickr output"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -712,9 +712,9 @@ Begin Window CoreBluetoothWindow
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   117
+      Width           =   74
    End
-   Begin Label blt_watt_tobike
+   Begin Label blt_watt
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -725,7 +725,7 @@ Begin Window CoreBluetoothWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   563
+      Left            =   532
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -738,11 +738,11 @@ Begin Window CoreBluetoothWindow
       TabPanelIndex   =   0
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &c0080FF00
+      TextColor       =   &cFF008000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   236
+      Top             =   233
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -1024,28 +1024,34 @@ End
 	#tag Event
 		Sub CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 		  
-		  'If Characteristic.IsNotifying Then
 		  
-		  'Datalog.AppendText "Characteristic update with"+if (errornumber = 0,"out ", "") + "error " + EndOfLine
 		  
 		  Peripheral.ReadRSSI
-		  
 		  Peripheral.ReadValue( Characteristic )
 		  
 		  //2A19 baterij niveau
-		   
-		  // power
-		  If Characteristic.UUID.UUIDString = "2A63" Then
+		  
+		  
+		  // 2A5B RPM
+		  If Characteristic.UUID.UUIDString = "2A5B" Then
+		    // power
+		    //Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
+		    Dim RCad as Int16=Characteristic.Value.ByteBlock.Uint16Value(1)
+		    blt_cadanze.Text=str(Cad)
+		    
+		    datalog.AppendText EndOfLine
+		    Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
+		    Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
+		    
+		  elseIf Characteristic.UUID.UUIDString = "2A63" Then
+		    // power
 		    Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
-		    Dim Rpm as Int16=Characteristic.Value.ByteBlock.Uint16Value(6)
+		    Dim rpm as Int16=Characteristic.Value.ByteBlock.Uint16Value(6)
 		    
 		    blt_power.Text=Str( Watt )
 		    blt_rpm.Text=str(Rpm)
-		  end if
-		  
-		  // heart rate
-		  If Characteristic.UUID.UUIDString = "2A37" Then
-		    
+		  elseIf Characteristic.UUID.UUIDString = "2A37" Then
+		    // heart rate
 		    Dim Flags As Byte = Characteristic.Value.ByteBlock.Int8Value(0)
 		    Dim HR8 As UInt8 
 		    Dim HR16 As UInt16 
@@ -1061,12 +1067,19 @@ End
 		      'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Str( HR8 ) + EndOfLine
 		      blt_hr.Text=Str( HR8 )
 		    End If
-		    
-		    'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Characteristic.Value.ToText + EndOfLine
+		  else
+		    // unknown
+		    datalog.AppendText EndOfLine
+		    Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
+		    Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
 		    
 		  End If
 		  
-		  'End If
+		  
+		  
+		  
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1232,13 +1245,6 @@ End
 	#tag Event
 		Sub Action()
 		  Quit
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Slider1
-	#tag Event
-		Sub ValueChanged()
-		  blt_watt_tobike.Text=str(me.Value)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
