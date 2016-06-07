@@ -550,7 +550,7 @@ Begin Window CoreBluetoothWindow
       Visible         =   True
       Width           =   74
    End
-   Begin Label blt_power5
+   Begin Label blt_power
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -606,7 +606,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
-      Text            =   "Kickr speed"
+      Text            =   "Kickr rpm"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -618,7 +618,7 @@ Begin Window CoreBluetoothWindow
       Visible         =   True
       Width           =   74
    End
-   Begin Label blt_power6
+   Begin Label blt_rpm
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -659,7 +659,7 @@ Begin Window CoreBluetoothWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   382
+      Left            =   425
       LineStep        =   1
       LiveScroll      =   False
       LockBottom      =   False
@@ -667,7 +667,7 @@ Begin Window CoreBluetoothWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Maximum         =   600
+      Maximum         =   999
       Minimum         =   1
       PageStep        =   20
       Scope           =   0
@@ -678,7 +678,7 @@ Begin Window CoreBluetoothWindow
       Top             =   236
       Value           =   0
       Visible         =   True
-      Width           =   138
+      Width           =   133
    End
    Begin Label Label9
       AutoDeactivate  =   True
@@ -702,7 +702,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   21
       TabPanelIndex   =   0
-      Text            =   "Kickr output"
+      Text            =   "Kickr resistance"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -712,9 +712,9 @@ Begin Window CoreBluetoothWindow
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   74
+      Width           =   117
    End
-   Begin Label blt_watt
+   Begin Label blt_watt_tobike
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -725,7 +725,7 @@ Begin Window CoreBluetoothWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   532
+      Left            =   563
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -742,7 +742,7 @@ Begin Window CoreBluetoothWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   233
+      Top             =   236
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -1034,11 +1034,17 @@ End
 		  
 		  //2A19 baterij niveau
 		   
-		  If Characteristic.UUID.UUIDString = "2A37" Then
+		  // power
+		  If Characteristic.UUID.UUIDString = "2A63" Then
+		    Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
+		    Dim Rpm as Int16=Characteristic.Value.ByteBlock.Uint16Value(6)
 		    
-		    datalog.AppendText EndOfLine
-		    Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
-		    Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
+		    blt_power.Text=Str( Watt )
+		    blt_rpm.Text=str(Rpm)
+		  end if
+		  
+		  // heart rate
+		  If Characteristic.UUID.UUIDString = "2A37" Then
 		    
 		    Dim Flags As Byte = Characteristic.Value.ByteBlock.Int8Value(0)
 		    Dim HR8 As UInt8 
@@ -1226,6 +1232,13 @@ End
 	#tag Event
 		Sub Action()
 		  Quit
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Slider1
+	#tag Event
+		Sub ValueChanged()
+		  blt_watt_tobike.Text=str(me.Value)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
