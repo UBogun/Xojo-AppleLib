@@ -92,7 +92,7 @@ End
 #tag Events AppleNotificationCenter1
 	#tag Event
 		Sub Notification(Notification as AppleNotification)
-		  TextArea1.AppendText Notification.DebugDescription+" received"+EndOfLine
+		  'TextArea1.AppendText Notification.DebugDescription+" received"+EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event
