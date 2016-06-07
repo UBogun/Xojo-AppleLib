@@ -346,7 +346,7 @@ Begin Window CoreBluetoothWindow
       Visible         =   True
       Width           =   74
    End
-   Begin Label blt_power2
+   Begin Label blt_hr
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -990,7 +990,6 @@ End
 		  dim count as integer
 		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
 		  
-		  
 		  'TextArea1.AppendText "Discovered characteristics for "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
 		  
 		  for q as integer = 0 to count -1
@@ -1001,7 +1000,7 @@ End
 		    
 		    if uu.Characteristics <> nil then 
 		      
-		      dim charcount as integer =uu.Characteristics.Count
+		      dim charcount as integer = uu.Characteristics.Count
 		      
 		      for p as integer = 0 to charcount -1
 		        
@@ -1025,24 +1024,43 @@ End
 	#tag Event
 		Sub CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 		  
-		  If Characteristic.IsNotifying Then
+		  'If Characteristic.IsNotifying Then
+		  
+		  'Datalog.AppendText "Characteristic update with"+if (errornumber = 0,"out ", "") + "error " + EndOfLine
+		  
+		  Peripheral.ReadRSSI
+		  
+		  Peripheral.ReadValue( Characteristic )
+		  
+		  //2A19 baterij niveau
+		   
+		  If Characteristic.UUID.UUIDString = "2A37" Then
 		    
-		    'Datalog.AppendText "Characteristic update with"+if (errornumber = 0,"out ", "") + "error " + EndOfLine
+		    datalog.AppendText EndOfLine
+		    Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
+		    Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
 		    
-		    'Peripheral.ReadRSSI
+		    Dim Flags As Byte = Characteristic.Value.ByteBlock.Int8Value(0)
+		    Dim HR8 As UInt8 
+		    Dim HR16 As UInt16 
 		    
-		    'Peripheral.ReadValue( Characteristic )
-		    
-		    If Characteristic.UUID.UUIDString <> "A026E010-0A7D-4AB3-97FA-F1500F9FEB8B" Then
-		      //2A19 baterij niveau
-		      
-		      Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
-		      Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
-		      Datalog.AppendText "CHARACTERISTIC UPDATED: " + Str( Characteristic.Value.ByteBlock.UInt8Value(0) ) + EndOfLine
-		      
+		    If Bitwise.BitAnd( Flags, &b10000000 ) > 0 Then
+		      'UInt16
+		      HR16 = Characteristic.Value.ByteBlock.UInt16Value(1)
+		      'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Str( HR16 ) + EndOfLine
+		      blt_hr.Text=Str( HR16 )
+		    Else
+		      'UInt8
+		      HR8 = Characteristic.Value.ByteBlock.UInt8Value(1)
+		      'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Str( HR8 ) + EndOfLine
+		      blt_hr.Text=Str( HR8 )
 		    End If
 		    
+		    'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Characteristic.Value.ToText + EndOfLine
+		    
 		  End If
+		  
+		  'End If
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1050,15 +1068,6 @@ End
 		  'dim count as integer
 		  'if Peripheral.Services <> nil then count = Peripheral.Services.Count
 		  
-		  dim count as integer
-		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
-		  'TextArea1.AppendText "Discovered "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
-		  for q as integer = 0 to count -1
-		    dim uu as AppleCBService = AppleCBService.MakefromPtr(Peripheral.Services.PtrAtIndex(q))
-		    Peripheral.DiscoverCharacteristics(uu)
-		    'TextArea1.AppendText uu.DebugDescription+EndOfLine
-		    Peripheral.DiscoverIncludedServices(uu)
-		  next
 		  'TextArea1.AppendText EndOfLine
 		  
 		  'TextArea1.AppendText "Discovered included service from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
