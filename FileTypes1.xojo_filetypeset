@@ -1,0 +1,16 @@
+#tag FileTypeSet
+	#tag FileType
+		CodeName=sqlite
+		Extension=sqlite
+		Flags=&h0
+		MacCreator=
+		MacType=
+		Name=database/sqlite
+		UTI=com.xojo.database.sqlite, public.database, com.xojo.database, public.data, public.item
+		UTIConformsTo=
+		Description=
+		MimeType=
+		Imported=True
+	#tag EndFileType
+
+#tag EndFileTypeSet

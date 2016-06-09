@@ -300,6 +300,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Data log"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -334,6 +335,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   10
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Heart rate"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -368,6 +370,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   11
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &cFF000000
@@ -402,6 +405,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   12
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Speed"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -436,6 +440,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   13
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c40800000
@@ -470,6 +475,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Cadanze"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -504,6 +510,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   15
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c40800000
@@ -538,6 +545,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   16
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Kickr power"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -572,6 +580,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c0080FF00
@@ -606,6 +615,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Kickr speed"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -640,6 +650,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   19
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c0080FF00
@@ -702,6 +713,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   21
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Kickr output"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -736,6 +748,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &cFF008000
@@ -1037,7 +1050,7 @@ End
 		    // power
 		    //Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
 		    Dim RCad as Int16=Characteristic.Value.ByteBlock.Uint16Value(1)
-		    blt_cadanze.Text=str(Cad)
+		    blt_cadanze.Text=str(rCad)
 		    
 		    datalog.AppendText EndOfLine
 		    Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine

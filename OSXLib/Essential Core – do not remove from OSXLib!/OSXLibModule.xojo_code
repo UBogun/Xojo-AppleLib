@@ -11,7 +11,7 @@ Protected Module OSXLibModule
 
 
 	#tag Property, Flags = &h0
-		LibDebug As Boolean = true
+		LibDebug As Boolean
 	#tag EndProperty
 
 

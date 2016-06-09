@@ -62,7 +62,7 @@ Begin Window SelectionWindow
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "OK"
+      Caption         =   "Show"
       Default         =   True
       Enabled         =   True
       Height          =   20
@@ -151,37 +151,6 @@ Begin Window SelectionWindow
       Visible         =   True
       Width           =   750
    End
-   Begin PushButton PushButton2
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "Button"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   546
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   504
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
-   End
 End
 #tag EndWindow
 
@@ -202,7 +171,7 @@ End
 		  me.AddRow("CoreBluetooth")
 		  me.AddRow("ScrollView")
 		  me.AddRow("TableView")
-		  me.AddRow ("OutlineView")
+		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
 		  me.ListIndex = 0
 		End Sub
@@ -247,17 +216,15 @@ End
 		  me.AppleObject.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
 		  dim bgpic as AppleImage = AppleImage.fromPicture(OSXLibLogo)
 		  me.AppleObject.Layer.Contents =bgpic
+		  dim shadow as new AppleShadow
+		  shadow.ShadowColor = new applecolor (&c83838300)
+		  shadow.ShadowOffset = FoundationFrameWork.NSMakeSize(4, -4)
+		  shadow.ShadowBlurRadius = 10
+		  me.AppleObject.Shadow = shadow
 		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
 		  dim ac as new AppleAnimationContext (me.AppleObject)
 		  ac.Duration = 8
 		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events PushButton2
-	#tag Event
-		Sub Action()
 		  
 		End Sub
 	#tag EndEvent
