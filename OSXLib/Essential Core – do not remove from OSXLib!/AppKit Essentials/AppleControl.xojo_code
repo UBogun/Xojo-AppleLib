@@ -574,6 +574,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AllowsEditingTextAttributes"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Alpha"
 			Group="Behavior"
 			Type="Double"
@@ -688,6 +693,11 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IgnoresMultiClick"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImportsGraphics"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

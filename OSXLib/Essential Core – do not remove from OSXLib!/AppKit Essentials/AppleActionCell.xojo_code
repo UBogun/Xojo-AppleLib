@@ -130,6 +130,17 @@ Inherits AppleCell
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BaseWritingDirection"
+			Group="Behavior"
+			Type="AppleText.NSWritingDirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - Natural"
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Bezeled"
 			Group="Behavior"
 			Type="Boolean"
@@ -138,6 +149,22 @@ Inherits AppleCell
 			Name="Bordered"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Continuous"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ControlSize"
+			Group="Behavior"
+			Type="AppleControl.NSControlSize"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Regular"
+				"1 - Small"
+				"2 - Mini"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ControlTint"
@@ -172,12 +199,28 @@ Inherits AppleCell
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FocusRingType"
+			Group="Behavior"
+			Type="Appkitframework.NSFocusRingType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - None"
+				"2 - Exterior"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasValidObjectValue"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Highlighted"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -209,6 +252,11 @@ Inherits AppleCell
 				"2 - Raised"
 				"3 - Lowered"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="KeyEquivalent"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -259,6 +307,11 @@ Inherits AppleCell
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="RefusesFirstResponder"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
@@ -270,6 +323,11 @@ Inherits AppleCell
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Selectable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ShowsFirstResponder"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -306,6 +364,11 @@ Inherits AppleCell
 			Type="text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Title"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
@@ -327,6 +390,21 @@ Inherits AppleCell
 				"1 - TextCell"
 				"2 - ImageCell"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UserInterfaceLayoutdirection"
+			Group="Behavior"
+			Type="Appkitframework.NSUserInterfaceLayoutdirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Wraps"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

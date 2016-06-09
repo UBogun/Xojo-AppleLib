@@ -569,6 +569,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getshadow Lib appkitlibname Selector "shadow" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getsubviews Lib appkitlibname Selector "subviews" (id as ptr) As ptr
 	#tag EndExternalMethod
 
@@ -1264,6 +1268,10 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setpostsFrameChangedNotifications Lib appkitlibname Selector "setPostsFrameChangedNotifications:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setshadow Lib appkitlibname Selector "setShadow:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -2051,6 +2059,20 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		RegisteredDraggedTypes As AppleArray
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720757365732061206C6179657220617320697473206261636B696E672073746F72652E
+		#tag Getter
+			Get
+			  return AppleShadow.MakefromPtr(getshadow (id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setshadow id, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		Shadow As AppleShadow
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206172726179206F6620766965777320656D62656464656420696E207468652063757272656E7420766965772E

@@ -172,8 +172,8 @@ Implements AppleGeneralObject
 		Attributes( hidden ) mHasOwnership As boolean
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Attributes( hidden ) Private mId As Ptr
+	#tag Property, Flags = &h1
+		Attributes( hidden ) Protected mId As Ptr
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E2809973207265666572656E636520636F756E742E

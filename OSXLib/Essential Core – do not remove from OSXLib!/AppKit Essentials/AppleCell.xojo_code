@@ -58,19 +58,19 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 44726177732074686520696E746572696F7220706F7274696F6E206F66207468652072656365697665722C20776869636820696E636C756465732074686520696D616765206F72207465787420706F7274696F6E2062757420646F6573206E6F7420696E636C7564652074686520626F726465722E0A54686973206D6574686F64206472617773207468652063656C6C20696E207468652063757272656E746C7920666F637573656420766965772C2077686963682063616E20626520646966666572656E742066726F6D2074686520636F6E74726F6C566965772070617373656420696E2E2054616B696E6720616476616E74616765206F662074686973206265686176696F72206973206E6F74207265636F6D6D656E6465642C20686F77657665722E
 		Sub DrawInterior(inFrame as FoundationFrameWork.NSRect, controlView as appleview)
-		   AppKitFramework.drawInteriorWithFrameInView (id, inFrame, controlView.id)
+		  AppKitFramework.drawInteriorWithFrameInView (id, inFrame, controlView.id)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E737472756374732074686520726563656976657220746F206472617720696E20616E20657870616E73696F6E206672616D652E0A5468652076696577206D617920626520646966666572656E742066726F6D20746865206F726967696E616C20766965772074686174207468652063656C6C20617070656172656420696E2E
 		Sub DrawWithExpansionFrame(inFrame as FoundationFrameWork.NSRect, InView as appleview)
-		   AppKitFramework.drawWithFrameinView (id, inFrame, inView.id)
+		  AppKitFramework.drawWithFrameinView (id, inFrame, inView.id)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 447261777320746865207265636569766572E280997320626F7264657220616E64207468656E2064726177732074686520696E746572696F72206F66207468652063656C6C2E0A54686973206D6574686F64206472617773207468652063656C6C20696E207468652063757272656E746C7920666F637573656420766965772C2077686963682063616E20626520646966666572656E742066726F6D2074686520636F6E74726F6C566965772070617373656420696E2E2054616B696E6720616476616E74616765206F662074686973206265686176696F72206973206E6F74207265636F6D6D656E6465642C20686F77657665722E
 		Sub DrawWithFrame(inFrame as FoundationFrameWork.NSRect, controlView as appleview)
-		   AppKitFramework.drawWithFrameinView (id, inFrame, controlView.id)
+		  AppKitFramework.drawWithFrameinView (id, inFrame, controlView.id)
 		End Sub
 	#tag EndMethod
 
@@ -102,7 +102,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52656472617773207468652063656C6C2077697468207468652073706563696669656420686967686C696768742073657474696E672E54686973206D6574686F64206472617773207468652063656C6C20696E207468652063757272656E746C7920666F637573656420766965772C2077686963682063616E20626520646966666572656E742066726F6D2074686520636F6E74726F6C566965772070617373656420696E2E2054616B696E6720616476616E74616765206F662074686973206265686176696F72206973206E6F74207265636F6D6D656E6465642C20686F77657665722E
 		Sub Highlight(inFrame as FoundationFrameWork.NSRect, controlView as appleview, assigns value as Boolean)
-		   AppKitFramework.highlightWithFrameinView (id, value, inFrame, controlView.id)
+		  AppKitFramework.highlightWithFrameinView (id, value, inFrame, controlView.id)
 		End Sub
 	#tag EndMethod
 
@@ -959,6 +959,17 @@ Inherits AppleObject
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BaseWritingDirection"
+			Group="Behavior"
+			Type="AppleText.NSWritingDirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - Natural"
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Bezeled"
 			Group="Behavior"
 			Type="Boolean"
@@ -967,6 +978,22 @@ Inherits AppleObject
 			Name="Bordered"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Continuous"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ControlSize"
+			Group="Behavior"
+			Type="AppleControl.NSControlSize"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Regular"
+				"1 - Small"
+				"2 - Mini"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ControlTint"
@@ -1001,12 +1028,28 @@ Inherits AppleObject
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FocusRingType"
+			Group="Behavior"
+			Type="Appkitframework.NSFocusRingType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - None"
+				"2 - Exterior"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasValidObjectValue"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Highlighted"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -1038,6 +1081,11 @@ Inherits AppleObject
 				"2 - Raised"
 				"3 - Lowered"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="KeyEquivalent"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1088,6 +1136,11 @@ Inherits AppleObject
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="RefusesFirstResponder"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
@@ -1099,6 +1152,11 @@ Inherits AppleObject
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Selectable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ShowsFirstResponder"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -1125,9 +1183,19 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Tag"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="TextValue"
 			Group="Behavior"
 			Type="text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Title"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1151,6 +1219,21 @@ Inherits AppleObject
 				"1 - TextCell"
 				"2 - ImageCell"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UserInterfaceLayoutdirection"
+			Group="Behavior"
+			Type="Appkitframework.NSUserInterfaceLayoutdirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - LeftToRight"
+				"1 - RightToLeft"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Wraps"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

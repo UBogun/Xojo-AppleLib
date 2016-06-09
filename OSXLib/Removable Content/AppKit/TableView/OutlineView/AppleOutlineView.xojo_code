@@ -197,6 +197,12 @@ Inherits AppleTableView
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		 Shared Function MakefromPtr(aPtr as Ptr) As AppleOutlineView
+		  return if (aptr = nil, nil, new AppleOutlineView(aptr))
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 4D6F76657320616E206974656D206174206120676976656E20696E64657820696E2074686520676976656E20706172656E7420746F2061206E657720696E64657820696E2061206E657720706172656E742E
 		Sub MoveItem(Index as integer, Parent as AppleObject, NewIndex as Integer, NewParent As AppleObject)
 		  moveItemAtIndex id, index, parent.id, newindex, newparent.id
@@ -340,6 +346,21 @@ Inherits AppleTableView
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return AppleOutlineViewDataSource.MakefromPtr(getdataSource(id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setdataSource id, if (value = nil, nil, value.id)
+			  
+			End Set
+		#tag EndSetter
+		DataSource As AppleOutlineViewDataSource
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696E64656E746174696F6E206D61726B65722073796D626F6C20646973706C6179656420696E20746865206F75746C696E6520636F6C756D6E2073686F756C6420626520696E64656E74656420616C6F6E672077697468207468652063656C6C20636F6E74656E74732E
 		#tag Getter
 			Get
@@ -479,11 +500,6 @@ Inherits AppleTableView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AllowsColumnSelection"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AllowsEditingTextAttributes"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -701,11 +717,6 @@ Inherits AppleTableView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IgnoresMultiClick"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ImportsGraphics"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

@@ -40,7 +40,7 @@ Begin Window NotificationWindow
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
+      AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
@@ -92,7 +92,7 @@ End
 #tag Events AppleNotificationCenter1
 	#tag Event
 		Sub Notification(Notification as AppleNotification)
-		  'TextArea1.AppendText Notification.DebugDescription+" received"+EndOfLine
+		  TextArea1.AppendText Notification.DebugDescription+" received"+EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event

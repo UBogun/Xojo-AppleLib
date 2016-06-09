@@ -1,6 +1,40 @@
 #tag Class
-Protected Class WahooKickr
-Inherits OSXLibCBCentralManager
+Protected Class OSXLibOutlineViewDataSource
+Inherits Control
+	#tag Event
+		Sub CreatePane()
+		  mAppleObject= new AppleOutlineViewDataSource
+		  mAppleObject.registercontrol(self)
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Function InformOnOutlineviewnumberOfChildrenOfItem(OutlineView as AppleOutlineView, item as appleobject) As Integer
+		  return RaiseEvent NumberOfChildren (OutlineView, item)
+		End Function
+	#tag EndMethod
+
+
+	#tag Hook, Flags = &h0
+		Event NumberOfChildren(OutlineView As AppleOutlineview, Item as AppleObject) As Integer
+	#tag EndHook
+
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mAppleObject
+			End Get
+		#tag EndGetter
+		AppleObject As AppleOutlineViewDataSource
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mAppleObject As AppleOutlineViewDataSource
+	#tag EndProperty
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Handle"
@@ -45,20 +79,6 @@ Inherits OSXLibCBCentralManager
 			Group="Behavior"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="State"
-			Group="Behavior"
-			Type="applecbcentralmanager.CBCentralManagerState"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Unknown"
-				"1 - Resetting"
-				"2 - Unsupported"
-				"3 - Unauthorized"
-				"4 - PoweredOff"
-				"5 - PoweredOn"
-			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

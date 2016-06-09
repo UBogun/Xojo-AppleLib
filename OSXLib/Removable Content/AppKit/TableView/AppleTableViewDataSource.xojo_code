@@ -42,6 +42,7 @@ Inherits AppleObject
 		  else
 		    return RaiseEvent NumberOfRows(TableView)
 		  end if
+		  
 		End Function
 	#tag EndMethod
 
