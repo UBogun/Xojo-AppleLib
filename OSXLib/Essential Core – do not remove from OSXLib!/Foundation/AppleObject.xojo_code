@@ -7,8 +7,10 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  mid = init(alloc(classptr))
-		  MHasOwnership = true
+		  #If TargetMacOS
+		    mid = init(alloc(classptr))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -20,25 +22,27 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
-		  if id <> nil then
-		    #if DebugBuild
-		      if mHasOwnership then
-		        if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
-		        if XojoControls <> nil and XojoControls.HasKey(id) then 
-		          XojoControls.Remove(id)
-		          if LibDebug then system.DebugLog "Released control too"
+		  #If TargetMacOS
+		    if id <> nil then
+		      #if DebugBuild
+		        if mHasOwnership then
+		          if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
+		          if XojoControls <> nil and XojoControls.HasKey(id) then 
+		            XojoControls.Remove(id)
+		            if LibDebug then system.DebugLog "Released control too"
+		          end if
+		          call release id
+		        else
+		          if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
 		        end if
-		        call release id
-		      else
-		        if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
-		      end if
-		    #else
-		      if mhasownership then
-		        removecontrol
-		        call release id
-		      end if
-		    #endif
-		  end if
+		      #else
+		        if mhasownership then
+		          removecontrol
+		          call release id
+		        end if
+		      #endif
+		    end if
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -101,7 +105,9 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub Retain()
-		  call retain id
+		  #If TargetMacOS
+		    call retain id
+		  #endif
 		End Sub
 	#tag EndMethod
 

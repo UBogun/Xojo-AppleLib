@@ -19,25 +19,31 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000
 		Sub Constructor()
-		  super.Constructor(data(classptr))
-		  RetainClassObject
+		  #If TargetMacOS
+		    super.Constructor(data(classptr))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(data as AppleData)
-		  declare function initWithData lib FoundationLibName  selector "initWithData:" (id as ptr, data as ptr) as ptr
-		  super.Constructor (initWithData (alloc(ClassPtr), data.id))
-		  mHasownership = true
+		  #If TargetMacOS
+		    declare function initWithData lib FoundationLibName  selector "initWithData:" (id as ptr, data as ptr) as ptr
+		    super.Constructor (initWithData (alloc(ClassPtr), data.id))
+		    mHasownership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(MB as xojo.Core.MemoryBlock)
-		  declare function initWithBytes lib FoundationLibName  selector "initWithBytes:length:" (id as ptr, bytes as ptr, length as uinteger) as ptr
-		  super.Constructor (initWithBytes (alloc(ClassPtr), mb.Data, mb.Size))
-		  mHasownership = true
+		  #If TargetMacOS
+		    declare function initWithBytes lib FoundationLibName  selector "initWithBytes:length:" (id as ptr, bytes as ptr, length as uinteger) as ptr
+		    super.Constructor (initWithBytes (alloc(ClassPtr), mb.Data, mb.Size))
+		    mHasownership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -48,24 +54,30 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function Equals(anotherData as AppleData) As Boolean
-		  declare function isEqualToData lib FoundationLibName  selector "isEqualToData:" (id as ptr, anotherData as ptr) as Boolean
-		  return isEqualToData (id, anotherData.id)
+		  #If TargetMacOS
+		    declare function isEqualToData lib FoundationLibName  selector "isEqualToData:" (id as ptr, anotherData as ptr) as Boolean
+		    return isEqualToData (id, anotherData.id)
+		  #endif
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub GetBytes(byref buffer as xojo.Core.MutableMemoryBlock, Range as FoundationFramework.NSRange)
-		  declare sub getBytes lib FoundationLibName  selector "getBytes:range:" (id as ptr, buffer as ptr, range as FoundationFramework.NSRange)
-		  if buffer.Size >= length then getBytes id, buffer.Data, Range
+		  #If TargetMacOS
+		    declare sub getBytes lib FoundationLibName  selector "getBytes:range:" (id as ptr, buffer as ptr, range as FoundationFramework.NSRange)
+		    if buffer.Size >= length then getBytes id, buffer.Data, Range
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub GetBytes(byref buffer as xojo.Core.MutableMemoryBlock, length as uinteger)
-		  declare sub getBytes lib FoundationLibName  selector "getBytes:length:" (id as ptr, buffer as ptr, length as uinteger)
-		  if buffer.Size >= length then getBytes id, buffer.Data, length
+		  #If TargetMacOS
+		    declare sub getBytes lib FoundationLibName  selector "getBytes:length:" (id as ptr, buffer as ptr, length as uinteger)
+		    if buffer.Size >= length then getBytes id, buffer.Data, length
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -84,7 +96,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return base64EncodedStringWithOptions (id, 0)
+			  #If TargetMacOS
+			    return base64EncodedStringWithOptions (id, 0)
+			  #endif
 			End Get
 		#tag EndGetter
 		Base64String As Text
@@ -123,7 +137,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getdescription (id)
+			  #If TargetMacOS
+			    return getdescription (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Description As Text
@@ -132,8 +148,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function length lib FoundationLibName  selector "length" (id as ptr) as uinteger
-			  return length (id)
+			  #If TargetMacOS
+			    declare function length lib FoundationLibName  selector "length" (id as ptr) as uinteger
+			    return length (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -143,7 +161,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleString.DataToCFSTringRef(self)
+			  #If TargetMacOS
+			    return AppleString.DataToCFSTringRef(self)
+			  #endif
 			End Get
 		#tag EndGetter
 		ToText As Text
