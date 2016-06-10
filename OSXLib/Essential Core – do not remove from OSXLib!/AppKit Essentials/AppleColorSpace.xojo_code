@@ -222,7 +222,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F6620636F6D706F6E656E747320737570706F72746564206279207468652072656365697665722E
 		#tag Getter
 			Get
-			  return getnumberOfColorComponents(id)
+			  #If TargetMacOS
+			    return getnumberOfColorComponents(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		NumberOfColorComponents As Integer
@@ -231,7 +233,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return FoundationFrameWork.getsupportsSecureCoding(classptr)
+			  #If TargetMacOS
+			    return FoundationFrameWork.getsupportsSecureCoding(classptr)
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared SupportsSecureCoding As Boolean
