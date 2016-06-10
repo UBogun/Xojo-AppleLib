@@ -8,8 +8,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (init(alloc(classptr)))
-		  MHasOwnership = true
+		  #If TargetMacOS
+		    Super.Constructor (init(alloc(classptr)))
+		    MHasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -20,8 +22,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithDataEncoding(alloc(classptr), textdata.id, encoding))
-		  MHasOwnership = true
+		  #If TargetMacOS
+		    Super.Constructor (initWithDataEncoding(alloc(classptr), textdata.id, encoding))
+		    MHasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -33,9 +37,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithString(alloc(classptr), atext))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS
+		    Super.Constructor (initWithString(alloc(classptr), atext))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
