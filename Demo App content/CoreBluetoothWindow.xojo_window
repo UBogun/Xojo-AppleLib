@@ -1141,7 +1141,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub WriteRequest(Request as AppleCBATTRequest)
-		  'TextArea1.AppendText "Write Request "+Request.DebugDescription+EndOfLine+EndOfLine
+		  datalog.AppendText "Write Request "+Request.DebugDescription+EndOfLine+EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1158,8 +1158,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
-		  'TextArea1.AppendText "Wrote Characteristic value with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
-		  'TextArea1.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
+		  datalog.AppendText "Wrote Characteristic value with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
+		  datalog.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
 		  '#pragma Unused Peripheral
 		End Sub
 	#tag EndEvent
