@@ -443,11 +443,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520677265656E20636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getgreenComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS
+			    try
+			      return getgreenComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		GreenComponent As Double
@@ -456,11 +458,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652068756520636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return gethueComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS
+			    try
+			      return gethueComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		HueComponent As Double
@@ -469,10 +473,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F63616C697A6564206E616D65206F662074686520636174616C6F6720636F6E7461696E696E672074686520636F6C6F72E2809973206E616D652E2028726561642D6F6E6C79292E20417661696C61626C6520666F7220636F6C6F7273207573696E67204E616D6564436F6C6F725370616365732E
 		#tag Getter
 			Get
-			  try
-			    return getlocalizedCatalogNameComponent (id)
-			  catch
-			  end try
+			  #If TargetMacOS
+			    try
+			      return getlocalizedCatalogNameComponent (id)
+			    catch
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		LocalizedCatalogNameComponent As Text

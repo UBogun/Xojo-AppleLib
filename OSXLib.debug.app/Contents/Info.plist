@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+   <key>CFBundleExecutable</key>
+   <string>OSXLib.debug</string>
+   <key>CFBundleName</key>
+   <string>OSXLib.debug</string>
+   <key>CFBundleIdentifier</key>
+   <string>com.codeservice.osxlib</string>
+   <key>CFBundleInfoDictionaryVersion</key>
+   <string>6.0</string>
+   <key>CFBundleVersion</key>
+   <string>1.0.0.0.0</string>
+   <key>CFBundleDevelopmentRegion</key>
+   <string>nl</string>
+   <key>CFBundlePackageType</key>
+   <string>APPL</string>
+   <key>CFBundleSignature</key>
+   <string>????</string>
+   <key>NSHumanReadableCopyright</key>
+   <string></string>
+   <key>CFBundleShortVersionString</key>
+   <string></string>
+   <key>CFBundleIconFile</key>
+   <string>App</string>
+   <key>LSMinimumSystemVersion</key>
+   <string>10.7</string>
+<key>NSHighResolutionCapable</key><true/>
+</dict>
+</plist>
