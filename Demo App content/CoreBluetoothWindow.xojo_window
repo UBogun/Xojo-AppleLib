@@ -327,8 +327,8 @@ Begin Window CoreBluetoothWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Maximum         =   600
-      Minimum         =   1
+      Maximum         =   255
+      Minimum         =   0
       PageStep        =   20
       Scope           =   0
       TabIndex        =   20
@@ -336,7 +336,7 @@ Begin Window CoreBluetoothWindow
       TabStop         =   True
       TickStyle       =   "0"
       Top             =   257
-      Value           =   0
+      Value           =   1
       Visible         =   True
       Width           =   182
    End
@@ -714,6 +714,48 @@ Begin Window CoreBluetoothWindow
       Visible         =   True
       Width           =   101
    End
+   Begin TextField bytefield
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      CueText         =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   277
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   33
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   256
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -776,8 +818,38 @@ End
 	#tag EndMethod
 
 
+	#tag Note, Name = Read Write Characteristics.
+		
+		Byc
+		Cycling Power Control Point - Readable - 0x2A66
+		Cycling Power Vector - Readable - 0x2A64
+		Sensor Location - Readable - 0x2A5D
+		Cycling Power Feature - Readable - 0x2A65
+		Cycling Power Measurement - Readable - 0x2A63
+		
+		
+		Bluetooth specific read/write functions.
+		Client Characteristic Configuration - Readable and Writeable - 0x2902
+		Server Characteristic Configuration - Readable and Writeable - 0x2903
+		
+		
+	#tag EndNote
+
+
+	#tag Property, Flags = &h0
+		isConnectedBTLE As Boolean = false
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		Peripheral As AppleCBPeripheral
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PeripheralDevice As AppleCBPeripheral
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PowerControlFeature As AppleCBCharacteristic
 	#tag EndProperty
 
 
@@ -912,14 +984,14 @@ End
 		Sub DiscoveredServices(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
 		  dim count as integer
 		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
-		  'TextArea1.AppendText "Discovered "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
+		  //TextArea1.AppendText "Discovered "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
 		  for q as integer = 0 to count -1
 		    dim uu as AppleCBService = AppleCBService.MakefromPtr(Peripheral.Services.PtrAtIndex(q))
 		    Peripheral.DiscoverCharacteristics(uu)
-		    'TextArea1.AppendText uu.DebugDescription+EndOfLine
+		    //TextArea1.AppendText uu.DebugDescription+EndOfLine
 		    Peripheral.DiscoverIncludedServices(uu)
 		  next
-		  'TextArea1.AppendText EndOfLine
+		  //TextArea1.AppendText EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -976,6 +1048,15 @@ End
 		        Peripheral.SetNotifyValue(c, true)
 		        Peripheral.DiscoverDescriptors(c)
 		        
+		        If c.UUID.UUIDString = "2A66" Then
+		          
+		          isConnectedBTLE = True
+		          
+		          PeripheralDevice = Peripheral
+		          PowerControlFeature = c
+		          
+		        End If
+		        
 		      next
 		      
 		    end if
@@ -989,23 +1070,24 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  Dim b() As Byte
+		  b.Append(0) // Welke opcode 0-255
+		  b.Append(power_slider.Value) // De waarde afhankelijke van op code, variabele lengte
 		  
-		  
+		  Dim ad As New AppleData
+		  ad.ByteBlock.Constructor( b)
+		  dim nn as new AppleCBCharacteristic
+		  dim uu as new AppleCBUUID( "2A66" )
 		  
 		  Peripheral.ReadRSSI
 		  Peripheral.ReadValue( Characteristic )
 		  
-		  If Characteristic.UUID.UUIDString = "2A63" Then
-		    Dim b() As Byte
-		    b.Append(0) // Welke opcode 0-255
-		    b.Append(power_slider.Value) // De waarde afhankelijke van op code, variabele lengte
-		    
-		    Dim ad As New AppleData
-		    ad.ByteBlock.Constructor( b)
-		    
-		    // Set power control feature
-		    Peripheral.WriteValue(Characteristic, AppleCBPeripheral.CBCharacteristicWriteType.WithResponse, ad )
+		  If Characteristic.UUID.UUIDString = "2A66" Then
+		    // TODO
+		    TextArea1.AppendText "2A66 event" + EndOfLine
+		    TextArea1.AppendText Characteristic.Value.Base64String + EndOfLine
 		  end if
+		  
 		  
 		  // pass lengte
 		  if len(Characteristic.UUID.UUIDString)=4 then
@@ -1071,6 +1153,7 @@ End
 		  'TextArea1.AppendText "Discovered included service from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
 		  'TextArea1.AppendText service.DebugDescription+EndOfLine
 		  'TextArea1.AppendText EndOfLine
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -1227,6 +1310,37 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events power_slider
+	#tag Event
+		Sub ValueChanged()
+		  blt_watt.Text=str(me.Value)
+		  
+		  If isConnectedBTLE Then
+		    'Write to BTLE 
+		    
+		    ' Uint8 = Byte 
+		    ' 0 - 255
+		    
+		    'Dim b() As Byte 
+		    'b.Append(1) 'OP Code
+		    'b.Append(255) 'Value is variable in type, length. Optional.
+		    
+		    Dim mb As new xojo.Core.MutableMemoryBlock(512)
+		    mb.UInt8Value( 0 ) = Val( bytefield.Text)
+		    'mb.DoubleValue(1) = 1.0
+		    mb.UInt8Value(1) =  me.Value 
+		    
+		    Dim Dat As New AppleData
+		    Dat.ByteBlock.Constructor( mb.Data )
+		    
+		    PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, Dat )
+		    
+		    //Peripheral.WriteValue(Characteristic, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, ad )
+		    
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"
@@ -1320,6 +1434,11 @@ End
 		Group="ID"
 		Type="String"
 		EditorType="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="isConnectedBTLE"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LiveResize"

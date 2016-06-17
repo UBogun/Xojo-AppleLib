@@ -7,7 +7,7 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    mid = init(alloc(classptr))
 		    MHasOwnership = true
 		  #endif
@@ -22,7 +22,7 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    if id <> nil then
 		      #if DebugBuild
 		        if mHasOwnership then
@@ -105,7 +105,7 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub Retain()
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    call retain id
 		  #endif
 		End Sub
@@ -117,8 +117,10 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RetainClassObject()
-		  call retain (id)
-		  MHasOwnership = true
+		  #If TargetMacOS then
+		    call retain (id)
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -126,7 +128,9 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr (getclass(id))
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr (getclass(id))
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -149,7 +153,9 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getdebugDescription (id)
+			  #If TargetMacOS then
+			    return getdebugDescription (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -185,7 +191,9 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E2809973207265666572656E636520636F756E742E
 		#tag Getter
 			Get
-			  return getretainCount (id)
+			  #If TargetMacOS then
+			    return getretainCount (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -195,7 +203,9 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr (getsuperclass(id))
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr (getsuperclass(id))
+			  #endif
 			  
 			End Get
 		#tag EndGetter

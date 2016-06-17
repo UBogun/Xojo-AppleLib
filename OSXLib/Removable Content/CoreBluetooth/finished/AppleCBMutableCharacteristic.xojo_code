@@ -14,8 +14,10 @@ Inherits AppleCBCharacteristic
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithType(alloc(classptr), uuid.id, properties.Id, value.id, permissions.id))
-		  MHasOwnership= true
+		  #If TargetMacOS then
+		    Super.Constructor(initWithType(alloc(classptr), uuid.id, properties.Id, value.id, permissions.id))
+		    MHasOwnership= true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -67,12 +69,16 @@ Inherits AppleCBCharacteristic
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F66207468652064657363726970746F727320746861742068617665206265656E20646973636F766572656420696E20746869732063686172616374657269737469632E20
 		#tag Getter
 			Get
-			  return Applearray.MakefromPtr(getdescriptors(id))
+			  #If TargetMacOS then
+			    return Applearray.MakefromPtr(getdescriptors(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setdescriptors id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    setdescriptors id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		Descriptors As AppleArray
@@ -81,12 +87,16 @@ Inherits AppleCBCharacteristic
 	#tag ComputedProperty, Flags = &h0, Description = 546865207065726D697373696F6E73206F66207468652063686172616374657269737469632076616C75652E
 		#tag Getter
 			Get
-			  return new AppleCBAttributePermissions (getpermissions(id))
+			  #If TargetMacOS then
+			    return new AppleCBAttributePermissions (getpermissions(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setpermissions id, value.id
+			  #If TargetMacOS then
+			    setpermissions id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		Permissions As AppleCBAttributePermissions
@@ -95,12 +105,16 @@ Inherits AppleCBCharacteristic
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070726F70657274696573206F66207468652063686172616374657269737469632E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return new AppleCBCharacteristicProperties (getproperties(id))
+			  #If TargetMacOS then
+			    return new AppleCBCharacteristicProperties (getproperties(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setproperties id, value.id
+			  #If TargetMacOS then
+			    setproperties id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		Properties As AppleCBCharacteristicProperties
@@ -109,7 +123,9 @@ Inherits AppleCBCharacteristic
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F662063656E7472616C732063757272656E746C79207375627363726962656420746F20746865206368617261637465726973746963E28099732076616C75652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return Applearray.MakefromPtr(getsubscribedCentrals(id))
+			  #If TargetMacOS then
+			    return Applearray.MakefromPtr(getsubscribedCentrals(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		SubscribedCentrals As AppleArray
@@ -118,12 +134,16 @@ Inherits AppleCBCharacteristic
 	#tag ComputedProperty, Flags = &h0, Description = 54686520426C7565746F6F74682D73706563696669632055554944206F66207468652063686172616374657269737469632E20
 		#tag Getter
 			Get
-			  return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #If TargetMacOS then
+			    return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  CoreBluetoothFramework.setuuid(id, if (value = nil, nil, value.id))
+			  #If TargetMacOS then
+			    CoreBluetoothFramework.setuuid(id, if (value = nil, nil, value.id))
+			  #endif
 			End Set
 		#tag EndSetter
 		UUID As AppleCBUUID

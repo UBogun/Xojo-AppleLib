@@ -19,7 +19,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652072656D6F74652063656E7472616C206465766963652074686174206F726967696E617465642074686520726571756573742E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleCBCentral.MakefromPtr( getCentral(id))
+			  #If TargetMacOS then
+			    return AppleCBCentral.MakefromPtr( getCentral(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Central As AppleCBCentral
@@ -28,7 +30,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063686172616374657269737469632077686F73652076616C756520697320746F2062652072656164206F72207772697474656E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleCBCharacteristic.MakeFromPtr(CoreBluetoothFramework.getcharacteristic(id))
+			  #If TargetMacOS then
+			    return AppleCBCharacteristic.MakeFromPtr(CoreBluetoothFramework.getcharacteristic(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Characteristic As AppleCBCharacteristic
@@ -50,7 +54,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207A65726F2D626173656420696E646578206F6620746865206669727374206279746520666F72207468652072656164206F7220777269746520726571756573742E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getoffset(id)
+			  #If TargetMacOS then
+			    return getoffset(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Offset As UInteger
@@ -59,7 +65,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064617461206265696E672072656164206F72207772697474656E2E
 		#tag Getter
 			Get
-			  return Appledata.MakefromPtr(CoreBluetoothFramework.getvalue(id))
+			  #If TargetMacOS then
+			    return Appledata.MakefromPtr(CoreBluetoothFramework.getvalue(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Value As AppleData

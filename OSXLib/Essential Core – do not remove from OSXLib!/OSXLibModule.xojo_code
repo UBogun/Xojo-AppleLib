@@ -2,7 +2,7 @@
 Protected Module OSXLibModule
 	#tag Method, Flags = &h0
 		Sub MakeException(ErrorText as CFStringRef)
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    dim err as new xojo.Core.ErrorException
 		    err.Reason = ErrorText
 		    raise Err

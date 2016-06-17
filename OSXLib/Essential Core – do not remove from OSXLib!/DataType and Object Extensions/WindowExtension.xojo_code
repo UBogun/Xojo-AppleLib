@@ -2,7 +2,7 @@
 Protected Module WindowExtension
 	#tag Method, Flags = &h0
 		Function AppleObject(extends w as window) As Applewindow
-		  #if targetmacos
+		  #If TargetMacOS then
 		    return new AppleWindow(w)
 		  #endif
 		End Function

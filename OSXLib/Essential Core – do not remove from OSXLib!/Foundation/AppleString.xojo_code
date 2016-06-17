@@ -8,7 +8,7 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    Super.Constructor (init(alloc(classptr)))
 		    MHasOwnership = true
 		  #endif
@@ -22,7 +22,7 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    Super.Constructor (initWithDataEncoding(alloc(classptr), textdata.id, encoding))
 		    MHasOwnership = true
 		  #endif
@@ -37,7 +37,7 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    Super.Constructor (initWithString(alloc(classptr), atext))
 		    MHasOwnership = true
 		  #endif
@@ -46,7 +46,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		 Shared Function DataToCFSTringRef(aData as AppleData, encoding as StringEncodings = stringencodings.utf8) As cfstringref
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    declare function initWithDataEncoding lib FoundationLibName selector "initWithData:encoding:" (obj_id as ptr, data as ptr, encoding as stringencodings) as CFStringRef
 		    dim result as text = initWithDataEncoding (alloc(ClassPtr), aData.id, encoding)
 		    return result
@@ -72,7 +72,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function ToAppleData(Encoding as StringEncodings) As AppleData
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    return AppleData.MakefromPtr (dataUsingEncoding(id, Encoding))
 		  #endif
 		End Function

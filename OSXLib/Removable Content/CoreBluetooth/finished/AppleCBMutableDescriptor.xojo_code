@@ -14,9 +14,10 @@ Inherits AppleCBDescriptor
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithType(alloc(classptr), type.id, value.id))
-		  MHasOwnership= true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithType(alloc(classptr), type.id, value.id))
+		    MHasOwnership= true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -27,9 +28,10 @@ Inherits AppleCBDescriptor
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithType(alloc(classptr), type.id, value))
-		  MHasOwnership= true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithType(alloc(classptr), type.id, value))
+		    MHasOwnership= true
+		  #endif
 		End Sub
 	#tag EndMethod
 

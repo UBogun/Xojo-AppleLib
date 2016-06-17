@@ -2,7 +2,7 @@
 Protected Module AppleLibSystem
 	#tag Method, Flags = &h1
 		Protected Function DataPointerforName(name as CFStringRef, frameworkID as CFStringRef, suppressException as boolean = false) As Ptr
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    // Implementation courtesy of Jim McKay, with additions from Jason King
 		    
 		    dim framework As new AppleCFBundle (frameworkID)
@@ -105,7 +105,7 @@ Protected Module AppleLibSystem
 
 	#tag Method, Flags = &h0
 		Function SystemConstantName(name as CFStringRef, frameworkPath as CFStringRef) As text
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    Return DataPointerforName (name, frameworkPath).cfstringref(0)
 		  #endif
 		End Function

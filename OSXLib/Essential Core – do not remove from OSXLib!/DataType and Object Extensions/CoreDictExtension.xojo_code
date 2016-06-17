@@ -10,7 +10,7 @@ Protected Module CoreDictExtension
 
 	#tag Method, Flags = &h0
 		Function TextKeyDicttoCoreDictionary(extends d as AppleDictionary) As xojo.Core.Dictionary
-		  #if TargetMacOS
+		  #If TargetMacOS then
 		    dim result as new xojo.Core.Dictionary
 		    dim keys as AppleArray = d.Allkeys
 		    dim count as uinteger = keys.Count -1

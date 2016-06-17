@@ -28,6 +28,7 @@ Begin Window NotificationWindow
    Width           =   600
    Begin OSXLibNotificationCenter AppleNotificationCenter1
       DebugDescription=   ""
+      Enabled         =   True
       HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
@@ -41,7 +42,7 @@ Begin Window NotificationWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+      BackColor       =   &cFFFF00FF
       Bold            =   False
       Border          =   True
       DataField       =   ""

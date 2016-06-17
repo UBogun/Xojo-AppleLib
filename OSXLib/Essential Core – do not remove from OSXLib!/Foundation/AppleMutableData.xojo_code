@@ -3,8 +3,10 @@ Protected Class AppleMutableData
 Inherits AppleData
 	#tag Method, Flags = &h1000
 		Sub Constructor(Capacity as UInteger)
-		  super.Constructor (FoundationFrameWork.initWithCapacity (alloc(ClassPtr), Capacity))
-		  mHasownership = true
+		  #If TargetMacOS then
+		    super.Constructor (FoundationFrameWork.initWithCapacity (alloc(ClassPtr), Capacity))
+		    mHasownership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod

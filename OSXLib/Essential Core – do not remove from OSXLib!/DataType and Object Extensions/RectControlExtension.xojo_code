@@ -2,7 +2,7 @@
 Protected Module RectControlExtension
 	#tag Method, Flags = &h0
 		Function AppleObject(extends r as RectControl) As AppleView
-		  #if targetmacos
+		  #If TargetMacOS then
 		    return new AppleView(r)
 		  #endif
 		End Function

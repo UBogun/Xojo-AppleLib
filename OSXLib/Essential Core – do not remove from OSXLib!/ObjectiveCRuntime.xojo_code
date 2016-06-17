@@ -2,7 +2,7 @@
 Protected Module ObjectiveCRuntime
 	#tag Method, Flags = &h0
 		Function BuildTargetClass(superClassName as Text, newClassName as Text, methods() as TargetClassMethodHelper) As ptr
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    dim result as Ptr
 		    dim superClassptr as ptr = FoundationFramework.NSClassFromString (superClassName)
 		    dim classmethods() as TargetClassMethodHelper
@@ -65,7 +65,7 @@ Protected Module ObjectiveCRuntime
 
 	#tag Method, Flags = &h0
 		Function BuildTargetClass(superClassName as Text, newClassName as Text, methods() as TargetClassMethodHelper, Protocols() As Text) As ptr
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    dim result as Ptr = BuildTargetClass (superClassName, newClassName, Methods)
 		    for q as uinteger= 0 to Protocols.Ubound
 		      if not class_addProtocol (result, FoundationFramework.NSProtocolFromString (Protocols(q))) then
@@ -336,7 +336,7 @@ Protected Module ObjectiveCRuntime
 
 	#tag Method, Flags = &h1
 		Protected Function SingleTypeEncoding(anEncoding as CFStringRef) As CFStringRef
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    dim t as text = TranslateTypeEncoding(anEncoding)
 		    return t.ReplaceAll ("Object, ", "")
 		  #endif
@@ -347,7 +347,7 @@ Protected Module ObjectiveCRuntime
 		Protected Function TranslateTypeEncoding(anEncoding as CFStringRef) As CFStringRef
 		  // Well yes, I could work with a dictionary and comparekeys mabe, bit I think it's too much work for a mathod that isn't time-critical.
 		  
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    dim mytext as text = anEncoding
 		    dim result as text
 		    dim nocomma as boolean

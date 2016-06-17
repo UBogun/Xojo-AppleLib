@@ -11,7 +11,7 @@ Inherits control
 
 	#tag Event
 		Sub CreatePane()
-		  #if TargetMacOS
+		  #If TargetMacOS then
 		    mappleobject = new AppleCBPeripheralManager(true)
 		    mAppleObject.RegisterControl self
 		  #else

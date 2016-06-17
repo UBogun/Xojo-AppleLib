@@ -64,7 +64,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070747220746F2074686520637573746F6D20636C61737320646572697665642066726F6D204E534F626A656374
 		#tag Getter
 			Get
-			  #if TargetMacos
+			  #If TargetMacOS then
 			    static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSShadow")
 			    return mClassPtr
 			  #endif
@@ -77,14 +77,14 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520626C757220726164697573206F662074686520736861646F772E
 		#tag Getter
 			Get
-			  #if targetmacos
+			  #If TargetMacOS then
 			    return getShadowBlurRadius(mid)
 			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if targetmacos
+			  #If TargetMacOS then
 			    setShadowBlurRadius(mid, value)
 			  #endif
 			End Set
@@ -95,14 +95,14 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520736861646F772E
 		#tag Getter
 			Get
-			  #if targetmacos
+			  #If TargetMacOS then
 			    return applecolor.makefromptr( getShadowcolor(mid))
 			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if targetmacos
+			  #If TargetMacOS then
 			    setShadowcolor(mid, if (value = nil, nil, value.id))
 			  #endif
 			End Set
@@ -113,14 +113,14 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F66667365742076616C756573206F662074686520736861646F772E
 		#tag Getter
 			Get
-			  #if targetmacos
+			  #If TargetMacOS then
 			    return getShadowOffset(mid)
 			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if targetmacos
+			  #If TargetMacOS then
 			    setShadowOffset(mid, value)
 			  #endif
 			End Set

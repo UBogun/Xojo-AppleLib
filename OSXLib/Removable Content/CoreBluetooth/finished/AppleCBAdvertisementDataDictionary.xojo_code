@@ -11,7 +11,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleNumber.MakefromPtr(me.PtrForKey (kCBAdvertisementDataIsConnectable)).boolvalue
+			  #If TargetMacOS then
+			    return AppleNumber.MakefromPtr(me.PtrForKey (kCBAdvertisementDataIsConnectable)).boolvalue
+			  #endif
 			End Get
 		#tag EndGetter
 		DataIsConnectable As Boolean
@@ -20,7 +22,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleArray.MakefromPtr(me.PtrForKey (kCBAdvertisementDataOverflowServiceUUIDsKey))
+			  #If TargetMacOS then
+			    return AppleArray.MakefromPtr(me.PtrForKey (kCBAdvertisementDataOverflowServiceUUIDsKey))
+			  #endif
 			End Get
 		#tag EndGetter
 		DataOverflowServiceUUIDs As AppleArray
@@ -29,8 +33,10 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataIsConnectable as text = SystemConstantName("CBAdvertisementDataIsConnectable", CoreBluetoothPath)
-			  return mCBAdvertisementDataIsConnectable
+			  #If TargetMacOS then
+			    static mCBAdvertisementDataIsConnectable as text = SystemConstantName("CBAdvertisementDataIsConnectable", CoreBluetoothPath)
+			    return mCBAdvertisementDataIsConnectable
+			  #endif
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataIsConnectable As Text
@@ -39,8 +45,10 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataLocalNameKey as text = SystemConstantName("CBAdvertisementDataLocalNameKey", CoreBluetoothPath)
-			  return mCBAdvertisementDataLocalNameKey
+			  #If TargetMacOS then
+			    static mCBAdvertisementDataLocalNameKey as text = SystemConstantName("CBAdvertisementDataLocalNameKey", CoreBluetoothPath)
+			    return mCBAdvertisementDataLocalNameKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataLocalNameKey As Text
@@ -49,8 +57,11 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataManufacturerDataKey as text = SystemConstantName("CBAdvertisementDataManufacturerDataKey", CoreBluetoothPath)
-			  return mCBAdvertisementDataManufacturerDataKey
+			  #If TargetMacOS then
+			    static mCBAdvertisementDataManufacturerDataKey as text = SystemConstantName("CBAdvertisementDataManufacturerDataKey", CoreBluetoothPath)
+			    return mCBAdvertisementDataManufacturerDataKey
+			  #endif
+			  
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataManufacturerDataKey As Text
@@ -59,8 +70,11 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataOverflowServiceUUIDsKey as text = SystemConstantName("CBAdvertisementDataOverflowServiceUUIDsKey", CoreBluetoothPath)
-			  return mCBAdvertisementDataOverflowServiceUUIDsKey
+			  #If TargetMacOS then
+			    
+			    static mCBAdvertisementDataOverflowServiceUUIDsKey as text = SystemConstantName("CBAdvertisementDataOverflowServiceUUIDsKey", CoreBluetoothPath)
+			    return mCBAdvertisementDataOverflowServiceUUIDsKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataOverflowServiceUUIDsKey As Text
@@ -69,8 +83,10 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataServiceDataKey as text = SystemConstantName("CBAdvertisementDataServiceDataKey", CoreBluetoothPath)
-			  return mCBAdvertisementDataServiceDataKey
+			  #If TargetMacOS then
+			    static mCBAdvertisementDataServiceDataKey as text = SystemConstantName("CBAdvertisementDataServiceDataKey", CoreBluetoothPath)
+			    return mCBAdvertisementDataServiceDataKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataServiceDataKey As Text
@@ -79,8 +95,10 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataServiceUUIDsKey as text = SystemConstantName("CBAdvertisementDataServiceUUIDsKey", CoreBluetoothPath)
-			  return mCBAdvertisementDataServiceUUIDsKey
+			  #If TargetMacOS then
+			    static mCBAdvertisementDataServiceUUIDsKey as text = SystemConstantName("CBAdvertisementDataServiceUUIDsKey", CoreBluetoothPath)
+			    return mCBAdvertisementDataServiceUUIDsKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataServiceUUIDsKey As Text
@@ -89,8 +107,10 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataSolicitedServiceUUIDsKey as text = SystemConstantName("CBAdvertisementDataSolicitedServiceUUIDsKey", CoreBluetoothPath)
-			  return mCBAdvertisementDataSolicitedServiceUUIDsKey
+			  #If TargetMacOS then
+			    static mCBAdvertisementDataSolicitedServiceUUIDsKey as text = SystemConstantName("CBAdvertisementDataSolicitedServiceUUIDsKey", CoreBluetoothPath)
+			    return mCBAdvertisementDataSolicitedServiceUUIDsKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataSolicitedServiceUUIDsKey As Text
@@ -99,8 +119,10 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBAdvertisementDataTxPowerLevelKey as text = SystemConstantName("CBAdvertisementDataTxPowerLevelKey", CoreBluetoothPath)
-			  return mCBAdvertisementDataTxPowerLevelKey
+			  #If TargetMacOS then
+			    static mCBAdvertisementDataTxPowerLevelKey as text = SystemConstantName("CBAdvertisementDataTxPowerLevelKey", CoreBluetoothPath)
+			    return mCBAdvertisementDataTxPowerLevelKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Attributes( hidden ) Private Shared kCBAdvertisementDataTxPowerLevelKey As Text
@@ -109,7 +131,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return me.TextForKey (kCBAdvertisementDataLocalNameKey)
+			  #If TargetMacOS then
+			    return me.TextForKey (kCBAdvertisementDataLocalNameKey)
+			  #endif
 			End Get
 		#tag EndGetter
 		LocalName As Text
@@ -118,7 +142,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return appledata.MakefromPtr(me.PtrForKey (kCBAdvertisementDataManufacturerDataKey))
+			  #If TargetMacOS then
+			    return appledata.MakefromPtr(me.PtrForKey (kCBAdvertisementDataManufacturerDataKey))
+			  #endif
 			End Get
 		#tag EndGetter
 		ManufacturerData As AppleData
@@ -127,7 +153,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleDictionary.MakefromPtr(me.PtrForKey (kCBAdvertisementDataServiceDataKey))
+			  #If TargetMacOS then
+			    return AppleDictionary.MakefromPtr(me.PtrForKey (kCBAdvertisementDataServiceDataKey))
+			  #endif
 			End Get
 		#tag EndGetter
 		ServiceData As AppleDictionary
@@ -136,7 +164,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleArray.MakefromPtr(me.PtrForKey (kCBAdvertisementDataServiceUUIDsKey))
+			  #If TargetMacOS then
+			    return AppleArray.MakefromPtr(me.PtrForKey (kCBAdvertisementDataServiceUUIDsKey))
+			  #endif
 			End Get
 		#tag EndGetter
 		ServiceUUIDs As AppleArray
@@ -145,7 +175,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleArray.MakefromPtr(me.PtrForKey (kCBAdvertisementDataSolicitedServiceUUIDsKey))
+			  #If TargetMacOS then
+			    return AppleArray.MakefromPtr(me.PtrForKey (kCBAdvertisementDataSolicitedServiceUUIDsKey))
+			  #endif
 			End Get
 		#tag EndGetter
 		SolicitedServiceUUIDs As AppleArray
@@ -154,7 +186,9 @@ Inherits appledictionary
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleNumber.MakefromPtr (PtrForKey (kCBAdvertisementDataTxPowerLevelKey)).doublevalue
+			  #If TargetMacOS then
+			    return AppleNumber.MakefromPtr (PtrForKey (kCBAdvertisementDataTxPowerLevelKey)).doublevalue
+			  #endif
 			End Get
 		#tag EndGetter
 		TxPowerLevel As Double

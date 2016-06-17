@@ -15,8 +15,10 @@ Inherits AppleValue
 
 	#tag Method, Flags = &h0
 		Sub Constructor(aBool as boolean)
-		  super.constructor (initWithBool (Alloc(ClassPtr), aBool))
-		  mhasOwnership = true
+		  #If TargetMacOS then
+		    super.constructor (initWithBool (Alloc(ClassPtr), aBool))
+		    mhasOwnership = true
+		  #endif
 		  
 		  
 		End Sub
@@ -24,47 +26,59 @@ Inherits AppleValue
 
 	#tag Method, Flags = &h0
 		Sub Constructor(aDouble as Double)
-		  super.constructor ( initWithDouble (Alloc(ClassPtr), aDouble))
-		  mhasOwnership = true
+		  #If TargetMacOS then
+		    super.constructor ( initWithDouble (Alloc(ClassPtr), aDouble))
+		    mhasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Constructor(anint as int16)
-		  super.constructor ( initWithShort (Alloc(ClassPtr), anint))
-		  mhasOwnership = true
+		  #If TargetMacOS then
+		    super.constructor ( initWithShort (Alloc(ClassPtr), anint))
+		    mhasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Constructor(achar as int8)
-		  super.constructor ( initWithChar (Alloc(ClassPtr), achar))
-		  mhasOwnership = true
+		  #If TargetMacOS then
+		    super.constructor ( initWithChar (Alloc(ClassPtr), achar))
+		    mhasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Constructor(anint as Integer)
-		  super.constructor ( initWithInteger (Alloc(ClassPtr), anint))
-		  mhasOwnership = true
+		  #If TargetMacOS then
+		    super.constructor ( initWithInteger (Alloc(ClassPtr), anint))
+		    mhasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Constructor(aSingle as Single)
-		  super.constructor ( initWithFloat (Alloc(ClassPtr), asingle))
-		  mhasOwnership = true
+		  #If TargetMacOS then
+		    super.constructor ( initWithFloat (Alloc(ClassPtr), asingle))
+		    mhasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Equals(aNumber as AppleNumber) As boolean
-		  return getisEqualToNumber (id, aNumber.id)
+		  #If TargetMacOS then
+		    return getisEqualToNumber (id, aNumber.id)
+		  #endif
 		  
 		End Function
 	#tag EndMethod
@@ -143,7 +157,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getboolValue (id)
+			  #If TargetMacOS then
+			    return getboolValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -163,7 +179,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return FoundationFrameWork.getDoubleValue (id)
+			  #If TargetMacOS then
+			    return FoundationFrameWork.getDoubleValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -173,7 +191,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getshortValue (id)
+			  #If TargetMacOS then
+			    return getshortValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -183,7 +203,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppKitFramework.getintValue (id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getintValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -193,7 +215,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getlongLongValue (id)
+			  #If TargetMacOS then
+			    return getlongLongValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -203,7 +227,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getcharValue (id)
+			  #If TargetMacOS then
+			    return getcharValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -213,7 +239,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppKitFramework.getintegerValue (id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getintegerValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -241,7 +269,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return FoundationFrameWork.getobjCType (id)
+			  #If TargetMacOS then
+			    return FoundationFrameWork.getobjCType (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -251,7 +281,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppKitFramework.getfloatValue (id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getfloatValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -270,7 +302,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppKitFramework.getstringValue (id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getstringValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -280,7 +314,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getunsignedShortValue (id)
+			  #If TargetMacOS then
+			    return getunsignedShortValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -290,7 +326,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getunsignedLongValue (id)
+			  #If TargetMacOS then
+			    return getunsignedLongValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -300,7 +338,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getunsignedLongLongValue (id)
+			  #If TargetMacOS then
+			    return getunsignedLongLongValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -310,7 +350,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getunsignedCharValue (id)
+			  #If TargetMacOS then
+			    return getunsignedCharValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter
@@ -320,7 +362,9 @@ Inherits AppleValue
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getunsignedIntegerValue (id)
+			  #If TargetMacOS then
+			    return getunsignedIntegerValue (id)
+			  #endif
 			  
 			End Get
 		#tag EndGetter

@@ -19,7 +19,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000
 		Sub Constructor()
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    super.Constructor(data(classptr))
 		    RetainClassObject
 		  #endif
@@ -28,7 +28,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(data as AppleData)
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    declare function initWithData lib FoundationLibName  selector "initWithData:" (id as ptr, data as ptr) as ptr
 		    super.Constructor (initWithData (alloc(ClassPtr), data.id))
 		    mHasownership = true
@@ -39,7 +39,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(MB as xojo.Core.MemoryBlock)
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    declare function initWithBytes lib FoundationLibName  selector "initWithBytes:length:" (id as ptr, bytes as ptr, length as uinteger) as ptr
 		    super.Constructor (initWithBytes (alloc(ClassPtr), mb.Data, mb.Size))
 		    mHasownership = true
@@ -54,7 +54,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function Equals(anotherData as AppleData) As Boolean
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    declare function isEqualToData lib FoundationLibName  selector "isEqualToData:" (id as ptr, anotherData as ptr) as Boolean
 		    return isEqualToData (id, anotherData.id)
 		  #endif
@@ -64,7 +64,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Sub GetBytes(byref buffer as xojo.Core.MutableMemoryBlock, Range as FoundationFramework.NSRange)
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    declare sub getBytes lib FoundationLibName  selector "getBytes:range:" (id as ptr, buffer as ptr, range as FoundationFramework.NSRange)
 		    if buffer.Size >= length then getBytes id, buffer.Data, Range
 		  #endif
@@ -74,7 +74,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Sub GetBytes(byref buffer as xojo.Core.MutableMemoryBlock, length as uinteger)
-		  #If TargetMacOS
+		  #If TargetMacOS then
 		    declare sub getBytes lib FoundationLibName  selector "getBytes:length:" (id as ptr, buffer as ptr, length as uinteger)
 		    if buffer.Size >= length then getBytes id, buffer.Data, length
 		  #endif
@@ -96,7 +96,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS
+			  #If TargetMacOS then
 			    return base64EncodedStringWithOptions (id, 0)
 			  #endif
 			End Get
@@ -137,7 +137,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS
+			  #If TargetMacOS then
 			    return getdescription (id)
 			  #endif
 			End Get
@@ -148,7 +148,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS
+			  #If TargetMacOS then
 			    declare function length lib FoundationLibName  selector "length" (id as ptr) as uinteger
 			    return length (id)
 			  #endif
@@ -161,7 +161,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS
+			  #If TargetMacOS then
 			    return AppleString.DataToCFSTringRef(self)
 			  #endif
 			End Get

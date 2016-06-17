@@ -15,8 +15,10 @@ Inherits AppleCBService
 		  // Constructor() -- From AppleCBService
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithtype(alloc(classptr), type.id, isPrimary))
-		  MHasOwnership = true
+		  #If TargetMacOS then
+		    Super.Constructor(initwithtype(alloc(classptr), type.id, isPrimary))
+		    MHasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -45,12 +47,16 @@ Inherits AppleCBService
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F6620636861726163746572697374696373206F66206120736572766963652E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getcharacteristics(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getcharacteristics(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcharacteristics id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    setcharacteristics id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		Characteristics As AppleArray
@@ -72,12 +78,16 @@ Inherits AppleCBService
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F6620696E636C7564656420736572766963657320696E207468697320736572766963652E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getincludedServices(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getincludedServices(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setIncludedServices id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    setIncludedServices id, if (value = nil, nil, value.id)
+			  #endif
 			  
 			End Set
 		#tag EndSetter
@@ -87,12 +97,16 @@ Inherits AppleCBService
 	#tag ComputedProperty, Flags = &h0, Description = 4120426F6F6C65616E2076616C756520696E6469636174696E672077686574686572207468652074797065206F662073657276696365206973207072696D617279206F72207365636F6E646172792E20
 		#tag Getter
 			Get
-			  return getisPrimary (id)
+			  #If TargetMacOS then
+			    return getisPrimary (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setisPrimary id, value
+			  #If TargetMacOS then
+			    setisPrimary id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		IsPrimary As Boolean
@@ -101,12 +115,16 @@ Inherits AppleCBService
 	#tag ComputedProperty, Flags = &h0, Description = 54686520426C7565746F6F74682D73706563696669632055554944206F662074686520736572766963652E
 		#tag Getter
 			Get
-			  return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #If TargetMacOS then
+			    return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setuuid id, value.id
+			  #If TargetMacOS then
+			    setuuid id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		UUID As AppleCBUUID
