@@ -14,9 +14,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithIdentifier(alloc(classptr), Identifier))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initWithIdentifier(alloc(classptr), Identifier))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -56,7 +57,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 526573697A657320746865207461626C6520636F6C756D6E20746F2066697420746865207769647468206F6620697473206865616465722063656C6C2E
 		Sub SizeToFit()
-		  AppKitFramework.sizeToFit id
+		  #If TargetMacOS then
+		    AppKitFramework.sizeToFit id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -81,12 +84,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220612063656C6C2D6261736564207461626C65E280997320636F6C756D6E2063656C6C73206172652075736572206564697461626C652E
 		#tag Getter
 			Get
-			  return AppKitFramework.geteditable (id)
+			  #If TargetMacOS then
+			    return AppKitFramework.geteditable (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.seteditable id, value
+			  #If TargetMacOS then
+			    AppKitFramework.seteditable id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Editable As Boolean
@@ -95,12 +102,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6C207573656420746F206472617720746865207461626C6520636F6C756D6EE2809973206865616465722E
 		#tag Getter
 			Get
-			  return AppleTableHeaderCell.MakefromPtr(getheadercell(id))
+			  #If TargetMacOS then
+			    return AppleTableHeaderCell.MakefromPtr(getheadercell(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setheaderCell id, value.id
+			  #If TargetMacOS then
+			    setheaderCell id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		HeaderCell As AppleTableHeaderCell
@@ -109,12 +120,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520737472696E672074686174E280997320646973706C6179656420696E20612068656C7020746167206F76657220746865207461626C6520636F6C756D6E206865616465722E
 		#tag Getter
 			Get
-			  return getheaderToolTip(id)
+			  #If TargetMacOS then
+			    return getheaderToolTip(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setheaderToolTip id, value
+			  #If TargetMacOS then
+			    setheaderToolTip id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		HeaderToolTip As Text
@@ -123,12 +138,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C6520636F6C756D6E2069732068696464656E2E
 		#tag Getter
 			Get
-			  return appkitframework.getHidden (id)
+			  #If TargetMacOS then
+			    return appkitframework.getHidden (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setHidden id,value
+			  #If TargetMacOS then
+			    AppKitFramework.setHidden id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		Hidden As Boolean
@@ -137,12 +156,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207469746C65206F6620746865207461626C6520636F6C756D6EE2809973206865616465722E
 		#tag Getter
 			Get
-			  return AppKitFramework.getidentifier(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getidentifier(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setidentifier id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setidentifier id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Identifier As Text
@@ -151,12 +174,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C6520636F6C756D6EE28099732077696474682C20696E20706F696E74732E
 		#tag Getter
 			Get
-			  return AppKitFramework.getMaxWidth(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getMaxWidth(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setMaxWidth id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setMaxWidth id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		MaxWidth As Double
@@ -165,12 +192,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C6520636F6C756D6EE2809973206D696E696D756D2077696474682C20696E20706F696E74732E
 		#tag Getter
 			Get
-			  return AppKitFramework.getminWidth(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getminWidth(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setminWidth id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setminWidth id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		MinWidth As Double
@@ -179,12 +210,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C6520636F6C756D6EE280997320726573697A696E67206D61736B2E
 		#tag Getter
 			Get
-			  return new AppleTableColumnResizingOptions(getresizingMask(id))
+			  #If TargetMacOS then
+			    return new AppleTableColumnResizingOptions(getresizingMask(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setresizingMask id, value.id
+			  #If TargetMacOS then
+			    setresizingMask id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		ResizingMask As AppleTableColumnResizingOptions
@@ -193,12 +228,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C652076696577207468617420636F6E7461696E7320746865207461626C6520636F6C756D6E2E
 		#tag Getter
 			Get
-			  return AppleTableView.MakefromPtr(TableViewAdditionsForAppkit.gettableView(id))
+			  #If TargetMacOS then
+			    return AppleTableView.MakefromPtr(TableViewAdditionsForAppkit.gettableView(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  TableViewAdditionsForAppkit.setTableView id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    TableViewAdditionsForAppkit.setTableView id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		TableView As AppleTableView
@@ -207,12 +246,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207469746C65206F6620746865207461626C6520636F6C756D6EE2809973206865616465722E
 		#tag Getter
 			Get
-			  return AppKitFramework.getTitle(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getTitle(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setTitle id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setTitle id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Title As Text
@@ -221,12 +264,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C6520636F6C756D6EE28099732077696474682C20696E20706F696E74732E
 		#tag Getter
 			Get
-			  return AppKitFramework.getWidth(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getWidth(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setWidth id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setWidth id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Width As Double

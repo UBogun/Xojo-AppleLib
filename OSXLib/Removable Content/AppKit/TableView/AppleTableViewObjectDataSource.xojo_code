@@ -8,9 +8,10 @@ Inherits AppleTableViewDataSource
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(init(alloc(classptr)))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(init(alloc(classptr)))
+		    MHasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod

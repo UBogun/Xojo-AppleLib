@@ -17,9 +17,10 @@ Inherits AppleView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithframe(alloc(classptr),Rect))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithframe(alloc(classptr),Rect))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -87,7 +88,9 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 50726F76696465732061636365737320746F2074686520676976656E2076696577206174206120706172746963756C617220636F6C756D6E2E0A5468697320697320746865206F6E6C792077617920746F206163636573732063656C6C2076696577732061667465722074686520726F77207669657720686173206265656E2072656D6F7665642066726F6D20746865207461626C652E
 		Function ViewAtColumn(Column As Integer) As AppleView
-		  return AppleView.MakefromPtr(getViewAtColumn(id, column))
+		  #If TargetMacOS then
+		    return AppleView.MakefromPtr(getViewAtColumn(id, column))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -101,12 +104,16 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206261636B67726F756E6420636F6C6F72206F662074686520726F772E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			  #If TargetMacOS then
+			    return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor

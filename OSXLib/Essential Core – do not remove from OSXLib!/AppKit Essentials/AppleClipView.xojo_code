@@ -131,7 +131,9 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E636520746861742074686520636F6E74656E74207669657720697320696E7365742066726F6D2074686520656E636C6F73696E67207363726F6C6C20766965772E
 		#tag Getter
 			Get
-			  return AppKitFramework.getcontentInsets(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getcontentInsets(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
