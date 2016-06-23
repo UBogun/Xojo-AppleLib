@@ -17,9 +17,10 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithFrame(alloc(classptr), frame))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -59,13 +60,17 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652072656374616E676C65206F636375706965642062792061506172742C20776869636820666F722074686973206D6574686F6420697320696E746572707265746564206C69746572616C6C7920726174686572207468616E20617320616E20696E64696361746F72206F66207363726F6C6C696E6720646972656374696F6E2E
 		Function RectForPart(Part as NSScrollerPart) As FoundationFrameWork.NSRect
-		  return getRectForPart (id, part)
+		  #If TargetMacOS then
+		    return getRectForPart (id, part)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520776964746820666F72207363726F6C6C657273206F662074686520726563656976696E6720636C61737320666F72206120676976656E20636F6E74726F6C2073697A6520616E64207363726F6C6C6572207374796C652E
 		Function ScrollerWidth(Controlsize as NSControlSize, style as NSScrollerStyle) As Double
-		  return scrollerWidthForControlSize (id, Controlsize, style)
+		  #If TargetMacOS then
+		    return scrollerWidthForControlSize (id, Controlsize, style)
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -95,7 +100,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652070617274207468617420776F756C64206265206869742062792061206D6F7573652D646F776E206576656E742061742061506F696E74202865787072657373656420696E207468652077696E646F77E280997320636F6F7264696E6174652073797374656D292E
 		Function TestPart(Point As FoundationFrameWork.Nspoint) As NSScrollerPart
-		  return testPart (id, point)
+		  #If TargetMacOS then
+		    return testPart (id, point)
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -119,12 +126,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F636174696F6E206F6620746865207363726F6C6C20627574746F6E732077697468696E20746865207363726F6C6C65722E
 		#tag Getter
 			Get
-			  return getArrowsPosition (id)
+			  #If TargetMacOS then
+			    return getArrowsPosition (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setArrowsPosition id, value
+			  #If TargetMacOS then
+			    setArrowsPosition id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		ArrowsPosition As NSScrollArrowPosition
@@ -144,12 +155,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C6572E280997320636F6E74726F6C2074696E742E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr (getcontrolTint(id))
+			  #If TargetMacOS then
+			    return applecolor.MakefromPtr (getcontrolTint(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcontrolTint id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    setcontrolTint id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		ControlTint As AppleColor
@@ -158,12 +173,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070726F706F7274696F6E206F6620746865206B6E6F6220736C6F74207468617420746865206B6E6F622073686F756C642066696C6C2E0A546869732070726F706572747920636F6E7461696E73206120666C6F6174696E672D706F696E742076616C75652066726F6D20302E3020286D696E696D616C2073697A652920746F20312E30202866696C6C732074686520736C6F7429
 		#tag Getter
 			Get
-			  return getknobProportion (id)
+			  #If TargetMacOS then
+			    return getknobProportion (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setknobProportion id, value
+			  #If TargetMacOS then
+			    setknobProportion id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		KnobProportion As Double
@@ -172,12 +191,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C6572E2809973206B6E6F62207374796C652E
 		#tag Getter
 			Get
-			  return getknobStyle (id)
+			  #If TargetMacOS then
+			    return getknobStyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setknobStyle id, value
+			  #If TargetMacOS then
+			    setknobStyle id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		KnobStyle As NSScrollerKnobStyle
@@ -196,7 +219,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207374796C65206F66207363726F6C6C6572732074686174206170706C69636174696F6E732073686F756C642075736520776865726576657220706F737369626C652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getpreferredScrollerStyle(ClassPtr)
+			  #If TargetMacOS then
+			    return getpreferredScrollerStyle(ClassPtr)
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared PreferredScrollerStyle As NSScrollerStyle
@@ -205,12 +230,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C6572207374796C6520666F722074686973207363726F6C6C65722E
 		#tag Getter
 			Get
-			  return getscrollerStyle(id)
+			  #If TargetMacOS then
+			    return getscrollerStyle(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setscrollerStyle id, value
+			  #If TargetMacOS then
+			    setscrollerStyle id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		ScrollerStyle As NSScrollerStyle
@@ -219,7 +248,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768696368207061727473206F66207468652072656365697665722061726520646973706C6179656420616E6420757361626C652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getusableParts (id)
+			  #If TargetMacOS then
+			    return getusableParts (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		UsableParts As NSUsableScrollerParts

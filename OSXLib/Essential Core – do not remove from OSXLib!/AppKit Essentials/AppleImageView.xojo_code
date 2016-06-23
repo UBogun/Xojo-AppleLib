@@ -16,9 +16,10 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithFrame(alloc(classptr), frame))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -58,12 +59,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 4120426F6F6C65616E2076616C756520696E6469636174696E6720776865746865722074686520696D6167652076696577206C657473207468652075736572206375742C20636F70792C20616E642070617374652074686520696D61676520636F6E74656E74732E
 		#tag Getter
 			Get
-			  return AppKitFramework.getallowsCutCopyPaste (id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getallowsCutCopyPaste (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setallowsCutCopyPaste id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setallowsCutCopyPaste id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		AllowsCutCopyPaste As Boolean

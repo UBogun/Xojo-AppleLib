@@ -442,7 +442,9 @@ Inherits AppleObject
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setState id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setState id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		State As Integer
@@ -451,12 +453,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D656E756974656DE2809973207461672C20776869636820697320616E20696E7465676572207468617420796F752075736520746F206964656E746966792074686520766965772077697468696E20796F7572206170702E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppKitFramework.gettag(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.gettag(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.settag id, value
+			  #If TargetMacOS then
+			    AppKitFramework.settag id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Tag As Integer
@@ -465,12 +471,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D656E756974656DE2809973207461726765742E
 		#tag Getter
 			Get
-			  return appleobject.MakeFromPtr(appkitframework.getTarget (id))
+			  #If TargetMacOS then
+			    return appleobject.MakeFromPtr(appkitframework.getTarget (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setTarget id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    AppKitFramework.setTarget id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		Target As AppleObject
@@ -479,12 +489,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D656E756974656DE2809973207469746C652E
 		#tag Getter
 			Get
-			  return AppKitFramework.getTitle(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getTitle(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setTitle id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setTitle id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Title As Text
@@ -493,12 +507,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207465787420666F7220746865206D656E756974656DE280997320746F6F6C7469702E0A5468652076616C7565206F6620746869732070726F7065727479206973206E696C20696620746865207669657720646F6573206E6F742063757272656E746C7920646973706C617920746F6F6C74697020746578742E2041737369676E696E6720612076616C756520746F20746869732070726F7065727479206361757365732074686520746F6F6C74697020746F20626520646973706C6179656420666F722074686520766965772E20
 		#tag Getter
 			Get
-			  return AppKitFramework.gettoolTip(id)
+			  #If TargetMacOS then
+			    return AppKitFramework.gettoolTip(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.settoolTip id, value
+			  #If TargetMacOS then
+			    AppKitFramework.settoolTip id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		ToolTip As Text
@@ -507,7 +525,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5474686520757365722D61737369676E6564206B6579206571756976616C656E7420666F7220746865206D656E756974656D2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getuserKeyEquivalent(id)
+			  #If TargetMacOS then
+			    return getuserKeyEquivalent(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		UserKeyEquivalent As Text
@@ -516,12 +536,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572206D656E75206974656D7320636F6E666F726D20746F207573657220707265666572656E63657320666F72206B6579206571756976616C656E74732E
 		#tag Getter
 			Get
-			  return getusesUserKeyEquivalents (classptr)
+			  #If TargetMacOS then
+			    return getusesUserKeyEquivalents (classptr)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setUsesUserKeyEquivalents classptr, value
+			  #If TargetMacOS then
+			    setUsesUserKeyEquivalents classptr, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Shared UsesUserKeyEquivalents As Boolean
@@ -530,12 +554,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6E74656E74207669657720666F7220746865206D656E756974656D2E0A41206D656E75206974656D20776974682061207669657720646F6573206E6F74206472617720697473207469746C652C2073746174652C20666F6E742C206F72206F74686572207374616E646172642064726177696E6720617474726962757465732C20616E642061737369676E732064726177696E6720726573706F6E736962696C69747920656E746972656C7920746F2074686520766965772E204B6579626F617264206571756976616C656E747320616E6420747970652D73656C65637420636F6E74696E756520746F2075736520746865206B6579206571756976616C656E7420616E64207469746C65206173206E6F726D616C2E
 		#tag Getter
 			Get
-			  return appleview.MakeFromPtr(AppKitFramework.getview (id))
+			  #If TargetMacOS then
+			    return appleview.MakeFromPtr(AppKitFramework.getview (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setview id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    AppKitFramework.setview id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		View As AppleView
