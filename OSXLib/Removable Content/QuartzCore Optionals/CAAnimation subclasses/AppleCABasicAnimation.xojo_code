@@ -15,9 +15,10 @@ Inherits AppleCAPropertyAnimation
 		  // Constructor() -- From AppleCAAnimation
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(animationWithKeyPath(classptr, KeyPath))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(animationWithKeyPath(classptr, KeyPath))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -63,12 +64,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 446566696E6573207468652076616C756520746865207265636569766572207573657320746F20706572666F726D2072656C617469766520696E746572706F6C6174696F6E2E
 		#tag Getter
 			Get
-			  return  AppleObject.MakeFromPtr(getByValue(id))
+			  #If TargetMacOS then
+			    return  AppleObject.MakeFromPtr(getByValue(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setByValue id, if (value = nil, nil, value.GeneralID)
+			  #If TargetMacOS then
+			    setByValue id, if (value = nil, nil, value.GeneralID)
+			  #endif
 			End Set
 		#tag EndSetter
 		ByValue As AppleGeneralObject
@@ -87,12 +92,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 446566696E6573207468652076616C756520746865207265636569766572207573657320746F20737461727420696E746572706F6C6174696F6E2E
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr( getfromValue(id))
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr( getfromValue(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setfromValue  id, if (value = nil, nil ,value.GeneralID)
+			  #If TargetMacOS then
+			    setfromValue  id, if (value = nil, nil ,value.GeneralID)
+			  #endif
 			End Set
 		#tag EndSetter
 		FromValue As AppleGeneralObject
@@ -101,12 +110,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 446566696E6573207468652076616C756520746865207265636569766572207573657320746F20656E6420696E746572706F6C6174696F6E2E
 		#tag Getter
 			Get
-			  return  AppleObject.MakeFromPtr(getToValue(id))
+			  #If TargetMacOS then
+			    return  AppleObject.MakeFromPtr(getToValue(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  settoValue id, if (value = nil, nil, value.GeneralID)
+			  #If TargetMacOS then
+			    settoValue id, if (value = nil, nil, value.GeneralID)
+			  #endif
 			End Set
 		#tag EndSetter
 		ToValue As AppleGeneralObject

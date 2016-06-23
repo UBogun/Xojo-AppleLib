@@ -180,33 +180,36 @@ End
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
-		  if SecondaryWindow <> nil then 
-		    SecondaryWindow.Close
-		    try
-		      appleobject.release Ptr(SecondaryWindow.Handle)
-		      System.DebugLog "Released Window"
-		      SecondaryWindow = nil
-		    catch
-		      System.DebugLog "Release cause exception"
-		      
-		    end try
-		  end if
-		  select case PopupMenu1.Text
-		  case "Color Additions"
-		    SecondaryWindow = new ColorWindow
-		  case "Notifications"
-		    SecondaryWindow = new NotificationWindow
-		  case "CoreBluetooth"
-		    SecondaryWindow= new CoreBluetoothWindow
-		  case "NSView Additions"
-		    SecondaryWindow= new NSViewPlayWindow
-		  case "ScrollView"
-		    SecondaryWindow = new ScrollWindow
-		  case "TableView"
-		    SecondaryWindow = new TableViewWindow
-		  case "OutlineView"
-		    SecondaryWindow = new OutlineViewWindow
-		  end select
+		  #If TargetMacOS then
+		    
+		    if SecondaryWindow <> nil then 
+		      SecondaryWindow.Close
+		      try
+		        appleobject.release Ptr(SecondaryWindow.Handle)
+		        System.DebugLog "Released Window"
+		        SecondaryWindow = nil
+		      catch
+		        System.DebugLog "Release cause exception"
+		        
+		      end try
+		    end if
+		    select case PopupMenu1.Text
+		    case "Color Additions"
+		      SecondaryWindow = new ColorWindow
+		    case "Notifications"
+		      SecondaryWindow = new NotificationWindow
+		    case "CoreBluetooth"
+		      SecondaryWindow= new CoreBluetoothWindow
+		    case "NSView Additions"
+		      SecondaryWindow= new NSViewPlayWindow
+		    case "ScrollView"
+		      SecondaryWindow = new ScrollWindow
+		    case "TableView"
+		      SecondaryWindow = new TableViewWindow
+		    case "OutlineView"
+		      SecondaryWindow = new OutlineViewWindow
+		    end select
+		  #endif
 		End Sub
 	#tag EndEvent
 #tag EndEvents

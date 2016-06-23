@@ -9,9 +9,10 @@ Inherits AppleView
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initWithFrame(alloc(classptr), frame))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 

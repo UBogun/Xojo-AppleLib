@@ -3,7 +3,9 @@ Protected Class AppleCBPeripheralManagerForControl
 Inherits AppleObject
 	#tag Method, Flags = &h0, Description = 5075626C69736865732061207365727669636520616E6420616E79206F6620697473206173736F6369617465642063686172616374657269737469637320616E642063686172616374657269737469632064657363726970746F727320746F20746865206C6F63616C20474154542064617461626173652E
 		Sub AddService(Service as AppleCBMutableService)
-		  AddService id, service.id
+		  #If TargetMacOS then
+		    AddService id, service.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -18,19 +20,22 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  dim tempId as Ptr = init(alloc(classptr))
-		  if AlertIfPoweredOff or not RestoreIdentifier.empty then
-		    dim dict as new AppleMutableDictionary(2)
-		    dict.setValue(kCBPeripheralManagerOptionShowPowerAlertKey, new AppleNumber(AlertIfPoweredOff))
-		    dict.setValue(kCBPeripheralManagerOptionRestoreIdentifierKey, restoreIdentifier)
-		    super.Constructor(AppleCBCentralManager.initWithDelegateOptions(Alloc(classptr), tempId, nil, dict.Id))
-		  else
-		    super.Constructor(AppleCBCentralManager.initWithDelegate(Alloc(classptr), tempId, nil))
-		  end if
-		  MHasownership = true
-		  release tempid
-		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
-		  CBPeripheralManagerDelegate = self
+		  #If TargetMacOS then
+		    
+		    dim tempId as Ptr = init(alloc(classptr))
+		    if AlertIfPoweredOff or not RestoreIdentifier.empty then
+		      dim dict as new AppleMutableDictionary(2)
+		      dict.setValue(kCBPeripheralManagerOptionShowPowerAlertKey, new AppleNumber(AlertIfPoweredOff))
+		      dict.setValue(kCBPeripheralManagerOptionRestoreIdentifierKey, restoreIdentifier)
+		      super.Constructor(AppleCBCentralManager.initWithDelegateOptions(Alloc(classptr), tempId, nil, dict.Id))
+		    else
+		      super.Constructor(AppleCBCentralManager.initWithDelegate(Alloc(classptr), tempId, nil))
+		    end if
+		    MHasownership = true
+		    release tempid
+		    if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
+		    CBPeripheralManagerDelegate = self
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -450,7 +455,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52656D6F76657320616C6C207075626C69736865642073657276696365732066726F6D20746865206C6F63616C20474154542064617461626173652E
 		Sub RemoveAllServices()
-		  removeAllServices id
+		  #If TargetMacOS then
+		    removeAllServices id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -460,7 +467,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52656D6F766573206120737065636966696564207075626C697368656420736572766963652066726F6D20746865206C6F63616C20474154542064617461626173652E
 		Sub RemoveService(Service as AppleCBMutableService)
-		  removeService id, service.id
+		  #If TargetMacOS then
+		    removeService id, service.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -470,7 +479,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 526573706F6E647320746F20612072656164206F7220777269746520726571756573742066726F6D206120636F6E6E65637465642063656E7472616C2E
 		Sub RespondToRequest(Request as AppleCBATTRequest, result as CoreBluetoothFramework.CBATTError)
-		  respondToRequest id, request.id, result
+		  #If TargetMacOS then
+		    respondToRequest id, request.id, result
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -480,7 +491,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 5365747320746865206465736972656420636F6E6E656374696F6E206C6174656E637920666F7220616E206578697374696E6720636F6E6E656374696F6E20746F20612063656E7472616C206465766963652E
 		Sub SetConnectionLatency(ForCentral as AppleCBCentral, latency as CBPeripheralManagerConnectionLatency)
-		  setDesiredConnectionLatency id, latency, ForCentral.id
+		  #If TargetMacOS then
+		    setDesiredConnectionLatency id, latency, ForCentral.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -490,7 +503,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 41647665727469736573207065726970686572616C206D616E6167657220646174612E
 		Sub StartAdvertising(AdvertisementData As AppleDictionary = nil)
-		  StartAdvertising id, if(AdvertisementData = nil, nil, AdvertisementData.id)
+		  #If TargetMacOS then
+		    StartAdvertising id, if(AdvertisementData = nil, nil, AdvertisementData.id)
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -500,7 +515,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F64207768656E20796F75206E6F206C6F6E6765722077616E7420746F20616476657274697365207065726970686572616C206D616E6167657220646174612E
 		Sub StopAdvertising()
-		  stopAdvertising id
+		  #If TargetMacOS then
+		    stopAdvertising id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -510,7 +527,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 53656E647320616E20757064617465642063686172616374657269737469632076616C756520746F206F6E65206F72206D6F726520737562736372696265642063656E7472616C732C207669612061206E6F74696669636174696F6E206F7220696E6469636174696F6E2E2052657475726E732073656E6420737563636573732E
 		Function UpdateValue(Characteristic as AppleCBMutableCharacteristic, subscribedCentrals as AppleArray = nil, value as AppleData) As Boolean
-		  return updateValue(id, value.id, Characteristic.id, if (subscribedCentrals = nil, nil, subscribedCentrals.id))
+		  #If TargetMacOS then
+		    return updateValue(id, value.id, Characteristic.id, if (subscribedCentrals = nil, nil, subscribedCentrals.id))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -607,7 +626,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 52657475726E732074686520617070E280997320617574686F72697A6174696F6E2073746174757320666F722073686172696E672064617461207768696C6520696E20746865206261636B67726F756E642073746174652E
 		#tag Getter
 			Get
-			  return getauthorizationStatus (classptr)
+			  #If TargetMacOS then
+			    return getauthorizationStatus (classptr)
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared AuthorizationStatus As CBPeripheralManagerAuthorizationStatus
@@ -616,12 +637,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #If TargetMacOS then
+			    AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #endif
 			End Set
 		#tag EndSetter
 		CBPeripheralManagerDelegate As AppleObject
@@ -672,7 +697,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207065726970686572616C2069732063757272656E746C79206164766572746973696E6720646174612E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getisAdvertising (id)
+			  #If TargetMacOS then
+			    return getisAdvertising (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		IsAdvertising As Boolean
@@ -681,8 +708,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBPeripheralManagerOptionRestoreIdentifierKey as text = SystemConstantName("CBPeripheralManagerOptionRestoreIdentifierKey", CoreBluetoothPath)
-			  return mCBPeripheralManagerOptionRestoreIdentifierKey
+			  #If TargetMacOS then
+			    static mCBPeripheralManagerOptionRestoreIdentifierKey as text = SystemConstantName("CBPeripheralManagerOptionRestoreIdentifierKey", CoreBluetoothPath)
+			    return mCBPeripheralManagerOptionRestoreIdentifierKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBPeripheralManagerOptionRestoreIdentifierKey As Text
@@ -691,8 +720,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBPeripheralManagerOptionShowPowerAlertKey as text = SystemConstantName("CBPeripheralManagerOptionShowPowerAlertKey", CoreBluetoothPath)
-			  return mCBPeripheralManagerOptionShowPowerAlertKey
+			  #If TargetMacOS then
+			    static mCBPeripheralManagerOptionShowPowerAlertKey as text = SystemConstantName("CBPeripheralManagerOptionShowPowerAlertKey", CoreBluetoothPath)
+			    return mCBPeripheralManagerOptionShowPowerAlertKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBPeripheralManagerOptionShowPowerAlertKey As Text
@@ -701,8 +732,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBPeripheralManagerRestoredStateAdvertisementDataKey as text = SystemConstantName("CBPeripheralManagerRestoredStateAdvertisementDataKey", CoreBluetoothPath)
-			  return mCBPeripheralManagerRestoredStateAdvertisementDataKey
+			  #If TargetMacOS then
+			    static mCBPeripheralManagerRestoredStateAdvertisementDataKey as text = SystemConstantName("CBPeripheralManagerRestoredStateAdvertisementDataKey", CoreBluetoothPath)
+			    return mCBPeripheralManagerRestoredStateAdvertisementDataKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBPeripheralManagerRestoredStateAdvertisementDataKey As Text
@@ -711,8 +744,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBPeripheralManagerRestoredStateServicesKey as text = SystemConstantName("CBPeripheralManagerRestoredStateServicesKey", CoreBluetoothPath)
-			  return mCBPeripheralManagerRestoredStateServicesKey
+			  #If TargetMacOS then
+			    static mCBPeripheralManagerRestoredStateServicesKey as text = SystemConstantName("CBPeripheralManagerRestoredStateServicesKey", CoreBluetoothPath)
+			    return mCBPeripheralManagerRestoredStateServicesKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBPeripheralManagerRestoredStateServicesKey As Text
@@ -721,7 +756,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063757272656E74207374617465206F6620746865207065726970686572616C206D616E616765722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getstate(id)
+			  #If TargetMacOS then
+			    return getstate(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		State As CBPeripheralManagerState

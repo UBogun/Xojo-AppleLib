@@ -15,7 +15,7 @@ Inherits control
 		    mappleobject = new AppleCBPeripheralManager(true)
 		    mAppleObject.RegisterControl self
 		  #else
-		    #pragma  warning OSXLibModule.kOSXOnlyClassWarning
+		    //#pragma  warning OSXLibModule.kOSXOnlyClassWarning
 		  #endif
 		End Sub
 	#tag EndEvent

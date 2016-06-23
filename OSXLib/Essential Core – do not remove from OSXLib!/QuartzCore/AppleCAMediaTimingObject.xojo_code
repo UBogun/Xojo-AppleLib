@@ -3,26 +3,29 @@ Protected Class AppleCAMediaTimingObject
 Inherits AppleObject
 	#tag Method, Flags = &h0
 		 Shared Function DefaultValueForKey(Key As CFStringRef) As AppleObject
-		  declare function defaultValueForKey lib QuartzCoreLib selector "defaultValueForKey:" (id as ptr, key as CFStringRef) as Ptr
-		  dim myptr as ptr = defaultValueForKey (classptr, key)
-		  return if (myptr <> NIL, new AppleObject (myptr), NIL)
-		  
+		  #If TargetMacOS then
+		    declare function defaultValueForKey lib QuartzCoreLib selector "defaultValueForKey:" (id as ptr, key as CFStringRef) as Ptr
+		    dim myptr as ptr = defaultValueForKey (classptr, key)
+		    return if (myptr <> NIL, new AppleObject (myptr), NIL)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Protected Function getFillMode(id as ptr) As CFStringRef
-		  declare function fillMode lib QuartzCoreLib selector "fillMode" (id as ptr) as CFStringRef
-		  return fillMode (id)
-		  
+		  #If TargetMacOS then
+		    declare function fillMode lib QuartzCoreLib selector "fillMode" (id as ptr) as CFStringRef
+		    return fillMode (id)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Protected Sub setFillMode(id as ptr, mode as CFstringRef)
-		  declare sub setFillMode lib QuartzCoreLib selector "setFillMode:" (id as ptr, value as CFStringRef)
-		  setfillMode (id, mode)
-		  
+		  #If TargetMacOS then
+		    declare sub setFillMode lib QuartzCoreLib selector "setFillMode:" (id as ptr, value as CFStringRef)
+		    setfillMode (id, mode)
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -30,16 +33,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function autoreverses lib QuartzCoreLib selector "autoreverses" (id as ptr) as Boolean
-			  return autoreverses (id)
-			  
+			  #If TargetMacOS then
+			    declare function autoreverses lib QuartzCoreLib selector "autoreverses" (id as ptr) as Boolean
+			    return autoreverses (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setAutoreverses lib QuartzCoreLib selector "setAutoreverses:" (id as ptr, value as Boolean)
-			  setAutoreverses (id, value)
-			  
+			  #If TargetMacOS then
+			    declare Sub setAutoreverses lib QuartzCoreLib selector "setAutoreverses:" (id as ptr, value as Boolean)
+			    setAutoreverses (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		Autoreverses As Boolean
@@ -48,16 +53,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function beginTime lib QuartzCoreLib selector "beginTime" (id as ptr) as Double
-			  return beginTime (id)
-			  
+			  #If TargetMacOS then
+			    declare function beginTime lib QuartzCoreLib selector "beginTime" (id as ptr) as Double
+			    return beginTime (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setBeginTime lib QuartzCoreLib selector "setBeginTime:" (id as ptr, value as Double)
-			  setBeginTime (id, value)
-			  
+			  #If TargetMacOS then
+			    declare Sub setBeginTime lib QuartzCoreLib selector "setBeginTime:" (id as ptr, value as Double)
+			    setBeginTime (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		BeginTime As Double
@@ -66,8 +73,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mresult as text =  SystemConstantName (kCAFilterLinear, QuartzCorePath)
-			  return mresult
+			  #If TargetMacOS then
+			    static mresult as text =  SystemConstantName (kCAFilterLinear, QuartzCorePath)
+			    return mresult
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared CFilterLinear As Text
@@ -76,8 +85,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mresult as text =  SystemConstantName (kCAFilterNearest, QuartzCorePath)
-			  return mresult
+			  #If TargetMacOS then
+			    static mresult as text =  SystemConstantName (kCAFilterNearest, QuartzCorePath)
+			    return mresult
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared CFilterNearest As Text
@@ -86,8 +97,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mresult as text =  SystemConstantName (kCAFilterTrilinear, QuartzCorePath)
-			  return mresult
+			  #If TargetMacOS then
+			    static mresult as text =  SystemConstantName (kCAFilterTrilinear, QuartzCorePath)
+			    return mresult
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared CFilterTrilinear As Text
@@ -96,14 +109,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return QuartzCoreFramework.getduration (id)
-			  
+			  #If TargetMacOS then
+			    return QuartzCoreFramework.getduration (id)
+			    
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  QuartzCoreFramework.setDuration (id, value)
-			  
+			  #If TargetMacOS then
+			    QuartzCoreFramework.setDuration (id, value)
+			    
+			  #endif
 			End Set
 		#tag EndSetter
 		Duration As Double
@@ -112,33 +129,39 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  dim mymode as text = getFillMode (id)
-			  select case mymode
-			  case FillmodeBackward
-			    return FillModes.Reset
-			  case FillmodeBoth
-			    return fillmodes.Both
-			  case FillmodeForward
-			    return FillModes.Remain
-			  case FillmodeRemove
-			    return FillModes.Remove
-			  end select
+			  #If TargetMacOS then
+			    
+			    dim mymode as text = getFillMode (id)
+			    select case mymode
+			    case FillmodeBackward
+			      return FillModes.Reset
+			    case FillmodeBoth
+			      return fillmodes.Both
+			    case FillmodeForward
+			      return FillModes.Remain
+			    case FillmodeRemove
+			      return FillModes.Remove
+			    end select
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  dim mymode as text
-			  Select case value
-			  case FillModes.Both
-			    mymode = FillmodeBoth
-			  case FillModes.Remain
-			    mymode = FillmodeForward
-			  case FillModes.Remove
-			    mymode = FillmodeRemove
-			  case FillModes.Reset
-			    mymode = FillmodeBackward
-			  End Select
-			  setFillMode (id, mymode)
+			  #If TargetMacOS then
+			    
+			    dim mymode as text
+			    Select case value
+			    case FillModes.Both
+			      mymode = FillmodeBoth
+			    case FillModes.Remain
+			      mymode = FillmodeForward
+			    case FillModes.Remove
+			      mymode = FillmodeRemove
+			    case FillModes.Reset
+			      mymode = FillmodeBackward
+			    End Select
+			    setFillMode (id, mymode)
+			  #endif
 			End Set
 		#tag EndSetter
 		FillMode As FillModes
@@ -147,8 +170,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static FMFwd As Text = SystemConstantName ("kCAFillModeBackwards", QuartzCorePath)
-			  return FMFwd
+			  #If TargetMacOS then
+			    static FMFwd As Text = SystemConstantName ("kCAFillModeBackwards", QuartzCorePath)
+			    return FMFwd
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared FillmodeBackward As CFStringRef
@@ -157,8 +182,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static FMBoth As Text = SystemConstantName ("kCAFillModeBoth", QuartzCorePath)
-			  return FMBoth
+			  #If TargetMacOS then
+			    static FMBoth As Text = SystemConstantName ("kCAFillModeBoth", QuartzCorePath)
+			    return FMBoth
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared FillmodeBoth As CFStringRef
@@ -167,8 +194,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static FMFwd As Text = SystemConstantName ("kCAFillModeForwards", QuartzCorePath)
-			  return FMFwd
+			  #If TargetMacOS then
+			    static FMFwd As Text = SystemConstantName ("kCAFillModeForwards", QuartzCorePath)
+			    return FMFwd
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared FillmodeForward As CFStringRef
@@ -177,8 +206,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static FMRemove As Text = SystemConstantName ("kCAFillModeRemoved", QuartzCorePath)
-			  return FMRemove
+			  #If TargetMacOS then
+			    static FMRemove As Text = SystemConstantName ("kCAFillModeRemoved", QuartzCorePath)
+			    return FMRemove
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared FillmodeRemove As CFStringRef
@@ -247,16 +278,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function minificationFilterBias lib QuartzCoreLib selector "minificationFilterBias" (id as ptr) as Single
-			  return minificationFilterBias (id)
-			  
+			  #If TargetMacOS then
+			    declare function minificationFilterBias lib QuartzCoreLib selector "minificationFilterBias" (id as ptr) as Single
+			    return minificationFilterBias (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setMinificationFilterBias lib QuartzCoreLib selector "setMinificationFilterBias:" (id as ptr, value as Single)
-			  setMinificationFilterBias (id, value)
-			  
+			  #If TargetMacOS then
+			    declare Sub setMinificationFilterBias lib QuartzCoreLib selector "setMinificationFilterBias:" (id as ptr, value as Single)
+			    setMinificationFilterBias (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		MinificationFilterBias As Single
@@ -265,14 +298,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  declare function magnificationFilter lib QuartzCoreLib selector "magnificationFilter" (id as ptr) as CFStringRef
-			  return magnificationFilter (id)
+			  #If TargetMacOS then
+			    declare function magnificationFilter lib QuartzCoreLib selector "magnificationFilter" (id as ptr) as CFStringRef
+			    return magnificationFilter (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setMagnificationFilter lib QuartzCoreLib selector "setMagnificationFilter:" (id as ptr, value as CFStringRef)
-			  setMagnificationFilter (id, value)
+			  #If TargetMacOS then
+			    declare Sub setMagnificationFilter lib QuartzCoreLib selector "setMagnificationFilter:" (id as ptr, value as CFStringRef)
+			    setMagnificationFilter (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		Protected mMagnificationFilter As Text
@@ -281,14 +318,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  declare function minificationFilter lib QuartzCoreLib selector "minificationFilter" (id as ptr) as CFStringRef
-			  return minificationFilter (id)
+			  #If TargetMacOS then
+			    declare function minificationFilter lib QuartzCoreLib selector "minificationFilter" (id as ptr) as CFStringRef
+			    return minificationFilter (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setMinificationFilter lib QuartzCoreLib selector "setMinificationFilter:" (id as ptr, value as CFStringRef)
-			  setMinificationFilter (id, value)
+			  #If TargetMacOS then
+			    declare Sub setMinificationFilter lib QuartzCoreLib selector "setMinificationFilter:" (id as ptr, value as CFStringRef)
+			    setMinificationFilter (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		Protected mMinificationFilter As Text
@@ -297,16 +338,19 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function repeatCount lib QuartzCoreLib selector "repeatCount" (id as ptr) as Single
-			  return repeatCount (id)
-			  
+			  #If TargetMacOS then
+			    declare function repeatCount lib QuartzCoreLib selector "repeatCount" (id as ptr) as Single
+			    return repeatCount (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setRepeatCount lib QuartzCoreLib selector "setRepeatCount:" (id as ptr, value as Single)
-			  setRepeatCount (id, value)
-			  
+			  #If TargetMacOS then
+			    
+			    declare Sub setRepeatCount lib QuartzCoreLib selector "setRepeatCount:" (id as ptr, value as Single)
+			    setRepeatCount (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		RepeatCount As Single
@@ -315,16 +359,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function repeatDuration lib QuartzCoreLib selector "repeatDuration" (id as ptr) as Double
-			  return repeatDuration (id)
-			  
+			  #If TargetMacOS then
+			    declare function repeatDuration lib QuartzCoreLib selector "repeatDuration" (id as ptr) as Double
+			    return repeatDuration (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setRepeatDuration lib QuartzCoreLib selector "setRepeatDuration:" (id as ptr, value as Double)
-			  setRepeatDuration (id, value)
-			  
+			  #If TargetMacOS then
+			    declare Sub setRepeatDuration lib QuartzCoreLib selector "setRepeatDuration:" (id as ptr, value as Double)
+			    setRepeatDuration (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		RepeatDuration As Double
@@ -333,16 +379,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function speed lib QuartzCoreLib selector "speed" (id as ptr) as Single
-			  return speed (id)
-			  
+			  #If TargetMacOS then
+			    declare function speed lib QuartzCoreLib selector "speed" (id as ptr) as Single
+			    return speed (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setSpeed lib QuartzCoreLib selector "setSpeed:" (id as ptr, value as Single)
-			  setSpeed (id, value)
-			  
+			  #If TargetMacOS then
+			    declare Sub setSpeed lib QuartzCoreLib selector "setSpeed:" (id as ptr, value as Single)
+			    setSpeed (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		Speed As Single
@@ -351,15 +399,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function style lib QuartzCoreLib selector "style" (id as Ptr) as ptr
-			  return AppleDictionary.MakeFromPtr (style (id))
-			  
+			  #If TargetMacOS then
+			    declare function style lib QuartzCoreLib selector "style" (id as Ptr) as ptr
+			    return AppleDictionary.MakeFromPtr (style (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setStyle lib QuartzCoreLib selector "setStyle:" (id as Ptr, value as ptr)
-			  setStyle id, value.id
+			  #If TargetMacOS then
+			    declare Sub setStyle lib QuartzCoreLib selector "setStyle:" (id as Ptr, value as ptr)
+			    setStyle id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		Style As AppleDictionary
@@ -368,16 +419,18 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  declare function timeOffset lib QuartzCoreLib selector "timeOffset" (id as ptr) as Double
-			  return timeOffset (id)
-			  
+			  #If TargetMacOS then
+			    declare function timeOffset lib QuartzCoreLib selector "timeOffset" (id as ptr) as Double
+			    return timeOffset (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setTimeOffset lib QuartzCoreLib selector "setTimeOffset:" (id as ptr, value as Double)
-			  setTimeOffset (id, value)
-			  
+			  #If TargetMacOS then
+			    declare Sub setTimeOffset lib QuartzCoreLib selector "setTimeOffset:" (id as ptr, value as Double)
+			    setTimeOffset (id, value)
+			  #endif
 			End Set
 		#tag EndSetter
 		TimeOffset As Double

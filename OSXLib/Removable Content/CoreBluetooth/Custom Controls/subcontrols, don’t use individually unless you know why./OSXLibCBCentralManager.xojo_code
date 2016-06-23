@@ -16,7 +16,7 @@ Inherits control
 		    mAppleObject.RegisterControl self
 		    RaiseEvent CreatePane
 		  #else
-		    #pragma  warning OSXLibModule.kOSXOnlyClassWarning
+		    //#pragma  warning OSXLibModule.kOSXOnlyClassWarning
 		  #endif
 		End Sub
 	#tag EndEvent

@@ -14,10 +14,12 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithRect(alloc(classptr),rect, options.id, if (userinfo = nil,nil, userinfo.id)))
-		  MHasOwnership = true
-		  #pragma Unused options
-		  #pragma Unused owner
+		  #If TargetMacOS then
+		    Super.Constructor(initWithRect(alloc(classptr),rect, options.id, if (userinfo = nil,nil, userinfo.id)))
+		    MHasOwnership = true
+		    #pragma Unused options
+		    #pragma Unused owner
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -63,7 +65,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F7074696F6E732073706563696669656420666F72207468652072656365697665722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return new AppleTrackingAreaOptions(getoptions(id))
+			  #If TargetMacOS then
+			    return new AppleTrackingAreaOptions(getoptions(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Options As AppleTrackingAreaOptions
@@ -72,7 +76,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A656374206F776E696E67207468652072656365697665722C2077686963682069732074686520726563697069656E74206F66206D6F7573652D747261636B696E672C206D6F7573652D6D6F76656D656E742C20616E6420637572736F722D757064617465206D657373616765732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return  AppleResponder.MakefromPtr(getowner(id))
+			  #If TargetMacOS then
+			    return  AppleResponder.MakefromPtr(getowner(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Owner As AppleResponder
@@ -81,7 +87,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652072656374616E676C6520646566696E696E6720746865206172656120656E636F6D706173736564206279207468652072656365697665722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getrect(id)
+			  #If TargetMacOS then
+			    return getrect(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Rect As FoundationFrameWork.NSRect
@@ -90,7 +98,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064696374696F6E61727920636F6E7461696E696E67207468652064617461206173736F636961746564207769746820746865207265636569766572207768656E2069742077617320637265617465642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleDictionary.MakeFromPtr (foundationframework.getuserinfo (id))
+			  #If TargetMacOS then
+			    return AppleDictionary.MakeFromPtr (foundationframework.getuserinfo (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		UserInfo As AppleDictionary
