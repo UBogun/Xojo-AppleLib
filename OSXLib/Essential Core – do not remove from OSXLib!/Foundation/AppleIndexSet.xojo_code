@@ -8,9 +8,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(indexSet(classptr))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(indexSet(classptr))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -21,9 +22,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(indexSetWithIndexesInRange(classptr, range))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(indexSetWithIndexesInRange(classptr, range))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -34,9 +36,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(indexSetWithIndex(classptr, index))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(indexSetWithIndex(classptr, index))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 

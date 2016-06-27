@@ -110,7 +110,6 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -209,6 +208,7 @@ End
 		    case "OutlineView"
 		      SecondaryWindow = new OutlineViewWindow
 		    end select
+		    
 		  #endif
 		End Sub
 	#tag EndEvent

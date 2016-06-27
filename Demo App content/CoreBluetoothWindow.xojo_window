@@ -1321,21 +1321,28 @@ End
 		    ' Uint8 = Byte 
 		    ' 0 - 255
 		    
-		    'Dim b() As Byte 
-		    'b.Append(1) 'OP Code
-		    'b.Append(255) 'Value is variable in type, length. Optional.
-		    
-		    Dim mb As new xojo.Core.MutableMemoryBlock(512)
-		    mb.UInt8Value( 0 ) = Val( bytefield.Text)
-		    'mb.DoubleValue(1) = 1.0
-		    mb.UInt8Value(1) =  me.Value 
-		    
-		    Dim Dat As New AppleData
-		    Dat.ByteBlock.Constructor( mb.Data )
-		    
-		    PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, Dat )
-		    
-		    //Peripheral.WriteValue(Characteristic, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, ad )
+		    If PowerControlFeature.Properties.Write Then
+		      
+		      'Dim b() As Byte 
+		      'b.Append(1) 'OP Code
+		      'b.Append(255) 'Value is variable in type, length. Optional.
+		      
+		      Dim mb As new xojo.Core.MutableMemoryBlock(512)
+		      mb.UInt8Value( 0 ) = &h44
+		      'mb.DoubleValue(1) = 1.0
+		      mb.UInt8Value(1) =  me.Value 
+		      mb.UInt8Value(2) = me.Value / 8
+		      
+		      Dim Dat As New AppleData
+		      Dat.ByteBlock.Constructor( mb )
+		      PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, Dat )
+		      
+		      //Peripheral.WriteValue(Characteristic, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, ad )
+		      
+		    Else
+		      MsgBox "can't write cb"
+		      
+		    end if
 		    
 		  End If
 		End Sub
@@ -1438,6 +1445,7 @@ End
 	#tag ViewProperty
 		Name="isConnectedBTLE"
 		Group="Behavior"
+		InitialValue="false"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty

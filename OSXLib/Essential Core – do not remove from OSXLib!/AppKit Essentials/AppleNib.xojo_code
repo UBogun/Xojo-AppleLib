@@ -11,15 +11,18 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 496E7374616E7469617465732061206E696220616E642072657475726E7320616E206172726179206F662069747320546F70206C6576656C206F626A656374732E2052616973657320616E20657863657074696F6E20696620696E7374616E74696174696F6E206661696C65642E
 		Function Instantiate(Owner as AppleObject) As AppleArray
-		  dim ArrPtr as Ptr
-		  dim result as Boolean = instantiateWithOwner(me.mid, Owner.id, arrptr)
-		  if result = true then
-		    dim resultarr as applearray = AppleArray.MakeFromPtr(arrptr)
-		    resultarr.RetainClassobject
-		    return resultarr
-		  else
-		    MakeException kCouldNotInstantiateNib
-		  end if
+		  #If TargetMacOS then
+		    
+		    dim ArrPtr as Ptr
+		    dim result as Boolean = instantiateWithOwner(me.mid, Owner.id, arrptr)
+		    if result = true then
+		      dim resultarr as applearray = AppleArray.MakeFromPtr(arrptr)
+		      resultarr.RetainClassobject
+		      return resultarr
+		    else
+		      MakeException kCouldNotInstantiateNib
+		    end if
+		  #endif
 		End Function
 	#tag EndMethod
 

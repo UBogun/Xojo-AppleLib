@@ -8,9 +8,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor(init(alloc(classptr)))
-		  MHasownership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(init(alloc(classptr)))
+		    MHasownership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -34,7 +35,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 536574732074686520736861646F77206F662073756273657175656E742064726177696E67206F7065726174696F6E7320746F2074686520736861646F7720726570726573656E746564206279207468652072656365697665722E
 		Sub Set()
-		  set(mid)
+		  #If TargetMacOS then
+		    set(mid)
+		  #endif
 		End Sub
 	#tag EndMethod
 
