@@ -935,6 +935,7 @@ End
 		  
 		  Peripheral.DiscoverServices
 		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1025,16 +1026,18 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub DiscoveredCharacteristics(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
+		  
 		  dim count as integer
 		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
 		  
-		  'TextArea1.AppendText "Discovered characteristics for "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
+		  TextArea1.AppendText "Discovered characteristics for "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
+		  
 		  
 		  for q as integer = 0 to count -1
 		    
 		    dim uu as AppleCBService = AppleCBService.MakefromPtr(Peripheral.Services.PtrAtIndex(q))
 		    
-		    'TextArea1.AppendText "Service "+uu.DebugDescription+":"+EndOfLine
+		    TextArea1.AppendText "Service "+uu.DebugDescription+":"+EndOfLine
 		    
 		    if uu.Characteristics <> nil then 
 		      
@@ -1044,11 +1047,13 @@ End
 		        
 		        dim c as AppleCBCharacteristic = AppleCBCharacteristic.MakefromPtr(uu.Characteristics.PtrAtIndex(p))
 		        
-		        'TextArea1.AppendText c.DebugDescription+EndOfLine
+		        TextArea1.AppendText c.DebugDescription+EndOfLine
 		        Peripheral.SetNotifyValue(c, true)
 		        Peripheral.DiscoverDescriptors(c)
 		        
-		        If c.UUID.UUIDString = "2A66" Then
+		        If c.UUID.UUIDString = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B" Then
+		          
+		          TextArea1.AppendText "Found A026E005-0A7D-4AB3-97FA-F1500F9FEB8B" + EndOfLine
 		          
 		          isConnectedBTLE = True
 		          
@@ -1062,6 +1067,8 @@ End
 		    end if
 		    
 		  next
+		  
+		  ' A026E005-0A7D-4AB3-97FA-F1500F9FEB8B
 		  
 		  'TextArea1.AppendText EndOfLine
 		  #pragma Unused service
@@ -1225,6 +1232,8 @@ End
 	#tag Event
 		Sub WriteRequest(Request as AppleCBATTRequest)
 		  datalog.AppendText "Write Request "+Request.DebugDescription+EndOfLine+EndOfLine
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1316,35 +1325,79 @@ End
 		  blt_watt.Text=str(me.Value)
 		  
 		  If isConnectedBTLE Then
-		    'Write to BTLE 
 		    
-		    ' Uint8 = Byte 
-		    ' 0 - 255
-		    
-		    If PowerControlFeature.Properties.Write Then
+		    If PowerControlFeature <> Nil Then
+		      
+		      TextArea1.AppendText "PowerControlFeature = active" + EndOfLine
 		      
 		      'Dim b() As Byte 
 		      'b.Append(1) 'OP Code
 		      'b.Append(255) 'Value is variable in type, length. Optional.
 		      
 		      Dim mb As new xojo.Core.MutableMemoryBlock(512)
-		      mb.UInt8Value( 0 ) = &h44
-		      'mb.DoubleValue(1) = 1.0
-		      mb.UInt8Value(1) =  me.Value 
-		      mb.UInt8Value(2) = me.Value / 8
+		      mb.UInt8Value( 0 ) = &hF1 ' PAGE ID
+		      mb.UInt8Value(1) = &h40 'OPCODE //40 is res // 42
+		      mb.UInt8Value(2) = &h50 
+		      mb.UInt8Value(3) = &h20 // &h00, &h20, &hC0 ?
+		      mb.Int32Value(4) = me.Value
 		      
 		      Dim Dat As New AppleData
 		      Dat.ByteBlock.Constructor( mb )
-		      PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, Dat )
 		      
-		      //Peripheral.WriteValue(Characteristic, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, ad )
+		      PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithResponse, dat )
 		      
-		    Else
-		      MsgBox "can't write cb"
+		    else
+		      
+		      TextArea1.AppendText "PowerControlFeature = inactive" + EndOfLine
 		      
 		    end if
 		    
-		  End If
+		  end if
+		  
+		  'Write to BTLE 
+		  
+		  ' Uint8 = Byte 
+		  ' 0 - 255
+		  
+		  'PowerControlFeature = New AppleCBCharacteristic
+		  '
+		  'Dim s As String = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
+		  '
+		  'Dim mbx As new xojo.Core.MutableMemoryBlock(s.LenB)
+		  'mbx.CStringValue(0) = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
+		  '
+		  'Dim Apdat As New AppleData( mbx.Data )
+		  '
+		  'PowerControlFeature.UUID.Constructor( apdat )
+		  '
+		  'System.DebugLog("PCF uuid made")
+		  '
+		  'If PowerControlFeature.Properties.Write Then
+		  '
+		  'System.DebugLog("PCF properties.write ok")
+		  '
+		  ''Dim b() As Byte 
+		  ''b.Append(1) 'OP Code
+		  ''b.Append(255) 'Value is variable in type, length. Optional.
+		  '
+		  'Dim mb As new xojo.Core.MutableMemoryBlock(512)
+		  'mb.UInt8Value( 0 ) = &h44
+		  ''mb.DoubleValue(1) = 1.0
+		  'mb.UInt8Value(1) =  me.Value 
+		  'mb.UInt8Value(2) = me.Value / 8
+		  '
+		  'Dim Dat As New AppleData
+		  'Dat.ByteBlock.Constructor( mb )
+		  'PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, Dat )
+		  '
+		  '//Peripheral.WriteValue(Characteristic, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, ad )
+		  
+		  'Else
+		  'MsgBox "can't write cb"
+		  '
+		  'end if
+		  '
+		  'End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
