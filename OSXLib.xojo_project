@@ -1,5 +1,5 @@
 Type=Desktop
-RBProjectVersion=2016.011
+RBProjectVersion=2016.02
 MinIDEVersion=20070100
 Folder=Demo App content;Demo App content;&h6E92FFF;&h0;false
 Window=ColorWindow;Demo App content/ColorWindow.xojo_window;&hE63FFFF;&h6E92FFF;false
@@ -182,7 +182,7 @@ Folder=AppleOutLineViewControls;OSXLib/Removable Content/Custom Controls - mind 
 Class=OSXLibOutlineView;OSXLib/Removable Content/Custom Controls - mind the view hierarchy!/AppleResponder Controls/AppleView controls/AppleScrollViewControls/AppleTableViewControls/AppleOutLineViewControls/OSXLibOutlineView.xojo_code;&h4E156FFF;&h508257FF;false
 Class=AppleNib;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleNib.xojo_code;&h275AFFFF;&h6FCD57FF;false
 Class=AppleShadow;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleShadow.xojo_code;&h516667FF;&h6FCD57FF;false
-DefaultWindow=SelectionWindow
+DefaultWindow=CoreBluetoothWindow
 AppMenuBar=MainMenuBar
 MajorVersion=1
 MinorVersion=0
