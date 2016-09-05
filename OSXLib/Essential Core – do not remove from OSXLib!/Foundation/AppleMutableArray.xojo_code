@@ -47,7 +47,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function fromAppleObjects(paramarray objects() as AppleObject) As AppleMutableArray
+		Shared Function fromAppleObjects(paramarray objects() as AppleObject) As AppleMutableArray
 		  dim count as uinteger = objects.Ubound
 		  dim myarray as new AppleMutableArray (count + 1)
 		  for q as uinteger = 0 to count
@@ -58,7 +58,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function fromAppleObjects(objects() as AppleObject) As AppleMutableArray
+		Shared Function fromAppleObjects(objects() as AppleObject) As AppleMutableArray
 		  dim count as uinteger = objects.Ubound
 		  dim myarray as new AppleMutableArray (count + 1)
 		  for q as uinteger = 0 to count
@@ -69,7 +69,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function fromGeneralObjects(paramarray objects() as AppleGeneralObject) As AppleMutableArray
+		Shared Function fromGeneralObjects(paramarray objects() as AppleGeneralObject) As AppleMutableArray
 		  dim count as uinteger = objects.Ubound
 		  dim myarray as new AppleMutableArray (count + 1)
 		  for q as uinteger = 0 to count
@@ -80,7 +80,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function fromGeneralObjects(objects() as AppleGeneralObject) As AppleMutableArray
+		Shared Function fromGeneralObjects(objects() as AppleGeneralObject) As AppleMutableArray
 		  dim count as uinteger = objects.Ubound
 		  dim myarray as new AppleMutableArray (count + 1)
 		  for q as uinteger = 0 to count
@@ -91,7 +91,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeArrayPtr(Capacity as uinteger = 1) As Ptr
+		Shared Function MakeArrayPtr(Capacity as uinteger = 1) As Ptr
 		  #pragma StackOverflowChecking false
 		  // Declare Function alloc lib FoundationLibName selector "alloc" (id as ptr) as ptr
 		  return FoundationFrameWork.InitWithCapacity (alloc(ThreadSafeClassPtr), capacity)
@@ -100,7 +100,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function NSPointArray(Pointarray() as Foundationframework.NSPoint) As AppleMutableArray
+		Shared Function NSPointArray(Pointarray() as Foundationframework.NSPoint) As AppleMutableArray
 		  dim count as uinteger = pointarray.Ubound + 1
 		  dim myarray as new AppleMutableArray (count)
 		  for q as uinteger = 1 to count
@@ -111,7 +111,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function NumberArray(NumberArray() as Double) As AppleMutableArray
+		Shared Function NumberArray(NumberArray() as Double) As AppleMutableArray
 		  dim count as uinteger = NumberArray.Ubound
 		  dim myarray as new AppleMutableArray (count + 1)
 		  for q as uinteger = 0 to count
@@ -130,7 +130,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function Textarray(Textarray() as text) As AppleMutableArray
+		Shared Function Textarray(Textarray() as text) As AppleMutableArray
 		  dim count as uinteger = Textarray.Ubound
 		  dim myarray as new AppleMutableArray (count + 1)
 		  for q as uinteger = 0 to count
@@ -141,7 +141,7 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Sub ThreadSafeAdd(NSarray as ptr, anObject as ptr)
+		Shared Sub ThreadSafeAdd(NSarray as ptr, anObject as ptr)
 		  #pragma StackOverflowChecking false
 		  Declare Sub addObject lib FoundationLibName  selector "addObject:" (id as ptr, value as ptr)
 		  addObject (NSarray, anObject)

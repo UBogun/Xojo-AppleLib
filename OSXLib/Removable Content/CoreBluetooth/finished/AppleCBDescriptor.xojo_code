@@ -2,7 +2,7 @@
 Protected Class AppleCBDescriptor
 Inherits AppleObject
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBDescriptor
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBDescriptor
 		  return if (aptr = nil, nil, new AppleCBDescriptor(aptr))
 		End Function
 	#tag EndMethod

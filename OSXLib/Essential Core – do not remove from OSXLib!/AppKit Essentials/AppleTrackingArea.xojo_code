@@ -38,7 +38,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTrackingArea
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleTrackingArea
 		  return if (aptr = nil, nil, new appletrackingarea(aptr))
 		End Function
 	#tag EndMethod

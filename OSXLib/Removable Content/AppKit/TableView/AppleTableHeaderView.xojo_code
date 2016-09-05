@@ -52,7 +52,7 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTableHeaderView
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleTableHeaderView
 		  return if (aptr = nil, nil, new AppleTableHeaderView(aptr))
 		End Function
 	#tag EndMethod
@@ -137,6 +137,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BoundsRotation"
 			Group="Behavior"
 			Type="Double"
@@ -167,6 +172,11 @@ Inherits AppleView
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FirstBaselineOffsetFromTop"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FocusRingType"
 			Group="Behavior"
 			Type="Appkitframework.NSFocusRingType"
@@ -186,6 +196,11 @@ Inherits AppleView
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasAmbiguousLayout"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -250,6 +265,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LastBaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="LayerContentsPlacement"
 			Group="Behavior"
 			Type="NSViewLayerContentsPlacement"
@@ -307,6 +327,16 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NeedsDisplay"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsLayout"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsUpdateConstraints"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

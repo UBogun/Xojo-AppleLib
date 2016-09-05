@@ -222,7 +222,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleNSEvent
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleNSEvent
 		  return if (aptr = nil, nil, new applensevent(aptr))
 		End Function
 	#tag EndMethod
@@ -232,7 +232,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 426567696E732067656E65726174696E6720706572696F646963206576656E747320666F72207468652063757272656E74207468726561642E
-		 Shared Sub StartPeriodicEvents(Delay as double, Period As Double)
+		Shared Sub StartPeriodicEvents(Delay as double, Period As Double)
 		  startPeriodicEventsAfterDelay classptr, delay, period
 		End Sub
 	#tag EndMethod
@@ -242,7 +242,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 53746F70732067656E65726174696E6720706572696F646963206576656E747320666F72207468652063757272656E742074687265616420616E6420646973636172647320616E7920706572696F646963206576656E74732072656D61696E696E6720696E207468652071756575652E
-		 Shared Sub StopPeriodicEvents()
+		Shared Sub StopPeriodicEvents()
 		  stopPeriodicEvents classptr
 		End Sub
 	#tag EndMethod

@@ -114,7 +114,7 @@ Inherits AppleCFObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGPath
+		Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGPath
 		  return if (aCFTypeRef = nil, nil, new AppleCGPath(aCFTypeRef))
 		End Function
 	#tag EndMethod

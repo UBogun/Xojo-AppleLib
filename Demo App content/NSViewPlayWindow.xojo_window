@@ -76,7 +76,6 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "This is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Click on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -142,7 +141,6 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -154,6 +152,37 @@ Begin Window NSViewPlayWindow
       Underline       =   False
       Visible         =   True
       Width           =   943
+      Begin PushButton PushButton2
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Button"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "Label1"
+         Italic          =   False
+         Left            =   170
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   20
+         Underline       =   False
+         Visible         =   True
+         Width           =   132
+      End
    End
    Begin OSXLibView ac3
       AcceptFocus     =   False
@@ -167,7 +196,7 @@ Begin Window NSViewPlayWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   308
+      Left            =   307
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -233,7 +262,6 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   6
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "FrameCenterRotation"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -268,7 +296,6 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "0"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -303,7 +330,6 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   8
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "0"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -338,7 +364,6 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   9
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "BoundsRotation"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -465,7 +490,6 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "To the right is a OSXLibPaintCanvas. Currently the paint event delivers no graphics object. This will follow soon.\nThe Paint event fires anyway, as do the Resize and Resized events (not so on the OSXLibCanvas superclass). You can still access a layer but not the layer’s content. Rightklick on it for a simple Menuitem extension!"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -490,17 +514,17 @@ Begin Window NSViewPlayWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   686
+      Left            =   682
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   0
       TabIndex        =   15
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   151
+      Top             =   154
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
@@ -510,6 +534,19 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  break
+		End Sub
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub addconstraints()
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub Animate()
 		  Using xojo.Math
@@ -561,6 +598,8 @@ End
 		  me.AppleObject.Layer.CornerRadius = 10
 		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cEFFFC900)
 		  me.AppleObject.Layer.Contents = new AppleImage(OSXLibLogo)
+		  me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = false
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -666,6 +705,13 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events PushButton2
+	#tag Event
+		Sub Action()
+		  OSXLibPaintCanvas1.AppleObject.ExerciseAmbiguityInLayout
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events ac3
 	#tag Event
 		Sub Shown()
@@ -677,7 +723,8 @@ End
 		  me.AppleObject.Layer.Contents = new AppleImage(OSXLibLogo)
 		  me.AppleObject.LayerContentsPlacement = AppleView.NSViewLayerContentsPlacement.TopLeft
 		  me.AppleObject.Layer.MasksToBounds =false
-		  me.AppleObject.AutoResizingMask = new AppleAutoresizingMask(0)
+		  'me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = false
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520766965772069732068696464656E2C20656974686572206469726563746C792C206F7220696E20726573706F6E736520746F20616E20616E636573746F72206265696E672068696464656E2E
@@ -757,8 +804,32 @@ End
 	#tag Event
 		Sub Shown()
 		  me.AppleObject.WantsLayer = true
-		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor(&c9D7D3D00)
-		  me.AppleObject.Layer.BorderWidth = 2
+		  dim ar as  AppleAutoresizingMask = AppleAutoresizingMask.FullResize
+		  'ar.RightMargin = true
+		  'ar.TopMargin = True
+		  ar.LeftMargin = True
+		  ar.BottomMargin = true
+		  me.AppleObject.AutoResizingMask = ar
+		  me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = True
+		  'me.AppleObject.RemoveConstraints(OSXLibPaintCanvas1.AppleObject.Constraints)
+		  me.AppleObject.WidthAnchor.ConstraintLessThanOrEqualToConstant(200).Active = true
+		  me.AppleObject.WidthAnchor.ConstraintLessThanOrEqualToConstant(200).Priority = AppleLayoutConstraint.NSLayoutPriority.WindowSizeStayPut
+		  me.AppleObject.TrailingAnchor.ConstraintGreaterThanOrEqualToAnchor(me.AppleObject.SuperView.RightAnchor).Active = true
+		  me.AppleObject.HeightAnchor.ConstraintLessThanOrEqualToConstant(300).Active = true
+		  me.AppleObject.HeightAnchor.ConstraintLessThanOrEqualToConstant(300).Priority = AppleLayoutConstraint.NSLayoutPriority.WindowSizeStayPut
+		  
+		  me.AppleObject.LeadingAnchor.ConstraintEqualToAnchor (ac3.AppleObject.rightAnchor,176).active = true
+		  me.AppleObject.leadinganchor.ConstraintEqualToAnchor(ac3.AppleObject.rightAnchor,176).Priority = AppleLayoutConstraint.NSLayoutPriority.Required
+		  me.AppleObject.TopAnchor.ConstraintLessThanOrEqualToAnchor (ac3.AppleObject.BottomAnchor, -80).active = true
+		  me.AppleObject.TopAnchor.ConstraintLessThanOrEqualToAnchor (ac3.AppleObject.BottomAnchor, -80).Priority = AppleLayoutConstraint.NSLayoutPriority.Required
+		  me.AppleObject.CheckLayout
+		  OSXLibPaintCanvas1.AppleObject.Layer.BackgroundColor = AppleColor.FromColor(&c9D7D3D00)
+		  OSXLibPaintCanvas1.AppleObject.Layer.BorderWidth = 2
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Sub WillBecomeSubview(SuperView as AppleView)
 		  
 		End Sub
 	#tag EndEvent

@@ -126,7 +126,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E65772C2063616C6962726174656420636F6C6F722066726F6D205265642C20477265656E2C20426C756520616E64206F7074696F6E616C20416C7068612076616C75652E
-		 Shared Function FromCalibratedRGBA(Red As Double, Green As Double, Blue As Double, Alpha As Double = 1.0) As AppleColor
+		Shared Function FromCalibratedRGBA(Red As Double, Green As Double, Blue As Double, Alpha As Double = 1.0) As AppleColor
 		  dim Result As new AppleColor(colorWithCalibratedHue (ClassPtr, red, green, blue, Alpha))
 		  Result.retainClassObject
 		  Return Result
@@ -134,19 +134,19 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204170706C65436F6C6F722066726F6D20616E204170706C654347436F6C6F72
-		 Shared Function FromCGColor(aColor as AppleCGColor) As AppleColor
+		Shared Function FromCGColor(aColor as AppleCGColor) As AppleColor
 		  return new AppleColor(acolor)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204170706C65436F6C6F722066726F6D206120586F6A6F20436F6C6F722E
-		 Shared Function FromColor(aColor as Color) As AppleColor
+		Shared Function FromColor(aColor as Color) As AppleColor
 		  return new AppleColor(aColor)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function FromHSBA(Hue As Double, Saturation As Double, Brightness As Double, Alpha As Double = 1.0) As AppleColor
+		Shared Function FromHSBA(Hue As Double, Saturation As Double, Brightness As Double, Alpha As Double = 1.0) As AppleColor
 		  dim Result As new AppleColor(colorWithCalibratedHue (ClassPtr, Hue, Saturation, Brightness, Alpha))
 		  Result.retainClassObject
 		  Return Result
@@ -154,7 +154,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204170706C65436F6C6F722066726F6D206120586F6A6F20436F6C6F722E
-		 Shared Function FromImage(Img as AppleImage) As AppleColor
+		Shared Function FromImage(Img as AppleImage) As AppleColor
 		  return new AppleColor(img)
 		End Function
 	#tag EndMethod
@@ -247,7 +247,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleColor
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleColor
 		  return if (aptr = nil, nil, new applecolor(aptr))
 		End Function
 	#tag EndMethod

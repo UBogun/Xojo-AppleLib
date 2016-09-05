@@ -19,7 +19,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleError
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleError
 		  return if (aptr = nil, nil, new AppleError(aptr))
 		End Function
 	#tag EndMethod

@@ -33,7 +33,7 @@ Inherits AppleCBCharacteristic
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBMutableCharacteristic
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBMutableCharacteristic
 		  return if (aptr = nil, nil, new AppleCBMutableCharacteristic(aptr))
 		End Function
 	#tag EndMethod

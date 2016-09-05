@@ -22,7 +22,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBCharacteristic
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBCharacteristic
 		  return if (aptr = nil, nil, new AppleCBCharacteristic(aPtr))
 		End Function
 	#tag EndMethod

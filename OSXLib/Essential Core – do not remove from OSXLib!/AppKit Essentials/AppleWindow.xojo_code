@@ -31,7 +31,7 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleWindow
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleWindow
 		  return if (aptr = nil, nil,new applewindow(aptr))
 		End Function
 	#tag EndMethod

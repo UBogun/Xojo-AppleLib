@@ -45,7 +45,7 @@ Inherits AppleActionCell
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTextFieldCell
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleTextFieldCell
 		  return if (aptr = nil, nil, new AppleTextFieldCell(aptr))
 		End Function
 	#tag EndMethod

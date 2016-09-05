@@ -30,7 +30,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleURL
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleURL
 		  return if (aptr = nil, nil, new appleurl(aptr))
 		End Function
 	#tag EndMethod

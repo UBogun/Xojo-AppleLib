@@ -75,7 +75,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleAttributedString
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleAttributedString
 		  return if (aptr = nil, nil, new AppleAttributedString (aptr))
 		End Function
 	#tag EndMethod

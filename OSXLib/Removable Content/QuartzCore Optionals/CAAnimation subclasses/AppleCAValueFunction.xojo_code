@@ -19,7 +19,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCAValueFunction
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCAValueFunction
 		  return if (aptr= nil, nil, new AppleCAValueFunction(aptr))
 		End Function
 	#tag EndMethod

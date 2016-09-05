@@ -14,9 +14,12 @@ Inherits OSXLibResponder
 		  // The Xojo engineers always warned that messing with the view hierarchy of Xojo controls could lead to problems in the future.
 		  // Instead of attaching the declared control as a subview to the Xojo canvas, I chose a more radical approach:
 		  // I am kicking the Xojo canvas out of the hierarchy completely and replace it ith the declared one. 
-		  // This way no interference with Xoo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
+		  // This way no interference with Xojo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
-		  
+		  self.LockLeft = false
+		  self.LockRight = false
+		  self.LockBottom = false
+		  self.LockTop = false
 		  if not RaiseEvent InitControl then // already initialized a subclass?
 		    
 		    mAppleObject = new appleview (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.

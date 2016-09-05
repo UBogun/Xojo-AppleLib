@@ -27,7 +27,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleShadow
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleShadow
 		  return if (aptr = nil, nil, new AppleShadow(aptr))
 		End Function
 	#tag EndMethod

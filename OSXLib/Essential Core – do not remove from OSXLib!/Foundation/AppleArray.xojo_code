@@ -2,7 +2,7 @@
 Protected Class AppleArray
 Inherits AppleObject
 	#tag Method, Flags = &h0, Description = 4372656174657320616E642072657475726E7320616E20617272617920636F6E7461696E696E67206120676976656E206F626A6563742E
-		 Shared Function ArrayWithObject(anObject as AppleGeneralObject) As AppleArray
+		Shared Function ArrayWithObject(anObject as AppleGeneralObject) As AppleArray
 		  dim result as new AppleArray(ArrayWithObject(classptr, anObject.GeneralID))
 		  result.RetainClassObject
 		  return Result
@@ -118,8 +118,8 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleArray
-		  return if (aptr <> NIL, new AppleArray (aptr), NIL)
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleArray
+		  return if (aptr = NIL, Nil, new AppleArray (aptr))
 		End Function
 	#tag EndMethod
 

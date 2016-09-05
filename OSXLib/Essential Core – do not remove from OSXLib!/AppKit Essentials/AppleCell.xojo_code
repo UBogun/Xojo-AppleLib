@@ -127,7 +127,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCell
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCell
 		  return if (aptr = nil, nil, new applecell(aptr))
 		End Function
 	#tag EndMethod

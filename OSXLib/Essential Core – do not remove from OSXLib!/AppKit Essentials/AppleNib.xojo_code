@@ -28,7 +28,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleNib
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleNib
 		  Return if (aptr = nil, nil, new applenib(aptr))
 		End Function
 	#tag EndMethod

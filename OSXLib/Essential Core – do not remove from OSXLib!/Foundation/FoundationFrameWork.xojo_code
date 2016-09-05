@@ -40,6 +40,10 @@ Protected Module FoundationFrameWork
 		Protected Declare Function getCount Lib FoundationLibName Selector "count" (id as ptr) As UInteger
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcurrentTime Lib FoundationLibName Selector "currentTime" (id as ptr) As Double
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getdictionaryWithValuesForKeys Lib foundationlibname Selector "dictionaryWithValuesForKeys:" (id as ptr, keys as ptr) As ptr
 	#tag EndExternalMethod
@@ -90,6 +94,10 @@ Protected Module FoundationFrameWork
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getsupportsSecureCoding Lib FoundationLibName Selector "supportsSecureCoding" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getURL Lib FoundationLibName Selector "url" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -185,6 +193,10 @@ Protected Module FoundationFrameWork
 		  
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function retain Lib foundationlibname Selector "retain" (id as ptr) As ptr
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setdoubleValue Lib FoundationLibName Selector "setDoubleValue:" (id as ptr, value as Double)

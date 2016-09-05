@@ -33,7 +33,7 @@ Inherits AppleTextFieldCell
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTableHeaderCell
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleTableHeaderCell
 		  return if (aptr= nil, nil, new AppleTableHeaderCell(aptr))
 		End Function
 	#tag EndMethod

@@ -19,7 +19,7 @@ Inherits AppleCAMEdiaTimingObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 537065636966696573207468652064656661756C742076616C7565206F66207468652070726F706572747920776974682074686520737065636966696564206B65792E0A42656361757365207468652076616C756520666F72206B65792063616E20626520616E7920747970652C206C696B652061207374727563747572652C2069742069732072657475726E6564206173206120707472206F6E6C792E
-		 Shared Function DefaultValue(Key As Text) As Ptr
+		Shared Function DefaultValue(Key As Text) As Ptr
 		  return getdefaultValueForKey (classptr, key)
 		End Function
 	#tag EndMethod
@@ -33,7 +33,7 @@ Inherits AppleCAMEdiaTimingObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleCAAnimation
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleCAAnimation
 		  return if (aptr = nil, nil, new AppleCAAnimation (aptr))
 		End Function
 	#tag EndMethod

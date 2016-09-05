@@ -22,7 +22,7 @@ Inherits AppleCABasicAnimation
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCASpringAnimation
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCASpringAnimation
 		  return if (aptr = nil, nil, new AppleCASpringAnimation(aptr))
 		End Function
 	#tag EndMethod

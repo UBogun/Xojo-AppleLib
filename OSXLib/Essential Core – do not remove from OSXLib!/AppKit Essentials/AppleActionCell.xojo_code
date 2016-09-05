@@ -18,7 +18,7 @@ Inherits AppleCell
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleActionCell
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleActionCell
 		  return if (aptr = nil, nil, new AppleActionCell(aptr))
 		End Function
 	#tag EndMethod

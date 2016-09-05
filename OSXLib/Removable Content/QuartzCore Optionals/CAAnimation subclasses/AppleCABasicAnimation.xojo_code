@@ -34,7 +34,7 @@ Inherits AppleCAPropertyAnimation
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCABasicAnimation
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCABasicAnimation
 		  return if (aptr = nil, nil, new AppleCABasicAnimation(aptr))
 		End Function
 	#tag EndMethod

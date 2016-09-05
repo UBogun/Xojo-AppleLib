@@ -15,7 +15,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleOperationQueue
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleOperationQueue
 		  return if (aptr <> NIL, new AppleOperationQueue (aptr), NIL)
 		End Function
 	#tag EndMethod

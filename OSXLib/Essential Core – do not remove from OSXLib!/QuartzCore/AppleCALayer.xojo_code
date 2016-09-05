@@ -82,7 +82,7 @@ Inherits AppleCAMediaTimingObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCALAyer
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCALAyer
 		  return if (aptr= nil, nil, new AppleCALayer(aptr))
 		End Function
 	#tag EndMethod

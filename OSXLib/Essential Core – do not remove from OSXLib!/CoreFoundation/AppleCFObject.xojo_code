@@ -80,7 +80,7 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCFObject
+		Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCFObject
 		  return if (aCFTypeRef = nil , NIL,  new AppleCFObject (aCFTypeRef))
 		End Function
 	#tag EndMethod

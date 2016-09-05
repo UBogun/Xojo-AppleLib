@@ -47,7 +47,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTableViewDataSource
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleTableViewDataSource
 		  return if (aptr = nil, nil, new AppleTableViewDataSource(aptr))
 		End Function
 	#tag EndMethod

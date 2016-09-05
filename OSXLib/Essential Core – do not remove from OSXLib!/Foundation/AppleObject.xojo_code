@@ -18,6 +18,14 @@ Implements AppleGeneralObject
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Constructor(aPtr as Ptr, takeOwnership as Boolean, own as Boolean)
+		  mid = if (own, retain(aptr), aptr)
+		  MHasOwnership = takeOwnership
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
 		  if id <> nil then
@@ -71,7 +79,7 @@ Implements AppleGeneralObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleObject
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleObject
 		  return if (aptr = nil, nil, new appleobject (aptr))
 		End Function
 	#tag EndMethod
@@ -83,7 +91,7 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RegisterControl(ParentControl As control)
+		Attributes( hidden )  Sub RegisterControl(ParentControl As object)
 		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
 		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
 		End Sub
@@ -97,6 +105,12 @@ Implements AppleGeneralObject
 		Attributes( hidden )  Sub RemoveControl()
 		  if XojoControls <> nil and xojocontrols.HasKey(id) then XojoControls.Remove (id)
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52657475726E73206966206120636C61737320636F6E7461696E732061206D6574686F642073656C6563746F722E
+		Protected Function RespondsToSelector(sel as CFStringRef, ClassPtr as Ptr) As Boolean
+		  return ObjectiveCRuntime.class_respondsToSelector (ClassPtr, FoundationFrameWork.NSSelectorFromString(sel))
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

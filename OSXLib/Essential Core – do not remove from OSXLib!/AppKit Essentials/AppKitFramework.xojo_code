@@ -81,6 +81,18 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getbottomAnchor Lib appkitlibname Selector "bottomAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcenterXAnchor Lib appkitlibname Selector "centerXAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcenterYAnchor Lib appkitlibname Selector "centerYAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcontentInsets Lib appkitlibname Selector "contentInsets" (id as ptr) As Appkitframework.NSEdgeInsets
 	#tag EndExternalMethod
 
@@ -138,6 +150,14 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getfocusRingType Lib appkitlibname Selector "focusRingType" (id as ptr) As AppKitframework.NSFocusRingType
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getframe Lib appkitlibname Selector "frame" (id as ptr) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getheightAnchor Lib appkitlibname Selector "heightAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -201,6 +221,14 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getleadingAnchor Lib appkitlibname Selector "leadingAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getleftAnchor Lib appkitlibname Selector "leftAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getlineBreakMode Lib appkitlibname Selector "lineBreakMode" (id as ptr) As AppleText.NSLineBreakMode
 	#tag EndExternalMethod
 
@@ -233,11 +261,19 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getowningView Lib appkitlibname Selector "owningView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getrefusesFirstResponder Lib foundationlibname Selector "refusesFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getrepresentedObject Lib appkitlibname Selector "representedObject" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrightAnchor Lib appkitlibname Selector "rightAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -285,6 +321,14 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettopAnchor Lib appkitlibname Selector "topAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettrailingAnchor Lib appkitlibname Selector "trailingAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function gettruncatesLastVisibleLine Lib appkitlibname Selector "truncatesLastVisibleLine" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -298,6 +342,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getWidth Lib foundationlibname Selector "width" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getwidthAnchor Lib appkitlibname Selector "widthAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -441,6 +489,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setframe Lib appkitlibname Selector "setFrame:" (id as ptr, value as FoundationFrameWork . NSRect)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setHidden Lib appkitlibname Selector "setHidden:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -510,6 +562,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setobjectValue Lib foundationlibname Selector "setObjectValue:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setowningView Lib appkitlibname Selector "setOwningView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

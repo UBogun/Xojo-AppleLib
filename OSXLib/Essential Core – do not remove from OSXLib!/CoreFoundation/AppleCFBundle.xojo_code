@@ -92,7 +92,7 @@ Inherits AppleCFObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromCFTypeRef(aCFTypeRef as ptr) As AppleCFBundle
+		Shared Function MakefromCFTypeRef(aCFTypeRef as ptr) As AppleCFBundle
 		  return if (aCFTypeRef = nil, nil, new AppleCFBundle(aCFTypeRef))
 		End Function
 	#tag EndMethod

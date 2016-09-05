@@ -19,7 +19,7 @@ Inherits AppleCAAnimation
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCAAnimationGroup
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCAAnimationGroup
 		  return if (aptr = nil, nil, new AppleCAAnimationGroup(aptr))
 		End Function
 	#tag EndMethod

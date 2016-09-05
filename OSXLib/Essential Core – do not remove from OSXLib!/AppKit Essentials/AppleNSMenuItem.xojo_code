@@ -21,7 +21,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function FromMenuitem(m as MenuItem) As AppleNSMenuItem
+		Shared Function FromMenuitem(m as MenuItem) As AppleNSMenuItem
 		  return m.AppleObject
 		End Function
 	#tag EndMethod
@@ -75,13 +75,13 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleNSMenuitem
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleNSMenuitem
 		  return if (aptr = nil, nil, new AppleNSMenuItem(aptr))
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206D656E75206974656D2074686174206973207573656420746F207365706172617465206C6F676963616C2067726F757073206F66206D656E7520636F6D6D616E64732E
-		 Shared Function SeparatorItem() As AppleNSMenuItem
+		Shared Function SeparatorItem() As AppleNSMenuItem
 		  dim result as new AppleNSMenuItem(separatorItem(classptr))
 		  result.retainClassObject
 		  Return Result

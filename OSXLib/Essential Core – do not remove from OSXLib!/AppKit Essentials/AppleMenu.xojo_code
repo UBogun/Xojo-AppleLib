@@ -217,7 +217,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleMenu
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleMenu
 		  return if (aptr = nil, nil, new applemenu(aptr))
 		End Function
 	#tag EndMethod
@@ -255,7 +255,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 446973706C617973206120636F6E7465787475616C206D656E75206F7665722061207669657720666F7220616E206576656E742E
-		 Shared Sub PopUpContextMenu(menu as applemenu, anevent as applensevent, view as AppleView)
+		Shared Sub PopUpContextMenu(menu as applemenu, anevent as applensevent, view as AppleView)
 		  popUpContextMenu (classptr, menu.id, anevent.id, view.id)
 		End Sub
 	#tag EndMethod

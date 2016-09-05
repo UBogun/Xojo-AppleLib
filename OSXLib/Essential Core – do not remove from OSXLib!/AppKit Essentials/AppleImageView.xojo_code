@@ -37,13 +37,13 @@ Inherits AppleControl
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function FromControl(c as ImageWell) As AppleImageView
+		Shared Function FromControl(c as ImageWell) As AppleImageView
 		  return new AppleImageView(c)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleImageView
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleImageView
 		  return if (aptr = nil, nil, new AppleImageView(aptr))
 		End Function
 	#tag EndMethod
@@ -209,6 +209,11 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BaseWritingDirection"
 			Group="Behavior"
 			Type="AppleText.NSWritingDirection"
@@ -271,6 +276,11 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FirstBaselineOffsetFromTop"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FocusRingType"
 			Group="Behavior"
 			Type="Appkitframework.NSFocusRingType"
@@ -290,6 +300,11 @@ Inherits AppleControl
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasAmbiguousLayout"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -421,6 +436,11 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LastBaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="LayerContentsPlacement"
 			Group="Behavior"
 			Type="NSViewLayerContentsPlacement"
@@ -492,6 +512,16 @@ Inherits AppleControl
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NeedsDisplay"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsLayout"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsUpdateConstraints"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

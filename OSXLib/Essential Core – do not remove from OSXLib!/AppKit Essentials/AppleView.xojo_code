@@ -1,6 +1,36 @@
 #tag Class
 Protected Class AppleView
 Inherits AppleResponder
+	#tag Method, Flags = &h0, Description = 41646473206120636F6E73747261696E74206F6E20746865206C61796F7574206F662074686520726563656976696E672076696577206F72206974732073756276696577732E
+		Sub AddConstraint(Constraint As AppleLayoutConstraint)
+		  AddConstraint id, Constraint.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub addConstraint Lib appkitlibname Selector "addConstraint:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 41646473206D756C7469706C6520636F6E73747261696E7473206F6E20746865206C61796F7574206F662074686520726563656976696E672076696577206F72206974732073756276696577732E
+		Sub AddConstraints(Constraints As AppleArray)
+		  AddConstraints id, Constraints.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub addConstraints Lib appkitlibname Selector "addConstraints:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 41646473207468652070726F7669646564206C61796F757420677569646520746F2074686520766965772E20417661696C61626C652073696E6365204F5320582031302E3131
+		Sub AddLayoutGuide(Guide As AppleLayoutGuide)
+		  AddLayoutGuide id, Guide.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub addLayoutGuide Lib appkitlibname Selector "addLayoutGuide:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 416464732061207669657720746F207468652076696577E280997320737562766965777320736F206974E280997320646973706C617965642061626F766520697473207369626C696E67732E
 		Sub AddSubview(Subview as appleView)
 		  addSubview id, subview.id
@@ -55,6 +85,12 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Sub adjustPageWidthNew Lib appkitlibname Selector "adjustPageWidthNew:left:right:limit:" (id as ptr, byref newRight as CGFloat, oldLeft as CGFloat, oldRight As CGFloat, rightLimit as CGFloat)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652076696577E280997320616C69676E6D656E742072656374616E676C6520666F72206120676976656E206672616D652E
+		Function AlignmentRect(Frame as FoundationFrameWork . NSREct) As FoundationFrameWork.NSREct
+		  return getalignmentrectforFrame ( id, Frame)
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function AncestorSharedWithView(aView as AppleView) As AppleView
 		  return appleview.MakefromPtr (getancestorSharedWithView(id, aview.id))
@@ -81,6 +117,12 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Sub beginDocument Lib appkitlibname Selector "beginDocument" (id as ptr)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0
+		Sub CallExerciseAmbiguityinLayout()
+		  me.ExerciseAmbiguityInLayout
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 436F6E76657274732074686520636F726E657273206F662061207370656369666965642072656374616E676C6520746F206C6965206F6E207468652063656E746572206F662064657669636520706978656C732C2077686963682069732075736566756C20696E20636F6D70656E736174696E6720666F722072656E646572696E67206F7665727363616E6E696E67207768656E2074686520636F6F7264696E6174652073797374656D20686173206265656E207363616C65642E0A54686973206D6574686F6420636F6E76657274732074686520676976656E2072656374616E676C6520746F2064657669636520636F6F7264696E617465732C2061646A75737473207468652072656374616E676C6520746F206C696520696E207468652063656E746572206F662074686520706978656C732C20616E6420636F6E76657274732074686520726573756C74696E672072656374616E676C65206261636B20746F207468652076696577E280997320636F6F7264696E6174652073797374656D2E204E6F746520746861742074686973206D6574686F6420646F6573206E6F742074616B6520696E746F206163636F756E7420616E79207472616E73666F726D6174696F6E7320706572666F726D6564207573696E6720746865204E53416666696E655472616E73666F726D20636C617373206F722051756172747A20324420726F7574696E65732E
 		Function CenterScanRect(Rect As FoundationFrameWork.NSRect) As FoundationFrameWork.NSRect
 		  return centerScanRect(id,rect)
@@ -90,6 +132,17 @@ Inherits AppleResponder
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function centerScanRect Lib appkitlibname Selector "centerScanRect:" (id as ptr, rect as FoundationFrameWork . NSrect) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0
+		Sub CheckLayout()
+		  if me.HasAmbiguousLayout then
+		    for q as integer = 0 to 50
+		      xojo.core.timer.CallLater 1, AddressOf callexerciseAmbiguityInLayout
+		      app.DoEvents 20
+		    next
+		  end if
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Constructor(aControl as control)
@@ -113,6 +166,30 @@ Inherits AppleResponder
 		  Super.Constructor(initWithFrame(alloc(classptr), frame))
 		  MHasOwnership = true
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865207072696F726974792077697468207768696368206120766965772072657369737473206265696E67206D61646520736D616C6C6572207468616E2069747320696E7472696E7369632073697A652E
+		Function ContentCompressionResistancePriority(orientation as AppleLayoutConstraint.NSLayoutConstraintOrientation) As AppleLayoutConstraint.NSLayoutPriority
+		  return getcontentCompressionResistancePriorityForOrientation(id, orientation)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5365747320746865207072696F726974792077697468207768696368206120766965772072657369737473206265696E67206D61646520736D616C6C6572207468616E2069747320696E7472696E7369632073697A652E
+		Sub ContentCompressionResistancePriority(orientation as AppleLayoutConstraint.NSLayoutConstraintOrientation, assigns value as AppleLayoutConstraint.NSLayoutPriority)
+		  setContentCompressionResistancePriority(id, orientation, value)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865207072696F726974792077697468207768696368206120766965772072657369737473206265696E67206D616465206C6172676572207468616E2069747320696E7472696E7369632073697A652E
+		Function ContentHuggingPriority(orientation as AppleLayoutConstraint.NSLayoutConstraintOrientation) As AppleLayoutConstraint.NSLayoutPriority
+		  return getcontentHuggingPriorityForOrientation(id, orientation)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5365747320746865207072696F726974792077697468207768696368206120766965772072657369737473206265696E67206D616465206C6172676572207468616E2069747320696E7472696E7369632073697A652E
+		Sub ContentHuggingPriority(orientation as AppleLayoutConstraint.NSLayoutConstraintOrientation ,assigns value as AppleLayoutConstraint.NSLayoutPriority)
+		  setContentHuggingPriority (id, orientation, value)
 		End Sub
 	#tag EndMethod
 
@@ -313,7 +390,7 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652064656661756C7420616E696D6174696F6E20746861742073686F756C6420626520706572666F726D656420666F722074686520737065636966696564206B65792E
-		 Shared Function DefaultAnimationForKey(Key as CFStringRef) As AppleCAAnimation
+		Shared Function DefaultAnimationForKey(Key as CFStringRef) As AppleCAAnimation
 		  return AppleCAAnimation.MakeFromPtr(getdefaultanimationForKey (ClassPtr, key))
 		End Function
 	#tag EndMethod
@@ -390,6 +467,16 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Function enterFullScreenMode Lib appkitlibname Selector "enterFullScreenMode:withOptions:" (id as ptr, screen as ptr, options as ptr) As Boolean
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52616E646F6D6C79206368616E67657320746865206672616D65206F6620612076696577207769746820616E20616D626967756F7573206C61796F7574206265747765656E2074686520646966666572656E742076616C69642076616C7565732E204F6E6C79206D65616E7420666F7220636F6E73747261696E7420646562696767756E672E
+		Sub ExerciseAmbiguityInLayout()
+		  exerciseAmbiguityInLayout id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub exerciseAmbiguityInLayout Lib appkitlibname Selector "exerciseAmbiguityInLayout" (id as ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 436F6E76657274732074686520636F726E657273206F662061207370656369666965642072656374616E676C6520746F206C6965206F6E207468652063656E746572206F662064657669636520706978656C732C2077686963682069732075736566756C20696E20636F6D70656E736174696E6720666F722072656E646572696E67206F7665727363616E6E696E67207768656E2074686520636F6F7264696E6174652073797374656D20686173206265656E207363616C65642E0A54686973206D6574686F6420636F6E76657274732074686520676976656E2072656374616E676C6520746F2064657669636520636F6F7264696E617465732C2061646A75737473207468652072656374616E676C6520746F206C696520696E207468652063656E746572206F662074686520706978656C732C20616E6420636F6E76657274732074686520726573756C74696E672072656374616E676C65206261636B20746F207468652076696577E280997320636F6F7264696E6174652073797374656D2E204E6F746520746861742074686973206D6574686F6420646F6573206E6F742074616B6520696E746F206163636F756E7420616E79207472616E73666F726D6174696F6E7320706572666F726D6564207573696E6720746865204E53416666696E655472616E73666F726D20636C617373206F722051756172747A20324420726F7574696E65732E
 		Sub ExitFullScreenMode(Options As AppleDictionary)
 		  exitFullScreenModeWithOptions(id,options.id)
@@ -400,13 +487,27 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Sub exitFullScreenModeWithOptions Lib appkitlibname Selector "exitFullScreenModeWithOptions:" (id as ptr, options as ptr)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652076696577E2809973206672616D6520666F72206120676976656E20616C69676E6D656E742072656374616E676C652E
+		Function FrameForAlignmentRect(Rect as FoundationFrameWork . NSREct) As FoundationFrameWork.NSREct
+		  return getframeForAlignmentRect ( id, Frame)
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
-		 Shared Function fromControl(c as Control) As AppleView
+		Shared Function fromControl(c as Control) As AppleView
 		  #if targetmacos
 		    Return new appleview (ptr(c.Handle))
 		  #endif
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getalignmentRectForFrame Lib appkitlibname Selector "alignmentRectForFrame:" (id as ptr, frame as FoundationFrameWork . NSREct) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getalignmentRectInsets Lib appkitlibname Selector "alignmentRectInsets" (id as ptr) As appkitframework.NSEdgeInsets
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getalphaValue Lib appkitlibname Selector "alphaValue" (id as ptr) As CGFloat
@@ -433,6 +534,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getbaselineOffsetFromBottom Lib appkitlibname Selector "baselineOffsetFromBottom" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getborderType Lib appkitlibname Selector "borderType" (id as ptr) As NSBorderType
 	#tag EndExternalMethod
 
@@ -453,7 +558,19 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getconstraints Lib appkitlibname Selector "constraints" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getcontentCompressionResistancePriorityForOrientation Lib appkitlibname Selector "getcontentCompressionResistancePriorityForOrientation:" (id as ptr, orientation as AppleLayoutConstraint . NSLayoutConstraintOrientation) As AppleLayoutConstraint.NSLayoutPriority
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getcontentFilters Lib appkitlibname Selector "contentFilters" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getcontentHuggingPriorityForOrientation Lib appkitlibname Selector "contentHuggingPriorityForOrientation:" (id as ptr, orientation as AppleLayoutConstraint . NSLayoutConstraintOrientation) As AppleLayoutConstraint.NSLayoutPriority
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -477,6 +594,14 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getfirstBaselineAnchor Lib appkitlibname Selector "firstBaselineAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getfirstBaselineOffsetFromTop Lib appkitlibname Selector "firstBaselineOffsetFromTop" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getfittingSize Lib appkitlibname Selector "fittingSize" (id as ptr) As FoundationFrameWork.NSSize
 	#tag EndExternalMethod
 
@@ -485,15 +610,19 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getframe Lib appkitlibname Selector "frame" (id as ptr) As FoundationFrameWork.NSRect
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getframeCenterRotation Lib appkitlibname Selector "frameCenterRotation" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getframeForAlignmentRect Lib appkitlibname Selector "frameForAlignmentRect:" (id as ptr, rect as FoundationFrameWork . NSREct) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getframeRotation Lib appkitlibname Selector "frameRotation" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function gethasAmbiguousLayout Lib appkitlibname Selector "hasAmbiguousLayout" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -533,6 +662,14 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getlastBaselineAnchor Lib appkitlibname Selector "lastBaselineAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getlastBaselineOffsetFromBottom Lib appkitlibname Selector "lastBaselineOffsetFromBottom" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getLayer Lib appkitlibname Selector "layer" (id as ptr) As ptr
 	#tag EndExternalMethod
 
@@ -549,7 +686,19 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getlayoutGuides Lib appkitlibname Selector "layoutGuides" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getneedsDisplay Lib appkitlibname Selector "needsDisplay" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getneedsLayout Lib appkitlibname Selector "needsLayout" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getneedsUpdateConstraints Lib appkitlibname Selector "needsUpdateConstraints" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -566,6 +715,10 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getregisteredDraggedTypes Lib appkitlibname Selector "registeredDraggedTypes" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getrequiresConstraintBasedLayout Lib appkitlibname Selector "requiresConstraintBasedLayout" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -940,6 +1093,16 @@ Inherits AppleResponder
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 5570646174657320746865206C61796F7574206F662074686520726563656976696E67207669657720616E6420697473207375627669657773206261736564206F6E207468652063757272656E7420766965777320616E6420636F6E73747261696E74732E
+		Sub LayoutSubtree()
+		  layoutSubtreeIfNeeded id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub layoutSubtreeIfNeeded Lib appkitlibname Selector "layoutSubtreeIfNeeded" (id as ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 4C6F636B732074686520666F637573206F6E2074686520766965772C20736F2073756273657175656E7420636F6D6D616E64732074616B652065666665637420696E207468652076696577E28099732077696E646F7720616E6420636F6F7264696E6174652073797374656D2E
 		Sub LockFocus()
 		  lockFocus id
@@ -971,7 +1134,7 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleView
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleView
 		  return if (aptr= nil, nil, new appleview(aptr))
 		End Function
 	#tag EndMethod
@@ -1046,6 +1209,26 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Sub removeAllToolTips Lib appkitlibname Selector "removeAllToolTips" (id as ptr)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52656D6F766573207468652073706563696669656420636F6E73747261696E742066726F6D2074686520766965772E
+		Sub RemoveConstraint(Constraint As AppleLayoutConstraint)
+		  RemoveConstraint id, Constraint.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub removeConstraint Lib appkitlibname Selector "removeConstraint:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 52656D6F766573207468652073706563696669656420636F6E73747261696E74732066726F6D207468652076696577
+		Sub RemoveConstraints(Constraints As AppleArray)
+		  RemoveConstraints id, Constraints.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub removeConstraints Lib appkitlibname Selector "removeConstraints:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 556E6C696E6B732074686520766965772066726F6D206974732073757065727669657720616E64206974732077696E646F772C2072656D6F7665732069742066726F6D2074686520726573706F6E64657220636861696E2C20616E6420696E76616C6964617465732069747320637572736F722072656374616E676C652E0A52656D6F76657320636F6E73747261696E747320746F6F20616E642072656C656173657320746865207669657720696620796F7520646F6EE2809974206275666665722069742E
 		Sub RemoveFromSuperview(dontInvalidate as boolean = false)
 		  if dontInvalidate then
@@ -1062,6 +1245,16 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub removeFromSuperviewWithoutNeedingDisplay Lib appkitlibname Selector "removeFromSuperviewWithoutNeedingDisplay" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 52656D6F766573207468652070726F7669646564206C61796F75742067756964652066726F6D2074686520766965772E20417661696C61626C652073696E6365204F5320582031302E31312E
+		Sub RemoveLayoutGuide(Guide As AppleLayoutGuide)
+		  removeLayoutGuide id, guide.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub removeLayoutGuide Lib appkitlibname Selector "removeLayoutGuide:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52656D6F7665732074686520746F6F6C746970206964656E74696669656420627920737065636966696564207461672E
@@ -1115,7 +1308,7 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 4E6F7469666965732074686520737570657276696577206F66206120636C6970207669657720746861742074686520636C69702076696577206E6565647320746F20726573657420746865206F726967696E206F662069747320626F756E64732072656374616E676C652E
-		Sub ScrollClipView(ClipView As AppleView, Point As FoundationFrameWork.NSPoint)
+		Sub ScrollClipView(ClipView As AppleClipView, Point As FoundationFrameWork.NSPoint)
 		  ScrollClipViewtoPoint  id, ClipView.id, Point
 		End Sub
 	#tag EndMethod
@@ -1195,15 +1388,19 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setContentCompressionResistancePriority Lib appkitlibname Selector "setContentCompressionResistancePriority:forOrientation:" (id as ptr, orientation as AppleLayoutConstraint . NSLayoutConstraintOrientation, value as AppleLayoutConstraint . NSLayoutPriority)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setcontentFilters Lib appkitlibname Selector "setContentFilters:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setenclosingScrollView Lib appkitlibname Selector "setEnclosingScrollView:" (id as ptr, value as ptr)
+		Attributes( hidden ) Protected Declare Sub setContentHuggingPriority Lib appkitlibname Selector "setContentHuggingPriority:forOrientation:" (id as ptr, orientation as AppleLayoutConstraint . NSLayoutConstraintOrientation, value as AppleLayoutConstraint . NSLayoutPriority)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setframe Lib appkitlibname Selector "setFrame:" (id as ptr, value as FoundationFrameWork . NSRect)
+		Attributes( hidden ) Protected Declare Sub setenclosingScrollView Lib appkitlibname Selector "setEnclosingScrollView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1260,6 +1457,14 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setNeedsDisplayInRect Lib appkitlibname Selector "setNeedsDisplayInRect:" (id as ptr, aRect as foundationframework . nsrect)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setneedsLayout Lib appkitlibname Selector "setNeedsLayout:" (id as ptr, value as boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setneedsUpdateConstraints Lib appkitlibname Selector "setNeedsUpdateConstraints:" (id as ptr, value as boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1320,6 +1525,16 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub unregisterDraggedTypes Lib appkitlibname Selector "unregisterDraggedTypes" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 557064617465732074686520636F6E73747261696E747320666F722074686520726563656976696E67207669657720616E64206974732073756276696577732E
+		Sub UpdateConstraintsForSubtree()
+		  updateConstraintsForSubtreeIfNeeded id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub updateConstraintsForSubtreeIfNeeded Lib appkitlibname Selector "updateConstraintsForSubtreeIfNeeded" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652076696577E2809973206E6561726573742064657363656E64616E742028696E636C7564696E6720697473656C662920776974682061207370656369666963207461672C206F72206E696C206966206E6F2073756276696577206861732074686174207461672E
@@ -1416,7 +1631,7 @@ Inherits AppleResponder
 		displayRect…Context
 		resizeSubviewsWithOldSize
 		resizeWithOldSuperviewSize
-		anchors , constraints  & layoutguide up to debugging auto layout sections
+		section layoutguide up to debugging auto layout sections
 		lockFocusIfCanDrawInContext
 		focusRingMaskBounds
 		drawFocusRingMask
@@ -1446,11 +1661,18 @@ Inherits AppleResponder
 		wantsBestResolutionOpenGLSurface
 		pressureConfiguration
 		
-		changes
-		scrollClipView: parameter nees to be clipview, not NSView
 		
 	#tag EndNote
 
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520696E736574732028696E20706F696E7473292066726F6D207468652076696577E2809973206672616D65207468617420646566696E652069747320636F6E74656E742072656374616E676C652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getalignmentRectInsets (id)
+			End Get
+		#tag EndGetter
+		AlignmentRectInsets As Appkitframework.NSEdgeInsets
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F706163697479206F662074686520766965772E
 		#tag Getter
@@ -1529,6 +1751,24 @@ Inherits AppleResponder
 			End Set
 		#tag EndSetter
 		BackgroundFilters As AppleArray
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E63652028696E20706F696E747329206265747765656E2074686520626F74746F6D206F66207468652076696577E280997320616C69676E6D656E742072656374616E676C6520616E642069747320626173656C696E652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getbaselineOffsetFromBottom(id)
+			End Get
+		#tag EndGetter
+		BaselineOffsetFromBottom As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520626F74746F6D2065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("bottomAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.getbottomanchor(id))
+			End Get
+		#tag EndGetter
+		BottomAnchor As AppleLayoutXAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E280997320626F756E64732072656374616E676C652C2077686963682065787072657373657320697473206C6F636174696F6E20616E642073697A6520696E20697473206F776E20636F6F7264696E6174652073797374656D2E
@@ -1610,6 +1850,24 @@ Inherits AppleResponder
 		CanDrawSubviewsIntoLayer As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520686F72697A6F6E74616C2063656E746572206F66207468652076696577E2809973206672616D652028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("centerXAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.getcenterXAnchor(id))
+			End Get
+		#tag EndGetter
+		CenterXAnchor As AppleLayoutXAxisAnchor
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520766572746963616C2063656E746572206F66207468652076696577E2809973206672616D652028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("centerYAnchor", classptr) then return AppleLayoutYAxisAnchor.MakeFromPtr(AppKitFramework.getcenterYAnchor(id))
+			End Get
+		#tag EndGetter
+		CenterYAnchor As AppleLayoutYAxisAnchor
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
@@ -1679,6 +1937,17 @@ Inherits AppleResponder
 		Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6E73747261696E74732068656C642062792074686520766965772E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  dim result as AppleArray = AppleArray.MakefromPtr(getconstraints (id))
+			  result.retainclassobject
+			  return result
+			End Get
+		#tag EndGetter
+		Constraints As AppleArray
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F6620436F726520496D6167652066696C7465727320746F206170706C7920746F2074686520636F6E74656E7473206F6620746865207669657720616E6420697473207375626C61796572732E
 		#tag Getter
 			Get
@@ -1720,6 +1989,24 @@ Inherits AppleResponder
 		EnclosingScrollView As AppleView
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520626173656C696E6520666F722074686520746F706D6F7374206C696E65206F66207465787420696E2074686520766965772028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("firstBaselineAnchor", classptr) then return AppleLayoutYAxisAnchor.MakeFromPtr(getfirstBaselineAnchor(id))
+			End Get
+		#tag EndGetter
+		FirstBaselineAnchor As AppleLayoutYAxisAnchor
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E63652028696E20706F696E747329206265747765656E2074686520746F70206F66207468652076696577E280997320616C69676E6D656E742072656374616E676C6520616E642069747320746F706D6F737420626173656C696E652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getfirstBaselineOffsetFromTop(id)
+			End Get
+		#tag EndGetter
+		FirstBaselineOffsetFromTop As Double
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D696E696D756D2073697A65206F662074686520766965772074686174207361746973666965732074686520636F6E73747261696E747320697420686F6C64732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
@@ -1755,12 +2042,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E2809973206672616D652072656374616E676C652C20776869636820646566696E65732069747320706F736974696F6E20616E642073697A6520696E2069747320737570657276696577E280997320636F6F7264696E6174652073797374656D2E
 		#tag Getter
 			Get
-			  return getframe(id)
+			  return AppKitFramework.getframe(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setframe id, value
+			  AppKitFramework.setframe id, value
 			End Set
 		#tag EndSetter
 		Frame As FoundationFrameWork.NSRect
@@ -1783,7 +2070,7 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F726967696E206F66207468652076696577E2809973206672616D652072656374616E676C6520696E20697473207375706572766965772E
 		#tag Getter
 			Get
-			  return getframe(id).Origin
+			  return Frame.Origin
 			End Get
 		#tag EndGetter
 		#tag Setter
@@ -1811,7 +2098,7 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F726967696E206F66207468652076696577E2809973206672616D652072656374616E676C6520696E20697473207375706572766965772E
 		#tag Getter
 			Get
-			  return getframe(id).Size_
+			  return frame.Size_
 			End Get
 		#tag EndGetter
 		#tag Setter
@@ -1820,6 +2107,15 @@ Inherits AppleResponder
 			End Set
 		#tag EndSetter
 		FrameSize As FoundationFrameWork.NSSize
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520636F6E73747261696E747320696D70616374696E6720746865206C61796F7574206F6620746865207669657720696E636F6D706C6574656C79207370656369667920746865206C6F636174696F6E206F662074686520766965772E2028726561642D6F6E6C79
+		#tag Getter
+			Get
+			  return gethasAmbiguousLayout (id)
+			End Get
+		#tag EndGetter
+		HasAmbiguousLayout As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206865696768742076616C7565206F66204672616D652E53697A655F
@@ -1843,6 +2139,15 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		HeightAdjustLimit As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520686569676874206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("heightAnchor", classptr) then return AppleLayoutDimension.MakeFromPtr(AppKitFramework.getheightAnchor(id))
+			End Get
+		#tag EndGetter
+		HeightAnchor As AppleLayoutDimension
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520766965772069732068696464656E2E
@@ -1931,6 +2236,24 @@ Inherits AppleResponder
 		IsRotatedOrScaledFromBase As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520626173656C696E6520666F722074686520626F74746F6D6D6F7374206C696E65206F66207465787420696E2074686520766965772028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("lastBaselineAnchor", classptr) then return AppleLayoutYAxisAnchor.MakeFromPtr(getlastBaselineAnchor(id))
+			End Get
+		#tag EndGetter
+		LastBaselineAnchor As AppleLayoutYAxisAnchor
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E63652028696E20706F696E747329206265747765656E2074686520626F74746F6D206F66207468652076696577E280997320616C69676E6D656E742072656374616E676C6520616E642069747320626F74746F6D6D6F737420626173656C696E652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getlastBaselineOffsetFromBottom(id)
+			End Get
+		#tag EndGetter
+		LastBaselineOffsetFromBottom As Double
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720757365732061206C6179657220617320697473206261636B696E672073746F72652E
 		#tag Getter
 			Get
@@ -1987,6 +2310,28 @@ Inherits AppleResponder
 		LayerUsesCoreImageFilters As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6E73747261696E74732068656C642062792074686520766965772E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  if RespondsToSelector("layoutGuides", classptr) then
+			    dim result as applearray = AppleArray.MakefromPtr(getlayoutGuides (id))
+			    result.RetainClassObject
+			    return result
+			  end if
+			End Get
+		#tag EndGetter
+		LayoutGuides As AppleArray
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E6720746865206C656164696E672065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F53582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("leadingAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.getleadingAnchor(id))
+			End Get
+		#tag EndGetter
+		LeadingAnchor As AppleLayoutXAxisAnchor
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 54686520782076616C7565206F66204672616D654F726967696E
 		#tag Getter
 			Get
@@ -2001,6 +2346,15 @@ Inherits AppleResponder
 		Left As Double
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E6720746865206C6566742065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F53582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("leftAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.getleftAnchor(id))
+			End Get
+		#tag EndGetter
+		LeftAnchor As AppleLayoutXAxisAnchor
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206E6565647320746F206265207265647261776E206265666F7265206265696E6720646973706C617965642E200A53657474696E67207468652076616C756520746F207472756520697320746865206571756976616C656E746F66206120586F6A6F20696E76616C69646174652063616C6C2E
 		#tag Getter
 			Get
@@ -2013,6 +2367,34 @@ Inherits AppleResponder
 			End Set
 		#tag EndSetter
 		NeedsDisplay As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206E656564732061206C61796F75742070617373206265666F72652069742063616E20626520647261776E2E
+		#tag Getter
+			Get
+			  return getneedsLayout (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setneedsLayout id,value
+			End Set
+		#tag EndSetter
+		NeedsLayout As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577E280997320636F6E73747261696E7473206E65656420746F20626520757064617465642E
+		#tag Getter
+			Get
+			  return getneedsUpdateConstraints (id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setneedsUpdateConstraints id, value
+			End Set
+		#tag EndSetter
+		NeedsUpdateConstraints As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E280997320636C6F73657374206F706171756520616E636573746F722C207768696368206D6967687420626520746865207669657720697473656C662E2028726561642D6F6E6C7929
@@ -2059,6 +2441,24 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		RegisteredDraggedTypes As AppleArray
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720646570656E6473206F6E2074686520636F6E73747261696E742D6261736564206C61796F75742073797374656D2E
+		#tag Getter
+			Get
+			  return getrequiresConstraintBasedLayout (classptr)
+			End Get
+		#tag EndGetter
+		Shared RequiresConstraintBasedLayout As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E67207468652072696768742065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F53582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("rightAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.getrightAnchor(id))
+			End Get
+		#tag EndGetter
+		RightAnchor As AppleLayoutXAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720757365732061206C6179657220617320697473206261636B696E672073746F72652E
@@ -2135,6 +2535,24 @@ Inherits AppleResponder
 		Top As Double
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520746F702065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("topAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.gettopanchor(id))
+			End Get
+		#tag EndGetter
+		TopAnchor As AppleLayoutXAxisAnchor
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520746F702065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("trailingAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.gettrailingAnchor(id))
+			End Get
+		#tag EndGetter
+		TrailingAnchor As AppleLayoutXAxisAnchor
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577E2809973206175746F726573697A696E67206D61736B206973207472616E736C6174656420696E746F20636F6E73747261696E747320666F722074686520636F6E73747261696E742D6261736564206C61796F75742073797374656D2E53657474696E67207468652076616C756520746F207472756520697320746865206571756976616C656E746F66206120586F6A6F20696E76616C69646174652063616C6C2E
 		#tag Getter
 			Get
@@ -2209,6 +2627,15 @@ Inherits AppleResponder
 		WidthAdjustLimit As Double
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E6720746865207769647468206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  if RespondsToSelector("widthAnchor", classptr) then return AppleLayoutDimension.MakeFromPtr(AppKitFramework.getwidthAnchor(id))
+			End Get
+		#tag EndGetter
+		WidthAnchor As AppleLayoutDimension
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E28099732077696E646F77206F626A6563742C20696620697420697320696E7374616C6C656420696E20612077696E646F772E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
@@ -2269,6 +2696,11 @@ Inherits AppleResponder
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BoundsRotation"
 			Group="Behavior"
 			Type="Double"
@@ -2287,6 +2719,11 @@ Inherits AppleResponder
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FirstBaselineOffsetFromTop"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FocusRingType"
@@ -2308,6 +2745,11 @@ Inherits AppleResponder
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasAmbiguousLayout"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -2372,6 +2814,11 @@ Inherits AppleResponder
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LastBaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="LayerContentsPlacement"
 			Group="Behavior"
 			Type="NSViewLayerContentsPlacement"
@@ -2429,6 +2876,16 @@ Inherits AppleResponder
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NeedsDisplay"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsLayout"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsUpdateConstraints"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

@@ -58,7 +58,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBPeripheral
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBPeripheral
 		  if aptr <> nil then 
 		    dim result as new AppleCBPeripheral(aptr)
 		    result.retainclassobject

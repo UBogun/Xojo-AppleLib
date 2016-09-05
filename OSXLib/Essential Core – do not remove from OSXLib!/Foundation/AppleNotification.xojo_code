@@ -24,7 +24,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleNotification
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleNotification
 		  return if (aptr = nil, nil, new AppleNotification(aptr))
 		End Function
 	#tag EndMethod

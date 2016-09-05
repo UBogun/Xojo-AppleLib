@@ -49,7 +49,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBUUID
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBUUID
 		  return if (aptr = nil, nil, new AppleCBUUID(aptr))
 		End Function
 	#tag EndMethod

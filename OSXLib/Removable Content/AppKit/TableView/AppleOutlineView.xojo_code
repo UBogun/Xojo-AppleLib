@@ -533,6 +533,11 @@ Inherits AppleTableView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BaseWritingDirection"
 			Group="Behavior"
 			Type="AppleText.NSWritingDirection"
@@ -649,6 +654,11 @@ Inherits AppleTableView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FirstBaselineOffsetFromTop"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FloatsGroupRows"
 			Group="Behavior"
 			Type="Boolean"
@@ -673,6 +683,11 @@ Inherits AppleTableView
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasAmbiguousLayout"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -772,6 +787,11 @@ Inherits AppleTableView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LastBaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="LayerContentsPlacement"
 			Group="Behavior"
 			Type="NSViewLayerContentsPlacement"
@@ -843,6 +863,16 @@ Inherits AppleTableView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NeedsDisplay"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsLayout"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsUpdateConstraints"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

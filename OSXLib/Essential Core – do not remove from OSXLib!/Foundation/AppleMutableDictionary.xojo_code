@@ -120,6 +120,12 @@ Inherits AppleDictionary
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub TextForKey(akey as cfstringref, assigns value as CFStringRef)
+		  setValue (akey, value)
+		End Sub
+	#tag EndMethod
+
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter

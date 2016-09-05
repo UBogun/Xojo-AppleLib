@@ -51,7 +51,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleAnimationContext
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleAnimationContext
 		  return if (aptr = nil, nil, new AppleAnimationContext(aptr))
 		End Function
 	#tag EndMethod

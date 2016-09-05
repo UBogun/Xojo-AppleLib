@@ -172,13 +172,13 @@ Inherits AppleCFObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function fromColor(aColor as Color) As AppleCGColor
+		Shared Function fromColor(aColor as Color) As AppleCGColor
 		  return new AppleCGColor (acolor)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGColor
+		Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGColor
 		  return if (aCFTypeRef = nil, nil, new applecgcolor(aCFTypeRef))
 		End Function
 	#tag EndMethod

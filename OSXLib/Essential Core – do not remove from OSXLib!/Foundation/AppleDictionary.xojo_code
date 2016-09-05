@@ -41,7 +41,7 @@ Inherits Appleobject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleDictionary
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleDictionary
 		  return if (aptr <> NIL, new AppleDictionary (aptr), NIL)
 		End Function
 	#tag EndMethod

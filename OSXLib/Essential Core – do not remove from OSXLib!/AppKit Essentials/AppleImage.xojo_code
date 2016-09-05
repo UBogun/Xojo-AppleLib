@@ -18,7 +18,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function fromPicture(aPic as Picture) As AppleImage
+		Shared Function fromPicture(aPic as Picture) As AppleImage
 		  #if targetmacos
 		    return new AppleImage(apic)
 		  #endif
@@ -26,7 +26,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFromPtr(aPtr as Ptr) As AppleImage
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleImage
 		  return if (aptr = nil, nil, new appleimage(aptr))
 		End Function
 	#tag EndMethod

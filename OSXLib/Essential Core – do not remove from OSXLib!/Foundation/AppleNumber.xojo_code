@@ -134,7 +134,7 @@ Inherits AppleValue
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleNumber
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleNumber
 		  return if (aPtr <> NIL, new AppleNumber(aptr), Nil)
 		End Function
 	#tag EndMethod

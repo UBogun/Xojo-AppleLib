@@ -40,7 +40,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function DataToCFSTringRef(aData as AppleData, encoding as StringEncodings = stringencodings.utf8) As cfstringref
+		Shared Function DataToCFSTringRef(aData as AppleData, encoding as StringEncodings = stringencodings.utf8) As cfstringref
 		  declare function initWithDataEncoding lib FoundationLibName selector "initWithData:encoding:" (obj_id as ptr, data as ptr, encoding as stringencodings) as CFStringRef
 		  dim result as text = initWithDataEncoding (alloc(ClassPtr), aData.id, encoding)
 		  return result

@@ -37,7 +37,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleTableColumn
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleTableColumn
 		  return if (aptr = nil,nil, new AppleTableColumn(aptr))
 		End Function
 	#tag EndMethod

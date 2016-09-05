@@ -10,7 +10,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBATTRequest
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBATTRequest
 		  return if (aptr = nil, nil, new AppleCBATTRequest(aptr))
 		End Function
 	#tag EndMethod

@@ -772,6 +772,7 @@ End
 		  // dim uuid as new AppleUUID
 		  // pm = new AppleCBPeripheralManager(true, uuid.UUIDString)
 		  
+		  
 		End Sub
 	#tag EndEvent
 

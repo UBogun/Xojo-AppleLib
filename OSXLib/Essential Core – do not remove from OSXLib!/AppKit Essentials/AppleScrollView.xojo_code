@@ -83,7 +83,7 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520636F6E74656E742073697A652063616C63756C617465642066726F6D20746865206672616D652073697A6520616E6420746865207370656369666965642073706563696669636174696F6E732E
-		 Shared Function ContentSize(FrameSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
+		Shared Function ContentSize(FrameSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
 		  return getcontentSizeForFrameSize (classptr, FrameSize, _
 		  if (HorizontalScrollerClass = nil, nil, HorizontalScrollerClass.id), _
 		  if (VerticalScrollerclass = nil, nil, VerticalScrollerClass.id), _
@@ -102,7 +102,7 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206672616D652073697A65206F6620616E207363726F6C6C2076696577207468617420636F6E7461696E73206120636F6E74656E742076696577207769746820746865207370656369666965642073697A652E0A596F752063616E207573652074686520636C61737341734F626A6563742070726F7065727479206F662061206365727461696E20696E7374616E636520666F7220746865207363726F6C6C65727320706172616D65746572732E
-		 Shared Function FrameSize(ContentSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
+		Shared Function FrameSize(ContentSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
 		  return getframeSizeForContentSize (classptr, ContentSize, _
 		  if (HorizontalScrollerClass = nil, nil, HorizontalScrollerClass.id), _
 		  if (VerticalScrollerclass = nil, nil, VerticalScrollerClass.id), _
@@ -299,7 +299,7 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleScrollView
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleScrollView
 		  return if (aptr = nil, nil, new AppleScrollView(aptr))
 		End Function
 	#tag EndMethod
@@ -1173,6 +1173,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BorderType"
 			Group="Behavior"
 			Type="NSBorderType"
@@ -1221,6 +1226,11 @@ Inherits AppleView
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FirstBaselineOffsetFromTop"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FocusRingType"
 			Group="Behavior"
 			Type="Appkitframework.NSFocusRingType"
@@ -1240,6 +1250,11 @@ Inherits AppleView
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasAmbiguousLayout"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasHorizontalRuler"
@@ -1345,6 +1360,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LastBaselineOffsetFromBottom"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="LayerContentsPlacement"
 			Group="Behavior"
 			Type="NSViewLayerContentsPlacement"
@@ -1422,6 +1442,16 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NeedsDisplay"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsLayout"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NeedsUpdateConstraints"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

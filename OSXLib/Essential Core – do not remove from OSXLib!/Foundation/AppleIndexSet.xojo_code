@@ -60,7 +60,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakeFRomPtr(aPtr as Ptr) As AppleIndexSet
+		Shared Function MakeFRomPtr(aPtr as Ptr) As AppleIndexSet
 		  return if (aptr = nil, nil, new AppleIndexSet(aptr))
 		End Function
 	#tag EndMethod

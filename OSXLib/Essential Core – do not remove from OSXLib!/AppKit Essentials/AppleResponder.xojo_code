@@ -1,7 +1,6 @@
 #tag Class
 Protected Class AppleResponder
 Inherits AppleObject
-Implements OSXLibControlledObject
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub AnimationContextCompletionBlock()
 		  if me <> Nil then
@@ -653,7 +652,7 @@ Implements OSXLibControlledObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleResponder
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleResponder
 		  return if (aptr = nil, nil, new appleresponder(aptr))
 		End Function
 	#tag EndMethod

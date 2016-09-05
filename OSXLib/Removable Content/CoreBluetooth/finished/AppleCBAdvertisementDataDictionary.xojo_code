@@ -2,7 +2,7 @@
 Protected Class AppleCBAdvertisementDataDictionary
 Inherits appledictionary
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBAdvertisementDataDictionary
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBAdvertisementDataDictionary
 		  return if (aptr = nil, nil, new AppleCBAdvertisementDataDictionary(aptr))
 		End Function
 	#tag EndMethod

@@ -435,7 +435,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBPeripheralManagerForControl
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBPeripheralManagerForControl
 		  return if (aptr = nil, nil, new AppleCBPeripheralManagerForControl(aptr))
 		End Function
 	#tag EndMethod

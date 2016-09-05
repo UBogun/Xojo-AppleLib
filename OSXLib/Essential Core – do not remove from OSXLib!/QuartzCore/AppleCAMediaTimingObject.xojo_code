@@ -2,7 +2,7 @@
 Protected Class AppleCAMediaTimingObject
 Inherits AppleObject
 	#tag Method, Flags = &h0
-		 Shared Function DefaultValueForKey(Key As CFStringRef) As AppleObject
+		Shared Function DefaultValueForKey(Key As CFStringRef) As AppleObject
 		  declare function defaultValueForKey lib QuartzCoreLib selector "defaultValueForKey:" (id as ptr, key as CFStringRef) as Ptr
 		  dim myptr as ptr = defaultValueForKey (classptr, key)
 		  return if (myptr <> NIL, new AppleObject (myptr), NIL)

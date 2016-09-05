@@ -42,7 +42,7 @@ Inherits AppleCBDescriptor
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBMutableDescriptor
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBMutableDescriptor
 		  return if (aptr = nil, nil, new AppleCBMutableDescriptor(aptr))
 		End Function
 	#tag EndMethod

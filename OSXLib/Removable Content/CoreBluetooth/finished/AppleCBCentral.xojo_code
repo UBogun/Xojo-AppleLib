@@ -6,7 +6,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleCBCentral
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleCBCentral
 		  return if (aptr = nil, nil, new AppleCBCentral(aPtr))
 		End Function
 	#tag EndMethod

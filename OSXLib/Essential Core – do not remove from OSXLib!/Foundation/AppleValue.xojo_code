@@ -38,7 +38,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function FromNonretainedObject(anObject as AppleGeneralObject) As AppleValue
+		Shared Function FromNonretainedObject(anObject as AppleGeneralObject) As AppleValue
 		  dim result as new AppleValue(valueWithNonretainedObject(classptr, anobject.GeneralId))
 		  result.retainclassobject
 		  return result
@@ -46,7 +46,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function FromPtr(aPtr as Ptr) As AppleValue
+		Shared Function FromPtr(aPtr as Ptr) As AppleValue
 		  dim result as new AppleValue(valueWithPointer(classptr, aptr))
 		  result.retainclassobject
 		  return result
@@ -78,7 +78,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleValue
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleValue
 		  return if (aptr = nil, nil, new AppleValue(aptr))
 		End Function
 	#tag EndMethod
