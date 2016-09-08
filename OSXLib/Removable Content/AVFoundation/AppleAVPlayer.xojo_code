@@ -343,7 +343,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 53746F707320706C61796261636B20616E6420756E646F657320746865207365747570206E656564656420666F7220706C61796261636B2E
 		Function Stop() As Boolean
-		   AVFoundationFramework.stop (mid)
+		  AVFoundationFramework.stop (mid)
 		End Function
 	#tag EndMethod
 
@@ -459,7 +459,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr 
+			  static mClassPtr as Ptr
 			  if mClassPtr = Nil then  mClassPtr = FoundationFrameWork.NSClassFromString("AVPlayer")
 			  Return mClassPtr
 			End Get
@@ -791,6 +791,16 @@ Inherits AppleObject
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AppliesMediaSelectionCriteriaAutomatically"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutomaticallyWaitsToMinimizeStalling"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AutomaticMediaSelection"
 			Group="Behavior"
 			Type="Boolean"
@@ -809,6 +819,17 @@ Inherits AppleObject
 			Name="ExternalPlaybackActive"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ExternalPlaybackVideoGravity"
+			Group="Behavior"
+			Type="AVLayerGravity"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Fill"
+				"1 - FitProportional"
+				"2 - FillProportional"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ExternalPlaybackWhileExternalScreenActive"
@@ -851,7 +872,22 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NumberOfChannels"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NumberOfLoops"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="OutputObscured"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Playing"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -859,6 +895,16 @@ Inherits AppleObject
 			Name="Rate"
 			Group="Behavior"
 			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RateEnabled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ReasonForWaitingToPlay"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"
@@ -881,6 +927,17 @@ Inherits AppleObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TimeControlStatus"
+			Group="Behavior"
+			Type="AVPlayerTimeControlStatus"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - paused"
+				"1 - waitingToPlayAtSpecifiedRate"
+				"2 - playing"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

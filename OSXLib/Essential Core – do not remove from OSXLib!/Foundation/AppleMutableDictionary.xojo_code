@@ -44,6 +44,12 @@ Inherits AppleDictionary
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleMutableDictionary
+		  return if (aptr = nil, nil, new AppleMutableDictionary(aptr))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub ObjectForKey(akey as Applegeneralobject, assigns value as AppleGeneralObject)
 		  setObjectForKey(id, value.GeneralID, akey.GeneralID)
 		End Sub

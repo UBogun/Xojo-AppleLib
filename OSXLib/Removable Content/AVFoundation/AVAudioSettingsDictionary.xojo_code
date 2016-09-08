@@ -27,8 +27,8 @@ Inherits AppleMutableDictionary
 			    return  AVAudioDataFormat.AC3
 			  case kAVFormatIMA4
 			    return AVAudioDataFormat.AppleIMA4
-			  case kAVFormat60958AC3 
-			    return AVAudioDataFormat.AC360958 
+			  case kAVFormat60958AC3
+			    return AVAudioDataFormat.AC360958
 			  end select
 			  
 			End Get
@@ -80,7 +80,7 @@ Inherits AppleMutableDictionary
 			      return  LinearPCMDepth.Bit16
 			    case 24
 			      return LinearPCMDepth.Bit24
-			    case 32 
+			    case 32
 			      return LinearPCMDepth.Bit32
 			    end select
 			  end if
@@ -117,7 +117,7 @@ Inherits AppleMutableDictionary
 			      return  LinearPCMDepth.Bit16
 			    case 24
 			      return LinearPCMDepth.Bit24
-			    case 32 
+			    case 32
 			      return LinearPCMDepth.Bit32
 			    end select
 			  end if

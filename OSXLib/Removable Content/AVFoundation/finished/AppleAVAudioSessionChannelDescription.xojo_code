@@ -66,7 +66,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mClassPtr as ptr 
+			  static mClassPtr as ptr
 			  if mClassPtr = nil then mclassptr = FoundationFramework.NSClassFromString ("AVAudioSessionChannelDescription")
 			  return mClassPtr
 			End Get
@@ -85,6 +85,21 @@ Inherits AppleObject
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="ChannelLabel"
+			Group="Behavior"
+			Type="UInt32"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ChannelName"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ChannelNumber"
+			Group="Behavior"
+			Type="Uinteger"
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
@@ -119,6 +134,11 @@ Inherits AppleObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OwningPortUID"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"

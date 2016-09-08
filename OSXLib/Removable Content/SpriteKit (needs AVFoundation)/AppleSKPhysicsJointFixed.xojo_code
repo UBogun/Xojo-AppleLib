@@ -1,47 +1,30 @@
 #tag Class
- Attributes ( incomplete ) Protected Class AppleAVAsset
-Inherits AppleObject
-	#tag ExternalMethod, Flags = &h21
-		Private Declare Function assetWithURL Lib AVFoundationLibname Selector "assetWithURL:" (id as ptr, url as ptr) As Ptr
-	#tag EndExternalMethod
-
-	#tag Method, Flags = &h21
-		Private Sub Constructor()
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Constructor(URL As AppleURL)
-		  // Calling the overridden superclass constructor.
-		  // Note that this may need modifications if there are multiple constructor choices.
-		  // Possible constructor calls:
-		  // Constructor() -- From AppleObject
-		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(assetWithURL(ClassPtr, url.Id))
+Protected Class AppleSKPhysicsJointFixed
+Inherits AppleSKPhysicsJoint
+	#tag Method, Flags = &h1000
+		Sub Constructor(BodyA As AppleSKPhysicsBody, BodyB as AppleSKPhysicsBody, Anchor as FoundationFramework.NSPoint)
+		  #if Target64Bit
+		    declare function jointWithBodyA lib spritekitlibname selector "jointWithBodyA:bodyB:anchor:" (id as ptr, bodyA as ptr, bodyB as ptr, anchor as FoundationFramework.NSPoint) as ptr
+		    super.Constructor (jointWithBodyA(ClassPtr, bodyA.id, Bodyb.id, Anchor))
+		  #elseif Target32Bit
+		    declare function jointWithBodyA lib spritekitlibname selector "jointWithBodyA:bodyB:anchor:" (id as ptr, bodyA as ptr, bodyB as ptr, anchor as FoundationFramework.NSPoint32Bit) as ptr
+		    super.Constructor (jointWithBodyA(ClassPtr, bodyA.id, Bodyb.id, Anchor.toNSPoint32))
+		  #endif
 		  RetainClassObject
 		  
 		End Sub
 	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Shared Function MakefromPtr(aPtr as Ptr) As AppleAVAsset
-		  return if (aptr = nil, nil, new AppleAVAsset(aptr))
-		End Function
-	#tag EndMethod
-
-
-	#tag Note, Name = Status incomplete
-		
-		everything missing except the constructor.
-	#tag EndNote
 
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
 			  static mClassPtr as Ptr
-			  if mClassPtr = nil then mClassPtr = FoundationFramework.NSClassFromString ("AVAsset")
+			  if mClassPtr = nil then
+			    if AppleSKView.classavailable then
+			      mClassPtr  =  FoundationFramework.NSClassFromString ("SKPhysicsJointFixed")
+			    end if
+			  end if
 			  return mClassPtr
 			End Get
 		#tag EndGetter
@@ -84,6 +67,11 @@ Inherits AppleObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ReactionTorque"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"

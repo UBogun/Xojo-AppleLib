@@ -278,7 +278,7 @@ Inherits AppleObject
 		Attributes( hidden )  Sub RemoveControl()
 		  #Pragma BreakOnExceptions false
 		  try
-		     XojoControls.Remove (id)
+		    XojoControls.Remove (id)
 		  catch 
 		    
 		  end try
@@ -315,7 +315,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 53746F707320706C61796261636B20616E6420756E646F657320746865207365747570206E656564656420666F7220706C61796261636B2E
 		Function Stop() As Boolean
-		   AVFoundationFramework.stop (mid)
+		  AVFoundationFramework.stop (mid)
 		End Function
 	#tag EndMethod
 
@@ -373,7 +373,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr 
+			  static mClassPtr as Ptr
 			  if mClassPtr = Nil then
 			    dim methods() as TargetClassMethodHelper
 			    methods.Append new TargetClassMethodHelper("audioPlayerDidFinishPlaying:successfully:", AddressOf impl_audioPlayerDidFinishPlaying, "v@:@c")
@@ -551,30 +551,9 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="actionAtItemEnd"
+			Name="currentTime"
 			Group="Behavior"
-			Type="AVPlayerActionAtItemEnd"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Advance"
-				"1 - Pause"
-				"2 - None"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AllowsExternalPlayback"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AutomaticMediaSelection"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ClosedCaption"
-			Group="Behavior"
-			Type="Boolean"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"
@@ -582,19 +561,14 @@ Inherits AppleObject
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ExternalPlaybackActive"
+			Name="DeviceCurrentTime"
 			Group="Behavior"
-			Type="Boolean"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ExternalPlaybackVideoGravity"
+			Name="Duration"
 			Group="Behavior"
-			Type="AVLayerGravity"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ExternalPlaybackWhileExternalScreenActive"
-			Group="Behavior"
-			Type="Boolean"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -616,14 +590,14 @@ Inherits AppleObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="MeteringEnabled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="mHasOwnership"
 			Group="Behavior"
 			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Muted"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
@@ -634,17 +608,12 @@ Inherits AppleObject
 		#tag ViewProperty
 			Name="NumberOfChannels"
 			Group="Behavior"
-			Type="Integer"
+			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NumberOfLoops"
 			Group="Behavior"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="OutputObscured"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Pan"
@@ -670,17 +639,6 @@ Inherits AppleObject
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Status"
-			Group="Behavior"
-			Type="AVPlayerStatus"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Unknown"
-				"1 - ReadyToPlay"
-				"2 - Failed"
-			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

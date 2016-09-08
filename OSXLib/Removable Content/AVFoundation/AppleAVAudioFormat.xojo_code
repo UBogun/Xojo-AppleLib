@@ -251,6 +251,14 @@ Inherits AppleObject
 			Name="CommonFormat"
 			Group="Behavior"
 			Type="AVFoundationFramework.AVAudioCommonFormat"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - OtherFormat"
+				"1 - PCMSingle"
+				"2 - PCMDouble"
+				"3 - PCMInt16"
+				"4 - PCMInt32"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"

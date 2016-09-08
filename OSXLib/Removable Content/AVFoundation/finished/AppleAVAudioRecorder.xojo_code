@@ -212,7 +212,7 @@ Inherits AppleObject
 		Attributes( hidden )  Sub RemoveControl()
 		  #Pragma BreakOnExceptions false
 		  try
-		     XojoControls.Remove (id)
+		    XojoControls.Remove (id)
 		  catch 
 		    
 		  end try
@@ -277,7 +277,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070747220746F2074686520637573746F6D20636C61737320646572697665642066726F6D204E534F626A656374
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr 
+			  static mClassPtr as Ptr
 			  if mClassPtr = Nil then
 			    dim methods() as TargetClassMethodHelper
 			    methods.Append new TargetClassMethodHelper("audioRecorderDidFinishRecording:successfully:", AddressOf impl_audioRecorderDidFinishRecording, "v@:@c")
@@ -383,6 +383,11 @@ Inherits AppleObject
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DeviceCurrentTime"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"

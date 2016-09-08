@@ -36,6 +36,19 @@ Protected Module FoundationFrameWork
 		Protected Declare Function CFStringGetFastestEncoding Lib FoundationLibName (aString as cfstringref) As Ptr
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h1
+		Protected Function CGMakeVector(dx as double, dy as double) As FoundationFRamework.CGVector
+		  #pragma DisableBackgroundTasks
+		  #pragma DisableBoundsChecking
+		  #Pragma NilObjectChecking false
+		  
+		  dim NP as foundationframework.cgvector
+		  NP.dx= dx
+		  NP.dy = dy
+		  return np
+		End Function
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getCount Lib FoundationLibName Selector "count" (id as ptr) As UInteger
 	#tag EndExternalMethod

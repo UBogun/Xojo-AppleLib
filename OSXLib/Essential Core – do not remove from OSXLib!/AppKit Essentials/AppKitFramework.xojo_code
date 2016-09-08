@@ -233,6 +233,18 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getLineCap Lib appkitlibname Selector "lineCap" (id as ptr) As CGLineCap
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getlineJoin Lib appkitlibname Selector "lineJoin" (id as ptr) As CGLineJoin
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getlineLength Lib appkitlibname Selector "lineLength" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getlocalizedName Lib appkitlibname Selector "localizedName" (id as ptr) As cfstringref
 	#tag EndExternalMethod
 
@@ -250,6 +262,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getminWidth Lib appkitlibname Selector "minWidth" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getmiterLimit Lib appkitlibname Selector "miterLimit" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -544,6 +560,18 @@ Protected Module AppKitFramework
 		Protected Declare Sub setlineBreakMode Lib appkitlibname Selector "setLineBreakMode:" (id as ptr, value as AppleText . NSLineBreakMode)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setLineCap Lib appkitlibname Selector "setLineCap:" (id as ptr, value as CGLineCap)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setlineJoin Lib appkitlibname Selector "setLineJoin:" (id as ptr, value as CGLineJoin)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setlineLength Lib appkitlibname Selector "setLineLength:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setmagnification Lib foundationlibname Selector "setMagnification:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
@@ -558,6 +586,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setMinWidth Lib appkitlibname Selector "setMinWidth:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setmiterLimit Lib foundationlibname Selector "setMiterLimit:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

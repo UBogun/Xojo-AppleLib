@@ -77,6 +77,19 @@ Protected Module CoreGraphicsFramework
 	#tag EndStructure
 
 
+	#tag Enum, Name = CGLineCap, Type = Integer, Flags = &h0
+		Butt
+		  Round
+		Square
+	#tag EndEnum
+
+	#tag Enum, Name = CGLineJoin, Type = Integer, Flags = &h0
+		Miter
+		  Round
+		Bevel
+	#tag EndEnum
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Index"

@@ -85,12 +85,6 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function OperatorConvert() As Ptr
-		  return mid
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RegisterControl(ParentControl As object)
 		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
 		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
@@ -98,7 +92,7 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h0
-		Declare Sub release Lib foundationlibname Selector "release" (id as ptr)
+		Attributes( hidden ) Declare Sub release Lib foundationlibname Selector "release" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -108,7 +102,7 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h1, Description = 52657475726E73206966206120636C61737320636F6E7461696E732061206D6574686F642073656C6563746F722E
-		Protected Function RespondsToSelector(sel as CFStringRef, ClassPtr as Ptr) As Boolean
+		Protected Shared Function RespondsToSelector(sel as CFStringRef, ClassPtr as Ptr) As Boolean
 		  return ObjectiveCRuntime.class_respondsToSelector (ClassPtr, FoundationFrameWork.NSSelectorFromString(sel))
 		End Function
 	#tag EndMethod

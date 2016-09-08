@@ -974,8 +974,11 @@ Inherits AppleResponder
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnViewDidEndLiveResize()
 		  if parentcontrol <> nil then 
+		    System.DebugLog "foward Resized"
+		    
 		    parentcontrol.informOnViewDidEndLiveResize()
 		  else
+		    System.DebugLog "Raise Resized"
 		    RaiseEvent DidResize()
 		  end if
 		End Sub
@@ -1023,6 +1026,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewWillMoveToSuperview(superview as appleview)
+		  System.DebugLog "will move to window"
 		  if parentcontrol <> nil then 
 		    parentcontrol.informOnviewWillMoveToSuperview(superview)
 		  else

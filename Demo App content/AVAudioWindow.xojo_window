@@ -119,7 +119,9 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
+      TabIndex        =   "2"
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   20
       Value           =   0
       Visible         =   True
@@ -313,7 +315,7 @@ End
 		  addhandler ProgressBarTimer.action, addressof ProgressBarUpdate
 		  
 		  EngineTimer = new xojo.core.timer
-		  EngineTimer.Period = 100
+		  EngineTimer.Period = 10
 		  AddHandler EngineTimer.action, AddressOf EngineUpdate
 		End Sub
 	#tag EndEvent

@@ -678,6 +678,11 @@ Inherits AppleObject
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="CanUseNetworkResourcesForLiveStreamingWhilePaused"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
@@ -726,6 +731,16 @@ Inherits AppleObject
 			Name="PlaybackLikelyToKeepUp"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreferredForwardBufferDuration"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreferredPeakBitRate"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"
