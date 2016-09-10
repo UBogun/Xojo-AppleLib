@@ -1,14 +1,17 @@
 #tag Class
 Protected Class AppleSKEmitterNode
 Inherits AppleSKNode
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 416476616E6365732074686520656D6974746572207061727469636C652073696D756C6174696F6E2E
 		Sub AdvanceSimulationTime(Seconds As Double)
-		  Declare Sub advanceSimulationTime lib spritekitlibname selector "advanceSimulationTime:" (id as ptr, time as double)
-		  advanceSimulationTime id, Seconds
+		  advanceSimulationTime mid, Seconds
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1000
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub advanceSimulationTime Lib SpriteKitLibName Selector "advanceSimulationTime:" (id as ptr, value as Double)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h1000, Description = 437265617465732061206E657720656D69747465724E6F64652E
 		Sub Constructor()
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
@@ -24,12 +27,373 @@ Inherits AppleSKNode
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getemissionAngle Lib SpriteKitLibName Selector "emissionAngle" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getemissionAngleRange Lib SpriteKitLibName Selector "emissionAngleRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getnumParticlesToEmit Lib SpriteKitLibName Selector "numParticlesToEmit" (id as ptr) As UInteger
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleAction Lib SpriteKitLibName Selector "particleAction" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleAlpha Lib SpriteKitLibName Selector "particleAlpha" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleAlphaRange Lib SpriteKitLibName Selector "particleAlphaRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleAlphaSequence Lib SpriteKitLibName Selector "particleAlphaSequence" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleAlphaSpeed Lib SpriteKitLibName Selector "particleAlphaSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleBirthRate Lib SpriteKitLibName Selector "particleBirthRate" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleBlendMode Lib SpriteKitLibName Selector "particleBlendMode" (id as ptr) As SKBlendMode
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColor Lib SpriteKitLibName Selector "particleColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorAlphaRange Lib SpriteKitLibName Selector "particleColorAlphaRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorAlphaSpeed Lib SpriteKitLibName Selector "particleColorAlphaSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorBlendFactor Lib SpriteKitLibName Selector "particleColorBlendFactor" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorBlendFactorRange Lib SpriteKitLibName Selector "particleColorBlendFactorRange" (id as ptr) As cgfloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorBlendFactorSequence Lib SpriteKitLibName Selector "particleColorBlendFactorSequence" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorBlendFactorSpeed Lib SpriteKitLibName Selector "particleColorBlendFactorSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorBlueRange Lib SpriteKitLibName Selector "particleColorBlueRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorBlueSpeed Lib SpriteKitLibName Selector "particleColorBlueSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorGreenRange Lib SpriteKitLibName Selector "particleColorGreenRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorGreenSpeed Lib SpriteKitLibName Selector "particleColorGreenSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorRedRange Lib SpriteKitLibName Selector "particleColorRedRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorRedSpeed Lib SpriteKitLibName Selector "particleColorRedSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleColorSequence Lib SpriteKitLibName Selector "particleColorSequence" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleLifetime Lib SpriteKitLibName Selector "particleLifetime" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleLifetimeRange Lib SpriteKitLibName Selector "particleLifetimeRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticlePosition Lib SpriteKitLibName Selector "particlePosition" (id as ptr) As FoundationFrameWork.NSPoint
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticlePositionRange Lib SpriteKitLibName Selector "particlePositionRange" (id as ptr) As FoundationFrameWork.cgvector
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleRenderOrder Lib SpriteKitLibName Selector "particleRenderOrder" (id as ptr) As SKParticleRenderOrder
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleRotation Lib SpriteKitLibName Selector "particleRotation" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleRotationRange Lib SpriteKitLibName Selector "particleRotationRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleRotationSpeed Lib SpriteKitLibName Selector "particleRotationSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleScale Lib SpriteKitLibName Selector "particleScale" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleScaleRange Lib SpriteKitLibName Selector "particleScaleRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleScaleSequence Lib SpriteKitLibName Selector "particleScaleSequence" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleScaleSpeed Lib SpriteKitLibName Selector "particleScaleSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleSize Lib SpriteKitLibName Selector "particleSize" (id as ptr) As FoundationFrameWork.NSSize
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleSpeed Lib SpriteKitLibName Selector "particleSpeed" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleSpeedRange Lib SpriteKitLibName Selector "particleSpeedRange" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleTexture Lib SpriteKitLibName Selector "particleTexture" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getparticleZPosition Lib SpriteKitLibName Selector "particleZPosition" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettargetNode Lib SpriteKitLibName Selector "targetNode" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getxAcceleration Lib SpriteKitLibName Selector "xAcceleration" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getyAcceleration Lib SpriteKitLibName Selector "yAcceleration" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 52656D6F76657320616C6C206578697374696E67207061727469636C657320616E64207265737461727473207468652073696D756C6174696F6E2E
 		Sub ResetSimulation()
-		  Declare Sub resetSimulation lib spritekitlibname selector "resetSimulation" (id as ptr)
-		  resetSimulation id
+		  resetSimulation mid
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub resetSimulation Lib SpriteKitLibName Selector "resetSimulation" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setemissionAngle Lib SpriteKitLibName Selector "setEmissionAngle:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setemissionAngleRange Lib SpriteKitLibName Selector "setEmissionAngleRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setnumParticlesToEmit Lib SpriteKitLibName Selector "setNumParticlesToEmit:" (id as ptr, value as Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleAction Lib SpriteKitLibName Selector "setParticleAction:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleAlpha Lib SpriteKitLibName Selector "setParticleAlpha:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleAlphaRange Lib SpriteKitLibName Selector "setParticleAlphaRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleAlphaSequence Lib SpriteKitLibName Selector "setParticleAlphaSequence:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleAlphaSpeed Lib SpriteKitLibName Selector "setParticleAlphaSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleBirthRate Lib SpriteKitLibName Selector "setParticleBirthRate:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleBlendMode Lib SpriteKitLibName Selector "setParticleBlendMode:" (id as ptr, valiue as SKBlendMode)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColor Lib SpriteKitLibName Selector "setParticleColor:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorAlphaRange Lib SpriteKitLibName Selector "setParticleColorAlphaRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorAlphaSpeed Lib SpriteKitLibName Selector "setParticleColorAlphaSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorBlendFactor Lib SpriteKitLibName Selector "setParticleColorBlendFactor:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorBlendFactorRange Lib SpriteKitLibName Selector "setParticleColorBlendFactorRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorBlendFactorSequence Lib SpriteKitLibName Selector "setParticleColorBlendFactorSequence:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorBlendFactorSpeed Lib SpriteKitLibName Selector "setParticleColorBlendFactorSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorBlueRange Lib SpriteKitLibName Selector "setParticleColorBlueRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorBlueSpeed Lib SpriteKitLibName Selector "setParticleColorBlueSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorGreenRange Lib SpriteKitLibName Selector "setParticleColorGreenRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorGreenSpeed Lib SpriteKitLibName Selector "setParticleColorGreenSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorRedRange Lib SpriteKitLibName Selector "setParticleColorRedRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorRedSpeed Lib SpriteKitLibName Selector "setParticleColorRedSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleColorSequence Lib SpriteKitLibName Selector "setParticleColorSequence:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleLifetime Lib SpriteKitLibName Selector "setParticleLifetime:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleLifetimeRange Lib SpriteKitLibName Selector "setParticleLifetimeRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticlePosition Lib SpriteKitLibName Selector "setParticlePosition:" (id as ptr, value as FoundationFrameWork . NSPoint)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticlePositionRange Lib SpriteKitLibName Selector "setParticlePositionRange:" (id as ptr, value as FoundationFrameWork . CGVEctor)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleRenderOrder Lib SpriteKitLibName Selector "setParticleRenderOrder:" (id as ptr, value as SKParticleRenderOrder)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleRotation Lib SpriteKitLibName Selector "setParticleRotation:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleRotationRange Lib SpriteKitLibName Selector "setParticleRotationRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleRotationSpeed Lib SpriteKitLibName Selector "setParticleRotationSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleScale Lib SpriteKitLibName Selector "setParticleScale:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleScaleRange Lib SpriteKitLibName Selector "setParticleScaleRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleScaleSequence Lib SpriteKitLibName Selector "setParticleScaleSequence:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleScaleSpeed Lib SpriteKitLibName Selector "setParticleScaleSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleSize Lib SpriteKitLibName Selector "setParticleSize:" (id as ptr, value as FoundationFrameWork . NSSize)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleSpeed Lib SpriteKitLibName Selector "setParticleSpeed:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleSpeedRange Lib SpriteKitLibName Selector "setParticleSpeedRange:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleTexture Lib SpriteKitLibName Selector "setParticleTexture:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setparticleZPosition Lib SpriteKitLibName Selector "setParticleZPosition:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub settargetNode Lib SpriteKitLibName Selector "setTargetNode:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setxAcceleration Lib SpriteKitLibName Selector "setXAcceleration:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setyAcceleration Lib SpriteKitLibName Selector "setYAcceleration:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+
+	#tag Note, Name = Status complete
+		
+		macOS 10.12
+	#tag EndNote
 
 
 	#tag ComputedProperty, Flags = &h1
@@ -47,1060 +411,702 @@ Inherits AppleSKNode
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206176657261676520696E697469616C20646972656374696F6E206F662061207061727469636C652C2065787072657373656420617320616E20616E676C6520696E2072616469616E732E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function emissionAngle lib spritekitlibname selector "emissionAngle" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function emissionAngle lib spritekitlibname selector "emissionAngle" (id as ptr) as single
-			  #endif
-			  return emissionAngle(id)
+			  return getemissionAngle(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setEmissionAngle lib spritekitlibname selector "setEmissionAngle:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setEmissionAngle lib spritekitlibname selector "setEmissionAngle:" (id as ptr, value as single)
-			  #endif
-			  setEmissionAngle id, value
+			  setEmissionAngle mid, value
 			  
 			End Set
 		#tag EndSetter
 		EmissionAngle As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E280997320696E697469616C2073706565642C2065787072657373656420617320616E20616E676C6520696E2072616469616E732E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function emissionAngleRange lib spritekitlibname selector "emissionAngleRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function emissionAngleRange lib spritekitlibname selector "emissionAngleRange" (id as ptr) as single
-			  #endif
-			  return emissionAngleRange(id)
+			  return getemissionAngleRange(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setEmissionAngleRange lib spritekitlibname selector "setEmissionAngleRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setEmissionAngleRange lib spritekitlibname selector "setEmissionAngleRange:" (id as ptr, value as single)
-			  #endif
-			  setEmissionAngleRange id, value
+			  setEmissionAngleRange mid, value
 			  
 			End Set
 		#tag EndSetter
 		EmissionAngleRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 41206D61736B207468617420646566696E65732077686963682063617465676F72696573206F662070687973696373206669656C64732063616E20657865727420666F72636573206F6E20746865207061727469636C65732E2044656661756C7420616C6C206269747320636C6561722E
 		#tag Getter
 			Get
-			  declare Function fieldBitMask lib spritekitlibname selector "fieldBitMask" (id as ptr) as UInt32
-			  return fieldBitMask (id)
+			  return SpriteKitFramework.getfieldBitMask (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setFieldBitMask lib spritekitlibname selector "setFieldBitMask:" (id as ptr, value as UInt32)
-			  setFieldBitMask id, value
+			  SpriteKitFramework.setFieldBitMask mid, value
 			End Set
 		#tag EndSetter
 		FieldBitMask As UInt32
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 53706563696669657320616E20616374696F6E206578656375746564206279206E6577207061727469636C65732E
 		#tag Getter
 			Get
-			  declare function particleAction lib spritekitlibname selector "particleAction" (id as ptr) as Ptr
-			  Return AppleSKAction.MakeFromPtr (particleAction(id))
+			  Return AppleSKAction.MakeFromPtr (getparticleAction(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setParticleAction lib spritekitlibname selector "setParticleAction:" (id as ptr, value as Ptr)
-			  setParticleAction id, value.id
+			  setParticleAction mid, if (value = nil, nil, value.id)
 			  
 			End Set
 		#tag EndSetter
 		ParticleAction As AppleSKAction
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652061766572616765207374617274696E6720616C7068612076616C756520666F722061207061727469636C652E2044656661756C7420312E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleAlpha lib spritekitlibname selector "particleAlpha" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleAlpha lib spritekitlibname selector "particleAlpha" (id as ptr) as single
-			  #endif
-			  return particleAlpha(id)
-			  
+			  return getparticleAlpha (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleAlpha lib spritekitlibname selector "setParticleAlpha:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleAlpha lib spritekitlibname selector "setParticleAlpha:" (id as ptr, value as single)
-			  #endif
-			  setParticleAlpha id, value
-			  
+			  setparticleAlpha mid, value
 			End Set
 		#tag EndSetter
 		ParticleAlpha As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E2809973207374617274696E6720616C7068612076616C75652E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleAlphaRange lib spritekitlibname selector "particleAlphaRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleAlphaRange lib spritekitlibname selector "particleAlphaRange" (id as ptr) as single
-			  #endif
-			  return particleAlphaRange(id)
-			  
+			  return getparticleAlphaRange (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleAlphaRange lib spritekitlibname selector "setParticleAlphaRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleAlphaRange lib spritekitlibname selector "setParticleAlphaRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleAlphaRange id, value
-			  
+			  setparticleAlphaRange mid, value
 			End Set
 		#tag EndSetter
 		ParticleAlphaRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652073657175656E6365207573656420746F20737065636966792074686520616C7068612076616C7565206F662061207061727469636C65206F76657220697473206C69666574696D652E2044656661756C74204E696C2E0A49662061206E6F6E2D6E696C2076616C7565206973207370656369666965642C207468656E20746865207061727469636C65416C7068612C207061727469636C65416C70686152616E67652C20616E64207061727469636C65416C70686153706565642070726F70657274696573206172652069676E6F7265642E20496E73746561642C207468652073657175656E6365206973207573656420746F20737065636966792074686520616C7068612076616C75652E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleAlphaSpeed lib spritekitlibname selector "particleAlphaSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleAlphaSpeed lib spritekitlibname selector "particleAlphaSpeed" (id as ptr) as single
-			  #endif
-			  return particleAlphaSpeed(id)
+			  return AppleSKKeyframeSequence.MakeFromPtr(getparticleAlphaSequence(mid))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleAlphaSpeed lib spritekitlibname selector "setParticleAlphaSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleAlphaSpeed lib spritekitlibname selector "setParticleAlphaSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleAlphaSpeed id, value
-			  
+			  setparticleAlphaSequence mid, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		ParticleAlphaSequence As AppleSKKeyframeSequence
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520726174652061742077686963682074686520616C7068612076616C7565206F662061207061727469636C65206368616E67657320706572207365636F6E642E2044656661756C7420302E302E
+		#tag Getter
+			Get
+			  return getparticleAlphaSpeed (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setparticleAlphaSpeed mid, value
 			End Set
 		#tag EndSetter
 		ParticleAlphaSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072617465206174207768696368206E6577207061727469636C65732061726520637265617465642E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleBirthRate lib spritekitlibname selector "particleBirthRate" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleBirthRate lib spritekitlibname selector "particleBirthRate" (id as ptr) as single
-			  #endif
-			  return particleBirthRate(id)
+			  return getparticleBirthRate(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleBirthRate lib spritekitlibname selector "setParticleBirthRate:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleBirthRate lib spritekitlibname selector "setParticleBirthRate:" (id as ptr, value as single)
-			  #endif
-			  setParticleBirthRate id, value
+			  setParticleBirthRate mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleBirthRate As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520626C656E64696E67206D6F6465207573656420746F20626C656E64207061727469636C657320696E746F20746865206672616D656275666665722E2044656661756C7420416C7068612E
 		#tag Getter
 			Get
-			  Declare Function particleBlendMode lib spritekitlibname selector "particleBlendMode" (id as ptr) as SKBlendMode
-			  return particleBlendMode (id)
+			  return getparticleBlendMode (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare Sub setParticleBlendMode lib spritekitlibname selector "setParticleBlendMode:" (id as ptr, value as SKBlendMode)
-			  setParticleBlendMode (id, value)
+			  setParticleBlendMode mid, value
 			End Set
 		#tag EndSetter
 		ParticleBlendMode As SKBlendMode
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206176657261676520696E697469616C20636F6C6F7220666F722061207061727469636C652E2044656661756C74204170706C65436F6C6F722E436C656172436F6C6F722E0A41207061727469636C65E280997320636F6C6F7220697320626C656E6465642077697468207468652074657874757265207573696E672069747320626C656E6420636F6C6F7220666163746F722E
 		#tag Getter
 			Get
-			  declare function particleColor lib spritekitlibname selector "particleColor" (id as ptr) as Ptr
-			  Return AppleColor.MakeFromPtr (particleColor(id))
+			  Return AppleColor.MakeFromPtr (getparticleColor(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setParticleColor lib spritekitlibname selector "setParticleColor:" (id as ptr, value as Ptr)
-			  setParticleColor id, value.id
+			  setParticleColor mid, if (value = nil, nil, value.id)
 			  
 			End Set
 		#tag EndSetter
 		ParticleColor As AppleColor
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722074686520616C70686120636F6D706F6E656E74206F662061207061727469636C65E280997320696E697469616C20636F6C6F722E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorAlphaRange lib spritekitlibname selector "particleColorAlphaRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorAlphaRange lib spritekitlibname selector "particleColorAlphaRange" (id as ptr) as single
-			  #endif
-			  return particleColorAlphaRange(id)
-			  
+			  return getparticleColorAlphaRange (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorAlphaRange lib spritekitlibname selector "setParticleColorAlphaRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorAlphaRange lib spritekitlibname selector "setParticleColorAlphaRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorAlphaRange id, value
-			  
+			  setparticleColorAlphaRange mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorAlphaRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520726174652061742077686963682074686520616C70686120636F6D706F6E656E74206F662061207061727469636C65E280997320636F6C6F72206368616E67657320706572207365636F6E642E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorAlphaSpeed lib spritekitlibname selector "particleColorAlphaSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorAlphaSpeed lib spritekitlibname selector "particleColorAlphaSpeed" (id as ptr) as single
-			  #endif
-			  return particleColorAlphaSpeed(id)
-			  
+			  return getparticleColorAlphaSpeed (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorAlphaSpeed lib spritekitlibname selector "setParticleColorAlphaSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorAlphaSpeed lib spritekitlibname selector "setParticleColorAlphaSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorAlphaSpeed id, value
-			  
+			  setparticleColorAlphaSpeed mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorAlphaSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652061766572616765207374617274696E672076616C756520666F722074686520636F6C6F7220626C656E6420666163746F722E2044656661756C7420302E30203D206F6E6C792075736520546578747572652E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorBlendFactor lib spritekitlibname selector "particleColorBlendFactor" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorBlendFactor lib spritekitlibname selector "particleColorBlendFactor" (id as ptr) as single
-			  #endif
-			  return particleColorBlendFactor(id)
-			  
+			  return getparticleColorBlendFactor (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorBlendFactor lib spritekitlibname selector "setParticleColorBlendFactor:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorBlendFactor lib spritekitlibname selector "setParticleColorBlendFactor:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorBlendFactor id, value
-			  
+			  setparticleColorBlendFactor mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorBlendFactor As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E2809973207374617274696E6720636F6C6F7220626C656E6420666163746F722E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorBlendFactorRange lib spritekitlibname selector "particleColorBlendFactorRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorBlendFactorRange lib spritekitlibname selector "particleColorBlendFactorRange" (id as ptr) as single
-			  #endif
-			  return particleColorBlendFactorRange(id)
-			  
+			  return getparticleColorBlendFactorRange (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorBlendFactorRange lib spritekitlibname selector "setParticleColorBlendFactorRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorBlendFactorRange lib spritekitlibname selector "setParticleColorBlendFactorRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorBlendFactorRange id, value
-			  
+			  setparticleColorBlendFactorRange mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorBlendFactorRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652073657175656E6365207573656420746F20737065636966792074686520636F6C6F7220626C656E6420666163746F72206F662061207061727469636C65206F76657220697473206C69666574696D652E2044656661756C74206E696C2E200A49662061206E6F6E2D6E696C2076616C7565206973207370656369666965642C207468656E20746865207061727469636C65436F6C6F72426C656E64466163746F722C207061727469636C65436F6C6F72426C656E64466163746F7252616E67652C20616E64207061727469636C65436F6C6F72426C656E64466163746F7253706565642070726F70657274696573206172652069676E6F7265642E20496E73746561642C207468652073657175656E6365206973207573656420746F20737065636966792074686520636F6C6F7220626C656E6420666163746F722E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorBlendFactorSpeed lib spritekitlibname selector "particleColorBlendFactorSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorBlendFactorSpeed lib spritekitlibname selector "particleColorBlendFactorSpeed" (id as ptr) as single
-			  #endif
-			  return particleColorBlendFactorSpeed(id)
+			  return AppleSKKeyframeSequence.MakeFromPtr(getparticleColorBlendFactorSequence(mid))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorBlendFactorSpeed lib spritekitlibname selector "setParticleColorBlendFactorSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorBlendFactorSpeed lib spritekitlibname selector "setParticleColorBlendFactorSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorBlendFactorSpeed id, value
-			  
+			  setparticleColorBlendFactorSequence mid, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		ParticleColorBlendFactorSequence As AppleSKKeyframeSequence
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520726174652061742077686963682074686520636F6C6F7220626C656E6420666163746F72206368616E67657320706572207365636F6E642E2044656661756C7420302E302E
+		#tag Getter
+			Get
+			  return getparticleColorBlendFactorSpeed (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setparticleColorBlendFactorSpeed mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorBlendFactorSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722074686520626C756520636F6D706F6E656E74206F662061207061727469636C65E280997320696E697469616C20636F6C6F722E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorBlueRange lib spritekitlibname selector "particleColorBlueRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorBlueRange lib spritekitlibname selector "particleColorBlueRange" (id as ptr) as single
-			  #endif
-			  return particleColorBlueRange(id)
-			  
+			  return getparticleColorBlueRange (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorBlueRange lib spritekitlibname selector "setParticleColorBlueRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorBlueRange lib spritekitlibname selector "setParticleColorBlueRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorBlueRange id, value
-			  
+			  setparticleColorBlueRange mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorBlueRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520726174652061742077686963682074686520626C756520636F6D706F6E656E74206F662061207061727469636C65E280997320636F6C6F72206368616E67657320706572207365636F6E642E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorBlueSpeed lib spritekitlibname selector "particleColorBlueSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorBlueSpeed lib spritekitlibname selector "particleColorBlueSpeed" (id as ptr) as single
-			  #endif
-			  return particleColorBlueSpeed(id)
-			  
+			  return getparticleColorBlueSpeed (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorBlueSpeed lib spritekitlibname selector "setParticleColorBlueSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorBlueSpeed lib spritekitlibname selector "setParticleColorBlueSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorBlueSpeed id, value
-			  
+			  setparticleColorBlueSpeed mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorBlueSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722074686520677265656E20636F6D706F6E656E74206F662061207061727469636C65E280997320696E697469616C20636F6C6F722E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorGreenRange lib spritekitlibname selector "particleColorGreenRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorGreenRange lib spritekitlibname selector "particleColorGreenRange" (id as ptr) as single
-			  #endif
-			  return particleColorGreenRange(id)
+			  return getparticleColorGreenRange(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorGreenRange lib spritekitlibname selector "setParticleColorGreenRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorGreenRange lib spritekitlibname selector "setParticleColorGreenRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorGreenRange id, value
+			  setParticleColorGreenRange mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleColorGreenRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520726174652061742077686963682074686520677265656E20636F6D706F6E656E74206F662061207061727469636C65E280997320636F6C6F72206368616E67657320706572207365636F6E642E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorGreenSpeed lib spritekitlibname selector "particleColorGreenSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorGreenSpeed lib spritekitlibname selector "particleColorGreenSpeed" (id as ptr) as single
-			  #endif
-			  return particleColorGreenSpeed(id)
-			  
+			  return getparticleColorGreenSpeed (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorGreenSpeed lib spritekitlibname selector "setParticleColorGreenSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorGreenSpeed lib spritekitlibname selector "setParticleColorGreenSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorGreenSpeed id, value
-			  
+			  setparticleColorGreenSpeed mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorGreenSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F72207468652072656420636F6D706F6E656E74206F662061207061727469636C65E280997320696E697469616C20636F6C6F722E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorRedRange lib spritekitlibname selector "particleColorRedRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorRedRange lib spritekitlibname selector "particleColorRedRange" (id as ptr) as single
-			  #endif
-			  return particleColorRedRange(id)
-			  
+			  return getparticleColorRedRange (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorRedRange lib spritekitlibname selector "setParticleColorRedRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorRedRange lib spritekitlibname selector "setParticleColorRedRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorRedRange id, value
-			  
+			  setparticleColorRedRange mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorRedRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072617465206174207768696368207468652072656420636F6D706F6E656E74206F662061207061727469636C65E280997320636F6C6F72206368616E67657320706572207365636F6E642E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleColorRedSpeed lib spritekitlibname selector "particleColorRedSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleColorRedSpeed lib spritekitlibname selector "particleColorRedSpeed" (id as ptr) as single
-			  #endif
-			  return particleColorRedSpeed(id)
-			  
+			  return getparticleColorRedSpeed (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleColorRedSpeed lib spritekitlibname selector "setParticleColorRedSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleColorRedSpeed lib spritekitlibname selector "setParticleColorRedSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleColorRedSpeed id, value
-			  
+			  setparticleColorRedSpeed mid, value
 			End Set
 		#tag EndSetter
 		ParticleColorRedSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652073657175656E6365207573656420746F20737065636966792074686520636F6C6F7220636F6D706F6E656E7473206F662061207061727469636C65206F76657220697473206C69666574696D652E2044656661756C74204E696C2E0A49662061206E6F6E2D6E696C2076616C7565206973207370656369666965642C207468656E20746865207061727469636C65436F6C6F722C207061727469636C65436F6C6F72416C70686152616E67652C207061727469636C65436F6C6F7252656452616E67652C207061727469636C65436F6C6F72477265656E52616E67652C207061727469636C65436F6C6F72426C756552616E67652C207061727469636C65436F6C6F72416C70686153706565642C207061727469636C65436F6C6F7252656453706565642C207061727469636C65436F6C6F72477265656E53706565642C20616E64207061727469636C65436F6C6F72426C756553706565642070726F70657274696573206172652069676E6F7265642E20496E73746561642C207468652073657175656E6365206973207573656420746F207370656369667920746865207061727469636C6520636F6C6F722E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleLifetime lib spritekitlibname selector "particleLifetime" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleLifetime lib spritekitlibname selector "particleLifetime" (id as ptr) as single
-			  #endif
-			  return particleLifetime(id)
+			  return AppleSKKeyframeSequence.MakeFromPtr(getparticleColorSequence(mid))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleLifetime lib spritekitlibname selector "setParticleLifetime:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleLifetime lib spritekitlibname selector "setParticleLifetime:" (id as ptr, value as single)
-			  #endif
-			  setParticleLifetime id, value
+			  setparticleColorSequence mid, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		ParticleColorSequence As AppleSKKeyframeSequence
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652061766572616765206C69666574696D65206F662061207061727469636C652C20696E207365636F6E64732E2044656661756C7420302E30203D20456E646C657373
+		#tag Getter
+			Get
+			  return getparticleLifetime(mid)
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setParticleLifetime mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleLifetime As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E2809973206C69666574696D652E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleLifetimeRange lib spritekitlibname selector "particleLifetimeRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleLifetimeRange lib spritekitlibname selector "particleLifetimeRange" (id as ptr) as single
-			  #endif
-			  return particleLifetimeRange(id)
+			  return getparticleLifetimeRange(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleLifetimeRange lib spritekitlibname selector "setParticleLifetimeRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleLifetimeRange lib spritekitlibname selector "setParticleLifetimeRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleLifetimeRange id, value
+			  setParticleLifetimeRange mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleLifetimeRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652061766572616765207374617274696E6720706F736974696F6E20666F722061207061727469636C652E2044656661756C742028302E302C20302E3029
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particlePosition lib spritekitlibname selector "particlePosition" (id as ptr) as FoundationFramework.NSPoint
-			    return particlePosition (id)
-			  #elseif Target32Bit
-			    declare function particlePosition lib spritekitlibname selector "particlePosition" (id as ptr) as FoundationFramework.NSPoint32Bit
-			    return particlePosition(id).toNSPoint
-			  #endif
+			  return getparticlePosition (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticlePosition lib spritekitlibname selector "setParticlePosition:" (id as ptr, value as FoundationFramework.NSPoint)
-			    setParticlePosition id, value
-			  #elseif Target32Bit
-			    declare sub setParticlePosition lib spritekitlibname selector "setParticlePosition:" (id as ptr, value as FoundationFramework.NSPoint32Bit)
-			    setParticlePosition id, value.toNSPoint32
-			  #endif
+			  setParticlePosition mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticlePosition As FoundationFramework.NSPoint
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E280997320706F736974696F6E2E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particlePositionRange lib spritekitlibname selector "particlePositionRange" (id as ptr) as FoundationFramework.CGVector
-			    return particlePositionRange (id)
-			  #elseif Target32Bit
-			    declare function particlePositionRange lib spritekitlibname selector "particlePositionRange" (id as ptr) as FoundationFramework.CGVector32Bit
-			    return particlePositionRange(id).toCGVector
-			  #endif
+			  return getparticlePositionRange (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticlePositionRange lib spritekitlibname selector "setParticlePositionRange:" (id as ptr, value as FoundationFramework.CGVector)
-			    setParticlePositionRange id, value
-			  #elseif Target32Bit
-			    declare sub setParticlePositionRange lib spritekitlibname selector "setParticlePositionRange:" (id as ptr, value as FoundationFramework.CGVector32Bit)
-			    setParticlePositionRange id, value.toCGVector32
-			  #endif
-			  
+			  setParticlePositionRange mid, value
 			End Set
 		#tag EndSetter
 		ParticlePositionRange As FoundationFramework.CGVector
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206F7264657220696E2077686963682074686520656D6974746572E2809973207061727469636C6573206172652072656E64657265642E20417661696C61626C652073696E6365204F53582031302E31312E2044656661756C74204F6C646573744C6173742E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleRotation lib spritekitlibname selector "particleRotation" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleRotation lib spritekitlibname selector "particleRotation" (id as ptr) as single
-			  #endif
-			  return particleRotation(id)
+			  if RespondsToSelector ("particleRenderOrder", classptr) then return getparticleRenderOrder (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  if RespondsToSelector ("setParticleRenderOrder:", classptr) then setparticleRenderOrder mid, value
+			End Set
+		#tag EndSetter
+		ParticleRenderOrder As SKParticleRenderOrder
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206176657261676520696E697469616C20726F746174696F6E206F662061207061727469636C652C2065787072657373656420617320616E20616E676C6520696E2072616469616E732E2044656661756C7420302E302E
+		#tag Getter
+			Get
+			  return getparticleRotation(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleRotation lib spritekitlibname selector "setParticleRotation:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleRotation lib spritekitlibname selector "setParticleRotation:" (id as ptr, value as single)
-			  #endif
-			  setParticleRotation id, value
+			  setParticleRotation mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleRotation As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E280997320696E697469616C20726F746174696F6E2C2065787072657373656420617320616E20616E676C6520696E2072616469616E732E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleRotationRange lib spritekitlibname selector "particleRotationRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleRotationRange lib spritekitlibname selector "particleRotationRange" (id as ptr) as single
-			  #endif
-			  return particleRotationRange(id)
+			  return getparticleRotationRange(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleRotationRange lib spritekitlibname selector "setParticleRotationRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleRotationRange lib spritekitlibname selector "setParticleRotationRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleRotationRange id, value
+			  setParticleRotationRange mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleRotationRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652073706565642061742077686963682061207061727469636C6520726F74617465732C2065787072657373656420696E2072616469616E7320706572207365636F6E642E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleRotationSpeed lib spritekitlibname selector "particleRotationSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleRotationSpeed lib spritekitlibname selector "particleRotationSpeed" (id as ptr) as single
-			  #endif
-			  return particleRotationSpeed(id)
+			  return getparticleRotationSpeed(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleRotationSpeed lib spritekitlibname selector "setParticleRotationSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleRotationSpeed lib spritekitlibname selector "setParticleRotationSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleRotationSpeed id, value
+			  setParticleRotationSpeed mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleRotationSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206176657261676520696E697469616C207363616C6520666163746F72206F662061207061727469636C652E2044656661756C7420312E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleScale lib spritekitlibname selector "particleScale" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleScale lib spritekitlibname selector "particleScale" (id as ptr) as single
-			  #endif
-			  return particleScale(id)
-			  
+			  return getparticleScale (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleScale lib spritekitlibname selector "setParticleScale:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleScale lib spritekitlibname selector "setParticleScale:" (id as ptr, value as single)
-			  #endif
-			  setParticleScale id, value
-			  
+			  setparticleScale mid, value
 			End Set
 		#tag EndSetter
 		ParticleScale As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E280997320696E697469616C207363616C652E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleScaleRange lib spritekitlibname selector "particleScaleRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleScaleRange lib spritekitlibname selector "particleScaleRange" (id as ptr) as single
-			  #endif
-			  return particleScaleRange(id)
-			  
+			  return getparticleScaleRange (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleScaleRange lib spritekitlibname selector "setParticleScaleRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleScaleRange lib spritekitlibname selector "setParticleScaleRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleScaleRange id, value
-			  
+			  setparticleScaleRange mid, value
 			End Set
 		#tag EndSetter
 		ParticleScaleRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652073657175656E6365207573656420746F207370656369667920746865207363616C6520666163746F72206F662061207061727469636C65206F76657220697473206C69666574696D652E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleScaleSpeed lib spritekitlibname selector "particleScaleSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleScaleSpeed lib spritekitlibname selector "particleScaleSpeed" (id as ptr) as single
-			  #endif
-			  return particleScaleSpeed(id)
+			  return AppleSKKeyframeSequence.MakeFromPtr(getparticleScaleSequence(mid))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleScaleSpeed lib spritekitlibname selector "setParticleScaleSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleScaleSpeed lib spritekitlibname selector "setParticleScaleSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleScaleSpeed id, value
-			  
+			  setparticleScaleSequence mid, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		ParticleScaleSequence As AppleSKKeyframeSequence
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520726174652061742077686963682061207061727469636C65E2809973207363616C6520666163746F72206368616E67657320706572207365636F6E642E2044656661756C7420302E302E
+		#tag Getter
+			Get
+			  return getparticleScaleSpeed (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setparticleScaleSpeed mid, value
 			End Set
 		#tag EndSetter
 		ParticleScaleSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865207374617274696E672073697A65206F662065616368207061727469636C652E2044656661756C742069732028302E302C302E3029206F72207468652073697A65206F6620746865205061727469636C65546578747572652E20496620796F752061737369676E6564206E6F20746578747572652C20796F75206D75737420646566696E6520746869732076616C75652E0A
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleSize lib spritekitlibname selector "particleSize" (id as ptr) as FoundationFramework.NSSize
-			    return particleSize (id)
-			  #elseif Target32Bit
-			    declare function particleSize lib spritekitlibname selector "particleSize" (id as ptr) as FoundationFramework.NSSize32Bit
-			    return particleSize(id).toNSSize
-			  #endif
-			  
+			  return getparticleSize (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleSize lib spritekitlibname selector "setParticleSize:" (id as ptr, value as FoundationFramework.NSSize)
-			    setParticleSize id, value
-			  #elseif Target32Bit
-			    declare sub setParticleSize lib spritekitlibname selector "setParticleSize:" (id as ptr, value as FoundationFramework.NSSize32Bit)
-			    setParticleSize id, value.toNSSize32
-			  #endif
-			  
+			  setparticleSize mid, value
 			End Set
 		#tag EndSetter
 		ParticleSize As FoundationFramework.NSSize
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206176657261676520696E697469616C207370656564206F662061206E6577207061727469636C6520696E20706F696E747320706572207365636F6E642E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleSpeed lib spritekitlibname selector "particleSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleSpeed lib spritekitlibname selector "particleSpeed" (id as ptr) as single
-			  #endif
-			  return particleSpeed(id)
+			  return getparticleSpeed(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleSpeed lib spritekitlibname selector "setParticleSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleSpeed lib spritekitlibname selector "setParticleSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleSpeed id, value
+			  setParticleSpeed mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleSpeed As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652072616E6765206F6620616C6C6F7765642072616E646F6D2076616C75657320666F722061207061727469636C65E280997320696E697469616C2073706565642E2044656661756C7420302C302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleSpeedRange lib spritekitlibname selector "particleSpeedRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleSpeedRange lib spritekitlibname selector "particleSpeedRange" (id as ptr) as single
-			  #endif
-			  return particleSpeedRange(id)
+			  return getparticleSpeedRange(id)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleSpeedRange lib spritekitlibname selector "setParticleSpeedRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleSpeedRange lib spritekitlibname selector "setParticleSpeedRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleSpeedRange id, value
+			  setParticleSpeedRange mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleSpeedRange As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F66207061727469636C65732074686520656D69747465722073686F756C6420656D6974206265666F72652073746F7070696E672E2044656661756C742030203D20456E646C6573732E
 		#tag Getter
 			Get
-			  declare function numParticlesToEmit lib spritekitlibname selector "numParticlesToEmit" (id as ptr) as UInteger
-			  return numParticlesToEmit (id)
+			  return getnumParticlesToEmit (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setNumParticlesToEmit lib spritekitlibname selector "setNumParticlesToEmit:" (id as ptr, value as uinteger)
-			  setNumParticlesToEmit id, value
+			  setNumParticlesToEmit mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticlesToEmit As UInteger
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865207465787475726520746F2075736520746F2072656E6465722061207061727469636C652E2044656661756C74204E696C203D20636F6C6F7265642072656374616E676C652E
 		#tag Getter
 			Get
-			  declare function particleTexture lib spritekitlibname selector "particleTexture" (id as ptr) as ptr
-			  return AppleSKTexture.MakeFromPtr (particleTexture (id))
+			  return AppleSKTexture.MakeFromPtr (getparticleTexture (mid))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setParticleTexture lib spritekitlibname selector "setParticleTexture:" (id as ptr, value as ptr)
-			  setParticleTexture id, value.id
+			  setParticleTexture id, if (value = nil, nil, value.id)
 			  
 			End Set
 		#tag EndSetter
 		ParticleTexture As AppleSKTexture
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5468652061766572616765207374617274696E67206465707468206F662061207061727469636C652E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleZPosition lib spritekitlibname selector "particleZPosition" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleZPosition lib spritekitlibname selector "particleZPosition" (id as ptr) as single
-			  #endif
-			  return particleZPosition(id)
+			  return getparticleZPosition(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleZPosition lib spritekitlibname selector "setParticleZPosition:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleZPosition lib spritekitlibname selector "setParticleZPosition:" (id as ptr, value as single)
-			  #endif
-			  setParticleZPosition id, value
+			  setParticleZPosition mid, value
 			  
 			End Set
 		#tag EndSetter
 		ParticleZPosition As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 4120637573746F6D20736861646572207573656420746F2064657465726D696E6520686F77207061727469636C6573206172652072656E64657265642E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function particleZPositionRange lib spritekitlibname selector "particleZPositionRange" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleZPositionRange lib spritekitlibname selector "particleZPositionRange" (id as ptr) as single
-			  #endif
-			  return particleZPositionRange(id)
+			  return AppleSKShader.MakeFromPtr (getshader (mid))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setParticleZPositionRange lib spritekitlibname selector "setParticleZPositionRange:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleZPositionRange lib spritekitlibname selector "setParticleZPositionRange:" (id as ptr, value as single)
-			  #endif
-			  setParticleZPositionRange id, value
-			  
-			End Set
-		#tag EndSetter
-		ParticleZPositionRange As Double
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  #if Target64Bit
-			    declare function particleZPositionSpeed lib spritekitlibname selector "particleZPositionSpeed" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function particleZPositionSpeed lib spritekitlibname selector "particleZPositionSpeed" (id as ptr) as single
-			  #endif
-			  return particleZPositionSpeed(id)
-			  
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  #if Target64Bit
-			    declare sub setParticleZPositionSpeed lib spritekitlibname selector "setParticleZPositionSpeed:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setParticleZPositionSpeed lib spritekitlibname selector "setParticleZPositionSpeed:" (id as ptr, value as single)
-			  #endif
-			  setParticleZPositionSpeed id, value
-			  
-			End Set
-		#tag EndSetter
-		ParticleZPositionSpeed As Double
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  declare function shader lib spritekitlibname selector "shader" (id as ptr) as ptr
-			  return AppleSKShader.MakeFromPtr (shader (id))
-			  
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  declare sub setShader lib spritekitlibname selector "setShader:" (id as ptr, value as ptr)
-			  setShader id, value.id
+			  setShader mid, if (value = nil, nil, value.id)
 			  
 			End Set
 		#tag EndSetter
 		Shader As AppleSKShader
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520746172676574206E6F64652077686963682072656E646572732074686520656D6974746572E2809973207061727469636C65732E
 		#tag Getter
 			Get
-			  declare function targetNode lib spritekitlibname selector "targetNode" (id as ptr) as ptr
-			  return AppleSKNode.MakeFromPtr (targetNode (id))
+			  return AppleSKNode.MakeFromPtr (gettargetNode (mid))
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setTargetNode lib spritekitlibname selector "setTargetNode:" (id as ptr, value as ptr)
-			  setTargetNode id, value.id
+			  setTargetNode mid, if (value = nil, nil, value.id)
 			  
 			End Set
 		#tag EndSetter
 		TargetNode As AppleSKNode
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520616363656C65726174696F6E20746F206170706C7920746F2061207061727469636C65E280997320686F72697A6F6E74616C2076656C6F636974792E2044656661756C7420302E302E0A
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function xAcceleration lib spritekitlibname selector "xAcceleration" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function xAcceleration lib spritekitlibname selector "xAcceleration" (id as ptr) as single
-			  #endif
-			  return xAcceleration(id)
+			  return getxAcceleration(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setXAcceleration lib spritekitlibname selector "setXAcceleration:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setXAcceleration lib spritekitlibname selector "setXAcceleration:" (id as ptr, value as single)
-			  #endif
-			  setXAcceleration id, value
+			  setXAcceleration mid, value
 			  
 			End Set
 		#tag EndSetter
 		XAcceleration As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520616363656C65726174696F6E20746F206170706C7920746F2061207061727469636C65E280997320766572746963616C2076656C6F636974792E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function yAcceleration lib spritekitlibname selector "yAcceleration" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function yAcceleration lib spritekitlibname selector "yAcceleration" (id as ptr) as single
-			  #endif
-			  return yAcceleration(id)
+			  return getyAcceleration(mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare sub setYAcceleration lib spritekitlibname selector "setYAcceleration:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare sub setYAcceleration lib spritekitlibname selector "setYAcceleration:" (id as ptr, value as single)
-			  #endif
-			  setYAcceleration id, value
+			  setYAcceleration mid, value
 			  
 			End Set
 		#tag EndSetter
 		YAcceleration As Double
 	#tag EndComputedProperty
+
+
+	#tag Enum, Name = SKParticleRenderOrder, Type = Integer, Flags = &h0
+		OldestLast
+		  OldestFirst
+		DontCare
+	#tag EndEnum
 
 
 	#tag ViewBehavior

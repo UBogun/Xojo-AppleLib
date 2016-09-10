@@ -1,67 +1,36 @@
 #tag Class
-Protected Class AppleSKVideoNode
+Protected Class AppleSKCropNode
 Inherits AppleSKNode
-	#tag Method, Flags = &h1000
-		Sub Constructor(Player as AppleAVPlayer)
-		  Declare function initWithAVPlayer lib spritekitlibname selector "initWithAVPlayer:" (id as ptr, player as Ptr) as ptr
-		  super.Constructor (initWithAVPlayer (alloc(ClassPtr), player.id))
-		  MHasOwnership = true
+	#tag Method, Flags = &h1000, Description = 437265617465732061206E65772063726F706E6F64652E
+		Sub Constructor()
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleSKNode
+		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
+		  // Constructor() -- From AppleResponder
+		  // Constructor() -- From AppleObject
+		  // Constructor(AnId as Ptr) -- From AppleObject
+		  Super.Constructor (alloc(init(ClassPtr)))
+		  MHasownership = true
 		  
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1000
-		Sub Constructor(VIdeoURL as AppleURL)
-		  Declare function initWithVideoURL lib spritekitlibname selector "initWithVideoURL:" (id as ptr, VideoURL as Ptr) as ptr
-		  super.Constructor (initWithVideoURL (alloc(ClassPtr), VIdeoURL.id))
-		  MHasOwnership = true
-		  
-		End Sub
-	#tag EndMethod
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getmaskNode Lib SpriteKitLibName Selector "maskNode" (id as ptr) As Ptr
+	#tag EndExternalMethod
 
-	#tag Method, Flags = &h1000
-		Sub Constructor(VideoFileName as CFStringRef)
-		  Declare function initWithVideoFileNamed lib spritekitlibname selector "initWithVideoFileNamed:" (id as ptr, name as CFStringRef) as ptr
-		  super.Constructor (initWithVideoFileNamed (alloc(ClassPtr), VideoFileName))
-		  MHasOwnership = true
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1000
-		Sub Constructor(VIdeoURL as Folderitem)
-		  Constructor (new AppleURL(VIdeoURL))
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Pause()
-		  declare sub pause lib spritekitlibname selector "pause" (id as ptr)
-		  pause id
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Play()
-		  declare sub play lib spritekitlibname selector "play" (id as ptr)
-		  play id
-		End Sub
-	#tag EndMethod
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setmaskNode Lib SpriteKitLibName Selector "setMaskNode:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
 
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return SpriteKitFramework.getAnchorPoint (mid)
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  SpriteKitFramework.setAnchorPoint mid, value
-			End Set
-		#tag EndSetter
-		AnchorPoint As FoundationFramework.NSPoint
-	#tag EndComputedProperty
+	#tag Note, Name = Status complete
+		
+		macOS 10.12
+	#tag EndNote
+
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
@@ -69,7 +38,7 @@ Inherits AppleSKNode
 			  static mClassPtr as Ptr
 			  if mClassPtr = nil then
 			    if AppleSKView.classavailable then
-			      mClassPtr  =  FoundationFramework.NSClassFromString ("SKVideoNode")
+			      mClassPtr  =  FoundationFramework.NSClassFromString ("SKCropNode")
 			    end if
 			  end if
 			  return mClassPtr
@@ -78,18 +47,18 @@ Inherits AppleSKNode
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206E6F6465207573656420746F2064657465726D696E65207468652063726F70206E6F6465E2809973206D61736B2E
 		#tag Getter
 			Get
-			  return FoundationFrameWork.getSize (mid)
+			  return AppleSKNode.MakeFromPtr (getmasknode(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  FoundationFrameWork.setsize mid, value
+			  setMaskNode mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
-		Size As FoundationFramework.NSSize
+		MaskNode As AppleSKNode
 	#tag EndComputedProperty
 
 

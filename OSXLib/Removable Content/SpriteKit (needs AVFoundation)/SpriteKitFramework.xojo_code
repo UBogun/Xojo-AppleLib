@@ -165,6 +165,10 @@ Protected Module SpriteKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getlowerAngleLimit Lib SpriteKitLibName Selector "lowerAngleLimit" (id as ptr) As CGFLoat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getmass Lib SpriteKitLibName Selector "mass" (id as Ptr) As CGFLoat
 	#tag EndExternalMethod
 
@@ -197,11 +201,23 @@ Protected Module SpriteKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshouldEnableLimits Lib SpriteKitLibName Selector "shouldEnableLimits" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getspeed Lib SpriteKitLibName Selector "speed" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getstrokeColor Lib SpriteKitLibName Selector "strokeColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettexture Lib SpriteKitLibName Selector "texture" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getupperAngleLimit Lib SpriteKitLibName Selector "upperAngleLimit" (id as ptr) As CGFLoat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -218,6 +234,14 @@ Protected Module SpriteKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getvelocity Lib SpriteKitLibName Selector "velocity" (id as ptr) As FoundationFrameWork.cgvector
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithFileNamed Lib SpriteKitLibName Selector "initWithFileNamed:" (id as ptr, fname as cfstringRef) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithSize Lib SpriteKitLibName Selector "initWithSize:" (id as ptr, size as FoundationFrameWork . NSSize) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -361,6 +385,10 @@ Protected Module SpriteKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setlowerAngleLimit Lib SpriteKitLibName Selector "setLowerAngleLimit:" (id as ptr, value as CGFLoat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setMass Lib SpriteKitLibName Selector "setMass:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
@@ -385,11 +413,23 @@ Protected Module SpriteKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshouldEnableLimits Lib SpriteKitLibName Selector "setShouldEnableLimits:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setspeed Lib SpriteKitLibName Selector "setSpeed:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setstrokeColor Lib SpriteKitLibName Selector "setStrokeColor:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub settexture Lib SpriteKitLibName Selector "setTexture:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setupperAngleLimit Lib SpriteKitLibName Selector "setUpperAngleLimit:" (id as ptr, value as CGFLoat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

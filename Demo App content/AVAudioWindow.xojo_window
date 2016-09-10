@@ -119,9 +119,7 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
-      TabIndex        =   "2"
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   20
       Value           =   0
       Visible         =   True
@@ -349,6 +347,9 @@ End
 		Private Sub FinishedHandler(parent as AppleAVAudioRecorder, success as Boolean)
 		  ProgressBarTimer.Mode = xojo.core.timer.modes.Off
 		  TextArea1.AppendText "Recording stopped"+EndOfLine
+		  
+		  #pragma unused parent
+		  #pragma unused success
 		End Sub
 	#tag EndMethod
 
@@ -409,19 +410,9 @@ End
 		    result = recorder.Record
 		    ProgressBarTimer.mode = xojo.core.timer.modes.Multiple
 		  end if
-		  engine = new AppleAVAudioEngine
-		  dim mixer as AppleAVAudioMixerNode = engine.MainMixerNode
-		  dim input as AppleAVAudioInputNode = engine.InputNode
-		  dim format as AppleAVAudioFormat = input.InputFormat(0)
 		  AddHandler recorder.FinishedREcording, addressof FinishedHandler
 		  
 		  
-		  // dim block as new appleblock (addressof CallBackBlock)
-		  // input.InstallTap (0,4096, format, block)
-		  // result = engine.Start (error)
-		  // app.DoEvents (5000)
-		  // // engine.stop
-		  // break
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -435,18 +426,20 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events ChannelField
+#tag EndEvents
 #tag Events PushButton3
 	#tag Event
 		Sub Action()
 		  engine = new AppleAVAudioEngine
-		  dim mixer as AppleAVAudioMixerNode = engine.MainMixerNode
+		  // dim mixer as AppleAVAudioMixerNode = engine.MainMixerNode
 		  dim input as AppleAVAudioInputNode = engine.InputNode
 		  dim format as AppleAVAudioFormat = input.InputFormat(0)
 		  dim error as new AppleError
 		  
 		  dim block as new appleblock (addressof CallBackBlock)
 		  input.InstallTap (0,4096, format, block)
-		  dim result as Boolean = engine.Start (error)
+		  call engine.Start (error)
 		  EngineTimer.mode = xojo.core.timer.modes.Multiple
 		End Sub
 	#tag EndEvent

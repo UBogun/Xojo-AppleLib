@@ -110,6 +110,7 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -197,7 +198,7 @@ End
 		  case "Notifications"
 		    SecondaryWindow = new NotificationWindow
 		  case "CoreBluetooth"
-		    SecondaryWindow= new CoreBluetoothWindow
+		    // SecondaryWindow= new CoreBluetoothWindow
 		  case "NSView Additions"
 		    SecondaryWindow= new NSViewPlayWindow
 		  case "ScrollView"

@@ -1,21 +1,35 @@
 #tag Class
 Protected Class AppleSKPhysicsJointSpring
 Inherits AppleSKPhysicsJoint
-	#tag Method, Flags = &h1000
+	#tag Method, Flags = &h1000, Description = 437265617465732061206E657720737072696E67206A6F696E742E
 		Sub Constructor(BodyA As AppleSKPhysicsBody, BodyB as AppleSKPhysicsBody, AnchorA as FoundationFramework.NSPoint, AnchorB as FoundationFramework.NSPoint)
-		  #if Target64Bit
-		    declare function jointWithBodyA lib spritekitlibname selector "jointWithBodyA:bodyB:anchorA:anchorB:" _
-		    (id as ptr, bodyA as ptr, bodyB as ptr, anchorA as FoundationFramework.NSPoint, anchorB as FoundationFramework.NSPoint) as ptr
-		    super.Constructor (jointWithBodyA(ClassPtr, bodyA.id, Bodyb.id, AnchorA, anchorB))
-		  #elseif Target32Bit
-		    declare function jointWithBodyA lib spritekitlibname selector "jointWithBodyA:bodyB:anchorA:anchorB:" _
-		    (id as ptr, bodyA as ptr, bodyB as ptr, anchorA as FoundationFramework.NSPoint32Bit, anchorB as FoundationFramework.NSPoint32Bit) as ptr
-		    super.Constructor (jointWithBodyA(ClassPtr, bodyA.id, Bodyb.id, AnchorA.toNSPoint32, AnchorB.toNSPoint32))
-		  #endif
+		  super.Constructor (jointWithBodyAbodyBanchorAanchorB(ClassPtr, bodyA.id, Bodyb.id, AnchorA, anchorB))
 		  RetainClassObject
 		  
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdamping Lib SpriteKitLibName Selector "damping" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getfrequency Lib SpriteKitLibName Selector "frequency" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setdamping Lib SpriteKitLibName Selector "setDamping:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setfrequency Lib SpriteKitLibName Selector "setFrequency:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+
+	#tag Note, Name = Status complete
+		
+		macOs 10.12
+	#tag EndNote
 
 
 	#tag ComputedProperty, Flags = &h1
@@ -33,52 +47,32 @@ Inherits AppleSKPhysicsJoint
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 486F772074686520737072696E67E2809973206D6F74696F6E2073686F756C642062652064616D7065642064756520746F2074686520666F72636573206F66206672696374696F6E2E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function damping lib spritekitlibname selector "damping" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function damping lib spritekitlibname selector "damping" (id as ptr) as single
-			  #endif
-			  return damping (id)
+			  return getdamping (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare Sub setDamping lib spritekitlibname selector "setDamping:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare Sub setDamping lib spritekitlibname selector "setDamping:" (id as ptr, value as Single)
-			  #endif
-			  setDamping (id, value)
+			  setDamping (mid, value)
 			  
 			End Set
 		#tag EndSetter
 		Damping As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206672657175656E637920636861726163746572697374696373206F662074686520737072696E672E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function frequency lib spritekitlibname selector "frequency" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function frequency lib spritekitlibname selector "frequency" (id as ptr) as single
-			  #endif
-			  return frequency (id)
+			  return getfrequency (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare Sub setFrequency lib spritekitlibname selector "setFrequency:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare Sub setFrequency lib spritekitlibname selector "setFrequency:" (id as ptr, value as Single)
-			  #endif
-			  setFrequency (id, value)
+			  setFrequency (mid, value)
 			  
 			End Set
 		#tag EndSetter

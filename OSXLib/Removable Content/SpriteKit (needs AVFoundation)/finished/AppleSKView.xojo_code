@@ -355,7 +355,7 @@ Inherits AppleView
 		Sub Present(Scene As AppleSKScene)
 		  if me.Scene <> nil then
 		    me.Scene.PhysicsWorld.ContactDelegate = nil
-		     me.Scene.DelegateObject = nil
+		    me.Scene.DelegateObject = nil
 		  end if
 		  scene.DelegateObject = self
 		  scene.PhysicsWorld.ContactDelegate = self
@@ -437,6 +437,26 @@ Inherits AppleView
 		Protected Declare Sub setshowsQuadCount Lib SpriteKitLibName Selector "setShowsQuadCount:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52656E646572732074686520636F6E74656E7473206F662061206E6F6465207472656520616E642072657475726E73207468652072656E646572656420696D6167652061732061205370726974654B697420746578747572652E
+		Function TextureFromNode(Node As AppleSKNode) As AppleSKTexture
+		  return AppleSKTexture.MakefromPtr (textureFromNode(mid, node.id))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52656E64657273206120706F7274696F6E206F662061206E6F6465E280997320636F6E74656E747320616E642072657475726E73207468652072656E646572656420696D6167652061732061205370726974654B697420746578747572652E
+		Function TextureFromNode(Node As AppleSKNode, Crop As FoundationFrameWork.NSRect) As AppleSKTexture
+		  return AppleSKTexture.MakefromPtr (textureFromNodeCrop(mid, node.id, crop))
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function textureFromNode Lib SpriteKitLibName Selector "textureFromNode:" (id as ptr, Node As Ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function textureFromNodeCrop Lib SpriteKitLibName Selector "textureFromNode:crop:" (id as ptr, Node As Ptr, Crop As FoundationFrameWork . NSRect) As Ptr
+	#tag EndExternalMethod
+
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E207468652050687973696373576F726C64206F662074686520646973706C61796564207363656E65206E6F74696365642074686520626567696E6E696E67206F66206120636F6E74616374206265747765656E2074776F206E6F6465732E
 		Event ContactBegan(Contact As AppleSKPhysicsContact)
@@ -488,6 +508,13 @@ Inherits AppleView
 		The reason is the events should be forwarded ASAP - every cycle counts in real-time game situations.
 		That’s why I used the XojoControls inheritance only for the touch events and included an additional XojoIdentity shared dictionary instead.
 		I imported the class inheritance so it the class can access every View, Responder and Object feature.
+		
+		
+	#tag EndNote
+
+	#tag Note, Name = Status completed
+		
+		macOS 10.12.
 		
 	#tag EndNote
 

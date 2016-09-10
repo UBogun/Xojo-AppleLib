@@ -16,14 +16,6 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getlowerAngleLimit Lib SpriteKitLibName Selector "lowerAngleLimit" (id as ptr) As CGFLoat
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getupperAngleLimit Lib SpriteKitLibName Selector "upperAngleLimit" (id as ptr) As CGFLoat
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function initWithLowerAngleLimit Lib SpriteKitLibName Selector "initWithLowerAngleLimit:upperAngleLimit:" (id as ptr, low as cgfloat, up as cgfloat) As Ptr
 	#tag EndExternalMethod
 
@@ -32,14 +24,6 @@ Inherits AppleObject
 		  return if (aptr = nil, nil, new AppleSKReachConstraints(aptr))
 		End Function
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setlowerAngleLimit Lib SpriteKitLibName Selector "setLowerAngleLimit:" (id as ptr, value as CGFLoat)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setupperAngleLimit Lib SpriteKitLibName Selector "setUpperAngleLimit:" (id as ptr, value as CGFLoat)
-	#tag EndExternalMethod
 
 
 	#tag Note, Name = Status complete
@@ -66,12 +50,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D696E696D756D20616E676C65207468617420746865206E6F64652063616E206861766520616674657220697420697320726F74617465642062792061207265616368206576656E742E
 		#tag Getter
 			Get
-			  return getLowerAngleLimit (mid)
+			  return SpriteKitFramework.getLowerAngleLimit (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setLowerAngleLimit mid, value
+			  SpriteKitFramework.setLowerAngleLimit mid, value
 			End Set
 		#tag EndSetter
 		LowerAngleLimit As Double
@@ -80,12 +64,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D6178696D756D20616E676C65207468617420746865206E6F64652063616E206861766520616674657220697420697320726F74617465642062792061207265616368206576656E742E
 		#tag Getter
 			Get
-			  return getupperAngleLimit (mid)
+			  return SpriteKitFramework.getupperAngleLimit (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setUpperAngleLimit mid, value
+			  SpriteKitFramework.setUpperAngleLimit mid, value
 			End Set
 		#tag EndSetter
 		UpperAngleLimit As Double

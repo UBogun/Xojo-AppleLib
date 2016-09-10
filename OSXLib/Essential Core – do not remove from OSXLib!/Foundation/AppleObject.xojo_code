@@ -19,8 +19,8 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(aPtr as Ptr, takeOwnership as Boolean, own as Boolean)
-		  mid = if (own, retain(aptr), aptr)
+		Sub Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false)
+		  mid = if (Retain, retain(aptr), aptr)
 		  MHasOwnership = takeOwnership
 		  
 		End Sub

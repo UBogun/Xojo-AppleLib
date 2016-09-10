@@ -327,7 +327,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 536574732074686520766F6C756D6520746F2061206E65772076616C75652C20666164696E6720696E206F72206F757420746F206974206F766572207365636F6E6473206475726174696F6E2E20417661696C61626C652073696E6365206D61634F532031302E31322E
 		Sub Volume(FadeDuration As Double, assigns value as single)
-		  if RespondsToSelector("setVolume:fadeDuration:", classptr) then AVFoundationFramework.setVolumeFade mid, volume, FadeDuration
+		  if RespondsToSelector("setVolume:fadeDuration:", classptr) then AVFoundationFramework.setVolumeFade mid, value, FadeDuration
 		End Sub
 	#tag EndMethod
 

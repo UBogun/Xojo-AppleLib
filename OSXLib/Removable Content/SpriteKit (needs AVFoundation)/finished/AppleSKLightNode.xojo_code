@@ -1,34 +1,85 @@
 #tag Class
 Protected Class AppleSKLightNode
 Inherits AppleSKNode
-	#tag ComputedProperty, Flags = &h0
+	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204C696768744E6F64652E
+		Sub Constructor()
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleSKNode
+		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, own as Boolean) -- From AppleObject
+		  Super.Constructor(init(alloc(classptr)))
+		  MHAsOwnership = true
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getambientColor Lib SpriteKitLibName Selector "ambientColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getfalloff Lib SpriteKitLibName Selector "falloff" (id as ptr) As cgfloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getlightColor Lib SpriteKitLibName Selector "lightColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshadowColor Lib SpriteKitLibName Selector "shadowColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setambientColor Lib SpriteKitLibName Selector "setAmbientColor:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setfalloff Lib SpriteKitLibName Selector "setFalloff:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setlightColor Lib SpriteKitLibName Selector "setLightColor:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshadowColor Lib SpriteKitLibName Selector "setShadowColor:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+
+	#tag Note, Name = Status Complete
+		
+		macOS 10.12
+	#tag EndNote
+
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520616D6269656E7420636F6C6F72206F6620746865206C696768742E2044656661756C7420426C61636B203D206E6F20616D6269656E7420636F6D706F6E656E742E
 		#tag Getter
 			Get
-			  Declare function ambientColor lib spritekitlibname selector "ambientColor" (id as ptr) as ptr
-			  return new AppleColor (ambientColor(id))
+			  return  AppleColor.MakefromPtr (getambientColor(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setAmbientColor lib spritekitlibname selector "setAmbientColor:" (id as ptr, value as ptr)
-			  setAmbientColor id, value.id
+			  setAmbientColor mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		AmbientColor As AppleColor
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 41206D61736B207468617420646566696E65732077686963682063617465676F726965732074686973206C696768742062656C6F6E677320746F2E2044656661756C7420312E
 		#tag Getter
 			Get
-			  declare Function categoryBitMask lib spritekitlibname selector "categoryBitMask" (id as ptr) as UInt32
-			  return categoryBitMask (id)
+			  return SpriteKitFramework.getcategoryBitMask (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setCategoryBitMask lib spritekitlibname selector "setCategoryBitMask:" (id as ptr, value as UInt32)
-			  setCategoryBitMask id, value
+			  SpriteKitFramework.setCategoryBitMask mid, value
 			End Set
 		#tag EndSetter
 		CategoryBitMask As UInt32
@@ -49,75 +100,59 @@ Inherits AppleSKNode
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865206E6F64652069732063617374696E67206C696768742E2044656661756C7420547275652E
 		#tag Getter
 			Get
-			  Declare function enabled lib spritekitlibname selector "enabled" (id as ptr) as Boolean
-			  return enabled (id)
+			  return AppKitFramework.getenabled (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setEnabled lib spritekitlibname selector "setEnabled:" (id as ptr, value as Boolean)
-			  setenabled id, value
+			  AppKitFramework.setenabled mid, value
 			End Set
 		#tag EndSetter
 		Enabled As Boolean
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206578706F6E656E7420666F72207468652072617465206F66206465636179206F6620746865206C6967687420736F757263652E2044656661756C7420312E30203D206D61782E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function falloff lib spritekitlibname selector "falloff" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function falloff lib spritekitlibname selector "falloff" (id as ptr) as single
-			  #endif
-			  return falloff (id)
+			  return getfalloff (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare Sub setFalloff lib spritekitlibname selector "setFalloff:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare Sub setFalloff lib spritekitlibname selector "setFalloff:" (id as ptr, value as Single)
-			  #endif
-			  setFalloff(id, value)
+			  setFalloff mid, value
 			  
 			End Set
 		#tag EndSetter
 		Falloff As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206469666675736520616E642073706563756C617220636F6C6F72206F6620746865206C6967687420736F757263652E2044456661756C74205768697465
 		#tag Getter
 			Get
-			  Declare function lightColor lib spritekitlibname selector "lightColor" (id as ptr) as ptr
-			  return new AppleColor (lightColor(id))
+			  return  AppleColor.MakefromPtr (getlightColor(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setLightColor lib spritekitlibname selector "setLightColor:" (id as ptr, value as ptr)
-			  setLightColor id, value.id
+			  setLightColor mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		LightColor As AppleColor
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F6620616E7920736861646F7720636173742062792061207370726974652E2044656661756C7420426C61636B207769746820616C70686120302E352E
 		#tag Getter
 			Get
-			  Declare function shadowColor lib spritekitlibname selector "shadowColor" (id as ptr) as ptr
-			  return new AppleColor (shadowColor(id))
+			  return  AppleColor.MakefromPtr (getshadowColor(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setShadowColor lib spritekitlibname selector "setShadowColor:" (id as ptr, value as ptr)
-			  setShadowColor id, value.id
+			  setShadowColor mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		ShadowColor As AppleColor

@@ -11,7 +11,7 @@ Inherits AppleSKEffectNode
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, own as Boolean) -- From AppleObject
-		  Super.Constructor(initWithSize(alloc(ClassPtr), size))
+		  Super.Constructor(SpriteKitFramework.initWithSize(alloc(ClassPtr), size))
 		  MHasOwnership = True
 		  RegisterControl(self)
 		  
@@ -240,45 +240,10 @@ Inherits AppleSKEffectNode
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function initWithSize Lib SpriteKitLibName Selector "initWithSize:" (id as ptr, size as FoundationFrameWork . NSSize) As Ptr
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleSKScene
 		  return if (aptr = nil, nil, new AppleSKScene(aptr))
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Private Function ParentControl() As AppleSKScene
-		  #pragma BreakOnExceptions false
-		  try
-		    dim  wr as xojo.core.weakref = XojoControls.Value (id)  
-		    return AppleSKScene(wr.Value)
-		  catch NilObjectException
-		    return Nil
-		  end try
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RegisterControl(ParentControl As object)
-		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
-		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RemoveControl()
-		  #Pragma BreakOnExceptions false
-		  try
-		    XojoControls.Remove (id)
-		  catch 
-		    
-		  end try
-		End Sub
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -333,7 +298,7 @@ Inherits AppleSKEffectNode
 
 	#tag Note, Name = Status
 		
-		complete, but needs refinement – Delegate should better be placed in SKView.
+		complete, but needs refinement – Delegate should better be placed in SKView (and is disabled once a scene is connected)
 	#tag EndNote
 
 
@@ -498,10 +463,6 @@ Inherits AppleSKEffectNode
 		#tag EndGetter
 		View As AppleSKView
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private Shared XojoControls As xojo.Core.Dictionary
-	#tag EndProperty
 
 
 	#tag Enum, Name = SKSceneScaleMode, Flags = &h0

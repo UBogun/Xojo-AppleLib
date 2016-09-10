@@ -1,21 +1,40 @@
 #tag Class
 Protected Class AppleSKPhysicsJointSliding
 Inherits AppleSKPhysicsJoint
-	#tag Method, Flags = &h1000
+	#tag Method, Flags = &h1000, Description = 437265617465732061206E657720736C6964696E67206A6F696E742E
 		Sub Constructor(BodyA As AppleSKPhysicsBody, BodyB as AppleSKPhysicsBody, Anchor as FoundationFramework.NSPoint, Axis as FoundationFramework.CGVector)
-		  #if Target64Bit
-		    declare function jointWithBodyA lib spritekitlibname selector "jointWithBodyA:bodyB:anchor:axis:" _
-		    (id as ptr, bodyA as ptr, bodyB as ptr, anchor as FoundationFramework.NSPoint, axis as FoundationFramework.CGVector) as ptr
-		    super.Constructor (jointWithBodyA(ClassPtr, bodyA.id, Bodyb.id, Anchor, axis))
-		  #elseif Target32Bit
-		    declare function jointWithBodyA lib spritekitlibname selector "jointWithBodyA:bodyB:anchor:axis:" _
-		    (id as ptr, bodyA as ptr, bodyB as ptr, anchor as FoundationFramework.NSPoint32Bit, axis as FoundationFramework.CGVector32Bit) as ptr
-		    super.Constructor (jointWithBodyA(ClassPtr, bodyA.id, Bodyb.id, Anchor.toNSPoint32, axis.toCGVector32))
-		  #endif
+		  super.Constructor (jointWithBodyAbodyBanchoraxis(ClassPtr, bodyA.id, Bodyb.id, Anchor, axis))
+		  
 		  RetainClassObject
 		  
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getlowerDistanceLimit Lib SpriteKitLibName Selector "lowerDistanceLimit" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getupperDistanceLimit Lib SpriteKitLibName Selector "upperDistanceLimit" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function jointWithBodyAbodyBanchoraxis Lib SpriteKitLibName Selector "jointWithBodyA:bodyB:anchor:axis:" (id as ptr, bodyA as ptr, bodyB as ptr, anchor as FoundationFramework . NSPoint, axis as FoundationFramework . CGVector) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setlowerDistanceLimit Lib SpriteKitLibName Selector "setLowerDistanceLimit:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setupperDistanceLimit Lib SpriteKitLibName Selector "setUpperDistanceLimit:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+
+	#tag Note, Name = Status complete
+		
+		macOs 10.12
+	#tag EndNote
 
 
 	#tag ComputedProperty, Flags = &h1
@@ -33,68 +52,46 @@ Inherits AppleSKPhysicsJoint
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520736C6964696E67206A6F696E74206973207265737472696374656420736F207468617420746865206F626A65637473206D6179206F6E6C7920736C69646520612066696E6974652064697374616E63652066726F6D2074686520696E697469616C20616E63686F7220706F696E742E
 		#tag Getter
 			Get
-			  Declare Function shouldEnableLimits lib spritekitlibname selector "shouldEnableLimits" (id as ptr) as Boolean
-			  return shouldEnableLimits (id)
+			  return SpriteKitFramework.getshouldEnableLimits (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare sub setShouldEnableLimits lib spritekitlibname selector "setShouldEnableLimits:" (id as ptr, value as Boolean)
-			  setShouldEnableLimits id, value
+			  SpriteKitFramework.setShouldEnableLimits mid, value
 			End Set
 		#tag EndSetter
 		EnableLimits As Boolean
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520736D616C6C6573742064697374616E636520616C6C6F77656420666F722074686520736C6964696E67206A6F696E742E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function lowerDistanceLimit lib spritekitlibname selector "lowerDistanceLimit" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function lowerDistanceLimit lib spritekitlibname selector "lowerDistanceLimit" (id as ptr) as single
-			  #endif
-			  return lowerDistanceLimit (id)
+			  return getlowerDistanceLimit (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare Sub setLowerDistanceLimit lib spritekitlibname selector "setLowerDistanceLimit:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare Sub setLowerDistanceLimit lib spritekitlibname selector "setLowerDistanceLimit:" (id as ptr, value as Single)
-			  #endif
-			  setLowerDistanceLimit (id, value)
+			  setLowerDistanceLimit (mid, value)
 			  
 			End Set
 		#tag EndSetter
 		LowerDistanceLimit As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206C6172676573742064697374616E636520616C6C6F77656420666F722074686520736C6964696E67206A6F696E742E2044656661756C7420302E302E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    declare function upperDistanceLimit lib spritekitlibname selector "upperDistanceLimit" (id as ptr) as Double
-			  #elseif Target32Bit
-			    declare function upperDistanceLimit lib spritekitlibname selector "upperDistanceLimit" (id as ptr) as single
-			  #endif
-			  return upperDistanceLimit (id)
+			  return getupperDistanceLimit (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    declare Sub setUpperDistanceLimit lib spritekitlibname selector "setUpperDistanceLimit:" (id as ptr, value as Double)
-			  #elseif Target32Bit
-			    declare Sub setUpperDistanceLimit lib spritekitlibname selector "setUpperDistanceLimit:" (id as ptr, value as Single)
-			  #endif
-			  setUpperDistanceLimit (id, value)
+			  setUpperDistanceLimit (mid, value)
 			  
 			End Set
 		#tag EndSetter

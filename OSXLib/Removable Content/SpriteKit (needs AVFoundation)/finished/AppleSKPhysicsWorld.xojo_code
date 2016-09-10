@@ -105,6 +105,9 @@ Inherits AppleObject
 		  dim PhysicsBody as AppleSKPhysicsBody = AppleSKPhysicsBody.MakeFromPtr (body)
 		  // do whatever you want to perform on the Body
 		  // if you want to stop further body processing, set stop = True
+		  
+		  #pragma Unused PhysicsBody
+		  #pragma Unused stop
 		End Sub
 	#tag EndMethod
 
@@ -113,6 +116,11 @@ Inherits AppleObject
 		  dim PhysicsBody as AppleSKPhysicsBody = AppleSKPhysicsBody.MakeFromPtr (body)
 		  // here you can evalue the point in screen coordinates where the ray hit and the distance from its startpoint to contactpoint
 		  // if you want to stop further body processing, set stop = True
+		  
+		  #pragma unused PhysicsBody
+		  #pragma unused ContactPoint
+		  #Pragma unused Normal
+		  #Pragma unused stop
 		End Sub
 	#tag EndMethod
 

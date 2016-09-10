@@ -837,7 +837,7 @@ End
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
 		Sub WillBecomeSubview(SuperView as AppleView)
-		  
+		  #pragma Unused SuperView
 		End Sub
 	#tag EndEvent
 #tag EndEvents

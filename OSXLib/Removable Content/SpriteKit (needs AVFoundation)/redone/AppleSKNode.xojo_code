@@ -137,11 +137,31 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getlightingBitMask Lib SpriteKitLibName Selector "lightingBitMask" (id as ptr) As UInt32
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getnormalTexture Lib SpriteKitLibName Selector "normalTexture" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getposition Lib SpriteKitLibName Selector "position" (id as ptr) As FoundationFrameWork.nsPoint
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getreachConstraints Lib SpriteKitLibName Selector "reachConstraints" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshader Lib SpriteKitLibName Selector "shader" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshadowCastBitMask Lib SpriteKitLibName Selector "shadowCastBitMask" (id as ptr) As UInt32
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshadowedBitMask Lib SpriteKitLibName Selector "shadowedBitMask" (id as ptr) As UInt32
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -327,6 +347,7 @@ Inherits AppleResponder
 		  
 		  // perform anything you want on currentnode now and delete the following line:
 		  #pragma Unused currentnode
+		  #pragma Unused stop
 		  
 		  // if you want to stop the RundBlockonChildren method before the remaining children have been processed, set stop to true.
 		  
@@ -334,11 +355,23 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub scaleToSize Lib SpriteKitLibName Selector "scaleToSize:" (id as ptr, value as FoundationFrameWork . NSSize)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setblendMode Lib SpriteKitLibName Selector "setBlendMode:" (id as ptr, value as SKBlendMode)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setconstraints Lib SpriteKitLibName Selector "setConstraints:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setlightingBitMask Lib SpriteKitLibName Selector "setLightingBitMask:" (id as ptr, value as UInt32)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setnormalTexture Lib SpriteKitLibName Selector "setNormalTexture:" (id as ptr, value as Ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -358,6 +391,18 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setScale Lib SpriteKitLibName Selector "setScale:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshader Lib SpriteKitLibName Selector "setShader:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshadowCastBitMask Lib SpriteKitLibName Selector "setShadowCastBitMask:" (id as ptr, value as UInt32)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshadowedBitMask Lib SpriteKitLibName Selector "setShadowedBitMask:" (id as ptr, value as UInt32)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

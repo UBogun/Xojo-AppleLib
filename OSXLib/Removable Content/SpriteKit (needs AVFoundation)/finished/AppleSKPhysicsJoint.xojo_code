@@ -15,6 +15,14 @@ Inherits AppleObject
 		Protected Declare Function getreactionTorque Lib SpriteKitLibName Selector "reactionTorque" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function jointWithBodyAbodyBanchor Lib SpriteKitLibName Selector "jointWithBodyA:bodyB:anchor:" (id as ptr, bodyA as Ptr, bodyB as Ptr, anchor as FoundationFrameWork . NSPoint) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function jointWithBodyAbodyBanchorAanchorB Lib SpriteKitLibName Selector "jointWithBodyA:bodyB:anchorA:anchorB:" (id as ptr, bodyA as Ptr, bodyB as Ptr, anchorA As FoundationFrameWork . NSPoint, anchorB as FoundationFrameWork . NSPoint) As Ptr
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleSKPhysicsJoint
 		  return if (aptr = nil, nil, new AppleSKPhysicsJoint(aptr))

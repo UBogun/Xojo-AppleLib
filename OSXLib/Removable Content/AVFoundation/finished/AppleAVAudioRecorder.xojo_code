@@ -25,7 +25,7 @@ Inherits AppleObject
 		    super.Constructor(initWithURLformat(alloc(classptr), url.Id, format.id, p))
 		    error =  AppleError.MakefromPtr(p)
 		    me.DelegateObject = self
-		    registerControl(self)
+		    registerIdentity(self)
 		    MHasOwnership = true
 		  end if
 		End Sub
@@ -37,7 +37,7 @@ Inherits AppleObject
 		  super.Constructor(initWithURLSettings(alloc(classptr), url.Id, settings.id, p))
 		  error =  AppleError.MakefromPtr(p)
 		  me.DelegateObject = self
-		  registerControl(self)
+		  registerIdentity(self)
 		  MHasOwnership = true
 		End Sub
 	#tag EndMethod
@@ -56,8 +56,8 @@ Inherits AppleObject
 		Protected Sub Destructor()
 		  if id <> nil then
 		    if mHasOwnership then
-		      removecontrol
-		      if LibDebug then system.DebugLog "Released control too"
+		      removeIdentity
+		      if LibDebug then system.DebugLog "Released Xojoidentity too"
 		    end if
 		  end if
 		End Sub
@@ -66,6 +66,19 @@ Inherits AppleObject
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getmeteringEnabled Lib AVFoundationLibName Selector "isMeteringEnabled" (id as ptr) As Boolean
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h21, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
+		Attributes( hidden ) Private Function Identity() As AppleAVAudioRecorder
+		  #pragma BreakOnExceptions false
+		  try
+		    dim  wr as xojo.core.weakref = XojoIdentity.Value (id)  
+		    return AppleAVAudioRecorder(wr.Value)
+		  catch NilObjectException
+		    return Nil
+		  end try
+		  
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Shared Sub impl_audioRecorderDidFinishRecording(pid as ptr, sel as ptr, audioRecorder as Ptr, successfully as Boolean)
@@ -87,7 +100,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h21
 		Attributes( hidden ) Private Sub informOnaudioRecorderDidFinishRecording(successfully As Boolean)
-		  dim parent as AppleAVAudioRecorder = me.parentcontrol
+		  dim parent as AppleAVAudioRecorder = me.identity
 		  if parent <> nil and parent <> self then
 		    parent.informOnaudioRecorderDidFinishRecording (successfully)
 		  else
@@ -98,7 +111,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h21
 		Attributes( hidden ) Private Sub informOnaudioRecorderEncodingError(Error As AppleError)
-		  dim parent as AppleAVAudioRecorder = me.parentcontrol
+		  dim parent as AppleAVAudioRecorder = me.identity
 		  if parent <> nil and parent <> self then
 		    parent.informOnaudioRecorderEncodingError (Error)
 		  else
@@ -123,19 +136,6 @@ Inherits AppleObject
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleAVAudioRecorder
 		  return if (aptr = nil, nil, new AppleAVAudioRecorder(aptr))
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden ) Private Function ParentControl() As AppleAVAudioRecorder
-		  #pragma BreakOnExceptions false
-		  try
-		    dim  wr as xojo.core.weakref = XojoControls.Value (id)  
-		    return AppleAVAudioRecorder(wr.Value)
-		  catch NilObjectException
-		    return Nil
-		  end try
-		  
 		End Function
 	#tag EndMethod
 
@@ -202,17 +202,17 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RegisterControl(ParentControl As object)
-		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
-		  XojoControls.Value (id) = xojo.core.WeakRef.Create(ParentControl)
+		Attributes( hidden )  Sub RegisterIdentity(ParentControl As object)
+		  if XojoIdentity = nil then XojoIdentity = new xojo.Core.Dictionary
+		  XojoIdentity.Value (id) = xojo.core.WeakRef.Create(ParentControl)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub RemoveControl()
+		Attributes( hidden )  Sub RemoveIdentity()
 		  #Pragma BreakOnExceptions false
 		  try
-		    XojoControls.Remove (id)
+		    XojoIdentity.Remove (id)
 		  catch 
 		    
 		  end try
@@ -369,7 +369,7 @@ Inherits AppleObject
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private Shared XojoControls As xojo.Core.Dictionary
+		Private Shared XojoIdentity As xojo.Core.Dictionary
 	#tag EndProperty
 
 

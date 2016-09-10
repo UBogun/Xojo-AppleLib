@@ -62,7 +62,7 @@ Inherits OSXLibView
 
 	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
 		Sub WillRemoveSubview(SubView as AppleView)
-		  
+		  #pragma Unused SubView
 		End Sub
 	#tag EndEvent
 
@@ -136,7 +136,6 @@ Inherits OSXLibView
 	#tag Method, Flags = &h21
 		Private Sub InformOnSceneSizeChange(view as AppleSKView, scene as appleskscene, oldsize as FoundationFrameWork.NSSize)
 		  RaiseEvent SceneSizeChanged (scene, oldsize)
-		  System.DebugLog "Scene size changed"
 		  #Pragma unused view
 		End Sub
 	#tag EndMethod

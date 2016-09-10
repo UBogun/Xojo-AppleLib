@@ -42,7 +42,7 @@ Inherits AppleSKNode
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, own as Boolean) -- From AppleObject
-		  Super.Constructor(initWithFileNamed(alloc(Classptr), Filename))
+		  Super.Constructor(SpriteKitFramework.initWithFileNamed(alloc(Classptr), Filename))
 		  MHasOwnership = True
 		  
 		End Sub
@@ -62,10 +62,6 @@ Inherits AppleSKNode
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function initWithAVAudioNode Lib SpriteKitLibName Selector "initWithAVAudioNode:" (id as ptr, node as ptr) As Ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function initWithFileNamed Lib SpriteKitLibName Selector "initWithFileNamed:" (id as ptr, fname as cfstringRef) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

@@ -489,7 +489,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652076696577E2809973206672616D6520666F72206120676976656E20616C69676E6D656E742072656374616E676C652E
 		Function FrameForAlignmentRect(Rect as FoundationFrameWork . NSREct) As FoundationFrameWork.NSREct
-		  return getframeForAlignmentRect ( id, Frame)
+		  return getframeForAlignmentRect ( id, rect)
 		End Function
 	#tag EndMethod
 
@@ -974,11 +974,8 @@ Inherits AppleResponder
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnViewDidEndLiveResize()
 		  if parentcontrol <> nil then 
-		    System.DebugLog "foward Resized"
-		    
 		    parentcontrol.informOnViewDidEndLiveResize()
 		  else
-		    System.DebugLog "Raise Resized"
 		    RaiseEvent DidResize()
 		  end if
 		End Sub
@@ -1026,7 +1023,6 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewWillMoveToSuperview(superview as appleview)
-		  System.DebugLog "will move to window"
 		  if parentcontrol <> nil then 
 		    parentcontrol.informOnviewWillMoveToSuperview(superview)
 		  else
