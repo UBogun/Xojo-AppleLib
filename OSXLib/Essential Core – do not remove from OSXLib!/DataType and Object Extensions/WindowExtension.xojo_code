@@ -10,7 +10,7 @@ Protected Module WindowExtension
 
 	#tag Method, Flags = &h0, Description = 546865204E5357696E646F7720726570726573656E74696E672074686520586F6A6F2077696E646F772E
 		Function AppleObject(extends w as window) As Applewindow
-		  #if targetmacos
+		  #If TargetMacOS then
 		    return new AppleWindow(w)
 		  #endif
 		End Function

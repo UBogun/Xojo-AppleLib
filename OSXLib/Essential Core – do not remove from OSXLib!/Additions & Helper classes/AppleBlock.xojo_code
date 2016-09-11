@@ -10,8 +10,10 @@ Implements AppleBlockInterface
 	#tag Method, Flags = &h0
 		Function CreateBlock(BlockAddress as Object) As AppleBlock
 		  // Part of the AppleBlockInterface interface.
-		  mid = ObjCBlocks.CreateBlock (BlockAddress)
-		  return self
+		  #If TargetMacOS then
+		    mid = ObjCBlocks.CreateBlock (BlockAddress)
+		    return self
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -24,8 +26,10 @@ Implements AppleBlockInterface
 	#tag Method, Flags = &h0
 		Sub ReleaseBlock()
 		  // Part of the AppleBlockInterface interface.
-		  
-		  ObjCBlocks.ReleaseBlock(mid)
+		  #If TargetMacOS then
+		    
+		    ObjCBlocks.ReleaseBlock(mid)
+		  #endif
 		End Sub
 	#tag EndMethod
 

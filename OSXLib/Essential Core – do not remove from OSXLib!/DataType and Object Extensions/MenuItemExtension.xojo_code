@@ -2,7 +2,7 @@
 Protected Module MenuItemExtension
 	#tag Method, Flags = &h0
 		Function AppleObject(Extends m as MenuItem) As AppleNSMenuItem
-		  #if targetmacos
+		  #If TargetMacOS then
 		    return new AppleNSMenuItem(ptr(m.Handle(MenuItem.HandleType.CocoaNSMenuItem)))
 		  #endif
 		End Function

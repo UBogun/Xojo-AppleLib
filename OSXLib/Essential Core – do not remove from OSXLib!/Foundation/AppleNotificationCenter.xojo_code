@@ -11,7 +11,9 @@ Inherits AppleObject
 		Shared Function addObserver(NotificationName as CFStringRef, Obj as ptr, queue as AppleOperationQueue, block as ptr) As AppleNotificationObject
 		  // declare function addObserverForName lib FoundationLibName  selector "addObserverForName:object:queue:usingBlock:" _
 		  // (id as ptr, NotificationName as CFStringRef, Obj as Ptr, queue as ptr, block as ptr) as ptr
-		  return new AppleNotificationObject (addObserverForName (DefaultCenter.id, NotificationName, obj, if (queue = nil, nil, Queue.id), block))
+		  #If TargetMacOS then
+		    return new AppleNotificationObject (addObserverForName (DefaultCenter.id, NotificationName, obj, if (queue = nil, nil, Queue.id), block))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -19,7 +21,9 @@ Inherits AppleObject
 		Shared Sub AddObserver(selector as ptr, NotificationName as CFStringRef, Obj as appleobject)
 		  // declare sub addObserverForSelector lib FoundationLibName  selector "addObserver:selector:name:object:" _
 		  // (id as ptr, selector as ptr, NotificationName as CFStringRef, Obj as Ptr)
-		  addObserverForSelector (DefaultCenter.id, selector, NotificationName, if (obj = nil, nil, obj.id))
+		  #If TargetMacOS then
+		    addObserverForSelector (DefaultCenter.id, selector, NotificationName, if (obj = nil, nil, obj.id))
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -57,23 +61,47 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 506F73747320616E204170706C654E6F74696669636174696F6E20746F2074686520726567697374657265642072656365697665722E
+<<<<<<< HEAD
 		Shared Sub PostNotification(notification as AppleNotification)
 		  declare sub postNotification lib FoundationLibName  selector "postNotification:" (id as ptr, notification as ptr)
 		  postNotification DefaultCenter.Id, notification.id
+=======
+		 Shared Sub PostNotification(notification as AppleNotification)
+		  #If TargetMacOS then
+		    declare sub postNotification lib FoundationLibName  selector "postNotification:" (id as ptr, notification as ptr)
+		    postNotification DefaultCenter.Id, notification.id
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6F74696669636174696F6E2077697468206120676976656E206E616D652C2075736572496E666F44696374696F6E61727920616E642073656E64657220616E6420706F73747320697420746F207468652072656365697665722E
+<<<<<<< HEAD
 		Shared Sub PostNotification(notificationName as CFStringRef, userInfo as AppleDictionary, sender as appleobject = nil)
 		  declare sub postNotificationNameInfo lib FoundationLibName  selector "postNotificationName:object:userInfo:" (id as ptr, notificationname as CFStringRef, obj as ptr, userinfo as Ptr)
 		  postNotificationNameInfo DefaultCenter.Id, notificationname, if (sender = nil, nil, sender.id), userinfo.id
+=======
+		 Shared Sub PostNotification(notificationName as CFStringRef, userInfo as AppleDictionary, sender as appleobject = nil)
+		  #If TargetMacOS then
+		    declare sub postNotificationNameInfo lib FoundationLibName  selector "postNotificationName:object:userInfo:" (id as ptr, notificationname as CFStringRef, obj as ptr, userinfo as Ptr)
+		    postNotificationNameInfo DefaultCenter.Id, notificationname, if (sender = nil, nil, sender.id), userinfo.id
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6F74696669636174696F6E2077697468206120676976656E206E616D6520616E642073656E64657220616E6420706F73747320697420746F207468652072656365697665722E
+<<<<<<< HEAD
 		Shared Sub PostNotification(notificationName as CFStringRef, sender as appleobject = nil)
 		  declare sub postNotificationName lib FoundationLibName  selector "postNotificationName:object:" (id as ptr, notificationname as CFStringRef, obj as ptr)
 		  postNotificationname DefaultCenter.Id, notificationname, if (sender = nil, nil, sender.id)
+=======
+		 Shared Sub PostNotification(notificationName as CFStringRef, sender as appleobject = nil)
+		  #If TargetMacOS then
+		    declare sub postNotificationName lib FoundationLibName  selector "postNotificationName:object:" (id as ptr, notificationname as CFStringRef, obj as ptr)
+		    postNotificationname DefaultCenter.Id, notificationname, if (sender = nil, nil, sender.id)
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
@@ -84,26 +112,54 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
+<<<<<<< HEAD
 		Shared Sub RemoveObserver(observer as AppleNotificationObject)
 		  removeObserver DefaultCenter.Id, observer.Id
+=======
+		 Shared Sub RemoveObserver(observer as AppleNotificationObject)
+		  #If TargetMacOS then
+		    removeObserver DefaultCenter.Id, observer.Id
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
+<<<<<<< HEAD
 		Shared Sub RemoveObserver(observer as AppleNotificationObject, notificationName as cfstringRef, Sender As AppleObject)
 		  removeObservername DefaultCenter.Id, observer.id, notificationName, if (sender = nil, nil, sender.id)
+=======
+		 Shared Sub RemoveObserver(observer as AppleNotificationObject, notificationName as cfstringRef, Sender As AppleObject)
+		  #If TargetMacOS then
+		    removeObservername DefaultCenter.Id, observer.id, notificationName, if (sender = nil, nil, sender.id)
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
+<<<<<<< HEAD
 		Shared Sub RemoveObserver(observer as AppleObject)
 		  removeObserver DefaultCenter.Id, observer.id
+=======
+		 Shared Sub RemoveObserver(observer as AppleObject)
+		  #If TargetMacOS then
+		    removeObserver DefaultCenter.Id, observer.id
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 43616C6C2074686973206D6574686F6420746F2072656D6F766520616E204F62736572766572202865697468657220616E20694F534C69624E6F74696669636174696F6E4F62736572766572206F722061204F626A656374207468617420616464656420697473656C6620666F7220612073656C6563746F72292066726F6D20746865204E6F74696669636174696F6E2063656E746572E2809973206469737061746368206C6973742E
+<<<<<<< HEAD
 		Shared Sub RemoveObserver(observer as AppleObject, notificationName as cfstringRef, Sender As AppleObject)
 		  removeObservername DefaultCenter.Id, observer.id, notificationName, if (sender = nil, nil, sender.id)
+=======
+		 Shared Sub RemoveObserver(observer as AppleObject, notificationName as cfstringRef, Sender As AppleObject)
+		  #If TargetMacOS then
+		    removeObservername DefaultCenter.Id, observer.id, notificationName, if (sender = nil, nil, sender.id)
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
@@ -144,8 +200,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207368617265642073696E676C65746F6E20696E7374616E63652074686174206973207573656420666F7220617474616368696E6720616E642072656D6F76696E67206E6F74696669636174696F6E206C696E6B732E
 		#tag Getter
 			Get
-			  static mdefaultcenter as AppleNotificationCenter =new AppleNotificationCenter (getdefaultCenter(ClassPtr))
-			  return mdefaultcenter
+			  #If TargetMacOS then
+			    static mdefaultcenter as AppleNotificationCenter =new AppleNotificationCenter (getdefaultCenter(ClassPtr))
+			    return mdefaultcenter
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared DefaultCenter As AppleNotificationCenter

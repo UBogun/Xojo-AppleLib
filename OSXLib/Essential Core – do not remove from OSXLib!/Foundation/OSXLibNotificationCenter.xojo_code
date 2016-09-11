@@ -3,17 +3,20 @@ Protected Class OSXLibNotificationCenter
 Inherits AppleNotificationCenter
 	#tag Event
 		Sub Close()
-		  for each e as xojo.Core.DictionaryEntry in NotificationObjects
-		    dim obj as AppleNotificationObject = e.Key
-		    dim t as text = e.Value
-		    if t.Empty then
-		      RemoveObserver obj
-		    else
-		      RemoveObserver obj, t, nil
-		    end if
-		  next
-		  RaiseEvent Close
-		  NotificationObjects = Nil
+		  #If TargetMacOS then
+		    
+		    for each e as xojo.Core.DictionaryEntry in NotificationObjects
+		      dim obj as AppleNotificationObject = e.Key
+		      dim t as text = e.Value
+		      if t.Empty then
+		        RemoveObserver obj
+		      else
+		        RemoveObserver obj, t, nil
+		      end if
+		    next
+		    RaiseEvent Close
+		    NotificationObjects = Nil
+		  #endif
 		End Sub
 	#tag EndEvent
 
@@ -39,8 +42,10 @@ Inherits AppleNotificationCenter
 
 	#tag Method, Flags = &h0
 		Sub RegisterNotification(NotificationName As text)
-		  dim NotObject as  AppleNotificationObject = AddObserver (NotificationName, nil, nil, new AppleBlock(addressof NotificationHandlerBlock))
-		  NotificationObjects.Value(NotObject) = NotificationName
+		  #If TargetMacOS then
+		    dim NotObject as  AppleNotificationObject = AddObserver (NotificationName, nil, nil, new AppleBlock(addressof NotificationHandlerBlock))
+		    NotificationObjects.Value(NotObject) = NotificationName
+		  #endif
 		End Sub
 	#tag EndMethod
 

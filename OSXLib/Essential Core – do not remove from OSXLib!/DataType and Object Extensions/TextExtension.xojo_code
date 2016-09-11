@@ -2,14 +2,19 @@
 Protected Module TextExtension
 	#tag Method, Flags = &h0
 		Function fromCString(c as cstring) As cfstringref
-		  return text.FromCString (c, StandardTextEncoding)
+		  #If TargetMacOS then
+		    
+		    return text.FromCString (c, StandardTextEncoding)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function fromCString(extends t as text, c as cstring) As cfstringref
-		  return text.FromCString (c, StandardTextEncoding)
-		  #pragma unused t
+		  #If TargetMacOS then
+		    return text.FromCString (c, StandardTextEncoding)
+		    #pragma unused t
+		  #endif
 		End Function
 	#tag EndMethod
 

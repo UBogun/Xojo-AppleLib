@@ -15,9 +15,10 @@ Inherits AppleView
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initWithFrame(alloc(classptr), frame))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -37,7 +38,9 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 412070726F7879206F626A65637420666F722074686520726563656976657220746861742063616E206265207573656420746F20696E69746961746520696D706C69656420616E696D6174696F6E20666F722070726F7065727479206368616E6765732E
 		#tag Getter
 			Get
-			  return AppleTableCellView.MakeFromPtr(getanimator(id))
+			  #If TargetMacOS then
+			    return AppleTableCellView.MakeFromPtr(getanimator(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Animator As AppleTableCellView
@@ -46,13 +49,17 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520617070656172616E6365206F66207468652043656C6C566965772C20696E20616E204E53417070656172616E6365206F626A6563742E0A5468652064656661756C742076616C756520666F7220746869732070726F7065727479206973206E696C2C207768696368206D65616E7320746861742074686520726563656976657220757365732074686520617070656172616E636520697420696E6865726974732066726F6D20746865206E65617265737420616E636573746F722074686174206861732073657420616E20617070656172616E63652E205768656E20796F752073657420617070656172616E636520746F2061206E6F6E2D6E696C2076616C75652C2074686520726563656976657220616E642074686520766965777320697420636F6E7461696E7320757365207468652073706563696669656420617070656172616E63652E0A417661696C61626C652073696E6365204F53582031302E392E
 		#tag Getter
 			Get
-			  return AppleTableCellView.MakeFromPtr(AppKitFramework.getappearance (id))
-			  
+			  #If TargetMacOS then
+			    return AppleTableCellView.MakeFromPtr(AppKitFramework.getappearance (id))
+			    
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setappearance id, value.id
+			  #If TargetMacOS then
+			    AppKitFramework.setappearance id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		Appearance As AppleTableCellView
@@ -61,12 +68,16 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546869732070726F7065727479206973206175746F6D61746963616C6C79207365742062792074686520656E636C6F73696E6720726F77207669657720746F206C657420746869732076696577206B6E6F77207768617420697473206261636B67726F756E64206C6F6F6B73206C696B652E
 		#tag Getter
 			Get
-			  return AppKitFramework.getBackgroundstyle (id)
+			  #If TargetMacOS then
+			    return AppKitFramework.getBackgroundstyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setBackgroundStyle id, value
+			  #If TargetMacOS then
+			    AppKitFramework.setBackgroundStyle id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		BackgroundStyle As AppleCell.NSBackgroundStyle
@@ -85,8 +96,10 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520617070656172616E636520746861742077696C6C2062652075736564207768656E2074686520726563656976657220697320647261776E206F6E73637265656E2C20696E20616E204E53417070656172616E6365206F626A6563742E2028726561642D6F6E6C79290A5468652064656661756C742076616C756520666F7220746869732070726F70657274792069732070726F766964656420627920746865206E65617265737420616E636573746F72206F66207468652072656365697665722074686174206861732073657420616E20617070656172616E63652E0A596F752063616E2075736520746869732070726F706572747920746F20656E73757265207468617420616E206F666673637265656E207669657720736574732074686520617070726F7072696174652063757272656E7420617070656172616E6365207768656E206974206472617773206F6E73637265656E2E
 		#tag Getter
 			Get
-			  return AppleTableCellView.MakeFromPtr(AppKitFramework.geteffectiveappearance (id))
-			  
+			  #If TargetMacOS then
+			    return AppleTableCellView.MakeFromPtr(AppKitFramework.geteffectiveappearance (id))
+			    
+			  #endif
 			End Get
 		#tag EndGetter
 		EffectiveAppearance As AppleTableCellView
@@ -95,13 +108,17 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A656374207468617420726570726573656E7473207468652063656C6C20646174612E
 		#tag Getter
 			Get
-			  return AppleImageView.MakeFromPtr(AppKitFramework.getimageView (id))
-			  
+			  #If TargetMacOS then
+			    return AppleImageView.MakeFromPtr(AppKitFramework.getimageView (id))
+			    
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setimageView id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    AppKitFramework.setimageView id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		ImageView As AppleImageView
@@ -110,13 +127,17 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A656374207468617420726570726573656E7473207468652063656C6C20646174612E
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr(AppKitFramework.getobjectValue (id))
-			  
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr(AppKitFramework.getobjectValue (id))
+			    
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setobjectValue id, if (value = nil, nil, value.GeneralID)
+			  #If TargetMacOS then
+			    AppKitFramework.setobjectValue id, if (value = nil, nil, value.GeneralID)
+			  #endif
 			End Set
 		#tag EndSetter
 		ObjectValue As AppleGeneralObject
@@ -125,7 +146,9 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520726F772073697A65207374796C652E2028726561642D6F6E6C79290A557365204170706C655461626C65566965772E456666656374697665526F7753697A655374796C6520746F206368616E67652E
 		#tag Getter
 			Get
-			  return TableViewAdditionsForAppkit.getrowSizeStyle (id)
+			  #If TargetMacOS then
+			    return TableViewAdditionsForAppkit.getrowSizeStyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		RowSizeStyle As AppleTableView.NSTableViewRowSizeStyle
@@ -134,13 +157,17 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5465787420646973706C61796564206279207468652063656C6C2E
 		#tag Getter
 			Get
-			  return AppleTextField.MakeFromPtr(AppKitFramework.gettextField (id))
-			  
+			  #If TargetMacOS then
+			    return AppleTextField.MakeFromPtr(AppKitFramework.gettextField (id))
+			    
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.settextField id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    AppKitFramework.settextField id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		TextField As AppleTextField

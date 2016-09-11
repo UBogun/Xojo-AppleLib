@@ -19,9 +19,10 @@ Inherits AppleCAAnimation
 		  // Constructor() -- From AppleCAAnimation
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(animationWithKeyPath(classptr, KeyPath))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(animationWithKeyPath(classptr, KeyPath))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -73,12 +74,16 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 4966207468652076616C7565207370656369666965642062792074686520616E696D6174696F6E20697320616464656420746F207468652063757272656E742072656E64657220747265652076616C756520746F2070726F6475636520746865206E65772072656E64657220747265652076616C75652E
 		#tag Getter
 			Get
-			  return getisAdditive (id)
+			  #If TargetMacOS then
+			    return getisAdditive (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setAdditive id, value
+			  #If TargetMacOS then
+			    setAdditive id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Additive As Boolean
@@ -97,12 +102,16 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 4966207468652076616C7565206F66207468652070726F7065727479206973207468652076616C75652061742074686520656E64206F66207468652070726576696F757320726570656174206379636C652C20706C7573207468652076616C7565206F66207468652063757272656E7420726570656174206379636C652E
 		#tag Getter
 			Get
-			  return getisCumulative (id)
+			  #If TargetMacOS then
+			    return getisCumulative (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setCumulative id, value
+			  #If TargetMacOS then
+			    setCumulative id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		Cumulative As Boolean
@@ -111,12 +120,16 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 546865206B657920706174682074686520726563656976657220616E696D617465732E
 		#tag Getter
 			Get
-			  return getKeypath (id)
+			  #If TargetMacOS then
+			    return getKeypath (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setkeypath id, value
+			  #If TargetMacOS then
+			    setkeypath id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		KeyPath As Text
@@ -125,12 +138,16 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206F7074696F6E616C2076616C75652066756E6374696F6E2074686174206973206170706C69656420746F20696E746572706F6C617465642076616C7565732E
 		#tag Getter
 			Get
-			  return AppleCAValueFunction.MakefromPtr(getvalueFunction (id))
+			  #If TargetMacOS then
+			    return AppleCAValueFunction.MakefromPtr(getvalueFunction (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setvalueFunction id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    setvalueFunction id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		ValueFunction As AppleCAValueFunction

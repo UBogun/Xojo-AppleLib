@@ -8,8 +8,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (init(alloc(classptr)))
-		  MHasOwnership = true
+		  #If TargetMacOS then
+		    Super.Constructor (init(alloc(classptr)))
+		    MHasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -20,8 +22,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithDataEncoding(alloc(classptr), textdata.id, encoding))
-		  MHasOwnership = true
+		  #If TargetMacOS then
+		    Super.Constructor (initWithDataEncoding(alloc(classptr), textdata.id, encoding))
+		    MHasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -33,17 +37,27 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithString(alloc(classptr), atext))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor (initWithString(alloc(classptr), atext))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+<<<<<<< HEAD
 		Shared Function DataToCFSTringRef(aData as AppleData, encoding as StringEncodings = stringencodings.utf8) As cfstringref
 		  declare function initWithDataEncoding lib FoundationLibName selector "initWithData:encoding:" (obj_id as ptr, data as ptr, encoding as stringencodings) as CFStringRef
 		  dim result as text = initWithDataEncoding (alloc(ClassPtr), aData.id, encoding)
 		  return result
+=======
+		 Shared Function DataToCFSTringRef(aData as AppleData, encoding as StringEncodings = stringencodings.utf8) As cfstringref
+		  #If TargetMacOS then
+		    declare function initWithDataEncoding lib FoundationLibName selector "initWithData:encoding:" (obj_id as ptr, data as ptr, encoding as stringencodings) as CFStringRef
+		    dim result as text = initWithDataEncoding (alloc(ClassPtr), aData.id, encoding)
+		    return result
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
@@ -65,7 +79,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function ToAppleData(Encoding as StringEncodings) As AppleData
-		  return AppleData.MakefromPtr (dataUsingEncoding(id, Encoding))
+		  #If TargetMacOS then
+		    return AppleData.MakefromPtr (dataUsingEncoding(id, Encoding))
+		  #endif
 		End Function
 	#tag EndMethod
 

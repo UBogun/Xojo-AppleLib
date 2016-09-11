@@ -3,7 +3,9 @@ Protected Class AppleTableView
 Inherits AppleControl
 	#tag Method, Flags = &h0, Description = 41646473207468652073706563696669656420636F6C756D6E20617320746865206C61737420636F6C756D6E206F6620746865207461626C6520766965772E
 		Sub AddTableColumn(column as AppleTableColumn)
-		  addTableColumn id, column.id
+		  #If TargetMacOS then
+		    addTableColumn id, column.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -19,7 +21,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 426567696E7320612067726F7570206F66207570646174657320666F7220746865207461626C6520766965772E
 		Sub BeginUpdates()
-		  beginUpdates id
+		  #If TargetMacOS then
+		    beginUpdates id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -29,7 +33,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C756520696E6469636174696E67207768657468657220746865207461626C65207669657720616C6C6F7773206472616767696E672074686520726F7773206174207769746820746865206472616720696E69746961746564206174207468652073706563696669656420706F696E742E
 		Function CanDragRowsWithIndexes(Indexes as appleindexset, Point as FoundationFrameWork.NSPoint) As Boolean
-		  return canDragRowsWithIndexes(id, indexes.id, point)
+		  #If TargetMacOS then
+		    return canDragRowsWithIndexes(id, indexes.id, point)
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -39,31 +45,41 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320612072656374616E676C65206C6F636174696E67207468652063656C6C2074686174206C6965732061742074686520696E74657273656374696F6E206F66207468652073706563696669656420636F6C756D6E20616E6420726F772E
 		Function CellRect(column as integer, row as Integer) As FoundationFrameWork.NSRect
-		  return getframeOfCellAtColumn (id, column, row)
+		  #If TargetMacOS then
+		    return getframeOfCellAtColumn (id, column, row)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E646578206F662074686520666972737420636F6C756D6E20696E20746865207461626C6520766965772077686F7365206964656E74696669657220697320657175616C20746F2074686520737065636966696564206964656E7469666965722E
 		Function Column(Identifier As CFStringRef) As Integer
-		  return getcolumnWithIdentifier(id, identifier)
+		  #If TargetMacOS then
+		    return getcolumnWithIdentifier(id, identifier)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E646578206F662074686520636F6C756D6E2077686F736520686561646572206C69657320756E6465722061506F696E7420696E207468652072656365697665722C206F7220E2809331206966206E6F207375636820636F6C756D6E20697320666F756E642E
 		Function ColumnAtPoint(Point as FoundationFrameWork.NSPoint) As Integer
-		  return TableViewAdditionsForAppkit.getcolumnAtPoint (id, point)
+		  #If TargetMacOS then
+		    return TableViewAdditionsForAppkit.getcolumnAtPoint (id, point)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520636F6C756D6E20696E64657820666F72207468652073706563696669656420766965772E
 		Function ColumnForView(View as AppleView) As Integer
-		  return getcolumnForView (id, view.id)
+		  #If TargetMacOS then
+		    return getcolumnForView (id, view.id)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E6465786573206F6620746865207461626C652076696577E280997320636F6C756D6E73207468617420696E7465727365637420746865207370656369666965642072656374616E676C652E
 		Function ColumnIndexesInRect(Rect as FoundationFrameWork.NSRect) As AppleIndexSet
-		  return appleindexset.MakeFRomPtr(getcolumnIndexesInRect (id, rect))
+		  #If TargetMacOS then
+		    return appleindexset.MakeFRomPtr(getcolumnIndexesInRect (id, rect))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -83,9 +99,10 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(makeViewWithIdentifier(alloc(classptr),Identifer,if (owner = nil, nil, owner.id)))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(makeViewWithIdentifier(alloc(classptr),Identifer,if (owner = nil, nil, owner.id)))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -99,15 +116,18 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithframe(alloc(classptr),Rect))
-		  MHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithframe(alloc(classptr),Rect))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53656C6563747320616C6C20726F7773206F7220616C6C20636F6C756D6E732C206163636F7264696E6720746F207768657468657220726F7773206F7220636F6C756D6E732077657265206D6F737420726563656E746C792073656C65637465642E
 		Sub DeselectAll()
-		  deselectAll id
+		  #If TargetMacOS then
+		    deselectAll id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -117,7 +137,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 446573656C656374732074686520636F6C756D6E206174207468652073706563696669656420696E646578206966206974E28099732073656C65637465642E
 		Sub DeselectColumn(Column as Integer)
-		  deselectColumn id, column
+		  #If TargetMacOS then
+		    deselectColumn id, column
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -127,7 +149,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 446573656C656374732074686520726F77206174207468652073706563696669656420696E646578206966206974E28099732073656C65637465642E
 		Sub DeselectRow(Row as Integer)
-		  deselectRow id, row
+		  #If TargetMacOS then
+		    deselectRow id, row
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -137,7 +161,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 436F6D707574657320616E642072657475726E7320616E20696D61676520746F2075736520666F72206472616767696E672E
 		Function DragImage(DragRows as AppleIndexSet, TableColumns as AppleArray, anEvent as AppleNSEvent, Offset as FoundationFrameWork.NSPoint) As AppleImage
-		  return appleimage.MakeFromPtr(dragImageForRowsWithIndexes(id, DragRows.id, TableColumns.id, if (anevent = nil, nil, anEvent.id), offset))
+		  #If TargetMacOS then
+		    return appleimage.MakeFromPtr(dragImageForRowsWithIndexes(id, DragRows.id, TableColumns.id, if (anevent = nil, nil, anEvent.id), offset))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -147,7 +173,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 4564697473207468652063656C6C206174207468652073706563696669656420636F6C756D6E20616E6420726F77207573696E672074686520737065636966696564206576656E7420616E642073656C656374696F6E206265686176696F722E
 		Sub EditColumn(column as integer, row as integer, anEvent as appleNSEvent = nil, selectContents as Boolean = False)
-		  editColumn id, column, row, if (anevent = nil, nil, anevent.id), SelectContents
+		  #If TargetMacOS then
+		    editColumn id, column, row, if (anevent = nil, nil, anevent.id), SelectContents
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -157,7 +185,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 456E647320612067726F7570206F66207570646174657320666F7220746865207461626C6520766965772E
 		Sub EndUpdates()
-		  endUpdates id
+		  #If TargetMacOS then
+		    endUpdates id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -167,7 +197,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 416C6C6F77732074686520656E756D65726174696F6E206F6620616C6C20746865207461626C6520726F7773207468617420617265206B6E6F776E20746F20746865207461626C6520766965772E0A536565207468652074656D706C617465206D6574686F6420666F722074686520706172616D6574657273206F662074686520626C6F636B2E
 		Sub EnumerateAvailableRowViews(Block as AppleBlock)
-		  enumerateAvailableRowViewsUsingBlock id, block.Handle
+		  #If TargetMacOS then
+		    enumerateAvailableRowViewsUsingBlock id, block.Handle
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -393,7 +425,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 48696465732074686520737065636966696564207461626C6520726F77732E
 		Sub HideRows(Indexes as AppleIndexSet, Animation as AppleTableViewAnimationOptions)
-		  hideRowsAtIndexes id, Indexes.id, Animation.Id
+		  #If TargetMacOS then
+		    hideRowsAtIndexes id, Indexes.id, Animation.Id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -403,19 +437,25 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E64696361746F7220696D616765206F662074686520737065636966696564207461626C6520636F6C756D6E2E
 		Function IndicatorImage(Column as AppleTableColumn) As AppleImage
-		  return appleimage.MakeFromPtr(getindicatorImageInTableColumn (id, column.id))
+		  #If TargetMacOS then
+		    return appleimage.MakeFromPtr(getindicatorImageInTableColumn (id, column.id))
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 536574732074686520696E64696361746F7220696D61676520666F722074686520737065636966696564207461626C6520636F6C756D6E2E
 		Sub IndicatorImage(Column as AppleTableColumn, assigns value as AppleImage)
-		  setindicatorImageInTableColumn (id, column.id, if (value = nil,nil, value.id))
+		  #If TargetMacOS then
+		    setindicatorImageInTableColumn (id, column.id, if (value = nil,nil, value.id))
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E73657274732074686520726F7773207573696E67207468652073706563696669656420616E696D6174696F6E2E
 		Sub InsertRows(Indexes as AppleIndexSet, Animation as AppleTableViewAnimationOptions)
-		  insertRowsAtIndexes id, Indexes.id, Animation.Id
+		  #If TargetMacOS then
+		    insertRowsAtIndexes id, Indexes.id, Animation.Id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -425,13 +465,17 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C7565207468617420696E6469636174657320776865746865722074686520636F6C756D6E206174207468652073706563696669656420696E6465782069732073656C65637465642E
 		Function IsColumnSelected(Column as Integer) As Boolean
-		  return getisColumnSelected (id, column)
+		  #If TargetMacOS then
+		    return getisColumnSelected (id, column)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C7565207468617420696E6469636174657320776865746865722074686520726F77206174207468652073706563696669656420696E6465782069732073656C65637465642E
 		Function IsRowSelected(Row as Integer) As Boolean
-		  return getisRowSelected (id, row)
+		  #If TargetMacOS then
+		    return getisRowSelected (id, row)
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -447,7 +491,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 4D6F7665732074686520636F6C756D6E20616E642068656164696E67206174207468652073706563696669656420696E64657820746F20746865206E65772073706563696669656420696E6465782E
 		Sub MoveColumn(OldIndex as Integer, NewIndex as Integer)
-		  moveColumn id, OldIndex, NewIndex
+		  #If TargetMacOS then
+		    moveColumn id, OldIndex, NewIndex
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -457,7 +503,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 4D6F766573207468652073706563696669656420726F7720746F20746865206E657720726F77206C6F636174696F6E207573696E6720616E696D6174696F6E2E
 		Sub MoveRow(OldIndex as Integer, NewIndex as Integer)
-		  moveRowAtIndex id, OldIndex, NewIndex
+		  #If TargetMacOS then
+		    moveRowAtIndex id, OldIndex, NewIndex
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -467,7 +515,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 496E666F726D7320746865207461626C65207669657720746861742074686520726F77732073706563696669656420696E20696E6465785365742068617665206368616E676564206865696768742E
 		Sub NoteHeightOfRowsChanged(indexset as AppleIndexSet)
-		  noteHeightOfRowsWithIndexesChanged id, indexset.id
+		  #If TargetMacOS then
+		    noteHeightOfRowsWithIndexesChanged id, indexset.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -477,7 +527,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 496E666F726D7320746865207461626C652076696577207468617420746865206E756D626572206F66207265636F72647320696E20697473206461746120736F7572636520686173206368616E6765642E
 		Sub NoteNumberOfRowsChanged()
-		  noteNumberOfRowsChanged id
+		  #If TargetMacOS then
+		    noteNumberOfRowsChanged id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -487,25 +539,33 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652072656374616E676C6520636F6E7461696E696E672074686520636F6C756D6E206174207468652073706563696669656420696E6465782E
 		Function RectOfColumn(column as Integer) As FoundationFrameWork.NSRect
-		  return getrectOfColumn (id, column)
+		  #If TargetMacOS then
+		    return getrectOfColumn (id, column)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652072656374616E676C6520636F6E7461696E696E672074686520726F77206174207468652073706563696669656420696E6465782E
 		Function RectOfRow(row as Integer) As FoundationFrameWork.NSRect
-		  return getrectOfRow (id, row)
+		  #If TargetMacOS then
+		    return getrectOfRow (id, row)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D61726B7320746865207461626C652076696577206173206E656564696E67207265646973706C61792C20736F2069742077696C6C2072656C6F616420746865206461746120666F722076697369626C652063656C6C7320616E64206472617720746865206E65772076616C7565732E
 		Sub ReloadData()
-		  reloadData id
+		  #If TargetMacOS then
+		    reloadData id
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52656C6F61647320746865206461746120666F72206F6E6C79207468652073706563696669656420726F777320616E6420636F6C756D6E732E
 		Sub ReloadData(RowIndexes as AppleIndexSet, ColumnIndexes As AppleIndexSet)
-		  reloadDataForRowIndexes id, RowIndexes.id, ColumnIndexes.id
+		  #If TargetMacOS then
+		    reloadDataForRowIndexes id, RowIndexes.id, ColumnIndexes.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -519,7 +579,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52656D6F7665732074686520726F7773207573696E67207468652073706563696669656420616E696D6174696F6E2E
 		Sub RemoveRows(Indexes as AppleIndexSet, Animation as AppleTableViewAnimationOptions)
-		  removeRowsAtIndexes id, Indexes.id, Animation.Id
+		  #If TargetMacOS then
+		    removeRowsAtIndexes id, Indexes.id, Animation.Id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -529,7 +591,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52656D6F766573207468652073706563696669656420636F6C756D6E2066726F6D20746865207461626C6520766965772E
 		Sub RemoveTableColumn(column as AppleTableColumn)
-		  removeTableColumn id, column.id
+		  #If TargetMacOS then
+		    removeTableColumn id, column.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -539,25 +603,33 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0
 		Function RowAtPoint(Point as FoundationFrameWork.NSPoint) As Integer
-		  return getrowAtPoint (id, point)
+		  #If TargetMacOS then
+		    return getrowAtPoint (id, point)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E646578206F662074686520726F7720666F72207468652073706563696669656420766965772E
 		Function RowForView(View as AppleView) As Integer
-		  return getrowForView (id, view.id)
+		  #If TargetMacOS then
+		    return getrowForView (id, view.id)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320612072616E6765206F6620696E646578657320666F722074686520726F77732074686174206C69652077686F6C6C79206F72207061727469616C6C792077697468696E2074686520766572746963616C20626F756E646172696573206F6620746865207370656369666965642072656374616E676C652E
 		Function RowsInRect(Rect as FoundationFrameWork.NSRect) As FoundationFrameWork.NSRange
-		  return getrowsInRect (id, rect)
+		  #If TargetMacOS then
+		    return getrowsInRect (id, rect)
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120726F772076696577206174207468652073706563696669656420696E6465782C206372656174696E67206F6E65206966206E65636573736172792E
 		Function RowView(row as integer, MakeIfNecessary As Boolean) As AppleTableRowView
-		  return AppleTableRowView.MakeFromPtr(rowViewAtRow( id, row, MakeIfNecessary))
+		  #If TargetMacOS then
+		    return AppleTableRowView.MakeFromPtr(rowViewAtRow( id, row, MakeIfNecessary))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -575,19 +647,25 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 5363726F6C6C7320746865207669657720736F207468652073706563696669656420636F6C756D6E2069732076697369626C652E
 		Sub ScrollToColumn(column as Integer)
-		  scrollColumnToVisible id, column
+		  #If TargetMacOS then
+		    scrollColumnToVisible id, column
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5363726F6C6C7320746865207669657720736F207468652073706563696669656420726F772069732076697369626C652E
 		Sub ScrollToRow(row as Integer)
-		  scrollRowToVisible id, row
+		  #If TargetMacOS then
+		    scrollRowToVisible id, row
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53656C6563747320616C6C20726F7773206F7220616C6C20636F6C756D6E732C206163636F7264696E6720746F207768657468657220726F7773206F7220636F6C756D6E732077657265206D6F737420726563656E746C792073656C65637465642E
 		Sub SelectAll()
-		  selectAll id
+		  #If TargetMacOS then
+		    selectAll id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -597,7 +675,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 536574732074686520636F6C756D6E2073656C656374696F6E207573696E6720696E646578657320706F737369626C7920657874656E64696E67207468652073656C656374696F6E2E
 		Sub SelectColumnIndexes(Indexset as AppleIndexSet, extendSelection As Boolean = False)
-		  SelectColumnIndexes id, indexset.id, extendSelection
+		  #If TargetMacOS then
+		    SelectColumnIndexes id, indexset.id, extendSelection
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -607,7 +687,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 536574732074686520726F772073656C656374696F6E207573696E6720696E646578657320657874656E64696E67207468652073656C656374696F6E206966207370656369666965642E
 		Sub SelectRowIndexes(Indexset as AppleIndexSet, extendSelection As Boolean = False)
-		  selectRowIndexes id, indexset.id, extendSelection
+		  #If TargetMacOS then
+		    selectRowIndexes id, indexset.id, extendSelection
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -713,7 +795,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 526573697A657320746865206C61737420636F6C756D6E20736F20746865207461626C65207669657720666974732065786163746C792077697468696E2069747320656E636C6F73696E6720636C697020766965772E
 		Sub SizeLastColumnToFit()
-		  sizeLastColumnToFit id
+		  #If TargetMacOS then
+		    sizeLastColumnToFit id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -723,19 +807,25 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520666972737420636F6C756D6E20696E20746865207461626C6520766965772077686F7365206964656E74696669657220697320657175616C20746F2074686520737065636966696564206964656E7469666965722E
 		Function TableColumn(Identifier As CFStringRef) As AppleTableColumn
-		  return AppleTableColumn.MakefromPtr(gettableColumnWithIdentifier(id, identifier))
+		  #If TargetMacOS then
+		    return AppleTableColumn.MakefromPtr(gettableColumnWithIdentifier(id, identifier))
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 50726F7065726C792073697A657320746865207461626C65207669657720616E642069747320686561646572207669657720616E64206D61726B73206974206173206E656564696E6720646973706C61792E
 		Sub Tile()
-		  AppKitFramework.tile id
+		  #If TargetMacOS then
+		    AppKitFramework.tile id
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 556E68696465732074686520737065636966696564207461626C6520726F77732E
 		Sub UnhideRows(Indexes as AppleIndexSet, Animation as AppleTableViewAnimationOptions)
-		  unhideRowsAtIndexes id, Indexes.id, Animation.Id
+		  #If TargetMacOS then
+		    unhideRowsAtIndexes id, Indexes.id, Animation.Id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -745,7 +835,9 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320612076696577206174207468652073706563696669656420726F7720616E6420636F6C756D6E20696E64657865732C206372656174696E67206F6E65206966206E65636573736172792E
 		Function ViewAtColumn(column as integer, row as integer, MakeIfNecessary As Boolean) As AppleView
-		  return AppleView.MakeFromPtr(viewAtColumn( id, column, row, MakeIfNecessary))
+		  #If TargetMacOS then
+		    return AppleView.MakeFromPtr(viewAtColumn( id, column, row, MakeIfNecessary))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -773,12 +865,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C65207669657720616C6C6F777320746865207573657220746F207265617272616E676520636F6C756D6E73206279206472616767696E6720746865697220686561646572732E
 		#tag Getter
 			Get
-			  return getallowsColumnReordering (id)
+			  #If TargetMacOS then
+			    return getallowsColumnReordering (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setallowsColumnReordering id,value
+			  #If TargetMacOS then
+			    setallowsColumnReordering id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AllowsColumnReordering As Boolean
@@ -787,12 +883,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C65207669657720616C6C6F777320746865207573657220746F20726573697A6520636F6C756D6E73206279206472616767696E67206265747765656E20746865697220686561646572732E
 		#tag Getter
 			Get
-			  return getallowsColumnResizing (id)
+			  #If TargetMacOS then
+			    return getallowsColumnResizing (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setallowsColumnResizing id,value
+			  #If TargetMacOS then
+			    setallowsColumnResizing id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AllowsColumnResizing As Boolean
@@ -801,12 +901,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C65207669657720616C6C6F777320746865207573657220746F207265617272616E676520636F6C756D6E73206279206472616767696E6720746865697220686561646572732E
 		#tag Getter
 			Get
-			  return getallowsColumnSelection (id)
+			  #If TargetMacOS then
+			    return getallowsColumnSelection (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setallowsColumnSelection id,value
+			  #If TargetMacOS then
+			    setallowsColumnSelection id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AllowsColumnSelection As Boolean
@@ -815,12 +919,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C65207669657720616C6C6F777320746865207573657220746F2073656C656374207A65726F20636F6C756D6E73206F7220726F77732E
 		#tag Getter
 			Get
-			  return getallowsEmptySelection (id)
+			  #If TargetMacOS then
+			    return getallowsEmptySelection (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setallowsEmptySelection id,value
+			  #If TargetMacOS then
+			    setallowsEmptySelection id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AllowsEmptySelection As Boolean
@@ -829,12 +937,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C65207669657720616C6C6F777320746865207573657220746F2073656C656374206D6F7265207468616E206F6E6520636F6C756D6E206F7220726F7720617420612074696D652E
 		#tag Getter
 			Get
-			  return getallowsMultipleSelection (id)
+			  #If TargetMacOS then
+			    return getallowsMultipleSelection (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setallowsMultipleSelection id,value
+			  #If TargetMacOS then
+			    setallowsMultipleSelection id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AllowsMultipleSelection As Boolean
@@ -843,12 +955,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C65207669657720616C6C6F777320746865207573657220746F2074797065206368617261637465727320746F2073656C65637420726F77732E
 		#tag Getter
 			Get
-			  return getallowsTypeSelect (id)
+			  #If TargetMacOS then
+			    return getallowsTypeSelect (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setallowsTypeSelect id,value
+			  #If TargetMacOS then
+			    setallowsTypeSelect id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AllowsTypeSelect As Boolean
@@ -857,12 +973,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D6520756E646572207768696368207461626C6520696E666F726D6174696F6E206973206175746F6D61746963616C6C792073617665642E0A4576656E207768656E2061207461626C6520766965772068617320616E206175746F73617665206E616D652C206974206F6E6C7920736176657320746865207461626C6520696E666F726D6174696F6E207768656E20746865206175746F736176655461626C65436F6C756D6E732070726F706572747920697320547275652E
 		#tag Getter
 			Get
-			  return getautosaveName (id)
+			  #If TargetMacOS then
+			    return getautosaveName (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setautosaveName id,value
+			  #If TargetMacOS then
+			    setautosaveName id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AutosaveName As Text
@@ -871,12 +991,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865206F7264657220616E64207769647468206F6620746865207461626C652076696577E280997320636F6C756D6E7320617265206175746F6D61746963616C6C792073617665642E
 		#tag Getter
 			Get
-			  return getautosaveTableColumns (id)
+			  #If TargetMacOS then
+			    return getautosaveTableColumns (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setautosaveTableColumns id,value
+			  #If TargetMacOS then
+			    setautosaveTableColumns id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		AutosaveTableColumns As Boolean
@@ -885,12 +1009,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72207573656420746F206472617720746865206261636B67726F756E64206F6620746865207461626C652E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			  #If TargetMacOS then
+			    return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor
@@ -909,7 +1037,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520636F6C756D6E20746865207573657220636C69636B65642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getclickedColumn (id)
+			  #If TargetMacOS then
+			    return getclickedColumn (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		ClickedColumn As Integer
@@ -918,7 +1048,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520726F7720746865207573657220636C69636B65642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getclickedRow (id)
+			  #If TargetMacOS then
+			    return getclickedRow (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		ClickedRow As Integer
@@ -927,12 +1059,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C652076696577E280997320636F6C756D6E206175746F726573697A696E67207374796C652E
 		#tag Getter
 			Get
-			  return getcolumnAutoresizingStyle (id)
+			  #If TargetMacOS then
+			    return getcolumnAutoresizingStyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcolumnAutoresizingStyle id, value
+			  #If TargetMacOS then
+			    setcolumnAutoresizingStyle id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		ColumnAutoresizingStyle As NSTableViewColumnAutoresizingStyle
@@ -941,12 +1077,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577207573656420746F206472617720746865206172656120746F20746865207269676874206F662074686520636F6C756D6E206865616465727320616E642061626F76652074686520766572746963616C207363726F6C6C6572206F662074686520656E636C6F73696E67207363726F6C6C20766965772E
 		#tag Getter
 			Get
-			  return appleview.MakefromPtr(getcornerView(id))
+			  #If TargetMacOS then
+			    return appleview.MakefromPtr(getcornerView(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcornerView id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    setcornerView id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		CornerView As AppleView
@@ -955,13 +1095,17 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleTableViewDataSource.MakefromPtr(getdataSource(id))
+			  #If TargetMacOS then
+			    return AppleTableViewDataSource.MakefromPtr(getdataSource(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setdataSource id, if (value = nil, nil, value.id)
-			  
+			  #If TargetMacOS then
+			    setdataSource id, if (value = nil, nil, value.id)
+			    
+			  #endif
 			End Set
 		#tag EndSetter
 		DataSource As AppleTableViewDataSource
@@ -970,12 +1114,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 412073656C6563746F7220746861742069732073656E7420746F2074686520746172676574207768656E20746865207573657220646F75626C652D636C69636B7320612063656C6C206F7220636F6C756D6E206865616465722E
 		#tag Getter
 			Get
-			  return getdoubleAction(id)
+			  #If TargetMacOS then
+			    return getdoubleAction(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setdoubleAction id, value
+			  #If TargetMacOS then
+			    setdoubleAction id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		DoubleAction As Ptr
@@ -984,12 +1132,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520666565646261636B207374796C6520646973706C61796564207768656E207468652075736572206472616773206F76657220746865207461626C6520766965772E
 		#tag Getter
 			Get
-			  return TableViewAdditionsForAppkit.getDraggingDestinationFeedbackStyle (id)
+			  #If TargetMacOS then
+			    return TableViewAdditionsForAppkit.getDraggingDestinationFeedbackStyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  TableViewAdditionsForAppkit.setDraggingDestinationFeedbackStyle id,value
+			  #If TargetMacOS then
+			    TableViewAdditionsForAppkit.setDraggingDestinationFeedbackStyle id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		DraggingDestinationFeedbackStyle As NSTableViewDraggingDestinationFeedbackStyle
@@ -998,7 +1150,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520636F6C756D6E206265696E67206564697465642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return geteditedColumn (id)
+			  #If TargetMacOS then
+			    return geteditedColumn (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		EditedColumn As Integer
@@ -1007,7 +1161,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520726F77206265696E67206564697465642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return geteditedRow (id)
+			  #If TargetMacOS then
+			    return geteditedRow (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		EditedRow As Integer
@@ -1016,7 +1172,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652065666665637469766520726F772073697A65207374796C6520666F7220746865207461626C652E2028726561642D6F6E6C79292E2053657420696E2073797374656D2070726566732E
 		#tag Getter
 			Get
-			  return geteffectiveRowSizeStyle (id)
+			  #If TargetMacOS then
+			    return geteffectiveRowSizeStyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		EffectiveRowSizeStyle As NSTableViewRowSizeStyle
@@ -1025,12 +1183,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C6520766965772064726177732067726F7570656420726F777320617320696620746865792061726520666C6F6174696E672E
 		#tag Getter
 			Get
-			  return getfloatsGroupRows (id)
+			  #If TargetMacOS then
+			    return getfloatsGroupRows (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setfloatsGroupRows id,value
+			  #If TargetMacOS then
+			    setfloatsGroupRows id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		FloatsGroupRows As Boolean
@@ -1039,12 +1201,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72207573656420746F20647261772067726964206C696E65732E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr(getgridColor(id))
+			  #If TargetMacOS then
+			    return applecolor.MakefromPtr(getgridColor(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setgridColor id, if (value = nil, nil, value.id)
+			  #If TargetMacOS then
+			    setgridColor id, if (value = nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		GridColor As AppleColor
@@ -1053,12 +1219,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652067726964206C696E657320647261776E20627920746865207461626C6520766965772E
 		#tag Getter
 			Get
-			  return new AppleTableViewGridStyleMask(getgridStyleMask (id))
+			  #If TargetMacOS then
+			    return new AppleTableViewGridStyleMask(getgridStyleMask (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setgridStyleMask id, value.id
+			  #If TargetMacOS then
+			    setgridStyleMask id, value.id
+			  #endif
 			End Set
 		#tag EndSetter
 		GridStyleMask As AppleTableViewGridStyleMask
@@ -1067,13 +1237,17 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleTableHeaderView.MakefromPtr(getheaderView(id))
+			  #If TargetMacOS then
+			    return AppleTableHeaderView.MakefromPtr(getheaderView(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setheaderView id, if (value = nil, nil, value.id)
-			  
+			  #If TargetMacOS then
+			    setheaderView id, if (value = nil, nil, value.id)
+			    
+			  #endif
 			End Set
 		#tag EndSetter
 		HeaderView As AppleTableHeaderView
@@ -1082,7 +1256,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E6465786573206F6620616C6C2068696464656E207461626C6520726F77732E
 		#tag Getter
 			Get
-			  return appleindexset.MakeFRomPtr(gethiddenRowIndexes (id))
+			  #If TargetMacOS then
+			    return appleindexset.MakeFRomPtr(gethiddenRowIndexes (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		HiddenRowIndexes As Appleindexset
@@ -1091,12 +1267,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C756D6E20686967686C69676874656420696E20746865207461626C652E
 		#tag Getter
 			Get
-			  return AppleTableColumn.MakefromPtr(gethighlightedTableColumn (id))
+			  #If TargetMacOS then
+			    return AppleTableColumn.MakefromPtr(gethighlightedTableColumn (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  sethighlightedTableColumn id, if (value =nil, nil, value.id)
+			  #If TargetMacOS then
+			    sethighlightedTableColumn id, if (value =nil, nil, value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		HighlightedTableColumn As AppleTableColumn
@@ -1105,12 +1285,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520686F72697A6F6E74616C20616E6420766572746963616C2073706163696E67206265747765656E2063656C6C732E
 		#tag Getter
 			Get
-			  return getintercellSpacing (id)
+			  #If TargetMacOS then
+			    return getintercellSpacing (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setintercellSpacing id,value
+			  #If TargetMacOS then
+			    setintercellSpacing id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		IntercellSpacing As FoundationFrameWork.NSSize
@@ -1159,7 +1343,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F6620636F6C756D6E7320696E20746865207461626C652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return TableViewAdditionsForAppkit.getnumberOfColumns (id)
+			  #If TargetMacOS then
+			    return TableViewAdditionsForAppkit.getnumberOfColumns (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		NumberOfColumns As Integer
@@ -1168,7 +1354,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F6620726F777320696E20746865207461626C652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getnumberOfRows (id)
+			  #If TargetMacOS then
+			    return getnumberOfRows (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		NumberOfRows As Integer
@@ -1177,7 +1365,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F662073656C656374656420636F6C756D6E732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getnumberOfSelectedColumns (id)
+			  #If TargetMacOS then
+			    return getnumberOfSelectedColumns (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		NumberOfSelectedColumns As Integer
@@ -1186,7 +1376,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F662073656C656374656420726F77732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getnumberOfSelectedRows (id)
+			  #If TargetMacOS then
+			    return getnumberOfSelectedRows (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		NumberOfSelectedRows As Integer
@@ -1195,12 +1387,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722061207461626C6520726F77E280997320616374696F6E73206172652076697369626C652E20746865207461626C65207669657720616C6C6F777320746865207573657220746F2073656C656374206D6F7265207468616E206F6E6520636F6C756D6E206F7220726F7720617420612074696D652E
 		#tag Getter
 			Get
-			  return getrowActionsVisible (id)
+			  #If TargetMacOS then
+			    return getrowActionsVisible (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setrowActionsVisible id,value
+			  #If TargetMacOS then
+			    setrowActionsVisible id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		RowActionsVisible As Boolean
@@ -1209,12 +1405,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520686569676874206F66206561636820726F7720696E20746865207461626C652E2044656661756C742031362E302E
 		#tag Getter
 			Get
-			  return getrowHeight (id)
+			  #If TargetMacOS then
+			    return getrowHeight (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setrowHeight id,value
+			  #If TargetMacOS then
+			    setrowHeight id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		RowHeight As Double
@@ -1223,12 +1423,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652065666665637469766520726F772073697A65207374796C6520666F7220746865207461626C652E2028726561642D6F6E6C79292E2053657420696E2073797374656D2070726566732E
 		#tag Getter
 			Get
-			  return TableViewAdditionsForAppkit.getrowSizeStyle (id)
+			  #If TargetMacOS then
+			    return TableViewAdditionsForAppkit.getrowSizeStyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  TableViewAdditionsForAppkit.setrowSizeStyle id, value
+			  #If TargetMacOS then
+			    TableViewAdditionsForAppkit.setrowSizeStyle id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		RowSizeStyle As NSTableViewRowSizeStyle
@@ -1237,7 +1441,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F6620746865206C6173742073656C656374656420636F6C756D6E20286F7220746865206C61737420636F6C756D6E20616464656420746F207468652073656C656374696F6E292E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getselectedColumn (id)
+			  #If TargetMacOS then
+			    return getselectedColumn (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		SelectedColumn As Integer
@@ -1246,7 +1452,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 416E20696E6465782073657420636F6E7461696E696E672074686520696E6465786573206F66207468652073656C656374656420636F6C756D6E732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return appleindexset.MakeFRomPtr(getselectedColumnIndexes (id))
+			  #If TargetMacOS then
+			    return appleindexset.MakeFRomPtr(getselectedColumnIndexes (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		SelectedColumnIndexes As Appleindexset
@@ -1255,7 +1463,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520726F7720746865207573657220636C69636B65642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getselectedRow (id)
+			  #If TargetMacOS then
+			    return getselectedRow (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		SelectedRow As Integer
@@ -1264,7 +1474,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 416E20696E6465782073657420636F6E7461696E696E672074686520696E6465786573206F66207468652073656C656374656420726F77732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return appleindexset.MakeFRomPtr(getselectedRowIndexes (id))
+			  #If TargetMacOS then
+			    return appleindexset.MakeFRomPtr(getselectedRowIndexes (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		SelectedRowIndexes As Appleindexset
@@ -1273,12 +1485,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073656C656374696F6E20686967686C69676874207374796C65207573656420627920746865207461626C65207669657720746F20696E64696361746520726F7720616E6420636F6C756D6E2073656C656374696F6E2E
 		#tag Getter
 			Get
-			  return TableViewAdditionsForAppkit.getselectionHighlightStyle (id)
+			  #If TargetMacOS then
+			    return TableViewAdditionsForAppkit.getselectionHighlightStyle (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  TableViewAdditionsForAppkit.setselectionHighlightStyle id,value
+			  #If TargetMacOS then
+			    TableViewAdditionsForAppkit.setselectionHighlightStyle id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		SelectionHighlightStyle As NSTableViewSelectionHighlightStyle
@@ -1287,7 +1503,9 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 416E20617272617920636F6E7461696E696E67207468652063757272656E74207461626C6520636F6C756D6E206F626A656374732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return applearray.MakefromPtr(gettableColumns(id))
+			  #If TargetMacOS then
+			    return applearray.MakefromPtr(gettableColumns(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		TableColumns As AppleArray
@@ -1296,12 +1514,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C652076696577E28099732064656C65676174652E
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #If TargetMacOS then
+			    AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #endif
 			End Set
 		#tag EndSetter
 		TableViewDelegate As AppleObject
@@ -1310,12 +1532,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C652076696577207573657320616C7465726E6174696E6720726F7720636F6C6F727320666F7220697473206261636B67726F756E642E
 		#tag Getter
 			Get
-			  return getusesAlternatingRowBackgroundColors (id)
+			  #If TargetMacOS then
+			    return getusesAlternatingRowBackgroundColors (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setusesAlternatingRowBackgroundColors id,value
+			  #If TargetMacOS then
+			    setusesAlternatingRowBackgroundColors id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		UsesAlternatingRowBackgroundColors As Boolean
@@ -1324,12 +1550,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207461626C6520757365732073746174696320646174612E
 		#tag Getter
 			Get
-			  return getusesStaticContents (id)
+			  #If TargetMacOS then
+			    return getusesStaticContents (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setusesStaticContents id,value
+			  #If TargetMacOS then
+			    setusesStaticContents id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		UsesStaticContents As Boolean
@@ -1338,12 +1568,16 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220766572746963616C206D6F74696F6E206973207472656174656420617320612064726167206F722073656C656374696F6E206368616E67652E
 		#tag Getter
 			Get
-			  return getverticalMotionCanBeginDrag (id)
+			  #If TargetMacOS then
+			    return getverticalMotionCanBeginDrag (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setverticalMotionCanBeginDrag id,value
+			  #If TargetMacOS then
+			    setverticalMotionCanBeginDrag id,value
+			  #endif
 			End Set
 		#tag EndSetter
 		VerticalMotionCanBeginDrag As Boolean

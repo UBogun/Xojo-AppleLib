@@ -123,7 +123,9 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return CFBundleGetDevelopmentRegion (CFTypeRef)
+			  #If TargetMacOS then
+			    return CFBundleGetDevelopmentRegion (CFTypeRef)
+			  #endif
 			End Get
 		#tag EndGetter
 		DevelopmentRegion As Text
@@ -141,7 +143,9 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return CFBundleGetIdentifier (mCFTypeRef)
+			  #If TargetMacOS then
+			    return CFBundleGetIdentifier (mCFTypeRef)
+			  #endif
 			End Get
 		#tag EndGetter
 		Identifier As Text

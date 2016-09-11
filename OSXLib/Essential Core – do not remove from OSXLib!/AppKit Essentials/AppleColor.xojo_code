@@ -7,36 +7,44 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120626C656E64206F66207468652063757272656E7420636F6C6F72207769746820616E6F7468657220636F6C6F722E20546865206D6574686F6420636F6E766572747320636F6C6F7220616E64206120636F7079206F662074686520726563656976657220746F205247422C20616E64207468656E2073657473206561636820636F6D706F6E656E74206F66207468652072657475726E656420636F6C6F7220746F206672616374696F6E206F6620636F6C6F72E28099732076616C756520706C7573203120E28093206672616374696F6E206F6620746865207265636569766572E28099732E
 		Function BlendWithColor(Fraction As Double, otherColor as Applecolor) As AppleColor
-		  return  AppleColor.MakefromPtr (blendedColorWithFraction(id, Fraction, otherColor.id))
+		  #If TargetMacOS then
+		    return  AppleColor.MakefromPtr (blendedColorWithFraction(id, Fraction, otherColor.id))
+		  #endif
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F662074686520636F6C6F7220776974682061206E657720616C7068612076616C7565
 		Function ChangeAlpha(NewAlpha As Double) As AppleColor
-		  return  AppleColor.MakefromPtr (colorWithAlphaComponent(id, Newalpha))
-		  
+		  #If TargetMacOS then
+		    return  AppleColor.MakefromPtr (colorWithAlphaComponent(id, Newalpha))
+		  #endif
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F662074686520636F6C6F7220636F6E76657274656420746F207468652073706563696669656420636F6C6F72737061636520696620706F737369626C652E
 		Function ChangeColorSpace(ColorSpace as AppleColorSpace) As AppleColor
-		  return AppleColor.MakefromPtr(colorUsingColorSpace (id, ColorSpace.id))
+		  #If TargetMacOS then
+		    return AppleColor.MakefromPtr(colorUsingColorSpace (id, ColorSpace.id))
+		  #endif
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F662074686520636F6C6F7220636F6E76657274656420746F207468652073706563696669656420636F6C6F727370616365E28099206E616D6520696620706F737369626C652E
 		Function ChangeColorSpace(ColorSpaceName as CFStringRef) As AppleColor
-		  return AppleColor.MakefromPtr(colorUsingColorSpaceName (id, ColorSpaceName))
+		  #If TargetMacOS then
+		    return AppleColor.MakefromPtr(colorUsingColorSpaceName (id, ColorSpaceName))
+		  #endif
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F662074686520636F6C6F7220636F6E76657274656420746F207468652073706563696669656420636F6C6F727370616365E28099206E616D6520616E6420737065636966696320746F2074686520676976656E206465766963652C20696620706F737369626C652E0A446576696365206465736372697074696F6E732063616E206265206F627461696E65642066726F6D2077696E646F77732C2073637265656E732C20616E64207072696E74657273207769746820746865206465766963654465736372697074696F6E206D6574686F642E
 		Function ChangeColorSpace(ColorSpaceName as CFStringRef, DeviceDescription As AppleDictionary) As AppleColor
-		  return AppleColor.MakefromPtr(colorUsingColorSpaceNameDevice (id, ColorSpaceName, DeviceDescription.id))
-		  
+		  #If TargetMacOS then
+		    return AppleColor.MakefromPtr(colorUsingColorSpaceNameDevice (id, ColorSpaceName, DeviceDescription.id))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -87,8 +95,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor (colorWithCGColor(classptr, col.CFTypeRef))
-		  RetainClassObject
+		  #If TargetMacOS then
+		    Super.Constructor (colorWithCGColor(classptr, col.CFTypeRef))
+		    RetainClassObject
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -100,8 +110,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor (colorWithPatternImage(ClassPtr, img.Id))
-		  RetainClassObject
+		  #If TargetMacOS then
+		    Super.Constructor (colorWithPatternImage(ClassPtr, img.Id))
+		    RetainClassObject
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -120,16 +132,27 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor (colorWithCalibratedRed(ClassPtr, red, Green, Blue, Alpha))
-		  retainclassobject
+		  #If TargetMacOS then
+		    Super.Constructor (colorWithCalibratedRed(ClassPtr, red, Green, Blue, Alpha))
+		    retainclassobject
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E65772C2063616C6962726174656420636F6C6F722066726F6D205265642C20477265656E2C20426C756520616E64206F7074696F6E616C20416C7068612076616C75652E
+<<<<<<< HEAD
 		Shared Function FromCalibratedRGBA(Red As Double, Green As Double, Blue As Double, Alpha As Double = 1.0) As AppleColor
 		  dim Result As new AppleColor(colorWithCalibratedHue (ClassPtr, red, green, blue, Alpha))
 		  Result.retainClassObject
 		  Return Result
+=======
+		 Shared Function FromCalibratedRGBA(Red As Double, Green As Double, Blue As Double, Alpha As Double = 1.0) As AppleColor
+		  #If TargetMacOS then
+		    dim Result As new AppleColor(colorWithCalibratedHue (ClassPtr, red, green, blue, Alpha))
+		    Result.retainClassObject
+		    Return Result
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
@@ -146,10 +169,19 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+<<<<<<< HEAD
 		Shared Function FromHSBA(Hue As Double, Saturation As Double, Brightness As Double, Alpha As Double = 1.0) As AppleColor
 		  dim Result As new AppleColor(colorWithCalibratedHue (ClassPtr, Hue, Saturation, Brightness, Alpha))
 		  Result.retainClassObject
 		  Return Result
+=======
+		 Shared Function FromHSBA(Hue As Double, Saturation As Double, Brightness As Double, Alpha As Double = 1.0) As AppleColor
+		  #If TargetMacOS then
+		    dim Result As new AppleColor(colorWithCalibratedHue (ClassPtr, Hue, Saturation, Brightness, Alpha))
+		    Result.retainClassObject
+		    Return Result
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
@@ -237,7 +269,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720636F6C6F7220627269676874656E65642062792074686520616D6F756E7420737065636966696564202877686963682073686F756C64206265206265747765656E203020616E642031292E
 		Function HighlightColor(Level As Double) As AppleColor
-		  return  AppleColor.MakefromPtr (highlightWithLevel(id, level))
+		  #If TargetMacOS then
+		    return  AppleColor.MakefromPtr (highlightWithLevel(id, level))
+		  #endif
 		  
 		End Function
 	#tag EndMethod
@@ -260,7 +294,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720636F6C6F72206461726B656E65642062792074686520616D6F756E7420737065636966696564202877686963682073686F756C64206265206265747765656E203020616E642031292E
 		Function ShadowColor(Level As Double) As AppleColor
-		  return  AppleColor.MakefromPtr (shadowWithLevel(id, level))
+		  #If TargetMacOS then
+		    return  AppleColor.MakefromPtr (shadowWithLevel(id, level))
+		  #endif
 		  
 		End Function
 	#tag EndMethod
@@ -273,7 +309,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616C70686120286F7061636974792920636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getalphaComponent(id)
+			  #If TargetMacOS then
+			    return getalphaComponent(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		AlphaComponent As Double
@@ -282,11 +320,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520626C61636B20636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F727370616365206973206E6F74206F6E65206F662074686520626C61636B206F7220776869746520636F6C6F72207370616365732E
 		#tag Getter
 			Get
-			  try
-			    return getblackComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getblackComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		BlackComponent As Double
@@ -295,11 +335,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520626C756520636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getblueComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getblueComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		BlueComponent As Double
@@ -308,11 +350,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206272696768746E65737320636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getbrightnessComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getbrightnessComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		BrightnessComponent As Double
@@ -321,10 +365,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636174616C6F6720636F6E7461696E696E672074686520636F6C6F72E2809973206E616D652E2028726561642D6F6E6C79292E20417661696C61626C6520666F7220636F6C6F7273207573696E67204E616D6564436F6C6F725370616365732E
 		#tag Getter
 			Get
-			  try
-			    return getcatalogNameComponent (id)
-			  catch
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getcatalogNameComponent (id)
+			    catch
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		CatalogNameComponent As Text
@@ -333,7 +379,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D65206F662074686520636F6C6F72207370616365206173736F63696174656420776974682074686520636F6C6F722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return  new AppleCGColor (getCGColor(id), true)
+			  #If TargetMacOS then
+			    return  new AppleCGColor (getCGColor(id), true)
+			  #endif
 			End Get
 		#tag EndGetter
 		CGColor As applecgcolor
@@ -352,10 +400,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D65206F662074686520636F6C6F722E2028726561642D6F6E6C79292E20417661696C61626C6520666F7220636F6C6F7273207573696E67204E616D6564436F6C6F725370616365732E
 		#tag Getter
 			Get
-			  try
-			    return getcolorNameComponent (id)
-			  catch
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getcolorNameComponent (id)
+			    catch
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		ColorNameComponent As Text
@@ -364,13 +414,15 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72207370616365206173736F63696174656420776974682074686520636F6C6F722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  try
-			    dim result as AppleColorSpace = AppleColorSpace.MakeFromPtr(getcolorSpace(id))
-			    // result.MHasOwnership = true
-			    return result
-			  catch
-			    
-			  end try
+			  #If TargetMacOS then
+			    try
+			      dim result as AppleColorSpace = AppleColorSpace.MakeFromPtr(getcolorSpace(id))
+			      // result.MHasOwnership = true
+			      return result
+			    catch
+			      
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		ColorSpace As AppleColorSpace
@@ -379,7 +431,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D65206F662074686520636F6C6F72207370616365206173736F63696174656420776974682074686520636F6C6F722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getcolorSpaceName(id)
+			  #If TargetMacOS then
+			    return getcolorSpaceName(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		ColorSpaceName As Text
@@ -388,11 +442,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206379616E20636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120434D594B436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getcyanComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getcyanComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		CyanComponent As Double
@@ -401,11 +457,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520677265656E20636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getgreenComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getgreenComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		GreenComponent As Double
@@ -414,11 +472,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652068756520636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return gethueComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return gethueComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		HueComponent As Double
@@ -427,10 +487,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F63616C697A6564206E616D65206F662074686520636174616C6F6720636F6E7461696E696E672074686520636F6C6F72E2809973206E616D652E2028726561642D6F6E6C79292E20417661696C61626C6520666F7220636F6C6F7273207573696E67204E616D6564436F6C6F725370616365732E
 		#tag Getter
 			Get
-			  try
-			    return getlocalizedCatalogNameComponent (id)
-			  catch
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getlocalizedCatalogNameComponent (id)
+			    catch
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		LocalizedCatalogNameComponent As Text
@@ -439,10 +501,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F63616C697A6564206E616D65206F662074686520636F6C6F722E2028726561642D6F6E6C79292E20417661696C61626C6520666F7220636F6C6F7273207573696E67204E616D6564436F6C6F725370616365732E
 		#tag Getter
 			Get
-			  try
-			    return getlocalizedColorNameComponent (id)
-			  catch
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getlocalizedColorNameComponent (id)
+			    catch
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		LocalizedColorNameComponent As Text
@@ -451,11 +515,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D6167656E746120636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120434D594B436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getmagentaComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getmagentaComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		MagentaComponent As Double
@@ -464,11 +530,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652072656420636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getredComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getredComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		RedComponent As Double
@@ -477,11 +545,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073617475726174696F6E20636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120524742436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getsaturationComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getsaturationComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		SaturationComponent As Double
@@ -509,11 +579,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520776869746520636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F727370616365206973206E6F74206F6E65206F662074686520626C61636B206F7220776869746520636F6C6F72207370616365732E
 		#tag Getter
 			Get
-			  try
-			    return getwhiteComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getwhiteComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		WhiteComponent As Double
@@ -522,11 +594,13 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652079656C6C6F7720636F6D706F6E656E742076616C7565206F662074686520636F6C6F722E2028726561642D6F6E6C79292E202D312069662074686520636F6C6F72206973206E6F74206265696E6720636F6E73747275637465642066726F6D206120434D594B436F6C6F7253706163652E
 		#tag Getter
 			Get
-			  try
-			    return getyellowComponent (id)
-			  catch
-			    return -1
-			  end try
+			  #If TargetMacOS then
+			    try
+			      return getyellowComponent (id)
+			    catch
+			      return -1
+			    end try
+			  #endif
 			End Get
 		#tag EndGetter
 		YellowComponent As Double

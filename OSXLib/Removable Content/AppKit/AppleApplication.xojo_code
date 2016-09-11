@@ -25,8 +25,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mApp as AppleApplication = AppleApplication.MakeFromPtr (getsharedApplication(ClassPtr))
-			  return mapp
+			  #If TargetMacOS then
+			    static mApp as AppleApplication = AppleApplication.MakeFromPtr (getsharedApplication(ClassPtr))
+			    return mapp
+			  #endif
 			End Get
 		#tag EndGetter
 		Protected Shared SharedApplication As AppleApplication

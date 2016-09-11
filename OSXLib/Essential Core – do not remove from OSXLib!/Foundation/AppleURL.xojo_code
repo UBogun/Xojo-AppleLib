@@ -9,8 +9,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithString(alloc(ClassPtr), aURL))
-		  mhasownership= true
+		  #If TargetMacOS then
+		    Super.Constructor (initWithString(alloc(ClassPtr), aURL))
+		    mhasownership= true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -49,7 +51,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return gethost(id)
+			  #If TargetMacOS then
+			    return gethost(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Host As Text
@@ -58,7 +62,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getpath(id)
+			  #If TargetMacOS then
+			    return getpath(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Path As Text

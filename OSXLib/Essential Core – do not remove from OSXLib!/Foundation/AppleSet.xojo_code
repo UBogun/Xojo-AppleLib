@@ -9,9 +9,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (init(Alloc(ClassPtr)))
-		  mHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor (init(Alloc(ClassPtr)))
+		    mHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -24,9 +25,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithArray(Alloc(ClassPtr), AnArray.id))
-		  mHasOwnership = true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor (initWithArray(Alloc(ClassPtr), AnArray.id))
+		    mHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -43,15 +45,19 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initWithObjects(Alloc(ClassPtr), mb.Data))
-		  mHasOwnership = true
+		  #If TargetMacOS then
+		    Super.Constructor (initWithObjects(Alloc(ClassPtr), mb.Data))
+		    mHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function ContainsObject(anObject as AppleObject) As Boolean
-		  Declare Function containsObject lib FoundationLibName  selector "containsObject:" (id as ptr, anobject as ptr) as Boolean
-		  Return containsObject (id, anObject.id)
+		  #If TargetMacOS then
+		    Declare Function containsObject lib FoundationLibName  selector "containsObject:" (id as ptr, anobject as ptr) as Boolean
+		    Return containsObject (id, anObject.id)
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -66,7 +72,9 @@ Inherits AppleObject
 		#tag Getter
 			Get
 			  Declare Function allObjects lib FoundationLibName  selector "allObjects" (id as ptr) as Ptr
-			  Return AppleArray.MakeFromPtr (allObjects(id))
+			  #If TargetMacOS then
+			    Return AppleArray.MakeFromPtr (allObjects(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		AllObjects As AppleArray
@@ -76,7 +84,9 @@ Inherits AppleObject
 		#tag Getter
 			Get
 			  Declare Function anyObject lib FoundationLibName  selector "anyObject" (id as ptr) as Ptr
-			  Return AppleObject.MakeFromPtr (anyObject(id))
+			  #If TargetMacOS then
+			    Return AppleObject.MakeFromPtr (anyObject(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		AnyObject As AppleObject
@@ -95,7 +105,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return FoundationFrameWork.getCount(id)
+			  #If TargetMacOS then
+			    return FoundationFrameWork.getCount(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Count As UInteger

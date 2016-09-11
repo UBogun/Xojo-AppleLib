@@ -9,17 +9,21 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000, Description = 52657475726E732061206E6577206E6F74696669636174696F6E206F626A6563742077697468206120737065636966696564206E616D6520616E64206F626A6563742E
 		Sub Constructor(Name As CFStringRef, SourceObject as AppleObject)
-		  declare function notificationWithName lib FoundationLibName  selector "notificationWithName:object:" (id as ptr, name as CFStringRef, Sourceobject as Ptr) As Ptr
-		  super.Constructor (notificationWithName(ClassPtr, name, if (SourceObject = nil, nil, SourceObject.Id)))
-		  Retainclassobject
+		  #If TargetMacOS then
+		    declare function notificationWithName lib FoundationLibName  selector "notificationWithName:object:" (id as ptr, name as CFStringRef, Sourceobject as Ptr) As Ptr
+		    super.Constructor (notificationWithName(ClassPtr, name, if (SourceObject = nil, nil, SourceObject.Id)))
+		    Retainclassobject
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000, Description = 52657475726E732061206E6577206E6F74696669636174696F6E206F626A6563742077697468206120737065636966696564206E616D652C206F626A65637420616E64207573657244696374696F6E6172792E20
 		Sub Constructor(Name As CFStringRef, SourceObject as AppleObject, userInfo As Appledictionary)
-		  declare function initWithName lib FoundationLibName  selector "initWithName:object:userInfo:" (id as ptr, name as CFStringRef, Sourceobject as Ptr, userinfo as Ptr) As Ptr
-		  super.Constructor (initWithName(alloc(ClassPtr), name, SourceObject.Id, Userinfo.id))
-		  MHasOwnership = true
+		  #If TargetMacOS then
+		    declare function initWithName lib FoundationLibName  selector "initWithName:object:userInfo:" (id as ptr, name as CFStringRef, Sourceobject as Ptr, userinfo as Ptr) As Ptr
+		    super.Constructor (initWithName(alloc(ClassPtr), name, SourceObject.Id, Userinfo.id))
+		    MHasOwnership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -55,7 +59,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return FoundationFrameWork.getname (id)
+			  #If TargetMacOS then
+			    return FoundationFrameWork.getname (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Name As Text
@@ -64,8 +70,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A656374206173736F636961746564207769746820746865206E6F74696669636174696F6E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  Declare function object_ lib FoundationLibName  selector "object" (id as ptr) as ptr
-			  return new AppleObject (object_ (id))
+			  #If TargetMacOS then
+			    Declare function object_ lib FoundationLibName  selector "object" (id as ptr) as ptr
+			    return new AppleObject (object_ (id))
+			  #endif
 			End Get
 		#tag EndGetter
 		NotificationObject As AppleObject
@@ -74,7 +82,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207573657220696E666F726D6174696F6E2064696374696F6E617279206173736F6369617465642077697468207468652072656365697665722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleDictionary.MakeFromPtr (foundationframework.getuserinfo(id))
+			  #If TargetMacOS then
+			    return AppleDictionary.MakeFromPtr (foundationframework.getuserinfo(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		UserInfo As AppleDictionary

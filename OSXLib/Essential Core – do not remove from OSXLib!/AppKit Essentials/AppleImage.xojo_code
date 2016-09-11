@@ -89,8 +89,13 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+<<<<<<< HEAD
 		Shared Function fromPicture(aPic as Picture) As AppleImage
 		  #if targetmacos
+=======
+		 Shared Function fromPicture(aPic as Picture) As AppleImage
+		  #If TargetMacOS then
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		    return new AppleImage(apic)
 		  #endif
 		End Function
@@ -236,12 +241,24 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F662074686520696D6167652E
 		#tag Getter
 			Get
+<<<<<<< HEAD
 			  return FoundationFrameWork.getSize(mid)
+=======
+			  #If TargetMacOS then
+			    return FoundationFrameWork.getSize(id)
+			  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
+<<<<<<< HEAD
 			  FoundationFrameWork.setsize mid,value
+=======
+			  #If TargetMacOS then
+			    FoundationFrameWork.setsize id,value
+			  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 			End Set
 		#tag EndSetter
 		Size As FoundationFrameWork.NSSize

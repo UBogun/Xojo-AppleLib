@@ -9,15 +9,19 @@ Inherits AppleArray
 
 	#tag Method, Flags = &h0
 		Sub AddPtr(anObject as Ptr)
-		  Declare Sub addObject lib FoundationLibName  selector "addObject:" (id as ptr, value as ptr)
-		  addObject (id, anObject)
+		  #If TargetMacOS then
+		    Declare Sub addObject lib FoundationLibName  selector "addObject:" (id as ptr, value as ptr)
+		    addObject (id, anObject)
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub AddText(aText as CFStringREf)
-		  Declare Sub addObject lib FoundationLibName  selector "addObject:" (id as ptr, value as cfstringref)
-		  addObject (id, atext)
+		  #If TargetMacOS then
+		    Declare Sub addObject lib FoundationLibName  selector "addObject:" (id as ptr, value as cfstringref)
+		    addObject (id, atext)
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -28,8 +32,10 @@ Inherits AppleArray
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (Init(Alloc(ClassPtr)))
-		  mHasOwnership = true
+		  #If TargetMacOS then
+		    Super.Constructor (Init(Alloc(ClassPtr)))
+		    mHasOwnership = true
+		  #endif
 		  
 		End Sub
 	#tag EndMethod
@@ -41,8 +47,10 @@ Inherits AppleArray
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (FoundationFrameWork.initwithcapacity(Alloc(ClassPtr), Capacity))
-		  mhasownership = true
+		  #If TargetMacOS then
+		    Super.Constructor (FoundationFrameWork.initwithcapacity(Alloc(ClassPtr), Capacity))
+		    mhasownership = true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -91,10 +99,20 @@ Inherits AppleArray
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+<<<<<<< HEAD
 		Shared Function MakeArrayPtr(Capacity as uinteger = 1) As Ptr
 		  #pragma StackOverflowChecking false
 		  // Declare Function alloc lib FoundationLibName selector "alloc" (id as ptr) as ptr
 		  return FoundationFrameWork.InitWithCapacity (alloc(ThreadSafeClassPtr), capacity)
+=======
+		 Shared Function MakeArrayPtr(Capacity as uinteger = 1) As Ptr
+		  #If TargetMacOS then
+		    
+		    #pragma StackOverflowChecking false
+		    // Declare Function alloc lib FoundationLibName selector "alloc" (id as ptr) as ptr
+		    return FoundationFrameWork.InitWithCapacity (alloc(ThreadSafeClassPtr), capacity)
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		  
 		End Function
 	#tag EndMethod
@@ -124,12 +142,15 @@ Inherits AppleArray
 
 	#tag Method, Flags = &h0
 		Sub RemoveObjectAtIndex(Index as uinteger)
-		  Declare sub removeObjectAtIndex lib FoundationLibName  selector "removeObjectAtIndex:" (id as ptr, index as uinteger)
-		  removeObjectAtIndex id, index
+		  #If TargetMacOS then
+		    Declare sub removeObjectAtIndex lib FoundationLibName  selector "removeObjectAtIndex:" (id as ptr, index as uinteger)
+		    removeObjectAtIndex id, index
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+<<<<<<< HEAD
 		Shared Function Textarray(Textarray() as text) As AppleMutableArray
 		  dim count as uinteger = Textarray.Ubound
 		  dim myarray as new AppleMutableArray (count + 1)
@@ -137,14 +158,35 @@ Inherits AppleArray
 		    myarray.AddText Textarray(q)
 		  next
 		  return myarray
+=======
+		 Shared Function Textarray(Textarray() as text) As AppleMutableArray
+		  #If TargetMacOS then
+		    
+		    dim count as uinteger = Textarray.Ubound
+		    dim myarray as new AppleMutableArray (count + 1)
+		    for q as uinteger = 0 to count
+		      myarray.AddText Textarray(q)
+		    next
+		    return myarray
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+<<<<<<< HEAD
 		Shared Sub ThreadSafeAdd(NSarray as ptr, anObject as ptr)
 		  #pragma StackOverflowChecking false
 		  Declare Sub addObject lib FoundationLibName  selector "addObject:" (id as ptr, value as ptr)
 		  addObject (NSarray, anObject)
+=======
+		 Shared Sub ThreadSafeAdd(NSarray as ptr, anObject as ptr)
+		  #If TargetMacOS then
+		    #pragma StackOverflowChecking false
+		    Declare Sub addObject lib FoundationLibName  selector "addObject:" (id as ptr, value as ptr)
+		    addObject (NSarray, anObject)
+		  #endif
+>>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 

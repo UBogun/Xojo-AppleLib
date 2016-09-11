@@ -84,12 +84,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F66204E534E756D626572206F626A65637473207468617420646566696E652074686520706F736974696F6E206F66207468652063757276652072656C617469766520746F206120636F6E74726F6C20706F696E742E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getbiasValues(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getbiasValues(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setbiasValues id, if (value = nil,nil,value.id)
+			  #If TargetMacOS then
+			    setbiasValues id, if (value = nil,nil,value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		BiasValues As AppleArray
@@ -98,12 +102,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 53706563696669657320686F7720696E7465726D656469617465206B65796672616D652076616C756573206172652063616C63756C61746564206279207468652072656365697665722E
 		#tag Getter
 			Get
-			  return getcalculationMode(id)
+			  #If TargetMacOS then
+			    return getcalculationMode(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcalculationMode id, value
+			  #If TargetMacOS then
+			    setcalculationMode id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		CalculationMode As Text
@@ -122,12 +130,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F66204E534E756D626572206F626A65637473207468617420646566696E65207468652073686172706E657373206F66207468652074696D696E67206375727665E280997320636F726E6572732E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getcontinuityValues(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getcontinuityValues(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcontinuityValues id, if (value = nil,nil,value.id)
+			  #If TargetMacOS then
+			    setcontinuityValues id, if (value = nil,nil,value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		ContinuityValues As AppleArray
@@ -136,8 +148,10 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mkCAAnimationCubic as text= SystemConstantName("kCAAnimationCubic", QuartzCorePath)
-			  return mkCAAnimationCubic
+			  #If TargetMacOS then
+			    static mkCAAnimationCubic as text= SystemConstantName("kCAAnimationCubic", QuartzCorePath)
+			    return mkCAAnimationCubic
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCAAnimationCubic As Text
@@ -146,8 +160,10 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mkCAAnimationCubicPaced as text= SystemConstantName("kCAAnimationCubicPaced", QuartzCorePath)
-			  return mkCAAnimationCubicPaced
+			  #If TargetMacOS then
+			    static mkCAAnimationCubicPaced as text= SystemConstantName("kCAAnimationCubicPaced", QuartzCorePath)
+			    return mkCAAnimationCubicPaced
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCAAnimationCubicPaced As Text
@@ -156,8 +172,10 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mkCAAnimationDiscrete as text= SystemConstantName("kCAAnimationDiscrete", QuartzCorePath)
-			  return mkCAAnimationDiscrete
+			  #If TargetMacOS then
+			    static mkCAAnimationDiscrete as text= SystemConstantName("kCAAnimationDiscrete", QuartzCorePath)
+			    return mkCAAnimationDiscrete
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCAAnimationDiscrete As Text
@@ -166,8 +184,10 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mkCAAnimationLinear as text= SystemConstantName("kCAAnimationLinear", QuartzCorePath)
-			  return mkCAAnimationLinear
+			  #If TargetMacOS then
+			    static mkCAAnimationLinear as text= SystemConstantName("kCAAnimationLinear", QuartzCorePath)
+			    return mkCAAnimationLinear
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCAAnimationLinear As Text
@@ -176,8 +196,10 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mkCAAnimationPaced as text= SystemConstantName("kCAAnimationPaced", QuartzCorePath)
-			  return mkCAAnimationPaced
+			  #If TargetMacOS then
+			    static mkCAAnimationPaced as text= SystemConstantName("kCAAnimationPaced", QuartzCorePath)
+			    return mkCAAnimationPaced
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCAAnimationPaced As Text
@@ -186,8 +208,10 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mkCAAnimationRotateAuto as text= SystemConstantName("kCAAnimationRotateAuto", QuartzCorePath)
-			  return mkCAAnimationRotateAuto
+			  #If TargetMacOS then
+			    static mkCAAnimationRotateAuto as text= SystemConstantName("kCAAnimationRotateAuto", QuartzCorePath)
+			    return mkCAAnimationRotateAuto
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCAAnimationRotateAuto As Text
@@ -196,8 +220,10 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mkCAAnimationRotateAutoReverse as text= SystemConstantName("kCAAnimationRotateAutoReverse", QuartzCorePath)
-			  return mkCAAnimationRotateAutoReverse
+			  #If TargetMacOS then
+			    static mkCAAnimationRotateAutoReverse as text= SystemConstantName("kCAAnimationRotateAutoReverse", QuartzCorePath)
+			    return mkCAAnimationRotateAutoReverse
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCAAnimationRotateAutoReverse As Text
@@ -206,12 +232,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F66206F626A656374732074686174207370656369667920746865206B65796672616D652076616C75657320746F2075736520666F722074686520616E696D6174696F6E2E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getkeyTimes(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getkeyTimes(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setkeyTimes id, if (value = nil,nil,value.id)
+			  #If TargetMacOS then
+			    setkeyTimes id, if (value = nil,nil,value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		KeyTimes As AppleArray
@@ -220,12 +250,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 44657465726D696E65732077686574686572206F626A6563747320616E696D6174696E6720616C6F6E6720746865207061746820726F7461746520746F206D617463682074686520706174682074616E67656E742E
 		#tag Getter
 			Get
-			  return getrotationMode(id)
+			  #If TargetMacOS then
+			    return getrotationMode(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setrotationMode id, value
+			  #If TargetMacOS then
+			    setrotationMode id, value
+			  #endif
 			End Set
 		#tag EndSetter
 		RotationMode As Text
@@ -234,12 +268,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F66204E534E756D626572206F626A65637473207468617420646566696E65207468652074696768746E657373206F66207468652063757276652E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(gettensionValues(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(gettensionValues(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  settensionValues id, if (value = nil,nil,value.id)
+			  #If TargetMacOS then
+			    settensionValues id, if (value = nil,nil,value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		TensionValues As AppleArray
@@ -248,12 +286,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206F7074696F6E616C206172726179206F662043414D6564696154696D696E6746756E6374696F6E206F626A65637473207468617420646566696E652074686520706163696E6720666F722065616368206B65796672616D65207365676D656E742E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(gettimingFunctions(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(gettimingFunctions(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  settimingFunctions id, if (value = nil,nil,value.id)
+			  #If TargetMacOS then
+			    settimingFunctions id, if (value = nil,nil,value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		TimingFunctions As AppleArray
@@ -262,12 +304,16 @@ Inherits AppleCAPropertyAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F66206F626A656374732074686174207370656369667920746865206B65796672616D652076616C75657320746F2075736520666F722074686520616E696D6174696F6E2E
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getValues(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getValues(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setvalues id, if (value = nil,nil,value.id)
+			  #If TargetMacOS then
+			    setvalues id, if (value = nil,nil,value.id)
+			  #endif
 			End Set
 		#tag EndSetter
 		Values As AppleArray
