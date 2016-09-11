@@ -134,6 +134,14 @@ Protected Module FoundationFrameWork
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithContentsOfFile Lib foundationlibname Selector "initWithContentsOfFile:" (id as ptr, FileName as CFStringRef) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithData Lib foundationlibname Selector "initWithData:" (id as ptr, data as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function NSClassFromString Lib FoundationLibName (aClassName as CFStringRef) As Ptr
 	#tag EndExternalMethod
 
@@ -286,6 +294,16 @@ Protected Module FoundationFrameWork
 			End Get
 		#tag EndGetter
 		IntegerSize As UInteger
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  dim nssize as FoundationFrameWork.NSSize
+			  return nssize
+			End Get
+		#tag EndGetter
+		NSZeroSize As FoundationFrameWork.NSSize
 	#tag EndComputedProperty
 
 

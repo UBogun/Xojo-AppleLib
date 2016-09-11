@@ -44,7 +44,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F66207468652064657363726970746F727320746861742068617665206265656E20646973636F766572656420696E20746869732063686172616374657269737469632E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return Applearray.MakefromPtr(getdescriptors(id))
+			  #If TargetMacOS then
+			    return Applearray.MakefromPtr(getdescriptors(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Descriptors As AppleArray
@@ -53,7 +55,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 596F752073686F756C64206E6F742075736520746869732070726F70657274792E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getisBroadcasted (id)
+			  #If TargetMacOS then
+			    return getisBroadcasted (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		IsBroadcasted As Boolean
@@ -62,7 +66,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 4120426F6F6C65616E2076616C756520696E6469636174696E672077686574686572207468652063686172616374657269737469632069732063757272656E746C79206E6F74696679696E67206120737562736372696265642063656E7472616C206F66206974732076616C75652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getisNotifying (id)
+			  #If TargetMacOS then
+			    return getisNotifying (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		IsNotifying As Boolean
@@ -71,7 +77,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D6178696D756D20616D6F756E74206F6620646174612C20696E2062797465732C2074686174207468652063656E7472616C2063616E207265636569766520696E20612073696E676C65206E6F74696669636174696F6E206F7220696E6469636174696F6E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return applecbcentral.getmaximumUpdateValueLength (id)
+			  #If TargetMacOS then
+			    return applecbcentral.getmaximumUpdateValueLength (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		MaximumUpdateValueLength As Uinteger
@@ -80,7 +88,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070726F70657274696573206F66207468652063686172616374657269737469632E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return new AppleCBCharacteristicProperties (getproperties(id))
+			  #If TargetMacOS then
+			    return new AppleCBCharacteristicProperties (getproperties(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Properties As AppleCBCharacteristicProperties
@@ -89,7 +99,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073657276696365207468617420746869732063686172616374657269737469632062656C6F6E677320746F2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleCBService.MakefromPtr(getservice(id))
+			  #If TargetMacOS then
+			    return AppleCBService.MakefromPtr(getservice(id))
+			  #endif
+			  
 			End Get
 		#tag EndGetter
 		Service As AppleCBService
@@ -98,7 +111,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520426C7565746F6F74682D73706563696669632055554944206F66207468652063686172616374657269737469632E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #If TargetMacOS then
+			    return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		UUID As AppleCBUUID
@@ -107,7 +122,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F66207468652063686172616374657269737469632E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return Appledata.MakefromPtr(CoreBluetoothFramework.getvalue(id))
+			  #If TargetMacOS then
+			    return Appledata.MakefromPtr(CoreBluetoothFramework.getvalue(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Value As AppleData

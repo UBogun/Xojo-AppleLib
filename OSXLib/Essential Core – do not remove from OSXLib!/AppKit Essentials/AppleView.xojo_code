@@ -646,10 +646,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getisFlipped Lib appkitlibname Selector "isFlipped" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getisInFullScreenMode Lib appkitlibname Selector "isInFullScreenMode" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -2185,7 +2181,7 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520766965772075736573206120666C697070656420636F6F7264696E6174652073797374656D2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getisFlipped (id)
+			  return AppKitFramework.getflipped (mid)
 			End Get
 		#tag EndGetter
 		IsFlipped As Boolean

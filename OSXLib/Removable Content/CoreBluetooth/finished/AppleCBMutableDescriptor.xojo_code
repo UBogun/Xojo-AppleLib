@@ -14,9 +14,10 @@ Inherits AppleCBDescriptor
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithType(alloc(classptr), type.id, value.id))
-		  MHasOwnership= true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithType(alloc(classptr), type.id, value.id))
+		    MHasOwnership= true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -27,9 +28,10 @@ Inherits AppleCBDescriptor
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithType(alloc(classptr), type.id, value))
-		  MHasOwnership= true
-		  
+		  #If TargetMacOS then
+		    Super.Constructor(initwithType(alloc(classptr), type.id, value))
+		    MHasOwnership= true
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -64,16 +66,6 @@ Inherits AppleCBDescriptor
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -88,20 +80,10 @@ Inherits AppleCBDescriptor
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
-			Group="Behavior"
-			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

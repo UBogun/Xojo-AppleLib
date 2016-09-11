@@ -6,6 +6,18 @@ Implements AppleGeneralObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
+		Function CGAffineTransformValueForKey(Key as CFStringRef) As CGAffineTransform
+		  return getCGAffineTransformValueForKey (mid, key)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CGAffineTransformValueForKey(Key as CFStringRef, assigns value as CGAffineTransform)
+		  setCGAffineTransformValueForKey mid, value, key
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Constructor()
 		  mid = init(alloc(classptr))
 		  MHasOwnership = true
@@ -59,6 +71,10 @@ Implements AppleGeneralObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getCGAffineTransformValueForKey Lib foundationlibname Selector "valueForKey:" (id as ptr, keypath as cfstringRef) As CGAffineTransform
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getclass Lib foundationlibname Selector "class" (id as ptr) As ptr
 	#tag EndExternalMethod
 
@@ -72,6 +88,14 @@ Implements AppleGeneralObject
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getsuperclass Lib foundationlibname Selector "superclass" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getvalueForKey Lib foundationlibname Selector "valueForKey:" (id as ptr, keypath as cfstringRef) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getvalueForKeyPath Lib foundationlibname Selector "valueForKeyPath:" (id as ptr, keypath as cfstringRef) As ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -121,6 +145,42 @@ Implements AppleGeneralObject
 		Attributes( hidden )  Sub RetainClassObject()
 		  call retain (id)
 		  MHasOwnership = true
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setCGAffineTransformValueForKey Lib foundationlibname Selector "setValue:forKey:" (id as ptr, value as CGAffineTransform, key as cfstringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setValueForKey Lib foundationlibname Selector "setValue:forKey:" (id as ptr, value as ptr, key as cfstringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setValueForKeyPath Lib foundationlibname Selector "setValue:forKeyPath:" (id as ptr, value as ptr, keypath as cfstringRef)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652076616C756520666F72207468652070726F7065727479206964656E746966696564206279206120676976656E206B65792E
+		Function ValueForKey(Key as CFStringRef) As AppleObject
+		  return AppleObject.MakeFromPtr (getValueForKey (mid, Key))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 53657473207468652076616C756520666F72207468652070726F7065727479206964656E746966696564206279206120676976656E206B65792E
+		Sub ValueForKey(Key as CFStringRef, assigns value as AppleGeneralObject)
+		  setValueForKey (mid, value.GeneralID, Key)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652076616C756520666F722074686520646572697665642070726F7065727479206964656E746966696564206279206120676976656E206B657920706174682E
+		Function ValueForKeyPath(KeyPath as CFStringRef) As AppleObject
+		  return AppleObject.MakeFromPtr (getValueForKeyPath (mid, KeyPath))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub ValueForKeyPath(KeyPath as CFStringRef, assigns value as AppleGeneralObject)
+		  setValueForKeyPath (mid, value.GeneralID, KeyPath)
 		End Sub
 	#tag EndMethod
 

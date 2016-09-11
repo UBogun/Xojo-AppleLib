@@ -26,9 +26,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(data as AppleData)
-		  declare function initWithData lib FoundationLibName  selector "initWithData:" (id as ptr, data as ptr) as ptr
-		  super.Constructor (initWithData (alloc(ClassPtr), data.id))
-		  mHasownership = true
+		  super.Constructor (FoundationFrameWork.initWithData (alloc(ClassPtr), data.id), true)
 		  
 		End Sub
 	#tag EndMethod

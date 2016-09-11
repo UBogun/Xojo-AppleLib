@@ -3,7 +3,9 @@ Protected Class AppleCBPeripheral
 Inherits AppleObject
 	#tag Method, Flags = &h0, Description = 446973636F76657273207468652073706563696669656420636861726163746572697374696373206F66206120736572766963652E
 		Sub DiscoverCharacteristics(CharacterictisBUUIDs as applearray = nil, forService As AppleCBService)
-		  discoverCharacteristics id, if (CharacterictisBUUIDs = nil, nil, CharacterictisBUUIDs.id), forservice.id
+		  #If TargetMacOS then
+		    discoverCharacteristics id, if (CharacterictisBUUIDs = nil, nil, CharacterictisBUUIDs.id), forservice.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -13,7 +15,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 446973636F76657273207468652064657363726970746F7273206F6620612063686172616374657269737469632E
 		Sub DiscoverDescriptors(forCharacteristic as AppleCBCharacteristic)
-		  discoverDescriptorsForCharacteristic id, forCharacteristic.id
+		  #If TargetMacOS then
+		    discoverDescriptorsForCharacteristic id, forCharacteristic.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -23,7 +27,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 446973636F76657273207468652073706563696669656420696E636C75646564207365727669636573206F66206120736572766963652E
 		Sub DiscoverIncludedServices(ServiceCBUUIDs as applearray = nil, forService as AppleCBService)
-		  discoverIncludedServices id, if (ServiceCBUUIDs = nil, nil, ServiceCBUUIDs.id), forservice.id
+		  #If TargetMacOS then
+		    discoverIncludedServices id, if (ServiceCBUUIDs = nil, nil, ServiceCBUUIDs.id), forservice.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -33,7 +39,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 446973636F766572732074686520737065636966696564207365727669636573206F6620746865207065726970686572616C2E
 		Sub DiscoverServices(ServiceCBUUIDs as applearray = nil)
-		  discoverServices id, if (ServiceCBUUIDs = nil, nil,  ServiceCBUUIDs.id)
+		  #If TargetMacOS then
+		    discoverServices id, if (ServiceCBUUIDs = nil, nil,  ServiceCBUUIDs.id)
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -69,7 +77,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 526574726965766573207468652063757272656E7420525353492076616C756520666F7220746865207065726970686572616C207768696C6520697420697320636F6E6E656374656420746F207468652063656E7472616C206D616E616765722E
 		Sub ReadRSSI()
-		  readRSSI id
+		  #If TargetMacOS then
+		    readRSSI id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -79,13 +89,15 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 526574726965766573207468652076616C7565206F662061207370656369666965642063686172616374657269737469632E
 		Sub ReadValue(forCharacteristic as AppleCBCharacteristic)
-		  readValueForCharacteristic id, forCharacteristic.id
+		  'readValueForCharacteristic id, forCharacteristic.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526574726965766573207468652076616C7565206F662061207370656369666965642063686172616374657269737469632064657363726970746F722E
 		Sub ReadValue(forDescriptor as AppleCBDescriptor)
-		  readValueForDescriptor id, forDescriptor.id
+		  #If TargetMacOS then
+		    readValueForDescriptor id, forDescriptor.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -99,7 +111,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 53657473206E6F74696669636174696F6E73206F7220696E6469636174696F6E7320666F72207468652076616C7565206F662061207370656369666965642063686172616374657269737469632E
 		Sub SetNotifyValue(forCharacteristic as AppleCBCharacteristic, Enabled as boolean)
-		  setNotifyValueforCharacteristic id, enabled, forCharacteristic.id
+		  #If TargetMacOS then
+		    setNotifyValueforCharacteristic id, enabled, forCharacteristic.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -109,13 +123,17 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 577269746573207468652076616C7565206F6620612063686172616374657269737469632E
 		Sub WriteValue(forCharacteristic as AppleCBCharacteristic, type as CBCharacteristicWriteType, data as appledata)
-		  writeValueforCharacteristic id, data.id, forCharacteristic.id, type
+		  #If TargetMacOS then
+		    writeValueforCharacteristic id, data.id, forCharacteristic.id, type
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 577269746573207468652076616C7565206F6620612063686172616374657269737469632064657363726970746F722E
 		Sub WriteValue(forDescriptor as AppleCBDescriptor, data as AppleData)
-		  writeValueForDescriptor id,data.id,  forDescriptor.id
+		  #If TargetMacOS then
+		    writeValueForDescriptor id,data.id,  forDescriptor.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -144,7 +162,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652055554944206173736F636961746564207769746820746865207065726970686572616C2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleUUID.MakefromPtr(getidentifier(id))
+			  #If TargetMacOS then
+			    return AppleUUID.MakefromPtr(getidentifier(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Identifier As AppleUUID
@@ -153,7 +173,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D65206F6620746865207065726970686572616C2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return FoundationFrameWork.getName(id)
+			  #If TargetMacOS then
+			    return FoundationFrameWork.getName(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		Name As Text
@@ -162,12 +184,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656C6567617465206F626A6563742073706563696669656420746F2072656365697665207065726970686572616C206576656E74732E
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #If TargetMacOS then
+			    AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #endif
 			End Set
 		#tag EndSetter
 		PeripheralDelegate As AppleObject
@@ -176,7 +202,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520525353492C20696E206465636962656C732C206F6620746865207065726970686572616C2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return applenumber.MakeFromPtr(getRSSI(id)).DoubleValue
+			  #If TargetMacOS then
+			    return applenumber.MakeFromPtr(getRSSI(id)).DoubleValue
+			  #endif
 			End Get
 		#tag EndGetter
 		RSSI As Double
@@ -185,7 +213,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F66207365727669636573206F6E20746865207065726970686572616C20746861742068617665206265656E20646973636F76657265642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleArray.MakefromPtr(getservices(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakefromPtr(getservices(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Services As AppleArray
@@ -194,7 +224,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063757272656E7420636F6E6E656374696F6E207374617465206F6620746865207065726970686572616C2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getstate(id)
+			  #If TargetMacOS then
+			    return getstate(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		State As CBPeripheralState

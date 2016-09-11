@@ -199,31 +199,6 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1000
-		Shared Function EdgeLoop(aRect as FoundationFramework.NSRect) As AppleSKPhysicsBody
-		  dim result as AppleSKPhysicsBody
-		  #if Target64Bit
-		    declare Function bodyWithEdgeLoopFromRect lib spritekitlibname selector "bodyWithEdgeLoopFromRect:" (id as ptr,  asize  as FoundationFramework.NSRect) as ptr
-		    result = new AppleSKPhysicsBody (bodyWithEdgeLoopFromRect (ClassPtr, arect))
-		  #elseif Target32Bit
-		    declare Function bodyWithEdgeLoopFromRect lib spritekitlibname selector "bodyWithEdgeLoopFromRect:" (id as ptr,  asize as FoundationFramework.NSRect32Bit) as ptr
-		    result = new AppleSKPhysicsBody (bodyWithEdgeLoopFromRect (ClassPtr, arect.toNSRect32))
-		  #endif
-		  result.RetainClassObject
-		  return result
-		  
-		  // Calling the overridden superclass constructor.
-		  // Note that this may need modifications if there are multiple constructor choices.
-		  // Possible constructor calls:
-		  // Constructor() -- From AppleSKNode
-		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
-		  // Constructor() -- From AppleResponder
-		  // Constructor() -- From AppleObject
-		  // Constructor(AnId as Ptr) -- From AppleObject
-		  
-		End Function
-	#tag EndMethod
-
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getpinned Lib SpriteKitLibName Selector "pinned" (id as ptr) As Boolean
 	#tag EndExternalMethod

@@ -47,7 +47,7 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (initwithcontentsoffile(alloc(classptr), FileName))
+		  Super.Constructor (FoundationFrameWork.initwithcontentsoffile(alloc(classptr), FileName))
 		  MHasOwnership = true
 		End Sub
 	#tag EndMethod
@@ -103,10 +103,6 @@ Inherits AppleObject
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getTextAtIndex Lib foundationlibname Selector "objectAtIndex:" (id as ptr, index as uinteger) As CFStringRef
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function initWithContentsOfFile Lib foundationlibname Selector "initWithContentsOfFile:" (id as ptr, FileName as CFStringRef) As ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

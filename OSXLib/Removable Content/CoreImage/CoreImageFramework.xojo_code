@@ -1,16 +1,10 @@
 #tag Module
-Protected Module RectExtension
-	#tag Method, Flags = &h0
-		Function Center(Extends Rect As FoundationFrameWork.NSRect) As FoundationFrameWork.NSPoint
-		  return FoundationFrameWork.NSMakePoint (rect.Size_.width/2, rect.size_.height/2)
-		End Function
-	#tag EndMethod
+Protected Module CoreImageFramework
+	#tag Constant, Name = CoreImageLibName, Type = Text, Dynamic = False, Default = \"QuartzCore.framework", Scope = Public
+	#tag EndConstant
 
-	#tag Method, Flags = &h0
-		Function toCIVector(extends r as FoundationFramework.NSRect) As AppleCIVector
-		  return new AppleCIVector (r.Origin.x, r.Origin.y, r.Size_.width, r.size_.height)
-		End Function
-	#tag EndMethod
+	#tag Constant, Name = CoreImagePath, Type = Text, Dynamic = False, Default = \"com.apple.CoreImage", Scope = Public
+	#tag EndConstant
 
 
 	#tag ViewBehavior

@@ -80,6 +80,12 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Shared Function Filter(Filter As AppleCIFilter, Duration as Double) As AppleSKTransition
+		  return new AppleSKTransition(transitionWithCIFilter(classptr, filter.id, Duration), true, true)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Shared Function FlipHorizontal(duration as double) As AppleSKTransition
 		  Declare Function flipHorizontalWithDuration lib SpriteKitLibName selector "flipHorizontalWithDuration:" (id as ptr, duration as double) as ptr
 		  dim result as new AppleSKTransition (flipHorizontalWithDuration (ClassPtr, duration))
@@ -124,10 +130,13 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function transitionWithCIFilter Lib SpriteKitLibName Selector "transitionWithCIFilter:duration:" (id as ptr, filter as Ptr, duration as Double) As Ptr
+	#tag EndExternalMethod
 
-	#tag Note, Name = Status incomplete
-		
-		Transistion constructor missing: CIFIlter!
+
+	#tag Note, Name = Status not refined
+		External methods missing, but complete else: macOS 10.12
 		
 	#tag EndNote
 

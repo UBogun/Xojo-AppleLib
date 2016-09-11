@@ -7,9 +7,11 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 45737461626C69736865732061206C6F63616C20636F6E6E656374696F6E20746F2061207065726970686572616C2E0A5468652073797374656D2073686F756C6420646973706C6179206120646973636F6E6E656374696F6E20616C65727420666F72206120676976656E207065726970686572616C20696620746865206170702069732073757370656E646564206174207468652074696D65206F662074686520646973636F6E6E656374696F6E20696620796F75207061737320547275652E
 		Sub Connect(Peripheral As AppleCBPeripheral, NotifyOnDisconnect as boolean = false)
-		  dim optdict as new AppleMutableDictionary(1)
-		  optdict.setValue(kCBConnectPeripheralOptionNotifyOnDisconnectionKey, new applenumber(NotifyOnDisconnect))
-		  connectPeripheralOptions id, Peripheral.id, nil
+		  #If TargetMacOS then
+		    dim optdict as new AppleMutableDictionary(1)
+		    optdict.setValue(kCBConnectPeripheralOptionNotifyOnDisconnectionKey, new applenumber(NotifyOnDisconnect))
+		    connectPeripheralOptions id, Peripheral.id, nil
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -24,18 +26,20 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  dim tempId as Ptr = init(alloc(classptr))
-		  if AlertIfPoweredOff then
-		    dim dict as new AppleMutableDictionary(1)
-		    dict.setValue(kCBCentralManagerOptionShowPowerAlertKey, new AppleNumber(true))
-		    super.Constructor(initWithDelegateOptions(Alloc(classptr), tempId, nil, dict.Id))
-		  else
-		    super.Constructor(initWithDelegate(Alloc(classptr), tempId, nil))
-		  end if
-		  MHasownership = true
-		  release tempid
-		  if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
-		  CBCentralManagerDelegate = self
+		  #If TargetMacOS then
+		    dim tempId as Ptr = init(alloc(classptr))
+		    if AlertIfPoweredOff then
+		      dim dict as new AppleMutableDictionary(1)
+		      dict.setValue(kCBCentralManagerOptionShowPowerAlertKey, new AppleNumber(true))
+		      super.Constructor(initWithDelegateOptions(Alloc(classptr), tempId, nil, dict.Id))
+		    else
+		      super.Constructor(initWithDelegate(Alloc(classptr), tempId, nil))
+		    end if
+		    MHasownership = true
+		    release tempid
+		    if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
+		    CBCentralManagerDelegate = self
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -49,7 +53,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Sub Disconnect(Peripheral As AppleCBPeripheral)
-		  cancelPeripheralConnection id, Peripheral.id
+		  #If TargetMacOS then
+		    cancelPeripheralConnection id, Peripheral.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -459,7 +465,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function RetrieveConnectedPeripherals(PeripheralServiceCBUUIDs as Applearray) As applearray
-		  return applearray.MakeFromPtr(retrieveConnectedPeripheralsWithServices( id, PeripheralServiceCBUUIDs.id))
+		  #If TargetMacOS then
+		    return applearray.MakeFromPtr(retrieveConnectedPeripheralsWithServices( id, PeripheralServiceCBUUIDs.id))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -469,7 +477,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function RetrievedPeripherals(PeripheralIdentifierNSUUIDs as Applearray) As applearray
-		  return applearray.MakeFromPtr(retrievePeripheralsWithIdentifiers( id, PeripheralIdentifierNSUUIDs.id))
+		  #If TargetMacOS then
+		    return applearray.MakeFromPtr(retrievePeripheralsWithIdentifiers( id, PeripheralIdentifierNSUUIDs.id))
+		  #endif
 		End Function
 	#tag EndMethod
 
@@ -479,16 +489,20 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Sub Scan(PeripheralCBUUIDs as AppleArray =nil, options as AppleDictionary = nil)
-		  scanForPeripheralsWithServices id, if (PeripheralCBUUIDs = nil, nil, PeripheralCBUUIDs.id), if (options = nil, nil, options.id)
+		  #If TargetMacOS then
+		    scanForPeripheralsWithServices id, if (PeripheralCBUUIDs = nil, nil, PeripheralCBUUIDs.id), if (options = nil, nil, options.id)
+		  #endif
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 5363616E7320666F72207065726970686572616C73207468617420617265206164766572746973696E672073657276696365732E200A5065726970686572616C4342555549447320697320616E206172726179206F6620434255554944206F626A656374732074686174207468652061707020697320696E746572657374656420696E2E20496E207468697320636173652C206561636820434255554944206F626A65637420726570726573656E7473207468652055554944206F662061207365727669636520746861742061207065726970686572616C206973206164766572746973696E672E0A416C6C6F774475706C6963617465732064697361626C65732066696C746572696E6720616E64206120646973636F76657279206576656E742069732067656E65726174656420656163682074696D65207468652063656E7472616C20726563656976657320616E206164766572746973696E67207061636B65742C206E6F74206F6E6C79207468652066697273742074696D652E0A536572766963654342555549447320697320616E20617272617920206F662073657276696365205555494473207468617420796F752077616E7420746F207363616E20666F722E2053706563696679696E672074686973207363616E206F7074696F6E20636175736573207468652063656E7472616C206D616E6167657220746F20616C736F207363616E20666F72207065726970686572616C7320736F6C69636974696E6720616E79206F662074686520736572766963657320636F6E7461696E656420696E207468652061727261792E
 		Sub Scan(PeripheralCBUUIDs as AppleArray =nil, allowDuplicates as Boolean, ServiceCBUUIDs as Applearray = nil)
-		  dim optdict as new AppleMutableDictionary(2)
-		  optdict.setValue(kCBCentralManagerScanOptionAllowDuplicatesKey, new AppleNumber(allowDuplicates))
-		  if ServiceCBUUIDs <> nil then optdict.setValue(kCBCentralManagerScanOptionSolicitedServiceUUIDsKey, ServiceCBUUIDs)
-		  scanForPeripheralsWithServices id, if (PeripheralCBUUIDs = nil, nil, PeripheralCBUUIDs.id),  optdict.id
+		  #If TargetMacOS then
+		    dim optdict as new AppleMutableDictionary(2)
+		    optdict.setValue(kCBCentralManagerScanOptionAllowDuplicatesKey, new AppleNumber(allowDuplicates))
+		    if ServiceCBUUIDs <> nil then optdict.setValue(kCBCentralManagerScanOptionSolicitedServiceUUIDsKey, ServiceCBUUIDs)
+		    scanForPeripheralsWithServices id, if (PeripheralCBUUIDs = nil, nil, PeripheralCBUUIDs.id),  optdict.id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -498,7 +512,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Sub StopScan()
-		  stopScan id
+		  #If TargetMacOS then
+		    stopScan id
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -595,12 +611,16 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #If TargetMacOS then
+			    return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #If TargetMacOS then
+			    AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  #endif
 			End Set
 		#tag EndSetter
 		CBCentralManagerDelegate As AppleObject
@@ -652,8 +672,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBCentralManagerOptionShowPowerAlertKey as text = SystemConstantName("CBCentralManagerOptionShowPowerAlertKey", CoreBluetoothPath)
-			  return mCBCentralManagerOptionShowPowerAlertKey
+			  #If TargetMacOS then
+			    static mCBCentralManagerOptionShowPowerAlertKey as text = SystemConstantName("CBCentralManagerOptionShowPowerAlertKey", CoreBluetoothPath)
+			    return mCBCentralManagerOptionShowPowerAlertKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBCentralManagerOptionShowPowerAlertKey As Text
@@ -662,8 +684,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBCentralManagerScanOptionAllowDuplicatesKey as text = SystemConstantName("CBCentralManagerScanOptionAllowDuplicatesKey", CoreBluetoothPath)
-			  return mCBCentralManagerScanOptionAllowDuplicatesKey
+			  #If TargetMacOS then
+			    static mCBCentralManagerScanOptionAllowDuplicatesKey as text = SystemConstantName("CBCentralManagerScanOptionAllowDuplicatesKey", CoreBluetoothPath)
+			    return mCBCentralManagerScanOptionAllowDuplicatesKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBCentralManagerScanOptionAllowDuplicatesKey As Text
@@ -672,8 +696,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBCentralManagerScanOptionSolicitedServiceUUIDsKey as text = SystemConstantName("CBCentralManagerScanOptionSolicitedServiceUUIDsKey", CoreBluetoothPath)
-			  return mCBCentralManagerScanOptionSolicitedServiceUUIDsKey
+			  #If TargetMacOS then
+			    static mCBCentralManagerScanOptionSolicitedServiceUUIDsKey as text = SystemConstantName("CBCentralManagerScanOptionSolicitedServiceUUIDsKey", CoreBluetoothPath)
+			    return mCBCentralManagerScanOptionSolicitedServiceUUIDsKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBCentralManagerScanOptionSolicitedServiceUUIDsKey As Text
@@ -682,8 +708,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  static mCBConnectPeripheralOptionNotifyOnDisconnectionKey as text = SystemConstantName("CBConnectPeripheralOptionNotifyOnDisconnectionKey", CoreBluetoothPath)
-			  return mCBConnectPeripheralOptionNotifyOnDisconnectionKey
+			  #If TargetMacOS then
+			    static mCBConnectPeripheralOptionNotifyOnDisconnectionKey as text = SystemConstantName("CBConnectPeripheralOptionNotifyOnDisconnectionKey", CoreBluetoothPath)
+			    return mCBConnectPeripheralOptionNotifyOnDisconnectionKey
+			  #endif
 			End Get
 		#tag EndGetter
 		Private Shared kCBConnectPeripheralOptionNotifyOnDisconnectionKey As Text
@@ -692,7 +720,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return getstate(id)
+			  #If TargetMacOS then
+			    return getstate(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		State As CBCentralManagerState

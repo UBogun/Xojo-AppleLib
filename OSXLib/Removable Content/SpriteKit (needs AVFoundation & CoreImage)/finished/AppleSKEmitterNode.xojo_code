@@ -1281,6 +1281,11 @@ Inherits AppleSKNode
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ParticleRenderOrder"
+			Group="Behavior"
+			Type="SKParticleRenderOrder"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ParticleRotation"
 			Group="Behavior"
 			Type="Double"
@@ -1327,16 +1332,6 @@ Inherits AppleSKNode
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ParticleZPosition"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ParticleZPositionRange"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ParticleZPositionSpeed"
 			Group="Behavior"
 			Type="Double"
 		#tag EndViewProperty

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class AppleSKTexture
+ Attributes ( incomplete ) Protected Class AppleSKTexture
 Inherits AppleObject
 	#tag Method, Flags = &h21
 		Private Sub CompletionBlock()
@@ -17,6 +17,12 @@ Inherits AppleObject
 		Sub Constructor(anImage as AppleCGImage)
 		  super.Constructor (textureWithCGImage (ClassPtr, animage.CFTypeRef))
 		  RetainClassObject
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1000, Description = 437265617465732061206E65772074657874757265206279206170706C79696E67206120436F726520496D6167652066696C74657220746F20616E206578697374696E6720746578747572652E
+		Sub Constructor(Filter as AppleCIFilter)
+		  super.Constructor (textureByApplyingCIFilter (alloc(ClassPtr), filter.id), true)
 		End Sub
 	#tag EndMethod
 
@@ -206,7 +212,6 @@ Inherits AppleObject
 
 	#tag Note, Name = Untitled
 		
-		textureByApplyingCIFilter missing – need CIFilter first.
 		NoiseMap missing (GKNoise)
 	#tag EndNote
 

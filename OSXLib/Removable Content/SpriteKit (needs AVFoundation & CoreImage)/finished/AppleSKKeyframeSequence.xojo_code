@@ -223,6 +223,11 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Count"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
@@ -238,6 +243,11 @@ Inherits AppleObject
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InterpolationMode"
+			Group="Behavior"
+			Type="SKInterpolationMode"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -256,6 +266,11 @@ Inherits AppleObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RepeatMode"
+			Group="Behavior"
+			Type="SKRepeatMode"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"

@@ -26,7 +26,7 @@ Begin Window CoreBluetoothWindow
    Title           =   "CoreBluetooth"
    Visible         =   True
    Width           =   956
-   Begin OSXLibCoreBluetoothController OSXLibCBCentralManager1
+   Begin OSXLibCoreBluetoothController BTLT
       CentralManagerState=   ""
       Handle          =   0
       Index           =   -2147483648
@@ -38,7 +38,9 @@ Begin Window CoreBluetoothWindow
       PeripheralManagerState=   ""
       Scope           =   0
       State           =   ""
+      TabIndex        =   0
       TabPanelIndex   =   0
+      TabStop         =   True
       Window          =   "0"
       _mIndex         =   0
       _mInitialParent =   ""
@@ -111,7 +113,7 @@ Begin Window CoreBluetoothWindow
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   172
+      Height          =   130
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -199,7 +201,7 @@ Begin Window CoreBluetoothWindow
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   163
+      Height          =   177
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -228,7 +230,7 @@ Begin Window CoreBluetoothWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   303
+      Top             =   289
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -307,11 +309,389 @@ Begin Window CoreBluetoothWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   271
+      Top             =   257
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   100
+   End
+   Begin Slider power_slider
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   23
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   369
+      LineStep        =   1
+      LiveScroll      =   False
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Maximum         =   255
+      Minimum         =   0
+      PageStep        =   20
+      Scope           =   0
+      TabIndex        =   20
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TickStyle       =   "0"
+      Top             =   257
+      Value           =   1
+      Visible         =   True
+      Width           =   182
+   End
+   Begin Label blt_watt
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   563
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   22
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &cFF008000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   257
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
+   End
+   Begin Label blt_hr
+      AutoDeactivate  =   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   72
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   23
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &cFF000000
+      TextFont        =   "System"
+      TextSize        =   40.0
+      TextUnit        =   2
+      Top             =   183
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label blt_power3
+      AutoDeactivate  =   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   72
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   133
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   24
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &c40800000
+      TextFont        =   "System"
+      TextSize        =   40.0
+      TextUnit        =   2
+      Top             =   183
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label blt_cadanze
+      AutoDeactivate  =   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   72
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   246
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   25
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &c40800000
+      TextFont        =   "System"
+      TextSize        =   40.0
+      TextUnit        =   2
+      Top             =   183
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label blt_power
+      AutoDeactivate  =   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   72
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   359
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   26
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &c0080FF00
+      TextFont        =   "System"
+      TextSize        =   40.0
+      TextUnit        =   2
+      Top             =   183
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label Label9
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   472
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   27
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Kickr speed"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   162
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label blt_rpm
+      AutoDeactivate  =   True
+      Bold            =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   72
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   472
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   28
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "000"
+      TextAlign       =   1
+      TextColor       =   &c0080FF00
+      TextFont        =   "System"
+      TextSize        =   40.0
+      TextUnit        =   2
+      Top             =   183
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label Label8
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   359
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   29
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Kickr power"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   162
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label Label22
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   246
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   30
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Cadanze"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   162
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
+   End
+   Begin Label Label5
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   133
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   31
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Speed"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   162
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   101
    End
    Begin Label Label4
       AutoDeactivate  =   True
@@ -333,433 +713,62 @@ Begin Window CoreBluetoothWindow
       Multiline       =   False
       Scope           =   0
       Selectable      =   False
-      TabIndex        =   10
+      TabIndex        =   32
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Heart rate"
-      TextAlign       =   0
+      TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   204
+      Top             =   162
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   74
+      Width           =   101
    End
-   Begin Label blt_hr
+   Begin TextField bytefield
+      AcceptTabs      =   False
+      Alignment       =   0
       AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
       Bold            =   False
+      Border          =   True
+      CueText         =   ""
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   20
+      Format          =   ""
+      Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
-      InitialParent   =   ""
       Italic          =   False
-      Left            =   106
+      Left            =   277
+      LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Multiline       =   False
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
       Scope           =   0
-      Selectable      =   False
-      TabIndex        =   11
+      TabIndex        =   33
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "000"
-      TextAlign       =   1
-      TextColor       =   &cFF000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   204
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
-   End
-   Begin Label Label5
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   158
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   12
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Speed"
-      TextAlign       =   0
+      Text            =   ""
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   204
-      Transparent     =   True
+      Top             =   256
       Underline       =   False
+      UseFocusRing    =   True
       Visible         =   True
-      Width           =   74
-   End
-   Begin Label blt_power3
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   244
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   13
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "000"
-      TextAlign       =   1
-      TextColor       =   &c40800000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   204
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
-   End
-   Begin Label Label6
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   296
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   14
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Cadanze"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   204
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   74
-   End
-   Begin Label blt_cadanze
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   382
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   15
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "000"
-      TextAlign       =   1
-      TextColor       =   &c40800000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   204
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
-   End
-   Begin Label Label7
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   16
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Kickr power"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   236
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   74
-   End
-   Begin Label blt_power
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   106
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   17
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "000"
-      TextAlign       =   1
-      TextColor       =   &c0080FF00
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   236
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
-   End
-   Begin Label Label8
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   158
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   18
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Kickr speed"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   236
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   74
-   End
-   Begin Label blt_rpm
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   244
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   19
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "000"
-      TextAlign       =   1
-      TextColor       =   &c0080FF00
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   236
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
-   End
-   Begin Slider Slider1
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   23
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   382
-      LineStep        =   1
-      LiveScroll      =   False
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Maximum         =   600
-      Minimum         =   1
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   20
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickStyle       =   "0"
-      Top             =   236
-      Value           =   0
-      Visible         =   True
-      Width           =   138
-   End
-   Begin Label Label9
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   296
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   21
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Kickr output"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   236
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   74
-   End
-   Begin Label blt_watt
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   532
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   22
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "000"
-      TextAlign       =   1
-      TextColor       =   &cFF008000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   233
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
+      Width           =   80
    End
 End
 #tag EndWindow
@@ -771,7 +780,6 @@ End
 		  // cb.Scan (false)
 		  // dim uuid as new AppleUUID
 		  // pm = new AppleCBPeripheralManager(true, uuid.UUIDString)
-		  
 		  
 		End Sub
 	#tag EndEvent
@@ -824,14 +832,44 @@ End
 	#tag EndMethod
 
 
+	#tag Note, Name = Read Write Characteristics.
+		
+		Byc
+		Cycling Power Control Point - Readable - 0x2A66
+		Cycling Power Vector - Readable - 0x2A64
+		Sensor Location - Readable - 0x2A5D
+		Cycling Power Feature - Readable - 0x2A65
+		Cycling Power Measurement - Readable - 0x2A63
+		
+		
+		Bluetooth specific read/write functions.
+		Client Characteristic Configuration - Readable and Writeable - 0x2902
+		Server Characteristic Configuration - Readable and Writeable - 0x2903
+		
+		
+	#tag EndNote
+
+
+	#tag Property, Flags = &h0
+		isConnectedBTLE As Boolean = false
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		Peripheral As AppleCBPeripheral
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PeripheralDevice As AppleCBPeripheral
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PowerControlFeature As AppleCBCharacteristic
 	#tag EndProperty
 
 
 #tag EndWindowCode
 
-#tag Events OSXLibCBCentralManager1
+#tag Events BTLT
 	#tag Event
 		Sub StateChanged()
 		  'TextArea1.AppendText "CentralManager State change: "
@@ -906,10 +944,11 @@ End
 		Sub Connected(Peripheral as AppleCBPeripheral)
 		  devices_statusupdate(Peripheral,"connected")
 		  
-		  'TextArea1.AppendText "Connected to "+Peripheral.Name+eol+eol
+		  TextArea1.AppendText "Connected to "+Peripheral.Name+eol+eol
 		  //me.StopScan
 		  
 		  Peripheral.DiscoverServices
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -945,7 +984,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub ConnectedPeripheralsRetrieved(Peripherals() As AppleCBPeripheral)
-		  'TextArea1.AppendText "connected Peripherals retrieved: "+Peripherals.Ubound.ToText
+		  TextArea1.AppendText "connected Peripherals retrieved: "+Peripherals.Ubound.ToText
 		  
 		End Sub
 	#tag EndEvent
@@ -960,57 +999,59 @@ End
 		Sub DiscoveredServices(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
 		  dim count as integer
 		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
-		  'TextArea1.AppendText "Discovered "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
+		  //TextArea1.AppendText "Discovered "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
 		  for q as integer = 0 to count -1
 		    dim uu as AppleCBService = AppleCBService.MakefromPtr(Peripheral.Services.PtrAtIndex(q))
 		    Peripheral.DiscoverCharacteristics(uu)
-		    'TextArea1.AppendText uu.DebugDescription+EndOfLine
+		    //TextArea1.AppendText uu.DebugDescription+EndOfLine
 		    Peripheral.DiscoverIncludedServices(uu)
 		  next
-		  'TextArea1.AppendText EndOfLine
+		  //TextArea1.AppendText EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub PeripheralManagerStateChanged()
-		  'TextArea1.AppendText "PeripheralManager State change: "
-		  'select case me.PeripheralManager.State
-		  'case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.PoweredOff
-		  'TextArea1.AppendText "Powered off"
-		  'case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.PoweredOn
-		  'TextArea1.AppendText "Powered on and ready"
-		  'me.PeripheralManager.StartAdvertising
-		  'case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Resetting
-		  'TextArea1.AppendText "Resetting"
-		  'case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Unauthorized
-		  'TextArea1.AppendText "Unauthorized BLE state"
-		  'case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Unknown
-		  'TextArea1.AppendText "Unknown state"
-		  'case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Unsupported
-		  'TextArea1.AppendText "CoreBluetooth BLW hardware unspported"
-		  'end select
-		  'TextArea1.AppendText EndOfLine+EndOfLine
-		  '
+		  TextArea1.AppendText "PeripheralManager State change: "+EndOfLine
+		  select case me.PeripheralManager.State
+		  case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.PoweredOff
+		    TextArea1.AppendText "Powered off"
+		  case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.PoweredOn
+		    TextArea1.AppendText "Powered on and ready"
+		    me.PeripheralManager.StartAdvertising
+		  case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Resetting
+		    TextArea1.AppendText "Resetting"
+		  case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Unauthorized
+		    TextArea1.AppendText "Unauthorized BLE state"
+		  case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Unknown
+		    TextArea1.AppendText "Unknown state"
+		  case AppleCBPeripheralManagerForControl.CBPeripheralManagerState.Unsupported
+		    TextArea1.AppendText "CoreBluetooth BLW hardware unspported"
+		  end select
+		  TextArea1.AppendText EndOfLine+EndOfLine
+		  
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub AdvertisingStarted(errornumber as integer, ErrorDescription as Text)
-		  'TextArea1.AppendText "Started advertising with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine+EndOfLine
+		  //TextArea1.AppendText "Started advertising with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine+EndOfLine
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub DiscoveredCharacteristics(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
+		  
 		  dim count as integer
 		  if Peripheral.Services <> nil then count = Peripheral.Services.Count
 		  
-		  'TextArea1.AppendText "Discovered characteristics for "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
+		  //TextArea1.AppendText "Discovered characteristics for "+count.ToText+" services from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
+		  
 		  
 		  for q as integer = 0 to count -1
 		    
 		    dim uu as AppleCBService = AppleCBService.MakefromPtr(Peripheral.Services.PtrAtIndex(q))
 		    
-		    'TextArea1.AppendText "Service "+uu.DebugDescription+":"+EndOfLine
+		    //TextArea1.AppendText "Service "+uu.DebugDescription+":"+EndOfLine
 		    
 		    if uu.Characteristics <> nil then 
 		      
@@ -1020,15 +1061,28 @@ End
 		        
 		        dim c as AppleCBCharacteristic = AppleCBCharacteristic.MakefromPtr(uu.Characteristics.PtrAtIndex(p))
 		        
-		        'TextArea1.AppendText c.DebugDescription+EndOfLine
+		        //TextArea1.AppendText c.DebugDescription+EndOfLine
 		        Peripheral.SetNotifyValue(c, true)
 		        Peripheral.DiscoverDescriptors(c)
+		        
+		        If c.UUID.UUIDString = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B" Then
+		          
+		          TextArea1.AppendText "Found A026E005-0A7D-4AB3-97FA-F1500F9FEB8B" + EndOfLine
+		          
+		          isConnectedBTLE = True
+		          
+		          PeripheralDevice = Peripheral
+		          PowerControlFeature = c
+		          
+		        End If
 		        
 		      next
 		      
 		    end if
 		    
 		  next
+		  
+		  ' A026E005-0A7D-4AB3-97FA-F1500F9FEB8B
 		  
 		  'TextArea1.AppendText EndOfLine
 		  #pragma Unused service
@@ -1037,63 +1091,79 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub CharacteristicUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
+		  Dim b() As Byte
+		  b.Append(0) // Welke opcode 0-255
+		  b.Append(power_slider.Value) // De waarde afhankelijke van op code, variabele lengte
 		  
-		  
+		  Dim ad As New AppleData
+		  ad.ByteBlock.Constructor( b)
+		  dim nn as new AppleCBCharacteristic
+		  dim uu as new AppleCBUUID( "2A66" )
 		  
 		  Peripheral.ReadRSSI
 		  Peripheral.ReadValue( Characteristic )
 		  
-		  //2A19 baterij niveau
+		  TextArea1.AppendText Characteristic.UUID.UUIDString + EndOfLine
+		  
+		  If Characteristic.UUID.UUIDString = "2A66" Then
+		    // TODO
+		    TextArea1.AppendText "2A66 event" + EndOfLine
+		    TextArea1.AppendText Characteristic.Value.Base64String + EndOfLine
+		  end if
 		  
 		  
-		  // 2A5B RPM
-		  If Characteristic.UUID.UUIDString = "2A5B" Then
-		    // power
-		    //Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
-		    Dim RCad as Int16=Characteristic.Value.ByteBlock.Uint16Value(1)
-		    blt_cadanze.Text=str(rCad)
-		    
-		    datalog.AppendText EndOfLine
-		    Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
-		    Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
-		    
-		  elseIf Characteristic.UUID.UUIDString = "2A63" Then
-		    // power
-		    Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
-		    Dim rpm as Int16=Characteristic.Value.ByteBlock.Uint16Value(6)
-		    
-		    blt_power.Text=Str( Watt )
-		    blt_rpm.Text=str(Rpm)
-		  elseIf Characteristic.UUID.UUIDString = "2A37" Then
-		    // heart rate
-		    Dim Flags As Byte = Characteristic.Value.ByteBlock.Int8Value(0)
-		    Dim HR8 As UInt8 
-		    Dim HR16 As UInt16 
-		    
-		    If Bitwise.BitAnd( Flags, &b10000000 ) > 0 Then
-		      'UInt16
-		      HR16 = Characteristic.Value.ByteBlock.UInt16Value(1)
-		      'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Str( HR16 ) + EndOfLine
-		      blt_hr.Text=Str( HR16 )
-		    Else
-		      'UInt8
-		      HR8 = Characteristic.Value.ByteBlock.UInt8Value(1)
-		      'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Str( HR8 ) + EndOfLine
-		      blt_hr.Text=Str( HR8 )
+		  // pass lengte
+		  if len(Characteristic.UUID.UUIDString)=4 then
+		    // 2A5B RPM
+		    If Characteristic.UUID.UUIDString = "2A5B" Then
+		      // cadans
+		      //Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
+		      Dim RCad as Int16=Characteristic.Value.ByteBlock.Uint16Value(1)
+		      blt_cadanze.Text=str(rCad)
+		      
+		      datalog.AppendText EndOfLine
+		      Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
+		      Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
+		    elseIf Characteristic.UUID.UUIDString = "2A1B" Then
+		      // onbekend Kickr
+		    elseIf Characteristic.UUID.UUIDString = "2A19" Then
+		      // Batterij
+		    elseIf Characteristic.UUID.UUIDString = "2A1C" Then
+		      // temperatuur
+		    elseIf Characteristic.UUID.UUIDString = "2A63" Then
+		      
+		      // power measurement
+		      Dim Watt as Int16=Characteristic.Value.ByteBlock.Int16Value(2)
+		      Dim rpm as Int16=Characteristic.Value.ByteBlock.Uint16Value(6)
+		      
+		      blt_power.Text=Str( Watt )
+		      blt_rpm.Text=str(Rpm)
+		      
+		    elseIf Characteristic.UUID.UUIDString = "2A37" Then
+		      // heart rate
+		      Dim Flags As Byte = Characteristic.Value.ByteBlock.Int8Value(0)
+		      Dim HR8 As UInt8 
+		      Dim HR16 As UInt16 
+		      
+		      If Bitwise.BitAnd( Flags, &b10000000 ) > 0 Then
+		        'UInt16
+		        HR16 = Characteristic.Value.ByteBlock.UInt16Value(1)
+		        'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Str( HR16 ) + EndOfLine
+		        blt_hr.Text=Str( HR16 )
+		      Else
+		        'UInt8
+		        HR8 = Characteristic.Value.ByteBlock.UInt8Value(1)
+		        'Datalog.AppendText "CHARACTERISTIC UPDATED HRM Val: " + Str( HR8 ) + EndOfLine
+		        blt_hr.Text=Str( HR8 )
+		      End If
+		    else
+		      // unknown
+		      datalog.AppendText EndOfLine
+		      Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
+		      Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
+		      
 		    End If
-		  else
-		    // unknown
-		    datalog.AppendText EndOfLine
-		    Datalog.AppendText "Perhiperal: " + Peripheral.Name + EndOfLine
-		    Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
-		    
-		  End If
-		  
-		  
-		  
-		  
-		  
-		  
+		  end if
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1102,23 +1172,24 @@ End
 		  'if Peripheral.Services <> nil then count = Peripheral.Services.Count
 		  
 		  'TextArea1.AppendText EndOfLine
-		  
+		  '
 		  'TextArea1.AppendText "Discovered included service from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
 		  'TextArea1.AppendText service.DebugDescription+EndOfLine
 		  'TextArea1.AppendText EndOfLine
+		  
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub DiscoveredDescriptors(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 		  dim count as integer = Characteristic.Descriptors.Count
-		  'TextArea1.AppendText "Discovered "+count.ToText+" descriptors for "+Peripheral.Name+" with"+ if(errornumber = 0, "out ", " ")+"error "+ErrorDescription+EndOfLine
+		  TextArea1.AppendText "Discovered "+count.ToText+" descriptors for "+Peripheral.Name+" with"+ if(errornumber = 0, "out ", " ")+"error "+ErrorDescription+EndOfLine
 		  for q as integer = 0 to count -1
 		    dim desc as AppleCBDescriptor = AppleCBDescriptor.MakefromPtr(Characteristic.Descriptors.PtrAtIndex(q))
-		    'TextArea1.AppendText desc.DebugDescription+EndOfLine
+		    TextArea1.AppendText desc.DebugDescription+EndOfLine
 		    Peripheral.ReadValue(desc)
 		  next
-		  'TextArea1.AppendText EndOfLine
+		  TextArea1.AppendText EndOfLine
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1130,8 +1201,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub DescriptorValueUpdate(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
-		  'TextArea1.AppendText "Descriptor value update for "+Descriptor.DebugDescription+ _
-		  '" with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
+		  TextArea1.AppendText "Descriptor value update for "+Descriptor.DebugDescription+ _
+		  " with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
 		  
 		End Sub
 	#tag EndEvent
@@ -1176,7 +1247,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub WriteRequest(Request as AppleCBATTRequest)
-		  'TextArea1.AppendText "Write Request "+Request.DebugDescription+EndOfLine+EndOfLine
+		  datalog.AppendText "Write Request "+Request.DebugDescription+EndOfLine+EndOfLine
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1193,8 +1266,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
-		  'TextArea1.AppendText "Wrote Characteristic value with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
-		  'TextArea1.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
+		  datalog.AppendText "Wrote Characteristic value with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
+		  datalog.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
 		  '#pragma Unused Peripheral
 		End Sub
 	#tag EndEvent
@@ -1235,11 +1308,11 @@ End
 		    
 		    If me.CellCheck( row, column ) Then
 		      
-		      OSXLibCBCentralManager1.Connect p, True
+		      BTLT.Connect p, True
 		      
 		    Else
 		      
-		      OSXLibCBCentralManager1.Disconnect( p )
+		      BTLT.Disconnect( p )
 		      
 		    End If
 		    
@@ -1259,6 +1332,88 @@ End
 	#tag Event
 		Sub Action()
 		  Quit
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events power_slider
+	#tag Event
+		Sub ValueChanged()
+		  blt_watt.Text=str(me.Value)
+		  
+		  If isConnectedBTLE Then
+		    
+		    If PowerControlFeature <> Nil Then
+		      
+		      TextArea1.AppendText "PowerControlFeature = active" + EndOfLine
+		      
+		      'Dim b() As Byte 
+		      'b.Append(1) 'OP Code
+		      'b.Append(255) 'Value is variable in type, length. Optional.
+		      
+		      Dim mb As new xojo.Core.MutableMemoryBlock(512)
+		      mb.UInt8Value( 0 ) = &hF1 ' PAGE ID
+		      mb.UInt8Value(1) = &h40 'OPCODE //40 is res // 42
+		      mb.UInt8Value(2) = &h50 
+		      mb.UInt8Value(3) = &h20 // &h00, &h20, &hC0 ?
+		      mb.Int32Value(4) = me.Value
+		      
+		      Dim Dat As New AppleData
+		      Dat.ByteBlock.Constructor( mb )
+		      
+		      PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithResponse, dat )
+		      
+		    else
+		      
+		      TextArea1.AppendText "PowerControlFeature = inactive" + EndOfLine
+		      
+		    end if
+		    
+		  end if
+		  
+		  'Write to BTLE 
+		  
+		  ' Uint8 = Byte 
+		  ' 0 - 255
+		  
+		  'PowerControlFeature = New AppleCBCharacteristic
+		  '
+		  'Dim s As String = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
+		  '
+		  'Dim mbx As new xojo.Core.MutableMemoryBlock(s.LenB)
+		  'mbx.CStringValue(0) = "A026E005-0A7D-4AB3-97FA-F1500F9FEB8B"
+		  '
+		  'Dim Apdat As New AppleData( mbx.Data )
+		  '
+		  'PowerControlFeature.UUID.Constructor( apdat )
+		  '
+		  'System.DebugLog("PCF uuid made")
+		  '
+		  'If PowerControlFeature.Properties.Write Then
+		  '
+		  'System.DebugLog("PCF properties.write ok")
+		  '
+		  ''Dim b() As Byte 
+		  ''b.Append(1) 'OP Code
+		  ''b.Append(255) 'Value is variable in type, length. Optional.
+		  '
+		  'Dim mb As new xojo.Core.MutableMemoryBlock(512)
+		  'mb.UInt8Value( 0 ) = &h44
+		  ''mb.DoubleValue(1) = 1.0
+		  'mb.UInt8Value(1) =  me.Value 
+		  'mb.UInt8Value(2) = me.Value / 8
+		  '
+		  'Dim Dat As New AppleData
+		  'Dat.ByteBlock.Constructor( mb )
+		  'PeripheralDevice.WriteValue( PowerControlFeature, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, Dat )
+		  '
+		  '//Peripheral.WriteValue(Characteristic, AppleCBPeripheral.CBCharacteristicWriteType.WithoutResponse, ad )
+		  
+		  'Else
+		  'MsgBox "can't write cb"
+		  '
+		  'end if
+		  '
+		  'End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1355,6 +1510,12 @@ End
 		Group="ID"
 		Type="String"
 		EditorType="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="isConnectedBTLE"
+		Group="Behavior"
+		InitialValue="false"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LiveResize"

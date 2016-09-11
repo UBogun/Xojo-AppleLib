@@ -5,6 +5,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub drawInRect Lib appkitlibname Selector "drawInRect:" (id as ptr, Rect as FoundationFrameWork . NSRect)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub drawInteriorWithFrameInView Lib appkitlibname Selector "drawInteriorWithFrame:inView:" (id as ptr, frame as FoundationFrameWork . NSRect, view as ptr)
 	#tag EndExternalMethod
 
@@ -57,6 +61,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getattributes Lib appkitlibname Selector "attributes" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getautomaticallyAdjustsContentInsets Lib appkitlibname Selector "automaticallyAdjustsContentInsets" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -90,6 +98,14 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcenterYAnchor Lib appkitlibname Selector "centerYAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcolorRenderingIntent Lib appkitlibname Selector "colorRenderingIntent" (id as ptr) As NSColorRenderingIntent
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcompositingOperation Lib appkitlibname Selector "compositingOperation" (id as ptr) As NSCompositingOperation
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -144,6 +160,10 @@ Protected Module AppKitFramework
 		Protected Declare Function getexpansionFrameWithFrame Lib appkitlibname Selector "expansionFrameWithFrame:inView:" (id as ptr, frame as FoundationFrameWork . NSRect, view as ptr) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getFlipped Lib appkitlibname Selector "isFlipped" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getfloatValue Lib foundationlibname Selector "floatValue" (id as ptr) As SINGLE
 	#tag EndExternalMethod
@@ -186,6 +206,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getimageFrameStyle Lib appkitlibname Selector "imageFrameStyle" (id as ptr) As NSImageFrameStyle
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimageInterpolation Lib appkitlibname Selector "imageInterpolation" (id as ptr) As NSImageInterpolation
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -281,6 +305,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getpatternPhase Lib appkitlibname Selector "patternPhase" (id as ptr) As FoundationFrameWork.NSPoint
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getrefusesFirstResponder Lib foundationlibname Selector "refusesFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -298,6 +326,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getSelectable Lib appkitlibname Selector "isSelectable" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshouldAntialias Lib appkitlibname Selector "shouldAntialias" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -385,6 +417,18 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithSize Lib appkitlibname Selector "initWithSize:" (id as ptr, size as FoundationFrameWork . NSSize) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub lockFocus Lib appkitlibname Selector "lockFocus" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub lockFocusFlipped Lib appkitlibname Selector "lockFocusFlipped:" (id as ptr, flipped as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub performClick Lib appkitlibname Selector "performClick:" (id as ptr, sender as ptr)
 	#tag EndExternalMethod
 
@@ -461,6 +505,14 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setcolorRenderingIntent Lib appkitlibname Selector "setColorRenderingIntent:" (id as ptr, value as NSColorRenderingIntent)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setcompositingOperation Lib appkitlibname Selector "setCompositingOperation:" (id as ptr, value as NSCompositingOperation)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setcontentInsets Lib appkitlibname Selector "setContentInsets:" (id as ptr, value as AppkitFramework . NSEdgeInsets)
 	#tag EndExternalMethod
 
@@ -533,6 +585,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimageInterpolation Lib appkitlibname Selector "setImageInterpolation:" (id as ptr, value as NSImageInterpolation)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setimageScaling Lib appkitlibname Selector "setImageScaling:" (id as ptr, value as NSImageScaling)
 	#tag EndExternalMethod
 
@@ -601,6 +657,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setpatternPhase Lib appkitlibname Selector "setPatternPhase:" (id as ptr, value as FoundationFrameWork . NSPoint)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setrefusesFirstResponder Lib foundationlibname Selector "setRefusesFirstResponder:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -614,6 +674,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setSelectable Lib appkitlibname Selector "setSelectable:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshouldAntialias Lib appkitlibname Selector "setShouldAntialias:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -712,6 +776,10 @@ Protected Module AppKitFramework
 		Protected Declare Function titleRectForBounds Lib appkitlibname Selector "titleRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub unlockFocus Lib appkitlibname Selector "unlockFocus" (id as ptr)
+	#tag EndExternalMethod
+
 
 	#tag Constant, Name = AppKitLibName, Type = Text, Dynamic = False, Default = \"Appkit.framework", Scope = Public
 	#tag EndConstant
@@ -727,6 +795,32 @@ Protected Module AppKitFramework
 		right As CGFloat
 	#tag EndStructure
 
+
+	#tag Enum, Name = NSColorRenderingIntent, Type = Integer, Flags = &h1
+		Default
+		  AbsoluteColorimetric
+		  RelativeColorimetric
+		  Perceptual
+		Saturation
+	#tag EndEnum
+
+	#tag Enum, Name = NSCompositingOperation, Type = Integer, Flags = &h1
+		Clear
+		  Copy
+		  SourceOver
+		  SourceIn
+		  SourceOut
+		  SourceAtop
+		  DesitinationOver
+		  DesitinationIn
+		  DestinationOut
+		  DestinationAtop
+		  ExclusiveOR
+		  PlusDarker
+		  Highlight
+		  PlusLighter
+		OperationHlliight
+	#tag EndEnum
 
 	#tag Enum, Name = NSFocusRingType, Type = UInteger, Flags = &h1
 		Default = 0
@@ -752,6 +846,14 @@ Protected Module AppKitFramework
 		  GrayBezel
 		  Groove
 		Button
+	#tag EndEnum
+
+	#tag Enum, Name = NSImageInterpolation, Type = Integer, Flags = &h1
+		Default = 0
+		  None = 1
+		  Low = 2
+		  Medium = 4
+		High = 3
 	#tag EndEnum
 
 	#tag Enum, Name = NSImageScaling, Type = UInteger, Flags = &h1

@@ -514,11 +514,23 @@ Inherits AppleSKNode
 			Name="LineCap"
 			Group="Behavior"
 			Type="CGLineCap"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Butt"
+				"1 - Round"
+				"2 - Square"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LineJoin"
 			Group="Behavior"
 			Type="CGLineJoin"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Miter"
+				"1 - Round"
+				"2 - Bevel"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LineLength"

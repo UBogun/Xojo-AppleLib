@@ -33,7 +33,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F662063686172616374657269737469637320746861742068617665206265656E20646973636F766572656420696E207468697320736572766963652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getcharacteristics(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getcharacteristics(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Characteristics As AppleArray
@@ -55,7 +57,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 41206C697374206F6620696E636C7564656420736572766963657320746861742068617665206265656E20646973636F766572656420696E207468697320736572766963652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleArray.MakeFromPtr(getincludedServices(id))
+			  #If TargetMacOS then
+			    return AppleArray.MakeFromPtr(getincludedServices(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		IncludedServices As AppleArray
@@ -64,7 +68,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 4120426F6F6C65616E2076616C756520696E6469636174696E672077686574686572207468652074797065206F662073657276696365206973207072696D617279206F72207365636F6E646172792E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getisPrimary (id)
+			  #If TargetMacOS then
+			    return getisPrimary (id)
+			  #endif
 			End Get
 		#tag EndGetter
 		IsPrimary As Boolean
@@ -73,7 +79,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207065726970686572616C20746F207768696368207468697320736572766963652062656C6F6E67732E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleCBPeripheral.MakeFromPtr(Getperipheral(id))
+			  #If TargetMacOS then
+			    return AppleCBPeripheral.MakeFromPtr(Getperipheral(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Peripheral As AppleCBPeripheral
@@ -82,7 +90,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520426C7565746F6F74682D73706563696669632055554944206F662074686520736572766963652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #If TargetMacOS then
+			    return AppleCBUUID.MakeFromPtr(CoreBluetoothFramework.getuuid(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		UUID As AppleCBUUID

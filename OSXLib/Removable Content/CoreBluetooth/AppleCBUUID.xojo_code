@@ -8,9 +8,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor (UUIDWithData(classptr, uuid.id))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor (UUIDWithData(classptr, uuid.id))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -21,9 +22,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor (UUIDWithNSUUID(classptr, uuid.id))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor (UUIDWithNSUUID(classptr, uuid.id))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -34,9 +36,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor (UUIDWithString(classptr, uuid))
-		  RetainClassObject
-		  
+		  #If TargetMacOS then
+		    Super.Constructor (UUIDWithString(classptr, uuid))
+		    RetainClassObject
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -89,7 +92,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064617461206F662074686520555549442E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return appledata.MakefromPtr(getdata(id))
+			  #If TargetMacOS then
+			    return appledata.MakefromPtr(getdata(id))
+			  #endif
 			End Get
 		#tag EndGetter
 		Data As AppleData
@@ -98,8 +103,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDAppearanceString as text = SystemConstantName("CBUUIDAppearanceString", CoreBluetoothPath)
-			  return mCBUUIDAppearanceString
+			  #If TargetMacOS then
+			    static mCBUUIDAppearanceString as text = SystemConstantName("CBUUIDAppearanceString", CoreBluetoothPath)
+			    return mCBUUIDAppearanceString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDAppearanceString As Text
@@ -108,8 +115,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDCharacteristicAggregateFormatString as text = SystemConstantName("CBUUIDCharacteristicAggregateFormatString", CoreBluetoothPath)
-			  return mCBUUIDCharacteristicAggregateFormatString
+			  #If TargetMacOS then
+			    static mCBUUIDCharacteristicAggregateFormatString as text = SystemConstantName("CBUUIDCharacteristicAggregateFormatString", CoreBluetoothPath)
+			    return mCBUUIDCharacteristicAggregateFormatString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDCharacteristicAggregateFormatString As Text
@@ -118,8 +127,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDCharacteristicExtendedPropertiesString as text = SystemConstantName("CBUUIDCharacteristicExtendedPropertiesString", CoreBluetoothPath)
-			  return mCBUUIDCharacteristicExtendedPropertiesString
+			  #If TargetMacOS then
+			    static mCBUUIDCharacteristicExtendedPropertiesString as text = SystemConstantName("CBUUIDCharacteristicExtendedPropertiesString", CoreBluetoothPath)
+			    return mCBUUIDCharacteristicExtendedPropertiesString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDCharacteristicExtendedPropertiesString As Text
@@ -128,8 +139,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDCharacteristicFormatString as text = SystemConstantName("CBUUIDCharacteristicFormatString", CoreBluetoothPath)
-			  return mCBUUIDCharacteristicFormatString
+			  #If TargetMacOS then
+			    static mCBUUIDCharacteristicFormatString as text = SystemConstantName("CBUUIDCharacteristicFormatString", CoreBluetoothPath)
+			    return mCBUUIDCharacteristicFormatString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDCharacteristicFormatString As Text
@@ -138,8 +151,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDCharacteristicUserDescriptionString as text = SystemConstantName("CBUUIDCharacteristicUserDescriptionString", CoreBluetoothPath)
-			  return mCBUUIDCharacteristicUserDescriptionString
+			  #If TargetMacOS then
+			    static mCBUUIDCharacteristicUserDescriptionString as text = SystemConstantName("CBUUIDCharacteristicUserDescriptionString", CoreBluetoothPath)
+			    return mCBUUIDCharacteristicUserDescriptionString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDCharacteristicUserDescriptionString As Text
@@ -148,8 +163,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDClientCharacteristicConfigurationString as text = SystemConstantName("CBUUIDClientCharacteristicConfigurationString", CoreBluetoothPath)
-			  return mCBUUIDClientCharacteristicConfigurationString
+			  #If TargetMacOS then
+			    static mCBUUIDClientCharacteristicConfigurationString as text = SystemConstantName("CBUUIDClientCharacteristicConfigurationString", CoreBluetoothPath)
+			    return mCBUUIDClientCharacteristicConfigurationString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDClientCharacteristicConfigurationString As Text
@@ -158,8 +175,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDDeviceNameString as text = SystemConstantName("CBUUIDDeviceNameString", CoreBluetoothPath)
-			  return mCBUUIDDeviceNameString
+			  #If TargetMacOS then
+			    static mCBUUIDDeviceNameString as text = SystemConstantName("CBUUIDDeviceNameString", CoreBluetoothPath)
+			    return mCBUUIDDeviceNameString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDDeviceNameString As Text
@@ -168,8 +187,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDGenericAccessProfileString as text = SystemConstantName("CBUUIDGenericAccessProfileString", CoreBluetoothPath)
-			  return mCBUUIDGenericAccessProfileString
+			  #If TargetMacOS then
+			    static mCBUUIDGenericAccessProfileString as text = SystemConstantName("CBUUIDGenericAccessProfileString", CoreBluetoothPath)
+			    return mCBUUIDGenericAccessProfileString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDGenericAccessProfileString As Text
@@ -178,8 +199,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDGenericAttributeProfileString as text = SystemConstantName("CBUUIDGenericAttributeProfileString", CoreBluetoothPath)
-			  return mCBUUIDGenericAttributeProfileString
+			  #If TargetMacOS then
+			    static mCBUUIDGenericAttributeProfileString as text = SystemConstantName("CBUUIDGenericAttributeProfileString", CoreBluetoothPath)
+			    return mCBUUIDGenericAttributeProfileString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDGenericAttributeProfileString As Text
@@ -188,8 +211,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDPeripheralPreferredConnectionParametersString as text = SystemConstantName("CBUUIDPeripheralPreferredConnectionParametersString", CoreBluetoothPath)
-			  return mCBUUIDPeripheralPreferredConnectionParametersString
+			  #If TargetMacOS then
+			    static mCBUUIDPeripheralPreferredConnectionParametersString as text = SystemConstantName("CBUUIDPeripheralPreferredConnectionParametersString", CoreBluetoothPath)
+			    return mCBUUIDPeripheralPreferredConnectionParametersString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDPeripheralPreferredConnectionParametersString As Text
@@ -198,8 +223,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDPeripheralPrivacyFlagString as text = SystemConstantName("CBUUIDPeripheralPrivacyFlagString", CoreBluetoothPath)
-			  return mCBUUIDPeripheralPrivacyFlagString
+			  #If TargetMacOS then
+			    static mCBUUIDPeripheralPrivacyFlagString as text = SystemConstantName("CBUUIDPeripheralPrivacyFlagString", CoreBluetoothPath)
+			    return mCBUUIDPeripheralPrivacyFlagString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDPeripheralPrivacyFlagString As Text
@@ -208,8 +235,11 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDReconnectionAddressString as text = SystemConstantName("CBUUIDReconnectionAddressString", CoreBluetoothPath)
-			  return mCBUUIDReconnectionAddressString
+			  #If TargetMacOS then
+			    
+			    static mCBUUIDReconnectionAddressString as text = SystemConstantName("CBUUIDReconnectionAddressString", CoreBluetoothPath)
+			    return mCBUUIDReconnectionAddressString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDReconnectionAddressString As Text
@@ -218,8 +248,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDServerCharacteristicConfigurationString as text = SystemConstantName("CBUUIDServerCharacteristicConfigurationString", CoreBluetoothPath)
-			  return mCBUUIDServerCharacteristicConfigurationString
+			  #If TargetMacOS then
+			    static mCBUUIDServerCharacteristicConfigurationString as text = SystemConstantName("CBUUIDServerCharacteristicConfigurationString", CoreBluetoothPath)
+			    return mCBUUIDServerCharacteristicConfigurationString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDServerCharacteristicConfigurationString As Text
@@ -228,8 +260,10 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static mCBUUIDServiceChangedString as text = SystemConstantName("CBUUIDServiceChangedString", CoreBluetoothPath)
-			  return mCBUUIDServiceChangedString
+			  #If TargetMacOS then
+			    static mCBUUIDServiceChangedString as text = SystemConstantName("CBUUIDServiceChangedString", CoreBluetoothPath)
+			    return mCBUUIDServiceChangedString
+			  #endif
 			End Get
 		#tag EndGetter
 		Shared kCBUUIDServiceChangedString As Text
@@ -238,7 +272,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865205555494420726570726573656E746564206173206120737472696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getUUIDString(id)
+			  #If TargetMacOS then
+			    return getUUIDString(id)
+			  #endif
 			End Get
 		#tag EndGetter
 		UUIDString As Text

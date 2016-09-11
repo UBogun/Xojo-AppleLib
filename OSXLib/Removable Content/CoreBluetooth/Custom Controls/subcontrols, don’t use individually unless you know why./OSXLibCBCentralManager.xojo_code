@@ -11,12 +11,12 @@ Inherits control
 
 	#tag Event
 		Sub CreatePane()
-		  #if TargetMacOS
+		  #If TargetMacOS then
 		    mappleobject = new AppleCBCentralManager(true)
 		    mAppleObject.RegisterControl self
 		    RaiseEvent CreatePane
 		  #else
-		    #pragma  warning OSXLibModule.kOSXOnlyClassWarning
+		    //#pragma  warning OSXLibModule.kOSXOnlyClassWarning
 		  #endif
 		End Sub
 	#tag EndEvent
@@ -461,20 +461,6 @@ Inherits control
 			Group="Behavior"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="State"
-			Group="Behavior"
-			Type="applecbcentralmanager.CBCentralManagerState"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Unknown"
-				"1 - Resetting"
-				"2 - Unsupported"
-				"3 - Unauthorized"
-				"4 - PoweredOff"
-				"5 - PoweredOn"
-			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

@@ -110,7 +110,6 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -172,6 +171,7 @@ End
 		  me.AddRow("ScrollView")
 		  me.AddRow("TableView")
 		  me.AddRow("AVAudio")
+		  me.AddRow "SpriteKit"
 		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
 		  me.ListIndex = 0
@@ -198,7 +198,7 @@ End
 		  case "Notifications"
 		    SecondaryWindow = new NotificationWindow
 		  case "CoreBluetooth"
-		    // SecondaryWindow= new CoreBluetoothWindow
+		    SecondaryWindow= new CoreBluetoothWindow
 		  case "NSView Additions"
 		    SecondaryWindow= new NSViewPlayWindow
 		  case "ScrollView"
@@ -209,6 +209,12 @@ End
 		    SecondaryWindow = new OutlineViewWindow
 		  case "AVAudio"
 		    SecondaryWindow = new AVAudioWindow
+		  case "SpriteKit"
+		    #if Target64Bit
+		      SecondaryWindow = new SpriteKitWindow
+		    #elseif Target32Bit
+		      MsgBox "SpriteKit needs 64Bit to run"
+		    #endif
 		  end select
 		End Sub
 	#tag EndEvent
