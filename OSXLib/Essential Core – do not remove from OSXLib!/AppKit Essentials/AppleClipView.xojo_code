@@ -7,9 +7,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 436F6E73747261696E732074686520626F756E6473206F662074686520636C69702076696577207768696C65207468652075736572206973206D61676E696679696E6720616E64207363726F6C6C696E672E
 		Function ConstrainBounds(rect as FoundationFrameWork.NSRect) As FoundationFrameWork.NSRect
-		  #If TargetMacOS then
-		    return constrainBoundsRect (id, rect)
-		  #endif
+		  return constrainBoundsRect (id, rect)
 		End Function
 	#tag EndMethod
 
@@ -32,10 +30,9 @@ Inherits AppleView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(initwithFrame(alloc(classptr), frame))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(initwithFrame(alloc(classptr), frame))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -59,9 +56,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 4368616E67657320746865206F726967696E206F662074686520636C69702076696577E280997320626F756E64732072656374616E676C6520746F206E65774F726967696E2E
 		Sub ScrollToPoint(Point as FoundationFrameWork.NSPoint)
-		  #If TargetMacOS then
-		    ScrollToPoint id, point
-		  #endif
+		  ScrollToPoint id, point
 		End Sub
 	#tag EndMethod
 
@@ -85,16 +80,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520636C69702076696577206175746F6D61746963616C6C79206163636F756E747320666F72206F74686572207363726F6C6C20766965772073756276696577732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getautomaticallyAdjustsContentInsets(id)
-			  #endif
+			  return AppKitFramework.getautomaticallyAdjustsContentInsets(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setautomaticallyAdjustsContentInsets id, value
-			  #endif
+			  AppKitFramework.setautomaticallyAdjustsContentInsets id, value
 			End Set
 		#tag EndSetter
 		AutomaticallyAdjustsContentInsets As Boolean
@@ -103,16 +94,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520636C69702076696577E2809973206261636B67726F756E642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
-			  #endif
+			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor
@@ -131,16 +118,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E636520746861742074686520636F6E74656E74207669657720697320696E7365742066726F6D2074686520656E636C6F73696E67207363726F6C6C20766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getcontentInsets(id)
-			  #endif
+			  return AppKitFramework.getcontentInsets(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setcontentInsets id, value
-			  #endif
+			  AppKitFramework.setcontentInsets id, value
 			End Set
 		#tag EndSetter
 		ContentInsets As AppkitFramework.NSEdgeInsets
@@ -149,16 +132,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 49662074686520636C6970207669657720636F706965732072656E646572656420696D61676573207768696C65207363726F6C6C696E672E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getcopiesOnScroll (id)
-			  #endif
+			  return getcopiesOnScroll (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setcopiesOnScroll id, value
-			  #endif
+			  setcopiesOnScroll id, value
 			End Set
 		#tag EndSetter
 		CopiesOnScroll As Boolean
@@ -167,9 +146,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652072656374616E676C6520646566696E696E672074686520646F63756D656E742076696577E2809973206672616D652C2061646A757374656420746F207468652073697A65206F662074686520636C697020766965772069662074686520646F63756D656E74207669657720697320736D616C6C65722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getdocumentRect(id)
-			  #endif
+			  return getdocumentRect(id)
 			End Get
 		#tag EndGetter
 		DocumentRect As FoundationFrameWork.NSRect
@@ -178,9 +155,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652072656374616E676C6520646566696E696E672074686520646F63756D656E742076696577E2809973206672616D652C2061646A757374656420746F207468652073697A65206F662074686520636C697020766965772069662074686520646F63756D656E74207669657720697320736D616C6C65722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getdocumentVisibleRect(id)
-			  #endif
+			  return getdocumentVisibleRect(id)
 			End Get
 		#tag EndGetter
 		DocumentVisibleRect As FoundationFrameWork.NSRect
@@ -189,16 +164,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520636C6970207669657720647261777320697473206261636B67726F756E6420636F6C6F722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.GetdrawsBackground (id)
-			  #endif
+			  return AppKitFramework.GetdrawsBackground (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setdrawsBackground id, value
-			  #endif
+			  AppKitFramework.setdrawsBackground id, value
 			End Set
 		#tag EndSetter
 		DrawsBackground As Boolean

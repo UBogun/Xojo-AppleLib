@@ -9,46 +9,42 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000, Description = 4372656174657320616E642072657475726E732061206E657720696E7374616E6365206F662043414D6564696154696D696E6746756E6374696F6E2074696D696E672066756E6374696F6E206D6F64656C656420617320612063756269632042C3A97A696572206375727665207573696E67207468652073706563696669656420636F6E74726F6C20706F696E74732E
 		Sub Constructor(c1x as single, c1y as single, c2x as single, c2y as single)
-		  #If TargetMacOS then
-		    declare function initWithControlPoints lib QuartzCoreLib selector "initWithControlPoints::::" (id as ptr, c1x as single, c1y as single, c2x as single, c2y as single) as ptr
-		    super.Constructor (initWithControlPoints (alloc(classptr), c1x, c1y, c2x, c2y))
-		    mhasownership = true
-		  #endif
+		  declare function initWithControlPoints lib QuartzCoreLib selector "initWithControlPoints::::" (id as ptr, c1x as single, c1y as single, c2x as single, c2y as single) as ptr
+		  super.Constructor (initWithControlPoints (alloc(classptr), c1x, c1y, c2x, c2y))
+		  mhasownership = true
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000, Description = 4372656174657320616E642072657475726E732061206E657720696E7374616E6365206F662043414D6564696154696D696E6746756E6374696F6E20636F6E6669677572656420776974682074686520707265646566696E65642074696D696E672066756E6374696F6E2E
 		Sub Constructor(Timing as TimingFunction)
-		  #If TargetMacOS then
-		    declare function functionWithName lib QuartzCoreLib selector "functionWithName:" (id as ptr, name as CFStringRef) as ptr
-		    dim name as text
-		    select case timing
-		    case TimingFunction.Default
-		      name = TimingDefault
-		    case TimingFunction.EaseIn
-		      name = TimingEaseIn
-		    case TimingFunction.EaseOut
-		      name = TimingEaseOut
-		    case TimingFunction.EaseInEaseOut
-		      name = TimingEaseInEaseOut
-		    case TimingFunction.Linear
-		      name = TimingLinear
-		    end select
-		    super.Constructor (functionWithName (ClassPtr, name))
-		    RetainClassObject
-		  #endif
+		  declare function functionWithName lib QuartzCoreLib selector "functionWithName:" (id as ptr, name as CFStringRef) as ptr
+		  dim name as text
+		  select case timing
+		  case TimingFunction.Default
+		    name = TimingDefault
+		  case TimingFunction.EaseIn
+		    name = TimingEaseIn
+		  case TimingFunction.EaseOut
+		    name = TimingEaseOut
+		  case TimingFunction.EaseInEaseOut
+		    name = TimingEaseInEaseOut
+		  case TimingFunction.Linear
+		    name = TimingLinear
+		  end select
+		  super.Constructor (functionWithName (ClassPtr, name))
+		  RetainClassObject
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520636F6E74726F6C20706F696E7420666F72207468652073706563696669656420696E6465782E
 		Function GetControlPoints(Index as UInteger) As xojo.core.point
-		  #If TargetMacOS then
-		    declare sub getControlPointAtIndex lib QuartzCoreLib selector "getControlPointAtIndex:values:" (id as ptr, index as uinteger, value as ptr)
-		    dim mb as new xojo.Core.MutableMemoryBlock ( 16)
-		    getControlPointAtIndex (id, index, mb.Data)
-		    dim resultpoint as new xojo.Core.Point (mb.SingleValue(0), mb.SingleValue(4))
-		    return resultpoint
-		  #endif
+		  declare sub getControlPointAtIndex lib QuartzCoreLib selector "getControlPointAtIndex:values:" (id as ptr, index as uinteger, value as ptr)
+		  dim mb as new xojo.Core.MutableMemoryBlock ( 16)
+		  getControlPointAtIndex (id, index, mb.Data)
+		  dim resultpoint as new xojo.Core.Point (mb.SingleValue(0), mb.SingleValue(4))
+		  return resultpoint
+		  
 		End Function
 	#tag EndMethod
 
@@ -158,10 +154,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionDefault", QuartzCorePath)
-			    return mResult
-			  #endif
+			  dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionDefault", QuartzCorePath)
+			  return mResult
 			End Get
 		#tag EndGetter
 		Private Shared TimingDefault As Text
@@ -170,10 +164,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionEaseIn", QuartzCorePath)
-			    return mResult
-			  #endif
+			  dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionEaseIn", QuartzCorePath)
+			  return mResult
 			End Get
 		#tag EndGetter
 		Private Shared TimingEaseIn As Text
@@ -182,10 +174,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionEaseInEaseOut", QuartzCorePath)
-			    return mResult
-			  #endif
+			  dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionEaseInEaseOut", QuartzCorePath)
+			  return mResult
 			End Get
 		#tag EndGetter
 		Private Shared TimingEaseInEaseOut As Text
@@ -194,10 +184,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionEaseOut", QuartzCorePath)
-			    return mResult
-			  #endif
+			  dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionEaseOut", QuartzCorePath)
+			  return mResult
 			End Get
 		#tag EndGetter
 		Private Shared TimingEaseOut As Text
@@ -206,10 +194,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionLinear", QuartzCorePath)
-			    return mResult
-			  #endif
+			  dim mResult as text = SystemConstantName ("kCAMediaTimingFunctionLinear", QuartzCorePath)
+			  return mResult
 			End Get
 		#tag EndGetter
 		Private Shared TimingLinear As Text

@@ -8,10 +8,8 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(init(alloc(ClassPtr)))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(init(alloc(ClassPtr)))
+		  MHasOwnership = true
 		  
 		End Sub
 	#tag EndMethod
@@ -53,9 +51,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 412070747220746F207468652055554944732062797465732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getUUIDBytes (id)
-			  #endif
+			  return getUUIDBytes (id)
 			End Get
 		#tag EndGetter
 		UUIDBytes As Ptr
@@ -64,9 +60,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652055554944206173206120737472696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getUUIDString (id)
-			  #endif
+			  return getUUIDString (id)
 			End Get
 		#tag EndGetter
 		UUIDString As Text

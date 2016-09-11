@@ -3,9 +3,7 @@ Protected Class AppleDictionary
 Inherits Appleobject
 	#tag Method, Flags = &h0
 		Function AllKeys(anObject as AppleGeneralObject) As AppleArray
-		  #If TargetMacOS then
-		    return AppleArray.MakeFromPtr( allKeysForObject (id, anObject.GeneralID))
-		  #endif
+		  return AppleArray.MakeFromPtr( allKeysForObject (id, anObject.GeneralID))
 		End Function
 	#tag EndMethod
 
@@ -20,10 +18,8 @@ Inherits Appleobject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (Init(Alloc(ClassPtr)))
-		    mhasownership = true
-		  #endif
+		  Super.Constructor (Init(Alloc(ClassPtr)))
+		  mhasownership = true
 		  
 		End Sub
 	#tag EndMethod
@@ -64,33 +60,25 @@ Inherits Appleobject
 
 	#tag Method, Flags = &h0
 		Function PtrForKey(akey as cfstringref) As Ptr
-		  #If TargetMacOS then
-		    return getobjectForKey (id, akey)
-		  #endif
+		  return getobjectForKey (id, akey)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function PtrForKey(akey as Ptr) As Ptr
-		  #If TargetMacOS then
-		    return getobjectForKey (id, akey)
-		  #endif
+		  return getobjectForKey (id, akey)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function TextForKey(akey as cfstringref) As Text
-		  #If TargetMacOS then
-		    return getTextForKey (id, akey)
-		  #endif
+		  return getTextForKey (id, akey)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function TextForKey(akey as ptr) As Text
-		  #If TargetMacOS then
-		    return getTextForKey (id, akey)
-		  #endif
+		  return getTextForKey (id, akey)
 		End Function
 	#tag EndMethod
 
@@ -102,9 +90,7 @@ Inherits Appleobject
 
 	#tag Method, Flags = &h0
 		Function ValueForKey(Key as CFstringRef) As appleobject
-		  #If TargetMacOS then
-		    return appleobject.MakeFromPtr(FoundationFrameWork.getvalueForKey (id, key))
-		  #endif
+		  return appleobject.MakeFromPtr(FoundationFrameWork.getvalueForKey (id, key))
 		  
 		End Function
 	#tag EndMethod
@@ -113,11 +99,9 @@ Inherits Appleobject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    declare function allKeys lib FoundationLibName  Selector "allKeys"(id as ptr) as ptr
-			    dim myptr as ptr = allKeys (id)
-			    return if (myptr <> NIL, new AppleArray (myptr), NIL)
-			  #endif
+			  declare function allKeys lib FoundationLibName  Selector "allKeys"(id as ptr) as ptr
+			  dim myptr as ptr = allKeys (id)
+			  return if (myptr <> NIL, new AppleArray (myptr), NIL)
 			  
 			End Get
 		#tag EndGetter
@@ -127,11 +111,9 @@ Inherits Appleobject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    declare function allValues lib FoundationLibName  Selector "allValues"(id as ptr) as ptr
-			    dim myptr as ptr = allValues (id)
-			    return if (myptr <> NIL, new AppleArray (myptr), NIL)
-			  #endif
+			  declare function allValues lib FoundationLibName  Selector "allValues"(id as ptr) as ptr
+			  dim myptr as ptr = allValues (id)
+			  return if (myptr <> NIL, new AppleArray (myptr), NIL)
 			  
 			End Get
 		#tag EndGetter
@@ -151,9 +133,7 @@ Inherits Appleobject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return FoundationFrameWork.getCount(id)
-			  #endif
+			  return FoundationFrameWork.getCount(id)
 			End Get
 		#tag EndGetter
 		Count As UInteger
@@ -162,10 +142,8 @@ Inherits Appleobject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare function descriptionInStringsFileFormat lib FoundationLibName  selector "descriptionInStringsFileFormat" (id as ptr) as CFStringRef
-			    return descriptionInStringsFileFormat (id)
-			  #endif
+			  Declare function descriptionInStringsFileFormat lib FoundationLibName  selector "descriptionInStringsFileFormat" (id as ptr) as CFStringRef
+			  return descriptionInStringsFileFormat (id)
 			End Get
 		#tag EndGetter
 		StringsFileFormat As Text

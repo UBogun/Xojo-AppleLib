@@ -3,81 +3,53 @@ Protected Class AppleValue
 Inherits AppleObject
 	#tag Method, Flags = &h1000
 		Sub Constructor(APoint As FoundationFrameWork.NSPoint)
-		  #If TargetMacOS then
-		    super.Constructor (valueWithPoint (ClassPtr, apoint))
-		    RetainClassObject
-		  #endif
+		  super.Constructor (valueWithPoint (ClassPtr, apoint))
+		  RetainClassObject
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(ARect As FoundationFramework.NSRect)
-		  #If TargetMacOS then
-		    super.Constructor (valueWithRect (ClassPtr, aRect))
-		    RetainClassObject
-		  #endif
+		  super.Constructor (valueWithRect (ClassPtr, aRect))
+		  RetainClassObject
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(ASize As FoundationFramework.NSSize)
-		  #If TargetMacOS then
-		    super.Constructor (valueWithSize (ClassPtr, aSize))
-		    RetainClassObject
-		  #endif
+		  super.Constructor (valueWithSize (ClassPtr, aSize))
+		  RetainClassObject
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000
 		Sub constructor(value as xojo.core.memoryblock, type as CString)
-		  #If TargetMacOS then
-		    super.Constructor(  valueWithBytes (ClassPtr, value.Data, type))
-		    retainclassobject
-		  #Endif
+		  super.Constructor(  valueWithBytes (ClassPtr, value.Data, type))
+		  retainclassobject
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function Equals(anotherValue as AppleValue) As Boolean
-		  #If TargetMacOS then
-		    return getisEqualToValue (id, anotherValue.id)
-		  #endif
+		  return getisEqualToValue (id, anotherValue.id)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-<<<<<<< HEAD
 		Shared Function FromNonretainedObject(anObject as AppleGeneralObject) As AppleValue
 		  dim result as new AppleValue(valueWithNonretainedObject(classptr, anobject.GeneralId))
 		  result.retainclassobject
 		  return result
-=======
-		 Shared Function FromNonretainedObject(anObject as AppleGeneralObject) As AppleValue
-		  #If TargetMacOS then
-		    dim result as new AppleValue(valueWithNonretainedObject(classptr, anobject.GeneralId))
-		    result.retainclassobject
-		    return result
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-<<<<<<< HEAD
 		Shared Function FromPtr(aPtr as Ptr) As AppleValue
 		  dim result as new AppleValue(valueWithPointer(classptr, aptr))
 		  result.retainclassobject
 		  return result
-=======
-		 Shared Function FromPtr(aPtr as Ptr) As AppleValue
-		  #If TargetMacOS then
-		    dim result as new AppleValue(valueWithPointer(classptr, aptr))
-		    result.retainclassobject
-		    return result
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
@@ -149,9 +121,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return  AppleObject.MakeFromPtr (getnonretainedObjectValue (id))
-			  #endif
+			  return  AppleObject.MakeFromPtr (getnonretainedObjectValue (id))
 			  
 			End Get
 		#tag EndGetter
@@ -161,9 +131,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getpointerValue (id)
-			  #endif
+			  return getpointerValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -173,9 +141,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getpointValue (id)
-			  #endif
+			  return getpointValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -185,9 +151,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getrectValue (id)
-			  #endif
+			  return getrectValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -197,9 +161,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getsizeValue (id)
-			  #endif
+			  return getsizeValue (id)
 			  
 			  
 			End Get

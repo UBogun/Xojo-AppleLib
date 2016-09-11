@@ -119,7 +119,9 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
+      TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   20
       Value           =   0
       Visible         =   True
@@ -425,8 +427,6 @@ End
 		  end if
 		End Sub
 	#tag EndEvent
-#tag EndEvents
-#tag Events ChannelField
 #tag EndEvents
 #tag Events PushButton3
 	#tag Event

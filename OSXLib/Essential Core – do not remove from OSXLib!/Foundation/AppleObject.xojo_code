@@ -19,10 +19,8 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  #If TargetMacOS then
-		    mid = init(alloc(classptr))
-		    MHasOwnership = true
-		  #endif
+		  mid = init(alloc(classptr))
+		  MHasOwnership = true
 		End Sub
 	#tag EndMethod
 
@@ -42,27 +40,25 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
-		  #If TargetMacOS then
-		    if id <> nil then
-		      #if DebugBuild
-		        if mHasOwnership then
-		          if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
-		          if XojoControls <> nil and XojoControls.HasKey(id) then 
-		            XojoControls.Remove(id)
-		            if LibDebug then system.DebugLog "Released control too"
-		          end if
-		          call release id
-		        else
-		          if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
+		  if id <> nil then
+		    #if DebugBuild
+		      if mHasOwnership then
+		        if LibDebug then system.DebugLog "Releasing "+DebugDescription+" AR: "+RetainCount.totext
+		        if XojoControls <> nil and XojoControls.HasKey(id) then 
+		          XojoControls.Remove(id)
+		          if LibDebug then system.DebugLog "Released control too"
 		        end if
-		      #else
-		        if mhasownership then
-		          removecontrol
-		          call release id
-		        end if
-		      #endif
-		    end if
-		  #endif
+		        call release id
+		      else
+		        if LibDebug then system.debuglog "Losing Handle on "+DebugDescription+" AR: "+RetainCount.totext
+		      end if
+		    #else
+		      if mhasownership then
+		        removecontrol
+		        call release id
+		      end if
+		    #endif
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -137,9 +133,7 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub Retain()
-		  #If TargetMacOS then
-		    call retain id
-		  #endif
+		  call retain id
 		End Sub
 	#tag EndMethod
 
@@ -149,10 +143,8 @@ Implements AppleGeneralObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub RetainClassObject()
-		  #If TargetMacOS then
-		    call retain (id)
-		    MHasOwnership = true
-		  #endif
+		  call retain (id)
+		  MHasOwnership = true
 		End Sub
 	#tag EndMethod
 
@@ -196,9 +188,7 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleObject.MakeFromPtr (getclass(id))
-			  #endif
+			  return AppleObject.MakeFromPtr (getclass(id))
 			  
 			End Get
 		#tag EndGetter
@@ -221,9 +211,7 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getdebugDescription (id)
-			  #endif
+			  return getdebugDescription (id)
 			  
 			End Get
 		#tag EndGetter
@@ -259,9 +247,7 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E2809973207265666572656E636520636F756E742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getretainCount (id)
-			  #endif
+			  return getretainCount (id)
 			  
 			End Get
 		#tag EndGetter
@@ -271,9 +257,7 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleObject.MakeFromPtr (getsuperclass(id))
-			  #endif
+			  return AppleObject.MakeFromPtr (getsuperclass(id))
 			  
 			End Get
 		#tag EndGetter

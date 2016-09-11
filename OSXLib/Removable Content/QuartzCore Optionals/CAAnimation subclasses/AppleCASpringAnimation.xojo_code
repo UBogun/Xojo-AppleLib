@@ -15,10 +15,9 @@ Inherits AppleCABasicAnimation
 		  // Constructor() -- From AppleCAAnimation
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(animationWithKeyPath(classptr, KeyPath))
-		    RetainClassObject
-		  #endif
+		  Super.Constructor(animationWithKeyPath(classptr, KeyPath))
+		  RetainClassObject
+		  
 		End Sub
 	#tag EndMethod
 

@@ -8,10 +8,9 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(functionWithName(ClassPtr, FunctionName))
-		    RetainClassObject
-		  #endif
+		  Super.Constructor(functionWithName(ClassPtr, FunctionName))
+		  RetainClassObject
+		  
 		End Sub
 	#tag EndMethod
 
@@ -51,10 +50,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionRotateX as text= SystemConstantName("kCAValueFunctionRotateX", QuartzCorePath)
-			    return mkCAValueFunctionRotateX
-			  #endif
+			  static mkCAValueFunctionRotateX as text= SystemConstantName("kCAValueFunctionRotateX", QuartzCorePath)
+			  return mkCAValueFunctionRotateX
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionRotateX As Text
@@ -63,10 +60,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionRotateY as text= SystemConstantName("kCAValueFunctionRotateY", QuartzCorePath)
-			    return mkCAValueFunctionRotateY
-			  #endif
+			  static mkCAValueFunctionRotateY as text= SystemConstantName("kCAValueFunctionRotateY", QuartzCorePath)
+			  return mkCAValueFunctionRotateY
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionRotateY As Text
@@ -75,10 +70,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionRotateZ as text= SystemConstantName("kCAValueFunctionRotateZ", QuartzCorePath)
-			    return mkCAValueFunctionRotateZ
-			  #endif
+			  static mkCAValueFunctionRotateZ as text= SystemConstantName("kCAValueFunctionRotateZ", QuartzCorePath)
+			  return mkCAValueFunctionRotateZ
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionRotateZ As Text
@@ -87,10 +80,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionScale as text= SystemConstantName("kCAValueFunctionScale", QuartzCorePath)
-			    return mkCAValueFunctionScale
-			  #endif
+			  static mkCAValueFunctionScale as text= SystemConstantName("kCAValueFunctionScale", QuartzCorePath)
+			  return mkCAValueFunctionScale
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionScale As Text
@@ -99,10 +90,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionScaleX as text= SystemConstantName("kCAValueFunctionScaleX", QuartzCorePath)
-			    return mkCAValueFunctionScaleX
-			  #endif
+			  static mkCAValueFunctionScaleX as text= SystemConstantName("kCAValueFunctionScaleX", QuartzCorePath)
+			  return mkCAValueFunctionScaleX
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionScaleX As Text
@@ -111,10 +100,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionScaleY as text= SystemConstantName("kCAValueFunctionScaleY", QuartzCorePath)
-			    return mkCAValueFunctionScaleY
-			  #endif
+			  static mkCAValueFunctionScaleY as text= SystemConstantName("kCAValueFunctionScaleY", QuartzCorePath)
+			  return mkCAValueFunctionScaleY
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionScaleY As Text
@@ -123,10 +110,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionScaleZ as text= SystemConstantName("kCAValueFunctionScaleZ", QuartzCorePath)
-			    return mkCAValueFunctionScaleZ
-			  #endif
+			  static mkCAValueFunctionScaleZ as text= SystemConstantName("kCAValueFunctionScaleZ", QuartzCorePath)
+			  return mkCAValueFunctionScaleZ
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionScaleZ As Text
@@ -135,10 +120,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionTranslate as text= SystemConstantName("kCAValueFunctionTranslate", QuartzCorePath)
-			    return mkCAValueFunctionTranslate
-			  #endif
+			  static mkCAValueFunctionTranslate as text= SystemConstantName("kCAValueFunctionTranslate", QuartzCorePath)
+			  return mkCAValueFunctionTranslate
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionTranslate As Text
@@ -147,10 +130,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionTranslateX as text= SystemConstantName("kCAValueFunctionTranslateX", QuartzCorePath)
-			    return mkCAValueFunctionTranslateX
-			  #endif
+			  static mkCAValueFunctionTranslateX as text= SystemConstantName("kCAValueFunctionTranslateX", QuartzCorePath)
+			  return mkCAValueFunctionTranslateX
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionTranslateX As Text
@@ -159,10 +140,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionTranslateY as text= SystemConstantName("kCAValueFunctionTranslateY", QuartzCorePath)
-			    return mkCAValueFunctionTranslateY
-			  #endif
+			  static mkCAValueFunctionTranslateY as text= SystemConstantName("kCAValueFunctionTranslateY", QuartzCorePath)
+			  return mkCAValueFunctionTranslateY
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionTranslateY As Text
@@ -171,10 +150,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCAValueFunctionTranslateZ as text= SystemConstantName("kCAValueFunctionTranslateZ", QuartzCorePath)
-			    return mkCAValueFunctionTranslateZ
-			  #endif
+			  static mkCAValueFunctionTranslateZ as text= SystemConstantName("kCAValueFunctionTranslateZ", QuartzCorePath)
+			  return mkCAValueFunctionTranslateZ
 			End Get
 		#tag EndGetter
 		Shared kCAValueFunctionTranslateZ As Text
@@ -183,9 +160,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D65206F66207468652076616C75652066756E6374696F6E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return FoundationFrameWork.getName(id)
-			  #endif
+			  return FoundationFrameWork.getName(id)
 			End Get
 		#tag EndGetter
 		Name As Text
@@ -194,9 +169,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionRotateX)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionRotateX)
 			End Get
 		#tag EndGetter
 		Shared RotateX As AppleCAValueFunction
@@ -205,9 +178,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionRotateY)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionRotateY)
 			End Get
 		#tag EndGetter
 		Shared RotateY As AppleCAValueFunction
@@ -216,9 +187,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionRotateZ)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionRotateZ)
 			End Get
 		#tag EndGetter
 		Shared RotateZ As AppleCAValueFunction
@@ -227,9 +196,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionScale)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionScale)
 			End Get
 		#tag EndGetter
 		Shared Scale As AppleCAValueFunction
@@ -238,9 +205,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionScaleX)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionScaleX)
 			End Get
 		#tag EndGetter
 		Shared ScaleX As AppleCAValueFunction
@@ -249,9 +214,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionScaleY)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionScaleY)
 			End Get
 		#tag EndGetter
 		Shared ScaleY As AppleCAValueFunction
@@ -260,9 +223,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionScaleZ)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionScaleZ)
 			End Get
 		#tag EndGetter
 		Shared ScaleZ As AppleCAValueFunction
@@ -271,9 +232,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionTranslate)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionTranslate)
 			End Get
 		#tag EndGetter
 		Shared Translate As AppleCAValueFunction
@@ -282,9 +241,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionTranslateX)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionTranslateX)
 			End Get
 		#tag EndGetter
 		Shared TranslateX As AppleCAValueFunction
@@ -293,9 +250,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionTranslateY)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionTranslateY)
 			End Get
 		#tag EndGetter
 		Shared TranslateY As AppleCAValueFunction
@@ -304,9 +259,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return new AppleCAValueFunction(kCAValueFunctionTranslateZ)
-			  #endif
+			  return new AppleCAValueFunction(kCAValueFunctionTranslateZ)
 			End Get
 		#tag EndGetter
 		Shared TranslateZ As AppleCAValueFunction

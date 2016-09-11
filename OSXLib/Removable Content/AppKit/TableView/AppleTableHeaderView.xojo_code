@@ -3,9 +3,7 @@ Protected Class AppleTableHeaderView
 Inherits AppleView
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E646578206F662074686520636F6C756D6E2077686F736520686561646572206C69657320756E6465722061506F696E7420696E207468652072656365697665722C206F7220E2809331206966206E6F207375636820636F6C756D6E20697320666F756E642E
 		Function ColumnAtPoint(Point as FoundationFrameWork.NSPoint) As Integer
-		  #If TargetMacOS then
-		    return TableViewAdditionsForAppkit.getcolumnAtPoint (id, point)
-		  #endif
+		  return TableViewAdditionsForAppkit.getcolumnAtPoint (id, point)
 		End Function
 	#tag EndMethod
 
@@ -25,10 +23,9 @@ Inherits AppleView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(initwithframe(alloc(classptr),Rect))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(initwithframe(alloc(classptr),Rect))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -50,9 +47,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652072656374616E676C6520636F6E7461696E696E6720746865206865616465722074696C6520666F722074686520636F6C756D6E20617420636F6C756D6E496E6465782E
 		Function HeaderRectOfColumn(column as Integer) As FoundationFrameWork.NSRect
-		  #If TargetMacOS then
-		    return getheaderRectOfColumn (id, column)
-		  #endif
+		  return getheaderRectOfColumn (id, column)
 		End Function
 	#tag EndMethod
 
@@ -72,9 +67,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 412070726F7879206F626A65637420666F722074686520726563656976657220746861742063616E206265207573656420746F20696E69746961746520696D706C69656420616E696D6174696F6E20666F722070726F7065727479206368616E6765732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleTableHeaderView.MakeFromPtr(getanimator(id))
-			  #endif
+			  return AppleTableHeaderView.MakeFromPtr(getanimator(id))
 			End Get
 		#tag EndGetter
 		Animator As AppleTableHeaderView
@@ -93,9 +86,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520636F6C756D6E2074686174207468652075736572206973206472616767696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getdraggedColumn(id)
-			  #endif
+			  return getdraggedColumn(id)
 			End Get
 		#tag EndGetter
 		DraggedColumn As Integer
@@ -104,9 +95,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520686F72697A6F6E74616C2064697374616E63652074686174207468652075736572206861732064726167676564206120636F6C756D6E2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getdraggedDistance(id)
-			  #endif
+			  return getdraggedDistance(id)
 			End Get
 		#tag EndGetter
 		DraggedDistance As Double
@@ -115,9 +104,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E646578206F662074686520636F6C756D6E207468617420746865207573657220697320726573697A696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getresizedColumn(id)
-			  #endif
+			  return getresizedColumn(id)
 			End Get
 		#tag EndGetter
 		ResizedColumn As Integer
@@ -126,16 +113,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865204170706C655461626C655669657720696E7374616E636520746861742074686973207461626C652068656164657220766965772062656C6F6E677320746F2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleTableView.MakefromPtr(TableViewAdditionsForAppkit.gettableView(id))
-			  #endif
+			  return AppleTableView.MakefromPtr(TableViewAdditionsForAppkit.gettableView(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    TableViewAdditionsForAppkit.setTableView id, if (value = nil, nil, value.id)
-			  #endif
+			  TableViewAdditionsForAppkit.setTableView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		TableView As AppleTableView

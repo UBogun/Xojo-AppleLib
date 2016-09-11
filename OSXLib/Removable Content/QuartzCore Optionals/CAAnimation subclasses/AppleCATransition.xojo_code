@@ -9,10 +9,9 @@ Inherits AppleCAAnimation
 		  // Constructor() -- From AppleCAAnimation
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(animation(classptr))
-		    retainClassobject
-		  #endif
+		  Super.Constructor(animation(classptr))
+		  retainClassobject
+		  
 		End Sub
 	#tag EndMethod
 
@@ -70,16 +69,12 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 496E646963617465732074686520656E6420706F696E74206F66207468652072656365697665722061732061206672616374696F6E206F662074686520656E74697265207472616E736974696F6E2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getendProgress(id)
-			  #endif
+			  return getendProgress(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setendProgress id,value
-			  #endif
+			  setendProgress id,value
 			End Set
 		#tag EndSetter
 		EndProgress As Single
@@ -88,10 +83,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionFade as text=SystemConstantName("kCATransitionFade", QuartzCorePath)
-			    return mkCATransitionFade
-			  #endif
+			  static mkCATransitionFade as text=SystemConstantName("kCATransitionFade", QuartzCorePath)
+			  return mkCATransitionFade
 			End Get
 		#tag EndGetter
 		Shared kCATransitionFade As Text
@@ -100,10 +93,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionFromBottom as text=SystemConstantName("kCATransitionFromBottom", QuartzCorePath)
-			    return mkCATransitionFromBottom
-			  #endif
+			  static mkCATransitionFromBottom as text=SystemConstantName("kCATransitionFromBottom", QuartzCorePath)
+			  return mkCATransitionFromBottom
 			End Get
 		#tag EndGetter
 		Shared kCATransitionFromBottom As Text
@@ -112,10 +103,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionFromLeft as text=SystemConstantName("kCATransitionFromLeft", QuartzCorePath)
-			    return mkCATransitionFromLeft
-			  #endif
+			  static mkCATransitionFromLeft as text=SystemConstantName("kCATransitionFromLeft", QuartzCorePath)
+			  return mkCATransitionFromLeft
 			End Get
 		#tag EndGetter
 		Shared kCATransitionFromLeft As Text
@@ -124,10 +113,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionFromRight as text=SystemConstantName("kCATransitionFromRight", QuartzCorePath)
-			    return mkCATransitionFromRight
-			  #endif
+			  static mkCATransitionFromRight as text=SystemConstantName("kCATransitionFromRight", QuartzCorePath)
+			  return mkCATransitionFromRight
 			End Get
 		#tag EndGetter
 		Shared kCATransitionFromRight As Text
@@ -136,10 +123,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionFromTop as text=SystemConstantName("kCATransitionFromTop", QuartzCorePath)
-			    return mkCATransitionFromTop
-			  #endif
+			  static mkCATransitionFromTop as text=SystemConstantName("kCATransitionFromTop", QuartzCorePath)
+			  return mkCATransitionFromTop
 			End Get
 		#tag EndGetter
 		Shared kCATransitionFromTop As Text
@@ -148,10 +133,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionMoveIn as text=SystemConstantName("kCATransitionMoveIn", QuartzCorePath)
-			    return mkCATransitionMoveIn
-			  #endif
+			  static mkCATransitionMoveIn as text=SystemConstantName("kCATransitionMoveIn", QuartzCorePath)
+			  return mkCATransitionMoveIn
 			End Get
 		#tag EndGetter
 		Shared kCATransitionMoveIn As Text
@@ -160,10 +143,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionPush as text=SystemConstantName("kCATransitionPush", QuartzCorePath)
-			    return mkCATransitionPush
-			  #endif
+			  static mkCATransitionPush as text=SystemConstantName("kCATransitionPush", QuartzCorePath)
+			  return mkCATransitionPush
 			End Get
 		#tag EndGetter
 		Shared kCATransitionPush As Text
@@ -172,10 +153,8 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mkCATransitionReveal as text=SystemConstantName("kCATransitionReveal", QuartzCorePath)
-			    return mkCATransitionReveal
-			  #endif
+			  static mkCATransitionReveal as text=SystemConstantName("kCATransitionReveal", QuartzCorePath)
+			  return mkCATransitionReveal
 			End Get
 		#tag EndGetter
 		Shared kCATransitionReveal As Text
@@ -184,16 +163,12 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 496E646963617465732074686520737461727420706F696E74206F66207468652072656365697665722061732061206672616374696F6E206F662074686520656E74697265207472616E736974696F6E2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getstartProgress(id)
-			  #endif
+			  return getstartProgress(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setstartProgress id,value
-			  #endif
+			  setstartProgress id,value
 			End Set
 		#tag EndSetter
 		StartProgress As Single
@@ -202,16 +177,12 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206F7074696F6E616C2073756274797065207468617420696E646963617465732074686520646972656374696F6E20666F722074686520707265646566696E6564206D6F74696F6E2D6261736564207472616E736974696F6E732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getsubtype(id)
-			  #endif
+			  return getsubtype(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setsubtype id,value
-			  #endif
+			  setsubtype id,value
 			End Set
 		#tag EndSetter
 		Subtype As Text
@@ -220,16 +191,12 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 54686520707265646566696E6564207472616E736974696F6E20747970652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gettype(id)
-			  #endif
+			  return gettype(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    settype id,value
-			  #endif
+			  settype id,value
 			End Set
 		#tag EndSetter
 		Type As Text

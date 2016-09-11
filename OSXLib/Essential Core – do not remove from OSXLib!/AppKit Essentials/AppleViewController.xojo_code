@@ -2,15 +2,8 @@
 Protected Class AppleViewController
 Inherits AppleResponder
 	#tag Method, Flags = &h0
-<<<<<<< HEAD
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleViewController
 		  return if (aptr = nil, nil, new appleviewcontroller(aptr))
-=======
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleViewController
-		  #If TargetMacOS then
-		    return if (aptr = nil, nil, new appleviewcontroller(aptr))
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 

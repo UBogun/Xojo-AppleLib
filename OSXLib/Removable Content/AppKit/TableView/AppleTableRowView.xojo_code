@@ -17,10 +17,9 @@ Inherits AppleView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(initwithframe(alloc(classptr),Rect))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(initwithframe(alloc(classptr),Rect))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -88,9 +87,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 50726F76696465732061636365737320746F2074686520676976656E2076696577206174206120706172746963756C617220636F6C756D6E2E0A5468697320697320746865206F6E6C792077617920746F206163636573732063656C6C2076696577732061667465722074686520726F77207669657720686173206265656E2072656D6F7665642066726F6D20746865207461626C652E
 		Function ViewAtColumn(Column As Integer) As AppleView
-		  #If TargetMacOS then
-		    return AppleView.MakefromPtr(getViewAtColumn(id, column))
-		  #endif
+		  return AppleView.MakefromPtr(getViewAtColumn(id, column))
 		End Function
 	#tag EndMethod
 
@@ -104,16 +101,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206261636B67726F756E6420636F6C6F72206F662074686520726F772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
-			  #endif
+			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor
@@ -132,16 +125,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 53706563696669657320746865206472616767696E672064657374696E6174696F6E20666565646261636B207374796C652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return TableViewAdditionsForAppkit.getDraggingDestinationFeedbackStyle (id)
-			  #endif
+			  return TableViewAdditionsForAppkit.getDraggingDestinationFeedbackStyle (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    TableViewAdditionsForAppkit.setDraggingDestinationFeedbackStyle id,value
-			  #endif
+			  TableViewAdditionsForAppkit.setDraggingDestinationFeedbackStyle id,value
 			End Set
 		#tag EndSetter
 		DraggingDestinationFeedbackStyle As AppleTableView.NSTableViewDraggingDestinationFeedbackStyle
@@ -150,16 +139,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 44657465726D696E657320776865746865722074686520726F772077696C6C206472617720776974682074686520616C7465726E617465206F72207365636F6E6461727920636F6C6F722028756E6C657373206F76657272696464656E292E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getEmphasized (id)
-			  #endif
+			  return getEmphasized (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setEmphasized id, value
-			  #endif
+			  setEmphasized id, value
 			End Set
 		#tag EndSetter
 		Emphasized As Boolean
@@ -168,16 +153,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 53706563696669657320776865746865722074686520726F7720697320647261776E207573696E672074686520666C6F6174696E67207374796C652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getFloating (id)
-			  #endif
+			  return getFloating (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setFloating id, value
-			  #endif
+			  setFloating id, value
 			End Set
 		#tag EndSetter
 		Floating As Boolean
@@ -186,16 +167,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5370656369666965732077686574686572207468697320726F77207669657720697320612067726F757020726F772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getGroupRowStyle (id)
-			  #endif
+			  return getGroupRowStyle (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setEmphasized id, value
-			  #endif
+			  setEmphasized id, value
 			End Set
 		#tag EndSetter
 		GroupRowStyle As Boolean
@@ -204,16 +181,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 446566696E65732074686520616D6F756E742074686520647261672074617267657420666F72206120726F772073686F756C6420626520696E64656E7465642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getindentationForDropOperation (id)
-			  #endif
+			  return getindentationForDropOperation (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setindentationForDropOperation id, value
-			  #endif
+			  setindentationForDropOperation id, value
 			End Set
 		#tag EndSetter
 		IndentationForDropOperation As Double
@@ -222,9 +195,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 53706563696669657320686F77207468652073756276696577732073686F756C6420647261772E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getinteriorBackgroundstyle (id)
-			  #endif
+			  return AppKitFramework.getinteriorBackgroundstyle (id)
 			End Get
 		#tag EndGetter
 		InteriorBackgroundStyle As AppleCell.NSBackgroundStyle
@@ -233,9 +204,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F6620636F6C756D6E7320726570726573656E74656420627920766965777320696E20746865207461626C6520726F7720766965772E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return TableViewAdditionsForAppkit.getnumberOfColumns (id)
-			  #endif
+			  return TableViewAdditionsForAppkit.getnumberOfColumns (id)
 			End Get
 		#tag EndGetter
 		NumberOfColumns As Integer
@@ -244,16 +213,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 44657465726D696E657320776865746865722074686520726F772069732073656C65637465642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getSelected (id)
-			  #endif
+			  return getSelected (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setSelected id, value
-			  #endif
+			  setSelected id, value
 			End Set
 		#tag EndSetter
 		Selected As Boolean
@@ -262,16 +227,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 537065636966696573207468652073656C656374696F6E20686967686C69676874207374796C652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return TableViewAdditionsForAppkit.getselectionHighlightStyle (id)
-			  #endif
+			  return TableViewAdditionsForAppkit.getselectionHighlightStyle (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    TableViewAdditionsForAppkit.setselectionHighlightStyle id,value
-			  #endif
+			  TableViewAdditionsForAppkit.setselectionHighlightStyle id,value
 			End Set
 		#tag EndSetter
 		SelectionHighlightStyle As AppleTableView.NSTableViewSelectionHighlightStyle
@@ -280,16 +241,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5370656369666965732077686574686572207468697320726F772077696C6C206472617720612064726F7020696E64696361746F72206261736564206F6E207468652063757272656E74206472616767696E6720666565646261636B207374796C652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getTargetForDropOperation (id)
-			  #endif
+			  return getTargetForDropOperation (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setTargetForDropOperation id, value
-			  #endif
+			  setTargetForDropOperation id, value
 			End Set
 		#tag EndSetter
 		TargetForDropOperation As Boolean

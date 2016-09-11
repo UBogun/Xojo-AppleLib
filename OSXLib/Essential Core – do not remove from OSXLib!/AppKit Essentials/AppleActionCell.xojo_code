@@ -11,10 +11,9 @@ Inherits AppleCell
 		  // Constructor() -- From AppleCell
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(init(alloc(ClassPtr)))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(init(alloc(ClassPtr)))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -34,16 +33,12 @@ Inherits AppleCell
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073656C6563746F72207573656420666F7220616374696F6E206D657373616765732073656E7420627920746865207265636569766572277320636F6E74726F6C2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appkitframework.getaction (id)
-			  #endif
+			  return appkitframework.getaction (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setAction id,  value
-			  #endif
+			  AppKitFramework.setAction id,  value
 			End Set
 		#tag EndSetter
 		Action As Ptr
@@ -62,10 +57,8 @@ Inherits AppleCell
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E28099732076616C756520617320612036342D62697420636F6D70617469626C6520696E74656765722061667465722076616C69646174696E6720616E792065646974696E67206F662063656C6C20636F6E74656E742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getintegerValue (id)
-			    
-			  #endif
+			  return AppKitFramework.getintegerValue (id)
+			  
 			End Get
 		#tag EndGetter
 		IntegerValue As Integer
@@ -74,16 +67,12 @@ Inherits AppleCell
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6CE2809973207461672C20776869636820697320616E20696E7465676572207468617420796F752075736520746F206964656E746966792074686520766965772077697468696E20796F7572206170702E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.gettag(id)
-			  #endif
+			  return AppKitFramework.gettag(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.settag id, value
-			  #endif
+			  AppKitFramework.settag id, value
 			End Set
 		#tag EndSetter
 		Tag As Integer
@@ -92,16 +81,12 @@ Inherits AppleCell
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E280997320746172676574206F626A6563742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appleobject.MakeFromPtr(appkitframework.getTarget (id))
-			  #endif
+			  return appleobject.MakeFromPtr(appkitframework.getTarget (id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setTarget id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setTarget id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Target As AppleObject

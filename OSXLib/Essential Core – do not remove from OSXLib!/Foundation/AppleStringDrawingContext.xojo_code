@@ -8,10 +8,8 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (Init(alloc(ClassPtr)))
-		    mHasOwnership = true
-		  #endif
+		  Super.Constructor (Init(alloc(ClassPtr)))
+		  mHasOwnership = true
 		  
 		End Sub
 	#tag EndMethod
@@ -26,16 +24,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652061637475616C207363616C6520666163746F72207468617420776173206170706C69656420746F2074686520666F6E7420647572696E672064726177696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    
-			    #if Target64Bit
-			      declare function actualScaleFactor lib FoundationLibName  selector "actualScaleFactor" (id as ptr) as double
-			    #elseif Target32Bit
-			      declare function actualScaleFactor lib FoundationLibName  selector "actualScaleFactor" (id as ptr) as single
-			    #endif
-			    return actualScaleFactor (id)
-			    
+			  #if Target64Bit
+			    declare function actualScaleFactor lib FoundationLibName  selector "actualScaleFactor" (id as ptr) as double
+			  #elseif Target32Bit
+			    declare function actualScaleFactor lib FoundationLibName  selector "actualScaleFactor" (id as ptr) as single
 			  #endif
+			  return actualScaleFactor (id)
 			End Get
 		#tag EndGetter
 		ActualScaleFactor As Double
@@ -54,29 +48,22 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363616C6520666163746F7220746861742064657465726D696E65732074686520736D616C6C65737420666F6E742073697A6520746F2075736520647572696E672064726177696E672E200A412076616C7565206F6620302E3020636F72726573706F6E647320746F2061207363616C6520666163746F72206F6620312E302E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    
-			    #if Target64Bit
-			      declare function MinimumScaleFactor lib FoundationLibName  selector "minimumScaleFactor" (id as ptr) as double
-			    #elseif Target32Bit
-			      declare function MinimumScaleFactor lib FoundationLibName  selector "minimumScaleFactor" (id as ptr) as single
-			    #endif
-			    
-			    return MinimumScaleFactor (id)
+			  #if Target64Bit
+			    declare function MinimumScaleFactor lib FoundationLibName  selector "minimumScaleFactor" (id as ptr) as double
+			  #elseif Target32Bit
+			    declare function MinimumScaleFactor lib FoundationLibName  selector "minimumScaleFactor" (id as ptr) as single
 			  #endif
+			  return MinimumScaleFactor (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    
-			    #if Target64Bit
-			      declare Sub setMinimumScaleFactor lib FoundationLibName  selector "setMinimumScaleFactor:" (id as ptr, value as double)
-			    #elseif Target32Bit
-			      declare Sub setMinimumScaleFactor lib FoundationLibName  selector "setMinimumScaleFactor:" (id as ptr, value as single)
-			    #endif
-			    setMinimumScaleFactor (id, value)
+			  #if Target64Bit
+			    declare Sub setMinimumScaleFactor lib FoundationLibName  selector "setMinimumScaleFactor:" (id as ptr, value as double)
+			  #elseif Target32Bit
+			    declare Sub setMinimumScaleFactor lib FoundationLibName  selector "setMinimumScaleFactor:" (id as ptr, value as single)
 			  #endif
+			  setMinimumScaleFactor (id, value)
 			End Set
 		#tag EndSetter
 		MinimumScaleFactor As Double
@@ -85,10 +72,9 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520626F756E64696E672072656374616E676C65207468617420776173206C6173742075736564207768656E2064726177696E672074686520737472696E672E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    declare function totalBounds lib FoundationLibName  selector "totalBounds" (id as ptr)  as FoundationFramework.NSRect
-			    return totalBounds (id)
-			  #endif
+			  declare function totalBounds lib FoundationLibName  selector "totalBounds" (id as ptr)  as FoundationFramework.NSRect
+			  return totalBounds (id)
+			  //
 			End Get
 		#tag EndGetter
 		TotalBounds As FoundationFramework.NSRect

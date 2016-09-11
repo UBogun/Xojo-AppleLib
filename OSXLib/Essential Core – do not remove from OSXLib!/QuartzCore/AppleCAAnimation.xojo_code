@@ -12,23 +12,15 @@ Inherits AppleCAMEdiaTimingObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(animation(classptr))
-		    RetainClassObject
-		  #endif
+		  Super.Constructor(animation(classptr))
+		  RetainClassObject
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 537065636966696573207468652064656661756C742076616C7565206F66207468652070726F706572747920776974682074686520737065636966696564206B65792E0A42656361757365207468652076616C756520666F72206B65792063616E20626520616E7920747970652C206C696B652061207374727563747572652C2069742069732072657475726E6564206173206120707472206F6E6C792E
-<<<<<<< HEAD
 		Shared Function DefaultValue(Key As Text) As Ptr
 		  return getdefaultValueForKey (classptr, key)
-=======
-		 Shared Function DefaultValue(Key As Text) As Ptr
-		  #If TargetMacOS then
-		    return getdefaultValueForKey (classptr, key)
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
@@ -48,9 +40,7 @@ Inherits AppleCAMEdiaTimingObject
 
 	#tag Method, Flags = &h0, Description = 43616C6C656420746F20747269676765722074686520616374696F6E2073706563696669656420627920746865206964656E7469666965722E
 		Sub RunAction(Key As CFStringRef, OBJ As AppleObject, Arguments As AppleDictionary = nil)
-		  #If TargetMacOS then
-		    runActionForKey id, key, obj.id, if (arguments = nil, nil, arguments.id)
-		  #endif
+		  runActionForKey id, key, obj.id, if (arguments = nil, nil, arguments.id)
 		End Sub
 	#tag EndMethod
 
@@ -82,16 +72,12 @@ Inherits AppleCAMEdiaTimingObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656C6567617465206F626A6563742073706563696669656420746F2072656365697665207065726970686572616C206576656E74732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
-			  #endif
+			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
-			  #endif
+			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
 			End Set
 		#tag EndSetter
 		DelegateObject As AppleObject
@@ -100,16 +86,12 @@ Inherits AppleCAMEdiaTimingObject
 	#tag ComputedProperty, Flags = &h0, Description = 49662074686520616E696D6174696F6E2069732072656D6F7665642066726F6D2074686520746172676574206C61796572E280997320616E696D6174696F6E732075706F6E20636F6D706C6574696F6E2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getisRemovedOnCompletion (id)
-			  #endif
+			  return getisRemovedOnCompletion (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setRemovedOnCompletion (id, value)
-			  #endif
+			  setRemovedOnCompletion (id, value)
 			End Set
 		#tag EndSetter
 		RemovedOnCompletion As Boolean
@@ -118,17 +100,13 @@ Inherits AppleCAMEdiaTimingObject
 	#tag ComputedProperty, Flags = &h0, Description = 416E206F7074696F6E616C2074696D696E672066756E6374696F6E20646566696E696E672074686520706163696E67206F662074686520616E696D6174696F6E2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleCAMediaTimingFunction.MakeFromPtr(QuartzCoreFramework.gettimingfunction (id))
-			    
-			  #endif
+			  return AppleCAMediaTimingFunction.MakeFromPtr(QuartzCoreFramework.gettimingfunction (id))
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    QuartzCoreFramework.settimingFunction id, if (value = nil, nil, value.id)
-			  #endif
+			  QuartzCoreFramework.settimingFunction id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		TimingFunction As AppleCAMediaTimingFunction

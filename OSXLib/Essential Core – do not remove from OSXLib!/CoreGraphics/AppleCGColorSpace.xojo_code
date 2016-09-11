@@ -98,9 +98,7 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return CGColorSpaceCopyName ( mCFTypeRef )
-			  #endif
+			  return CGColorSpaceCopyName ( mCFTypeRef )
 			End Get
 		#tag EndGetter
 		Name As Text

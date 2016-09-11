@@ -107,9 +107,7 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #if TargetMacOS then
-			    return CFCopyTypeIDDescription (TypeID)
-			  #endif
+			  return CFCopyTypeIDDescription (TypeID)
 			End Get
 		#tag EndGetter
 		CFTypeDescription As Text
@@ -127,9 +125,7 @@ Implements AppleGeneralObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return CFCopyDescription (mCFTypeRef)
-			  #endif
+			  return CFCopyDescription (mCFTypeRef)
 			End Get
 		#tag EndGetter
 		Description As Text

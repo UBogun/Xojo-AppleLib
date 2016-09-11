@@ -2,36 +2,35 @@
 Protected Module AppleLibSystem
 	#tag Method, Flags = &h1
 		Protected Function DataPointerforName(name as CFStringRef, frameworkID as CFStringRef, suppressException as boolean = false) As Ptr
-		  #If TargetMacOS then
-		    // Implementation courtesy of Jim McKay, with additions from Jason King
-		    
-		    dim framework As new AppleCFBundle (frameworkID)
-		    if framework.isnil then // Used to be Return NIL, but there are some FWs without identifier in my simulator, so let's try them
-		      dim identifier as text = frameworkID
-		      dim sections() as text = identifier.Split(".")
-		      dim compare as text = sections (sections.Ubound)
-		      for q as integer = 0 to AppleCFBundle.MainBundle.AllBundles.Count -1
-		        dim bundle as new AppleCFBundle (AppleCFBundle.MainBundle.AllBundles.PtrAtIndex (q))
-		        if bundle.Description.IndexOf (compare) > -1 then
-		          framework= bundle
-		          exit for
-		        end if
-		      next
-		      if framework.isnil then // still haven't got it; try to load it now:
-		        call AppleLibSystem.LoadFramework (compare, suppressException)
-		        framework = new AppleCFBundle (frameworkID)
+		  // Implementation courtesy of Jim McKay, with additions from Jason King
+		  
+		  dim framework As new AppleCFBundle (frameworkID)
+		  if framework.isnil then // Used to be Return NIL, but there are some FWs without identifier in my simulator, so let's try them
+		    dim identifier as text = frameworkID
+		    dim sections() as text = identifier.Split(".")
+		    dim compare as text = sections (sections.Ubound)
+		    for q as integer = 0 to AppleCFBundle.MainBundle.AllBundles.Count -1
+		      dim bundle as new AppleCFBundle (AppleCFBundle.MainBundle.AllBundles.PtrAtIndex (q))
+		      if bundle.Description.IndexOf (compare) > -1 then
+		        framework= bundle
+		        exit for
 		      end if
+		    next
+		    if framework.isnil then // still haven't got it; try to load it now:
+		      call AppleLibSystem.LoadFramework (compare, suppressException)
+		      framework = new AppleCFBundle (frameworkID)
 		    end if
-		    
-		    if not FrameWork.ExecutableIsLoaded then //bundle is not loaded
-		      if not FrameWork.Load then  //try to load it
-		        //fail
-		        Return nil
-		      end if
+		  end if
+		  
+		  if not FrameWork.ExecutableIsLoaded then //bundle is not loaded
+		    if not FrameWork.Load then  //try to load it
+		      //fail
+		      Return nil
 		    end if
-		    
-		    Return framework.DataPtrForName (name) //lookup the constant
-		  #endif
+		  end if
+		  
+		  Return framework.DataPtrForName (name) //lookup the constant
+		  
 		End Function
 	#tag EndMethod
 
@@ -105,9 +104,8 @@ Protected Module AppleLibSystem
 
 	#tag Method, Flags = &h0
 		Function SystemConstantName(name as CFStringRef, frameworkPath as CFStringRef) As text
-		  #If TargetMacOS then
-		    Return DataPointerforName (name, frameworkPath).cfstringref(0)
-		  #endif
+		  Return DataPointerforName (name, frameworkPath).cfstringref(0)
+		  
 		End Function
 	#tag EndMethod
 

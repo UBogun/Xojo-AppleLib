@@ -8,10 +8,9 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(init(alloc(classptr)))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(init(alloc(classptr)))
+		  MHasOwnership = true
+		  
 		  
 		End Sub
 	#tag EndMethod

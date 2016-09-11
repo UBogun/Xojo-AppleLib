@@ -2,7 +2,7 @@
 Protected Module ScrollBarExtension
 	#tag Method, Flags = &h0
 		Function AppleObject(extends s as ScrollBar) As AppleScroller
-		  #If TargetMacOS then
+		  #if targetmacos
 		    return new AppleScroller(ptr(s.Handle))
 		  #endif
 		End Function

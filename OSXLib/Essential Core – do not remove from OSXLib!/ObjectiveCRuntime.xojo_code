@@ -2,37 +2,34 @@
 Protected Module ObjectiveCRuntime
 	#tag Method, Flags = &h0
 		Function BuildTargetClass(superClassName as Text, newClassName as Text, methods() as TargetClassMethodHelper) As ptr
-		  #If TargetMacOS then
-		    dim result as Ptr
-		    dim superClassptr as ptr = FoundationFramework.NSClassFromString (superClassName)
-		    dim classmethods() as TargetClassMethodHelper
-		    result = objc_allocateClassPair(superClassptr, newClassName.ToCString(StandardTextEncoding), 0)
-		    
-		    for i as Integer = 0 to methods.Ubound
-		      dim method as TargetClassMethodHelper = methods(i)
-		      dim SEL as Ptr = FoundationFramework.NSSelectorFromString (method.selName)
-		      if method.ReplaceMethod then
-		        if method.ClassMethod then
-		          classmethods.Append method
-		        else
-		          dim OriginalMethod as ptr = if (method.ClassMethod, ObjectiveCRuntime.class_getClassMethod (result, SEL), ObjectiveCRuntime.class_getInstanceMethod(result, SEL))
-		          if OriginalMethod <> NIL then
-		            dim oldImplementation as Ptr = ObjectiveCRuntime.method_setImplementation (OriginalMethod, method.impl)
-		            if oldImplementation = NIL then
-		              MakeException ("no old implementation for method while replacing "+Methods(i).selName)
-		            end if
-		          end if
-		        end if
-		        
+		  dim result as Ptr
+		  dim superClassptr as ptr = FoundationFramework.NSClassFromString (superClassName)
+		  dim classmethods() as TargetClassMethodHelper
+		  result = objc_allocateClassPair(superClassptr, newClassName.ToCString(StandardTextEncoding), 0)
+		  
+		  for i as Integer = 0 to methods.Ubound
+		    dim method as TargetClassMethodHelper = methods(i)
+		    dim SEL as Ptr = FoundationFramework.NSSelectorFromString (method.selName)
+		    if method.ReplaceMethod then
+		      if method.ClassMethod then
+		        classmethods.Append method
 		      else
-		        if not class_addMethod(result,FoundationFramework.NSSelectorFromString(methods(i).selName), methods(i).impl, methods(i).charCode.ToCString(StandardTextEncoding)) then
-		          // couldn't add, try to replace
-		          if  class_replaceMethod(result,FoundationFramework.NSSelectorFromString(methods(i).selName), methods(i).impl, methods(i).charCode.ToCString(StandardTextEncoding)) = NIL then
-		            MakeException ( "unable to add or replace custom class method: "+Methods(i).selName)
+		        dim OriginalMethod as ptr = if (method.ClassMethod, ObjectiveCRuntime.class_getClassMethod (result, SEL), ObjectiveCRuntime.class_getInstanceMethod(result, SEL))
+		        if OriginalMethod <> NIL then
+		          dim oldImplementation as Ptr = ObjectiveCRuntime.method_setImplementation (OriginalMethod, method.impl)
+		          if oldImplementation = NIL then
+		            MakeException ("no old implementation for method while replacing "+Methods(i).selName)
 		          end if
 		        end if
 		      end if
-<<<<<<< HEAD
+		      
+		    else
+		      if not class_addMethod(result,FoundationFramework.NSSelectorFromString(methods(i).selName), methods(i).impl, methods(i).charCode.ToCString(StandardTextEncoding)) then
+		        // couldn't add, try to replace
+		        if  class_replaceMethod(result,FoundationFramework.NSSelectorFromString(methods(i).selName), methods(i).impl, methods(i).charCode.ToCString(StandardTextEncoding)) = NIL then
+		          MakeException ( "unable to add or replace custom class method: "+Methods(i).selName)
+		        end if
+		      end if
 		    end if
 		  next
 		  
@@ -126,50 +123,22 @@ Protected Module ObjectiveCRuntime
 		      // end if
 		      //
 		      // end if
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		    next
-		    objc_registerClassPair(result)
-		    
-		    dim mymetaclassptr as ptr = ObjectiveCRuntime.objc_getMetaClass (ObjectiveCRuntime.class_getName(result))
-		    
-		    //Now lets check the classmethods
-		    if classmethods.Ubound > -1 then
-		      for q as uinteger = 0 to classmethods.Ubound
-		        dim method as TargetClassMethodHelper = classmethods (q)
-		        dim SEL as Ptr = FoundationFramework.NSSelectorFromString (method.selName)
-		        call ObjectiveCRuntime.class_addMethod (mymetaclassptr, SEL, method.impl, method.charCode.ToCString (StandardTextEncoding))
-		        // dim OriginalMethod as ptr =  ObjectiveCRuntime.class_getInstanceMethod (mymetaclassptr, SEL)
-		        // dim myclassmethod as ptr = ObjectiveCRuntime.class_getMethodImplementation (metaclassptr, sel)
-		        
-		        // if OriginalMethod <> NIL then
-		        // dim oldImplementation as Ptr = ObjectiveCRuntime.method_setImplementation (OriginalMethod, method.impl)
-		        // if oldImplementation = NIL then
-		        // dim err as new ErrorException
-		        // err.Reason = "no old implementation for method while replacing "+classmethods(q).selName
-		        // raise err
-		        // end if
-		        //
-		        // end if
-		      next
-		    end if
-		    
-		    Return result
-		  #endif
+		  end if
+		  
+		  Return result
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function BuildTargetClass(superClassName as Text, newClassName as Text, methods() as TargetClassMethodHelper, Protocols() As Text) As ptr
-		  #If TargetMacOS then
-		    dim result as Ptr = BuildTargetClass (superClassName, newClassName, Methods)
-		    for q as uinteger= 0 to Protocols.Ubound
-		      if not class_addProtocol (result, FoundationFramework.NSProtocolFromString (Protocols(q))) then
-		        MakeException ( "Couldn't add protocol "+Protocols(q)+" to class "+newClassName)
-		      end if
-		    next
-		    Return result
-		  #endif
+		  dim result as Ptr = BuildTargetClass (superClassName, newClassName, Methods)
+		  for q as uinteger= 0 to Protocols.Ubound
+		    if not class_addProtocol (result, FoundationFramework.NSProtocolFromString (Protocols(q))) then
+		      MakeException ( "Couldn't add protocol "+Protocols(q)+" to class "+newClassName)
+		    end if
+		  next
+		  Return result
 		End Function
 	#tag EndMethod
 
@@ -444,10 +413,8 @@ Protected Module ObjectiveCRuntime
 
 	#tag Method, Flags = &h1
 		Protected Function SingleTypeEncoding(anEncoding as CFStringRef) As CFStringRef
-		  #If TargetMacOS then
-		    dim t as text = TranslateTypeEncoding(anEncoding)
-		    return t.ReplaceAll ("Object, ", "")
-		  #endif
+		  dim t as text = TranslateTypeEncoding(anEncoding)
+		  return t.ReplaceAll ("Object, ", "")
 		End Function
 	#tag EndMethod
 
@@ -455,67 +422,66 @@ Protected Module ObjectiveCRuntime
 		Protected Function TranslateTypeEncoding(anEncoding as CFStringRef) As CFStringRef
 		  // Well yes, I could work with a dictionary and comparekeys mabe, bit I think it's too much work for a mathod that isn't time-critical.
 		  
-		  #If TargetMacOS then
-		    dim mytext as text = anEncoding
-		    dim result as text
-		    dim nocomma as boolean
-		    for q as uinteger = 0 to mytext.Length - 1
-		      dim char as text = mytext.Mid (q,1)
-		      for each CodeP as uint32 in char.Codepoints
-		        nocomma= false
-		        if objcTypeDict.HasKey (CodeP) then
-		          result = result + objcTypeDict.Value (CodeP)
-		          select case CodeP
-		          case 91
-		            nocomma = true
-		          case 93 // ]
-		            if result.EndsWith (", ") then result = result.Left (result.Length -2)
-		            result = result+ "]"
-		          case 123 // {
-		            nocomma = true
-		            dim nextQuotePos as uinteger = mytext.IndexOf (q+1, "=")
-		            if nextQuotePos > -1 then
-		              result = result + mytext.mid (q+1, nextQuotePos -1 -q)+" = "
-		              q=nextQuotePos
-		            end if
-		          case 125 // }
-		            if result.EndsWith (", }") then
-		              result = result.Left (result.Length -3)
-		              result = result+ "}"
-		            end if
-		          case 40 // (
-		            nocomma = true
-		          case 41 // )
-		            if result.EndsWith (", ") then result = result.Left (result.Length -2)
-		            result = result+ ")"
-		          case 98 // b
-		            nocomma = true
-		          case 94 // ^
-		            nocomma = true
-		          case 34 // "
-		            dim nextQuotePos as uinteger = mytext.IndexOf (q+1, """")
-		            if nextQuotePos > q+1 then
-		              result = result + mytext.mid (q+1, nextQuotePos -1 -q)+": "
-		              q=nextQuotePos
-		              nocomma = true
-		            end if
-		          end select
-		        else
-		          // MsgBox codep.ToText
-		          result = result + char
+		  
+		  dim mytext as text = anEncoding
+		  dim result as text
+		  dim nocomma as boolean
+		  for q as uinteger = 0 to mytext.Length - 1
+		    dim char as text = mytext.Mid (q,1)
+		    for each CodeP as uint32 in char.Codepoints
+		      nocomma= false
+		      if objcTypeDict.HasKey (CodeP) then
+		        result = result + objcTypeDict.Value (CodeP)
+		        select case CodeP
+		        case 91
 		          nocomma = true
-		        end if
-		        if result.EndsWith ("to") then
-		          result = result +" "
-		        else
-		          if q < mytext.Length -1 and not nocomma then result = result +", "
-		        end if
-		      next
+		        case 93 // ]
+		          if result.EndsWith (", ") then result = result.Left (result.Length -2)
+		          result = result+ "]"
+		        case 123 // {
+		          nocomma = true
+		          dim nextQuotePos as uinteger = mytext.IndexOf (q+1, "=")
+		          if nextQuotePos > -1 then
+		            result = result + mytext.mid (q+1, nextQuotePos -1 -q)+" = "
+		            q=nextQuotePos
+		          end if
+		        case 125 // }
+		          if result.EndsWith (", }") then
+		            result = result.Left (result.Length -3)
+		            result = result+ "}"
+		          end if
+		        case 40 // (
+		          nocomma = true
+		        case 41 // )
+		          if result.EndsWith (", ") then result = result.Left (result.Length -2)
+		          result = result+ ")"
+		        case 98 // b
+		          nocomma = true
+		        case 94 // ^
+		          nocomma = true
+		        case 34 // "
+		          dim nextQuotePos as uinteger = mytext.IndexOf (q+1, """")
+		          if nextQuotePos > q+1 then
+		            result = result + mytext.mid (q+1, nextQuotePos -1 -q)+": "
+		            q=nextQuotePos
+		            nocomma = true
+		          end if
+		        end select
+		      else
+		        // MsgBox codep.ToText
+		        result = result + char
+		        nocomma = true
+		      end if
+		      if result.EndsWith ("to") then
+		        result = result +" "
+		      else
+		        if q < mytext.Length -1 and not nocomma then result = result +", "
+		      end if
 		    next
-		    result = result.Trim
-		    if result.EndsWith (",") or result.EndsWith(":") then result = result.Left(result.Length -1)
-		    return result
-		  #endif
+		  next
+		  result = result.Trim
+		  if result.EndsWith (",") or result.EndsWith(":") then result = result.Left(result.Length -1)
+		  return result
 		  
 		End Function
 	#tag EndMethod

@@ -52,9 +52,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 41646473206120666C6F6174696E67207375627669657720746F2074686520646F63756D656E7420766965772E
 		Sub AddFloatingSubview(SubView as AppleView, GestureAxis As AppleNSEvent.NSEventGestureAxis)
-		  #If TargetMacOS then
-		    addFloatingSubview id, subview.id, GestureAxis
-		  #endif
+		  addFloatingSubview id, subview.id, GestureAxis
 		End Sub
 	#tag EndMethod
 
@@ -77,40 +75,25 @@ Inherits AppleView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(initwithframe(alloc(classptr), frame))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(initwithframe(alloc(classptr), frame))
+		  MHasOwnership = true
+		  
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520636F6E74656E742073697A652063616C63756C617465642066726F6D20746865206672616D652073697A6520616E6420746865207370656369666965642073706563696669636174696F6E732E
-<<<<<<< HEAD
 		Shared Function ContentSize(FrameSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
 		  return getcontentSizeForFrameSize (classptr, FrameSize, _
 		  if (HorizontalScrollerClass = nil, nil, HorizontalScrollerClass.id), _
 		  if (VerticalScrollerclass = nil, nil, VerticalScrollerClass.id), _
 		  BorderType, ControlSize, style)
-=======
-		 Shared Function ContentSize(FrameSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
-		  #If TargetMacOS then
-		    
-		    return getcontentSizeForFrameSize (classptr, FrameSize, _
-		    if (HorizontalScrollerClass = nil, nil, HorizontalScrollerClass.id), _
-		    if (VerticalScrollerclass = nil, nil, VerticalScrollerClass.id), _
-		    BorderType, ControlSize, style)
-		    
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 466C61736820746865206F7665726C6179207363726F6C6C20626172732E
 		Sub FlashScrollers()
-		  #If TargetMacOS then
-		    flashScrollers id
-		  #endif
+		  flashScrollers id
 		End Sub
 	#tag EndMethod
 
@@ -119,21 +102,11 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206672616D652073697A65206F6620616E207363726F6C6C2076696577207468617420636F6E7461696E73206120636F6E74656E742076696577207769746820746865207370656369666965642073697A652E0A596F752063616E207573652074686520636C61737341734F626A6563742070726F7065727479206F662061206365727461696E20696E7374616E636520666F7220746865207363726F6C6C65727320706172616D65746572732E
-<<<<<<< HEAD
 		Shared Function FrameSize(ContentSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
 		  return getframeSizeForContentSize (classptr, ContentSize, _
 		  if (HorizontalScrollerClass = nil, nil, HorizontalScrollerClass.id), _
 		  if (VerticalScrollerclass = nil, nil, VerticalScrollerClass.id), _
 		  BorderType, ControlSize, style)
-=======
-		 Shared Function FrameSize(ContentSize As FoundationFrameWork.NSSize, HorizontalScrollerClass as AppleObject = nil, VerticalScrollerClass As AppleObject = nil, borderType as NSBorderType, ControlSize As AppleControl.NSControlSize, style As AppleScroller.NSSCrollerStyle) As FoundationFrameWork.NSSize
-		  #If TargetMacOS then
-		    return getframeSizeForContentSize (classptr, ContentSize, _
-		    if (HorizontalScrollerClass = nil, nil, HorizontalScrollerClass.id), _
-		    if (VerticalScrollerclass = nil, nil, VerticalScrollerClass.id), _
-		    BorderType, ControlSize, style)
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
@@ -275,25 +248,23 @@ Inherits AppleView
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_scrollviewDidEndLiveResize(pid as ptr, sel as ptr)
-		  #If TargetMacOS then
-		    dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
-		    if view <> nil then 
-		      if not view.informOnviewDidEndLiveResize() then appkitframework.tile(pid)
-		    end if
-		    #pragma unused sel
-		  #endif
+		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
+		  if view <> nil then 
+		    if not view.informOnviewDidEndLiveResize() then appkitframework.tile(pid)
+		  end if
+		  #pragma unused sel
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_scrollviewWillStartLiveResize(pid as ptr, sel as ptr)
-		  #If TargetMacOS then
-		    dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
-		    if view <> nil then 
-		      if not view.informOnviewWillStartLiveResize() then appkitframework.tile(pid)
-		    end if
-		    #pragma unused sel
-		  #endif
+		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
+		  if view <> nil then 
+		    if not view.informOnviewWillStartLiveResize() then appkitframework.tile(pid)
+		  end if
+		  #pragma unused sel
+		  
 		End Sub
 	#tag EndMethod
 
@@ -319,9 +290,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 4D61676E69666965732074686520636F6E74656E7420766965772070726F706F7274696F6E616C6C79207375636820746861742074686520676976656E2072656374616E676C6520666974732063656E746572656420696E20746865207363726F6C6C20766965772E0A54686520726573756C74696E67206D61676E696669636174696F6E2076616C756520697320636C697070656420746F20746865206D696E4D61676E696669636174696F6E20616E64206D61784D61676E696669636174696F6E2076616C7565732E20546F20616E696D61746520746865206D61676E696669636174696F6E2C2075736520746865207363726F6C6C76696577E280997320616E696D61746F722E
 		Sub Magnify(toRect As FoundationFrameWork.NSRect)
-		  #If TargetMacOS then
-		    magnifyToFitRect id, torect
-		  #endif
+		  magnifyToFitRect id, torect
 		End Sub
 	#tag EndMethod
 
@@ -330,15 +299,8 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-<<<<<<< HEAD
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleScrollView
 		  return if (aptr = nil, nil, new AppleScrollView(aptr))
-=======
-		 Shared Function MakefromPtr(aPtr as Ptr) As AppleScrollView
-		  #If TargetMacOS then
-		    return if (aptr = nil, nil, new AppleScrollView(aptr))
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Function
 	#tag EndMethod
 
@@ -354,9 +316,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 5363726F6C6C7320746865207265636569766572207570206F7220646F776E2C20696E20726573706F6E736520746F207468652075736572206D6F76696E6720746865206D6F757365E2809973207363726F6C6C20776865656C20737065636966696564206279207468654576656E742E
 		Sub ScrollWheel(anEvent As AppleNSEvent)
-		  #If TargetMacOS then
-		    scrollWheel id, anEvent.id
-		  #endif
+		  scrollWheel id, anEvent.id
 		End Sub
 	#tag EndMethod
 
@@ -426,9 +386,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 4D61676E6966792074686520636F6E74656E742062792074686520676976656E20616D6F756E7420616E642063656E7465722074686520726573756C74206F6E2074686520676976656E20706F696E742E
 		Sub SetMagnification(value as double, CenterAtPoint as FoundationFrameWork.NSPoint)
-		  #If TargetMacOS then
-		    setMagnificationCentered id, value, CenterAtPoint
-		  #endif
+		  setMagnificationCentered id, value, CenterAtPoint
 		End Sub
 	#tag EndMethod
 
@@ -498,9 +456,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 4C617973206F75742074686520636F6D706F6E656E7473206F66207468652072656365697665723A2074686520636F6E74656E7420766965772C20746865207363726F6C6C6572732C20616E64207468652072756C65722076696577732E
 		Sub Tile()
-		  #If TargetMacOS then
-		    AppKitFramework.tile id
-		  #endif
+		  AppKitFramework.tile id
 		End Sub
 	#tag EndMethod
 
@@ -531,16 +487,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 416C6C6F777320746865207573657220746F206D61676E69667920746865207363726F6C6C20766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getallowsMagnification(id)
-			  #endif
+			  return getallowsMagnification(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setallowsMagnification id, value
-			  #endif
+			  setallowsMagnification id, value
 			End Set
 		#tag EndSetter
 		AllowsMagnification As Boolean
@@ -549,9 +501,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 412070726F7879206F626A65637420666F722074686520726563656976657220746861742063616E206265207573656420746F20696E69746961746520696D706C69656420616E696D6174696F6E20666F722070726F7065727479206368616E6765732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return applescrollview.MakeFromPtr(getanimator(id))
-			  #endif
+			  return applescrollview.MakeFromPtr(getanimator(id))
 			End Get
 		#tag EndGetter
 		Animator As AppleScrollView
@@ -560,16 +510,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C2076696577206175746F6D61746963616C6C7920686964657320697473207363726F6C6C2062617273207768656E207468657920617265206E6F74206E65656465642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getautohidesScrollers(id)
-			  #endif
+			  return getautohidesScrollers(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setautohidesScrollers id, value
-			  #endif
+			  setautohidesScrollers id, value
 			End Set
 		#tag EndSetter
 		AutohidesScrollers As Boolean
@@ -578,16 +524,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C2076696577206175746F6D61746963616C6C792061646A757374732069747320636F6E74656E7420696E736574732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getautomaticallyAdjustsContentInsets(id)
-			  #endif
+			  return AppKitFramework.getautomaticallyAdjustsContentInsets(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setautomaticallyAdjustsContentInsets id, value
-			  #endif
+			  AppKitFramework.setautomaticallyAdjustsContentInsets id, value
 			End Set
 		#tag EndSetter
 		AutomaticallyAdjustsContentInsets As Boolean
@@ -596,16 +538,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520636F6E74656E742076696577E2809973206261636B67726F756E642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
-			  #endif
+			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor
@@ -614,16 +552,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520617070656172616E6365206F6620746865207363726F6C6C2076696577E280997320626F726465722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getBorderType(id)
-			  #endif
+			  return getBorderType(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setBorderType id, value
-			  #endif
+			  setBorderType id, value
 			End Set
 		#tag EndSetter
 		BorderType As NSBorderType
@@ -699,16 +633,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E6365207468617420746865207363726F6C6C2076696577E28099732073756276696577732061726520696E7365742066726F6D2074686520656E636C6F73696E67207363726F6C6C207669657720647572696E672074696C696E672E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getcontentInsets(id)
-			  #endif
+			  return AppKitFramework.getcontentInsets(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setcontentInsets id, value
-			  #endif
+			  AppKitFramework.setcontentInsets id, value
 			End Set
 		#tag EndSetter
 		ContentInsets As AppkitFramework.NSEdgeInsets
@@ -717,9 +647,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F6620746865207363726F6C6C2076696577E280997320636F6E74656E7420766965772E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getcontentSize(id)
-			  #endif
+			  return getcontentSize(id)
 			End Get
 		#tag EndGetter
 		Contentsize As FoundationFrameWork.NSSize
@@ -728,16 +656,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320636F6E74656E7420766965772C207468652076696577207468617420636C6970732074686520646F63756D656E7420766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appleclipview.MakefromPtr(getcontentView(id))
-			  #endif
+			  return appleclipview.MakefromPtr(getcontentView(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setcontentView id, if (value = nil, nil, value.id)
-			  #endif
+			  setcontentView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		ContentView As AppleClipView
@@ -746,16 +670,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207669657720746865207363726F6C6C2076696577207363726F6C6C732077697468696E2069747320636F6E74656E7420766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appleview.MakefromPtr(getdocumentView(id))
-			  #endif
+			  return appleview.MakefromPtr(getdocumentView(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setdocumentView id, if (value = nil, nil, value.id)
-			  #endif
+			  setdocumentView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		DocumentView As AppleView
@@ -764,9 +684,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520706F7274696F6E206F662074686520646F63756D656E7420766965772C20696E20697473206F776E20636F6F7264696E6174652073797374656D2C2076697369626C65207468726F75676820746865207363726F6C6C2076696577E280997320636F6E74656E7420766965772E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getdocumentVisibleRect(id)
-			  #endif
+			  return getdocumentVisibleRect(id)
 			End Get
 		#tag EndGetter
 		DocumentVisibleRect As FoundationFrameWork.NSRect
@@ -775,16 +693,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C207669657720647261777320697473206261636B67726F756E642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getdrawsBackground(id)
-			  #endif
+			  return AppKitFramework.getdrawsBackground(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setdrawsBackground id, value
-			  #endif
+			  AppKitFramework.setdrawsBackground id, value
 			End Set
 		#tag EndSetter
 		DrawsBackground As Boolean
@@ -793,16 +707,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520706F736974696F6E206F66207468652066696E64206261722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getfindBarPosition(id)
-			  #endif
+			  return getfindBarPosition(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setfindBarPosition id, value
-			  #endif
+			  setfindBarPosition id, value
 			End Set
 		#tag EndSetter
 		FindBarPosition As NSScrollViewFindBarPosition
@@ -811,16 +721,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C2076696577206B65657073206120686F72697A6F6E74616C2072756C6572206F626A6563742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gethasHorizontalRuler(id)
-			  #endif
+			  return gethasHorizontalRuler(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethasHorizontalRuler id, value
-			  #endif
+			  sethasHorizontalRuler id, value
 			End Set
 		#tag EndSetter
 		HasHorizontalRuler As Boolean
@@ -829,16 +735,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C207669657720686173206120686F72697A6F6E74616C207363726F6C6C65722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gethasHorizontalScroller(id)
-			  #endif
+			  return gethasHorizontalScroller(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethasHorizontalScroller id, value
-			  #endif
+			  sethasHorizontalScroller id, value
 			End Set
 		#tag EndSetter
 		HasHorizontalScroller As Boolean
@@ -847,16 +749,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C2076696577206B65657073206120766572746963616C2072756C6572206F626A6563742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gethasVerticalRuler(id)
-			  #endif
+			  return gethasVerticalRuler(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethasVerticalRuler id, value
-			  #endif
+			  sethasVerticalRuler id, value
 			End Set
 		#tag EndSetter
 		HasVerticalRuler As Boolean
@@ -865,16 +763,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C207669657720686173206120766572746963616C207363726F6C6C65722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gethasVerticalScroller(id)
-			  #endif
+			  return gethasVerticalScroller(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethasVerticalScroller id, value
-			  #endif
+			  sethasVerticalScroller id, value
 			End Set
 		#tag EndSetter
 		HasVerticalScroller As Boolean
@@ -883,16 +777,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320686F72697A6F6E74616C206C696E65206279206C696E65207363726F6C6C20616D6F756E742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gethorizontalLineScroll(id)
-			  #endif
+			  return gethorizontalLineScroll(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethorizontalLineScroll id, value
-			  #endif
+			  sethorizontalLineScroll id, value
 			End Set
 		#tag EndSetter
 		HorizontalLineScroll As Double
@@ -901,16 +791,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616D6F756E74206F662074686520646F63756D656E742076696577206B6570742076697369626C65207768656E207363726F6C6C696E6720686F72697A6F6E74616C6C79207061676520627920706167652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gethorizontalPageScroll(id)
-			  #endif
+			  return gethorizontalPageScroll(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethorizontalPageScroll id, value
-			  #endif
+			  sethorizontalPageScroll id, value
 			End Set
 		#tag EndSetter
 		HorizontalPageScroll As Double
@@ -919,16 +805,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320686F72697A6F6E74616C2072756C657220766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appleview.MakefromPtr(gethorizontalRulerView(id))
-			  #endif
+			  return appleview.MakefromPtr(gethorizontalRulerView(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethorizontalRulerView id, if (value = nil, nil, value.id)
-			  #endif
+			  sethorizontalRulerView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		HorizontalRulerView As AppleView
@@ -937,16 +819,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320686F72697A6F6E74616C207363726F6C6C696E6720656C6173746963697479206D6F64652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return gethorizontalScrollElasticity(id)
-			  #endif
+			  return gethorizontalScrollElasticity(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethorizontalScrollElasticity id, value
-			  #endif
+			  sethorizontalScrollElasticity id, value
 			End Set
 		#tag EndSetter
 		HorizontalScrollElasticity As NSScrollElasticity
@@ -955,16 +833,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320686F72697A6F6E74616C207363726F6C6C65722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleScroller.MakefromPtr(gethorizontalScroller(id))
-			  #endif
+			  return AppleScroller.MakefromPtr(gethorizontalScroller(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    sethorizontalScroller id, if (value = nil, nil, value.id)
-			  #endif
+			  sethorizontalScroller id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		HorizontalScroller As AppleScroller
@@ -1023,16 +897,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E2809973206C696E65206279206C696E65207363726F6C6C20616D6F756E742E0A53657474696E6720746869732070726F7065727479207365747320626F746820766572746963616C4C696E655363726F6C6C20616E6420686F72697A6F6E74616C4C696E655363726F6C6C20746F207468652073616D652076616C75652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getlineScroll(id)
-			  #endif
+			  return getlineScroll(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setlineScroll id, value
-			  #endif
+			  setlineScroll id, value
 			End Set
 		#tag EndSetter
 		LineScroll As Double
@@ -1041,16 +911,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616D6F756E742062792077686963682074686520636F6E74656E742069732063757272656E746C79207363616C65642E2044656661756C7420697320312E302E0A416E696D61746520746865206368616E6765206279207573696E6720746865207363726F6C6C76696577E280987320616E696D61746F72206F626A6563742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getmagnification(id)
-			  #endif
+			  return AppKitFramework.getmagnification(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setmagnification id, value
-			  #endif
+			  AppKitFramework.setmagnification id, value
 			End Set
 		#tag EndSetter
 		Magnification As Double
@@ -1059,16 +925,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D6178696D756D2076616C756520746F2077686963682074686520636F6E74656E742063616E206265206D61676E69666965642E2044656661756C7420342E302E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getmaxMagnification(id)
-			  #endif
+			  return getmaxMagnification(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setmaxMagnification id, value
-			  #endif
+			  setmaxMagnification id, value
 			End Set
 		#tag EndSetter
 		MaxMagnification As Double
@@ -1077,16 +939,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D696E696D756D2076616C756520746F2077686963682074686520636F6E74656E742063616E206265206D61676E69666965642E2044656661756C7420302E32352E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getminMagnification(id)
-			  #endif
+			  return getminMagnification(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setminMagnification id, value
-			  #endif
+			  setminMagnification id, value
 			End Set
 		#tag EndSetter
 		MinMagnification As Double
@@ -1095,16 +953,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616D6F756E74206F662074686520646F63756D656E742076696577206B6570742076697369626C65207768656E207363726F6C6C696E67207061676520627920706167652E0A53657474696E6720746869732070726F7065727479207365747320626F746820766572746963616C506167655363726F6C6C20616E6420686F72697A6F6E74616C506167655363726F6C6C20746F207468652073616D652076616C75652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getpageScroll(id)
-			  #endif
+			  return getpageScroll(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setpageScroll id, value
-			  #endif
+			  setpageScroll id, value
 			End Set
 		#tag EndSetter
 		PageScroll As Double
@@ -1113,16 +967,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C207669657720646973706C617973206974732072756C6572732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getrulersVisible(id)
-			  #endif
+			  return getrulersVisible(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setrulersVisible id, value
-			  #endif
+			  setrulersVisible id, value
 			End Set
 		#tag EndSetter
 		RulersVisible As Boolean
@@ -1131,16 +981,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656661756C7420636C61737320746F206265207573656420666F722072756C6572206F626A6563747320696E204E535363726F6C6C56696577732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleObject.MakefromPtr(getrulerViewClass(classptr))
-			  #endif
+			  return AppleObject.MakefromPtr(getrulerViewClass(classptr))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setrulerViewClass classptr, if (value = nil, nil, value.id)
-			  #endif
+			  setrulerViewClass classptr, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Shared RulerViewClass As AppleObject
@@ -1149,16 +995,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E636520746865207363726F6C6C6572732061726520696E7365742066726F6D207468652065646765206F6620746865207363726F6C6C20766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getscrollerInsets(id)
-			  #endif
+			  return getscrollerInsets(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setscrollerInsets id, value
-			  #endif
+			  setscrollerInsets id, value
 			End Set
 		#tag EndSetter
 		ScrollerInsets As AppkitFramework.NSEdgeInsets
@@ -1167,16 +1009,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206B6E6F62207374796C65206F66207363726F6C6C20766965777320746861742075736520746865206F7665726C6179207363726F6C6C6572207374796C652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getscrollerKnobStyle(id)
-			  #endif
+			  return getscrollerKnobStyle(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setscrollerKnobStyle id, value
-			  #endif
+			  setscrollerKnobStyle id, value
 			End Set
 		#tag EndSetter
 		ScrollerKnobStyle As AppleScroller.NSScrollerKnobStyle
@@ -1185,16 +1023,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C6572207374796C65207573656420627920746865207363726F6C6C20766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getscrollerStyle(id)
-			  #endif
+			  return getscrollerStyle(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setscrollerStyle id, value
-			  #endif
+			  setscrollerStyle id, value
 			End Set
 		#tag EndSetter
 		ScrollerStyle As AppleScroller.NSScrollerStyle
@@ -1203,16 +1037,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C207669657720726564726177732069747320646F63756D656E742076696577207768696C65207363726F6C6C696E6720636F6E74696E756F75736C792E2044656661756C7420547275652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getscrollsDynamically(id)
-			  #endif
+			  return getscrollsDynamically(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setscrollsDynamically id, value
-			  #endif
+			  setscrollsDynamically id, value
 			End Set
 		#tag EndSetter
 		ScrollsDynamically As Boolean
@@ -1221,16 +1051,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C20766965772075736573206120707265646F6D696E616E74207363726F6C6C696E67206178697320666F7220636F6E74656E742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getusesPredominantAxisScrolling(id)
-			  #endif
+			  return getusesPredominantAxisScrolling(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setusesPredominantAxisScrolling id, value
-			  #endif
+			  setusesPredominantAxisScrolling id, value
 			End Set
 		#tag EndSetter
 		UsesPredominantAxisScrolling As Boolean
@@ -1239,16 +1065,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320766572746963616C206C696E65206279206C696E65207363726F6C6C20616D6F756E742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getverticalLineScroll(id)
-			  #endif
+			  return getverticalLineScroll(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setverticalLineScroll id, value
-			  #endif
+			  setverticalLineScroll id, value
 			End Set
 		#tag EndSetter
 		VerticalLineScroll As Double
@@ -1257,16 +1079,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616D6F756E74206F662074686520646F63756D656E742076696577206B6570742076697369626C65207768656E207363726F6C6C696E6720766572746963616C6C79207061676520627920706167652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getverticalPageScroll(id)
-			  #endif
+			  return getverticalPageScroll(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setverticalPageScroll id, value
-			  #endif
+			  setverticalPageScroll id, value
 			End Set
 		#tag EndSetter
 		VerticalPageScroll As Double
@@ -1275,16 +1093,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320766572746963616C2072756C657220766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appleview.MakefromPtr(getverticalRulerView(id))
-			  #endif
+			  return appleview.MakefromPtr(getverticalRulerView(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setverticalRulerView id, if (value = nil, nil, value.id)
-			  #endif
+			  setverticalRulerView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		VerticalRulerView As AppleView
@@ -1293,16 +1107,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320766572746963616C207363726F6C6C696E6720656C6173746963697479206D6F64652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getverticalScrollElasticity(id)
-			  #endif
+			  return getverticalScrollElasticity(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setverticalScrollElasticity id, value
-			  #endif
+			  setverticalScrollElasticity id, value
 			End Set
 		#tag EndSetter
 		VerticalScrollElasticity As NSScrollElasticity
@@ -1311,16 +1121,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320766572746963616C207363726F6C6C65722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleScroller.MakefromPtr(getverticalScroller(id))
-			  #endif
+			  return AppleScroller.MakefromPtr(getverticalScroller(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setverticalScroller id, if (value = nil, nil, value.id)
-			  #endif
+			  setverticalScroller id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		VerticalScroller As AppleScroller

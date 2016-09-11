@@ -16,38 +16,31 @@ Inherits OSXLibResponder
 		  // I am kicking the Xojo canvas out of the hierarchy completely and replace it ith the declared one. 
 		  // This way no interference with Xojo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
-<<<<<<< HEAD:OSXLib/Removable Content/AppKit/AppleView controls/OSXLibView.xojo_code
 		  self.LockLeft = false
 		  self.LockRight = false
 		  self.LockBottom = false
 		  self.LockTop = false
 		  if not RaiseEvent InitControl then // already initialized a subclass?
-=======
-		  #If TargetMacOS then
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d:OSXLib/Removable Content/Custom Controls - mind the view hierarchy!/AppleResponder Controls/AppleView controls/OSXLibView.xojo_code
 		    
-		    if not RaiseEvent InitControl then // already initialized a subclass?
-		      
-		      mAppleObject = new appleview (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		      mAppleObject.registercontrol self // and register this instance so it receives the events.
-		      // Please note the internal events of the declared class will not fire anymore.
-		      // This is to avoid confusions where an event expects a return value.
-		      mAppleObject.WantsLayer = true // This is the layered version of a canvas where you can use the layer fully but have no paint event available.
-		      // Its subclass ApplePaintView will follow soon!
-		      dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
-		      dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
-		      for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
-		        dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
-		        if subview.id = origview.id then // is this our control?
-		          dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
-		          mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
-		          controller.ReplaceSubview origview, mAppleObject // and kick of the canvas by replacing it with our view
-		          exit 
-		        end if
-		      next
-		    end if
-		    RaiseEvent open
-		  #endif
+		    mAppleObject = new appleview (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
+		    mAppleObject.registercontrol self // and register this instance so it receives the events.
+		    // Please note the internal events of the declared class will not fire anymore.
+		    // This is to avoid confusions where an event expects a return value.
+		    mAppleObject.WantsLayer = true // This is the layered version of a canvas where you can use the layer fully but have no paint event available.
+		    // Its subclass ApplePaintView will follow soon!
+		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
+		    dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		    for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
+		      dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
+		      if subview.id = origview.id then // is this our control?
+		        dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
+		        mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
+		        controller.ReplaceSubview origview, mAppleObject // and kick of the canvas by replacing it with our view
+		        exit 
+		      end if
+		    next
+		  end if
+		  RaiseEvent open
 		  
 		End Sub
 	#tag EndEvent

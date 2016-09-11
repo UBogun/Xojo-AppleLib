@@ -102,11 +102,9 @@ End
 	#tag EndEvent
 	#tag Event , Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
 		Function TextValue(TableView As AppleTableView, column as ptr, row as Integer) As cfstringRef
-		  #If TargetMacOS then
-		    return (row.ToText)
-		    #pragma unused TableView
-		    #pragma unused column
-		  #endif
+		  return (row.ToText)
+		  #pragma unused TableView
+		  #pragma unused column
 		End Function
 	#tag EndEvent
 #tag EndEvents

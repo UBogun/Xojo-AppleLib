@@ -2,19 +2,10 @@
 Protected Class AppleArray
 Inherits AppleObject
 	#tag Method, Flags = &h0, Description = 4372656174657320616E642072657475726E7320616E20617272617920636F6E7461696E696E67206120676976656E206F626A6563742E
-<<<<<<< HEAD
 		Shared Function ArrayWithObject(anObject as AppleGeneralObject) As AppleArray
 		  dim result as new AppleArray(ArrayWithObject(classptr, anObject.GeneralID))
 		  result.RetainClassObject
 		  return Result
-=======
-		 Shared Function ArrayWithObject(anObject as AppleGeneralObject) As AppleArray
-		  #If TargetMacOS then
-		    dim result as new AppleArray(ArrayWithObject(classptr, anObject.GeneralID))
-		    result.RetainClassObject
-		    return Result
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		  
 		End Function
 	#tag EndMethod
@@ -30,10 +21,9 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (init(alloc(classptr)))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor (init(alloc(classptr)))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -45,10 +35,8 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (arrayWithArray(classptr, anArray.id))
-		    RetainClassObject
-		  #endif
+		  Super.Constructor (arrayWithArray(classptr, anArray.id))
+		  RetainClassObject
 		End Sub
 	#tag EndMethod
 
@@ -59,15 +47,8 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-<<<<<<< HEAD
 		  Super.Constructor (FoundationFrameWork.initwithcontentsoffile(alloc(classptr), FileName))
 		  MHasOwnership = true
-=======
-		  #If TargetMacOS then
-		    Super.Constructor (initwithcontentsoffile(alloc(classptr), FileName))
-		    MHasOwnership = true
-		  #endif
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		End Sub
 	#tag EndMethod
 
@@ -78,10 +59,8 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (initWithObjects(alloc(classptr), Objectarray.Data))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor (initWithObjects(alloc(classptr), Objectarray.Data))
+		  MHasOwnership = true
 		  
 		End Sub
 	#tag EndMethod
@@ -93,26 +72,20 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (initWithObjectsCount(alloc(classptr), Objectarray.Data, count))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor (initWithObjectsCount(alloc(classptr), Objectarray.Data, count))
+		  MHasOwnership = true
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function ContainsObject(anObject as AppleGeneralObject) As Boolean
-		  #If TargetMacOS then
-		    return getcontainsObject (id, anObject.GeneralID)
-		  #endif
+		  return getcontainsObject (id, anObject.GeneralID)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function ContainsText(SearchText as Text) As Boolean
-		  #If TargetMacOS then
-		    return getcontainsText (id, SearchText)
-		  #endif
+		  return getcontainsText (id, SearchText)
 		End Function
 	#tag EndMethod
 
@@ -148,18 +121,14 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function ObjectAtIndex(Index as Uinteger) As AppleObject
-		  #If TargetMacOS then
-		    return AppleObject.MakeFromPtr (getobjectAtIndex (id, index))
-		  #endif
+		  return AppleObject.MakeFromPtr (getobjectAtIndex (id, index))
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function PtrAtIndex(Index as Uinteger) As Ptr
-		  #If TargetMacOS then
-		    return getobjectAtIndex (id, index)
-		  #endif
+		  return getobjectAtIndex (id, index)
 		  
 		End Function
 	#tag EndMethod
@@ -170,17 +139,13 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320616E2061727261792074686174206C697374732074686520726563656976696E67206172726179E280997320656C656D656E747320696E20617363656E64696E67206F726465722C2061732064657465726D696E65642062792074686520636F6D70617269736F6E206D6574686F6420737065636966696564206279206120676976656E204E53436F6D70617261746F7220426C6F636B2E
 		Function SortWithBlock(compareblock as AppleBlock) As AppleArray
-		  #If TargetMacOS then
-		    return AppleArray.MakeFromPtr (sortedArrayUsingComparator(id, compareblock.Handle))
-		  #endif
+		  return AppleArray.MakeFromPtr (sortedArrayUsingComparator(id, compareblock.Handle))
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function TextAtIndex(Index as Uinteger) As text
-		  #If TargetMacOS then
-		    return getTextAtIndex (id, index)
-		  #endif
+		  return getTextAtIndex (id, index)
 		  
 		End Function
 	#tag EndMethod
@@ -221,9 +186,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return FoundationFrameWork.getCount(id)
-			  #endif
+			  return FoundationFrameWork.getCount(id)
 			End Get
 		#tag EndGetter
 		Count As UInteger

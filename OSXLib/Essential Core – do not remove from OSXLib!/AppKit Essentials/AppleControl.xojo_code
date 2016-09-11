@@ -3,9 +3,7 @@ Protected Class AppleControl
 Inherits AppleView
 	#tag Method, Flags = &h0, Description = 5465726D696E61746573207468652063757272656E742065646974696E67206F7065726174696F6E20616E6420646973636172647320616E792065646974656420746578742E0A52657475726E2074727565206966207468657265207761732061206669656C6420656469746F72206173736F63696174656420776974682074686520636F6E7472
 		Function AbortEditing() As Boolean
-		  #If TargetMacOS then
-		    return abortEditing(id)
-		  #endif
+		  return abortEditing(id)
 		End Function
 	#tag EndMethod
 
@@ -21,9 +19,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 506572666F726D7320637573746F6D20657870616E73696F6E20746F6F6C207469702064726177696E672E
 		Sub DrawWithExpansionFrame(Frame as FoundationFrameWork.NSREct, view as appleview)
-		  #If TargetMacOS then
-		    DrawWithExpansionFrame id, frame, view.id
-		  #endif
+		  DrawWithExpansionFrame id, frame, view.id
 		End Sub
 	#tag EndMethod
 
@@ -33,9 +29,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 426567696E732065646974696E67206F6620746865207265636569766572E28099732074657874207573696E672074686520737065636966696564206669656C6420656469746F722E
 		Sub EditWithFrame(Frame as FoundationFrameWork.NSREct, editor as appletext, delegateObj as AppleObject, anEvent As AppleNSEvent)
-		  #If TargetMacOS then
-		    editWithFrame id, frame, editor.id,delegateObj.id, anevent.id
-		  #endif
+		  editWithFrame id, frame, editor.id,delegateObj.id, anevent.id
 		End Sub
 	#tag EndMethod
 
@@ -45,9 +39,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 456E6473207468652065646974696E67206F66207465787420696E20746865207265636569766572207573696E672074686520737065636966696564206669656C6420656469746F722E52657475726E2074727565206966207468657265207761732061206669656C6420656469746F72206173736F63696174656420776974682074686520636F6E7472
 		Sub EndEditing(TextObj as Appletext)
-		  #If TargetMacOS then
-		    endEditing id, textobj.id
-		  #endif
+		  endEditing id, textobj.id
 		End Sub
 	#tag EndMethod
 
@@ -57,9 +49,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 546865206672616D6520696E207768696368206120746F6F6C207469702063616E20626520646973706C617965642C206966206E65656465642E
 		Function ExpansionFrame(Frame as FoundationFrameWork.NSREct) As foundationFrameWork.NSREct
-		  #If TargetMacOS then
-		    return expansionFrameWithFrame(id, frame)
-		  #endif
+		  return expansionFrameWithFrame(id, frame)
 		End Function
 	#tag EndMethod
 
@@ -89,17 +79,13 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 53696D756C6174657320612073696E676C65206D6F75736520636C69636B206F6E207468652072656365697665722E
 		Sub PerformClick(Sender as appleobject)
-		  #If TargetMacOS then
-		    AppKitFramework.performClick id, sender.id
-		  #endif
+		  AppKitFramework.performClick id, sender.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53656C65637473207468652073706563696669656420746578742072616E676520696E207468652072656365697665722773206669656C6420656469746F722E
 		Sub SelectWithFrame(Frame as FoundationFrameWork.NSREct, editor as appletext, delegateObj as AppleObject, start As Integer, length as integer)
-		  #If TargetMacOS then
-		    selectWithFrame id, frame, editor.id,delegateObj.id, start, length
-		  #endif
+		  selectWithFrame id, frame, editor.id,delegateObj.id, start, length
 		End Sub
 	#tag EndMethod
 
@@ -109,9 +95,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 436175736573207468652073706563696669656420616374696F6E20746F2062652073656E7420746865207461726765742E
 		Sub SendAction(ActionSelector as Ptr, Target as AppleObject)
-		  #If TargetMacOS then
-		    AppKitFramework.sendActionTo id, ActionSelector, target.id
-		  #endif
+		  AppKitFramework.sendActionTo id, ActionSelector, target.id
 		End Sub
 	#tag EndMethod
 
@@ -129,73 +113,55 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 41736B732074686520636F6E74726F6C20746F2063616C63756C61746520616E642072657475726E207468652073697A6520746861742062657374206669747320746865207370656369666965642073697A652E52657475726E2074727565206966207468657265207761732061206669656C6420656469746F72206173736F63696174656420776974682074686520636F6E7472
 		Function SizeThatFits(Size as FoundationFrameWork.NSSize) As FoundationFrameWork.NSSize
-		  #If TargetMacOS then
-		    return getSizeThatFits(id, size)
-		  #endif
+		  return getSizeThatFits(id, size)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 526573697A65732074686520636F6E74726F6CE2809973206672616D6520736F207468617420697420697320746865206D696E696D756D2073697A65206E656564656420746F20636F6E7461696E206974732063656C52657475726E2074727565206966207468657265207761732061206669656C6420656469746F72206173736F63696174656420776974682074686520636F6E7472
 		Sub SizeToFit()
-		  #If TargetMacOS then
-		    AppKitFramework.sizeToFit id
-		  #endif
+		  AppKitFramework.sizeToFit id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F206120646F75626C652D707265636973696F6E20666C6F6174696E672D706F696E742076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeDoubleValueFrom(Obj As AppleObject)
-		  #If TargetMacOS then
-		    AppKitFramework.takeDoubleValueFrom id, obj.id
-		  #endif
+		  AppKitFramework.takeDoubleValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F206120496E7433322076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeInt32ValueFrom(Obj As AppleObject)
-		  #If TargetMacOS then
-		    AppKitFramework.takeIntValueFrom id, obj.id
-		  #endif
+		  AppKitFramework.takeIntValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F206120496E74656765722076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeIntegerValueFrom(Obj As AppleObject)
-		  #If TargetMacOS then
-		    AppKitFramework.takeIntegerValueFrom id, obj.id
-		  #endif
+		  AppKitFramework.takeIntegerValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F20616E206F626A6563742076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeObjectValueFrom(Obj As AppleObject)
-		  #If TargetMacOS then
-		    AppKitFramework.takeObjectValueFrom id, obj.id
-		  #endif
+		  AppKitFramework.takeObjectValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F20612073696E676C652D707265636973696F6E20666C6F6174696E672D706F696E742076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeSingleValueFrom(Obj As AppleObject)
-		  #If TargetMacOS then
-		    AppKitFramework.takeFloatValueFrom id, obj.id
-		  #endif
+		  AppKitFramework.takeFloatValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20746F2074686520737472696E672076616C7565206F627461696E65642066726F6D2074686520737065636966696564206F626A6563742E
 		Sub TakeStringValueFrom(Obj As AppleObject)
-		  #If TargetMacOS then
-		    AppKitFramework.takeStringValueFrom id, obj.id
-		  #endif
+		  AppKitFramework.takeStringValueFrom id, obj.id
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 56616C696461746573206368616E67657320746F20616E7920757365722D747970656420746578742E0A56616C69646174696F6E207365747320746865206F626A6563742076616C7565206F66207468652063656C6C20746F207468652063757272656E7420636F6E74656E7473206F66207468652063656C6CE280997320656469746F722028746865204E5354657874206F626A656374207573656420666F722065646974696E67292C2073746F72696E6720697420617320612073696D706C65204E53537472696E67206F7220616E206174747269627574656420737472696E67206F626A656374206261736564206F6E207468652061747472696275746573206F662074686520656469746F722E
 		Function ValidateEditing() As Boolean
-		  #If TargetMacOS then
-		    validateEditing id
-		  #endif
+		  validateEditing id
 		End Function
 	#tag EndMethod
 
@@ -218,16 +184,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656661756C7420616374696F6E2D6D6573736167652073656C6563746F72206173736F63696174656420776974682074686520636F6E74726F6C2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appkitframework.getaction (id)
-			  #endif
+			  return appkitframework.getaction (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setAction id,  value
-			  #endif
+			  AppKitFramework.setAction id,  value
 			End Set
 		#tag EndSetter
 		Action As Ptr
@@ -236,17 +198,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616C69676E6D656E74206D6F6465206F6620746865207465787420696E2074686520636F6E74726F6CE28099732063656C6C2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getalignment (id)
-			    
-			  #endif
+			  return AppKitFramework.getalignment (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setalignment id, value
-			  #endif
+			  AppKitFramework.setalignment id, value
 			End Set
 		#tag EndSetter
 		Alignment As AppleText.NSTextAlignment
@@ -255,16 +213,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220657870616E73696F6E20746F6F6C2074697073206172652073686F776E207768656E2074686520636F6E74726F6C20697320686F7665726564206F7665722E0A0A
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getallowsExpansionToolTips (id)
-			  #endif
+			  return getallowsExpansionToolTips (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setallowsExpansionToolTips id, value
-			  #endif
+			  setallowsExpansionToolTips id, value
 			End Set
 		#tag EndSetter
 		AllowExpansionTooltips As Boolean
@@ -273,16 +227,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C20616C6C6F7773207468652065646974696E67206F662069747320636F6E74656E74E2809973207465787420617474726962757465732062792074686520757365722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getallowsEditingTextAttributes (id)
-			  #endif
+			  return AppKitFramework.getallowsEditingTextAttributes (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setallowsEditingTextAttributes id, value
-			  #endif
+			  AppKitFramework.setallowsEditingTextAttributes id, value
 			End Set
 		#tag EndSetter
 		AllowsEditingTextAttributes As Boolean
@@ -291,17 +241,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20617320616E206174747269627574656420737472696E672E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleAttributedString.MakeFromPtr(AppKitFramework.getattributedStringValue (id))
-			    
-			  #endif
+			  return AppleAttributedString.MakeFromPtr(AppKitFramework.getattributedStringValue (id))
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setattributedStringValue id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setattributedStringValue id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		AttributedStringValue As AppleAttributedString
@@ -310,17 +256,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696E697469616C2077726974696E6720646972656374696F6E207573656420746F2064657465726D696E65207468652061637475616C2077726974696E6720646972656374696F6E20666F7220746578742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getbaseWritingDirection (id)
-			    
-			  #endif
+			  return AppKitFramework.getbaseWritingDirection (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setbaseWritingDirection id, value
-			  #endif
+			  AppKitFramework.setbaseWritingDirection id, value
 			End Set
 		#tag EndSetter
 		BaseWritingDirection As AppleText.NSWritingDirection
@@ -340,17 +282,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207265636569766572E28099732063656C6C2073656E64732069747320616374696F6E206D65737361676520636F6E74696E756F75736C7920746F206974732074617267657420647572696E67206D6F75736520747261636B696E672E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getContinuous (id)
-			    
-			  #endif
+			  return AppKitFramework.getContinuous (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setContinuous id, value
-			  #endif
+			  AppKitFramework.setContinuous id, value
 			End Set
 		#tag EndSetter
 		Continuous As Boolean
@@ -359,16 +297,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F662074686520636F6E74726F6C2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getcontrolSize(id)
-			  #endif
+			  return AppKitFramework.getcontrolSize(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setcontrolSize id, value
-			  #endif
+			  AppKitFramework.setcontrolSize id, value
 			End Set
 		#tag EndSetter
 		ControlSize As NSControlSize
@@ -377,10 +311,8 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063757272656E74206669656C6420656469746F7220666F722074686520636F6E74726F6C2E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appletext.MakeFromPtr(getcurrentEditor (id))
-			    
-			  #endif
+			  return appletext.MakeFromPtr(getcurrentEditor (id))
+			  
 			End Get
 		#tag EndGetter
 		CurrentEditor As AppleText
@@ -389,17 +321,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C206173206120646F75626C652D707265636973696F6E20666C6F6174696E672D706F696E74206E756D6265722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return FoundationFrameWork.getDoubleValue (id)
-			    
-			  #endif
+			  return FoundationFrameWork.getDoubleValue (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    FoundationFrameWork.setdoubleValue id, value
-			  #endif
+			  FoundationFrameWork.setdoubleValue id, value
 			End Set
 		#tag EndSetter
 		DoubleValue As Double
@@ -408,16 +336,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520636F6E74726F6C2072656163747320746F206D6F757365206576656E74732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appkitframework.getenabled (id)
-			  #endif
+			  return appkitframework.getenabled (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setenabled id,value
-			  #endif
+			  AppKitFramework.setenabled id,value
 			End Set
 		#tag EndSetter
 		Enabled As Boolean
@@ -426,16 +350,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C20697320686967686C6967687465642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getHighlighted (id)
-			  #endif
+			  return AppKitFramework.getHighlighted (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setHighlighted id, value
-			  #endif
+			  AppKitFramework.setHighlighted id, value
 			End Set
 		#tag EndSetter
 		Highlighted As Boolean
@@ -444,17 +364,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652072656365697665722069676E6F726573206D756C7469706C6520636C69636B73206D61646520696E2072617069642073756363657373696F6E2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getignoresMultiClick (id)
-			    
-			  #endif
+			  return getignoresMultiClick (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setignoresMultiClick id, value
-			  #endif
+			  setignoresMultiClick id, value
 			End Set
 		#tag EndSetter
 		IgnoresMultiClick As Boolean
@@ -463,16 +379,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C20737570706F7274732074686520696D706F72746174696F6E206F6620696D6167657320696E746F2069747320746578742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getimportsGraphics (id)
-			  #endif
+			  return AppKitFramework.getimportsGraphics (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setimportsGraphics id, value
-			  #endif
+			  AppKitFramework.setimportsGraphics id, value
 			End Set
 		#tag EndSetter
 		ImportsGraphics As Boolean
@@ -481,17 +393,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20617320616E20496E7433322E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getintValue (id)
-			    
-			  #endif
+			  return AppKitFramework.getintValue (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setIntValue id, value
-			  #endif
+			  AppKitFramework.setIntValue id, value
 			End Set
 		#tag EndSetter
 		Int32Value As Int32
@@ -500,17 +408,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F662074686520636F6E74726F6CE28099732063656C6C20617320616E20496E74656765722076616C75652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getintegerValue (id)
-			    
-			  #endif
+			  return AppKitFramework.getintegerValue (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setIntegervalue id, value
-			  #endif
+			  AppKitFramework.setIntegervalue id, value
 			End Set
 		#tag EndSetter
 		IntegerValue As Integer
@@ -549,17 +453,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C696E6520627265616B206D6F646520746F20757365207768656E2064726177696E67207465787420696E207468652063656C6C2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getlineBreakMode (id)
-			    
-			  #endif
+			  return AppKitFramework.getlineBreakMode (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setlineBreakMode id, value
-			  #endif
+			  AppKitFramework.setlineBreakMode id, value
 			End Set
 		#tag EndSetter
 		LineBreakMode As AppleText.NSLineBreakMode
@@ -568,17 +468,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F6620746865207265636569766572E28099732063656C6C20617320616E204F626A6563746976652D43206F626A6563742E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleObject.MakeFromPtr(AppKitFramework.getobjectValue (id))
-			    
-			  #endif
+			  return AppleObject.MakeFromPtr(AppKitFramework.getobjectValue (id))
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setobjectValue id, if (value = nil, nil, value.GeneralID)
-			  #endif
+			  AppKitFramework.setobjectValue id, if (value = nil, nil, value.GeneralID)
 			End Set
 		#tag EndSetter
 		ObjectValue As AppleGeneralObject
@@ -587,17 +483,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520726563656976657220726566757365732074686520666972737420726573706F6E64657220726F6C65
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getrefusesFirstResponder (id)
-			    
-			  #endif
+			  return AppKitFramework.getrefusesFirstResponder (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setrefusesFirstResponder id, value
-			  #endif
+			  AppKitFramework.setrefusesFirstResponder id, value
 			End Set
 		#tag EndSetter
 		RefusesFirstResponder As Boolean
@@ -606,17 +498,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F6620746865207265636569766572E28099732063656C6C20617320612073696E676C652D707265636973696F6E20666C6F6174696E672D706F696E74206E756D6265722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getfloatValue (id)
-			    
-			  #endif
+			  return AppKitFramework.getfloatValue (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setfloatvalue id, value
-			  #endif
+			  AppKitFramework.setfloatvalue id, value
 			End Set
 		#tag EndSetter
 		SingleValue As Single
@@ -625,16 +513,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520746172676574206F626A656374207468617420726563656976657320616374696F6E206D657373616765732066726F6D207468652063656C6C2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appleobject.MakeFromPtr(appkitframework.getTarget (id))
-			  #endif
+			  return appleobject.MakeFromPtr(appkitframework.getTarget (id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setTarget id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setTarget id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Target As AppleObject
@@ -643,17 +527,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F6620746865207265636569766572E28099732063656C6C20617320616E20546578742064617461747970652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getstringValue (id)
-			    
-			  #endif
+			  return AppKitFramework.getstringValue (id)
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setstringvalue id, value
-			  #endif
+			  AppKitFramework.setstringvalue id, value
 			End Set
 		#tag EndSetter
 		TextValue As text

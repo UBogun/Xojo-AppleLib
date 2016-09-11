@@ -160,7 +160,6 @@ Folder=AppleOutLineViewControls;OSXLib/Removable Content/AppKit/AppleView contro
 Class=OSXLibOutlineView;OSXLib/Removable Content/AppKit/AppleView controls/AppleScrollViewControls/AppleTableViewControls/AppleOutLineViewControls/OSXLibOutlineView.xojo_code;&h4E156FFF;&h508257FF;false
 Class=AppleNib;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleNib.xojo_code;&h275AFFFF;&h6FCD57FF;false
 Class=AppleShadow;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleShadow.xojo_code;&h516667FF;&h6FCD57FF;false
-<<<<<<< HEAD
 Class=AppleLayoutConstraint;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleLayoutConstraint.xojo_code;&h3FBAFFF;&h6FCD57FF;false
 Class=AppleLayoutAnchor;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleLayoutAnchor.xojo_code;&h18DAEFFF;&h6FCD57FF;false
 Class=AppleLayoutDimension;OSXLib/Essential Core – do not remove from OSXLib!/AppKit Essentials/AppleLayoutDimension.xojo_code;&h1C762FFF;&h6FCD57FF;false
@@ -235,7 +234,6 @@ Class=AppleSKCameraNode;OSXLib/Removable Content/SpriteKit (needs AVFoundation &
 Class=AppleSKPhysicsWorld;OSXLib/Removable Content/SpriteKit (needs AVFoundation & CoreImage)/finished/AppleSKPhysicsWorld.xojo_code;&h73A0EFFF;&h7959EFFF;false
 Class=AppleCGImage;OSXLib/Essential Core – do not remove from OSXLib!/CoreGraphics/AppleCGImage.xojo_code;&h526CEFFF;&h1E706FFF;false
 Module=RectExtension;OSXLib/Essential Core – do not remove from OSXLib!/DataType and Object Extensions/RectExtension.xojo_code;&h747C47FF;&h198B67FF;false
-Sound=metal1;Demo Sounds/metal1.wav;&h74DFA7FF;&h6E92FFF;false
 Folder=CoreImage;OSXLib/Removable Content/CoreImage;&h1EFA2FFF;&h26302FFF;false
 Module=CoreImageFramework;OSXLib/Removable Content/CoreImage/CoreImageFramework.xojo_code;&h4E9987FF;&h1EFA2FFF;false
 Folder=CIFilter;OSXLib/Removable Content/CoreImage/CIFilter;&h550897FF;&h1EFA2FFF;false
@@ -272,10 +270,8 @@ Folder=subcontrols, don’t use individually unless you know why.;OSXLib/Removab
 Class=AppleCBPeripheralManagerForControl;OSXLib/Removable Content/CoreBluetooth/Custom Controls/subcontrols, don’t use individually unless you know why./AppleCBPeripheralManagerForControl.xojo_code;&h1B5447FF;&h3AF957FF;false
 Class=OSXLibCBCentralManager;OSXLib/Removable Content/CoreBluetooth/Custom Controls/subcontrols, don’t use individually unless you know why./OSXLibCBCentralManager.xojo_code;&hFFA3FFF;&h3AF957FF;false
 Class=OSXLibCBPeripheralManager;OSXLib/Removable Content/CoreBluetooth/Custom Controls/subcontrols, don’t use individually unless you know why./OSXLibCBPeripheralManager.xojo_code;&h51E0BFFF;&h3AF957FF;false
+Sound=metal1;Demo Sounds/metal1.wav;&h55546FFF;&h6E92FFF;false
 DefaultWindow=SelectionWindow
-=======
-DefaultWindow=CoreBluetoothWindow
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 AppMenuBar=MainMenuBar
 MajorVersion=1
 MinorVersion=0
@@ -290,11 +286,7 @@ WinInternalName=
 WinProductName=
 WinFileDescription=
 AutoIncrementVersionInformation=False
-<<<<<<< HEAD
 BuildFlags=&h1900
-=======
-BuildFlags=&h4910
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 BuildLanguage=&h0
 DebugLanguage=&h0
 Region=

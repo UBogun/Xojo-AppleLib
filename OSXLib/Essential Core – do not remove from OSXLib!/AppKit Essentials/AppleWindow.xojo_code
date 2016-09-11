@@ -8,10 +8,9 @@ Inherits AppleResponder
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(windowWithContentViewController(classptr, ViewController.id))
-		    RetainClassObject
-		  #endif
+		  Super.Constructor(windowWithContentViewController(classptr, ViewController.id))
+		  RetainClassObject
+		  
 		End Sub
 	#tag EndMethod
 
@@ -55,9 +54,7 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleViewController.MakefromPtr(getcontentViewController(id))
-			  #endif
+			  return AppleViewController.MakefromPtr(getcontentViewController(id))
 			End Get
 		#tag EndGetter
 		contentViewController As AppleViewController

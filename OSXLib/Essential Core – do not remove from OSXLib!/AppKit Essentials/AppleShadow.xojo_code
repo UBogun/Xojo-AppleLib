@@ -8,10 +8,9 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(init(alloc(classptr)))
-		    MHasownership = true
-		  #endif
+		  Super.Constructor(init(alloc(classptr)))
+		  MHasownership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -35,9 +34,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 536574732074686520736861646F77206F662073756273657175656E742064726177696E67206F7065726174696F6E7320746F2074686520736861646F7720726570726573656E746564206279207468652072656365697665722E
 		Sub Set()
-		  #If TargetMacOS then
-		    set(mid)
-		  #endif
+		  set(mid)
 		End Sub
 	#tag EndMethod
 
@@ -67,7 +64,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070747220746F2074686520637573746F6D20636C61737320646572697665642066726F6D204E534F626A656374
 		#tag Getter
 			Get
-			  #If TargetMacOS then
+			  #if TargetMacos
 			    static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSShadow")
 			    return mClassPtr
 			  #endif
@@ -80,14 +77,14 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520626C757220726164697573206F662074686520736861646F772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
+			  #if targetmacos
 			    return getShadowBlurRadius(mid)
 			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
+			  #if targetmacos
 			    setShadowBlurRadius(mid, value)
 			  #endif
 			End Set
@@ -98,14 +95,14 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520736861646F772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
+			  #if targetmacos
 			    return applecolor.makefromptr( getShadowcolor(mid))
 			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
+			  #if targetmacos
 			    setShadowcolor(mid, if (value = nil, nil, value.id))
 			  #endif
 			End Set
@@ -116,14 +113,14 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F66667365742076616C756573206F662074686520736861646F772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
+			  #if targetmacos
 			    return getShadowOffset(mid)
 			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
+			  #if targetmacos
 			    setShadowOffset(mid, value)
 			  #endif
 			End Set

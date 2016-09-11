@@ -10,30 +10,28 @@ Inherits OSXLibScrollView
 		  // This way no interference with Xoo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
 		  
-		  #If TargetMacOS then
-		    
-		    if not Raiseevent InitControl then
-		      mAppleObject = new AppleScrollView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		      mAppleObject.registercontrol self // and register this instance so it receives the events.
-		      mTableViewObject = new AppleTableView(mappleobject.frame)
-		      mappleobject.documentview = mTableViewObject
-		      // Please note the internal events of the declared class will not fire anymore.
-		      // This is to avoid confusions where an event expects a return value.
-		      dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
-		      dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
-		      for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
-		        dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
-		        if subview.id = origview.id then // is this our control?
-		          dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
-		          mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
-		          mAppleObject.TranslatesAutoresizingMaskIntoConstraints = true
-		          controller.ReplaceSubview origview, mAppleObject // and kick out the canvas by replacing it with our view
-		          exit 
-		        end if
-		      next
-		    end if
-		    return true
-		  #endif
+		  
+		  if not Raiseevent InitControl then
+		    mAppleObject = new AppleScrollView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
+		    mAppleObject.registercontrol self // and register this instance so it receives the events.
+		    mTableViewObject = new AppleTableView(mappleobject.frame)
+		    mappleobject.documentview = mTableViewObject
+		    // Please note the internal events of the declared class will not fire anymore.
+		    // This is to avoid confusions where an event expects a return value.
+		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
+		    dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		    for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
+		      dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
+		      if subview.id = origview.id then // is this our control?
+		        dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
+		        mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
+		        mAppleObject.TranslatesAutoresizingMaskIntoConstraints = true
+		        controller.ReplaceSubview origview, mAppleObject // and kick out the canvas by replacing it with our view
+		        exit 
+		      end if
+		    next
+		  end if
+		  return true
 		  
 		End Function
 	#tag EndEvent

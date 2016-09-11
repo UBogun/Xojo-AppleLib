@@ -3,21 +3,17 @@ Protected Class AppleOutlineView
 Inherits AppleTableView
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520737065636966696564206368696C64206F6620616E206974656D2E
 		Function Child(index as integer, parentitem as appleobject) As AppleObject
-		  #If TargetMacOS then
-		    return appleobject.MakeFromPtr(getchild(id, index, ParentItem.id))
-		  #endif
+		  return appleobject.MakeFromPtr(getchild(id, index, ParentItem.id))
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F6C6C6170736573206120676976656E206974656D20616E642C206F7074696F6E616C6C792C20697473206368696C6472656E2E
 		Sub CollapseItem(item as appleobject, CollapseChildren as Boolean = false)
-		  #If TargetMacOS then
-		    if CollapseChildren then
-		      CollapseItemChildren (id, item.id, CollapseChildren)
-		    else
-		      CollapseItem (id, item.id)
-		    end if
-		  #endif
+		  if CollapseChildren then
+		    CollapseItemChildren (id, item.id, CollapseChildren)
+		  else
+		    CollapseItem (id, item.id)
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -45,25 +41,21 @@ Inherits AppleTableView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(makeViewWithIdentifier(alloc(classptr),Identifer,if (owner = nil, nil, owner.id)))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(makeViewWithIdentifier(alloc(classptr),Identifer,if (owner = nil, nil, owner.id)))
+		  MHasOwnership = true
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub constructor(type as DisclosureButtonType)
-		  #If TargetMacOS then
-		    dim newinstance as new AppleOutlineView(FoundationFrameWork.NSMakeRect(0,0,100,100))
-		    select case type
-		    case DisclosureButtonType.DisclosureButton
-		      constructor(kNSOutlineViewDisclosureButtonKey, newinstance)
-		    case DisclosureButtonType.ShowHideButton
-		      constructor(kNSOutlineViewShowHideButtonKey, newinstance)
-		    end select
-		  #endif
+		  dim newinstance as new AppleOutlineView(FoundationFrameWork.NSMakeRect(0,0,100,100))
+		  select case type
+		  case DisclosureButtonType.DisclosureButton
+		    constructor(kNSOutlineViewDisclosureButtonKey, newinstance)
+		  case DisclosureButtonType.ShowHideButton
+		    constructor(kNSOutlineViewShowHideButtonKey, newinstance)
+		  end select
 		  
 		  
 		End Sub
@@ -79,23 +71,19 @@ Inherits AppleTableView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(initwithframe(alloc(classptr),Rect))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(initwithframe(alloc(classptr),Rect))
+		  MHasOwnership = true
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 457870616E6473206120737065636966696564206974656D20616E642C206F7074696F6E616C6C792C20697473206368696C6472656E2E
 		Sub ExpandItem(item as appleobject, ExpandChildren as Boolean = false)
-		  #If TargetMacOS then
-		    if ExpandChildren then
-		      expandItemChildren (id, item.id, ExpandChildren)
-		    else
-		      expandItem (id, item.id)
-		    end if
-		  #endif
+		  if ExpandChildren then
+		    expandItemChildren (id, item.id, ExpandChildren)
+		  else
+		    expandItem (id, item.id)
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -109,9 +97,7 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206672616D65206F6620746865206F75746C696E652063656C6C20666F72206120676976656E20726F772E
 		Function FrameOfOutlineCell(row as Integer) As FoundationFrameWork.NSRect
-		  #If TargetMacOS then
-		    return getframeOfOutlineCellAtRow (id, row)
-		  #endif
+		  return getframeOfOutlineCellAtRow (id, row)
 		End Function
 	#tag EndMethod
 
@@ -161,9 +147,7 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 496E7365727473206E6577206974656D732061742074686520676976656E20696E646578657320696E2074686520676976656E20706172656E7420776974682074686520737065636966696564206F7074696F6E616C20616E696D6174696F6E73
 		Sub InsertItems(indexes as AppleIndexSet, Parent as AppleObject, Animation As AppleTableViewAnimationOptions = Nil)
-		  #If TargetMacOS then
-		    insertItemsAtIndexes id, indexes.id, parent.id, if (animation = nil, 0, animation.id)
-		  #endif
+		  insertItemsAtIndexes id, indexes.id, parent.id, if (animation = nil, 0, animation.id)
 		End Sub
 	#tag EndMethod
 
@@ -173,9 +157,7 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C7565207468617420696E646963617465732077686574686572206120676976656E206974656D20697320657870616E6461626C652E
 		Function IsExpandable(item as appleobject) As Boolean
-		  #If TargetMacOS then
-		    return isExpandable (id, item.id)
-		  #endif
+		  return isExpandable (id, item.id)
 		End Function
 	#tag EndMethod
 
@@ -185,9 +167,7 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C7565207468617420696E646963617465732077686574686572206120676976656E206974656D20697320657870616E6465642E
 		Function IsItemExpanded(item as appleobject) As Boolean
-		  #If TargetMacOS then
-		    return isItemExpanded (id, item.id)
-		  #endif
+		  return isItemExpanded (id, item.id)
 		End Function
 	#tag EndMethod
 
@@ -197,9 +177,7 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C7565207468617420696E646963617465732077686574686572206120676976656E206974656D20697320657870616E6461626C652E
 		Function Item(row as Integer) As AppleObject
-		  #If TargetMacOS then
-		    return AppleObject.MakeFromPtr( itemAtRow (id,row))
-		  #endif
+		  return AppleObject.MakeFromPtr( itemAtRow (id,row))
 		End Function
 	#tag EndMethod
 
@@ -209,25 +187,19 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E64656E746174696F6E206C6576656C20666F72206120676976656E206974656D2E
 		Function Level(item as appleobject) As Integer
-		  #If TargetMacOS then
-		    return getlevelForItem (id, item.id)
-		  #endif
+		  return getlevelForItem (id, item.id)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696E64656E746174696F6E206C6576656C20666F72206120676976656E20726F772E
 		Function Level(row as integer) As Integer
-		  #If TargetMacOS then
-		    return getlevelForRow (id, row)
-		  #endif
+		  return getlevelForRow (id, row)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4D6F76657320616E206974656D206174206120676976656E20696E64657820696E2074686520676976656E20706172656E7420746F2061206E657720696E64657820696E2061206E657720706172656E742E
 		Sub MoveItem(Index as integer, Parent as AppleObject, NewIndex as Integer, NewParent As AppleObject)
-		  #If TargetMacOS then
-		    moveItemAtIndex id, index, parent.id, newindex, newparent.id
-		  #endif
+		  moveItemAtIndex id, index, parent.id, newindex, newparent.id
 		End Sub
 	#tag EndMethod
 
@@ -237,31 +209,23 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206E756D626572206F66206368696C6472656E20666F72207468652073706563696669656420706172656E74206974656D2E
 		Function NumberOfChildrenOfItem(parentitem as appleobject) As Integer
-		  #If TargetMacOS then
-		    return getnumberOfChildrenOfItem (id,  ParentItem.id)
-		  #endif
+		  return getnumberOfChildrenOfItem (id,  ParentItem.id)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520706172656E7420666F72206120676976656E206974656D2E
 		Function Parent(item as appleobject) As AppleObject
-		  #If TargetMacOS then
-		    return appleobject.MakeFromPtr(getparentForItem(id, item.id))
-		  #endif
+		  return appleobject.MakeFromPtr(getparentForItem(id, item.id))
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52656C6F616473206120676976656E206974656D20616E642C206F7074696F6E616C6C792C20697473206368696C6472656E2E
 		Sub ReloadItem(item as appleobject,reloadchildren as boolean = false)
-		  
-		  
-		  #If TargetMacOS then
-		    if reloadchildren then
-		      reloadItemChildren id,item.id , reloadchildren
-		    else
-		      reloadItem id,item.id
-		    end if
-		  #endif
+		  if reloadchildren then
+		    reloadItemChildren id,item.id , reloadchildren
+		  else
+		    reloadItem id,item.id
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -275,17 +239,13 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C7565207468617420696E646963617465732077686574686572206120676976656E206974656D20697320657870616E6461626C652E
 		Function Row(Item as Appleobject) As Integer
-		  #If TargetMacOS then
-		    return rowForItem (id, item.id)
-		  #endif
+		  return rowForItem (id, item.id)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520726F77206173736F6369617465642077697468206120676976656E20746578742E
 		Function Row(Item as cfstringRef) As Integer
-		  #If TargetMacOS then
-		    return rowFortext (id, item)
-		  #endif
+		  return rowFortext (id, item)
 		End Function
 	#tag EndMethod
 
@@ -307,9 +267,7 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 5573656420746F20E2809C7265746172676574E2809D20612070726F706F7365642064726F702E
 		Sub SetDropItem(item as appleobject, index as integer)
-		  #If TargetMacOS then
-		    setDropItem id, item.id, index
-		  #endif
+		  setDropItem id, item.id, index
 		End Sub
 	#tag EndMethod
 
@@ -331,9 +289,7 @@ Inherits AppleTableView
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120426F6F6C65616E2076616C7565207468617420696E646963617465732077686574686572206175746F2D657870616E646564206974656D732073686F756C642072657475726E20746F207468656972206F726967696E616C20636F6C6C61707365642073746174652E
 		Function ShouldCollapseAutoExpandedItems(Deposited as Boolean) As Boolean
-		  #If TargetMacOS then
-		    return shouldCollapseAutoExpandedItemsForDeposited (id, deposited)
-		  #endif
+		  return shouldCollapseAutoExpandedItemsForDeposited (id, deposited)
 		End Function
 	#tag EndMethod
 
@@ -349,16 +305,12 @@ Inherits AppleTableView
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865206F75746C696E65207669657720726573697A657320697473206F75746C696E6520636F6C756D6E207768656E20746865207573657220657870616E6473206F7220636F6C6C6170736573206974656D732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getautoresizesOutlineColumn(id)
-			  #endif
+			  return getautoresizesOutlineColumn(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setautoresizesOutlineColumn id, value
-			  #endif
+			  setautoresizesOutlineColumn id, value
 			End Set
 		#tag EndSetter
 		AutoresizesOutlineColumn As Boolean
@@ -367,16 +319,12 @@ Inherits AppleTableView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520657870616E646564206974656D7320617265206175746F6D61746963616C6C79207361766564206163726F7373206C61756E63686573206F6620746865206170702E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getautosaveExpandedItems(id)
-			  #endif
+			  return getautosaveExpandedItems(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setautosaveExpandedItems id, value
-			  #endif
+			  setautosaveExpandedItems id, value
 			End Set
 		#tag EndSetter
 		AutosaveExpandedItems As Boolean
@@ -395,16 +343,12 @@ Inherits AppleTableView
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696E64656E746174696F6E206D61726B65722073796D626F6C20646973706C6179656420696E20746865206F75746C696E6520636F6C756D6E2073686F756C6420626520696E64656E74656420616C6F6E672077697468207468652063656C6C20636F6E74656E74732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getindentationMarkerFollowsCell(id)
-			  #endif
+			  return getindentationMarkerFollowsCell(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setindentationMarkerFollowsCell id, value
-			  #endif
+			  setindentationMarkerFollowsCell id, value
 			End Set
 		#tag EndSetter
 		IndentationMarkerFollowsCell As Boolean
@@ -413,16 +357,12 @@ Inherits AppleTableView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207065722D6C6576656C20696E64656E746174696F6E2C206D6561737572656420696E20706F696E74732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return getindentationPerLevel (id)
-			  #endif
+			  return getindentationPerLevel (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setindentationPerLevel (id, value)
-			  #endif
+			  setindentationPerLevel (id, value)
 			End Set
 		#tag EndSetter
 		IndentationPerLevel As Double
@@ -431,16 +371,12 @@ Inherits AppleTableView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C6520636F6C756D6E20696E2077686963682068696572617263686963616C206461746120697320646973706C617965642E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleTableColumn.MakefromPtr (getoutlineTableColumn(id))
-			  #endif
+			  return AppleTableColumn.MakefromPtr (getoutlineTableColumn(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setoutlineTableColumn id, if (value = nil, nil, value.id)
-			  #endif
+			  setoutlineTableColumn id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		OutlineTableColumn As AppleTableColumn
@@ -449,16 +385,12 @@ Inherits AppleTableView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F75746C696E652076696577E28099732064656C65676174652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
-			  #endif
+			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
-			  #endif
+			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
 			End Set
 		#tag EndSetter
 		OutlineViewDelegate As AppleObject
@@ -467,16 +399,12 @@ Inherits AppleTableView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207573657220696E74657266616365206C61796F757420646972656374696F6E2E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getuserInterfaceLayoutDirection(id)
-			  #endif
+			  return AppKitFramework.getuserInterfaceLayoutDirection(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setuserInterfaceLayoutDirection id, value
-			  #endif
+			  AppKitFramework.setuserInterfaceLayoutDirection id, value
 			End Set
 		#tag EndSetter
 		UserInterfaceLayoutdirection1 As Appkitframework.NSUserInterfaceLayoutdirection

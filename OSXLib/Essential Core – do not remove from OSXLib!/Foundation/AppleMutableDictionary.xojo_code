@@ -3,9 +3,7 @@ Protected Class AppleMutableDictionary
 Inherits AppleDictionary
 	#tag Method, Flags = &h0
 		Sub AddDictionary(Dictionary as AppleDictionary)
-		  #If TargetMacOS then
-		    addEntriesFromDictionary id, Dictionary.Id
-		  #endif
+		  addEntriesFromDictionary id, Dictionary.Id
 		End Sub
 	#tag EndMethod
 
@@ -20,10 +18,8 @@ Inherits AppleDictionary
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (Init(Alloc(ClassPtr)))
-		    mhasownership = true
-		  #endif
+		  Super.Constructor (Init(Alloc(ClassPtr)))
+		  mhasownership = true
 		  
 		End Sub
 	#tag EndMethod
@@ -35,19 +31,15 @@ Inherits AppleDictionary
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor (FoundationFrameWork.initWithCapacity(Alloc(ClassPtr), Capacity))
-		    mhasownership = true
-		  #endif
+		  Super.Constructor (FoundationFrameWork.initWithCapacity(Alloc(ClassPtr), Capacity))
+		  mhasownership = true
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub MakeCopyOf(Dictionary as AppleDictionary)
-		  #If TargetMacOS then
-		    setDictionary id, Dictionary.id
-		  #endif
+		  setDictionary id, Dictionary.id
 		End Sub
 	#tag EndMethod
 
@@ -59,25 +51,19 @@ Inherits AppleDictionary
 
 	#tag Method, Flags = &h0
 		Sub ObjectForKey(akey as Applegeneralobject, assigns value as AppleGeneralObject)
-		  #If TargetMacOS then
-		    setObjectForKey(id, value.GeneralID, akey.GeneralID)
-		  #endif
+		  setObjectForKey(id, value.GeneralID, akey.GeneralID)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub ObjectForKey(akey as cfstringref, assigns value as AppleGeneralObject)
-		  #If TargetMacOS then
-		    setObjectForKey(id, value.GeneralID, akey)
-		  #endif
+		  setObjectForKey(id, value.GeneralID, akey)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub RemoveAllObjects()
-		  #If TargetMacOS then
-		    removeAllObjects id
-		  #endif
+		  removeAllObjects id
 		End Sub
 	#tag EndMethod
 
@@ -87,17 +73,13 @@ Inherits AppleDictionary
 
 	#tag Method, Flags = &h0
 		Sub RemoveObject(akey as Applegeneralobject)
-		  #If TargetMacOS then
-		    removeObjectForKey (id, akey.GeneralID)
-		  #endif
+		  removeObjectForKey (id, akey.GeneralID)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub RemoveObject(akey as CFStringRef)
-		  #If TargetMacOS then
-		    removeObjectForKey (id, akey)
-		  #endif
+		  removeObjectForKey (id, akey)
 		End Sub
 	#tag EndMethod
 
@@ -111,9 +93,7 @@ Inherits AppleDictionary
 
 	#tag Method, Flags = &h0
 		Sub RemoveObjects(Keys as AppleArray)
-		  #If TargetMacOS then
-		    removeObjectsForKeys id, keys.Id
-		  #endif
+		  removeObjectsForKeys id, keys.Id
 		  
 		End Sub
 	#tag EndMethod
@@ -136,17 +116,13 @@ Inherits AppleDictionary
 
 	#tag Method, Flags = &h0
 		Sub setValue(Key as CFstringRef , value as AppleGeneralObject)
-		  #If TargetMacOS then
-		    FoundationFrameWork.setValueforKey(id, value.GeneralID, key)
-		  #endif
+		  FoundationFrameWork.setValueforKey(id, value.GeneralID, key)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setValue(Key as CFstringRef , value as CFStringRef)
-		  #If TargetMacOS then
-		    FoundationFrameWork.setValueforKey(id, value, key)
-		  #endif
+		  FoundationFrameWork.setValueforKey(id, value, key)
 		End Sub
 	#tag EndMethod
 

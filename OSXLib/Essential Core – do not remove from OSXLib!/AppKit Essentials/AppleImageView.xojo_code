@@ -16,10 +16,9 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(initwithFrame(alloc(classptr), frame))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(initwithFrame(alloc(classptr), frame))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -59,16 +58,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 4120426F6F6C65616E2076616C756520696E6469636174696E6720776865746865722074686520696D6167652076696577206C657473207468652075736572206375742C20636F70792C20616E642070617374652074686520696D61676520636F6E74656E74732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getallowsCutCopyPaste (id)
-			  #endif
+			  return AppKitFramework.getallowsCutCopyPaste (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setallowsCutCopyPaste id, value
-			  #endif
+			  AppKitFramework.setallowsCutCopyPaste id, value
 			End Set
 		#tag EndSetter
 		AllowsCutCopyPaste As Boolean
@@ -77,16 +72,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696D6167652076696577206175746F6D61746963616C6C7920706C61797320616E696D6174656420696D616765732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getanimates (id)
-			  #endif
+			  return AppKitFramework.getanimates (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setanimates id, value
-			  #endif
+			  AppKitFramework.setanimates id, value
 			End Set
 		#tag EndSetter
 		Animates As Boolean
@@ -105,16 +96,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696D6167652076696577206175746F6D61746963616C6C7920706C61797320616E696D6174656420696D616765732E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.geteditable (id)
-			  #endif
+			  return AppKitFramework.geteditable (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.seteditable id, value
-			  #endif
+			  AppKitFramework.seteditable id, value
 			End Set
 		#tag EndSetter
 		Editable As Boolean
@@ -123,16 +110,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696D61676520646973706C617965642062792074686520696D61676520766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return appleimage.MakeFromPtr(AppKitFramework.getImage (id))
-			  #endif
+			  return appleimage.MakeFromPtr(AppKitFramework.getImage (id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setImage id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setImage id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Image As AppleImage
@@ -141,16 +124,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616C69676E6D656E74206F66207468652063656C6CE280997320696D61676520696E736964652074686520696D61676520766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getimageAlignment (id)
-			  #endif
+			  return AppKitFramework.getimageAlignment (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setimageAlignment id, value
-			  #endif
+			  AppKitFramework.setimageAlignment id, value
 			End Set
 		#tag EndSetter
 		ImageAlignment As appkitframework.NSImageAlignment
@@ -159,16 +138,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207374796C65206F66206672616D65207468617420617070656172732061726F756E642074686520696D6167652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getimageFrameStyle (id)
-			  #endif
+			  return AppKitFramework.getimageFrameStyle (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setimageFrameStyle id, value
-			  #endif
+			  AppKitFramework.setimageFrameStyle id, value
 			End Set
 		#tag EndSetter
 		ImageFrameStyle As appkitframework.NSImageFrameStyle
@@ -177,16 +152,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363616C696E67206D6F6465206170706C69656420746F206D616B65207468652063656C6CE280997320696D6167652066697420746865206672616D65206F662074686520696D61676520766965772E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppKitFramework.getimageScaling (id)
-			  #endif
+			  return AppKitFramework.getimageScaling (id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setimageScaling id, value
-			  #endif
+			  AppKitFramework.setimageScaling id, value
 			End Set
 		#tag EndSetter
 		ImageScaling As appkitframework.NSImagescaling

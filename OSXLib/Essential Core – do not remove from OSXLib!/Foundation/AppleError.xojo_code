@@ -3,18 +3,14 @@ Protected Class AppleError
 Inherits AppleObject
 	#tag Method, Flags = &h1000
 		Sub Constructor()
-		  #If TargetMacOS then
-		    Constructor (kNSCocoaErrorDomain, 0, nil)
-		  #endif
+		  Constructor (kNSCocoaErrorDomain, 0, nil)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1000
 		Sub Constructor(domain as cfstringRef, Code as Integer, userdict as AppleDictionary = nil)
-		  #If TargetMacOS then
-		    super.Constructor(InitWithDomain(alloc(Classptr), domain, code, if (userdict = nil, nil, userdict.id)))
-		    MHasOwnership = true
-		  #endif
+		  super.Constructor(InitWithDomain(alloc(Classptr), domain, code, if (userdict = nil, nil, userdict.id)))
+		  MHasOwnership = true
 		End Sub
 	#tag EndMethod
 
@@ -42,10 +38,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare Function code lib FoundationLibName  selector "code" (id as ptr) as Integer
-			    return code (id)
-			  #endif
+			  Declare Function code lib FoundationLibName  selector "code" (id as ptr) as Integer
+			  return code (id)
 			End Get
 		#tag EndGetter
 		Code As Integer
@@ -54,10 +48,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare Function domain lib FoundationLibName  selector "domain" (id as ptr) as CFStringRef
-			    return domain (id)
-			  #endif
+			  Declare Function domain lib FoundationLibName  selector "domain" (id as ptr) as CFStringRef
+			  return domain (id)
 			End Get
 		#tag EndGetter
 		Domain As Text
@@ -66,10 +58,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare Function helpAnchor lib FoundationLibName  selector "helpAnchor" (id as ptr) as CFStringRef
-			    return helpAnchor (id)
-			  #endif
+			  Declare Function helpAnchor lib FoundationLibName  selector "helpAnchor" (id as ptr) as CFStringRef
+			  return helpAnchor (id)
 			End Get
 		#tag EndGetter
 		HelpAnchor As Text
@@ -78,9 +68,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return FoundationFrameWork.getlocalizedDescription (id)
-			  #endif
+			  return FoundationFrameWork.getlocalizedDescription (id)
 			End Get
 		#tag EndGetter
 		LocalizedDescription As Text
@@ -89,10 +77,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare Function localizedFailureReason lib FoundationLibName  selector "localizedFailureReason" (id as ptr) as CFStringRef
-			    return localizedFailureReason (id)
-			  #endif
+			  Declare Function localizedFailureReason lib FoundationLibName  selector "localizedFailureReason" (id as ptr) as CFStringRef
+			  return localizedFailureReason (id)
 			End Get
 		#tag EndGetter
 		LocalizedFailureReason As Text
@@ -101,10 +87,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare Function localizedRecoveryOptions lib FoundationLibName  selector "localizedRecoveryOptions" (id as ptr) as ptr
-			    return AppleArray.MakeFromPtr (localizedRecoveryOptions (id))
-			  #endif
+			  Declare Function localizedRecoveryOptions lib FoundationLibName  selector "localizedRecoveryOptions" (id as ptr) as ptr
+			  return AppleArray.MakeFromPtr (localizedRecoveryOptions (id))
 			End Get
 		#tag EndGetter
 		LocalizedRecoveryOptions As AppleArray
@@ -113,10 +97,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare Function localizedRecoverySuggestion lib FoundationLibName  selector "localizedRecoverySuggestion" (id as ptr) as CFStringRef
-			    return localizedRecoverySuggestion (id)
-			  #endif
+			  Declare Function localizedRecoverySuggestion lib FoundationLibName  selector "localizedRecoverySuggestion" (id as ptr) as CFStringRef
+			  return localizedRecoverySuggestion (id)
 			End Get
 		#tag EndGetter
 		LocalizedRecoverySuggestion As Text
@@ -125,10 +107,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    Declare Function recoveryAttempter lib FoundationLibName  selector "recoveryAttempter" (id as ptr) as ptr
-			    return AppleObject.MakeFromPtr (recoveryAttempter (id))
-			  #endif
+			  Declare Function recoveryAttempter lib FoundationLibName  selector "recoveryAttempter" (id as ptr) as ptr
+			  return AppleObject.MakeFromPtr (recoveryAttempter (id))
 			End Get
 		#tag EndGetter
 		RecoveryAttempter As AppleObject
@@ -137,9 +117,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleDictionary.MakeFromPtr (foundationframework.getuserinfo (id))
-			  #endif
+			  return AppleDictionary.MakeFromPtr (foundationframework.getuserinfo (id))
 			End Get
 		#tag EndGetter
 		UserInfo As AppleDictionary

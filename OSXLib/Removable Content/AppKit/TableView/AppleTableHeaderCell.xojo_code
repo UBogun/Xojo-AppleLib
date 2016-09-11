@@ -9,10 +9,9 @@ Inherits AppleTextFieldCell
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(init(alloc(classptr)))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(init(alloc(classptr)))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -23,10 +22,9 @@ Inherits AppleTextFieldCell
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(initTextCell(alloc(classptr), caption))
-		    MHasOwnership = true
-		  #endif
+		  Super.Constructor(initTextCell(alloc(classptr), caption))
+		  MHasOwnership = true
+		  
 		End Sub
 	#tag EndMethod
 
@@ -42,9 +40,7 @@ Inherits AppleTextFieldCell
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865206C6F636174696F6E20746F20646973706C61792074686520736F7274696E6720696E64696361746F7220676976656E20746865526563742E
 		Function SortIndicatorRect(Bounds as FoundationFrameWork.NSRect) As FoundationFrameWork.NSRect
-		  #If TargetMacOS then
-		    return getsortIndicatorRectForBounds (id, bounds)
-		  #endif
+		  return getsortIndicatorRectForBounds (id, bounds)
 		End Function
 	#tag EndMethod
 

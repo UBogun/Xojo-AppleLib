@@ -302,6 +302,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Data log"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -364,6 +365,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &cFF008000
@@ -398,10 +400,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   23
       TabPanelIndex   =   0
-<<<<<<< HEAD
       TabStop         =   True
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &cFF000000
@@ -436,6 +435,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   24
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c40800000
@@ -470,10 +470,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   25
       TabPanelIndex   =   0
-<<<<<<< HEAD
       TabStop         =   True
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c40800000
@@ -508,6 +505,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   26
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c0080FF00
@@ -542,10 +540,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   27
       TabPanelIndex   =   0
-<<<<<<< HEAD
       TabStop         =   True
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
       Text            =   "Kickr speed"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -580,6 +575,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   28
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c0080FF00
@@ -614,10 +610,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   29
       TabPanelIndex   =   0
-<<<<<<< HEAD
       TabStop         =   True
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
       Text            =   "Kickr power"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -652,10 +645,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   30
       TabPanelIndex   =   0
-<<<<<<< HEAD
       TabStop         =   True
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
       Text            =   "Cadanze"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -690,10 +680,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   31
       TabPanelIndex   =   0
-<<<<<<< HEAD
       TabStop         =   True
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
       Text            =   "Speed"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -728,10 +715,7 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   32
       TabPanelIndex   =   0
-<<<<<<< HEAD
       TabStop         =   True
-=======
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
       Text            =   "Heart rate"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -1119,11 +1103,7 @@ End
 		  Peripheral.ReadRSSI
 		  Peripheral.ReadValue( Characteristic )
 		  
-<<<<<<< HEAD
 		  TextArea1.AppendText Characteristic.UUID.UUIDString + EndOfLine
-=======
-		  TextArea1.AppendText Characteristic.UUID.UUIDStringf + EndOfLine
->>>>>>> 850c2b9e64f764e6e5f008b647e59ba9d919e03d
 		  
 		  If Characteristic.UUID.UUIDString = "2A66" Then
 		    // TODO

@@ -230,10 +230,8 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mBlackColor as AppleCGColor = new AppleCGColor(CGColorGetConstantColor (SystemConstantName(kCGColorBlack, CoreGraphicsPath)))
-			    return mBlackColor
-			  #endif
+			  static mBlackColor as AppleCGColor = new AppleCGColor(CGColorGetConstantColor (SystemConstantName(kCGColorBlack, CoreGraphicsPath)))
+			  return mBlackColor
 			End Get
 		#tag EndGetter
 		Shared BlackColor As AppleCGColor
@@ -257,9 +255,7 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleCFObject.CFCopyTypeIDDescription (TypeID)
-			  #endif
+			  return AppleCFObject.CFCopyTypeIDDescription (TypeID)
 			End Get
 		#tag EndGetter
 		CFTypeDescription As Text
@@ -268,10 +264,8 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mClearColor as AppleCGColor = new AppleCGColor(CGColorGetConstantColor (SystemConstantName(kCGColorClear, CoreGraphicsPath)))
-			    return mClearColor
-			  #endif
+			  static mClearColor as AppleCGColor = new AppleCGColor(CGColorGetConstantColor (SystemConstantName(kCGColorClear, CoreGraphicsPath)))
+			  return mClearColor
 			End Get
 		#tag EndGetter
 		Shared ClearColor As AppleCGColor
@@ -411,10 +405,8 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mWhiteColor as AppleCGColor = new AppleCGColor(CGColorGetConstantColor (SystemConstantName(kCGColorWhite, CoreGraphicsPath)))
-			    return mWhiteColor
-			  #endif
+			  static mWhiteColor as AppleCGColor = new AppleCGColor(CGColorGetConstantColor (SystemConstantName(kCGColorWhite, CoreGraphicsPath)))
+			  return mWhiteColor
 			End Get
 		#tag EndGetter
 		Shared WhiteColor As AppleCGColor

@@ -8,10 +8,9 @@ Inherits AppleCAAnimation
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  #If TargetMacOS then
-		    Super.Constructor(animation(classptr))
-		    RetainClassObject
-		  #endif
+		  Super.Constructor(animation(classptr))
+		  RetainClassObject
+		  
 		End Sub
 	#tag EndMethod
 
@@ -39,16 +38,12 @@ Inherits AppleCAAnimation
 	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F66204341416E696D6174696F6E206F626A6563747320746F206265206576616C756174656420696E207468652074696D65207370616365206F66207468652072656365697665722E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleArray.MakeFromPtr(getanimations(id))
-			  #endif
+			  return AppleArray.MakeFromPtr(getanimations(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    setanimations id, if (value = nil, nil, value.id)
-			  #endif
+			  setanimations id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Animations As AppleArray

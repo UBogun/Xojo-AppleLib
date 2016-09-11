@@ -669,9 +669,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Function PresentError(Error As AppleError) As Boolean
-		  #If TargetMacOS then
-		    Return presentError (id, error.id)
-		  #endif
+		  Return presentError (id, error.id)
 		End Function
 	#tag EndMethod
 
@@ -685,9 +683,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 417474656D70747320746F20706572666F726D2074686520616374696F6E20696E64696361746564206D6574686F64207769746820612073706563696669656420617267756D656E742E0A49662074686520726563656976657220726573706F6E647320746F20616E416374696F6E2C20697420696E766F6B657320746865206D6574686F64207769746820616E4F626A6563742061732074686520617267756D656E7420616E642072657475726E73205945532E2049662074686520726563656976657220646F65736EE280997420726573706F6E642C2069742073656E64732074686973206D65737361676520746F20697473206E65787420726573706F6E6465722077697468207468652073616D652073656C6563746F7220616E64206F626A6563742E
 		Function TryToPerform(AnActionSelector As Ptr, Anobject As AppleGeneralObject) As Boolean
-		  #If TargetMacOS then
-		    return tryToPerform (id, AnActionSelector, Anobject.GeneralID)
-		  #endif
+		  return tryToPerform (id, AnActionSelector, Anobject.GeneralID)
 		End Function
 	#tag EndMethod
 
@@ -916,10 +912,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mNSAnimationTriggerOrderIn as text= SystemConstantName("NSAnimationTriggerOrderIn", AppKitPath)
-			    return mNSAnimationTriggerOrderIn
-			  #endif
+			  static mNSAnimationTriggerOrderIn as text= SystemConstantName("NSAnimationTriggerOrderIn", AppKitPath)
+			  return mNSAnimationTriggerOrderIn
 			End Get
 		#tag EndGetter
 		Shared kNSAnimationTriggerOrderIn As Text
@@ -928,10 +922,8 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    static mNSAnimationTriggerOrderOut as text= SystemConstantName("NSAnimationTriggerOrderOut", AppKitPath)
-			    return mNSAnimationTriggerOrderOut
-			  #endif
+			  static mNSAnimationTriggerOrderOut as text= SystemConstantName("NSAnimationTriggerOrderOut", AppKitPath)
+			  return mNSAnimationTriggerOrderOut
 			End Get
 		#tag EndGetter
 		Shared kNSAnimationTriggerOrderOut As Text
@@ -940,16 +932,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E65787420726573706F6E6465722061667465722074686973206F6E652C206F72206E696C20696620697420686173206E6F6E652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleMenu.MakefromPtr (AppKitFramework.getmenu(id))
-			  #endif
+			  return AppleMenu.MakefromPtr (AppKitFramework.getmenu(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #If TargetMacOS then
-			    AppKitFramework.setMenu id, if (value = nil, nil, value.id)
-			  #endif
+			  AppKitFramework.setMenu id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Menu As AppleMenu
@@ -958,9 +946,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E65787420726573706F6E6465722061667465722074686973206F6E652C206F72206E696C20696620697420686173206E6F6E652E
 		#tag Getter
 			Get
-			  #If TargetMacOS then
-			    return AppleResponder.MakefromPtr (getnextResponder(id))
-			  #endif
+			  return AppleResponder.MakefromPtr (getnextResponder(id))
 			End Get
 		#tag EndGetter
 		NextResponder As AppleResponder

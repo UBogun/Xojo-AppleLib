@@ -2,7 +2,7 @@
 Protected Module ArrayExtension
 	#tag Method, Flags = &h0
 		Function toAppleArray(extends d() as appleobject) As AppleMutableArray
-		  #If TargetMacOS then
+		  #if Targetmacos
 		    if d <> nil then
 		      dim count as uinteger = d.Ubound
 		      dim result as new AppleMutableArray(count + 1)
