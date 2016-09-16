@@ -369,6 +369,20 @@ Inherits control
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="State"
+			Group="Behavior"
+			Type="AppleCBPeripheralManager.CBPeripheralManagerState"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Unknown"
+				"1 - Resetting"
+				"2 - Unsupported"
+				"3 - Unauthorized"
+				"4 - PoweredOff"
+				"5 - PoweredOn"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"

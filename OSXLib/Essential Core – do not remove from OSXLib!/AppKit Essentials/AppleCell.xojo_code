@@ -554,7 +554,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6CE28099732076616C756520617320616E20696E74656765722E
 		#tag Getter
 			Get
-			  return AppKitFramework.getintValue (id)
+			  return FoundationFrameWork.getintValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -569,7 +569,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6CE28099732076616C756520617320616E20496E746567657220747970652E
 		#tag Getter
 			Get
-			  return AppKitFramework.getintegerValue (id)
+			  return FoundationFrameWork.getintegerValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -735,7 +735,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6CE28099732076616C756520617320612073696E676C652D707265636973696F6E20666C6F6174696E672D706F696E74206E756D6265722E
 		#tag Getter
 			Get
-			  return AppKitFramework.getfloatValue (id)
+			  return FoundationFrameWork.getfloatValue (id)
 			  
 			End Get
 		#tag EndGetter
@@ -792,7 +792,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6CE28099732076616C7565206173206120737472696E672E
 		#tag Getter
 			Get
-			  return AppKitFramework.getstringValue (id)
+			  return FoundationFrameWork.getstringValue (id)
 			  
 			End Get
 		#tag EndGetter

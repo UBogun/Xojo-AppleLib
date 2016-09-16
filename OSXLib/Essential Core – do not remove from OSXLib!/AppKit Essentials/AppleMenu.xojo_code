@@ -389,12 +389,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656C6567617465206F6620746865206D656E752E
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  return AppleObject.MakeFromPtr(FoundationFramework.GetDelegate(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  FoundationFramework.setDelegate(id, if (value = nil, nil, value.id))
 			End Set
 		#tag EndSetter
 		DelegateObject As AppleObject

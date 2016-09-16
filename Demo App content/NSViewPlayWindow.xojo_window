@@ -821,12 +821,12 @@ End
 		  'me.AppleObject.RemoveConstraints(OSXLibPaintCanvas1.AppleObject.Constraints)
 		  me.AppleObject.WidthAnchor.ConstraintLessThanOrEqualToConstant(200).Active = true
 		  me.AppleObject.WidthAnchor.ConstraintLessThanOrEqualToConstant(200).Priority = AppleLayoutConstraint.NSLayoutPriority.WindowSizeStayPut
-		  me.AppleObject.TrailingAnchor.ConstraintGreaterThanOrEqualToAnchor(me.AppleObject.SuperView.RightAnchor).Active = true
+		  // me.AppleObject.TrailingAnchor.ConstraintGreaterThanOrEqualToAnchor(me.AppleObject.SuperView.RightAnchor).Active = true
 		  me.AppleObject.HeightAnchor.ConstraintLessThanOrEqualToConstant(300).Active = true
 		  me.AppleObject.HeightAnchor.ConstraintLessThanOrEqualToConstant(300).Priority = AppleLayoutConstraint.NSLayoutPriority.WindowSizeStayPut
 		  
-		  me.AppleObject.LeadingAnchor.ConstraintEqualToAnchor (ac3.AppleObject.rightAnchor,176).active = true
-		  me.AppleObject.leadinganchor.ConstraintEqualToAnchor(ac3.AppleObject.rightAnchor,176).Priority = AppleLayoutConstraint.NSLayoutPriority.Required
+		  // me.AppleObject.LeadingAnchor.ConstraintEqualToAnchor (ac3.AppleObject.rightAnchor,176).active = true
+		  // me.AppleObject.leadinganchor.ConstraintEqualToAnchor(ac3.AppleObject.rightAnchor,176).Priority = AppleLayoutConstraint.NSLayoutPriority.Required
 		  me.AppleObject.TopAnchor.ConstraintLessThanOrEqualToAnchor (ac3.AppleObject.BottomAnchor, -80).active = true
 		  me.AppleObject.TopAnchor.ConstraintLessThanOrEqualToAnchor (ac3.AppleObject.BottomAnchor, -80).Priority = AppleLayoutConstraint.NSLayoutPriority.Required
 		  me.AppleObject.CheckLayout

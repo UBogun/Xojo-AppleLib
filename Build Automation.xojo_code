@@ -11,4 +11,10 @@
 				Begin BuildProjectStep Build
 				End
 			End
+			Begin BuildStepList iOS
+				Begin BuildProjectStep Build
+				End
+				Begin SignProjectStep Sign
+				End
+			End
 #tag EndBuildAutomation

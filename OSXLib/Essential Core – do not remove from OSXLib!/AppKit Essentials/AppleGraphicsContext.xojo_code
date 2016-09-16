@@ -140,7 +140,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr 
+			  static mClassPtr as Ptr
 			  if mClassPtr = nil then mClassPtr = FoundationFramework.NSClassFromString ("NSGraphicsContext")
 			  return mClassPtr
 			End Get
@@ -258,14 +258,78 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Antialias"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ColorRenderingIntent"
+			Group="Behavior"
+			Type="Appkitframework.NSColorRenderingIntent"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - AbsoluteColorimetric"
+				"2 - RelativeColorimetric"
+				"3 - Perceptual"
+				"4 - Saturation"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CompositingOperation"
+			Group="Behavior"
+			Type="AppkitFRamework.NSCompositingOperation"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Clear"
+				"1 - Copy"
+				"2 - SourceOver"
+				"3 - SourceIn"
+				"4 - SourceOut"
+				"5 - SourceAtop"
+				"6 - DesitinationOver"
+				"7 - DesitinationIn"
+				"8 - DestinationOut"
+				"9 - DestinationAtop"
+				"10 - ExclusiveOR"
+				"11 - PlusDarker"
+				"12 - Highlight"
+				"13 - PlusLighter"
+				"14 - OperationHlliight"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DrawingToScreen"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Flipped"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImageInterpolation"
+			Group="Behavior"
+			Type="Appkitframework.NSImageInterpolation"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - None"
+				"2 - Low"
+				"4 - Medium"
+				"3 - High"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
