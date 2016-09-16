@@ -1,11 +1,13 @@
-# OSXLib
-A library extending Xojo‘s OS X features – 64 bit and new framework compatible.
+#Xojo-AppleLib
+A library extending Xojo’s features for Apple-based systems (macOS and iOS). 64 Bit and new framwork compatible.
 
-This is a sister library of iOSLib. It shares most of the class names and fundamental structure, but it is better structured (a feature that will be transfered to iOSLib soon): Besides the core folder that contains basic classes and methods, the rest is fully optional. Which means you do not have to install the complete library: In most cases the core folder and the framework that you want to use will be sufficient (while, of course, some cross-connections do appear though).
+This library combines both OSXLib and iOSLib into one repository combining two libraries using a lot of shared code.
+I replaces the stand-alone implementations of iOSLib and OSXLib.
+Currently, the iOSLib project doesn’t offer any functionality. It only rebuilds a few of the core classes. More will follow soon.
+The OSXLib part has all the functionality of the former OSXLib, with CoreBluetooth, SpriteKit and more.
 
-OSXLib tries to make advanced use of Apple’s API features transparent, easy and Xojo-like. Besides the classes themselves, custom controls build wrappers translating to and from Xojo data types but you can always switch to the lower level and use the Apple classes directly.
-
-This library uses the CGFloat datatype, external declares and IDE descriptions. Xojo 2015r3 is therefore the minimum required version. It should be checking for the availability of methods from OS X 10.10 onwards, but I might have overseen a few version hints. If you should be running OSXLib on an older system and experience crashes, please file a bug report. In othercases too of course.
+This library uses the CGFloat datatype, external declares and IDE descriptions. Xojo 2015r3 is therefore the minimum required version. It should be checking for the availability of methods from OS X 10.10 onwards, but I might have overseen a few version hints. If you should be running OSXLib on an older system and experience crashes, please file a bug report. In other cases too of course.
+While rebuilding the classes, I add description tags to methods and properties of included classes. Please refer to Apple’s developer documentation for more information on their use. Later, convenience methods which will "Xojoidize" many features will follow.
 
 # Important!
 > **You need to install Joe Ranieri’s OBJC blocks plugin: https://www.dropbox.com/s/rif5r34r15xhaxc/Blocks%20Plugin.zip**  
