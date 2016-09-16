@@ -57,7 +57,7 @@ Inherits AppleCell
 	#tag ComputedProperty, Flags = &h0, Description = 546865207265636569766572E28099732076616C756520617320612036342D62697420636F6D70617469626C6520696E74656765722061667465722076616C69646174696E6720616E792065646974696E67206F662063656C6C20636F6E74656E742E
 		#tag Getter
 			Get
-			  return AppKitFramework.getintegerValue (id)
+			  return FoundationFrameWork.getintegerValue (id)
 			  
 			End Get
 		#tag EndGetter

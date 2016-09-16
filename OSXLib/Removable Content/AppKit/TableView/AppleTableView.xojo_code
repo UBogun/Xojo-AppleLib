@@ -1296,12 +1296,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C652076696577E28099732064656C65676174652E
 		#tag Getter
 			Get
-			  return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			  return AppleObject.MakeFromPtr(FoundationFramework.GetDelegate(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			  FoundationFramework.setDelegate(id, if (value = nil, nil, value.id))
 			End Set
 		#tag EndSetter
 		TableViewDelegate As AppleObject

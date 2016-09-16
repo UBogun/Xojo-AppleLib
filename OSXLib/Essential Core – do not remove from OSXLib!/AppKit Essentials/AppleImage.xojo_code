@@ -310,6 +310,11 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Template"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"

@@ -185,14 +185,14 @@ Inherits AppleObject
 		#tag Getter
 			Get
 			  #If TargetMacOS then
-			    return AppleObject.MakeFromPtr(AppKitFramework.getdelegate(id))
+			    return AppleObject.MakeFromPtr(FoundationFramework.GetDelegate(id))
 			  #endif
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
 			  #If TargetMacOS then
-			    AppKitFramework.setdelegate(id, if (value = nil, nil, value.id))
+			    FoundationFramework.setDelegate(id, if (value = nil, nil, value.id))
 			  #endif
 			End Set
 		#tag EndSetter

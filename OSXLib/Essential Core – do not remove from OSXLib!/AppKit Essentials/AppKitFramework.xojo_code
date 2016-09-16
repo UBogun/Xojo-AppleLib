@@ -137,10 +137,6 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getdelegate Lib appkitlibname Selector "delegate" (id as ptr) As ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getdrawsBackground Lib appkitlibname Selector "drawsBackground" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -162,10 +158,6 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getFlipped Lib appkitlibname Selector "isFlipped" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getfloatValue Lib foundationlibname Selector "floatValue" (id as ptr) As SINGLE
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -224,16 +216,8 @@ Protected Module AppKitFramework
 		Protected Declare Function getimportsGraphics Lib appkitlibname Selector "importsGraphics" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getintegerValue Lib foundationlibname Selector "integerValue" (id as ptr) As Integer
-	#tag EndExternalMethod
-
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getinteriorBackgroundStyle Lib appkitlibname Selector "interiorBackgroundStyle" (id as Ptr) As AppleCell.NSBackgroundStyle
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getintValue Lib foundationlibname Selector "intValue" (id as ptr) As INT32
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -257,11 +241,11 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getLineCap Lib appkitlibname Selector "lineCap" (id as ptr) As CGLineCap
+		Protected Declare Function getLineCap Lib appkitlibname Selector "lineCap" (id as ptr) As coregraphicsframework.CGLineCap
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getlineJoin Lib appkitlibname Selector "lineJoin" (id as ptr) As CGLineJoin
+		Protected Declare Function getlineJoin Lib appkitlibname Selector "lineJoin" (id as ptr) As coregraphicsframework.CGLineJoin
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -338,10 +322,6 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getState Lib appkitlibname Selector "state" (id as ptr) As Integer
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
-		Protected Declare Function getstringValue Lib foundationlibname Selector "stringValue" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -533,10 +513,6 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setdelegate Lib appkitlibname Selector "setDelegate:" (id as ptr, value as ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setdrawsBackground Lib appkitlibname Selector "setDrawsBackground:" (id as ptr, value as boolean)
 	#tag EndExternalMethod
 
@@ -617,11 +593,11 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setLineCap Lib appkitlibname Selector "setLineCap:" (id as ptr, value as CGLineCap)
+		Protected Declare Sub setLineCap Lib appkitlibname Selector "setLineCap:" (id as ptr, value as coregraphicsframework . CGLineCap)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setlineJoin Lib appkitlibname Selector "setLineJoin:" (id as ptr, value as CGLineJoin)
+		Protected Declare Sub setlineJoin Lib appkitlibname Selector "setLineJoin:" (id as ptr, value as coregraphicsframework . CGLineJoin)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
