@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2016r3" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2016r3" FormatVersion="2" MinIDEVersion="20140300">
 <block type="Module" ID="104949759">
  <ObjName>AppleCGContext</ObjName>
  <ObjContainerID>60602367</ObjContainerID>
@@ -12,6 +12,7 @@
   <ItemName>AddArc</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds an arc of a circle to the current path, possibly preceded by a straight line segment</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddArc(x as double, y as double, radius as double, startAngle as Double, EndAngle As Double, ClockWise As boolean)</SourceLine>
@@ -29,6 +30,7 @@
   <ItemName>AddArcToPoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds an arc of a circle to the current path, using a radius and tangent points.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddArcToPoint(x1 as double, y1 as double, x2 as double, y2 as double, radius as double)</SourceLine>
@@ -46,6 +48,7 @@
   <ItemName>AddCurveToPoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Appends a cubic Bézier curve from the current point, using the provided control points and end point .</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddCurveToPoint(cp1x as double, cp1y as double, cp2x as double, cp2y as double, x as double, y as double)</SourceLine>
@@ -63,6 +66,7 @@
   <ItemName>AddEllipse</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds an ellipse that fits inside the specified rectangle.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddEllipse(Rect as FoundationFramework.NSRect)</SourceLine>
@@ -80,6 +84,7 @@
   <ItemName>AddLines</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds a sequence of connected straight-line segments to the current path.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddLines(Points() as FoundationFramework.NSPoint, Count as Uinteger = 0)</SourceLine>
@@ -98,6 +103,7 @@
   <ItemName>AddLineToPoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Appends a straight line segment from the current point to the provided point .</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddLineToPoint(x as double, y as double)</SourceLine>
@@ -115,6 +121,7 @@
   <ItemName>AddPath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds a previously created path object to the current path in a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddPath(Path as AppleCGPath)</SourceLine>
@@ -132,6 +139,7 @@
   <ItemName>AddQuadCurveToPoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Appends a quadratic Bézier curve from the current point, using a control point and an end point you specify.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddQuadCurveToPoint(cpx as double, cpy as double, x as double, y as double)</SourceLine>
@@ -149,6 +157,7 @@
   <ItemName>AddRect</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds a rectangular path to the current path.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddRect(Rect as FoundationFramework.NSRect)</SourceLine>
@@ -166,6 +175,7 @@
   <ItemName>AddRects</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Adds a set of rectangular paths to the current path.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AddRects(Rects() as FoundationFramework.NSRect, Count as Uinteger = 0)</SourceLine>
@@ -201,6 +211,7 @@
   <ItemName>BeginPath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription><Hex bytes="259">437265617465732061206E657720656D707479207061746820696E206120677261706869637320636F6E746578742E0A4120677261706869637320636F6E746578742063616E2068617665206F6E6C7920612073696E676C65207061746820696E2075736520617420616E792074696D652E204966207468652073706563696669656420636F6E7465787420616C726561647920636F6E7461696E7320612063757272656E742070617468207768656E20796F752063616C6C20746869732066756E6374696F6E2C20746865206F6C64207061746820616E6420616E792064617461206173736F6369617465642077697468206974206973206469736361726465642E</Hex></CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub BeginPath()</SourceLine>
@@ -212,103 +223,6 @@
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <ItemParams></ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextAddArc</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextAddArc(Context as Ptr, x as double, y as double, radius as double, startAngle as Double, EndAngle As Double, ClockWise As Int32)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddArc lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(id as ptr,  x as double, y as double, radius as double, startAngle as Double, EndAngle As Double, ClockWise As Int32)</SourceLine>
-   <SourceLine>CGContextAddArc (Context, x, y, radius, startAngle, EndAngle, ClockWise)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddArc lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(id as ptr, x as single, y as single, radius as single, startAngle as single, EndAngle As single, ClockWise As Int32)</SourceLine>
-   <SourceLine>CGContextAddArc (Context, x, y, radius, startAngle, EndAngle, ClockWise)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>Context as Ptr, x as double, y as double, radius as double, startAngle as Double, EndAngle As Double, ClockWise As Int32</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextAddArcToPoint</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextAddArcToPoint(APathRef as Ptr, x1 as double, y1 as double, x2 as double, y2 as double, radius as double)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddArcToPoint lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(Id as Ptr,  x1 as double, y1 as double,  x2 as double, y2 as double, radius as double)</SourceLine>
-   <SourceLine>CGContextAddArcToPoint (APathRef, x1, y1, x2, y2, radius)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddArcToPoint lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(Id as Ptr,  x1 as single, y1 as single,  x2 as single, y2 as single, radius as single)</SourceLine>
-   <SourceLine>CGContextAddArcToPoint (APathRef, x1, y1, x2, y2, radius)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, x1 as double, y1 as double, x2 as double, y2 as double, radius as double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextAddCurveToPoint</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextAddCurveToPoint(APathRef as Ptr, cp1x as double, cp1y as double, cp2x as double, cp2y as double, x as double, y as double)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddCurveToPoint lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(Id as Ptr, cp1x as double, cp1y as double,  cp2x as double, cp2y as double, x as double, y as double)</SourceLine>
-   <SourceLine>CGContextAddCurveToPoint (APathRef, cp1x, cp1y, cp2x, cp2y, x, y)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddCurveToPoint lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(Id as Ptr, cp1x as single, cp1y as single,  cp2x as single, cp2y as single, x as single, y as single)</SourceLine>
-   <SourceLine>CGContextAddCurveToPoint (APathRef, cp1x, cp1y, cp2x, cp2y, x, y)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, cp1x as double, cp1y as double, cp2x as double, cp2y as double, x as double, y as double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextAddEllipseInRect</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextAddEllipseInRect(APathRef as Ptr, aRect as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>Declare Sub CGContextAddEllipseInRect lib CoreGraphicsLibName (id as ptr,  aRect  as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>CGContextAddEllipseInRect (APathRef,  aRect)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, aRect as FoundationFramework.NSRect</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <ExternalMethod>
@@ -329,28 +243,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextAddLineToPoint</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextAddLineToPoint(id as ptr, x as double, y as double)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare sub CGContextAddLineToPoint lib CoreGraphicsLibName (id as ptr, x as double, y as double)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare sub CGContextAddLineToPoint lib CoreGraphicsLibName (id as ptr, x as single, y as single)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine>CGContextAddLineToPoint id, x, y</SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, x as double, y as double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextAddPath</ItemName>
   <Compatibility></Compatibility>
@@ -369,49 +261,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextAddQuadCurveToPoint</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextAddQuadCurveToPoint(APathRef as Ptr, cpx as double, cpy as double, x as double, y as double)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddQuadCurveToPoint lib CoreGraphicsLibName (Id as Ptr, cpx as double, cpy as double,  x as double, y as double)</SourceLine>
-   <SourceLine>CGContextAddQuadCurveToPoint (APathRef, cpx, cpy, x, y)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare Sub CGContextAddQuadCurveToPoint lib CoreGraphicsLibName (Id as Ptr, cpx as single, cpy as single,  x as single, y as single)</SourceLine>
-   <SourceLine>CGContextAddQuadCurveToPoint (APathRef,  cpx, cpy, x, y)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, cpx as double, cpy as double, x as double, y as double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextAddRect</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextAddRect(APathRef as Ptr, aRect as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>Declare Sub CGContextAddRect lib CoreGraphicsLibName (id as ptr, aRect  as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>CGContextAddRect (APathRef,  aRect)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, aRect as FoundationFramework.NSRect</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextAddRects</ItemName>
   <Compatibility></Compatibility>
@@ -448,25 +297,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextClearRect</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextClearRect(APathRef as Ptr, aRect as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>Declare Sub CGContextClearRect lib CoreGraphicsLibName (id as ptr,  aRect  as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>CGContextClearRect (APathRef,  aRect)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, aRect as FoundationFramework.NSRect</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextClip</ItemName>
   <Compatibility></Compatibility>
@@ -491,37 +321,18 @@
   <Visible>1</Visible>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Declare Sub CGContextClipToMask Lib CoreGraphicsLibName (CFTypeRef as Ptr, Mask as Ptr)</SourceLine>
+   <SourceLine>Declare Sub CGContextClipToMask Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFramework . NSRect, Mask as Ptr)</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>1</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>CFTypeRef as Ptr, Mask as Ptr</ItemParams>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFramework . NSRect, Mask as Ptr</ItemParams>
   <ItemResult></ItemResult>
   <LibraryName>#CoreGraphicsLibName</LibraryName>
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextCliptoRect</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextCliptoRect(APathRef as Ptr, aRect as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>Declare Sub CGContextClipToRect lib CoreGraphicsLibName (id as ptr,  aRect  as FoundationFramework.NSRect)</SourceLine>
-   <SourceLine>CGContextClipToRect (APathRef,  aRect)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, aRect as FoundationFramework.NSRect</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextClipToRects</ItemName>
   <Compatibility></Compatibility>
@@ -576,45 +387,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextDrawImage</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextDrawImage(id as ptr, Rect as FoundationFramework.NSRect, image as AppleCGImage)</SourceLine>
-   <SourceLine>declare sub CGContextDrawImage lib CoreGraphicsLibName (Id as ptr, Rect  as FoundationFramework.NSRect, Image as Ptr)</SourceLine>
-   <SourceLine>CGContextDrawImage id, rect, image.CFTypeRef</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, Rect as FoundationFramework.NSRect, image as AppleCGImage</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextDrawLinearGradient</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextDrawLinearGradient(Context as Ptr, gradient as Ptr, startPoint as FoundationFramework.NSPoint, EndPoint AS FoundationFramework.NSPoint, options As uint32)</SourceLine>
-   <SourceLine>Declare Sub CGContextDrawLinearGradient lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(Context as Ptr, gradient as Ptr, startPoint as FoundationFramework.NSPoint, EndPoint AS FoundationFramework.NSPoint, options As UInt32)</SourceLine>
-   <SourceLine>CGContextDrawLinearGradient (Context, gradient, startPoint, endpoint, options)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>Context as Ptr, gradient as Ptr, startPoint as FoundationFramework.NSPoint, EndPoint AS FoundationFramework.NSPoint, options As uint32</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextDrawPath</ItemName>
   <Compatibility></Compatibility>
@@ -633,45 +405,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextDrawRadialGradient</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextDrawRadialGradient(Context as Ptr, gradient as Ptr, startCenter as FoundationFramework.NSPoint, StartRadius As Double, EndCenter AS FoundationFramework.NSPoint, EndRadius As Double, options As uint32)</SourceLine>
-   <SourceLine>Declare Sub CGContextDrawRadialGradient lib CoreGraphicsLibName _</SourceLine>
-   <SourceLine>(Context as Ptr, gradient as Ptr, startCenter as FoundationFramework.NSPoint, StartRadius As Double, EndCenter AS FoundationFramework.NSPoint, EndRadius As Double, options As uint32)</SourceLine>
-   <SourceLine>CGContextDrawRadialGradient (Context, gradient, startCenter, StartRadius, EndCenter, endradius, options)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>Context as Ptr, gradient as Ptr, startCenter as FoundationFramework.NSPoint, StartRadius As Double, EndCenter AS FoundationFramework.NSPoint, EndRadius As Double, options As uint32</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextDrawTiledImage</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextDrawTiledImage(id as ptr, Rect as FoundationFramework.NSRect, image as AppleCGImage)</SourceLine>
-   <SourceLine>declare sub CGContextDrawTiledImage lib CoreGraphicsLibName (Id as ptr, Rect  as FoundationFramework.NSRect, Image as Ptr)</SourceLine>
-   <SourceLine>CGContextDrawTiledImage id, rect, image.CFTypeRef</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, Rect as FoundationFramework.NSRect, image as AppleCGImage</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextEOClip</ItemName>
   <Compatibility></Compatibility>
@@ -762,25 +495,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextGetClipBoundingBox</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Function CGContextGetClipBoundingBox(context as Ptr) As FoundationFramework.NSRect</SourceLine>
-   <SourceLine>Declare function CGContextGetClipBoundingBox lib CoreGraphicsLibName (id as ptr)  as FoundationFramework.NSRect</SourceLine>
-   <SourceLine>return CGContextGetClipBoundingBox (context)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>context as Ptr</ItemParams>
-  <ItemResult>FoundationFramework.NSRect</ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextGetInterpolationQuality</ItemName>
   <Compatibility></Compatibility>
@@ -799,44 +513,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextGetPathBoundingBox</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Function CGContextGetPathBoundingBox(context as Ptr) As FoundationFramework.NSRect</SourceLine>
-   <SourceLine>Declare function CGContextGetPathBoundingBox lib CoreGraphicsLibName (id as ptr)  as FoundationFramework.NSRect</SourceLine>
-   <SourceLine>return CGContextGetPathBoundingBox (context)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>context as Ptr</ItemParams>
-  <ItemResult>FoundationFramework.NSRect</ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextGetPathCurrentPoint</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Function CGContextGetPathCurrentPoint(context as Ptr) As FoundationFramework.NSPoint</SourceLine>
-   <SourceLine>Declare function CGContextGetPathCurrentPoint lib CoreGraphicsLibName (id as ptr) as FoundationFramework.NSPoint</SourceLine>
-   <SourceLine>return CGContextGetPathCurrentPoint (context)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>context as Ptr</ItemParams>
-  <ItemResult>FoundationFramework.NSPoint</ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextIsPathEmpty</ItemName>
   <Compatibility></Compatibility>
@@ -855,47 +531,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextMoveToPoint</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextMoveToPoint(id as ptr, x as double, y as double)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare sub CGContextMoveToPoint lib CoreGraphicsLibName (id as ptr, x as double, y as double)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare sub CGContextMoveToPoint lib CoreGraphicsLibName (id as ptr, x as single, y as single)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine>CGContextMoveToPoint id, x, y</SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, x as double, y as double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextPathContainsPoint</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Function CGContextPathContainsPoint(context as Ptr, point as FoundationFramework.NSPoint, mode as CoreGraphicsFramework.CGPathDrawingMode) As boolean</SourceLine>
-   <SourceLine>Declare function CGContextPathContainsPoint lib CoreGraphicsLibName (id as ptr, point as FoundationFramework.NSPoint, mode as CoreGraphicsFramework.CGPathDrawingMode) as boolean</SourceLine>
-   <SourceLine>return CGContextPathContainsPoint (context, point, mode)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>context as Ptr, point as FoundationFramework.NSPoint, mode as CoreGraphicsFramework.CGPathDrawingMode</ItemParams>
-  <ItemResult>boolean</ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextRelease</ItemName>
   <Compatibility></Compatibility>
@@ -1058,28 +693,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextSetFlatness</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextSetFlatness(id as ptr, Flatness As Double)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare sub CGContextSetFlatness lib CoreGraphicsLibName (id as ptr, value as double)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare sub CGContextSetFlatness lib CoreGraphicsLibName (id as ptr, value as single)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine>CGContextSetFlatness id, Flatness</SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, Flatness As Double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextSetInterpolationQuality</ItemName>
   <Compatibility></Compatibility>
@@ -1116,29 +729,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextSetLineDash</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextSetLineDash(id as ptr, Phase As Double, Lengths As AppleArray, count as UInteger = 0)</SourceLine>
-   <SourceLine>if count = 0 then count = Lengths.Count</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare sub CGContextSetLineDash lib CoreGraphicsLibName (id as ptr, Phase As Double, Lengths As Ptr,  count as UInteger)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare sub CGContextSetLineDash lib CoreGraphicsLibName (id as ptr, Phase As Single, Lengths As Ptr,  count as UInteger)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine>CGContextSetLineDash id, Phase, if (lengths = nil, nil, lengths.id), count</SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, Phase As Double, Lengths As AppleArray, count as UInteger = 0</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextSetLineJoin</ItemName>
   <Compatibility></Compatibility>
@@ -1157,47 +747,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextSetMiterLimit</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextSetMiterLimit(id as ptr, Limit As Double)</SourceLine>
-   <SourceLine>#if Target64Bit</SourceLine>
-   <SourceLine>Declare sub CGContextSetMiterLimit lib CoreGraphicsLibName (id as ptr, value as double)</SourceLine>
-   <SourceLine>#elseif Target32Bit</SourceLine>
-   <SourceLine>Declare sub CGContextSetMiterLimit lib CoreGraphicsLibName (id as ptr, value as single)</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine>CGContextSetMiterLimit id, limit</SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, Limit As Double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextSetPatternPhase</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextSetPatternPhase(id as ptr, Phase as FoundationFramework.NSSize)</SourceLine>
-   <SourceLine>Declare sub CGContextSetPatternPhase lib CoreGraphicsLibName (id as ptr, Phase as FoundationFramework.NSSize)</SourceLine>
-   <SourceLine>CGContextSetPatternPhase id, Phase</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, Phase as FoundationFramework.NSSize</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextSetRenderingIntent</ItemName>
   <Compatibility></Compatibility>
@@ -1216,44 +765,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextSetShadow</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextSetShadow(id as ptr, offset as FoundationFramework.NSSize, blur as double)</SourceLine>
-   <SourceLine>Declare sub CGContextSetShadow lib CoreGraphicsLibName (id as ptr, offset as FoundationFramework.NSSize, blur as double)</SourceLine>
-   <SourceLine>CGContextSetShadow id, offset, blur</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, offset as FoundationFramework.NSSize, blur as double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>CGContextSetShadowWithColor</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextSetShadowWithColor(id as ptr, offset as FoundationFramework.NSSize, blur as double, shadowcolor as AppleCGColor)</SourceLine>
-   <SourceLine>Declare sub CGContextSetShadowWithColor lib CoreGraphicsLibName (id as ptr, offset as FoundationFramework.NSSize, blur as double, shadowcolor as ptr)</SourceLine>
-   <SourceLine>CGContextSetShadowWithColor id, offset, blur, if (shadowcolor = nil, nil, shadowcolor.mCFTypeRef)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>id as ptr, offset as FoundationFramework.NSSize, blur as double, shadowcolor as AppleCGColor</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextSetShouldSmoothFonts</ItemName>
   <Compatibility></Compatibility>
@@ -1362,25 +873,6 @@
   <SoftLink>0</SoftLink>
   <ObjectiveC>0</ObjectiveC>
  </ExternalMethod>
- <Method>
-  <ItemName>CGContextStrokeRectWithWidth</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Sub CGContextStrokeRectWithWidth(APathRef as Ptr, aRect as FoundationFramework.NSRect, width as double)</SourceLine>
-   <SourceLine>Declare Sub CGContextStrokeRectWithWidth lib CoreGraphicsLibName (id as ptr, aRect  as FoundationFramework.NSRect, width as double)</SourceLine>
-   <SourceLine>CGContextStrokeRectWithWidth (APathRef,  aRect, width)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams>APathRef as Ptr, aRect as FoundationFramework.NSRect, width as double</ItemParams>
-  <ItemResult></ItemResult>
- </Method>
  <ExternalMethod>
   <ItemName>CGContextSynchronize</ItemName>
   <Compatibility></Compatibility>
@@ -1403,6 +895,7 @@
   <ItemName>ClearRect</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Paints a transparent rectangle.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub ClearRect(Rect as FoundationFramework.NSRect)</SourceLine>
@@ -1420,6 +913,7 @@
   <ItemName>Clip</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription><Hex bytes="324">4D6F646966696573207468652063757272656E7420636C697070696E6720706174682C207573696E6720746865206E6F6E7A65726F2077696E64696E67206E756D6265722072756C652E0A5468652066756E6374696F6E207573657320746865206E6F6E7A65726F2077696E64696E67206E756D6265722072756C6520746F2063616C63756C6174652074686520696E74657273656374696F6E206F66207468652063757272656E7420706174682077697468207468652063757272656E7420636C697070696E6720706174682E20546865207061746820726573756C74696E672066726F6D2074686520696E74657273656374696F6E206973207573656420617320746865206E65772063757272656E7420636C697070696E67207061746820666F722073756273657175656E74207061696E74696E67206F7065726174696F6E732E</Hex></CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Clip()</SourceLine>
@@ -1437,6 +931,7 @@
   <ItemName>ClipEO</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Modifies the current clipping path, using the even-odd rule.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub ClipEO()</SourceLine>
@@ -1454,23 +949,25 @@
   <ItemName>ClipToMask</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub ClipToMask(Mask as AppleCGImage)</SourceLine>
-   <SourceLine>CGContextCliptoMask mCFTypeRef, Mask.CFTypeRef</SourceLine>
+   <SourceLine>Sub ClipToMask(Rect As FoundationFramework.NSRect, Mask as AppleCGImage)</SourceLine>
+   <SourceLine>CGContextCliptoMask mCFTypeRef, Rect, Mask.CFTypeRef</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>Mask as AppleCGImage</ItemParams>
+  <ItemParams>Rect As FoundationFramework.NSRect, Mask as AppleCGImage</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
   <ItemName>ClipToRect</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub ClipToRect(Rect as FoundationFramework.NSRect)</SourceLine>
@@ -1488,6 +985,7 @@
   <ItemName>ClipToRects</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Sets the clipping path to the intersection of the current clipping path with the region defined by an array of rectangles.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub ClipToRects(Rects() as FoundationFramework.NSRect, Count as Uinteger = 0)</SourceLine>
@@ -1506,6 +1004,7 @@
   <ItemName>ClosePath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Closes and terminates the current path’s subpath.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub ClosePath()</SourceLine>
@@ -1542,6 +1041,7 @@
   <ItemName>CopyPath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Returns a path object built from the current path information in a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function CopyPath() As AppleCGPath</SourceLine>
@@ -1556,31 +1056,14 @@
   <ItemResult>AppleCGPath</ItemResult>
  </Method>
  <Method>
-  <ItemName>CurrentContext</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Function CurrentContext() As AppleCGContext</SourceLine>
-   <SourceLine>dim result as ptr = UIGraphicsGetCurrentContext</SourceLine>
-   <SourceLine>return if (result = nil, nil, new AppleCGContext(result))</SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult>AppleCGContext</ItemResult>
- </Method>
- <Method>
   <ItemName>DrawImage</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Draws an image into a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub DrawImage(Rect as FoundationFramework.NSRect, image as AppleCGImage)</SourceLine>
-   <SourceLine>CGContextDrawImage mCFTypeRef, Rect, image</SourceLine>
+   <SourceLine>CGContextDrawImage mCFTypeRef, Rect, image.CFTypeRef</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -1647,6 +1130,7 @@
   <ItemName>DrawPath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Draws the current path using the provided drawing mode.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub DrawPath(DrawingMode as CoreGraphicsFramework.CGPathDrawingMode)</SourceLine>
@@ -1681,6 +1165,7 @@
   <ItemName>DrawRadialGradient</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Paints a gradient fill that varies along the area defined by the provided starting and ending circles.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub DrawRadialGradient(Colors() As color, Locations() As Double, StartCenter As FoundationFramework.NSPoint, StartRadius As Double, EndCenter As FoundationFramework.NSPoint, EndRadius As Double, DrawBeforeStart As Boolean = false, DrawAfterEnd As Boolean = false)</SourceLine>
@@ -1717,10 +1202,11 @@
   <ItemName>DrawTiledImage</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Repeatedly draws an image, scaled to the provided rectangle, to fill the current clip region.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub DrawTiledImage(Rect as FoundationFramework.NSRect, image as AppleCGImage)</SourceLine>
-   <SourceLine>CGContextDrawTiledImage mCFTypeRef, Rect, image</SourceLine>
+   <SourceLine>CGContextDrawTiledImage mCFTypeRef, Rect, image.CFTypeRef</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -1751,6 +1237,7 @@
   <ItemName>FillPath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Paints the area within the current path, optionally using the even-odd fill rule.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub FillPath(EvenOdd as Boolean = false)</SourceLine>
@@ -1790,6 +1277,7 @@
   <ItemName>Flush</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Forces all pending drawing operations in a window context to be rendered immediately to the destination device.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Flush()</SourceLine>
@@ -1825,6 +1313,7 @@
   <ItemName>MoveToPoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Begins a new subpath at the point you specify.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub MoveToPoint(x as double, y as double)</SourceLine>
@@ -1842,6 +1331,7 @@
   <ItemName>PathContainsPoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Checks to see whether the specified point is contained in the current path.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function PathContainsPoint(Point as FoundationFramework.NSPoint, mode as CoreGraphicsFramework.CGPathDrawingMode = CoreGraphicsFramework.CGPathDrawingMode.Fill) As boolean</SourceLine>
@@ -1893,6 +1383,7 @@
   <ItemName>Release</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Decrements the retain count of a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Release()</SourceLine>
@@ -1927,6 +1418,7 @@
   <ItemName>ReplacePathWithStrokedPath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Replaces the path in the graphics context with the stroked version of the path.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub ReplacePathWithStrokedPath()</SourceLine>
@@ -1944,6 +1436,7 @@
   <ItemName>RestoreGraphicsState</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Sets the current graphics state to the state most recently saved.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub RestoreGraphicsState()</SourceLine>
@@ -1961,6 +1454,7 @@
   <ItemName>Retain</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Increments the retain count of a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Retain()</SourceLine>
@@ -1978,6 +1472,7 @@
   <ItemName>SaveGraphicsState</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Pushes a copy of the current graphics state onto the graphics state stack for the context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SaveGraphicsState()</SourceLine>
@@ -1992,47 +1487,52 @@
   <ItemResult></ItemResult>
  </Method>
  <Method>
-  <ItemName>SetLineDash</ItemName>
+  <ItemName>LineDash</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Sets the pattern for dashed lines in a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub SetLineDash(Phase As Double, Lengths As AppleArray, count as UInteger = 0)</SourceLine>
-   <SourceLine>CGContextSetLineDash mCFTypeRef, Phase, Lengths, count</SourceLine>
+   <SourceLine>Sub LineDash(Phase As Double, count as UInteger = 0, assigns lengths as applearray)</SourceLine>
+   <SourceLine>if count = 0 then count = lengths.count</SourceLine>
+   <SourceLine>CGContextSetLineDash mCFTypeRef, Phase, Lengths.id, count</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>Phase As Double, Lengths As AppleArray, count as UInteger = 0</ItemParams>
+  <ItemParams>Phase As Double, count as UInteger = 0, assigns lengths as applearray</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
-  <ItemName>SetLineDash</ItemName>
+  <ItemName>LineDash</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Sets the pattern for dashed lines in a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub SetLineDash(Phase As Double, Lengths() As Double, count as UInteger = 0)</SourceLine>
-   <SourceLine>CGContextSetLineDash mCFTypeRef, Phase, Lengths.toAppleArray, count</SourceLine>
+   <SourceLine>Sub LineDash(Phase As Double, count as UInteger = 0, assigns Lengths() As double)</SourceLine>
+   <SourceLine>if count = 0 then count = lengths.ubound +1</SourceLine>
+   <SourceLine>CGContextSetLineDash mCFTypeRef, Phase, Lengths.toAppleArray.id, count</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>Phase As Double, Lengths() As Double, count as UInteger = 0</ItemParams>
+  <ItemParams>Phase As Double, count as UInteger = 0, assigns Lengths() As double</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
   <ItemName>SetShadow</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Enables shadowing in a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetShadow(XOffset as Double, YOffset as double, Blur as double)</SourceLine>
-   <SourceLine>CGContextSetShadow mCFtYpeRef, FoundationFrameWork.nsmakesize (XOffset, YOffset), blur</SourceLine>
+   <SourceLine>SetShadow FoundationFrameWork.nsmakesize (XOffset, YOffset), blur</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -2049,7 +1549,7 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetShadow(XOffset as Double, YOffset as double, Blur as double, ShadowColor as AppleCGColor)</SourceLine>
-   <SourceLine>CGContextSetShadowWithColor mCFtYpeRef, FoundationFrameWork.nsmakesize (XOffset, YOffset), blur, ShadowColor</SourceLine>
+   <SourceLine>SetShadow  FoundationFrameWork.nsmakesize (XOffset, YOffset), blur, ShadowColor</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -2063,18 +1563,18 @@
   <ItemName>SetShadow</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Enables shadowing in a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub SetShadow(XOffset as Double, YOffset as double, Blur as double, ShadowColor as Color)</SourceLine>
-   <SourceLine>dim mycolor as new AppleCGColor(ShadowColor)</SourceLine>
-   <SourceLine>CGContextSetShadowWithColor mCFtYpeRef, FoundationFrameWork.nsmakesize (XOffset, YOffset), blur, mycolor</SourceLine>
+   <SourceLine>Sub SetShadow(Offset as foundationframework.nssize, Blur as double, ShadowColor as applecgcolor)</SourceLine>
+   <SourceLine>CGContextSetShadowWithColor mCFtYpeRef, Offset, blur, if (ShadowColor = nil, nil, ShadowColor.CFTypeRef)</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>XOffset as Double, YOffset as double, Blur as double, ShadowColor as Color</ItemParams>
+  <ItemParams>Offset as foundationframework.nssize, Blur as double, ShadowColor as applecgcolor</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
@@ -2099,6 +1599,7 @@
   <ItemName>StrokePath</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Paints a line along the current path.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub StrokePath()</SourceLine>
@@ -2116,6 +1617,7 @@
   <ItemName>StrokeRect</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Paints a rectangular path, using the specified line width.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub StrokeRect(aRect as FoundationFramework.NSRect, width as double)</SourceLine>
@@ -2133,6 +1635,7 @@
   <ItemName>Synchronize</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Marks a window context for update.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Synchronize()</SourceLine>
@@ -2148,7 +1651,7 @@
  </Method>
  <Method>
   <ItemName>toImage</ItemName>
-  <Compatibility></Compatibility>
+  <Compatibility>(TargetIOS and (Target32Bit or Target64Bit))</Compatibility>
   <Visible>1</Visible>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
@@ -2223,26 +1726,6 @@
   <IsShared>1</IsShared>
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
- </Method>
- <Method>
-  <ItemName>UIGraphicsGetCurrentContext</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Shared Function UIGraphicsGetCurrentContext() As ptr</SourceLine>
-   <SourceLine>#if TargetIOS</SourceLine>
-   <SourceLine>Declare function UIGraphicsGetCurrentContext lib UIKitLibName as ptr</SourceLine>
-   <SourceLine>return UIGraphicsGetCurrentContext</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>1</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult>ptr</ItemResult>
  </Method>
  <Method>
   <ItemName>UIGraphicsGetImageFromCurrentImageContext</ItemName>
@@ -2324,24 +1807,1659 @@
   <ItemParams>Context as Graphics</ItemParams>
   <ItemResult></ItemResult>
  </Method>
- <Property>
-  <ItemName>AllowFontSmoothing</ItemName>
+ <ExternalMethod>
+  <ItemName>CGContextSetLineDash</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>AllowFontSmoothing As Boolean</SourceLine>
+   <SourceLine>Declare Sub CGContextSetLineDash Lib CoreGraphicsLibName (CFTypeRef as Ptr, Phase As cgfloat, Lengths As Ptr, count as UInteger)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Phase As cgfloat, Lengths As Ptr, count as UInteger</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetLineWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetLineWidth Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetPatternPhase</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetPatternPhase Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as FoundationFrameWork . NSSize)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as FoundationFrameWork . NSSize</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetShouldAntialias</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetShouldAntialias Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as Boolean)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as Boolean</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetAllowsAntialiasing</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetAllowsAntialiasing Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as Boolean)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as Boolean</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextAddArc</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextAddArc Lib CoreGraphicsLibName (CFTypeRef as Ptr, x as cgfloat, y as cgfloat, radius as cgfloat, startAngle as cgfloat, EndAngle As cgfloat, ClockWise As integer)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x as cgfloat, y as cgfloat, radius as cgfloat, startAngle as cgfloat, EndAngle As cgfloat, ClockWise As integer</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextAddArcToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextAddArcToPoint Lib CoreGraphicsLibName (CFTypeRef as Ptr, x1 as cgfloat, y1 as cgfloat, x2 as cgfloat, y2 as cgfloat, radius as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x1 as cgfloat, y1 as cgfloat, x2 as cgfloat, y2 as cgfloat, radius as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextAddCurveToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextAddCurveToPoint Lib CoreGraphicsLibName (CFTypeRef as Ptr, cp1x as cgfloat, cp1y as cgfloat, cp2x as cgfloat, cp2y as cgfloat, x as cgfloat, y as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, cp1x as cgfloat, cp1y as cgfloat, cp2x as cgfloat, cp2y as cgfloat, x as cgfloat, y as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextAddLineToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextAddLineToPoint Lib CoreGraphicsLibName (CFTypeRef as Ptr, x1 as cgfloat, y1 as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x1 as cgfloat, y1 as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextAddQuadCurveToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextAddQuadCurveToPoint Lib CoreGraphicsLibName (CFTypeRef as Ptr, x1 as cgfloat, y1 as cgfloat, x2 as cgfloat, y2 as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x1 as cgfloat, y1 as cgfloat, x2 as cgfloat, y2 as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextAddRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextAddRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextMoveToPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextMoveToPoint Lib CoreGraphicsLibName (CFTypeRef as Ptr, x as cgfloat, y as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x as cgfloat, y as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextAddEllipseInRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextAddEllipseInRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextFillRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextFillRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>FillRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Paints the area contained within the provided rectangle, using the fill color in the current graphics state.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub FillRect(Rect as FoundationFramework.NSRect)</SourceLine>
+   <SourceLine>CGContextFillRect mCFTypeRef, rect</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Rect as FoundationFramework.NSRect</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextFillEllipseInRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextFillEllipseInRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>FillEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Paints the area of the ellipse that fits inside the provided rectangle, using the fill color in the current graphics state.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub FillEllipse(Rect as FoundationFramework.NSRect)</SourceLine>
+   <SourceLine>CGContextFillEllipseInRect mCFTypeRef, rect</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Rect as FoundationFramework.NSRect</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextStrokeRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextStrokeRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>StrokeRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub StrokeRect(aRect as FoundationFramework.NSRect)</SourceLine>
+   <SourceLine>CGContextStrokeRect mCFTypeRef, aRect</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aRect as FoundationFramework.NSRect</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextStrokeRectWithWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextStrokeRectWithWidth Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect, width as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect, width as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextClearRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextClearRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextStrokeEllipseInRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextStrokeEllipseInRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>StrokeEllipse</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Strokes an ellipse that fits inside the specified rectangle.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub StrokeEllipse(aRect as FoundationFramework.NSRect)</SourceLine>
+   <SourceLine>CGContextStrokeEllipseInRect mCFTypeRef, aRect</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>aRect as FoundationFramework.NSRect</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextGetPathCurrentPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextGetPathCurrentPoint Lib CoreGraphicsLibName (CFTypeRef as Ptr) As FoundationFrameWork.NSPoint</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult>FoundationFrameWork.NSPoint</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextGetPathBoundingBox</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextGetPathBoundingBox Lib CoreGraphicsLibName (CFTypeRef as Ptr) As FoundationFrameWork.NSRect</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult>FoundationFrameWork.NSRect</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextPathContainsPoint</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextPathContainsPoint Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as FoundationFrameWork . NSPoint, mode as CoreGraphicsFramework . CGPathDrawingMode) As Boolean</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as FoundationFrameWork . NSPoint, mode as CoreGraphicsFramework . CGPathDrawingMode</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextClipToRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextClipToRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextGetClipBoundingBox</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextGetClipBoundingBox Lib CoreGraphicsLibName (CFTypeRef as Ptr) As FoundationFrameWork.NSRect</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult>FoundationFrameWork.NSRect</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetAlpha</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetAlpha Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetCMYKFillColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetCMYKFillColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat, Yelow as CGFloat, Black as CGFloat, Alpha As CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat, Yelow as CGFloat, Black as CGFloat, Alpha As CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>SetFillColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the current fill color to a value in the DeviceCMYK color space.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetFillColor(Cyan As Double, Magenta As Double, Yellow As Double, Black As Double, Alpha As Double)</SourceLine>
+   <SourceLine>CGContextSetCMYKFillColor mCFTypeRef, Cyan, Magenta, Yellow, black, Alpha</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Cyan As Double, Magenta As Double, Yellow As Double, Black As Double, Alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextSetCMYKStrokeColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetCMYKStrokeColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat, Yelow as CGFloat, Black as CGFloat, Alpha As CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat, Yelow as CGFloat, Black as CGFloat, Alpha As CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>SetStrokeColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the current stroke color to a value in the DeviceCMYK color space.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetStrokeColor(Cyan As Double, Magenta As Double, Yellow As Double, Black As Double, Alpha As Double)</SourceLine>
+   <SourceLine>CGContextSetCMYKStrokeColor mCFTypeRef, Cyan, Magenta, Yellow, black, Alpha</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Cyan As Double, Magenta As Double, Yellow As Double, Black As Double, Alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextSetFillColorSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetFillColorSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, scpase as ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, scpase as ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetFillColorWithColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetFillColorWithColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as Ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as Ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetGrayFillColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetGrayFillColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>SetFillColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the current fill color to a value in the gray color space.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetFillColor(Gray As Double, Alpha As Double)</SourceLine>
+   <SourceLine>CGContextSetGrayFillColor mCFTypeRef, Gray, Alpha</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Gray As Double, Alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextSetGrayStrokeColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetGrayStrokeColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Cyan as CGFloat, Magenta as CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>SetStrokeColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the current stroke color to a value in the DeviceGray color space</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetStrokeColor(Gray As Double, Alpha As Double)</SourceLine>
+   <SourceLine>CGContextSetGrayStrokeColor mCFTypeRef, Gray, Alpha</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Gray As Double, Alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextSetRGBFillColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetRGBFillColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, Red as CGFloat, Green as CGFloat, Blue as CGFloat, Alpha As CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Red as CGFloat, Green as CGFloat, Blue as CGFloat, Alpha As CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>SetFillColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the current fill color to a value in the DeviceRGB color space.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetFillColor(Red As Double, Green As Double, Blue As Double, Alpha As Double)</SourceLine>
+   <SourceLine>CGContextSetRGBFillColor mCFTypeRef, REd, Green, Blue, Alpha</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Red As Double, Green As Double, Blue As Double, Alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextSetRGBStrokeColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetRGBStrokeColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, Red as CGFloat, Green as CGFloat, Blue as CGFloat, Alpha As CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Red as CGFloat, Green as CGFloat, Blue as CGFloat, Alpha As CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>SetStrokeColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Sets the current stroke color to a value in the DeviceRGB color space</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetStrokeColor(Red As Double, Green As Double, Blue As Double, Alpha As Double)</SourceLine>
+   <SourceLine>CGContextSetRGBFillColor mCFTypeRef, REd, Green, Blue, Alpha</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Red As Double, Green As Double, Blue As Double, Alpha As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextSetShadow</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetShadow Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as FoundationFrameWork . NSSize, blur as CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as FoundationFrameWork . NSSize, blur as CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>SetShadow</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Enables shadowing in a graphics context.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetShadow(Offset as foundationFramework.NSSize, Blur as double)</SourceLine>
+   <SourceLine>CGContextSetShadow mCFtYpeRef, offset, blur</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Offset as foundationFramework.NSSize, Blur as double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextSetShadowWithColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetShadowWithColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as FoundationFrameWork . NSSize, blur as CGFloat, color as ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as FoundationFrameWork . NSSize, blur as CGFloat, color as ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetStrokeColorWithColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetStrokeColorWithColor Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as Ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as Ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetStrokeColorSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetStrokeColorSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, scpase as ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, scpase as ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetFlatness</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetFlatness Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetMiterLimit</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetMiterLimit Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextConcatCTM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextConcatCTM Lib CoreGraphicsLibName (CFTypeRef as Ptr, T as CGAffineTransform)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, T as CGAffineTransform</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>ConcatenateTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Transforms the user coordinate system in a context using a specified matrix.A graphics context can have only a single path in use at any time. If the specified context already contains a current path when you call this function, the old path and any data associated with it is discarded.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ConcatenateTransform(TRansform as CGAffineTransform)</SourceLine>
+   <SourceLine>CGContextConcatCTM mCFTypeRef, TRansform</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>TRansform as CGAffineTransform</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextGetCTM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextGetCTM Lib CoreGraphicsLibName (CFTypeRef as Ptr) As CGAffineTransform</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult>CGAffineTransform</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextRotateCTM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextRotateCTM Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>Rotate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Rotates the user coordinate system in a context.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Rotate(Radians As Double)</SourceLine>
+   <SourceLine>CGContextRotateCTM mCFTypeRef, Radians</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Radians As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextScaleCTM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextScaleCTM Lib CoreGraphicsLibName (CFTypeRef as Ptr, x as CGFloat, y as CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x as CGFloat, y as CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>Scale</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Changes the scale of the user coordinate system in a context.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Scale(XScale As Double, YSCale As Double = 0)</SourceLine>
+   <SourceLine>if YSCale = 0 then YSCale = XScale</SourceLine>
+   <SourceLine>CGContextScaleCTM mCFTypeRef, XScale, YSCale</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>XScale As Double, YSCale As Double = 0</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextTranslateCTM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextTranslateCTM Lib CoreGraphicsLibName (CFTypeRef as Ptr, x as CGFloat, y as CGFloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x as CGFloat, y as CGFloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>Translate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Changes the origin of the user coordinate system in a context.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Translate(dX As Double, dY As Double)</SourceLine>
+   <SourceLine>CGContextTranslateCTM mCFTypeRef, dx, dy</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>dX As Double, dY As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextBeginTransparencyLayer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextBeginTransparencyLayer Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>BeginTransparencyLayer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription><Hex bytes="852">426567696E732061207472616E73706172656E6379206C617965722E0A556E74696C206120636F72726573706F6E64696E672063616C6C20746F204347436F6E74657874456E645472616E73706172656E63794C617965722C20616C6C2073756273657175656E742064726177696E67206F7065726174696F6E7320696E207468652073706563696669656420636F6E746578742061726520636F6D706F736974656420696E746F20612066756C6C79207472616E73706172656E74206261636B64726F7020287768696368206973207472656174656420617320612073657061726174652064657374696E6174696F6E206275666665722066726F6D2074686520636F6E74657874292E0A0A416674657220612063616C6C20746F204347436F6E74657874456E645472616E73706172656E63794C617965722C2074686520726573756C7420697320636F6D706F736974656420696E746F2074686520636F6E74657874207573696E672074686520676C6F62616C20616C70686120616E6420736861646F77207374617465206F662074686520636F6E746578742E2054686973206F7065726174696F6E2072657370656374732074686520636C697070696E6720726567696F6E206F662074686520636F6E746578742E0A0A416674657220612063616C6C20746F20746869732066756E6374696F6E2C20616C6C206F662074686520706172616D657465727320696E207468652067726170686963732073746174652072656D61696E20756E6368616E67656420776974682074686520657863657074696F6E206F662074686520666F6C6C6F77696E673A0A0A54686520676C6F62616C20616C7068612069732073657420746F20312E0A0A54686520736861646F77206973207475726E6564206F66662E0A0A456E64696E6720746865207472616E73706172656E6379206C6179657220726573746F72657320746865736520706172616D657465727320746F2074686569722070726576696F75732076616C7565732E20436F7265204772617068696373206D61696E7461696E732061207472616E73706172656E6379206C6179657220737461636B20666F72206561636820636F6E746578742C20616E64207472616E73706172656E6379206C6179657273206D6179206265206E65737465642E</Hex></CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub BeginTransparencyLayer(auxInfo As AppleDictionary = nil)</SourceLine>
+   <SourceLine>CGContextBeginTransparencyLayer mCFTypeRef, if (auxInfo = nil, nil, auxInfo.id)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>auxInfo As AppleDictionary = nil</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextBeginTransparencyLayerWithRect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextBeginTransparencyLayerWithRect Lib CoreGraphicsLibName (CFTypeRef as Ptr, rect as foundationframework . nsrect, value as ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, rect as foundationframework . nsrect, value as ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>BeginTransparencyLayer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Begins a transparency layer whose contents are bounded by the specified rectangle.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub BeginTransparencyLayer(Rect AS Foundationframework.NSRect, auxInfo As AppleDictionary = nil)</SourceLine>
+   <SourceLine>CGContextBeginTransparencyLayerWithRect mCFTypeRef, rect,  if (auxInfo = nil, nil, auxInfo.id)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Rect AS Foundationframework.NSRect, auxInfo As AppleDictionary = nil</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextEndTransparencyLayer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextEndTransparencyLayer Lib CoreGraphicsLibName (CFTypeRef as Ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>EndTransparencyLayer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Ends a transparency layer.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub EndTransparencyLayer()</SourceLine>
+   <SourceLine>CGContextEndTransparencyLayer mCFTypeRef</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextDrawTiledImage</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextDrawTiledImage Lib CoreGraphicsLibName (CFTypeRef as Ptr, rect as FoundationFrameWork . NSRect, imageRef as Ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, rect as FoundationFrameWork . NSRect, imageRef as Ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextDrawImage</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextDrawImage Lib CoreGraphicsLibName (CFTypeRef as Ptr, rect as FoundationFrameWork . NSRect, imageRef as Ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, rect as FoundationFrameWork . NSRect, imageRef as Ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextDrawLinearGradient</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextDrawLinearGradient Lib CoreGraphicsLibName (CFTypeRef as Ptr, gradient as ptr, startpoint as FoundationFrameWork . NSPoint, endPoint as FoundationFrameWork . NSPoint, options as uint32)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, gradient as ptr, startpoint as FoundationFrameWork . NSPoint, endPoint as FoundationFrameWork . NSPoint, options as uint32</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextDrawRadialGradient</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextDrawRadialGradient Lib CoreGraphicsLibName (Context as Ptr, gradient as Ptr, startCenter as FoundationFramework . NSPoint, StartRadius As cgfloat, EndCenter AS FoundationFramework . NSPoint, EndRadius As cgfloat, options As uint32)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Context as Ptr, gradient as Ptr, startCenter as FoundationFramework . NSPoint, StartRadius As cgfloat, EndCenter AS FoundationFramework . NSPoint, EndRadius As cgfloat, options As uint32</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextBeginPage</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextBeginPage Lib CoreGraphicsLibName (CFTypeRef as Ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>BeginPage</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Starts a new page in a page-based graphics context.A graphics context can have only a single path in use at any time. If the specified context already contains a current path when you call this function, the old path and any data associated with it is discarded.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub BeginPage()</SourceLine>
+   <SourceLine>CGContextBeginPage mCFTypeRef</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextEndPage</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextEndPage Lib CoreGraphicsLibName (context as ptr)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>context as ptr</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>EndPage</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Ends the current page in a page-based graphics context.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub EndPage()</SourceLine>
+   <SourceLine>CGContextEndPage mCFTypeRef</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextGetTextMatrix</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextGetTextMatrix Lib CoreGraphicsLibName (CFTypeRef as Ptr) As CGAffineTransform</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult>CGAffineTransform</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetTextMatrix</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetTextMatrix Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as CGAffineTransform)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as CGAffineTransform</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextGetTextPosition</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextGetTextPosition Lib CoreGraphicsLibName (CFTypeRef as Ptr) As FoundationFrameWork.NSPoint</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult>FoundationFrameWork.NSPoint</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetTextPosition</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetTextPosition Lib CoreGraphicsLibName (CFTypeRef as Ptr, x as cgfloat, y as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, x as cgfloat, y as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetCharacterSpacing</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetCharacterSpacing Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextSetFontSize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Sub CGContextSetFontSize Lib CoreGraphicsLibName (CFTypeRef as Ptr, value as cgfloat)</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, value as cgfloat</ItemParams>
+  <ItemResult></ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextGetUserSpaceToDeviceSpaceTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextGetUserSpaceToDeviceSpaceTransform Lib CoreGraphicsLibName (CFTypeRef as Ptr) As CGAffineTransform</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr</ItemParams>
+  <ItemResult>CGAffineTransform</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <ExternalMethod>
+  <ItemName>CGContextConvertPointToDeviceSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextConvertPointToDeviceSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, point as FoundationFrameWork . NSPoint) As FoundationFrameWork.NSPoint</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, point as FoundationFrameWork . NSPoint</ItemParams>
+  <ItemResult>FoundationFrameWork.NSPoint</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>ConvertPointToDeviceSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a point that is transformed from user space coordinates to device space coordinates.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ConvertPointToDeviceSpace(Point AS Foundationframework.NSPoint) As Foundationframework.NSPoint</SourceLine>
+   <SourceLine>return CGContextConvertPointToDeviceSpace (mcftyperef, point)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Point AS Foundationframework.NSPoint</ItemParams>
+  <ItemResult>Foundationframework.NSPoint</ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextConvertPointToUserSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextConvertPointToUserSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, point as FoundationFrameWork . NSPoint) As FoundationFrameWork.NSPoint</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, point as FoundationFrameWork . NSPoint</ItemParams>
+  <ItemResult>FoundationFrameWork.NSPoint</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>ConvertPointToUserSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a point that is transformed from device space coordinates to user space coordinates.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ConvertPointToUserSpace(Point AS Foundationframework.NSPoint) As Foundationframework.NSPoint</SourceLine>
+   <SourceLine>return CGContextConvertPointToUserSpace (mcftyperef, point)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Point AS Foundationframework.NSPoint</ItemParams>
+  <ItemResult>Foundationframework.NSPoint</ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextConvertSizeToDeviceSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextConvertSizeToDeviceSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, size as FoundationFrameWork . NSSize) As FoundationFrameWork.NSSize</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, size as FoundationFrameWork . NSSize</ItemParams>
+  <ItemResult>FoundationFrameWork.NSSize</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>ConvertSizeToDeviceSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a size that is transformed from user space coordinates to device space coordinates.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ConvertSizeToDeviceSpace(Size AS Foundationframework.NSSize) As Foundationframework.NSSize</SourceLine>
+   <SourceLine>return CGContextConvertSizeToDeviceSpace (mcftyperef, size)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Size AS Foundationframework.NSSize</ItemParams>
+  <ItemResult>Foundationframework.NSSize</ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextConvertSizeToUserSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextConvertSizeToUserSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, size as FoundationFrameWork . NSSize) As FoundationFrameWork.NSSize</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, size as FoundationFrameWork . NSSize</ItemParams>
+  <ItemResult>FoundationFrameWork.NSSize</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>ConvertSizeToUserSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a size that is transformed from device space coordinates to user space coordinates</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ConvertSizeToUserSpace(Size AS Foundationframework.NSSize) As Foundationframework.NSSize</SourceLine>
+   <SourceLine>return CGContextConvertSizeToUserSpace (mcftyperef, size)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Size AS Foundationframework.NSSize</ItemParams>
+  <ItemResult>Foundationframework.NSSize</ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextConvertRectToDeviceSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextConvertRectToDeviceSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult>FoundationFrameWork.NSRect</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
+ <Method>
+  <ItemName>MAkeFromCFTypeRef</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MAkeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGContext</SourceLine>
+   <SourceLine>return if (aCFTypeRef = nil, nil, new AppleCGContext(aCFTypeRef))</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>aCFTypeRef as ptr</ItemParams>
+  <ItemResult>AppleCGContext</ItemResult>
+ </Method>
+ <Note>
+  <ItemName>Status incomplete</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>Status incomplete</NoteLine>
+   <NoteLine>pattern methods missing (needs CGPatternRef)</NoteLine>
+   <NoteLine>StrokeLineSegments missing</NoteLine>
+   <NoteLine>DrawPDF missing (needs CGPDFPageRef)</NoteLine>
+   <NoteLine>Drawshading (CGshadingRef missing)</NoteLine>
+   <NoteLine>setFont (CGFontRef missing)</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>FontSmoothing</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Whether or not to allow font smoothing for a graphics context. (write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FontSmoothing As Boolean</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>AllowFontSmoothing As Boolean</ItemDeclaration>
+  <ItemDeclaration>FontSmoothing As Boolean</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
    <SourceLine>CGContextSetAllowsFontSmoothing mCFTypeRef, value</SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>CGContextSetShouldSmoothFonts mCFTypeRef, value</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -2352,23 +3470,24 @@
   </GetAccessor>
  </Property>
  <Property>
-  <ItemName>AllowFontSubpixelPositioning</ItemName>
+  <ItemName>FontSubpixelPositioning</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Whether or not to allow subpixel positioning for a graphics context (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>AllowFontSubpixelPositioning As Boolean</SourceLine>
+   <SourceLine>FontSubpixelPositioning As Boolean</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>AllowFontSubpixelPositioning As Boolean</ItemDeclaration>
+  <ItemDeclaration>FontSubpixelPositioning As Boolean</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
    <SourceLine>CGContextSetAllowsFontSubpixelPositioning mCFTypeRef, value</SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>CGContextSetShouldSubpixelPositionFonts mCFTypeRef, value</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -2379,23 +3498,24 @@
   </GetAccessor>
  </Property>
  <Property>
-  <ItemName>AllowFontSubpixelQuantization</ItemName>
+  <ItemName>FontSubpixelQuantization</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Whether or not to allow subpixel quantization for a graphics context. (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>AllowFontSubpixelQuantization As Boolean</SourceLine>
+   <SourceLine>FontSubpixelQuantization As Boolean</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>AllowFontSubpixelQuantization As Boolean</ItemDeclaration>
+  <ItemDeclaration>FontSubpixelQuantization As Boolean</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
    <SourceLine>CGContextSetAllowsFontSubpixelQuantization mCFTypeRef, value</SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>CGContextSetShouldSubpixelQuantizeFonts mCFTypeRef, value</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -2409,6 +3529,7 @@
   <ItemName>BlendMode</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>How sample values are composited by a graphics context. (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>BlendMode As CoreGraphicsFramework.CGBlendMode</SourceLine>
@@ -2435,6 +3556,7 @@
   <ItemName>ClipBoundingBox</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The bounding box of the clipping path. (read-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>ClipBoundingBox As FoundationFramework.NSRect</SourceLine>
@@ -2461,6 +3583,7 @@
   <ItemName>CurrentContext</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The current context. (read-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Shared CurrentContext As AppleCGContext</SourceLine>
@@ -2479,7 +3602,11 @@
   <GetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Get</SourceLine>
-   <SourceLine>return new AppleCGContext (UIGraphicsGetCurrentContext)</SourceLine>
+   <SourceLine>#if TargetIOS</SourceLine>
+   <SourceLine>return AppleCGContext.MakeFromCFTypeRef(UIKitFramework.UIGraphicsGetCurrentContext)</SourceLine>
+   <SourceLine>#elseif TargetMacOS</SourceLine>
+   <SourceLine>return AppleGraphicsContext.currentcontext.cgcontext</SourceLine>
+   <SourceLine>#endif</SourceLine>
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
@@ -2487,6 +3614,7 @@
   <ItemName>CurrentPoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The current point in a non-empty path. Uses MoveToPoint if you set this value.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>CurrentPoint As FoundationFramework.NSPoint</SourceLine>
@@ -2513,6 +3641,7 @@
   <ItemName>Flatness</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The accuracy of curved paths in a graphics context. (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Flatness As Double</SourceLine>
@@ -2539,6 +3668,7 @@
   <ItemName>InterpolationQuality</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The current level of interpolation quality for a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>InterpolationQuality As CoreGraphicsFRamework.CGInterpolationQuality</SourceLine>
@@ -2565,6 +3695,7 @@
   <ItemName>LineCap</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The style for the endpoints of lines drawn in a graphics context. (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>LineCap As CoreGraphicsFramework.CGLineCap</SourceLine>
@@ -2591,6 +3722,7 @@
   <ItemName>LineJoin</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The style for the joins of connected lines in a graphics context. (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>LineJoin As CoreGraphicsFramework.CGLineJoin</SourceLine>
@@ -2617,6 +3749,7 @@
   <ItemName>MiterLimit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The miter limit for the joins of connected lines in a graphics context.</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>MiterLimit As Double</SourceLine>
@@ -2643,6 +3776,7 @@
   <ItemName>PathBoundingBox</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The smallest rectangle that contains the current path. (read-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>PathBoundingBox As FoundationFramework.NSRect</SourceLine>
@@ -2669,6 +3803,7 @@
   <ItemName>PathIsEmpty</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Whether the current path contains any subpaths. (read-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>PathIsEmpty As Boolean</SourceLine>
@@ -2692,35 +3827,10 @@
   </GetAccessor>
  </Property>
  <Property>
-  <ItemName>Phase</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Phase As FoundationFramework.NSSize</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>Phase As FoundationFramework.NSSize</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine>CGContextSetPatternPhase mCFTypeRef, value</SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
   <ItemName>RenderingIntent</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The rendering intent in the current graphics state. (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>RenderingIntent As CoreGraphicsFramework.CGColorRenderingIntent</SourceLine>
@@ -2734,58 +3844,6 @@
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
    <SourceLine>CGContextSetRenderingIntent mCFTypeRef, value</SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
-  <ItemName>ShouldSmoothFonts</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>ShouldSmoothFonts As Boolean</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>ShouldSmoothFonts As Boolean</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine>CGContextSetShouldSmoothFonts mCFTypeRef, value</SourceLine>
-   <SourceLine>End Set</SourceLine>
-  </SetAccessor>
-  <GetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Get</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Get</SourceLine>
-  </GetAccessor>
- </Property>
- <Property>
-  <ItemName>ShouldSubpixelPositionFonts</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>ShouldSubpixelPositionFonts As Boolean</SourceLine>
-   <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>ShouldSubpixelPositionFonts As Boolean</ItemDeclaration>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <SetAccessor>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Set</SourceLine>
-   <SourceLine>CGContextSetShouldSubpixelPositionFonts mCFTypeRef, value</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -2811,7 +3869,7 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>CGContextSetShouldSubpixelQuantizeFonts mCFTypeRef, value</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -2825,6 +3883,7 @@
   <ItemName>TextDrawingMode</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>The current text drawing mode. (write-only)</CodeDescription>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>TextDrawingMode As CoreGraphicsFramework.CGTextDrawingMode</SourceLine>
@@ -2847,19 +3906,397 @@
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
+ <Property>
+  <ItemName>LineWidth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The line width for a graphics context. (write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>LineWidth As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>LineWidth As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetLineWidth mCFTypeRef, value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>PatternPhase</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The pattern phase of a context. (write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PatternPhase As FoundationFrameWork.NSSize</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PatternPhase As FoundationFrameWork.NSSize</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetPatternPhase mCFTypeRef, value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>Antialias</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The antialiasing of the graphics context (write-only).</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Antialias As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Antialias As Boolean</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetShouldAntialias mCFTypeRef, value</SourceLine>
+   <SourceLine>CGContextSetAllowsAntialiasing mCFTypeRef, value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>Alpha</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The opacity level for objects drawn in a graphics context. (write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Alpha As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Alpha As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetAlpha mCFTypeRef, value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>FillColorSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FillColorSpace As AppleCGColorSpace</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FillColorSpace As AppleCGColorSpace</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetFillColorSpace mcftyperef, value.cftyperef</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>FillColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current fill color in a graphics context (write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FillColor As AppleCGColor</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FillColor As AppleCGColor</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetFillColorWithColor mcftyperef, value.cftyperef</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>StrokeColor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current stroke color in a context (write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>StrokeColor As AppleCGColor</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>StrokeColor As AppleCGColor</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetStrokeColorWithColor mcftyperef, if (value = nil, nil, value.cftyperef)</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>StrokeColorSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The stroke color space in a graphics context. (write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>StrokeColorSpace As AppleCGColorSpace</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>StrokeColorSpace As AppleCGColorSpace</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetStrokeColorSpace mcftyperef, value.cftyperef</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>Transform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current transformation matrix. (read-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Transform As CGAffineTransform</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>Transform As CGAffineTransform</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return CGContextGetCTM (mcfTypeRef)</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>TextMatrix</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current text matrix.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>TextMatrix As CGAffineTransform</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>TextMatrix As CGAffineTransform</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetTextMatrix mcftyperef, value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return CGContextGetTextMatrix (mcfTypeRef)</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>TextPosition</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>the location at which text is drawn.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>TextPosition As FoundationFrameWork.NSPoint</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>TextPosition As FoundationFrameWork.NSPoint</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetTextPosition mcftyperef, value.x, value.y</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return CGContextGetTextPosition (mcfTypeRef)</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>CharacterSpacing</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current character spacing. (Write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>CharacterSpacing As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>CharacterSpacing As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetCharacterSpacing mCFTypeRef, value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>FontSize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>The current font size. (Write-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FontSize As Double</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FontSize As Double</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine>CGContextSetFontSize mCFTypeRef, value</SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>UserSpaceToDeviceSpaceTransform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>An affine transform that maps user space coordinates to device space coordinates. (read-only)</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>UserSpaceToDeviceSpaceTransform As CGAffineTransform</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>UserSpaceToDeviceSpaceTransform As CGAffineTransform</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return CGContextGetUserSpaceToDeviceSpaceTransform (mcfTypeRef)</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
  <ViewBehavior>
   <ViewProperty>
-   <ObjName>AllowFontSmoothing</ObjName>
+   <ObjName>FontSmoothing</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>AllowFontSubpixelPositioning</ObjName>
+   <ObjName>FontSubpixelPositioning</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>AllowFontSubpixelQuantization</ObjName>
+   <ObjName>FontSubpixelQuantization</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
   </ViewProperty>
@@ -2992,16 +4429,6 @@
    <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>ShouldSmoothFonts</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>ShouldSubpixelPositionFonts</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>ShouldSubpixelQuantizeFonts</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
@@ -3065,6 +4492,31 @@
     <ItemDef>6 - FillStrokeClip</ItemDef>
     <ItemDef>7 - Clip</ItemDef>
    </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LineWidth</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Antialias</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Alpha</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>CharacterSpacing</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>FontSize</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
   </ViewProperty>
  </ViewBehavior>
 </block>
