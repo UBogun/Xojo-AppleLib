@@ -353,7 +353,8 @@ Inherits AppleObject
 		#tag Getter
 			Get
 			  Declare Function CGColor lib UIKitLibname selector "CGColor" (id as ptr) as ptr
-			  return AppleCGColor.MakeFromCFTypeRef (CGColor(id))
+			  return AppleCGColor.MakeFromCFTypeRef (CGColor(id), true, true)
+			  
 			End Get
 		#tag EndGetter
 		CGColor As AppleCGColor

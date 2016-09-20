@@ -79,7 +79,7 @@ Inherits OSXLibResponder
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnDrawRect(Rect as FoundationFrameWork.NSrect)
-		  RaiseEvent Paint (Rect)
+		  RaiseEvent Paint (applecgcontext.currentcontext, Rect)
 		End Sub
 	#tag EndMethod
 
@@ -197,7 +197,7 @@ Inherits OSXLibResponder
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event Paint(Rect as FoundationFrameWork.NSRect)
+		Event Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 466972657320696620746865207573657220686173207374617274656420726573697A696E672074686520766965772E

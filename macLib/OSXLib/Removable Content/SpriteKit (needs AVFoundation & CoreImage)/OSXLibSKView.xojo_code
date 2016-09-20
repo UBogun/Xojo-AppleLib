@@ -55,7 +55,7 @@ Inherits OSXLibView
 	#tag EndEvent
 
 	#tag Event
-		Sub Paint(Rect as FoundationFrameWork.NSRect)
+		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 		  #pragma unused rect
 		End Sub
 	#tag EndEvent

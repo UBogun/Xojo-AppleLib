@@ -203,7 +203,7 @@ Inherits iOSLibResponder
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnDrawRect(view as appleview, rect as FoundationFrameWork.nsrect)
-		  RaiseEvent Draw(rect.tocorerect)
+		  RaiseEvent Paint (applecgcontext.currentcontext, rect.tocorerect)
 		  #pragma unused view
 		End Sub
 	#tag EndMethod
@@ -568,12 +568,12 @@ Inherits iOSLibResponder
 		Event DidMoveToWindow()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
-		Event Draw(Rect  as xojo.core.rect)
-	#tag EndHook
-
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520657374696D617465642070726F70657274696573206F66206120746F756368206576656E74206368616E67652E
 		Event EstimatedPropertiesUpdated(Touchset as AppleSet)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Paint(G as AppleCGContext, Rect  as xojo.core.rect)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0

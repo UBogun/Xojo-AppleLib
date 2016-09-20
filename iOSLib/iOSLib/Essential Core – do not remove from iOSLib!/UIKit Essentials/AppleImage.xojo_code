@@ -220,6 +220,22 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 44726177732074686520656E7469726520696D61676520696E20746865207370656369666965642072656374616E676C652C207363616C696E67206974206173206E656564656420746F206669742E
+		Sub Draw(Rect as FoundationFramework.NSRect)
+		  Declare sub drawInRect lib UIKitLibname selector "drawInRect:" (id as ptr, Rect  as FoundationFramework.NSRect)
+		  drawInRect (id, rect)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 44726177732074686520656E7469726520696D61676520696E20746865207370656369666965642072656374616E676C6520616E64207573696E67207468652073706563696669656420636F6D706F736974696E67206F7074696F6E732E
+		Sub Draw(Rect as FoundationFramework.NSRect, BlendMode as coregraphicsFramework.CGBlendMode, Alpha as Double = 1)
+		  Declare sub drawInRectBlendMode lib UIKitLibname selector "drawInRect:blendMode:alpha:" (id as ptr, Rect  as FoundationFramework.NSRect, blendmode as coregraphicsFramework.CGBlendMode, alpha as double)
+		  drawInRectBlendMode (id, rect, blendmode, alpha)
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 447261777320612074696C65642051756172747A207061747465726E207573696E672074686520696D616765E280987320636F6E74656E7473206173207468652074696C65207061747465726E2E
 		Sub DrawAsPatternInRect(Rect as FoundationFramework.NSRect)
 		  Declare sub drawAsPatternInRect lib UIKitLibname selector "drawAsPatternInRect:" (id as ptr, Rect  as FoundationFramework.NSRect)
@@ -241,22 +257,6 @@ Inherits AppleObject
 		Sub DrawAtPoint(Point As FoundationFramework.NSPoint, BlendMode as coregraphicsFramework.CGBlendMode, Alpha as Double = 1)
 		  Declare sub drawAtPointblendMode lib UIKitLibname selector "drawAtPoint:blendMode:alpha:" (id as ptr, point as FoundationFramework.NSPoint, blendmode as coregraphicsFramework.CGBlendMode, alpha as double)
 		  drawAtPointblendMode (id, point, blendmode, alpha)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 44726177732074686520656E7469726520696D61676520696E20746865207370656369666965642072656374616E676C652C207363616C696E67206974206173206E656564656420746F206669742E
-		Sub DrawInRect(Rect as FoundationFramework.NSRect)
-		  Declare sub drawInRect lib UIKitLibname selector "drawInRect:" (id as ptr, Rect  as FoundationFramework.NSRect)
-		  drawInRect (id, rect)
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 44726177732074686520656E7469726520696D61676520696E20746865207370656369666965642072656374616E676C6520616E64207573696E67207468652073706563696669656420636F6D706F736974696E67206F7074696F6E732E
-		Sub DrawInRect(Rect as FoundationFramework.NSRect, BlendMode as coregraphicsFramework.CGBlendMode, Alpha as Double = 1)
-		  Declare sub drawInRectBlendMode lib UIKitLibname selector "drawInRect:blendMode:alpha:" (id as ptr, Rect  as FoundationFramework.NSRect, blendmode as coregraphicsFramework.CGBlendMode, alpha as double)
-		  drawInRectBlendMode (id, rect, blendmode, alpha)
 		  
 		End Sub
 	#tag EndMethod
@@ -382,7 +382,7 @@ Inherits AppleObject
 		  dim frame as FoundationFrameWork.nsrect = FoundationFrameWork.NSMakeRect(0,0,w,h)
 		  AppleCGContext.BeginImageContext (frame.size_, false, scale)
 		  AppleCGContext.CurrentContext.InterpolationQuality = interpolationquality
-		  me.DrawInRect (frame)
+		  me.Draw (frame)
 		  dim result as AppleImage= AppleCGContext.Getimage
 		  AppleCGContext.EndImageContext
 		  return result
@@ -485,7 +485,7 @@ Inherits AppleObject
 		#tag Getter
 			Get
 			  Declare function CGImage lib UIKitLibname selector "CGImage" (id as ptr) as ptr
-			  return  AppleCGImage.MakeFromCFTypeRef ( CGImage (id))
+			  return  AppleCGImage.MakeFromCFTypeRef ( CGImage (id), true, true)
 			  
 			End Get
 		#tag EndGetter
