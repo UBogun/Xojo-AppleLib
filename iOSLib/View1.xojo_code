@@ -8,51 +8,29 @@ Begin iosView View1
    TabTitle        =   ""
    Title           =   ""
    Top             =   0
-   Begin iOSCanvas Canvas1
-      AccessibilityHint=   ""
-      AccessibilityLabel=   ""
-      AutoLayout      =   Canvas1, 3, <Parent>, 3, False, +1.00, 1, 1, 38, 
-      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 65, 
-      AutoLayout      =   Canvas1, 7, , 0, False, +1.00, 1, 1, 200, 
-      AutoLayout      =   Canvas1, 8, , 0, False, +1.00, 1, 1, 200, 
-      Height          =   200.0
-      Left            =   65
-      LockedInPosition=   False
-      Scope           =   0
-      Top             =   38
-      Visible         =   True
-      Width           =   200.0
-   End
-   Begin iOSLIbCanvas iOSLIbCanvas1
+   Begin iOSLibCanvas Canvas1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   iOSLIbCanvas1, 4, BottomLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLIbCanvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLIbCanvas1, 3, Canvas1, 4, False, +1.00, 2, 1, 20, 
-      AutoLayout      =   iOSLIbCanvas1, 7, <Parent>, 7, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
+      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
-      CanBecomeFocused=   False
       ClearsContextBeforeDrawing=   False
       ClipsToBounds   =   True
-      ContentMode     =   ""
       ContentScaleFactor=   1.0
       ExclusiveTouch  =   False
-      Focused         =   False
-      HasAmbiguousLayout=   False
-      Height          =   222.0
+      Height          =   440.0
       Hidden          =   False
-      Left            =   0
+      Left            =   0.0
       LockedInPosition=   False
       MultipleTouchEnabled=   False
       Opaque          =   False
-      PreservesSuperviewLayoutMargins=   False
       Scope           =   0
       Tag             =   0
-      TintAdjustmentMode=   ""
-      Top             =   258
-      TranslatesAutoresizingMaskIntoConstraints=   False
+      Top             =   40.0
       UserInteractionEnabled=   True
       Visible         =   True
       Width           =   320.0
@@ -63,26 +41,18 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events iOSLIbCanvas1
+#tag Events Canvas1
 	#tag Event
-		Sub Draw(Rect  as xojo.core.rect)
-		  dim g as AppleCGContext = AppleCGContext.CurrentContext
-		  g.ConcatenateTransform TransformExtension.CGAffineTransformMake (1,0,0,-1,0,rect.Height)
-		  dim pic as iOSImage = iosLibLogo
-		  g.DrawImage (rect.tonsrect, pic.toAppleImage.CGImage)
+		Sub Paint(G as AppleCGContext, Rect  as xojo.core.rect)
 		  
-		  G.StrokeEllipse RECT.TONSRECT
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub TouchesBegan(Touches() as appletouch, anEvent as AppleNSEvent)
-		  break
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 4669726573207768656E206120706879736963616C20627574746F6E206973207072657373656420696E20746865206173736F63696174656420766965772E
-		Sub PressesBegan(Presses() as Applepress, anEvent as ApplePressesEvent)
-		  break
+		  dim logo as new AppleImage(iosLibLogo)
+		  g.ConcatenateTransform (TransformExtension.CGAffineTransformMake (1,0,0,-1,0,rect.Height)) // flip the graphics to Xojo defaults vertically
+		  dim FillColor as new AppleColor(&c7B609D00)
+		  g.FillColor = FillColor.CGColor
+		  g.FillRect rect.tonsrect
+		  g.Rotate 0.3
+		  logo = logo.Resize (0.005, 0.005, CoreGraphicsFramework.CGInterpolationQuality.High)
+		  g.DrawTiledImage FoundationFrameWork.NSMakeRect (0,0,logo.Width, logo.Height), logo.CGImage
 		End Sub
 	#tag EndEvent
 	#tag Event

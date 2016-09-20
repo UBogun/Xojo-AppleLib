@@ -52,7 +52,7 @@ Begin Window CoreBluetoothWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &c00FFFFFF
+      BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
       DataField       =   ""
@@ -193,7 +193,7 @@ Begin Window CoreBluetoothWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &c00FFFFFF
+      BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
       DataField       =   ""
@@ -367,7 +367,7 @@ Begin Window CoreBluetoothWindow
       TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &c8000FF00
+      TextColor       =   &c00FF0080
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
@@ -402,7 +402,7 @@ Begin Window CoreBluetoothWindow
       TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &c0000FF00
+      TextColor       =   &c00FF0000
       TextFont        =   "System"
       TextSize        =   40.0
       TextUnit        =   2
@@ -437,7 +437,7 @@ Begin Window CoreBluetoothWindow
       TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &c00004080
+      TextColor       =   &c00408000
       TextFont        =   "System"
       TextSize        =   40.0
       TextUnit        =   2
@@ -472,7 +472,7 @@ Begin Window CoreBluetoothWindow
       TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &c00004080
+      TextColor       =   &c00408000
       TextFont        =   "System"
       TextSize        =   40.0
       TextUnit        =   2
@@ -507,7 +507,7 @@ Begin Window CoreBluetoothWindow
       TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &cFF000080
+      TextColor       =   &c000080FF
       TextFont        =   "System"
       TextSize        =   40.0
       TextUnit        =   2
@@ -577,7 +577,7 @@ Begin Window CoreBluetoothWindow
       TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
-      TextColor       =   &cFF000080
+      TextColor       =   &c000080FF
       TextFont        =   "System"
       TextSize        =   40.0
       TextUnit        =   2
@@ -732,7 +732,7 @@ Begin Window CoreBluetoothWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFF00FFFF
+      BackColor       =   &c00FFFFFF
       Bold            =   False
       Border          =   True
       CueText         =   ""

@@ -6,7 +6,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function CGImageForProposedRect Lib appkitlibname Selector "CGImageForProposedRect:context:hints:" (id as ptr, byref Rect As FoundationFrameWork . NSRect, byref context as ptr, byref hints as ptr) As Ptr
+		Protected Declare Function CGImageForProposedRect Lib appkitlibname Selector "CGImageForProposedRect:context:hints:" (id as ptr, byref Rect As FoundationFrameWork . NSRect, context as ptr, hints as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 496E697469616C697A657320616E642072657475726E7320616E20696D616765206F626A656374207573696E672074686520636F6E74656E7473206F66206120436F726520477261706869637320696D6167652E
@@ -77,7 +77,8 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(pic.CopyOSHandle (picture.HandleType.macNSImage), true, true)
+		  dim p as ptr = pic.CopyOSHandle (Picture.HandleType.MacNSImage)
+		  Super.Constructor(p, true, true)
 		  
 		End Sub
 	#tag EndMethod
@@ -171,6 +172,29 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720696D616765207468617420697320726573697A6564207769746820616C6F6E6720746865207820616E64207920617869732077697468207468652076616C75657320796F752070726F766964652E200A5F595363616C655F203D2030206D616B657320746865207363616C652070726F706F74696F6E616C2E0A205F5363616C655F203D20302074616B657320746865206F726967696E616C20696D6167652773207363616C652070726F706572747920666F7220746865207363616C65206F6620746865206E657720696D6167652E2020
+		Function Resize(XScale as double, YScale as Double = 0, interpolationquality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.Default, scale as double = 0) As AppleImage
+		  if YScale = 0 then YScale = XScale
+		  dim W as double = me.Width* XScale
+		  dim h as double = me.Height* YScale
+		  dim frame as FoundationFrameWork.nsrect = FoundationFrameWork.NSMakeRect(0,0,w,h)
+		  dim result as new AppleImage (self.toCGIImage( frame), frame.Size_)
+		  return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Resize(NewSize as FoundationFramework.NSSize, proportional as boolean = false, InterpolationQuality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.default, Scale as double = 0) As AppleImage
+		  dim xfactor as double = NewSize.width / Width
+		  dim yfactor as double = NewSize.height/Height
+		  if proportional then
+		    return resize (min(xfactor, yfactor), 0, interpolationquality, scale)
+		  else
+		    return Resize (xfactor, yfactor, interpolationquality, scale)
+		  end if
+		End Function
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function setName Lib appkitlibname Selector "setName:" (id as ptr, name as cfstringRef) As Boolean
 	#tag EndExternalMethod
@@ -179,13 +203,14 @@ Inherits AppleObject
 		Protected Declare Sub setTemplate Lib appkitlibname Selector "setTemplate:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h1
-		Protected Function toCGIImage(Byref ProposedRect As FoundationFrameWork.NSRect, byRef Context As AppleGRaphicsContext, Byref Hints As AppleDictionary) As AppleCGImage
-		  dim contPtr as Ptr = Context.id
-		  dim hintPtr as Ptr = Hints.Id
-		  dim result as AppleCGImage = AppleCGImage.MakeFromCFTypeRef(CGImageForProposedRect (mid, ProposedRect, contPtr, hintPtr))
-		  Context = AppleGraphicsContext.MakefromPtr(contptr)
-		  hints = AppleDictionary.MakeFromPtr(hintptr)
+	#tag Method, Flags = &h0
+		Function toCGIImage(ProposedRect As FoundationFrameWork.NSRect,  Context As AppleGRaphicsContext = nil,  Hints As AppleDictionary = nil) As AppleCGImage
+		  dim contPtr as Ptr = if (Context = nil, nil, Context.id)
+		  dim hintPtr as Ptr = if (hints = nil, nil, Hints.Id)
+		  dim resptr as ptr = CGImageForProposedRect (mid, ProposedRect, contPtr, hintPtr)
+		  dim result as AppleCGImage = AppleCGImage.MakeFromCFTypeRef(resptr)
+		  // Context = AppleGraphicsContext.MakefromPtr(contptr)
+		  // hints = AppleDictionary.MakeFromPtr(hintptr)
 		  return result
 		End Function
 	#tag EndMethod
@@ -200,9 +225,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 52657475726E732061204347496D61676520636170747572696E67207468652064726177696E67206F66207468652072656365697665722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  dim dummyptr1, dummyptr2 as ptr
-			  dim myRect as FoundationFrameWork.NSRect = FoundationFrameWork.NSMakeRect (0,0, me.Size.width, me.Size.height)
-			  return AppleCGImage.MakeFromCFTypeRef(CGImageForProposedRect (mid, myRect, dummyptr1, dummyptr2))
+			  return me.toCGIImage (FoundationFrameWork.NSMakeRect(0,0,me.Width, me.Height), nil, nil)
 			End Get
 		#tag EndGetter
 		CGImage As AppleCGImage
@@ -216,6 +239,15 @@ Inherits AppleObject
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Size.height
+			End Get
+		#tag EndGetter
+		Height As Double
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 416E206F7074696F6E616C206E616D6520796F752063616E2073657420746F207265676973746572207468697320696D61676520746F2074686520696D6167652063616368652E2041737369676E20616E20656D70747920737472696E6720746F2072656D6F76652069742066726F6D2063616368652E205468726F777320616E204572726F72457863657074696F6E20696620616E2061737369676E6D656E74206661696C732E
@@ -259,6 +291,15 @@ Inherits AppleObject
 			End Set
 		#tag EndSetter
 		Template As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Size.width
+			End Get
+		#tag EndGetter
+		Width As Double
 	#tag EndComputedProperty
 
 

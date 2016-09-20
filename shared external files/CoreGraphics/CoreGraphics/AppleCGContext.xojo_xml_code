@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2016r3" FormatVersion="2" MinIDEVersion="20140300">
+<RBProject version="2016r3" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="104949759">
  <ObjName>AppleCGContext</ObjName>
  <ObjContainerID>60602367</ObjContainerID>
@@ -1293,7 +1293,7 @@
  </Method>
  <Method>
   <ItemName>Getimage</ItemName>
-  <Compatibility></Compatibility>
+  <Compatibility>(TargetIOS and (Target32Bit or Target64Bit))</Compatibility>
   <Visible>1</Visible>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>

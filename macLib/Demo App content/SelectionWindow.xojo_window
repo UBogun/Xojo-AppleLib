@@ -150,6 +150,34 @@ Begin Window SelectionWindow
       Visible         =   True
       Width           =   750
    End
+   Begin OSXLibCanvas OSXLibView1
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   500
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   0
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   750
+   End
 End
 #tag EndWindow
 
@@ -228,13 +256,34 @@ End
 		  dim shadow as new AppleShadow
 		  shadow.ShadowColor = new applecolor (&c83838300)
 		  shadow.ShadowOffset = FoundationFrameWork.NSMakeSize(4, -4)
-		  shadow.ShadowBlurRadius = 10
+		  shadow.ShadowBlurRadius = 2
 		  me.AppleObject.Shadow = shadow
 		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
 		  dim ac as new AppleAnimationContext (me.AppleObject)
 		  ac.Duration = 8
 		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
+		  me.AppleObject.CenterXAnchor.ConstraintEqualToAnchor(me.AppleObject.SuperView.CenterXAnchor).Active = true
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OSXLibView1
+	#tag Event
+		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
+		  
+		  dim logo as new AppleImage(OSXLibLogo)
+		  // g.ConcatenateTransform (TransformExtension.CGAffineTransformMake (1,0,0,-1,0,rect.Size_.height)) // flip the graphics to Xojo defaults vertically
+		  dim FillColor as new AppleColor(&c7B609D00)
+		  g.FillColor = FillColor.CGColor
+		  g.FillRect rect
+		  g.Rotate 0.3
+		  logo = logo.reSize (0.035, 0.035, CoreGraphicsFramework.CGInterpolationQuality.High)
+		  g.DrawTiledImage FoundationFrameWork.NSMakeRect (0,0,logo.Width, logo.Height), logo.CGImage
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Resized()
+		  me.Invalidate
 		End Sub
 	#tag EndEvent
 #tag EndEvents
