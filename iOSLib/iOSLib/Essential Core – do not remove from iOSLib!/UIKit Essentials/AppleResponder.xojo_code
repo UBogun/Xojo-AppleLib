@@ -1,8 +1,8 @@
 #tag Class
  Attributes ( incomplete ) Protected Class AppleResponder
 Inherits AppleObject
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Function becomeFirstResponder Lib UIKitLibname Selector "becomeFirstResponder" (id as ptr) As Boolean
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Function becomeFirstResponder Lib UIKitLibname Selector "becomeFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657175657374732074686520726563656976696E6720726573706F6E64657220746F20656E61626C65206F722064697361626C65207468652073706563696669656420636F6D6D616E6420696E20746865207573657220696E746572666163652E
@@ -26,12 +26,19 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h0, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
-		Attributes( hidden ) Declare Function getcanBecomeFirstResponder Lib UIKitLibname Selector "canBecomeFirstResponder" (id as ptr) As Boolean
+	#tag Method, Flags = &h21
+		Private Sub Destructor()
+		  me.removeidentity ()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Function getcanBecomeFirstResponder Lib UIKitLibname Selector "canBecomeFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
-		Attributes( hidden ) Declare Function getcanResignFirstResponder Lib UIKitLibname Selector "canResignFirstResponder" (id as ptr) As Boolean
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Function getcanResignFirstResponder Lib UIKitLibname Selector "canResignFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -41,28 +48,28 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Function getinputAccessoryView Lib UIKitLibname Selector "inputAccessoryView" (id as ptr) As Ptr
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Function getinputAccessoryView Lib UIKitLibname Selector "inputAccessoryView" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
-		Attributes( hidden ) Declare Function getinputAssistantItem Lib UIKitLibname Selector "inputAssistantItem" (id as ptr) As Ptr
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Function getinputAssistantItem Lib UIKitLibname Selector "inputAssistantItem" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Function getinputView Lib UIKitLibname Selector "inputView" (id as ptr) As Ptr
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Function getinputView Lib UIKitLibname Selector "inputView" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Function getisFirstResponder Lib UIKitLibname Selector "isFirstResponder" (id as ptr) As Boolean
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Function getisFirstResponder Lib UIKitLibname Selector "isFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
-		Attributes( hidden ) Declare Function getNextResponder Lib UIKitLibname Selector "nextResponder" (id as ptr) As ptr
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Function getNextResponder Lib UIKitLibname Selector "nextResponder" (id as ptr) As ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
-		Attributes( hidden ) Declare Function getUserActivity Lib UIKitLibname Selector "userActivity" (id as ptr) As ptr
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Function getUserActivity Lib UIKitLibname Selector "userActivity" (id as ptr) As ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -72,9 +79,38 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Shared Function Identity(id as ptr) As AppleResponder
+		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
+		  if wr <> nil then return AppleResponder(wr.Value)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_animationDidStart(pid as ptr, sel as ptr, animation as ptr) As ptr
+		  dim ego as AppleResponder = InformInstance(pid)
+		  if ego <> nil then 
+		    ego.informOnanimationDidStart (AppleCAAnimation.MakeFromPtr(animation))
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_animationDidStop(pid as ptr, sel as ptr, animation as ptr, finished as Boolean) As ptr
+		  dim ego as AppleResponder = InformInstance(pid)
+		  if ego <> nil then 
+		    ego.informOnanimationDidStop (AppleCAAnimation.MakeFromPtr(animation), finished)
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_MotionBeganWithEvent(pid as ptr, sel as ptr, type as AppleNSEvent.UIEventSubtype, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonMotionBeganwithEvent (type, AppleNSEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -83,7 +119,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_MotionCancelledWithEvent(pid as ptr, sel as ptr, type as AppleNSEvent.UIEventSubtype, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonMotionCancelledwithEvent (type, AppleNSEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -92,7 +128,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_MotionEndedWithEvent(pid as ptr, sel as ptr, type as AppleNSEvent.UIEventSubtype, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonMotionEndedwithEvent (type, AppleNSEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -101,7 +137,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_PressesBeganWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonPressesBeganwithEvent ( AppleSet.makefromptr(touchset), ApplePressesEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -110,7 +146,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_pressesCancelledWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonPressesCancelledwithEvent ( AppleSet.makefromptr(touchset), ApplePressesEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -119,7 +155,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_pressesChangedWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonPressesChangedwithEvent ( AppleSet.makefromptr(touchset), ApplePressesEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -128,7 +164,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_pressesEndedWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonPressesEndedwithEvent ( AppleSet.makefromptr(touchset), ApplePressesEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -137,7 +173,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_remoteControlReceivedWithEvent(pid as ptr, sel as ptr, eventptr as ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonremoteControlReceivedWithEvent  ( AppleNSEvent.makefromptr(eventptr))
 		  
 		  #Pragma Unused  sel
@@ -146,7 +182,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_TouchesBeganWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonTouchesBeganwithEvent ( AppleSet.makefromptr(touchset), AppleNSEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -155,7 +191,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_TouchesCancelledWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonTouchesCancelledwithEvent  ( AppleSet.makefromptr(touchset), AppleNSEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -164,7 +200,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_TouchesEndedWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonTouchesEndedwithEvent  ( AppleSet.makefromptr(touchset), AppleNSEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
@@ -173,7 +209,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_touchesEstimatedPropertiesUpdated(pid as ptr, sel as ptr, Touchset as ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informontouchesEstimatedPropertiesUpdated  ( AppleSet.makefromptr(touchset))
 		  
 		  #Pragma Unused  sel
@@ -182,86 +218,81 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_TouchesMovedWithEvent(pid as ptr, sel as ptr, Touchset as ptr, anEvent as Ptr)
-		  dim ego as appleresponder = AppleResponder.MakeFromPtr (pid)
+		  dim ego as AppleResponder = InformInstance(pid)
 		  if ego <> nil then ego.informonTouchesMovedwithEvent  ( AppleSet.makefromptr(touchset), AppleNSEvent.makefromptr (anevent))
 		  
 		  #Pragma Unused  sel
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Shared Function InformInstance(id as ptr) As AppleResponder
+		  dim ident as AppleResponder = Identity(id)
+		  return if (ident = nil, AppleResponder.MakeFromPtr (id), ident)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnanimationDidStart(animation as AppleCAAnimation)
+		  RaiseEvent animationDidStart (animation)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnanimationDidStop(animation as AppleCAAnimation, finished as Boolean)
+		  RaiseEvent animationDidStop (animation, finished)
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnMotionBeganwithEvent(type as AppleNSEvent.UIEventSubtype, anEvent as AppleNSEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonMotionBeganwithEvent (type, anevent)
-		  else
-		    RaiseEvent MotionBeganwithEvent (type, anevent)
-		  end if
+		  RaiseEvent MotionBeganwithEvent (type, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnMotionCancelledwithEvent(type as AppleNSEvent.UIEventSubtype, anEvent as AppleNSEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informOnMotionCancelledwithEvent (type, anevent)
-		  else
-		    RaiseEvent MotionCancelledwithEvent (type, anevent)
-		  end if
+		  RaiseEvent MotionCancelledwithEvent (type, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnMotionEndedwithEvent(type as AppleNSEvent.UIEventSubtype, anEvent as AppleNSEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informOnMotionEndedwithEvent (type, anevent)
-		  else
-		    RaiseEvent MotionEndedwithEvent (type, anevent)
-		  end if
+		  RaiseEvent MotionEndedwithEvent (type, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonPressesBeganwithEvent(Touchset as AppleSet, anEvent as ApplePressesEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonPressesBeganwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent PressesBeganwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent PressesBeganwithEvent (touchset, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonPressesCancelledwithEvent(Touchset as AppleSet, anEvent as ApplePressesEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonPressesCancelledwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent PressesCancelledwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent PressesCancelledwithEvent (touchset, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonPressesChangedwithEvent(Touchset as AppleSet, anEvent as ApplePressesEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonPressesChangedwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent PressesChangedwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent PressesChangedwithEvent (touchset, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonPressesEndedwithEvent(Touchset as AppleSet, anEvent as ApplePressesEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonPressesEndedwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent PressesEndedwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent PressesEndedwithEvent (touchset, anevent)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -277,33 +308,21 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonTouchesBeganwithEvent(Touchset as AppleSet, anEvent as AppleNSEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonTouchesBeganwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent TouchesBeganwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent TouchesBeganwithEvent (touchset, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonTouchesCancelledwithEvent(Touchset as AppleSet, anEvent as AppleNSEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonTouchesCancelledwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent TouchesCancelledwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent TouchesCancelledwithEvent (touchset, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonTouchesEndedwithEvent(Touchset as AppleSet, anEvent as AppleNSEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonTouchesEndedwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent TouchesEndedwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent TouchesEndedwithEvent (touchset, anevent)
 		  
 		End Sub
 	#tag EndMethod
@@ -316,18 +335,10 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonTouchesMovedwithEvent(Touchset as AppleSet, anEvent as AppleNSEvent)
-		  if ParentControl <> nil then
-		    ParentControl.informonTouchesMovedwithEvent (touchset, anevent)
-		  else
-		    RaiseEvent TouchesMovedwithEvent (touchset, anevent)
-		  end if
+		  RaiseEvent TouchesMovedwithEvent (touchset, anevent)
 		  
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Function initWithFrame Lib UIKitLibname Selector "initWithFrame:" (id as ptr, frame as FoundationFrameWork . NSRect) As ptr
-	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
 		Shared Function MakeFromPtr(aPtr as Ptr) As AppleResponder
@@ -363,11 +374,29 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 5265676973746572732074686520636F6E74726F6C20697473656C662061732061205765616B52656620696E2061207368617265642044696374696F6E6172792E
+		Attributes( hidden )  Sub RegisterIdentity(Identity As object)
+		  if XojoIdentity = nil then XojoIdentity = new xojo.Core.Dictionary
+		  XojoIdentity.Value (id) = xojo.core.WeakRef.Create(Identity)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 557064617465732074686520637573746F6D20696E70757420616E64206163636573736F7279207669657773207768656E20746865206F626A6563742069732074686520666972737420726573706F6E6465722E
 		Function ReloadInputViews() As Boolean
 		  Declare sub reloadInputViews lib UIKitLibname selector "reloadInputViews" (id as ptr)
 		  reloadInputViews id
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub RemoveIdentity()
+		  #Pragma BreakOnExceptions false
+		  try
+		    XojoControls.Remove (id)
+		  catch 
+		    
+		  end try
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -377,8 +406,8 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Function resignFirstResponder Lib UIKitLibname Selector "resignFirstResponder" (id as ptr) As Boolean
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Function resignFirstResponder Lib UIKitLibname Selector "resignFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 526573746F72657320746865207374617465206E656564656420746F20636F6E74696E75652074686520676976656E20757365722061637469766974792E
@@ -387,8 +416,8 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h0
-		Attributes( hidden ) Declare Sub restoreUserActivityState Lib UIKitLibname Selector "restoreUserActivityState:" (id as ptr, activity as ptr)
+	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub restoreUserActivityState Lib UIKitLibname Selector "restoreUserActivityState:" (id as ptr, activity as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -398,16 +427,16 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Sub setInputAccessoryView Lib UIKitLibname Selector "setInputAccessoryView:" (id as ptr, value as ptr)
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Sub setInputAccessoryView Lib UIKitLibname Selector "setInputAccessoryView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
-		Declare Sub setInputView Lib UIKitLibname Selector "setInputView:" (id as ptr, value as ptr)
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Sub setInputView Lib UIKitLibname Selector "setInputView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h0, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
-		Attributes( hidden ) Declare Sub setUserActivity Lib UIKitLibname Selector "setUserActivity:" (id as ptr, value as ptr)
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Sub setUserActivity Lib UIKitLibname Selector "setUserActivity:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -430,10 +459,18 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h0, Description = 5570646174657320746865207374617465206F662074686520676976656E20757365722061637469766974792E
-		Attributes( hidden ) Declare Sub updateUserActivityState Lib UIKitLibname Selector "updateUserActivityState:" (id as ptr, activity as ptr)
+	#tag ExternalMethod, Flags = &h1, Description = 5570646174657320746865207374617465206F662074686520676976656E20757365722061637469766974792E
+		Attributes( hidden ) Protected Declare Sub updateUserActivityState Lib UIKitLibname Selector "updateUserActivityState:" (id as ptr, activity as ptr)
 	#tag EndExternalMethod
 
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061204341416E696D6174696F6E20666F7220776869636820796F75207365742074686520524573706F6E64657220746F206974732064656C65676174654F626A656374207374617274732E
+		Event AnimationDidStart(Animation As AppleCAAnimation)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061204341416E696D6174696F6E20666F7220776869636820796F75207365742074686520526573706F6E64657220746F206974732064656C65676174654F626A6563742073746F70732C2077697468206164646974696F6E616C20626F6F6C65616E2076616C756520666F7220636F6D706C6574696F6E206F662074686520616E696D6174696F6E2E
+		Event AnimationDidStop(Animation As AppleCAAnimation, Finished as Boolean)
+	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520657374696D617465642070726F70657274696573206F66206120746F756368206576656E74206368616E67652E
 		Event EstimatedPropertiesUpdated(Touchset as AppleSet)
@@ -537,6 +574,11 @@ Inherits AppleObject
 			    methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
 			    methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
 			    methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
+			    
+			    // CAAnimation "Delegate" methods
+			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
+			    methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
+			    
 			    targetID = BuildTargetClass ("UIResponder", "iOSLibResponder",methods)
 			  end if
 			  Return targetID
@@ -664,8 +706,8 @@ Inherits AppleObject
 		UserActivity As AppleUserActivity
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h1
-		Protected Shared XojoControls As Dictionary
+	#tag Property, Flags = &h21
+		Private Shared XojoIdentity As Dictionary
 	#tag EndProperty
 
 

@@ -93,6 +93,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getbounds Lib appkitlibname Selector "bounds" (id as ptr) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcenterXAnchor Lib appkitlibname Selector "centerXAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -482,6 +486,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setBordered Lib appkitlibname Selector "setBordered:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setbounds Lib appkitlibname Selector "setBounds:" (id as ptr, value as FoundationFrameWork . NSRect)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

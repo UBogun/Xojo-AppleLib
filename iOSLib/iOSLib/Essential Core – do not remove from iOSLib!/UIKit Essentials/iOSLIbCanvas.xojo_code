@@ -3,7 +3,8 @@ Protected Class iOSLIbCanvas
 Inherits iOSLibResponder
 	#tag Event
 		Sub Close()
-		  mid.RemoveControl
+		  RaiseEvent close
+		  RemoveHandlers
 		  me.mid = nil
 		End Sub
 	#tag EndEvent
@@ -92,6 +93,24 @@ Inherits iOSLibResponder
 		  AddHandler mid.WillMoveToWindow, AddressOf informonWillMoveToWindow
 		  AddHandler mid.WillRemoveSubview, AddressOf informonWillRemoveSubview
 		  
+		  
+		  AddHandler AppleObject.TouchesBeganwithEvent, AddressOf informonTouchesBeganwithEvent
+		  AddHandler AppleObject.TouchesCancelledwithEvent, AddressOf informonTouchesCancelledwithEvent
+		  AddHandler AppleObject.TouchesEndedwithEvent, AddressOf informonTouchesEndedwithEvent
+		  AddHandler AppleObject.TouchesMovedwithEvent, AddressOf informonTouchesMovedwithEvent
+		  AddHandler AppleObject.EstimatedPropertiesUpdated, AddressOf informonEstimatedPropertiesUpdated
+		  
+		  
+		  AddHandler AppleObject.MotionBeganwithEvent, AddressOf informonMotionBeganwithEvent
+		  AddHandler AppleObject.MotionCancelledwithEvent, AddressOf informonMotionCancelledwithEvent
+		  AddHandler AppleObject.MotionEndedwithEvent, AddressOf informonMotionEndedwithEvent
+		  
+		  AddHandler AppleObject.PressesBeganwithEvent, AddressOf informonPressesBeganwithEvent
+		  AddHandler AppleObject.PressesCancelledwithEvent, AddressOf informonPressesCancelledwithEvent
+		  AddHandler AppleObject.PressesEndedwithEvent, AddressOf informonPressesEndedwithEvent
+		  AddHandler AppleObject.PressesChangedwithEvent, AddressOf informonPressesChangedwithEvent
+		  
+		  AddHandler AppleObject.AnimationDidStart, Addressof informonAnimationDidStart
 		End Sub
 	#tag EndMethod
 
@@ -173,8 +192,23 @@ Inherits iOSLibResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informonAnimationFinished(completed as Boolean)
-		  RaiseEvent AnimationFinished(completed)
+		Attributes( hidden )  Sub informonAnimationDidStart(view as appleview, animation as AppleCAAnimation)
+		  RaiseEvent AnimationStarted(animation)
+		  #pragma unused view
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informonAnimationDidStop(view as appleview, animation as AppleCAAnimation, finished as Boolean)
+		  RaiseEvent AnimationStopped(animation, finished)
+		  #pragma unused view
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informonAnimationFinished(virew as appleview, animation as AppleCAAnimation)
+		  RaiseEvent AnimationStarted(Animation)
+		  #pragma unused virew
 		End Sub
 	#tag EndMethod
 
@@ -266,7 +300,7 @@ Inherits iOSLibResponder
 
 	#tag Method, Flags = &h0, Description = 496E7365727473206120766965772062656C6F7720616E6F74686572207669657720696E207468652076696577206869657261726368792E
 		Sub InsertSubviewBelow(aView as AppleView, BelowView as AppleView)
-		  
+		  mid.InsertSubviewBelow aview, BelowView
 		End Sub
 	#tag EndMethod
 
@@ -327,6 +361,40 @@ Inherits iOSLibResponder
 	#tag Method, Flags = &h0, Description = 446574616368657320612067657374757265207265636F676E697A65722066726F6D2074686520726563656976696E6720766965772E
 		Sub RemoveGestureRecognizer(GestureRecognizer as AppleGestureRecognizer)
 		  mid.RemoveGestureRecognizer GestureRecognizer
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RemoveHandlers()
+		  RemoveHandler mid.DidAddSubview, AddressOf informonDidAddSubview
+		  RemoveHandler mid.DidMoveToSuperview, AddressOf informonDidMoveToSuperview
+		  RemoveHandler mid.DidMoveToWindow, AddressOf informOnDidMoveToWindow
+		  RemoveHandler mid.DrawRect, AddressOf informOnDrawRect
+		  RemoveHandler mid.layoutSubviews, AddressOf informOnlayoutSubviews
+		  RemoveHandler mid.tintColorDidChange, AddressOf informontintColorDidChange
+		  RemoveHandler mid.TraitCollectionDidChange, AddressOf informonTraitCollectionDidChange
+		  RemoveHandler mid.WillMoveToSuperview, AddressOf informonWillMoveToSuperview
+		  RemoveHandler mid.WillMoveToWindow, AddressOf informonWillMoveToWindow
+		  RemoveHandler mid.WillRemoveSubview, AddressOf informonWillRemoveSubview
+		  
+		  
+		  RemoveHandler AppleObject.TouchesBeganwithEvent, AddressOf informonTouchesBeganwithEvent
+		  RemoveHandler AppleObject.TouchesCancelledwithEvent, AddressOf informonTouchesCancelledwithEvent
+		  RemoveHandler AppleObject.TouchesEndedwithEvent, AddressOf informonTouchesEndedwithEvent
+		  RemoveHandler AppleObject.TouchesMovedwithEvent, AddressOf informonTouchesMovedwithEvent
+		  RemoveHandler AppleObject.EstimatedPropertiesUpdated, AddressOf informonEstimatedPropertiesUpdated
+		  
+		  
+		  RemoveHandler AppleObject.MotionBeganwithEvent, AddressOf informonMotionBeganwithEvent
+		  RemoveHandler AppleObject.MotionCancelledwithEvent, AddressOf informonMotionCancelledwithEvent
+		  RemoveHandler AppleObject.MotionEndedwithEvent, AddressOf informonMotionEndedwithEvent
+		  
+		  RemoveHandler AppleObject.PressesBeganwithEvent, AddressOf informonPressesBeganwithEvent
+		  RemoveHandler AppleObject.PressesCancelledwithEvent, AddressOf informonPressesCancelledwithEvent
+		  RemoveHandler AppleObject.PressesEndedwithEvent, AddressOf informonPressesEndedwithEvent
+		  RemoveHandler AppleObject.PressesChangedwithEvent, AddressOf informonPressesChangedwithEvent
+		  
+		  RemoveHandler AppleObject.AnimationDidStart, Addressof informonAnimationDidStart
 		End Sub
 	#tag EndMethod
 
@@ -548,7 +616,7 @@ Inherits iOSLibResponder
 	#tag EndMethod
 
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20612073756276696577207761732061646465642E
 		Event AddedSubview(Subview as AppleView)
 	#tag EndHook
 
@@ -556,51 +624,55 @@ Inherits iOSLibResponder
 		Event AnimationFinished(animationCompleted as boolean)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20616E204170706C654341416E696D6174696F6E20666F7220776869636820796F7520726567697374657265642074686520766965772061732064656C6567617465207374617274732E
+		Event AnimationStarted(animation as AppleCAAnimation)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20616E204170706C654341416E696D6174696F6E20666F7220776869636820796F7520726567697374657265642074686520766965772061732064656C65676174652073746F707065642E
+		Event AnimationStopped(animation as AppleCAAnimation, finished as Boolean)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077617320616464656420746F20616E6F7468657220766965772E
 		Event BecameSubview()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
-		Event CreateView() As uinteger
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520636F6E74726F6C20636C6F7365732E
+		Event Close()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event DidMoveToWindow()
+		Attributes( hidden ) Event CreateView() As uinteger
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520657374696D617465642070726F70657274696573206F66206120746F756368206576656E74206368616E67652E
-		Event EstimatedPropertiesUpdated(Touchset as AppleSet)
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520636F6E74656E74206F66207468652076696577206E6565647320746F206265207265647261776E2E
 		Event Paint(G as AppleCGContext, Rect  as xojo.core.rect)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206368616E676564206974732073697A652C206C696B65206166746572206120726F746174696F6E2E
 		Event Resized()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520636F6E74726F6C20686173206D6F766520746F206974732077696E646F772E
 		Event Shown()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E207468652074696E7420636F6C6F72206368616E6765642E
 		Event TintColorChanged()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520694F5320696E7465726661636520656E7669726F6E6D656E74206368616E6765642E
 		Event TraitCollectionChanged(PreviousCollection As AppleTraitCollection)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077696C6C206265636F6D6520612073756276696577206F6620616E6F7468657220766965772E
 		Event WillBecomeSubview(Superview as AppleView)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772069732061626F757420746F2072656D6F766520616E6F7468657220766965772E
 		Event WillRemoveSubview(Subview as AppleView)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772069732061626F757420746F2062652073686F776E20696E20612077696E646F772E
 		Event WillShow(window as applewindow)
 	#tag EndHook
 

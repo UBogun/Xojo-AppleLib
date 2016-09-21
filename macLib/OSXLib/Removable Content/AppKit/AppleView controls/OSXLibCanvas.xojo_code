@@ -28,7 +28,7 @@ Inherits OSXLibView
 		    for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
 		      dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
 		      if subview.id = origview.id then // is this our control?
-		         // Yes: Copy the locks 
+		        // Yes: Copy the locks 
 		        mAppleObject.AutoResizingMask = AppleAutoresizingMask.FullResize // … to the autoresizing mask
 		        controller.ReplaceSubview origview, mAppleObject // and kick of the canvas by replacing it with our view
 		        exit 

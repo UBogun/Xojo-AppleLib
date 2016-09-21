@@ -73,7 +73,7 @@ Inherits AppleView
 
 	#tag Method, Flags = &h0, Description = 506173732074686520626F756E6473206F6620616E206164646974696F6E616C2053637265656E20746F2063726561746520612077696E646F7720666F722069742E
 		Sub Constructor(Frame as FoundationFrameWork.nsrect)
-		  super.Constructor(initwithframe(alloc(classptr), frame), true)
+		  super.Constructor(UIKitFramework.initwithframe(alloc(classptr), frame), true)
 		  AttachNotificationCenter
 		End Sub
 	#tag EndMethod

@@ -1,6 +1,7 @@
 #tag Class
 Protected Class AppleColor
 Inherits AppleObject
+Implements AppleGeneralColor
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function blendedColorWithFraction Lib appkitlibname Selector "blendedColorWithFraction:ofColor:" (id as ptr, fraction as cgfloat, OtherColor As Ptr) As Ptr
 	#tag EndExternalMethod
@@ -156,6 +157,14 @@ Inherits AppleObject
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577204170706C65436F6C6F722066726F6D206120586F6A6F20436F6C6F722E
 		Shared Function FromImage(Img as AppleImage) As AppleColor
 		  return new AppleColor(img)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GeneralId() As Ptr
+		  // Part of the AppleGeneralColor interface.
+		  
+		  return mid
 		End Function
 	#tag EndMethod
 

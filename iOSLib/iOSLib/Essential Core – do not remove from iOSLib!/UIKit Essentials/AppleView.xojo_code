@@ -145,7 +145,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1000, Description = 496E697469616C697A65732061206E65772076696577207769746820746865206672616D652064696D656E73696F6E732E
 		Sub Constructor(aFrame as FoundationFramework.NSRect)
-		  Super.Constructor (initWithFrame (alloc(ClassPtr), aFrame), true)
+		  Super.Constructor (UIKitFramework.initWithFrame (alloc(ClassPtr), aFrame), true)
 		  me.registerIdentity(self)
 		  me.BackgroundColor = AppleColor.ClearColor
 		  
@@ -188,6 +188,12 @@ Inherits AppleResponder
 		Function Copy() As AppleView
 		  return new AppleView (ObjectiveCRuntime.object_copy (id, 0))
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Destructor()
+		  me.removeidentity ()
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F6E766572747320612072656374616E676C652066726F6D2074686520636F6F7264696E617465207370616365206F66207468652063757272656E74207669657720746F207468652073706563696669656420636F6F7264696E6174652073706163652E
@@ -292,8 +298,8 @@ Inherits AppleResponder
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Shared Function Identity(id as ptr) As AppleView
+	#tag Method, Flags = &h21
+		Private Shared Function Identity(id as ptr) As AppleView
 		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
 		  if wr <> nil then return AppleView(wr.Value)
 		End Function
@@ -340,6 +346,7 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Shared Function impl_layerclass(pid as ptr, sel as ptr) As Ptr
 		  return if (customLayerClass = nil, LayerClass, customLayerClass)
 		  #Pragma Unused  sel
+		  #pragma unused pid
 		End Function
 	#tag EndMethod
 
@@ -551,9 +558,9 @@ Inherits AppleResponder
 	#tag Method, Flags = &h0
 		Shared Sub PerformSystemAnimation(animation as UISystemAnimation, views as applearray, options as uinteger, animations as appleblock = nil, completion as appleblock = nil)
 		  Declare sub performSystemAnimation lib UIKitLibname selector "performSystemAnimation:onViews:options:animations:completion:" _
-		  (id as ptr, views as ptr, options as uinteger, animations as ptr, completion as ptr)
+		  (id as ptr, animation as UISystemAnimation, views as ptr, options as uinteger, animations as ptr, completion as ptr)
 		  if animations = nil then animations = new AppleBlock(AddressOf EmptyBlock)
-		  performSystemAnimation classptr, views.id, options,  animations.Handle, if (completion = nil, nil, completion.handle)
+		  performSystemAnimation classptr, animation, views.id, options,  animations.Handle, if (completion = nil, nil, completion.handle)
 		  
 		End Sub
 	#tag EndMethod
@@ -579,6 +586,7 @@ Inherits AppleResponder
 		Attributes( hidden )  Sub RegisterIdentity(Identity As object)
 		  if XojoIdentity = nil then XojoIdentity = new xojo.Core.Dictionary
 		  XojoIdentity.Value (id) = xojo.core.WeakRef.Create(Identity)
+		  super.RegisterIdentity (Identity)
 		End Sub
 	#tag EndMethod
 
@@ -1086,7 +1094,6 @@ Inherits AppleResponder
 
 
 	#tag Note, Name = Status incomplete
-		Layer removed temporarily
 		Constraint, Anchor & Layoutguide features missing
 		Viewprintformatter missing
 		UIFocus incomplete, classes and events missing
@@ -1248,12 +1255,15 @@ Inherits AppleResponder
 			    methods.Append new TargetClassMethodHelper("touchesEstimatedPropertiesUpdated:", AddressOf impl_touchesEstimatedPropertiesUpdated, "v@:@")
 			    methods.Append new TargetClassMethodHelper("remoteControlReceivedWithEvent:", AddressOf impl_remoteControlReceivedWithEvent, "v@:@")
 			    
-			    if ApplePress.ClassAvailable then
-			      methods.Append new TargetClassMethodHelper("pressesBegan:withEvent:", AddressOf impl_pressesBeganWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
-			    end if
+			    methods.Append new TargetClassMethodHelper("pressesBegan:withEvent:", AddressOf impl_pressesBeganWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
+			    
+			    // CAAnimation "Delegate" methods
+			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
+			    methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
+			    
 			    
 			    targetID = BuildTargetClass ("UIView", "iOSLibView",methods)
 			  end if
@@ -1522,6 +1532,16 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		Shared InheritedAnimationDuration As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E280997320436F726520416E696D6174696F6E206C61796572207573656420666F722072656E646572696E672E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  Declare Function layer lib UIKitLibname selector "layer" (id as ptr) as Ptr
+			  Return new AppleCALayer (layer (id))
+			End Get
+		#tag EndGetter
+		Layer As AppleCALayer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
