@@ -105,7 +105,7 @@ Inherits AppleControl
 		  // Constructor() -- From AppleResponder
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (InitWithFrame (alloc(ClassPtr), aFrame))
+		  Super.Constructor (UIKitFramework.InitWithFrame (alloc(ClassPtr), aFrame))
 		  mHasOwnership = true
 		  me.UserInteractionEnabled = true
 		  me.ExclusiveTouch = False

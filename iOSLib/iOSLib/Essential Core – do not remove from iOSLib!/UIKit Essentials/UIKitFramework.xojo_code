@@ -127,6 +127,10 @@ Protected Module UIKitFramework
 		Protected Declare Function getWindow Lib UIKItLibName Selector "window" (id as ptr) As ptr
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Function initWithFrame Lib UIKitLibname Selector "initWithFrame:" (id as ptr, frame as FoundationFrameWork . NSRect) As ptr
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub prepareForReuse Lib UIKitLibName Selector "prepareForReuse" (id as ptr)
 	#tag EndExternalMethod

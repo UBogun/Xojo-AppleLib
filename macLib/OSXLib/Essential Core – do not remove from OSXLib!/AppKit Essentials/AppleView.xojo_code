@@ -542,10 +542,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getbounds Lib appkitlibname Selector "bounds" (id as ptr) As FoundationFrameWork.NSRect
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getboundsRotation Lib appkitlibname Selector "boundsRotation" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
@@ -1364,10 +1360,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setbounds Lib appkitlibname Selector "setBounds:" (id as ptr, value as FoundationFrameWork . NSRect)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setBoundsOrigin Lib appkitlibname Selector "setBoundsOrigin:" (id as ptr, value as FoundationFrameWork . NSpoint)
 	#tag EndExternalMethod
 
@@ -1770,12 +1762,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E280997320626F756E64732072656374616E676C652C2077686963682065787072657373657320697473206C6F636174696F6E20616E642073697A6520696E20697473206F776E20636F6F7264696E6174652073797374656D2E
 		#tag Getter
 			Get
-			  return getbounds(id)
+			  return AppKitFramework.getbounds(mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setbounds id, value
+			  AppKitFramework.setbounds mid, value
 			End Set
 		#tag EndSetter
 		Bounds As FoundationFrameWork.NSRect
@@ -1784,12 +1776,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F726967696E206F66207468652076696577E280997320626F756E64732072656374616E676C652E
 		#tag Getter
 			Get
-			  return getbounds(id).Origin
+			  return AppKitFramework.getbounds(mid).Origin
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setBoundsOrigin id, value
+			  setBoundsOrigin mid, value
 			End Set
 		#tag EndSetter
 		BoundsOrigin As FoundationFrameWork.NSPoint
@@ -1812,7 +1804,7 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F66207468652076696577E280997320626F756E64732072656374616E676C652E
 		#tag Getter
 			Get
-			  return getbounds(id).Size_
+			  return AppKitFramework.getbounds(mid).Size_
 			End Get
 		#tag EndGetter
 		#tag Setter

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2016r3" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2016r3" FormatVersion="2" MinIDEVersion="20140300">
 <block type="Module" ID="104949759">
  <ObjName>AppleCGContext</ObjName>
  <ObjContainerID>60602367</ObjContainerID>
@@ -1364,7 +1364,7 @@
  </Method>
  <Method>
   <ItemName>PushContext</ItemName>
-  <Compatibility></Compatibility>
+  <Compatibility>(TargetIOS and (Target32Bit or Target64Bit))</Compatibility>
   <Visible>1</Visible>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
@@ -3426,6 +3426,60 @@
   <ItemParams>aCFTypeRef as ptr</ItemParams>
   <ItemResult>AppleCGContext</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ConvertRectToDeviceSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a rect that is transformed from user space coordinates to device space coordinates.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ConvertRectToDeviceSpace(Rect AS Foundationframework.NSRect) As Foundationframework.NSRect</SourceLine>
+   <SourceLine>return CGContextConvertRectToDeviceSpace (mcftyperef, Rect)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Rect AS Foundationframework.NSRect</ItemParams>
+  <ItemResult>Foundationframework.NSRect</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ConvertRectToUserSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a rect that is transformed from device space coordinates to user space coordinates.</CodeDescription>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ConvertRectToUserSpace(Rect AS Foundationframework.NSRect) As Foundationframework.NSRect</SourceLine>
+   <SourceLine>return CGContextConvertRectToUserSpace (mcftyperef, Rect)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Rect AS Foundationframework.NSRect</ItemParams>
+  <ItemResult>Foundationframework.NSRect</ItemResult>
+ </Method>
+ <ExternalMethod>
+  <ItemName>CGContextConvertRectToUserSpace</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Declare Function CGContextConvertRectToUserSpace Lib CoreGraphicsLibName (CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>CFTypeRef as Ptr, Rect as FoundationFrameWork . NSRect</ItemParams>
+  <ItemResult>FoundationFrameWork.NSRect</ItemResult>
+  <LibraryName>#CoreGraphicsLibName</LibraryName>
+  <SoftLink>0</SoftLink>
+  <ObjectiveC>0</ObjectiveC>
+ </ExternalMethod>
  <Note>
   <ItemName>Status incomplete</ItemName>
   <Compatibility></Compatibility>
