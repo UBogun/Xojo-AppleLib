@@ -54,28 +54,6 @@ Begin window ScrollWindow
       Visible         =   True
       Width           =   600
    End
-   Begin ImageWell ImageWell1
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   605
-      HelpTag         =   ""
-      Image           =   250077183
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   604
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   -184
-      Visible         =   True
-      Width           =   671
-   End
    Begin TextArea TextArea1
       AcceptTabs      =   False
       Alignment       =   0
@@ -133,15 +111,11 @@ End
 #tag Events OSXLibScrollView1
 	#tag Event
 		Sub Shown()
-		  me.AppleObject.AutoresizesSubviews = false
-		  dim ContentView as new AppleImageView(ImageWell1)
-		  // ContentView.WantsLayer = true
-		  // ContentView.Layer.BorderWidth = 2
-		  // ContentView.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.TopLeft
-		  // ContentView.Layer.Contents = AppleImage.fromPicture(OSXLibLogo)
-		  // dim am as  new AppleAutoresizingMask(0)
-		  // contentview.AutoResizingMask = am
-		  me.AppleObject.DocumentView = ContentView
+		  dim i as new AppleImage (OSXLibLogo)
+		  dim v as new AppleImageView(0,0,i.Width, i.Height)
+		  v.Image = i
+		  
+		  me.AppleObject.DocumentView = v
 		  me.AppleObject.HasHorizontalScroller = true
 		  me.AppleObject.HasVerticalScroller = true
 		  me.AppleObject.HasHorizontalRuler = true
