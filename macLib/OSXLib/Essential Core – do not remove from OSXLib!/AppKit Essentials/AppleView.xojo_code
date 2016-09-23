@@ -3,7 +3,7 @@ Protected Class AppleView
 Inherits AppleResponder
 	#tag Method, Flags = &h0, Description = 41646473206120636F6E73747261696E74206F6E20746865206C61796F7574206F662074686520726563656976696E672076696577206F72206974732073756276696577732E
 		Sub AddConstraint(Constraint As AppleLayoutConstraint)
-		  AddConstraint id, Constraint.id
+		  AddConstraint mid, Constraint.id
 		End Sub
 	#tag EndMethod
 
@@ -13,7 +13,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h0, Description = 41646473206D756C7469706C6520636F6E73747261696E7473206F6E20746865206C61796F7574206F662074686520726563656976696E672076696577206F72206974732073756276696577732E
 		Sub AddConstraints(Constraints As AppleArray)
-		  AddConstraints id, Constraints.id
+		  AddConstraints mid, Constraints.id
 		End Sub
 	#tag EndMethod
 
@@ -23,7 +23,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h0, Description = 41646473207468652070726F7669646564206C61796F757420677569646520746F2074686520766965772E20417661696C61626C652073696E6365204F5320582031302E3131
 		Sub AddLayoutGuide(Guide As AppleLayoutGuide)
-		  AddLayoutGuide id, Guide.id
+		  AddLayoutGuide mid, Guide.id
 		End Sub
 	#tag EndMethod
 
@@ -152,6 +152,18 @@ Inherits AppleResponder
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  Super.Constructor(ptr(aControl.Handle))
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061206E6577207669657720696E2074686520737065636966696564206672616D652E
+		Sub Constructor(x as double, y as double, width as double, height as double)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  Constructor (FoundationFrameWork.NSMakeRect(x,y,width, height))
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1241,7 +1253,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h0, Description = 52656D6F766573207468652070726F7669646564206C61796F75742067756964652066726F6D2074686520766965772E20417661696C61626C652073696E6365204F5320582031302E31312E
 		Sub RemoveLayoutGuide(Guide As AppleLayoutGuide)
-		  removeLayoutGuide id, guide.id
+		  removeLayoutGuide mid, guide.id
 		End Sub
 	#tag EndMethod
 
@@ -1753,10 +1765,10 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520626F74746F6D2065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
 		#tag Getter
 			Get
-			  if RespondsToSelector("bottomAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.getbottomanchor(id))
+			  if RespondsToSelector("bottomAnchor", classptr) then return AppleLayoutYAxisAnchor.MakeFromPtr(AppKitFramework.getbottomanchor(id))
 			End Get
 		#tag EndGetter
-		BottomAnchor As AppleLayoutXAxisAnchor
+		BottomAnchor As AppleLayoutYAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076696577E280997320626F756E64732072656374616E676C652C2077686963682065787072657373657320697473206C6F636174696F6E20616E642073697A6520696E20697473206F776E20636F6F7264696E6174652073797374656D2E
@@ -2298,14 +2310,11 @@ Inherits AppleResponder
 		LayerUsesCoreImageFilters As Boolean
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6E73747261696E74732068656C642062792074686520766965772E2028726561642D6F6E6C7929
+	#tag ComputedProperty, Flags = &h0, Description = 546865206172726179206F66206C61796F7574206775696465206F626A65637473206F776E6564206279207468697320766965772E2028726561642D6F6E6C792920417661696C61626C652073696E6365204F5320582031302E31312E
 		#tag Getter
 			Get
-			  if RespondsToSelector("layoutGuides", classptr) then
-			    dim result as applearray = AppleArray.MakefromPtr(getlayoutGuides (id))
-			    result.RetainClassObject
-			    return result
-			  end if
+			  if RespondsToSelector("layoutGuides", classptr) then return AppleArray.MakefromPtr(getlayoutGuides (mid))
+			  
 			End Get
 		#tag EndGetter
 		LayoutGuides As AppleArray
@@ -2526,10 +2535,10 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520746F702065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
 		#tag Getter
 			Get
-			  if RespondsToSelector("topAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.gettopanchor(id))
+			  if RespondsToSelector("topAnchor", classptr) then return AppleLayoutYAxisAnchor.MakeFromPtr(AppKitFramework.gettopanchor(id))
 			End Get
 		#tag EndGetter
-		TopAnchor As AppleLayoutXAxisAnchor
+		TopAnchor As AppleLayoutYAxisAnchor
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520746F702065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E

@@ -12,10 +12,10 @@ Begin iosView View1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
-      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
-      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
       AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
@@ -28,7 +28,7 @@ Begin iosView View1
       HasAmbiguousLayout=   False
       Height          =   440.0
       Hidden          =   False
-      Left            =   0.0
+      Left            =   0
       LockedInPosition=   False
       MultipleTouchEnabled=   False
       Opaque          =   False
@@ -36,7 +36,7 @@ Begin iosView View1
       Scope           =   0
       Tag             =   0
       TintAdjustmentMode=   ""
-      Top             =   40.0
+      Top             =   40
       TranslatesAutoresizingMaskIntoConstraints=   False
       UserInteractionEnabled=   True
       Visible         =   True
@@ -45,10 +45,10 @@ Begin iosView View1
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
          Alpha           =   1.0
-         AutoLayout      =   iOSLIbView2, 7, , 0, False, +1.00, 1, 1, 320, 
-         AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
-         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
          AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
+         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
+         AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
+         AutoLayout      =   iOSLIbView2, 7, , 0, False, +1.00, 1, 1, 320, 
          AutoresizesSubviews=   True
          BackgroundColor =   &cFFFFFF00
          CanBecomeFocused=   False
@@ -65,7 +65,7 @@ Begin iosView View1
          LockedInPosition=   False
          MultipleTouchEnabled=   False
          Opaque          =   False
-         PanelIndex      =   -1
+         PanelIndex      =   0
          Parent          =   "Canvas1"
          PreservesSuperviewLayoutMargins=   False
          Scope           =   2

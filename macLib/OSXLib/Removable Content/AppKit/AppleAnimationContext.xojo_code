@@ -28,13 +28,14 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
-		  EndGrouping
+		  if not didend then EndGrouping
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 456E6473207468652063757272656E7420616E696D6174696F6E2067726F7570696E672E
 		Sub EndGrouping()
 		  EndGrouping classptr
+		  DidEnd = true
 		End Sub
 	#tag EndMethod
 
@@ -108,6 +109,10 @@ Inherits AppleObject
 		#tag EndGetter
 		Private Shared CurrentContext As AppleAnimationContext
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		DidEnd As Boolean
+	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206475726174696F6E207573656420627920616E696D6174696F6E732063726561746564206173206120726573756C74206F662073657474696E67206E65772076616C75657320666F7220616E20616E696D617461626C652070726F70657274792E
 		#tag Getter
