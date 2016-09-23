@@ -1,6 +1,6 @@
 #tag Class
 Protected Class iOSLibTextfield
-Inherits iOSLIbCanvas
+Inherits iOSLIbView
 	#tag Event
 		Function CreateView() As uinteger
 		  dim subID as uinteger = raiseEvent CreateView

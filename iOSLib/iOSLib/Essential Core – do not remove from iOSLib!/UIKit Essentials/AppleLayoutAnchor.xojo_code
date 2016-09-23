@@ -14,11 +14,11 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintEqualToAnchor Lib appkitlibname Selector "constraintEqualToAnchor:" (id as ptr, anchor as ptr) As Ptr
+		Protected Declare Function constraintEqualToAnchor Lib uikitlibname Selector "constraintEqualToAnchor:" (id as ptr, anchor as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintEqualToAnchorConstant Lib appkitlibname Selector "constraintEqualToAnchor:constant:" (id as ptr, anchor as ptr, constant as CGFloat) As Ptr
+		Protected Declare Function constraintEqualToAnchorConstant Lib uikitlibname Selector "constraintEqualToAnchor:constant:" (id as ptr, anchor as ptr, constant as CGFloat) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F6E73747261696E74207468617420646566696E6573206F6E65206974656DE2809973206174747269627574652061732067726561746572207468616E206F7220657175616C20746F20616E6F746865722E
@@ -34,11 +34,11 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintGreaterThanOrEqualToAnchor Lib appkitlibname Selector "constraintGreaterThanOrEqualToAnchor:" (id as ptr, anchor as ptr) As Ptr
+		Protected Declare Function constraintGreaterThanOrEqualToAnchor Lib uikitlibname Selector "constraintGreaterThanOrEqualToAnchor:" (id as ptr, anchor as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintGreaterThanOrEqualToAnchorConstant Lib appkitlibname Selector "constraintGreaterThanOrEqualToAnchor:constant:" (id as ptr, anchor as ptr, constant as CGFloat) As Ptr
+		Protected Declare Function constraintGreaterThanOrEqualToAnchorConstant Lib uikitlibname Selector "constraintGreaterThanOrEqualToAnchor:constant:" (id as ptr, anchor as ptr, constant as CGFloat) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73206120636F6E73747261696E74207468617420646566696E6573206F6E65206974656DE280997320617474726962757465206173206C657373207468616E206F7220657175616C20746F20616E6F746865722E
@@ -54,11 +54,11 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintLessThanOrEqualToAnchor Lib appkitlibname Selector "constraintLessThanOrEqualToAnchor:" (id as ptr, anchor as ptr) As Ptr
+		Protected Declare Function constraintLessThanOrEqualToAnchor Lib uikitlibname Selector "constraintLessThanOrEqualToAnchor:" (id as ptr, anchor as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintLessThanOrEqualToAnchorConstant Lib appkitlibname Selector "constraintLessThanOrEqualToAnchor:constant:" (id as ptr, anchor as ptr, constant as CGFloat) As Ptr
+		Protected Declare Function constraintLessThanOrEqualToAnchorConstant Lib uikitlibname Selector "constraintLessThanOrEqualToAnchor:constant:" (id as ptr, anchor as ptr, constant as CGFloat) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0

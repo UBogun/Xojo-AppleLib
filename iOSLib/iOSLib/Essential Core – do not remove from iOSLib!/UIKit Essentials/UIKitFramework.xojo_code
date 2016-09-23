@@ -9,11 +9,19 @@ Protected Module UIKitFramework
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getalpha Lib UIKitLibName Selector "alpha" (id as ptr) As CGFLoat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getbackgroundColor Lib UIKitLibName Selector "backgroundColor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getbackgroundView Lib UIKitLibName Selector "backgroundView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getbottomAnchor Lib uikitlibname Selector "bottomAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1
@@ -24,6 +32,26 @@ Protected Module UIKitFramework
 		  
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcenter Lib UIKitLibName Selector "center" (id as ptr) As FoundationFrameWork.NSPoint
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcenterXAnchor Lib uikitlibname Selector "centerXAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcenterYAnchor Lib uikitlibname Selector "centerYAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getclearsContextBeforeDrawing Lib UIKitLibName Selector "clearsContextBeforeDrawing" (id as ptr) As boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getclipsToBounds Lib UIKitLibName Selector "clipsToBounds" (id as ptr) As boolean
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1
 		Protected Function getContents(id as ptr) As Ptr
@@ -52,6 +80,10 @@ Protected Module UIKitFramework
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getfirstBaselineAnchor Lib uikitlibname Selector "firstBaselineAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
 		Protected Declare Function getForce Lib uikitlibname Selector "force" (id as ptr) As CGFloat
 	#tag EndExternalMethod
@@ -69,7 +101,27 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getheightAnchor Lib uikitlibname Selector "heightAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethidden Lib UIKitLibName Selector "isHidden" (id as ptr) As boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getIdentifier Lib UIKItLibName Selector "identifier" (id as ptr) As cfstringref
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getlastBaselineAnchor Lib uikitlibname Selector "lastBaselineAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getleadingAnchor Lib uikitlibname Selector "leadingAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getleftAnchor Lib uikitlibname Selector "leftAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
@@ -82,6 +134,10 @@ Protected Module UIKitFramework
 		  return opaque (id)
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getowningView Lib uikitlibname Selector "owningView" (id as ptr) As Ptr
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
 		Protected Declare Function getpreciseLocationInView Lib uikitlibname Alias "preciseLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
@@ -100,11 +156,19 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrightAnchor Lib uikitlibname Selector "rightAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getScale Lib UIKItLibName Selector "scale" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getseparatorInset Lib UIKitLibName Selector "separatorInset" (id as ptr) As UIEdgeInsets
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getsizeThatFits Lib UIKitLibName Selector "sizeThatFits:" (id as ptr, value as FoundationFrameWork . NSSize) As FoundationFrameWork.NSsize
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -120,7 +184,23 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettopAnchor Lib uikitlibname Selector "topAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettrailingAnchor Lib uikitlibname Selector "trailingAnchor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettransform Lib UIKitLibName Selector "transform" (id as ptr) As CGAffineTransform
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getView Lib UIKItLibName Selector "view" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getwidthAnchor Lib uikitlibname Selector "widthAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -133,6 +213,10 @@ Protected Module UIKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub prepareForReuse Lib UIKitLibName Selector "prepareForReuse" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setAlpha Lib UIKItLibName Selector "setAlpha:" (id as ptr, value as cgfloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -150,6 +234,18 @@ Protected Module UIKitFramework
 		  
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setCenter Lib UIKItLibName Selector "setCenter:" (id as ptr, value as FoundationFrameWork . NSPoint)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setclearsContextBeforeDrawing Lib UIKitLibName Selector "setClearsContextBeforeDrawing:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setclipsToBounds Lib UIKitLibName Selector "setClipsToBounds:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1
 		Protected Sub setContents(id as ptr, value as ptr)
@@ -182,6 +278,14 @@ Protected Module UIKitFramework
 		Protected Declare Sub setgestureRecognizers Lib UIKitLibName Selector "setGestureRecognizers:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setHidden Lib UIKitLibName Selector "setHidden:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setIdentifier Lib UIKItLibName Selector "setIdentifier:" (id as ptr, value as cfstringref)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub setOpaque(id as ptr, value as boolean)
 		  declare sub setOpaque lib UIKitLibname selector "setOpaque:" (id as ptr, value as Boolean)
@@ -189,6 +293,10 @@ Protected Module UIKitFramework
 		  
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setowningView Lib uikitlibname Selector "setOwningView:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setScale Lib UIKItLibName Selector "setScale:" (id as ptr, value as cgfloat)
@@ -200,6 +308,14 @@ Protected Module UIKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub settintColor Lib UIKitLibName Selector "setTintColor:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub settransform Lib UIKitLibName Selector "setTransform:" (id as ptr, value as CGAffineTransform)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sizeToFit Lib UIKitLibName Selector "sizeToFit" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
