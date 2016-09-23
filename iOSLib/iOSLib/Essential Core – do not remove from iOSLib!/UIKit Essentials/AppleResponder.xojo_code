@@ -48,6 +48,10 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Function getExclusiveTouch Lib UIKitLibname Selector "isExclusiveTouch" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
 		Protected Declare Function getinputAccessoryView Lib UIKitLibname Selector "inputAccessoryView" (id as ptr) As Ptr
 	#tag EndExternalMethod
@@ -64,6 +68,10 @@ Inherits AppleObject
 		Protected Declare Function getisFirstResponder Lib UIKitLibname Selector "isFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
+		Protected Declare Function getMultipleTouchEnabled Lib UIKitLibname Selector "isMultipleTouchEnabled" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
 		Attributes( hidden ) Protected Declare Function getNextResponder Lib UIKitLibname Selector "nextResponder" (id as ptr) As ptr
 	#tag EndExternalMethod
@@ -72,12 +80,9 @@ Inherits AppleObject
 		Attributes( hidden ) Protected Declare Function getUserActivity Lib UIKitLibname Selector "userActivity" (id as ptr) As ptr
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function getUserInteractionEnabled() As Boolean
-		  Declare Function userInteractionEnabled lib UIKitLibname selector "isUserInteractionEnabled" (id as ptr) as Boolean
-		  return userInteractionEnabled (id)
-		End Function
-	#tag EndMethod
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Function getUserInteractionEnabled Lib UIKitLibname Selector "isUserInteractionEnabled" (id as ptr) As Boolean
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h21
 		Private Shared Function Identity(id as ptr) As AppleResponder
@@ -427,12 +432,20 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Sub setExclusiveTouch Lib UIKitLibname Selector "setExclusiveTouch:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
 		Protected Declare Sub setInputAccessoryView Lib UIKitLibname Selector "setInputAccessoryView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit))
 		Protected Declare Sub setInputView Lib UIKitLibname Selector "setInputView:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Sub setMultipleTouchEnabled Lib UIKitLibname Selector "setMultipleTouchEnabled:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
@@ -445,6 +458,10 @@ Inherits AppleObject
 		  setUserInteractionEnabled id, value
 		End Sub
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 52657475726E7320746865206E65787420726573706F6E64657220696E2074686520636861696E
+		Attributes( hidden ) Protected Declare Sub setUserInteractionEnabled Lib UIKitLibname Selector "setUserInteractionEnabled:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520746172676574206F626A656374207468617420726573706F6E647320746F20616E20616374696F6E2E
 		Attributes( hidden )  Function TargetForAction(SEL as ptr, Sender as AppleGeneralObject) As AppleObject

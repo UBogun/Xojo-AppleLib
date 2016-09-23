@@ -8,14 +8,14 @@ Begin iosView View1
    TabTitle        =   ""
    Title           =   ""
    Top             =   0
-   Begin iOSLibCanvas Canvas1
+   Begin iOSLIbCanvas Canvas1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
       AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
-      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
@@ -28,7 +28,7 @@ Begin iosView View1
       HasAmbiguousLayout=   False
       Height          =   440.0
       Hidden          =   False
-      Left            =   0
+      Left            =   0.0
       LockedInPosition=   False
       MultipleTouchEnabled=   False
       Opaque          =   False
@@ -36,16 +36,59 @@ Begin iosView View1
       Scope           =   0
       Tag             =   0
       TintAdjustmentMode=   ""
-      Top             =   40
+      Top             =   40.0
       TranslatesAutoresizingMaskIntoConstraints=   False
       UserInteractionEnabled=   True
       Visible         =   True
       Width           =   320.0
+      Begin iOSLIbView iOSLIbView2
+         AccessibilityHint=   ""
+         AccessibilityLabel=   ""
+         Alpha           =   1.0
+         AutoLayout      =   iOSLIbView2, 7, , 0, False, +1.00, 1, 1, 320, 
+         AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
+         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
+         AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
+         AutoresizesSubviews=   True
+         BackgroundColor =   &cFFFFFF00
+         CanBecomeFocused=   False
+         ClearsContextBeforeDrawing=   False
+         ClipsToBounds   =   True
+         ContentMode     =   ""
+         ContentScaleFactor=   1.0
+         ExclusiveTouch  =   False
+         Focused         =   False
+         HasAmbiguousLayout=   False
+         Height          =   198.0
+         Hidden          =   False
+         Left            =   0
+         LockedInPosition=   False
+         MultipleTouchEnabled=   False
+         Opaque          =   False
+         PanelIndex      =   -1
+         Parent          =   "Canvas1"
+         PreservesSuperviewLayoutMargins=   False
+         Scope           =   2
+         Tag             =   0
+         TintAdjustmentMode=   ""
+         Top             =   121
+         TranslatesAutoresizingMaskIntoConstraints=   False
+         UserInteractionEnabled=   True
+         Visible         =   True
+         Width           =   320.0
+      End
    End
 End
 #tag EndIOSView
 
 #tag WindowCode
+	#tag Method, Flags = &h0
+		Sub MakeRotation()
+		  iOSLIbView2.AnimateTransform TransformExtension.MakeDegreesRotation(180), 2, AppleViewAnimationOption.OptionRepeatAndReverse
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events Canvas1
@@ -63,17 +106,52 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Resized()
-		  me.Invalidate 
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 4669726573207768656E2061206D6F74696F6E2068617320626567756E2E
-		Sub MotionBegan(type as AppleNSEvent.UIEventSubtype, anEvent as AppleNSEvent)
-		  break
+		  me.Invalidate
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E20746865207573657220746F75636865732074686520636F6E74726F6C2077697468206F6E65206F72206D6F72652066696E676572732E
 		Sub TouchesBegan(Touches() as appletouch, anEvent as AppleNSEvent)
 		  break
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events iOSLIbView2
+	#tag Event
+		Sub Shown()
+		  dim logo as new AppleImage(iosLibLogo)
+		  // dim smallogo as AppleImage = logo.Resize (0.005, 0.005, CoreGraphicsFramework.CGInterpolationQuality.High)
+		  // dim col as new applecolor (smallogo)
+		  // me.AppleObject.Layer.AffineTransform = TransformExtension.CGAffineTransformMakeRotation (30)
+		  // me.AppleObject.Layer.GeometryFlipped = true
+		  dim sublayer as new AppleCALayer
+		  sublayer.Frame = FoundationFrameWork.NSMakerect(0,0,self.Size.Width, self.Size.Height)
+		  subLayer.AffineTransform = TransformExtension.CGAffineTransformMakeRotation (-6)
+		  // sublayer.ContentGravity = AppleCALayer.CALayerContentPosition.Resize
+		  dim FillColor as new AppleColor(&c7B609D88)
+		  sublayer.BackgroundColor = FillColor
+		  // me.AppleObject.layer.AddSublayer sublayer
+		  me.AppleObject.Layer.BackgroundColor = AppleColor.ClearColor
+		  me.AppleObject.Layer.Opaque = false
+		  me.AppleObject.layer.Contents = logo.Resize(0.1, 0.1).CGImage
+		  me.AppleObject.layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
+		  me.AppleObject.Layer.ShadowColor = AppleColor.WhiteColor
+		  me.AppleObject.layer.ShadowOpacity = 0.91
+		  me.AppleObject.layer.ShadowRadius = 12
+		  
+		  dim block as new appleblock (AddressOf makerotation)
+		  me.AppleObject.Transform = TransformExtension.MakeScale (10)
+		  me.AnimateTransform (TransformExtension.MakeScale(1), 8, appleviewAnimationOption.OptionNone, UIKitFramework.UIVIewAnimationCurve.EaseOut, _
+		  UIKitFramework.UIVIewAnimationTransition.CurlDown, 0, block)
+		  
+		  // dim anim as new AppleCABasicAnimation ("transform")
+		  // anim.FromValue = new applecgcolor(&c7B609D00)
+		  // anim.ToValue = new Applecgcolor(&c07710000)
+		  // anim.Autoreverses = true
+		  // anim.Duration = 4
+		  // anim.RepeatCount = 99999999999.9
+		  // me.AppleObject.Layer.Animation("Rotate") = anim
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

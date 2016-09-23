@@ -7,12 +7,6 @@ Inherits AppleControl
 		End Sub
 	#tag EndEvent
 
-	#tag Event , Description = 4669726573207768656E207468652072656374616E676C6520286F722077686F6C65206172656129206F662074686520766965772067657473207265647261776E
-		Sub DrawRect(Rect  as FoundationFramework.NSRect)
-		  #pragma unused rect
-		End Sub
-	#tag EndEvent
-
 	#tag Event , Description = 4669726573207768656E20746865207669657720686173206368616E6765642073697A65206C696B6520616674657220616E206F7269656E746174696F6E206368616E67652E
 		Sub LayoutSubviews()
 		  
@@ -244,11 +238,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonDidBeginEditing()
-		  if ParentControl <> nil then
-		    ParentControl.informonDidBeginEditing
-		  else
-		    RaiseEvent DidBeginEditing
-		  end if
+		  RaiseEvent DidBeginEditing
 		  
 		  
 		  
@@ -259,32 +249,21 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonDidEndEditing()
-		  if ParentControl <> nil then
-		    ParentControl.informonDidEndEditing
-		  else
-		    RaiseEvent DidEndEditing
-		  end if
+		  RaiseEvent DidEndEditing
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Function informonShouldBeginEditing() As boolean
-		  if ParentControl <> nil then
-		    return not ParentControl.informonShouldBeginEditing
-		  else
-		    return not RaiseEvent ShouldBeginEditing
-		  end if
+		  return not RaiseEvent ShouldBeginEditing
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Function informonShouldChangeCharactersInRange(Range as FoundationFramework.NSRange, Replacement as Text) As boolean
-		  if ParentControl <> nil then
-		    return not ParentControl.informonShouldChangeCharactersInRange(range.location, range.length, replacement)
-		  else
-		    return not RaiseEvent ShouldChangeCharactersInRange (range.location, range.length, replacement)
-		  end if
+		  return not RaiseEvent ShouldChangeCharactersInRange (range.location, range.length, replacement)
 		  
 		  
 		End Function
@@ -292,11 +271,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Function informonShouldClear() As boolean
-		  if ParentControl <> nil then
-		    return not ParentControl.informonShouldClear
-		  else
-		    return not RaiseEvent ShouldClear
-		  end if
+		  return not RaiseEvent ShouldClear
 		  
 		  
 		End Function
@@ -304,11 +279,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Function informonShouldEndEditing() As boolean
-		  if ParentControl <> nil then
-		    return not ParentControl.informonShouldEndEditing
-		  else
-		    return not RaiseEvent ShouldEndEditing
-		  end if
+		  return not RaiseEvent ShouldEndEditing
 		  
 		  
 		End Function
@@ -316,11 +287,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Function informonShouldReturn() As boolean
-		  if ParentControl <> nil then
-		    return not ParentControl.informonShouldReturn
-		  else
-		    return not RaiseEvent ShouldReturn
-		  end if
+		  return not RaiseEvent ShouldReturn
 		  
 		End Function
 	#tag EndMethod
@@ -336,14 +303,6 @@ Inherits AppleControl
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleTextField
 		  return if (aptr = nil, nil, new AppleTextField(aptr))
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden )  Function ParentControl() As iOSLibTextfield
-		  dim  wr as weakref = XojoControls.Lookup (id, nil)  
-		  return if (wr = nil, nil,  iOSLibTextfield(wr.Value))
-		  
 		End Function
 	#tag EndMethod
 

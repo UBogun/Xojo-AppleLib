@@ -9,6 +9,12 @@ Protected Module iOSCoreModule
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function NilPtr(anObject as AppleObject) As Ptr
+		  return if (anObject = nil, nil, anObject.id)
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		LibDebug As Boolean = false
@@ -26,6 +32,10 @@ Protected Module iOSCoreModule
 		#tag EndGetter
 		ScreenResolution As double
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = kClassNotAvailable, Type = Text, Dynamic = False, Default = \"This class does not exist on this system.", Scope = Protected
+	#tag EndConstant
 
 
 	#tag ViewBehavior

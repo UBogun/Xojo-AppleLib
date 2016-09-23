@@ -8,15 +8,15 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub activateConstraints Lib appkitlibname Selector "activateConstraints:" (id as ptr, constraints as ptr)
+		Protected Declare Sub activateConstraints Lib uikitlibname Selector "activateConstraints:" (id as ptr, constraints as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintsWithVisualFormat Lib appkitlibname Selector "constraintsWithVisualFormat:options:metrics:views:" (id as ptr, format as cfstringref, options as uinteger, metrics as ptr, views as ptr) As ptr
+		Protected Declare Function constraintsWithVisualFormat Lib uikitlibname Selector "constraintsWithVisualFormat:options:metrics:views:" (id as ptr, format as cfstringref, options as uinteger, metrics as ptr, views as ptr) As ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function constraintWithItem Lib appkitlibname Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" (id as ptr, item1 as ptr, attr1 as NSLayoutAttribute, relation as NSLayoutRelation, item2 as ptr, attr2 as NSLayoutAttribute, multiplier as CGFloat, constant as CGFloat) As ptr
+		Protected Declare Function constraintWithItem Lib uikitlibname Selector "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:" (id as ptr, item1 as ptr, attr1 as NSLayoutAttribute, relation as NSLayoutRelation, item2 as ptr, attr2 as NSLayoutAttribute, multiplier as CGFloat, constant as CGFloat) As ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h21, Description = 43726561746573206120636F6E73747261696E74207468617420646566696E6573207468652072656C6174696F6E73686970206265747765656E20746865207370656369666965642061747472696275746573206F662074686520676976656E2076696577732E
@@ -45,7 +45,7 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  dim options as uinteger = Integer(Attribute) + Bitwise.ShiftLeft(Integer(Direction), 8)
+		  dim options as uinteger = Integer(Attribute) + (UInteger(Direction).shiftleft(8))
 		  Super.Constructor(constraintsWithVisualFormat(ClassPtr, format, options, Metrics.Id, Views.id))
 		  RetainClassObject
 		  
@@ -59,47 +59,47 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub deactivateConstraints Lib appkitlibname Selector "deactivateConstraints:" (id as ptr, constraints as ptr)
+		Protected Declare Sub deactivateConstraints Lib uikitlibname Selector "deactivateConstraints:" (id as ptr, constraints as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getActive Lib appkitlibname Selector "isActive" (id as ptr) As Boolean
+		Protected Declare Function getActive Lib uikitlibname Selector "isActive" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 54686520617474726962757465206F6620746865206669727374206F626A6563742070617274696369706174696E6720696E2074686520636F6E73747261696E742E2028726561642D6F6E6C7929
-		Protected Declare Function getconstant Lib appkitlibname Selector "constant" (id as ptr) As CGFloat
+		Protected Declare Function getconstant Lib uikitlibname Selector "constant" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 54686520617474726962757465206F6620746865206669727374206F626A6563742070617274696369706174696E6720696E2074686520636F6E73747261696E742E2028726561642D6F6E6C7929
-		Protected Declare Function getfirstAttribute Lib appkitlibname Selector "firstAttribute" (id as ptr) As NSLayoutAttribute
+		Protected Declare Function getfirstAttribute Lib uikitlibname Selector "firstAttribute" (id as ptr) As NSLayoutAttribute
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getfirstItem Lib appkitlibname Selector "firstItem" (id as ptr) As Ptr
+		Protected Declare Function getfirstItem Lib uikitlibname Selector "firstItem" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 54686520617474726962757465206F6620746865206669727374206F626A6563742070617274696369706174696E6720696E2074686520636F6E73747261696E742E2028726561642D6F6E6C7929
-		Protected Declare Function getmultiplier Lib appkitlibname Selector "multiplier" (id as ptr) As CGFloat
+		Protected Declare Function getmultiplier Lib uikitlibname Selector "multiplier" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getpriority Lib appkitlibname Selector "priority" (id as ptr) As Single
+		Protected Declare Function getpriority Lib uikitlibname Selector "priority" (id as ptr) As Single
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 54686520617474726962757465206F6620746865206669727374206F626A6563742070617274696369706174696E6720696E2074686520636F6E73747261696E742E2028726561642D6F6E6C7929
-		Protected Declare Function getrelation Lib appkitlibname Selector "relation" (id as ptr) As NSLayoutRelation
+		Protected Declare Function getrelation Lib uikitlibname Selector "relation" (id as ptr) As NSLayoutRelation
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 54686520617474726962757465206F6620746865206669727374206F626A6563742070617274696369706174696E6720696E2074686520636F6E73747261696E742E2028726561642D6F6E6C7929
-		Protected Declare Function getsecondAttribute Lib appkitlibname Selector "secondAttribute" (id as ptr) As NSLayoutAttribute
+		Protected Declare Function getsecondAttribute Lib uikitlibname Selector "secondAttribute" (id as ptr) As NSLayoutAttribute
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getsecondItem Lib appkitlibname Selector "secondItem" (id as ptr) As Ptr
+		Protected Declare Function getsecondItem Lib uikitlibname Selector "secondItem" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getshouldBeArchived Lib appkitlibname Selector "shouldBeArchived" (id as ptr) As Boolean
+		Protected Declare Function getshouldBeArchived Lib uikitlibname Selector "shouldBeArchived" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -109,19 +109,19 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setActive Lib appkitlibname Selector "setActive:" (id as ptr, value as Boolean)
+		Protected Declare Sub setActive Lib uikitlibname Selector "setActive:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 54686520617474726962757465206F6620746865206669727374206F626A6563742070617274696369706174696E6720696E2074686520636F6E73747261696E742E2028726561642D6F6E6C7929
-		Protected Declare Sub setconstant Lib appkitlibname Selector "setConstant:" (id as ptr, value as CGFloat)
+		Protected Declare Sub setconstant Lib uikitlibname Selector "setConstant:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setpriority Lib appkitlibname Selector "setPriority:" (id as ptr, value as Single)
+		Protected Declare Sub setpriority Lib uikitlibname Selector "setPriority:" (id as ptr, value as Single)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setshouldBeArchived Lib appkitlibname Selector "setShouldBeArchived:" (id as ptr, value as Boolean)
+		Protected Declare Sub setshouldBeArchived Lib uikitlibname Selector "setShouldBeArchived:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 
@@ -206,12 +206,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206E616D652074686174206964656E7469666965732074686520636F6E73747261696E742E
 		#tag Getter
 			Get
-			  return AppKitFramework.getidentifier(id)
+			  return UIKitFramework.getidentifier(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setidentifier id, value
+			  UIKitFramework.setidentifier id, value
 			End Set
 		#tag EndSetter
 		Identifier As Text
