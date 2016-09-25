@@ -51,7 +51,7 @@ Inherits AppleResponder
 	#tag Method, Flags = &h0
 		Sub Animate(duration as Double,  animationBlock as appleblock, delay as double = 0, options as AppleViewAnimationOption = Nil, Curve as UIVIewAnimationCurve = uiviewanimationcurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.None, completionBlock as AppleBlock = nil)
 		  if options = nil then options = AppleViewAnimationOption.OptionNone
-		  AnimateWithDuration classptr, duration, delay, AnimationOption (options, curve, UIVIewAnimationTransition.none), animationBlock.Handle, if (completionBlock = nil, nil, completionBlock.handle)
+		  AnimateWithDuration classptr, duration, delay, AnimationOption (options, curve, transition), animationBlock.Handle, if (completionBlock = nil, nil, completionBlock.handle)
 		  
 		  
 		End Sub
@@ -61,7 +61,6 @@ Inherits AppleResponder
 		Sub AnimateAlpha(alpha as Double, options as AppleViewAnimationOption, Seconds as Double = 0.2, delay as double = 0, Curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.none, completion as appleblock = nil)
 		  TransformToAlpha = alpha
 		  dim block as new appleblock (AddressOf TransformAlphaBlock)
-		  if completion = nil then completion = new AppleBlock (AddressOf CompletionBlock)
 		  animate seconds, block, delay,  options, curve, transition, completion
 		  
 		End Sub
@@ -69,7 +68,6 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h0, Description = 537461727473206120637573746F6D206D6574686F642066726F6D206120626C6F636B20776869636820796F752063616E2075736520746F206368616E676520646966666572656E742070726F70657274696573206F66207468652076696577207573696E672074686520737065636966696564206475726174696F6E2C2064656C61792C206F7074696F6E732C20616E6420636F6D706C6574696F6E2068616E646C65722E20
 		Sub AnimateBlock(ChangeBlock as AppleBlock, options as AppleViewAnimationOption, Seconds as Double = 0.2, delay as double = 0, Curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.none, completion as appleblock = nil)
-		  if completion = nil then completion = new AppleBlock (AddressOf CompletionBlock)
 		  animate seconds, changeblock, delay,  options, curve, transition, completion
 		  
 		End Sub
@@ -79,7 +77,6 @@ Inherits AppleResponder
 		Sub AnimateBounds(newBounds as FoundationFramework.NSRect,   options as AppleViewAnimationOption, Seconds as Double = 0.2, delay as double = 0, Curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.none, completion as appleblock = nil)
 		  TransformToBounds = NewBounds
 		  dim block as new AppleBlock (AddressOf TransformFrameBlock)
-		  if completion = nil then completion = new AppleBlock (AddressOf CompletionBlock)
 		  animate seconds, block, delay,  options, curve, transition, completion
 		  
 		End Sub
@@ -89,7 +86,6 @@ Inherits AppleResponder
 		Sub AnimateCenter(aCenter as FoundationFramework.NSPoint, options as AppleViewAnimationOption, Seconds as Double = 0.2, delay as double = 0, Curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.none, completion as appleblock = nil)
 		  TransformToCenter = aCenter
 		  dim block as new AppleBlock (AddressOf TransformCenterBlock)
-		  if completion = nil then completion = new AppleBlock (AddressOf CompletionBlock)
 		  animate seconds, block, delay,  options, curve, transition, completion
 		  
 		End Sub
@@ -99,7 +95,6 @@ Inherits AppleResponder
 		Sub AnimateColor(newColor as AppleColor,  options as AppleViewAnimationOption, Seconds as Double = 0.2, delay as double = 0, Curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.none, completion as appleblock = nil)
 		  TransformToColor = newColor
 		  dim block as new AppleBlock (AddressOf TransformColorBlock)
-		  if completion = nil then completion = new AppleBlock (AddressOf CompletionBlock)
 		  animate seconds, block, delay,  options, curve, transition, completion
 		  
 		End Sub
@@ -109,7 +104,6 @@ Inherits AppleResponder
 		Sub AnimateFrame(aFrame as FoundationFramework.NSRect,  options as AppleViewAnimationOption, Seconds as Double = 0.2, delay as double = 0, Curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.none, completion as appleblock = nil)
 		  TransformToFrame = aFrame
 		  dim block as new AppleBlock (AddressOf TransformFrameBlock)
-		  if completion = nil then completion = new AppleBlock (AddressOf CompletionBlock)
 		  animate seconds, block, delay,  options, curve, transition, completion
 		  
 		  
@@ -120,7 +114,6 @@ Inherits AppleResponder
 		Sub AnimateTransform(aTransform as CGAffineTransform, options as AppleViewAnimationOption, Seconds as Double = 0.2, delay as double = 0, Curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, transition as UIVIewAnimationTransition = UIVIewAnimationTransition.none, completion as appleblock = nil)
 		  TransformToTransform = aTransform
 		  dim block as new AppleBlock (AddressOf TransformTransformBlock)
-		  if completion = nil then completion = new AppleBlock (AddressOf CompletionBlock)
 		  animate seconds, block, delay,  options, curve, transition, completion
 		  
 		  
@@ -426,7 +419,7 @@ Inherits AppleResponder
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_DidMoveToWindow(pid as ptr, sel as ptr)
 		  dim ego as AppleView = InformInstance(pid)
-		  if ego <> nil  then ego.informonDidMoveToWindow
+		  if ego <> nil  then  ego.informonDidMoveToWindow
 		  
 		  #Pragma Unused  sel
 		End Sub
@@ -522,8 +515,6 @@ Inherits AppleResponder
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonDidMoveToWindow()
 		  RaiseEvent DidMoveToWindow
-		  
-		  
 		  
 		End Sub
 	#tag EndMethod
