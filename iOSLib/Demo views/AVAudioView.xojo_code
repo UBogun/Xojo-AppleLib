@@ -89,10 +89,10 @@ Begin iosView AVAudioView
    Begin iOSTextarea TextArea1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   TextArea1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   TextArea1, 7, <Parent>, 7, False, +1.00, 1, 1, 0, 
       AutoLayout      =   TextArea1, 4, Button1, 3, False, +1.00, 2, 1, -59, 
-      AutoLayout      =   TextArea1, 3, <Parent>, 3, False, +1.00, 1, 1, 65, 
+      AutoLayout      =   TextArea1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TextArea1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   TextArea1, 7, <Parent>, 7, False, +1.00, 1, 1, 0, 
       Editable        =   False
       Height          =   318.0
       KeyboardType    =   "0"

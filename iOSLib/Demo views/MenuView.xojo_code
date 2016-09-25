@@ -38,6 +38,7 @@ End
 		Sub Open()
 		  me.AddSection("Custom Controls")
 		  me.AddRow 0, me.CreateCell("AVAudioSession","The base class for recording and playing audio")
+		  me.AddRow 0, me.CreateCell("iOSLibNotificationCenter","A wrapper class for NSUserNotifications")
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -46,6 +47,8 @@ End
 		  select case me.RowData(section, row).Text
 		  case "AVAudioSession"
 		    v = new AVAudioView
+		  case "iOSLibNotificationCenter"
+		    v = new NotificationView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub
