@@ -12,10 +12,10 @@ Begin iosView View1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
-      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
       AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
+      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
@@ -45,10 +45,10 @@ Begin iosView View1
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
          Alpha           =   1.0
-         AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
-         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
-         AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
          AutoLayout      =   iOSLIbView2, 7, , 0, False, +1.00, 1, 1, 320, 
+         AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
+         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
+         AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
          AutoresizesSubviews=   True
          BackgroundColor =   &cFFFFFF00
          CanBecomeFocused=   False
@@ -77,6 +77,38 @@ Begin iosView View1
          Visible         =   True
          Width           =   320.0
       End
+   End
+   Begin AppleAVAudioSession AppleAVAudioSession1
+      Category        =   ""
+      DebugDescription=   ""
+      HasOwnership    =   False
+      InputAvailable  =   False
+      InputGain       =   0.0
+      InputGainSettable=   False
+      InputLatency    =   0.0
+      InputNumberOfChannels=   0
+      IOBufferDuration=   0.0
+      Left            =   0
+      LockedInPosition=   False
+      MaximumInputNumberOfChannels=   0
+      MaximumOutputNumberOfChannels=   0
+      mHasOwnership   =   False
+      Mode            =   ""
+      OtherAudioIsPlaying=   False
+      OutputLatency   =   0.0
+      OutputNumberOfChannels=   0
+      OutputVolume    =   0.0
+      PanelIndex      =   -1
+      Parent          =   ""
+      PreferredInputNumberOfChannels=   0
+      PreferredIOBufferDuration=   0.0
+      PreferredOutputNumberOfChannels=   0
+      PreferredSampleRate=   0.0
+      RetainCount     =   ""
+      SampleRate      =   0.0
+      Scope           =   0
+      SecondaryAudioShouldBeSilenced=   False
+      Top             =   0
    End
 End
 #tag EndIOSView
@@ -141,7 +173,7 @@ End
 		  dim block as new appleblock (AddressOf makerotation)
 		  me.AppleObject.Transform = TransformExtension.MakeScale (10)
 		  me.AnimateTransform (TransformExtension.MakeScale(1), 8, appleviewAnimationOption.OptionNone, UIKitFramework.UIVIewAnimationCurve.EaseOut, _
-		  UIKitFramework.UIVIewAnimationTransition.CurlDown, 0, block)
+		  0, block)
 		  
 		  // dim anim as new AppleCABasicAnimation ("transform")
 		  // anim.FromValue = new applecgcolor(&c7B609D00)
@@ -152,6 +184,30 @@ End
 		  // me.AppleObject.Layer.Animation("Rotate") = anim
 		  
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events AppleAVAudioSession1
+	#tag Event
+		Sub ServicesLost()
+		  break
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ServicesReset()
+		  break
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  me.RequestRecordPermission
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub RecordPermissionReceived(Granted as Boolean)
+		  dim m as new iOSMessageBox
+		  m.Message = "An AVAudioSession instance was initialized, recording permission was "+if (not granted, "not ", "")+"granted"
+		  m.show
 		End Sub
 	#tag EndEvent
 #tag EndEvents
