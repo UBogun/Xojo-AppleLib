@@ -1,21 +1,21 @@
 #tag IOSView
-Begin iosView View1
+Begin iosView IntroView
    BackButtonTitle =   ""
    Compatibility   =   ""
    Left            =   0
-   NavigationBarVisible=   False
+   NavigationBarVisible=   True
    TabIcon         =   ""
    TabTitle        =   ""
-   Title           =   ""
+   Title           =   "iOSLib"
    Top             =   0
    Begin iOSLIbCanvas Canvas1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
-      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
-      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
       AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
@@ -26,7 +26,7 @@ Begin iosView View1
       ExclusiveTouch  =   False
       Focused         =   False
       HasAmbiguousLayout=   False
-      Height          =   440.0
+      Height          =   395.0
       Hidden          =   False
       Left            =   0
       LockedInPosition=   False
@@ -36,7 +36,7 @@ Begin iosView View1
       Scope           =   0
       Tag             =   0
       TintAdjustmentMode=   ""
-      Top             =   40
+      Top             =   85
       TranslatesAutoresizingMaskIntoConstraints=   False
       UserInteractionEnabled=   True
       Visible         =   True
@@ -45,8 +45,8 @@ Begin iosView View1
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
          Alpha           =   1.0
-         AutoLayout      =   iOSLIbView2, 7, , 0, False, +1.00, 1, 1, 320, 
          AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
+         AutoLayout      =   iOSLIbView2, 2, <Parent>, 2, False, +1.00, 2, 1, 0, 
          AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
          AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
          AutoresizesSubviews=   True
@@ -78,37 +78,45 @@ Begin iosView View1
          Width           =   320.0
       End
    End
-   Begin AppleAVAudioSession AppleAVAudioSession1
-      Category        =   ""
-      DebugDescription=   ""
-      HasOwnership    =   False
-      InputAvailable  =   False
-      InputGain       =   0.0
-      InputGainSettable=   False
-      InputLatency    =   0.0
-      InputNumberOfChannels=   0
-      IOBufferDuration=   0.0
-      Left            =   0
+   Begin iOSButton MenuButton
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      AutoLayout      =   MenuButton, 7, , 0, False, +1.00, 1, 1, 100, 
+      AutoLayout      =   MenuButton, 9, <Parent>, 9, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MenuButton, 3, <Parent>, 3, False, +1.00, 1, 1, -6, 
+      AutoLayout      =   MenuButton, 8, , 0, False, +1.00, 1, 1, 30, 
+      Caption         =   "Menu"
+      Enabled         =   True
+      Height          =   30.0
+      Left            =   110
       LockedInPosition=   False
-      MaximumInputNumberOfChannels=   0
-      MaximumOutputNumberOfChannels=   0
-      mHasOwnership   =   False
-      Mode            =   ""
-      OtherAudioIsPlaying=   False
-      OutputLatency   =   0.0
-      OutputNumberOfChannels=   0
-      OutputVolume    =   0.0
-      PanelIndex      =   -1
-      Parent          =   ""
-      PreferredInputNumberOfChannels=   0
-      PreferredIOBufferDuration=   0.0
-      PreferredOutputNumberOfChannels=   0
-      PreferredSampleRate=   0.0
-      RetainCount     =   ""
-      SampleRate      =   0.0
-      Scope           =   0
-      SecondaryAudioShouldBeSilenced=   False
-      Top             =   0
+      Scope           =   2
+      TextColor       =   &c007AFF00
+      TextFont        =   ""
+      TextSize        =   0
+      Top             =   -6
+      Visible         =   True
+      Width           =   100.0
+   End
+   Begin iOSButton MenuButton1
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      AutoLayout      =   MenuButton1, 2, <Parent>, 2, False, +1.00, 2, 1, -*kStdGapCtlToViewH, 
+      AutoLayout      =   MenuButton1, 7, , 0, False, +1.00, 1, 1, 48, 
+      AutoLayout      =   MenuButton1, 8, , 0, False, +1.00, 1, 1, 30, 
+      AutoLayout      =   MenuButton1, 11, MenuButton, 11, False, +1.00, 1, 1, 0, 
+      Caption         =   "Info"
+      Enabled         =   True
+      Height          =   30.0
+      Left            =   252
+      LockedInPosition=   False
+      Scope           =   2
+      TextColor       =   &c007AFF00
+      TextFont        =   ""
+      TextSize        =   0
+      Top             =   -6
+      Visible         =   True
+      Width           =   48.0
    End
 End
 #tag EndIOSView
@@ -119,6 +127,10 @@ End
 		  iOSLIbView2.AnimateTransform TransformExtension.MakeDegreesRotation(180), 2, AppleViewAnimationOption.OptionRepeatAndReverse
 		End Sub
 	#tag EndMethod
+
+
+	#tag Constant, Name = InfoText, Type = Text, Dynamic = False, Default = \"Welcome to AppleLib/iOSLib \xE2\x80\x93 a free library extending Xojo\xE2\x80\x99s iOS features!\n@ 2016 Ulrich Bogun\x2C xojoblog.me\n\nTo use ioOSLib\x2C simply copy the iOSLib folder from this project into your iOSLib project. You can remove folders you don\xE2\x80\x99t need from the Removable Contents folder (but must be aware of inheritances and some connections between different frameworks)\x2C but not from the Essential core folder.\n\nOn this intro view\x2C you can see the two different core UI classes iOSLib features: The background is an iOSLibCanvas\x2C more or less the exact iOSLib native resemblance of a Xojo Canvas. It features direct access to the extended AppleCGGraphics routines which extend your drawing possibilities and add a lot of events\x2C especially for full responsive designs with GestureRecognizers\x2C plus many of the methods an UIView offers\x2C including animation and subview handling. The background is a Color \xE2\x80\x93 you can create a color from a picture\x2C in this case the iOSLib logo which then results in a tiled image. While the color is being painted during the paint event\x2C it\xE2\x80\x99s blazing fast compared to the speed of drawing the logo several times in code \xE2\x80\x93 let alone the rotation which is created via the Transform as CGAffineTransform property.\n\nThe iOSLib logo is drawn on an iOSLibView instance \xE2\x80\x93 which is basically a Canvas minus the Paint event. While this may sound like a limitation\x2C you can use the layer object fully. Such the logo itself is not drawn but put into the layer\xE2\x80\x99s contents property. The system does all the resizing and redrawing by itself. The rather lame animation is just a side effect of Apple\xE2\x80\x99s Simulator which does a lot of stuff that usually runs on the graphics card on the Mic\xE2\x80\x99s CPU. But please note the animation runs even when the program stops during a breakpoint (click on the background to do so).\n\nBoth classes own a Shown event\x2C which I would recommend for any initialization instead of the usual Open event which is still available. Internally\x2C Shown fires when the view gets placed on its window (yes\x2C there is a window class even in iOS)\x2C which means all the size parameters have been set.\n\nExtension modules translate many of the native features to Xojo datatypes and objects. This way\x2C you can animate each Xojo control by addressing the AppleObject As AppleView property which the iOSControl extension adds to controls transparently. Plase feel free to add your own convenience methods and controls (and maybe make them accessible for others too by requesting a merge with your branch in the repository) or tell me which classes\x2C features or convenience methods you miss. Thanks a lot!", Scope = Private
+	#tag EndConstant
 
 
 #tag EndWindowCode
@@ -187,27 +199,19 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events AppleAVAudioSession1
+#tag Events MenuButton
 	#tag Event
-		Sub ServicesLost()
-		  break
+		Sub Action()
+		  dim iv as new MenuView
+		  self.PushTo iv
 		End Sub
 	#tag EndEvent
+#tag EndEvents
+#tag Events MenuButton1
 	#tag Event
-		Sub ServicesReset()
-		  break
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  me.RequestRecordPermission
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub RecordPermissionReceived(Granted as Boolean)
-		  dim m as new iOSMessageBox
-		  m.Message = "An AVAudioSession instance was initialized, recording permission was "+if (not granted, "not ", "")+"granted"
-		  m.show
+		Sub Action()
+		  dim iv as new InfoView(InfoText)
+		  self.PushTo iv
 		End Sub
 	#tag EndEvent
 #tag EndEvents
