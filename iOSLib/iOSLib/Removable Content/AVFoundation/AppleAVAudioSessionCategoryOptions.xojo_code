@@ -146,7 +146,17 @@ Protected Class AppleAVAudioSessionCategoryOptions
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="AllowAirPlay"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AllowBluetooth"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowBluetootha2DP"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

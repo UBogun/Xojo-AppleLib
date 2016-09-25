@@ -634,18 +634,6 @@ Inherits AppleResponder
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 496E7465726E616C3A2054686520694F5375736572636F6E74726F6C20737562636C61737320696620636F6E7461696E656420696E20737563682E
-		Attributes( hidden )  Function ParentControl() As iOSLibCanvas
-		  if xojocontrols <> nil and XojoControls.HasKey (id)  then
-		    dim wr as weakref = XojoControls.Value (id)
-		    if wr <> NIL then
-		      return iOSLIbCanvas(wr.Value)
-		    end if
-		  end if
-		  
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0
 		Shared Sub PerformSystemAnimation(animation as UISystemAnimation, views as applearray, options as uinteger, animations as appleblock = nil, completion as appleblock = nil)
 		  Declare sub performSystemAnimation lib UIKitLibname selector "performSystemAnimation:onViews:options:animations:completion:" _
@@ -670,18 +658,8 @@ Inherits AppleResponder
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 496E7465726E616C20666F72207265676973746572696E6720746865206D616E746C6520694F5355736572436F6E74726F6C2E
-		Attributes( hidden )  Sub RegisterControl(ParentControl as iOSLIbView)
-		  if XojoControls = nil then XojoControls = new Dictionary
-		  XojoControls.Value (id) = weakref.create(parentcontrol)
-		  
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 5265676973746572732074686520636F6E74726F6C20697473656C662061732061205765616B52656620696E2061207368617265642044696374696F6E6172792E
 		Attributes( hidden )  Sub RegisterIdentity(Identity As object)
-		  if XojoIdentity = nil then XojoIdentity = new xojo.Core.Dictionary
 		  XojoIdentity.Value (id) = xojo.core.WeakRef.Create(Identity)
 		  super.RegisterIdentity (Identity)
 		End Sub
@@ -714,14 +692,6 @@ Inherits AppleResponder
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub removeConstraints Lib uikitlibname Selector "removeConstraints:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
-
-	#tag Method, Flags = &h0, Description = 496E7465726E616C20666F72207265676973746572696E6720746865206D616E746C6520694F5355736572436F6E74726F6C2E
-		Attributes( hidden )  Sub RemoveControl()
-		  if XojoControls <> nil then
-		    if XojoControls.HasKey(id) then XojoControls.Remove id
-		  end if
-		End Sub
-	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 556E6C696E6B732074686520766965772066726F6D206974732073757065727669657720616E64206974732077696E646F772C20616E642072656D6F7665732069742066726F6D2074686520726573706F6E64657220636861696E2E
 		Sub RemoveFromSuperview()
@@ -2154,9 +2124,16 @@ Inherits AppleResponder
 		Window As AppleWindow
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
+	#tag ComputedProperty, Flags = &h21
+		#tag Getter
+			Get
+			  static mxojoidentity as xojo.Core.Dictionary
+			  if mxojoidentity = nil then mxojoidentity = new xojo.Core.Dictionary
+			  return mxojoidentity
+			End Get
+		#tag EndGetter
 		Private Shared XojoIdentity As xojo.Core.Dictionary
-	#tag EndProperty
+	#tag EndComputedProperty
 
 
 	#tag Enum, Name = UIDynamicItemCollisionBoundsType, Flags = &h0
