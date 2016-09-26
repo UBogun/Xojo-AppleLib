@@ -3,9 +3,10 @@ Protected Class iOSLIbView
 Inherits iOSLibResponder
 	#tag Event
 		Sub Close()
-		  RaiseEvent close
 		  RemoveHandlers
 		  me.mid = nil
+		  RaiseEvent close
+		  
 		End Sub
 	#tag EndEvent
 
@@ -344,38 +345,45 @@ Inherits iOSLibResponder
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub RemoveHandlers()
-		  RemoveHandler mid.DidAddSubview, AddressOf informonDidAddSubview
-		  RemoveHandler mid.DidMoveToSuperview, AddressOf informonDidMoveToSuperview
-		  RemoveHandler mid.DidMoveToWindow, AddressOf informOnDidMoveToWindow
-		  // RemoveHandler mid.DrawRect, AddressOf informOnDrawRect
-		  RemoveHandler mid.layoutSubviews, AddressOf informOnlayoutSubviews
-		  RemoveHandler mid.tintColorDidChange, AddressOf informontintColorDidChange
-		  RemoveHandler mid.TraitCollectionDidChange, AddressOf informonTraitCollectionDidChange
-		  RemoveHandler mid.WillMoveToSuperview, AddressOf informonWillMoveToSuperview
-		  RemoveHandler mid.WillMoveToWindow, AddressOf informonWillMoveToWindow
-		  RemoveHandler mid.WillRemoveSubview, AddressOf informonWillRemoveSubview
-		  
-		  
-		  RemoveHandler AppleObject.TouchesBeganwithEvent, AddressOf informonTouchesBeganwithEvent
-		  RemoveHandler AppleObject.TouchesCancelledwithEvent, AddressOf informonTouchesCancelledwithEvent
-		  RemoveHandler AppleObject.TouchesEndedwithEvent, AddressOf informonTouchesEndedwithEvent
-		  RemoveHandler AppleObject.TouchesMovedwithEvent, AddressOf informonTouchesMovedwithEvent
-		  RemoveHandler AppleObject.EstimatedPropertiesUpdated, AddressOf informonEstimatedPropertiesUpdated
-		  
-		  
-		  RemoveHandler AppleObject.MotionBeganwithEvent, AddressOf informonMotionBeganwithEvent
-		  RemoveHandler AppleObject.MotionCancelledwithEvent, AddressOf informonMotionCancelledwithEvent
-		  RemoveHandler AppleObject.MotionEndedwithEvent, AddressOf informonMotionEndedwithEvent
-		  
-		  RemoveHandler AppleObject.PressesBeganwithEvent, AddressOf informonPressesBeganwithEvent
-		  RemoveHandler AppleObject.PressesCancelledwithEvent, AddressOf informonPressesCancelledwithEvent
-		  RemoveHandler AppleObject.PressesEndedwithEvent, AddressOf informonPressesEndedwithEvent
-		  RemoveHandler AppleObject.PressesChangedwithEvent, AddressOf informonPressesChangedwithEvent
-		  
-		  RemoveHandler AppleObject.AnimationDidStart, Addressof informonAnimationDidStart
-		  RemoveHandler AppleObject.animationDidStop, AddressOf informonAnimationDidStop
+	#tag Method, Flags = &h1
+		Protected Sub RemoveHandlers()
+		  #pragma BreakOnExceptions false
+		  // This may cause a NilObjectException where I overrid the handlers manually in a subclass to gain speed.
+		  // Therefore the Try/Catch clause.
+		  try
+		    RemoveHandler AppleObject.DidAddSubview, AddressOf informonDidAddSubview
+		    RemoveHandler AppleObject.DidMoveToSuperview, AddressOf informonDidMoveToSuperview
+		    RemoveHandler AppleObject.DidMoveToWindow, AddressOf informOnDidMoveToWindow
+		    // RemoveHandler mid.DrawRect, AddressOf informOnDrawRect
+		    RemoveHandler AppleObject.layoutSubviews, AddressOf informOnlayoutSubviews
+		    RemoveHandler AppleObject.tintColorDidChange, AddressOf informontintColorDidChange
+		    RemoveHandler AppleObject.TraitCollectionDidChange, AddressOf informonTraitCollectionDidChange
+		    RemoveHandler AppleObject.WillMoveToSuperview, AddressOf informonWillMoveToSuperview
+		    RemoveHandler AppleObject.WillMoveToWindow, AddressOf informonWillMoveToWindow
+		    RemoveHandler AppleObject.WillRemoveSubview, AddressOf informonWillRemoveSubview
+		    
+		    
+		    RemoveHandler AppleObject.TouchesBeganwithEvent, AddressOf informonTouchesBeganwithEvent
+		    RemoveHandler AppleObject.TouchesCancelledwithEvent, AddressOf informonTouchesCancelledwithEvent
+		    RemoveHandler AppleObject.TouchesEndedwithEvent, AddressOf informonTouchesEndedwithEvent
+		    RemoveHandler AppleObject.TouchesMovedwithEvent, AddressOf informonTouchesMovedwithEvent
+		    RemoveHandler AppleObject.EstimatedPropertiesUpdated, AddressOf informonEstimatedPropertiesUpdated
+		    
+		    
+		    RemoveHandler AppleObject.MotionBeganwithEvent, AddressOf informonMotionBeganwithEvent
+		    RemoveHandler AppleObject.MotionCancelledwithEvent, AddressOf informonMotionCancelledwithEvent
+		    RemoveHandler AppleObject.MotionEndedwithEvent, AddressOf informonMotionEndedwithEvent
+		    
+		    RemoveHandler AppleObject.PressesBeganwithEvent, AddressOf informonPressesBeganwithEvent
+		    RemoveHandler AppleObject.PressesCancelledwithEvent, AddressOf informonPressesCancelledwithEvent
+		    RemoveHandler AppleObject.PressesEndedwithEvent, AddressOf informonPressesEndedwithEvent
+		    RemoveHandler AppleObject.PressesChangedwithEvent, AddressOf informonPressesChangedwithEvent
+		    
+		    RemoveHandler AppleObject.AnimationDidStart, Addressof informonAnimationDidStart
+		    RemoveHandler AppleObject.animationDidStop, AddressOf informonAnimationDidStop
+		  Catch
+		    
+		  end try
 		End Sub
 	#tag EndMethod
 

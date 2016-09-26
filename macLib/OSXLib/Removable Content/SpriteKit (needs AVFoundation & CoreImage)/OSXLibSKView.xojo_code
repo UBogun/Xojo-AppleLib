@@ -9,8 +9,10 @@ Inherits OSXLibView
 
 	#tag Event
 		Sub Close()
-		  mAppleObject = nil
 		  RaiseEvent Close
+		  RemoveHandlers
+		  mAppleObject = nil
+		  
 		End Sub
 	#tag EndEvent
 
@@ -159,6 +161,25 @@ Inherits OSXLibView
 		Private Sub informonSceneWillMoveToView(view as AppleSKView, scene as appleskscene)
 		  RaiseEvent SceneDidMoveToView (scene)
 		  #Pragma unused view
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RemoveHandlers()
+		  RemoveHandler AppleObject.UpdateScene, Addressof InformOnSceneUpdate
+		  RemoveHandler AppleObject.DidEvaluateActions, Addressof informOnDidEvaluateActions
+		  RemoveHandler AppleObject.DidSimulatePhysics, Addressof informOnDidSimulatePhysics
+		  RemoveHandler AppleObject.didApplyConstraints, Addressof informondidApplyConstraints
+		  RemoveHandler AppleObject.FinishedSceneUpdate, Addressof informondidFinishUpdateForScene
+		  RemoveHandler AppleObject.SceneSizeChanged, Addressof InformOnSceneSizeChange
+		  RemoveHandler appleObject.SceneDidLoad, Addressof informonSceneDidLoad
+		  RemoveHandler AppleObject.SceneWillMoveFromView, Addressof informonSceneWillMoveFromView
+		  RemoveHandler AppleObject.SceneDidMoveToView, addressof informOnSceneWillMoveToView
+		  
+		  RemoveHandler AppleObject.ContactBegan, addressOf informOnDidBeginContact
+		  RemoveHandler AppleObject.ContactEnded, addressOf informOnDidEndContact
+		  
+		  
 		End Sub
 	#tag EndMethod
 

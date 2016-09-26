@@ -175,7 +175,7 @@ Inherits AppleResponder
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithFrame(alloc(classptr), frame))
+		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame))
 		  MHasOwnership = true
 		  
 		End Sub
@@ -1077,10 +1077,6 @@ Inherits AppleResponder
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function initWithFrame Lib appkitlibname Selector "initWithFrame:" (id as ptr, frame as foundationframework . nsrect) As ptr
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0, Description = 496E76616C696461746573207468652076696577E280997320696E7472696E73696320636F6E74656E742073697A652E0A43616C6C2074686973207768656E20736F6D657468696E67206368616E67657320696E20796F757220637573746F6D2076696577207468617420696E76616C6964617465732069747320696E7472696E73696320636F6E74656E742073697A652E205468697320616C6C6F77732074686520636F6E73747261696E742D6261736564206C61796F75742073797374656D20746F2074616B6520746865206E657720696E7472696E73696320636F6E74656E742073697A6520696E746F206163636F756E7420696E20697473206E657874206C61796F757420706173732E
 		Sub InvalidateIntrinsicContentSize()
 		  invalidateIntrinsicContentSize (id)
@@ -1553,7 +1549,7 @@ Inherits AppleResponder
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event DidAddSubview(Subviev as appleview)
+		Event DidAddSubview(Subview as appleview)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0

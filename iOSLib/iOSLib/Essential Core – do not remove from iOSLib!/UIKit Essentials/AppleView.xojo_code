@@ -419,8 +419,13 @@ Inherits AppleResponder
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_DidMoveToWindow(pid as ptr, sel as ptr)
 		  dim ego as AppleView = InformInstance(pid)
-		  if ego <> nil  then  ego.informonDidMoveToWindow
-		  
+		  if ego <> nil  then  
+		    if ego.Window <> nil then
+		      ego.informonDidMoveToWindow
+		    else
+		      ego.informOnClose
+		    end if
+		  end if
 		  #Pragma Unused  sel
 		End Sub
 	#tag EndMethod
@@ -496,6 +501,16 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnClose()
+		  RaiseEvent Close
+		  
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonDidAddSubview(view as ptr)
 		  RaiseEvent DidAddSubview ( AppleView.makefromptr( view))
 		  
@@ -554,8 +569,11 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informonwillMoveToWindow(window as Ptr)
-		  RaiseEvent WillMoveToWindow ( applewindow.MakefromPtr(window))
-		  
+		  if window <> nil then
+		    RaiseEvent WillMoveToWindow ( applewindow.MakefromPtr(window))
+		  else
+		    RaiseEvent Close
+		  end if
 		  
 		  
 		  
@@ -1178,8 +1196,12 @@ Inherits AppleResponder
 	#tag EndMethod
 
 
+	#tag Hook, Flags = &h0
+		Event Close()
+	#tag EndHook
+
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
-		Event DidAddSubview(view as AppleView)
+		Event DidAddSubview(Subview as AppleView)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20766965772077617320617474616368656420746F206120737570657276696577206173206120737562766965772E
@@ -1203,7 +1225,7 @@ Inherits AppleResponder
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077696C6C2062652061646465642061732061207375627669657720746F2061207375706572766965772E
-		Event WillMoveToSuperview(view as AppleView)
+		Event WillMoveToSuperview(Superview as AppleView)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077696C6C2062652073686F776E206F6E2073637265656E2E
@@ -1211,7 +1233,7 @@ Inherits AppleResponder
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077696C6C206C6F7365206120737562766965772E
-		Event WillRemoveSubview(view as AppleView)
+		Event WillRemoveSubview(Subview as AppleView)
 	#tag EndHook
 
 

@@ -16,6 +16,7 @@ Begin iosView MenuView
       AutoLayout      =   Table1, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   Table1, 3, TopLayoutGuide, 3, False, +1.00, 1, 1, 0, 
       EditingEnabled  =   False
+      EditingEnabled  =   False
       EstimatedRowHeight=   -1
       Format          =   "0"
       Height          =   415.0
@@ -39,6 +40,7 @@ End
 		  me.AddSection("Custom Controls")
 		  me.AddRow 0, me.CreateCell("AVAudioSession","The base class for recording and playing audio")
 		  me.AddRow 0, me.CreateCell("iOSLibNotificationCenter","A wrapper class for NSUserNotifications")
+		  me.AddRow 0, me.CreateCell("iOSLibSKView", "SceneKit for iOS")
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -49,6 +51,8 @@ End
 		    v = new AVAudioView
 		  case "iOSLibNotificationCenter"
 		    v = new NotificationView
+		  case "iOSLibSKView"
+		    v = new SceneKitView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub

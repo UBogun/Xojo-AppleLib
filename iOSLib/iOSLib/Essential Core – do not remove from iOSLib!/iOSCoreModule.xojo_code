@@ -37,6 +37,9 @@ Protected Module iOSCoreModule
 	#tag Constant, Name = kClassNotAvailable, Type = Text, Dynamic = False, Default = \"This class does not exist on this system.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = kMethodNotavailable, Type = Text, Dynamic = False, Default = \"Method is not available on this system.", Scope = Protected
+	#tag EndConstant
+
 
 	#tag ViewBehavior
 		#tag ViewProperty

@@ -2,8 +2,8 @@
 Protected Class AppleTextfield
 Inherits AppleControl
 	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
-		Sub DidAddSubview(view as AppleView)
-		  #pragma unused view
+		Sub DidAddSubview(Subview as AppleView)
+		  #pragma unused subview
 		End Sub
 	#tag EndEvent
 
@@ -60,8 +60,8 @@ Inherits AppleControl
 	#tag EndEvent
 
 	#tag Event , Description = 4669726573207768656E2074686520766965772077696C6C206C6F7365206120737562766965772E
-		Sub WillRemoveSubview(view as AppleView)
-		  #pragma unused view
+		Sub WillRemoveSubview(Subview as AppleView)
+		  #pragma unused Subview
 		End Sub
 	#tag EndEvent
 
