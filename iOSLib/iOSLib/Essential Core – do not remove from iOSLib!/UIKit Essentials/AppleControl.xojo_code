@@ -15,6 +15,12 @@ Inherits AppleView
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub Constructor()
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52656D6F76657320612074617267657420616E6420616374696F6E20666F72206120706172746963756C6172206576656E7420286F72206576656E7473292066726F6D20616E20696E7465726E616C206469737061746368207461626C652E
 		Sub RemoveTarget(Target as appleobject, SEL as Ptr, Events as AppleControlEvent)
 		  Declare Sub removeTarget lib UIKitLibname selector "removeTarget:action:forControlEvents:" (id as ptr, target as ptr, SEL as ptr, events as UInteger)

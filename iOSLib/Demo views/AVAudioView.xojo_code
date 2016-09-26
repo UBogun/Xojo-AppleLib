@@ -12,16 +12,13 @@ Begin iosView AVAudioView
       Category        =   ""
       DebugDescription=   ""
       HasOwnership    =   False
-      Height          =   32
-      Height          =   32
       InputAvailable  =   False
       InputGain       =   0.0
       InputGainSettable=   False
       InputLatency    =   0.0
       InputNumberOfChannels=   0
       IOBufferDuration=   0.0
-      Left            =   60
-      Left            =   60
+      Left            =   0
       LockedInPosition=   False
       MaximumInputNumberOfChannels=   0
       MaximumOutputNumberOfChannels=   0
@@ -41,10 +38,7 @@ Begin iosView AVAudioView
       SampleRate      =   0.0
       Scope           =   2
       SecondaryAudioShouldBeSilenced=   False
-      Top             =   60
-      Top             =   60
-      Width           =   32
-      Width           =   32
+      Top             =   0
    End
    Begin iOSButton Button1
       AccessibilityHint=   ""
@@ -71,7 +65,7 @@ Begin iosView AVAudioView
       AccessibilityLabel=   ""
       AutoLayout      =   Button2, 1, Button1, 2, False, +1.00, 1, 1, *kStdControlGapH, 
       AutoLayout      =   Button2, 7, , 0, False, +1.00, 1, 1, 100, 
-      AutoLayout      =   Button2, 11, Button1, 11, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   Button2, 10, Button1, 10, False, +1.00, 1, 1, 0, 
       AutoLayout      =   Button2, 8, , 0, False, +1.00, 1, 1, 30, 
       Caption         =   "Stop Engine"
       Enabled         =   True
@@ -96,7 +90,7 @@ Begin iosView AVAudioView
       Editable        =   False
       Height          =   318.0
       KeyboardType    =   "0"
-      Left            =   0.0
+      Left            =   0
       LockedInPosition=   False
       Scope           =   0
       Text            =   "This is a very crude example for using AVAudioSession to record and examine audio data in realtime. \n\nPlease note that the audio and timing data is returned on a background thread, so you cannot do too much with it without endangering your app’s stability. And please note this kind of handling is not officially supported and might break in the future.\n\nAnyway, because of the limitations background handling brings with it, the example code in the CallBackBlock method only retains the received pointers and adds them to shared variables. You must address shared properties, a lock to a Xojo instance would crash the app.\n\nLuckily, an AVAudioSession is a Singleton anyway so you won’t need to install more than one on an iOSview. You should adjust the timer period to your desired sample frequency. In the method analyzing both shared ptr properties, take ownership of the classes. That what\n    dim buffer as new AppleAVAudioPCMBuffer(buf, true, false) and\n    dim buffertime as new AppleAVAudioTime(time, true, false)\nin the time action method EngineUpdate do. Else you will create memory leaks. And of course you should then do something valuable with them, not only show their time …"
@@ -104,14 +98,14 @@ Begin iosView AVAudioView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      Top             =   65.0
+      Top             =   65
       Visible         =   True
       Width           =   320.0
    End
    Begin iOSTextField TextField1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
-      AutoLayout      =   TextField1, 1, , 0, False, +1.00, 1, 1, 20, 
+      AutoLayout      =   TextField1, 1, <Parent>, 1, False, +1.00, 1, 1, 20, 
       AutoLayout      =   TextField1, 2, <Parent>, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, 
       AutoLayout      =   TextField1, 8, , 0, True, +1.00, 1, 1, 31, 
       AutoLayout      =   TextField1, 4, Button2, 3, False, +1.00, 1, 1, -*kStdControlGapV, 

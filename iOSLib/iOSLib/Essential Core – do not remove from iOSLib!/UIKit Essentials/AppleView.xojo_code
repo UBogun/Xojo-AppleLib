@@ -269,24 +269,10 @@ Inherits AppleResponder
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function getAdjustsFontSizeToFitWidth() As Boolean
-		  Declare function adjustsFontSizeToFitWidth lib UIKitLibname selector "adjustsFontSizeToFitWidth" (id as ptr) as Boolean
-		  return adjustsFontSizeToFitWidth (id)
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520617070656172616E63652070726F787920666F7220746865207265636569766572207468617420686173207468652070617373656420747261697420636F6C6C656374696F6E2E
 		Attributes( hidden )  Shared Function getAppearanceforTrait(classptr as ptr, Collection as AppleTraitCollection) As ptr
 		  declare function appearanceForTraitCollection lib UIKitLibname selector "appearanceForTraitCollection:" (id as ptr, Collection as ptr) as ptr
 		  return appearanceForTraitCollection(classptr, if (collection = nil, nil, collection.id))
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function getAttributedText() As AppleAttributedString
-		  Declare function attributedText lib UIKitLibname selector "attributedText" (id as ptr) as ptr
-		  return AppleAttributedString.MakeFromPtr (attributedText(id))
 		End Function
 	#tag EndMethod
 
@@ -305,14 +291,6 @@ Inherits AppleResponder
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcontentMode Lib UIKitLibName Selector "contentMode" (id as ptr) As UIViewContentMode
 	#tag EndExternalMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function getFont() As Applefont
-		  Declare function font lib UIKitLibname selector "font" (id as ptr) as Ptr
-		  return applefont.MakeFromPtr (font (id))
-		  
-		End Function
-	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getisDescendantOfView Lib UIKitLibName Selector "isDescendantOfView:" (id as ptr, value as ptr) As Boolean
@@ -334,13 +312,6 @@ Inherits AppleResponder
 		Protected Declare Function getmaskView Lib UIKitLibName Selector "maskView" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function getPlaceHolder() As Text
-		  Declare Function placeholder lib UIKitLibname selector "placeholder" (id as ptr) as CFStringRef
-		  Return placeholder (id)
-		End Function
-	#tag EndMethod
-
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getreadableContentGuide Lib uikitlibname Selector "readableContentGuide" (id as ptr) As Ptr
 	#tag EndExternalMethod
@@ -352,28 +323,6 @@ Inherits AppleResponder
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getsuperview Lib UIKitLibName Selector "superview" (id as ptr) As Ptr
 	#tag EndExternalMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function getText() As Text
-		  Declare function Caption lib UIKitLibname selector "text" (id as ptr) as CFStringRef
-		  return Caption (id)
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function getTextAlignment() As appletextfield.NSTextAlignment
-		  Declare function textAlignment lib UIKitLibname selector "textAlignment" (id as ptr) as appletextfield.NSTextAlignment
-		  return textAlignment (id)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function getTextColor() As AppleColor
-		  Declare function textcolor lib UIKitLibname selector "textColor" (id as ptr) as ptr
-		  return AppleColor.MakeFromPtr (textcolor(id))
-		End Function
-	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function gettintAdjustmentMode Lib UIKitLibName Selector "tintAdjustmentMode" (id as ptr) As UIViewTintAdjustmentMode
@@ -777,20 +726,6 @@ Inherits AppleResponder
 		Protected Declare Sub sendSubviewToBack Lib UIKitLibName Selector "sendSubviewToBack:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub setAdjustsFontSizeToFitWidth(value as Boolean)
-		  Declare sub setAdjustsFontSizeToFitWidth lib UIKitLibname selector "setAdjustsFontSizeToFitWidth:" (id as ptr, value as Boolean)
-		  setAdjustsFontSizeToFitWidth id, value
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub setAttributedText(value as AppleAttributedString)
-		  Declare sub setAttributedText lib UIKitLibname selector "setAttributedText:" (id as ptr, value as Ptr)
-		  setAttributedText id, value.id
-		End Sub
-	#tag EndMethod
-
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setautoresizesSubviews Lib UIKitLibName Selector "setAutoresizesSubviews:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
@@ -802,13 +737,6 @@ Inherits AppleResponder
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setcontentMode Lib UIKitLibName Selector "setContentMode:" (id as ptr, value as UIViewContentMode)
 	#tag EndExternalMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub setFont(font as applefont)
-		  Declare Sub setFont lib UIKitLibname selector "setFont:" (id as ptr, value as Ptr)
-		  setFont id, if (font = nil, nil, font.id)
-		End Sub
-	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setmaskView Lib UIKitLibName Selector "setMaskView:" (id as ptr, value as Ptr)
@@ -846,13 +774,6 @@ Inherits AppleResponder
 		Protected Declare Sub setNeedsLayout Lib UIKitLibName Selector "setNeedsLayout" (id as ptr)
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub SetPlaceHolder(value as cfstringRef)
-		  Declare Sub setPlaceholder lib UIKitLibname selector "setPlaceholder:" (id as ptr, value as CFStringRef)
-		  setPlaceholder id, value
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 5365747320746865207472616E73666F726D2070726F706572747920746F2074686174206F662061202872616469616E732920726F746174696F6E2E
 		Sub SetRotation(Radians as double)
 		  Transform = TransformExtension.CGAffineTransformMakeRotation (radians)
@@ -862,27 +783,6 @@ Inherits AppleResponder
 	#tag Method, Flags = &h0, Description = 5365747320746865207472616E73666F726D2070726F706572747920746F20746865207363616C6520666163746F722873292E
 		Sub SetScale(Xfactor as Double, YFactor as Double = 0)
 		  Transform = TransformExtension.CGAffineTransformMakeScale ( Xfactor, YFactor)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub setText(value as CFStringRef)
-		  Declare sub setCaption lib UIKitLibname selector "setText:" (id as ptr, value as CFStringRef)
-		  setCaption id, value
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub setTextAlignment(value as appletextfield.NSTextAlignment)
-		  Declare sub setTextAlignment lib UIKitLibname selector "setTextAlignment:" (id as ptr, value as appletextfield.NSTextAlignment)
-		  setTextAlignment id, value
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Sub setTextColor(value as AppleColor)
-		  Declare sub setTextColor lib UIKitLibname selector "setTextColor:" (id as ptr, value as ptr)
-		  setTextColor id, value.id
 		End Sub
 	#tag EndMethod
 

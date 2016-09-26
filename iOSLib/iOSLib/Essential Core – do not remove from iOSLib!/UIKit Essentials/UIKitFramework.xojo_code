@@ -9,7 +9,15 @@ Protected Module UIKitFramework
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getadjustsFontSizeToFitWidth Lib UIKitLibName Selector "adjustsFontSizeToFitWidth" (id as ptr) As boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getalpha Lib UIKitLibName Selector "alpha" (id as ptr) As CGFLoat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getattributedText Lib UIKitLibName Selector "attributedText" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -84,6 +92,10 @@ Protected Module UIKitFramework
 		Protected Declare Function getfirstBaselineAnchor Lib uikitlibname Selector "firstBaselineAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getfont Lib UIKItLibName Selector "font" (id as ptr) As ptr
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
 		Protected Declare Function getForce Lib uikitlibname Selector "force" (id as ptr) As CGFloat
 	#tag EndExternalMethod
@@ -143,6 +155,10 @@ Protected Module UIKitFramework
 		Protected Declare Function getowningView Lib uikitlibname Selector "owningView" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getplaceholder Lib UIKItLibName Selector "placeholder" (id as ptr) As cfstringref
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
 		Protected Declare Function getpreciseLocationInView Lib uikitlibname Selector "preciseLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
 	#tag EndExternalMethod
@@ -173,6 +189,18 @@ Protected Module UIKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getsizeThatFits Lib UIKitLibName Selector "sizeThatFits:" (id as ptr, value as FoundationFrameWork . NSSize) As FoundationFrameWork.NSsize
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getText Lib UIKItLibName Selector "text" (id as ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getTextAlignment Lib UIKItLibName Selector "textAlignment" (id as ptr) As AppleTextfield.NSTextAlignment
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gettextColor Lib UIKitLibName Selector "textColor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -220,7 +248,15 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setadjustsFontSizeToFitWidth Lib UIKitLibName Selector "setAdjustsFontSizeToFitWidth:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setAlpha Lib UIKItLibName Selector "setAlpha:" (id as ptr, value as cgfloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setattributedText Lib uikitlibname Selector "setAttributedText:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -270,6 +306,10 @@ Protected Module UIKitFramework
 		End Sub
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setfont Lib UIKitLibName Selector "setFont:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub setFrame(id as ptr, value as FoundationFramework.NSRect)
 		  declare sub setFrame lib UIKitLibname selector "setFrame:" (id as Ptr, value  as FoundationFramework.NSRect)
@@ -307,11 +347,27 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setplaceholder Lib UIKItLibName Selector "setPlaceholder:" (id as ptr, value as cfstringref)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setScale Lib UIKItLibName Selector "setScale:" (id as ptr, value as cgfloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setseparatorInset Lib UIKitLibName Selector "setSeparatorInset:" (id as ptr, value as UIEdgeInsets)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub settext Lib UIKItLibName Selector "setText:" (id as ptr, value as cfstringref)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setTextAlignment Lib UIKItLibName Selector "setTextAlignment:" (id as ptr, value as AppleTextfield . NSTextAlignment)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub settextColor Lib UIKitLibName Selector "setTextColor:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

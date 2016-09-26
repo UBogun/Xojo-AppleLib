@@ -104,7 +104,7 @@ Begin iosView IntroView
       AutoLayout      =   MenuButton1, 2, <Parent>, 2, False, +1.00, 2, 1, -*kStdGapCtlToViewH, 
       AutoLayout      =   MenuButton1, 7, , 0, False, +1.00, 1, 1, 48, 
       AutoLayout      =   MenuButton1, 8, , 0, False, +1.00, 1, 1, 30, 
-      AutoLayout      =   MenuButton1, 11, MenuButton, 11, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   MenuButton1, 10, MenuButton, 10, False, +1.00, 1, 1, 0, 
       Caption         =   "Info"
       Enabled         =   True
       Height          =   30.0
