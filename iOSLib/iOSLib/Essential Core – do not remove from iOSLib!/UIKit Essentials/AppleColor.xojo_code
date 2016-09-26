@@ -21,6 +21,10 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h0
+		Declare Function colorWithDisplayP3Red Lib UIKitLibname Selector "colorWithDisplayP3Red:green:blue:alpha:" (id as ptr, Red as CGFloat, green as CGFloat, blue as CGFloat, alpha as cgfloat) As Ptr
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h1021
 		Private Sub Constructor()
 		  
@@ -100,6 +104,16 @@ Inherits AppleObject
 		Sub Constructor(anImage as iosimage)
 		  Constructor (new appleimage(anImage))
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4372656174657320616E642072657475726E73206120636F6C6F72206F626A656374207573696E672074686520737065636966696564206F70616369747920616E642052474220636F6D706F6E656E742076616C75657320696E2074686520446973706C617920503320636F6C6F722073706163652E
+		Shared Function ExtendedRGBColor(Red As Double, Green As Double, Blue As Double, Alpha as Double = 0) As applecolor
+		  if RespondsToSelector("colorWithDisplayP3Red:green:blue:alpha:", classptr)  then
+		    return new AppleColor(colorWithDisplayP3Red(classptr, Red, green,blue, Alpha), true, true)
+		  else
+		    MakeException iOSCoreModule.kMethodNotavailable
+		  end if
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 436F6E76657273696F6E206D6574686F642C2073616D65206173206E6577204170706C65436F6C6F7220284347436F6C6F7229
@@ -260,7 +274,7 @@ Inherits AppleObject
 
 	#tag Note, Name = Status complete & documented
 		
-		iOS 9.2
+		iOS 10. No external declares yet.
 	#tag EndNote
 
 

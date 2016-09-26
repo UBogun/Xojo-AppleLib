@@ -75,7 +75,7 @@ Inherits AppleView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initwithframe(alloc(classptr), frame))
+		  Super.Constructor(AppKitFramework.initwithframe(alloc(classptr), frame))
 		  MHasOwnership = true
 		  
 		  

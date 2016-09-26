@@ -128,6 +128,10 @@ Protected Module UIKitFramework
 		Protected Declare Function getlocationInView Lib uikitlibname Selector "locationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getmiterLimit Lib uikitlibname Selector "miterLimit" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h1
 		Protected Function getOpaque(id as ptr) As Boolean
 		  declare function opaque lib UIKitLibname selector "isOpaque" (id as ptr) as Boolean
@@ -140,15 +144,15 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
-		Protected Declare Function getpreciseLocationInView Lib uikitlibname Alias "preciseLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
+		Protected Declare Function getpreciseLocationInView Lib uikitlibname Selector "preciseLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
-		Protected Declare Function getprecisePreviousLocationInView Lib uikitlibname Alias "precisePreviousLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
+		Protected Declare Function getprecisePreviousLocationInView Lib uikitlibname Selector "precisePreviousLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
-		Protected Declare Function getpreviousLocationInView Lib uikitlibname Alias "previousLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
+		Protected Declare Function getpreviousLocationInView Lib uikitlibname Selector "previousLocationInView:" (id as ptr, view as Ptr) As FoundationFrameWork.NSPoint
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -284,6 +288,10 @@ Protected Module UIKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setIdentifier Lib UIKItLibName Selector "setIdentifier:" (id as ptr, value as cfstringref)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setmiterLimit Lib UIKItLibName Selector "setMiterLimit:" (id as ptr, value as cgfloat)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1

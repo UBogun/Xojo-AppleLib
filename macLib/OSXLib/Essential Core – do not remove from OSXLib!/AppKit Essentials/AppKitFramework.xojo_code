@@ -401,6 +401,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function initWithFrame Lib appkitlibname Selector "initWithFrame:" (id as ptr, frame as foundationframework . nsrect) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function initWithSize Lib appkitlibname Selector "initWithSize:" (id as ptr, size as FoundationFrameWork . NSSize) As Ptr
 	#tag EndExternalMethod
 
