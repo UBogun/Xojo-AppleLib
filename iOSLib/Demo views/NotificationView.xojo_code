@@ -16,6 +16,7 @@ Begin iosView NotificationView
       AutoLayout      =   Table1, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   Table1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
       EditingEnabled  =   False
+      EditingEnabled  =   False
       EstimatedRowHeight=   -1
       Format          =   "0"
       Height          =   348.0
@@ -30,10 +31,14 @@ Begin iosView NotificationView
    Begin ioslibnotificationcenter AppleNotificationCenter1
       DebugDescription=   ""
       HasOwnership    =   False
+      Left            =   0
       LockedInPosition=   False
       mHasOwnership   =   False
+      PanelIndex      =   -1
+      Parent          =   ""
       RetainCount     =   ""
       Scope           =   0
+      Top             =   0
    End
    Begin iOSTextField TextField1
       AccessibilityHint=   ""
@@ -65,7 +70,7 @@ Begin iosView NotificationView
       AutoLayout      =   Button1, 1, TextField1, 2, False, +1.00, 1, 1, *kStdControlGapH, 
       AutoLayout      =   Button1, 7, , 0, False, +1.00, 1, 1, 56, 
       AutoLayout      =   Button1, 8, , 0, False, +1.00, 1, 1, 30, 
-      AutoLayout      =   Button1, 11, TextField1, 11, False, +1.00, 1, 1, , 
+      AutoLayout      =   Button1, 10, TextField1, 10, False, +1.00, 1, 1, , 
       Caption         =   "Info"
       Enabled         =   True
       Height          =   30.0

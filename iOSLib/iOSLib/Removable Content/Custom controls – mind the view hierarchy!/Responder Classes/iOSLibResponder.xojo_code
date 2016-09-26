@@ -157,10 +157,6 @@ Inherits iOSUserControl
 		Event RemoteControl(anEvent as AppleNSEvent)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061206D6F74696F6E2068617320656E646564
-		Event RemoteControlReceived(anEvent as AppleNSEvent)
-	#tag EndHook
-
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207573657220746F75636865732074686520636F6E74726F6C2077697468206F6E65206F72206D6F72652066696E676572732E
 		Event TouchesBegan(Touches() as appletouch, anEvent as AppleNSEvent)
 	#tag EndHook

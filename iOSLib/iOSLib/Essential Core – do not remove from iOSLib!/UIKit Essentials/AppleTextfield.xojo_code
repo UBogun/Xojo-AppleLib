@@ -1,6 +1,6 @@
 #tag Class
 Protected Class AppleTextfield
-Inherits AppleControl
+Inherits AppleTextinputControl
 	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
 		Sub DidAddSubview(Subview as AppleView)
 		  #pragma unused subview
@@ -68,16 +68,14 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520636F6E74726F6CE280997320626F726465722072656374616E676C652E
 		Function BorderRectForBounds(Bounds as FoundationFramework.NSRect) As FoundationFramework.NSRect
-		  Declare Function borderRectForBounds lib UIKitLibname selector "borderRectForBounds:" (id as ptr, bounds  as FoundationFramework.NSRect)  as FoundationFramework.NSRect
-		  return  borderRectForBounds (id, bounds)
+		  return  getborderRectForBounds (mid, bounds)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652064726177696E672072656374616E676C6520666F7220746865206275696C742D696E20636C65617220627574746F6E2E
 		Function ClearButtonRectForBounds(Bounds as FoundationFramework.NSRect) As FoundationFramework.NSRect
-		  Declare Function clearButtonRectForBounds lib UIKitLibname selector "clearButtonRectForBounds:" (id as ptr, bounds  as FoundationFramework.NSRect)  as FoundationFramework.NSRect
-		  return  clearButtonRectForBounds (id, bounds)
+		  return  getclearButtonRectForBounds (mid, bounds)
 		  
 		End Function
 	#tag EndMethod
@@ -99,12 +97,12 @@ Inherits AppleControl
 		  // Constructor() -- From AppleResponder
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (UIKitFramework.InitWithFrame (alloc(ClassPtr), aFrame))
-		  mHasOwnership = true
+		  Super.Constructor (UIKitFramework.InitWithFrame (alloc(ClassPtr), aFrame), true)
+		  me.RegisterIdentity(self)
 		  me.UserInteractionEnabled = true
 		  me.ExclusiveTouch = False
 		  me.AutoresizesSubviews = true
-		  me.setDelegate id, id
+		  me.DelegateObject = self
 		  me.BorderStyle = UITextFieldBorderStyle.RoundedRect
 		  
 		End Sub
@@ -118,7 +116,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 447261777320746865206669656C642773207465787420696E20746865207370656369666965642072656374616E676C6520286966206120636F6E746578742065786973747329
 		Sub DrawText(rect as FoundationFrameWork.nsrect)
-		  DrawTextinRect (id, rect)
+		  DrawTextinRect (mid, rect)
 		  
 		End Sub
 	#tag EndMethod
@@ -129,11 +127,18 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652072656374616E676C6520696E207768696368206564697461626C6520746578742063616E20626520646973706C617965642E
 		Function EditingRectForBounds(Bounds as FoundationFramework.NSRect) As FoundationFramework.NSRect
-		  Declare Function editingRectForBounds lib UIKitLibname selector "editingRectForBounds:" (id as ptr, bounds  as FoundationFramework.NSRect)  as FoundationFramework.NSRect
-		  return  editingRectForBounds (id, bounds)
+		  return  geteditingRectForBounds (mid, bounds)
 		  
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
+		Attributes( hidden ) Private Declare Function getallowsEditingTextAttributes Lib uikitlibname Selector "allowsEditingTextAttributes" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getattributedPlaceholder Lib uikitlibname Selector "attributedPlaceholder" (id as ptr) As Ptr
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
 		Attributes( hidden ) Private Declare Function getautocapitalizationType Lib uikitlibname Selector "autocapitalizationType" (id as ptr) As UITextAutocapitalizationType
@@ -141,6 +146,46 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h21
 		Attributes( hidden ) Private Declare Function getautocorrectionType Lib uikitlibname Selector "autocorrectionType" (id as ptr) As UITextAutocorrectionType
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getbackground Lib uikitlibname Selector "background" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getborderRectForBounds Lib uikitlibname Selector "borderRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
+		Attributes( hidden ) Private Declare Function getborderStyle Lib uikitlibname Selector "borderStyle" (id as ptr) As UITextFieldBorderStyle
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getclearButtonMode Lib uikitlibname Selector "clearButtonMode" (id as ptr) As UITextFieldViewMode
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getclearButtonRectForBounds Lib uikitlibname Selector "clearButtonRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
+		Attributes( hidden ) Private Declare Function getclearsOnBeginEditing Lib uikitlibname Selector "clearsOnBeginEditing" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
+		Attributes( hidden ) Private Declare Function getclearsOnInsertion Lib uikitlibname Selector "clearsOnInsertion" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getdefaultTextAttributes Lib uikitlibname Selector "defaultTextAttributes" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getdisabledBackground Lib uikitlibname Selector "disabledBackground" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function geteditingRectForBounds Lib uikitlibname Selector "editingRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -156,7 +201,39 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getleftView Lib uikitlibname Selector "leftView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getleftViewMode Lib uikitlibname Selector "leftViewMode" (id as ptr) As UITextFieldViewMode
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getleftViewRectForBounds Lib uikitlibname Selector "leftViewRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getminimumFontSize Lib uikitlibname Selector "minimumFontSize" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getplaceholderRectForBounds Lib uikitlibname Selector "placeholderRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Attributes( hidden ) Private Declare Function getreturnKeyType Lib uikitlibname Selector "returnKeyType" (id as ptr) As UIReturnKeyType
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getrightView Lib uikitlibname Selector "rightView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getrightViewMode Lib uikitlibname Selector "rightViewMode" (id as ptr) As UITextFieldViewMode
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function getrightViewRectForBounds Lib uikitlibname Selector "rightViewRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -167,9 +244,17 @@ Inherits AppleControl
 		Attributes( hidden ) Private Declare Function getspellCheckingType Lib uikitlibname Selector "spellCheckingType" (id as ptr) As UITextSpellCheckingType
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function gettextRectForBounds Lib uikitlibname Selector "textRectForBounds:" (id as ptr, bounds as FoundationFrameWork . NSRect) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Function gettypingAttributes Lib uikitlibname Selector "typingAttributes" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h21
 		Private Shared Sub impl_TextFieldDidBeginEditing(pid as ptr, sel as ptr, textfield as ptr)
-		  dim ego as new AppleTextfield (pid)
+		  dim ego as AppleTextfield = AppleTextfield(InformInstance(pid))
 		  ego.informonDidBeginEditing
 		  #Pragma Unused  sel
 		  #Pragma unused textfield
@@ -178,7 +263,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h21
 		Private Shared Sub impl_textFieldDidEndEditing(pid as ptr, sel as ptr, textfield as ptr)
-		  dim ego as new AppleTextfield (pid)
+		  dim ego as AppleTextfield = AppleTextfield(InformInstance(pid))
 		  ego.informonDidEndEditing
 		  
 		  #Pragma Unused  sel
@@ -188,7 +273,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h21
 		Private Shared Function impl_TextFieldShouldBeginEditing(pid as ptr, sel as ptr, textfield as ptr) As Boolean
-		  dim ego as new AppleTextfield (pid)
+		  dim ego as AppleTextfield = AppleTextfield(InformInstance(pid))
 		  return ego.informonShouldBeginEditing
 		  
 		  #Pragma Unused  sel
@@ -198,7 +283,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h21
 		Private Shared Function impl_textFieldshouldChangeCharactersInRange(pid as ptr, sel as ptr, textfield as ptr, range as FoundationFramework.NSRange, ReplacementString As CFStringRef) As Boolean
-		  dim ego as new AppleTextfield (pid)
+		  dim ego as AppleTextfield = AppleTextfield(InformInstance(pid))
 		  return ego.informonShouldChangeCharactersInRange (range, ReplacementString)
 		  
 		  #Pragma Unused  sel
@@ -208,7 +293,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h21
 		Private Shared Function impl_textFieldShouldClear(pid as ptr, sel as ptr, textfield as ptr) As Boolean
-		  dim ego as new AppleTextfield (pid)
+		  dim ego as AppleTextfield = AppleTextfield(InformInstance(pid))
 		  return ego.informonShouldClear
 		  
 		  #Pragma Unused  sel
@@ -218,7 +303,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h21
 		Private Shared Function impl_textFieldShouldEndEditing(pid as ptr, sel as ptr, textfield as ptr) As Boolean
-		  dim ego as new AppleTextfield (pid)
+		  dim ego as AppleTextfield = AppleTextfield(InformInstance(pid))
 		  return ego.informonShouldEndEditing
 		  
 		  #Pragma Unused  sel
@@ -228,7 +313,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h21
 		Private Shared Function impl_textFieldShouldReturn(pid as ptr, sel as ptr, textfield as ptr) As Boolean
-		  dim ego as new AppleTextfield (pid)
+		  dim ego as AppleTextfield = AppleTextfield(InformInstance(pid))
 		  return ego.informonShouldReturn
 		  
 		  #Pragma Unused  sel
@@ -294,8 +379,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652064726177696E672072656374616E676C65206F6620746865206669656C642773206C656674206F7665726C617920766965772E
 		Function LeftViewRectForBounds(Bounds as FoundationFramework.NSRect) As FoundationFramework.NSRect
-		  Declare Function leftViewRectForBounds lib UIKitLibname selector "leftViewRectForBounds:" (id as ptr, bounds  as FoundationFramework.NSRect)  as FoundationFramework.NSRect
-		  return  leftViewRectForBounds (id, bounds)
+		  return  getleftViewRectForBounds (mid, bounds)
 		  
 		End Function
 	#tag EndMethod
@@ -308,19 +392,25 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652064726177696E672072656374616E676C6520666F72207468652074657874206669656C64E280997320706C616365686F6C64657220746578742E
 		Function PlaceholderRectForBounds(Bounds as FoundationFramework.NSRect) As FoundationFramework.NSRect
-		  Declare Function placeholderRectForBounds lib UIKitLibname selector "placeholderRectForBounds:" (id as ptr, bounds  as FoundationFramework.NSRect)  as FoundationFramework.NSRect
-		  return  placeholderRectForBounds (id, bounds)
+		  return  getplaceholderRectForBounds (mid, bounds)
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652064726177696E67206C6F636174696F6E206F6620746865207265636569766572E2809973207269676874206F7665726C617920766965772E
 		Function RightViewRectForBounds(Bounds as FoundationFramework.NSRect) As FoundationFramework.NSRect
-		  Declare Function rightViewRectForBounds lib UIKitLibname selector "rightViewRectForBounds:" (id as ptr, bounds  as FoundationFramework.NSRect)  as FoundationFramework.NSRect
-		  return  rightViewRectForBounds (id, bounds)
+		  return  getrightViewRectForBounds (mid, bounds)
 		  
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setallowsEditingTextAttributes Lib uikitlibname Selector "setAllowsEditingTextAttributes:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setattributedPlaceholder Lib uikitlibname Selector "setAttributedPlaceholder:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
 		Attributes( hidden ) Private Declare Sub setautocapitalizationType Lib uikitlibname Selector "setAutocapitalizationType:" (id as ptr, value as UITextAutocapitalizationType)
@@ -328,6 +418,34 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h21
 		Attributes( hidden ) Private Declare Sub setautocorrectionType Lib uikitlibname Selector "setAutocorrectionType:" (id as ptr, value as UITextAutocorrectionType)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setbackground Lib uikitlibname Selector "setBackground:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
+		Attributes( hidden ) Private Declare Sub setborderStyle Lib uikitlibname Selector "setBorderStyle:" (id as ptr, value as UITextFieldBorderStyle)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setclearButtonMode Lib uikitlibname Selector "setClearButtonMode:" (id as ptr, value as UITextFieldViewMode)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
+		Attributes( hidden ) Private Declare Sub setclearsOnBeginEditing Lib uikitlibname Selector "setClearsOnBeginEditing:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit))
+		Attributes( hidden ) Private Declare Sub setclearsOnInsertion Lib uikitlibname Selector "setClearsOnInsertion:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setdefaultTextAttributes Lib uikitlibname Selector "setDefaultTextAttributes:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setdisabledBackground Lib uikitlibname Selector "setDisabledBackground:" (id as ptr, value as Ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -343,7 +461,27 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setleftView Lib uikitlibname Selector "setLeftView:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setleftViewMode Lib uikitlibname Selector "setLeftViewMode:" (id as ptr, value as UITextFieldViewMode)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setminimumFontSize Lib uikitlibname Selector "setMinimumFontSize:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Attributes( hidden ) Private Declare Sub setreturnKeyType Lib uikitlibname Selector "setReturnKeyType:" (id as ptr, value as UIReturnKeyType)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setrightView Lib uikitlibname Selector "setRightView:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub setrightViewMode Lib uikitlibname Selector "setRightViewMode:" (id as ptr, value as UITextFieldViewMode)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -354,10 +492,13 @@ Inherits AppleControl
 		Attributes( hidden ) Private Declare Sub setspellCheckingType Lib uikitlibname Selector "setSpellCheckingType:" (id as ptr, value as UITextSpellCheckingType)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h21
+		Attributes( hidden ) Private Declare Sub settypingAttributes Lib uikitlibname Selector "setTypingAttributes:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 5468652064726177696E672072656374616E676C6520666F72207468652074657874206669656C64E280997320746578742E
 		Function TextRectForBounds(Bounds as FoundationFramework.NSRect) As FoundationFramework.NSRect
-		  Declare Function textRectForBounds lib UIKitLibname selector "textRectForBounds:" (id as ptr, bounds  as FoundationFramework.NSRect)  as FoundationFramework.NSRect
-		  return  textRectForBounds (id, bounds)
+		  return  gettextRectForBounds (mid, bounds)
 		  
 		End Function
 	#tag EndMethod
@@ -392,31 +533,36 @@ Inherits AppleControl
 	#tag EndHook
 
 
+	#tag Note, Name = Status incomplete
+		
+		ios 10 additions not yet implemented (DidEndEditing:reason: and UICOntentsizeCategoryAdjusting)
+		
+	#tag EndNote
+
+
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520666F6E742073697A652073686F756C64206265207265647563656420696E206F7264657220746F2066697420746865207465787420737472696E6720696E746F207468652074657874206669656C64E280997320626F756E64696E672072656374616E676C652E
 		#tag Getter
 			Get
-			  Return getAdjustsFontSizeToFitWidth
+			  Return UIKitFramework.getAdjustsFontSizeToFitWidth (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setAdjustsFontSizeToFitWidth value
+			  UIKitFramework.setAdjustsFontSizeToFitWidth mid, value
 			End Set
 		#tag EndSetter
 		AdjustsFontSizeToFitWidth As Boolean
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652075736572206D61792065646974207468652061747472696275746573206F6620746865207465787420696E207468652074657874206669656C642E
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652075736572206D61792065646974207468652061747472696275746573206F6620746865207465787420696E207468652074657874206669656C642E2044656661756C742046616C73652E
 		#tag Getter
 			Get
-			  Declare Function allowsEditingTextAttributes lib UIKitLibname selector "allowsEditingTextAttributes" (id as ptr) as boolean
-			  return allowsEditingTextAttributes (id)
+			  return getallowsEditingTextAttributes (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setAllowsEditingTextAttributes lib UIKitLibname selector "setAllowsEditingTextAttributes:" (id as ptr, value as boolean)
-			  setAllowsEditingTextAttributes id, value
+			  setAllowsEditingTextAttributes mid, value
 			End Set
 		#tag EndSetter
 		AllowsEditingTextAttributes As Boolean
@@ -425,12 +571,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207374796C6564207465787420646973706C61796564206279207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Return getAttributedText
+			  Return AppleAttributedString.MakeFromPtr(UIKitFramework.getAttributedText(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setAttributedText value
+			  UIKitFramework.setAttributedText mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		AttributedCaption As AppleAttributedString
@@ -439,14 +585,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207374796C656420737472696E67207468617420697320646973706C61796564207768656E207468657265206973206E6F206F74686572207465787420696E207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Declare Function attributedPlaceholder lib UIKitLibname selector "attributedPlaceholder" (id as ptr) as Ptr
-			  Return AppleAttributedString.MakeFromPtr (attributedPlaceholder (id))
+			  Return AppleAttributedString.MakeFromPtr (getattributedPlaceholder (mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare Sub setAttributedPlaceholder lib UIKitLibname selector "setAttributedPlaceholder:" (id as ptr, value as Ptr)
-			  setAttributedPlaceholder id, if ( value = nil, nil, value.id)
+			  setAttributedPlaceholder mid, if ( value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		AttributedPlaceholder As AppleAttributedString
@@ -483,14 +627,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696D616765207468617420726570726573656E747320746865206261636B67726F756E6420617070656172616E6365206F66207468652074657874206669656C64207768656E20697420697320656E61626C65642E
 		#tag Getter
 			Get
-			  Declare Function background lib UIKitLibname selector "background" (id as ptr) as ptr
-			  return AppleImage.MakeFromPtr (background(id))
+			  return AppleImage.MakeFromPtr (getbackground(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setBackground lib UIKitLibname selector "setBackground:" (id as ptr, value as ptr)
-			  setBackground id, value.id
+			  setBackground mid, NilPtr(value)
 			End Set
 		#tag EndSetter
 		BackgroundImage As AppleImage
@@ -508,14 +650,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520626F72646572207374796C652075736564206279207468652074657874206669656C642E0A4966207468652076616C75652069732073657420746F2074686520554954657874426F726465725374796C65526F756E64656452656374207374796C652C2074686520637573746F6D206261636B67726F756E6420696D616765206173736F6369617465642077697468207468652074657874206669656C642069732069676E6F7265642E
 		#tag Getter
 			Get
-			  declare Function borderStyle lib UIKitLibname selector "borderStyle" (id as ptr) as UITextFieldBorderStyle
-			  return borderStyle (id)
+			  return getborderStyle (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setBorderStyle lib UIKitLibname selector "setBorderStyle:" (id as ptr, style as UITextFieldBorderStyle)
-			  setBorderStyle id, value
+			  setBorderStyle mid, value
 			End Set
 		#tag EndSetter
 		BorderStyle As UITextFieldBorderStyle
@@ -524,12 +664,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865207465787420646973706C61796564206279207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Return GetText
+			  Return UIKitFramework.GetText (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setText value
+			  UIKitFramework.setText mid, value
 			End Set
 		#tag EndSetter
 		Caption As Text
@@ -576,12 +716,10 @@ Inherits AppleControl
 			    methods.Append new TargetClassMethodHelper("touchesEstimatedPropertiesUpdated:", AddressOf impl_touchesEstimatedPropertiesUpdated, "v@:@")
 			    methods.Append new TargetClassMethodHelper("remoteControlReceivedWithEvent:", AddressOf impl_remoteControlReceivedWithEvent, "v@:@")
 			    
-			    if ApplePress.ClassAvailable then
-			      methods.Append new TargetClassMethodHelper("pressesBegan:withEvent:", AddressOf impl_pressesBeganWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
-			    end if
+			    methods.Append new TargetClassMethodHelper("pressesBegan:withEvent:", AddressOf impl_pressesBeganWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
 			    
 			    //UITextfield methods
 			    methods.Append new TargetClassMethodHelper ("textFieldShouldBeginEditing:", AddressOf impl_textFieldShouldBeginEditing, "B@:@")
@@ -605,14 +743,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768656E20746865207374616E6461726420636C65617220627574746F6E206170706561727320696E207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Declare Function clearButtonMode lib UIKitLibname selector "clearButtonMode" (id as ptr) as UITextFieldViewMode
-			  return clearButtonMode (id)
+			  return getclearButtonMode (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setClearButtonMode lib UIKitLibname selector "setClearButtonMode:" (id as ptr, value as UITextFieldViewMode)
-			  setClearButtonMode id, value
+			  setClearButtonMode mid, value
 			End Set
 		#tag EndSetter
 		ClearButtonMode As UITextFieldViewMode
@@ -630,14 +766,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206669656C642072656D6F766573206F6C642074657874207768656E2065646974696E6720626567696E732E
 		#tag Getter
 			Get
-			  Declare Function clearsOnBeginEditing lib UIKitLibname selector "clearsOnBeginEditing" (id as ptr) as boolean
-			  return clearsOnBeginEditing (id)
+			  return getclearsOnBeginEditing (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setClearsOnBeginEditing lib UIKitLibname selector "setClearsOnBeginEditing:" (id as ptr, value as boolean)
-			  setClearsOnBeginEditing id, value
+			  setClearsOnBeginEditing mid, value
 			End Set
 		#tag EndSetter
 		ClearsOnEditBegin As Boolean
@@ -646,14 +780,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220696E73657274696E672074657874207265706C61636573207468652070726576696F757320636F6E74656E74732E
 		#tag Getter
 			Get
-			  Declare Function clearsOnInsertion lib UIKitLibname selector "clearsOnInsertion" (id as ptr) as boolean
-			  return clearsOnInsertion (id)
+			  return getclearsOnInsertion (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setClearsOnInsertion lib UIKitLibname selector "setClearsOnInsertion:" (id as ptr, value as boolean)
-			  setClearsOnInsertion id, value
+			  setClearsOnInsertion mid, value
 			End Set
 		#tag EndSetter
 		ClearsOnInsertion As Boolean
@@ -662,14 +794,13 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656661756C74206174747269627574657320746F206170706C7920746F2074686520746578742E
 		#tag Getter
 			Get
-			  Declare Function defaultTextAttributes lib UIKitLibname selector "defaultTextAttributes" (id as ptr) as Ptr
-			  Return AppleDictionary.MakeFromPtr( defaultTextAttributes (id))
+			  Return AppleDictionary.MakeFromPtr( getdefaultTextAttributes (mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare Sub setdefaultTextAttributes lib UIKitLibname selector "setdefaultTextAttributes:" (id as ptr, value as Ptr)
-			  setdefaultTextAttributes id, if (value = nil, nil, value.id)
+			  
+			  setdefaultTextAttributes mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		DefaultTextAttributes As AppleDictionary
@@ -686,20 +817,18 @@ Inherits AppleControl
 			  setDelegate id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
-		Delegate_ As AppleObject
+		DelegateObject As AppleObject
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 54686520696D616765207468617420726570726573656E747320746865206261636B67726F756E6420617070656172616E6365206F66207468652074657874206669656C64207768656E2069742069732064697361626C65642E
 		#tag Getter
 			Get
-			  Declare Function disabledBackground lib UIKitLibname selector "disabledBackground" (id as ptr) as ptr
-			  return AppleImage.MakeFromPtr (disabledBackground(id))
+			  return AppleImage.MakeFromPtr (getdisabledBackground(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setDisabledBackground lib UIKitLibname selector "setDisabledBackground:" (id as ptr, value as ptr)
-			  setDisabledBackground id, value.id
+			  setDisabledBackground mid, NilPtr(value)
 			End Set
 		#tag EndSetter
 		DisabledBackgroundImage As AppleImage
@@ -708,8 +837,7 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206669656C642069732063757272656E746C7920696E2065646974206D6F64652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  Declare Function isEditing lib UIKitLibname selector "isEditing" (id as ptr) as boolean
-			  return isEditing (id)
+			  return UIKitFramework.getEditing (mid)
 			End Get
 		#tag EndGetter
 		Editing As Boolean
@@ -741,12 +869,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520666F6E74206F662074686520746578742E
 		#tag Getter
 			Get
-			  return getFont
+			  return AppleFont.MakefromPtr(UIKitFramework.getFont(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setfont value
+			  UIKitFramework.setfont mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		Font As AppleFont
@@ -783,14 +911,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F7665726C6179207669657720646973706C61796564206F6E20746865206C65667420286F72206C656164696E67292073696465206F66207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Declare Function leftView lib UIKitLibname selector "leftView" (id as ptr) as ptr
-			  return AppleView.MakeFromPtr (leftView(id))
+			  return AppleView.MakeFromPtr (getleftView(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setLeftView lib UIKitLibname selector "setLeftView:" (id as ptr, value as ptr)
-			  setLeftView id, if (value = nil, nil, value.id)
+			  setLeftView id, NilPtr(value)
 			End Set
 		#tag EndSetter
 		LeftView As AppleView
@@ -799,14 +925,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768656E20746865206C656674206F7665726C61792076696577206170706561727320696E207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Declare Function leftViewMode lib UIKitLibname selector "leftViewMode" (id as ptr) as UITextFieldViewMode
-			  return leftViewMode (id)
+			  return getleftViewMode (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setLeftViewMode lib UIKitLibname selector "setLeftViewMode:" (id as ptr, value as UITextFieldViewMode)
-			  setLeftViewMode id, value
+			  setLeftViewMode mid, value
 			End Set
 		#tag EndSetter
 		LeftViewMode As UITextFieldViewMode
@@ -824,23 +948,13 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F662074686520736D616C6C657374207065726D69737369626C6520666F6E74207769746820776869636820746F2064726177207468652074657874206669656C64E280997320746578742E
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    Declare Function minimumFontSize lib UIKitLibname selector "minimumFontSize" (id as ptr) as double
-			  #elseif Target32Bit
-			    Declare Function minimumFontSize lib UIKitLibname selector "minimumFontSize" (id as ptr) as single
-			  #endif
-			  return  minimumFontSize (id)
+			  return  getminimumFontSize (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  #if Target64Bit
-			    Declare Sub setMinimumFontSize lib UIKitLibname selector "setMinimumFontSize:" (id as ptr, value as double)
-			  #elseif Target32Bit
-			    Declare Sub setMinimumFontSize lib UIKitLibname selector "setMinimumFontSize:" (id as ptr, value as single)
-			  #endif
-			  setMinimumFontSize id, value
+			  setMinimumFontSize mid, value
 			End Set
 		#tag EndSetter
 		MinimumFontSize As Double
@@ -849,14 +963,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520737472696E67207468617420697320646973706C61796564207768656E207468657265206973206E6F206F74686572207465787420696E207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Declare Function placeholder lib UIKitLibname selector "placeholder" (id as ptr) as CFStringRef
-			  Return placeholder (id)
+			  Return UIKitFramework.getplaceholder (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare Sub setPlaceholder lib UIKitLibname selector "setPlaceholder:" (id as ptr, value as CFStringRef)
-			  setPlaceholder id, value
+			  UIKitFramework.setPlaceholder mid, value
 			End Set
 		#tag EndSetter
 		Placeholder As Text
@@ -888,14 +1000,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F7665726C6179207669657720646973706C61796564206F6E2074686520726967687420286F7220747261696C696E67292073696465206F66207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Declare Function rightView lib UIKitLibname selector "rightView" (id as ptr) as ptr
-			  return AppleView.MakeFromPtr (rightView(id))
+			  return AppleView.MakeFromPtr (getrightView(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setRightView lib UIKitLibname selector "setRightView:" (id as ptr, value as ptr)
-			  setRightView id, if (value = nil, nil, value.id)
+			  setRightView mid, NilPtr(value)
 			End Set
 		#tag EndSetter
 		RightView As AppleView
@@ -904,14 +1014,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 5768656E20746865207269676874206F7665726C61792076696577206170706561727320696E207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  Declare Function rightViewMode lib UIKitLibname selector "rightViewMode" (id as ptr) as UITextFieldViewMode
-			  return rightViewMode (id)
+			  return getrightViewMode (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setRightViewMode lib UIKitLibname selector "setRightViewMode:" (id as ptr, value as UITextFieldViewMode)
-			  setRightViewMode id, value
+			  setRightViewMode mid, value
 			End Set
 		#tag EndSetter
 		RightViewMode As UITextFieldViewMode
@@ -957,14 +1065,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520746563686E6971756520746F2075736520666F7220616C69676E696E672074686520746578742E
 		#tag Getter
 			Get
-			  Declare Function textAlignment lib UIKitLibname selector "textAlignment" (id as ptr) as NSTextAlignment
-			  return textAlignment (id)
+			  return UIKitFramework.gettextAlignment (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  declare Sub setTextAlignment lib UIKitLibname selector "setTextAlignment:" (id as ptr, value as NSTextAlignment)
-			  setTextAlignment id, value
+			  UIKitFramework.setTextAlignment mid, value
 			End Set
 		#tag EndSetter
 		TextAlignment As NSTextAlignment
@@ -973,12 +1079,12 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F662074686520746578742E
 		#tag Getter
 			Get
-			  return getTextColor
+			  return AppleColor.MakeFromPtr(UIKitFramework.getTextColor(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setTextColor value
+			  UIKitFramework.settextColor mid, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		TextColor As AppleColor
@@ -996,17 +1102,26 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0, Description = 546865206174747269627574657320746F206170706C7920746F206E65772074657874206265696E6720656E74657265642062792074686520757365722E
 		#tag Getter
 			Get
-			  Declare Function typingAttributes lib UIKitLibname selector "typingAttributes" (id as ptr) as ptr
-			  return AppleDictionary.MakeFromPtr (typingAttributes(id))
+			  return AppleDictionary.MakeFromPtr (gettypingAttributes(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare Sub setTypingAttributes lib UIKitLibname selector "setTypingAttributes:" (id as ptr, value as ptr)
-			  setTypingAttributes id, value.id
+			  setTypingAttributes mid, value.id
 			End Set
 		#tag EndSetter
 		TypingAttributes As AppleDictionary
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h21
+		#tag Getter
+			Get
+			  static mxojoidentity as xojo.Core.Dictionary
+			  if mxojoidentity = nil then mxojoidentity = new xojo.Core.Dictionary
+			  return mxojoidentity
+			End Get
+		#tag EndGetter
+		Private Shared XojoIdentity As xojo.Core.Dictionary
 	#tag EndComputedProperty
 
 

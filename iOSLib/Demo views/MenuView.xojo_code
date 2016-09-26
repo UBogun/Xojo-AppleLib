@@ -41,6 +41,7 @@ End
 		  me.AddRow 0, me.CreateCell("AVAudioSession","The base class for recording and playing audio")
 		  me.AddRow 0, me.CreateCell("iOSLibNotificationCenter","A wrapper class for NSUserNotifications")
 		  me.AddRow 0, me.CreateCell("iOSLibSKView", "SceneKit for iOS")
+		  me.AddRow 0, me.CreateCell("iOSLibTextField", "Extensionsfor Xojo’s textfield  and a custom Textfield control")
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -53,6 +54,8 @@ End
 		    v = new NotificationView
 		  case "iOSLibSKView"
 		    v = new SceneKitView
+		  case "iOSLibTextField"
+		    v = new TextfieldView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub
