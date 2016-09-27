@@ -654,6 +654,16 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SelectionAffinity"
+			Group="Behavior"
+			Type="UITextStorageDirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Forward"
+				"1 - Backward"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"

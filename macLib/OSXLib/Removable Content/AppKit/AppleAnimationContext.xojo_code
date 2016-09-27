@@ -158,6 +158,11 @@ Inherits AppleObject
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DidEnd"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Duration"
 			Group="Behavior"
 			Type="Double"

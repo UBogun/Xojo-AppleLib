@@ -1581,6 +1581,11 @@ Inherits AppleTextinputControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SelectionAffinity"
+			Group="Behavior"
+			Type="UITextStorageDirection"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="SpellCheckingType"
 			Group="Behavior"
 			Type="UITextSpellCheckingType"

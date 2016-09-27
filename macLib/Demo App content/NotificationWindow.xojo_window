@@ -28,6 +28,7 @@ Begin Window NotificationWindow
    Width           =   600
    Begin OSXLibNotificationCenter AppleNotificationCenter1
       DebugDescription=   ""
+      Enabled         =   True
       HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
