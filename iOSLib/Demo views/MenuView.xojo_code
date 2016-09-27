@@ -41,8 +41,8 @@ End
 		  me.AddRow 0, me.CreateCell("AVAudioSession","The base class for recording and playing audio")
 		  me.AddRow 0, me.CreateCell("iOSLibNotificationCenter","A wrapper class for NSUserNotifications")
 		  me.AddRow 0, me.CreateCell("iOSLibSKView", "SceneKit for iOS")
-		  me.AddRow 0, me.CreateCell("iOSLibTextField", "Extensions for Xojo’s textfield  and a custom Textfield control")
-		  me.AddRow 0, me.CreateCell("iOSLibImageView", "Extensions for Xojo’s ImageWell and a custim ImageView control.")
+		  me.AddRow 0, me.CreateCell("iOSLibTextField", "Extensions for Xojo’s textfield  and a custom Textfield control.")
+		  me.AddRow 0, me.CreateCell("iOSLibImageView", "Extensions for Xojo’s ImageWell and a custom ImageView control.")
 		End Sub
 	#tag EndEvent
 	#tag Event
