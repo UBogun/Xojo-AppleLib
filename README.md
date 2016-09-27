@@ -13,7 +13,10 @@ While rebuilding the classes, I add description tags to methods and properties o
 > **You need to install Joe Ranieri’s OBJC blocks plugin: https://www.dropbox.com/s/rif5r34r15xhaxc/Blocks%20Plugin.zip**  
 Here’s the forum discussion about it: https://forum.xojo.com/3586-obj-c-blocks-as-callbacks/0  
   
-Do not be alarmed that newer version warning might appear from tine to time. I check compatibility with the recent beta and it can happen that this version will be used for save accidentally. Anyway, I made sure OSXLib builds with 2016r1.1 when you remove CoreBluetooth.  
+Do not be alarmed that newer version warning might appear from tine to time. I check compatibility with the recent beta and it can happen that this version will be used for save accidentally. 
+
+# Very important!
+Although the connections inside my development projects are ok, you will be prompted vor a variety of unfound classes and folders, usually within the shared files or the internal core classes. Very sorry! I am working on removing those wrong links. Seems that Xojo doesn’t like copying the files into internal folders. I’ll post a new version once it seems to be ok.
 
 ## Disclaimer
 Written 2016 by Ulrich Bogun, xojoblog.me. You are entitled to use this library AS IS and on your own risk. I do not take responsibility for anything harmful that could happen to your computer, but I can assure you there are no backdoors, traps or intended bugs of this and different kinds and I am using this library myself without my computer blowing up or similar things.
