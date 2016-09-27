@@ -12,10 +12,10 @@ Begin iosView ButtonView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   iOSLibButton1, 8, , 0, False, +1.00, 1, 1, 51, 
-      AutoLayout      =   iOSLibButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 197, 
-      AutoLayout      =   iOSLibButton1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
       AutoLayout      =   iOSLibButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibButton1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 197, 
+      AutoLayout      =   iOSLibButton1, 8, , 0, False, +1.00, 1, 1, 51, 
       AutoresizesSubviews=   False
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   True

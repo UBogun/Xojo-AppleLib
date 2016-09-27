@@ -162,7 +162,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652070747220746F2074686520637573746F6D20636C61737320646572697665642066726F6D204E534F626A656374
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr 
+			  static mClassPtr as Ptr
 			  if mClassPtr = nil then mClassPtr = FoundationFramework.NSClassFromString ("NSLayoutConstraint")
 			  return mClassPtr
 			  

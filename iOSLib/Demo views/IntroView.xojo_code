@@ -12,10 +12,10 @@ Begin iosView IntroView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
-      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
-      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
       AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
@@ -45,10 +45,10 @@ Begin iosView IntroView
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
          Alpha           =   1.0
-         AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
-         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
-         AutoLayout      =   iOSLIbView2, 2, <Parent>, 2, False, +1.00, 2, 1, 0, 
          AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
+         AutoLayout      =   iOSLIbView2, 2, <Parent>, 2, False, +1.00, 2, 1, 0, 
+         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
+         AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
          AutoresizesSubviews=   True
          BackgroundColor =   &cFFFFFF00
          CanBecomeFocused=   False

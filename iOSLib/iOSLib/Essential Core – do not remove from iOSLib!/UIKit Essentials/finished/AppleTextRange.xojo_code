@@ -72,6 +72,11 @@ Inherits AppleObject
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Empty"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
