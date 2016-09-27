@@ -21,7 +21,7 @@ Inherits iOSLIbView
 		    dim myview as new AppleTextfield (FoundationFrameWork.nsmakerect (0,0,100,100))
 		    mid = myview
 		    mid.UserInteractionEnabled = true
-		    myview.RegisterControl (self)
+		    // myview.RegisterControl (self)
 		    AttachHandlers
 		    return uinteger(myview.id)
 		  else

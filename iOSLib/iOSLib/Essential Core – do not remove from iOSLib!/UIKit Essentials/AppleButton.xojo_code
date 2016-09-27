@@ -229,7 +229,8 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("UIButton")
+			  static mClassPtr as Ptr
+			  if mClassPtr = nil then mClassPtr = FoundationFramework.NSClassFromString ("UIButton")
 			  return mClassPtr
 			End Get
 		#tag EndGetter
@@ -423,7 +424,7 @@ Inherits AppleControl
 
 
 	#tag Enum, Name = UIButtonType, Type = Integer, Flags = &h0
-		Custom
+		Custom = 0
 		  System
 		  Disclosure
 		  InfoLight
