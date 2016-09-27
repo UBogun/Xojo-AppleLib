@@ -17,6 +17,14 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getappearance Lib UIKitLibName Selector "appearance" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getappearanceForTraitCollection Lib UIKitLibName Selector "appearanceForTraitCollection:" (id as ptr, trait as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getattributedText Lib UIKitLibName Selector "attributedText" (id as ptr) As Ptr
 	#tag EndExternalMethod
 

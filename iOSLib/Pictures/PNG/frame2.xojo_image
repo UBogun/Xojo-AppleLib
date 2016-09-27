@@ -1,0 +1,40 @@
+#tag MultiImage
+Image frame2
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAHyAAAAAAHyAAIAAAdGanVzY2huAAAAAAAAAAAAAAAAAAAAAAAAAADQ+wqvSCsAAAWhF2kLZnJhbWUtMi5wbmcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABaEXa9FRSVgAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAA1BORwAAEAAIAADQ+vyfAAAAEQAIAADRUS04AAAAAQAgBaEXaQTWqA4EyqguA6DgswOg4IwAMuUkAC5WiQAsOcQAAgBwRmp1c2NobjpVc2VyczoAdWxpOgBMaWJyYXJ5OgBNb2JpbGUgRG9jdW1lbnRzOgBjb21+YXBwbGV+Q2xvdWREb2NzOgBPU1hMaWIgRGV2ZWxvcG1lbnQ6AEltYWdlczoAUE5HOgBmcmFtZS0yLnBuZwAOABgACwBmAHIAYQBtAGUALQAyAC4AcABuAGcADwAQAAcARgBqAHUAcwBjAGgAbgASAGBVc2Vycy91bGkvTGlicmFyeS9Nb2JpbGUgRG9jdW1lbnRzL2NvbX5hcHBsZX5DbG91ZERvY3MvT1NYTGliIERldmVsb3BtZW50L0ltYWdlcy9QTkcvZnJhbWUtMi5wbmcAEwABLwAAFQACAAr//wAAAAAAAAAA
+		FullPath = /Users/uli/Library/Mobile Documents/com~apple~CloudDocs/OSXLib Development/Images/PNG/frame-2.png
+		PartialPath = ..\Images\PNG\frame-2.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

@@ -145,18 +145,18 @@ Protected Module iOSTextFieldExtension
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( "temp. disabled" )  Sub LeftImage(extends f as iOSTextField, assigns value as iOSImage)
-		  // dim newImage as new AppleImage(value)
-		  // dim Scaledimage as AppleImage = newImage.Resize ( f.Height / newImage.Height)
-		  // f.AppleView.LeftView = new AppleimageView(scaledimage)
+		Sub LeftImage(extends f as iOSTextField, assigns value as iOSImage)
+		  dim newImage as new AppleImage(value)
+		  dim Scaledimage as AppleImage = newImage.Resize ( f.Height / newImage.Height)
+		  f.AppleView.LeftView = new AppleimageView(scaledimage)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( "temp. disabled" )  Sub LeftImageNoScale(extends f as iOSTextField, assigns value as iOSImage)
-		  // dim newImage as new AppleImage(value)
-		  // f.AppleView.LeftView = new AppleimageView(newImage)
+		Sub LeftImageNoScale(extends f as iOSTextField, assigns value as iOSImage)
+		  dim newImage as new AppleImage(value)
+		  f.AppleView.LeftView = new AppleimageView(newImage)
 		  
 		End Sub
 	#tag EndMethod
@@ -186,18 +186,18 @@ Protected Module iOSTextFieldExtension
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( "temp. disabled" )  Sub RightImage(extends f as iOSTextField, assigns value as iOSImage)
-		  // dim newImage as new AppleImage(value)
-		  // dim Scaledimage as AppleImage = newImage.Resize( f.Height / newImage.Height)
-		  // f.AppleView.RightView = new AppleimageView(scaledimage)
+		Sub RightImage(extends f as iOSTextField, assigns value as iOSImage)
+		  dim newImage as new AppleImage(value)
+		  dim Scaledimage as AppleImage = newImage.Resize( f.Height / newImage.Height)
+		  f.AppleView.RightView = new AppleimageView(scaledimage)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( "temp. disabled" )  Sub RightImageNoScale(extends f as iOSTextField, assigns value as iOSImage)
-		  // dim newImage as new AppleImage(value)
-		  // f.AppleView.RightView = new AppleimageView(newImage)
+		Sub RightImageNoScale(extends f as iOSTextField, assigns value as iOSImage)
+		  dim newImage as new AppleImage(value)
+		  f.AppleView.RightView = new AppleimageView(newImage)
 		  
 		End Sub
 	#tag EndMethod

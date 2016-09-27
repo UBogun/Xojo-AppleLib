@@ -21,6 +21,22 @@ Inherits AppleView
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Constructor(frame as FoundationFrameWork.NSRect)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleView
+		  // Constructor(aFrame as FoundationFramework.NSRect) -- From AppleView
+		  // Constructor() -- From AppleResponder
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
+		  Super.Constructor(UIKitFramework.initWithFrame(alloc(ClassPtr), frame), true)
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52656D6F76657320612074617267657420616E6420616374696F6E20666F72206120706172746963756C6172206576656E7420286F72206576656E7473292066726F6D20616E20696E7465726E616C206469737061746368207461626C652E
 		Sub RemoveTarget(Target as appleobject, SEL as Ptr, Events as AppleControlEvent)
 		  Declare Sub removeTarget lib UIKitLibname selector "removeTarget:action:forControlEvents:" (id as ptr, target as ptr, SEL as ptr, events as UInteger)

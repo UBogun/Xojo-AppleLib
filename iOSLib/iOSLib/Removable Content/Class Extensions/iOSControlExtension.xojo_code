@@ -48,7 +48,7 @@ Protected Module iOSControlExtension
 
 	#tag Method, Flags = &h0, Description = 506572666F726D7320612043656E7465722070726F706572747920616E696D6174696F6E206F766572207365636F6E6473207365636F6E64732077697468207468652073656C65637465642063757276652E
 		Sub AnimateCenter(extends c as ioscontrol, newX as double, newY as Double, Seconds as double = 0.2, delay as double = 0, curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut)
-		  c.AppleObject.Animatecenter FoundationFrameWork.NSMakePoint(newy, newy), AppleViewAnimationOption.OptionNone, Seconds, delay, curve
+		  c.AppleObject.Animatecenter FoundationFrameWork.NSMakePoint(newx, newy), AppleViewAnimationOption.OptionNone, Seconds, delay, curve
 		End Sub
 	#tag EndMethod
 
@@ -328,7 +328,7 @@ Protected Module iOSControlExtension
 
 	#tag Method, Flags = &h0, Description = 506572666F726D73206120537072696E67416E696D6174696F6E206F6E2074686520636F6E74726F6C2773205F43656E7465725F2E2020
 		Sub SpringAnimateCenter(extends c as ioscontrol, newX as double, newY as Double, Seconds as double = 0.2, curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut, DampingRatio as Double = 1, Velocity As Double = 0.5)
-		  c.AppleObject.SpringAnimatecenter FoundationFrameWork.NSMakePoint(newy, newy), AppleViewAnimationOption.OptionNone, dampingRatio, Velocity, Seconds, curve
+		  c.AppleObject.SpringAnimatecenter FoundationFrameWork.NSMakePoint(newx, newy), AppleViewAnimationOption.OptionNone, dampingRatio, Velocity, Seconds, curve
 		End Sub
 	#tag EndMethod
 
@@ -416,7 +416,7 @@ Protected Module iOSControlExtension
 
 	#tag Method, Flags = &h0, Description = 437265617465732061205F43656E7465725F207472616E736974696F6E20616E696D6174696F6E20666F722074686520766965772E
 		Sub TransitionWithCenter(extends c as ioscontrol, newX as double, newY as Double, transition as UIKitFramework.UIVIewAnimationTransition, Seconds as double = 0.2, curve as UIKitFramework.UIViewAnimationCurve = UIKitFramework.UIViewAnimationCurve.EaseInEaseOut)
-		  c.AppleObject.TransitionWithCenter FoundationFrameWork.NSMakePoint(newy, newy), transition, AppleViewAnimationOption.OptionNone, Seconds, curve
+		  c.AppleObject.TransitionWithCenter FoundationFrameWork.NSMakePoint(newx, newy), transition, AppleViewAnimationOption.OptionNone, Seconds, curve
 		End Sub
 	#tag EndMethod
 
