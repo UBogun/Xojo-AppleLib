@@ -114,7 +114,7 @@ Begin iosView TextfieldView
       MultipleTouchEnabled=   True
       Opaque          =   False
       Password        =   False
-      Placeholder     =   "Placeholder"
+      Placeholder     =   "RightImage disappears once you enter text."
       PreservesSuperviewLayoutMargins=   False
       ReturnKeyType   =   "1"
       RightViewMode   =   "2"
@@ -143,7 +143,7 @@ Begin iosView TextfieldView
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      Text            =   "AppleTextField/iOSLibTextField is quite unspectacular. You can, however, use much more properties like additional views to the left and right (which will look nicer once I added AppleImgaeViews). For most of the features, you can simply use a Xojo TextField and the iOSTextField extension. (Almost) full control over text editing events are included in the customcontrol iOSLibTextField which is shown here."
+      Text            =   "AppleTextField/iOSLibTextField is quite unspectacular. You can, however, use much more properties like additional views to the left and right. For most of the features, you can simply use a Xojo TextField and the iOSTextField extension. (Almost) full control over text editing events are included in the customcontrol iOSLibTextField which is shown here."
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       TextFont        =   ""
@@ -223,11 +223,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Shown()
-		  me.AppleObject.RightView = new Appleview(FoundationFrameWork.NSMakeRect (0,0,35,35))
 		  dim logo as new AppleImage(iosLibLogo)
-		  me.AppleObject.RightView.layer.Contents = logo
-		  me.AppleObject.RightView.ContentMode = UIKitFramework.UIViewContentMode.ScaleAspectFill
-		  me.AppleObject.RightView.layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
+		  me.AppleObject.RightView= new AppleImageView(logo.Resize(0.018))
 		  me.AppleObject.RightView.BackgroundColor = new applecolor(&cD8FFE500)
 		  me.AppleObject.AdjustsFontSizeToFitWidth = true
 		  

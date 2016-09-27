@@ -38,15 +38,6 @@ Inherits AppleView
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 496E7465726E616C20666F72207265676973746572696E6720746865206D616E746C6520694F5355736572436F6E74726F6C2E
-		Attributes( hidden )  Sub RegisterControl(ParentControl as iOSLibCanvas)
-		  if XojoControls = nil then XojoControls = new Dictionary
-		  XojoControls.Value (id) = weakref.create(parentcontrol)
-		  
-		  
-		End Sub
-	#tag EndMethod
-
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E207468652072656374616E676C6520286F722077686F6C65206172656129206F662074686520766965772067657473207265647261776E
 		Event DrawRect(Rect  as FoundationFramework.NSRect)

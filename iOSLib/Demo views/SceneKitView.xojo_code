@@ -144,6 +144,8 @@ End
 		    body.ApplyImpulse(FoundationFrameWork.CGMakeVector(20-xojo.math.RandomInt (0,40), 20 - xojo.math.RandomInt(0,40))) // kick it
 		  end if
 		  
+		  #pragma unused anevent
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
