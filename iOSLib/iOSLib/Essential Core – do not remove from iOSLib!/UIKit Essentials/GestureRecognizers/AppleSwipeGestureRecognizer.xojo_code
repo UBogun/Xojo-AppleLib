@@ -57,11 +57,6 @@ Inherits AppleGestureRecognizer
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="DelaysTouchesBegan"
 			Group="Behavior"
 			Type="Boolean"
@@ -75,11 +70,6 @@ Inherits AppleGestureRecognizer
 			Name="Enabled"
 			Group="Behavior"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -96,11 +86,6 @@ Inherits AppleGestureRecognizer
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
@@ -113,11 +98,6 @@ Inherits AppleGestureRecognizer
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NumberOfTouchesRequired"
-			Group="Behavior"
-			Type="UInteger"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
 		#tag EndViewProperty

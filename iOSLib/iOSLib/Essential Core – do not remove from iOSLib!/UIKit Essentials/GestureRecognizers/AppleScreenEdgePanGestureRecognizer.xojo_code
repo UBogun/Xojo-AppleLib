@@ -43,11 +43,6 @@ Inherits ApplePanGestureRecognizer
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="DelaysTouchesBegan"
 			Group="Behavior"
 			Type="Boolean"
@@ -61,11 +56,6 @@ Inherits ApplePanGestureRecognizer
 			Name="Enabled"
 			Group="Behavior"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -87,11 +77,6 @@ Inherits ApplePanGestureRecognizer
 			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="MinimumNumberOfTouches"
 			Group="Behavior"
 			Type="UInteger"
@@ -104,11 +89,6 @@ Inherits ApplePanGestureRecognizer
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NumberOfTouches"
-			Group="Behavior"
-			Type="UInteger"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
 		#tag EndViewProperty

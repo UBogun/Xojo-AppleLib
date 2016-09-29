@@ -9,36 +9,15 @@ Begin iosView AVAudioView
    Title           =   "AVAudioSession"
    Top             =   0
    Begin AppleAVAudioSession AppleAVAudioSession1
-      Category        =   ""
-      DebugDescription=   ""
-      HasOwnership    =   False
-      InputAvailable  =   False
-      InputGain       =   0.0
-      InputGainSettable=   False
-      InputLatency    =   0.0
-      InputNumberOfChannels=   0
-      IOBufferDuration=   0.0
+      Height          =   0
+      Height          =   0
+      Left            =   0
       Left            =   0
       LockedInPosition=   False
-      MaximumInputNumberOfChannels=   0
-      MaximumOutputNumberOfChannels=   0
-      mHasOwnership   =   False
-      Mode            =   ""
-      OtherAudioIsPlaying=   False
-      OutputLatency   =   0.0
-      OutputNumberOfChannels=   0
-      OutputVolume    =   0.0
-      PanelIndex      =   -1
-      Parent          =   ""
-      PreferredInputNumberOfChannels=   0
-      PreferredIOBufferDuration=   0.0
-      PreferredOutputNumberOfChannels=   0
-      PreferredSampleRate=   0.0
-      RetainCount     =   ""
-      SampleRate      =   0.0
-      Scope           =   2
-      SecondaryAudioShouldBeSilenced=   False
       Top             =   0
+      Top             =   0
+      Width           =   0
+      Width           =   0
    End
    Begin iOSButton Button1
       AccessibilityHint=   ""

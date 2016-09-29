@@ -93,6 +93,20 @@ Inherits OSXLibTableView
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BorderType"
+			Visible=true
+			Group="Behavior"
+			InitialValue="None"
+			Type="AppleView.NSBordertype"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - None"
+				"1 - Line"
+				"2 - Bezel"
+				"3 - Groove"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DoubleBuffer"
 			Visible=true
 			Group="Behavior"
@@ -126,6 +140,13 @@ Inherits OSXLibTableView
 			Group="Appearance"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HorizontalScroller"
+			Visible=true
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -174,6 +195,13 @@ Inherits OSXLibTableView
 			Group="Position"
 			InitialValue="False"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Magnification"
+			Visible=true
+			Group="Behavior"
+			InitialValue="1.0"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
@@ -228,6 +256,13 @@ Inherits OSXLibTableView
 			Name="UseFocusRing"
 			Visible=true
 			Group="Appearance"
+			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalScroller"
+			Visible=true
+			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty
