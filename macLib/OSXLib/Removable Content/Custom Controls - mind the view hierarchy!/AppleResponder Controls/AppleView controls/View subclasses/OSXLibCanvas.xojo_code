@@ -9,7 +9,7 @@ Inherits OSXLibView
 	#tag EndEvent
 
 	#tag Event
-		Function InitControl() As Boolean
+		Function InitControl() As AppleView
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
 		  // The Xojo engineers always warned that messing with the view hierarchy of Xojo controls could lead to problems in the future.
 		  // Instead of attaching the declared control as a subview to the Xojo canvas, I chose a more radical approach:
@@ -18,27 +18,27 @@ Inherits OSXLibView
 		  // Let’s hope for a desktop usercontrol soon!
 		  
 		  
-		  if not Raiseevent InitControl then
-		    mAppleObject = new ApplePaintView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		    mAppleObject.registercontrol self // and register this instance so it receives the events.
-		    // Please note the internal events of the declared class will not fire anymore.
-		    // This is to avoid confusions where an event expects a return value.
-		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
-		    dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
-		    for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
-		      dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
-		      if subview.id = origview.id then // is this our control?
-		        // Yes: Copy the locks 
-		        mAppleObject.AutoResizingMask = AppleAutoresizingMask.FullResize // … to the autoresizing mask
-		        controller.ReplaceSubview origview, mAppleObject // and kick of the canvas by replacing it with our view
-		        exit 
-		      end if
-		    next
+		  dim obj as ApplePaintView = raiseevent InitControl 
+		  if obj = nil then
+		    obj = new ApplePaintView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
+		    obj.AutoResizingMask = AppleAutoresizingMask.FullResize
+		    attachhandlers(obj)
+		    AddHandler obj.DrawRect, Addressof informOnDrawRect
+		    
+		    // obj.registercontrol self // and register this instance so it receives the events.
 		  end if
-		  return true
+		  return obj
 		  
 		End Function
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnDrawRect(view as appleview, Rect as FoundationFrameWork.NSrect)
+		  RaiseEvent Paint (applecgcontext.currentcontext, Rect)
+		  #pragma unused view
+		End Sub
+	#tag EndMethod
 
 
 	#tag Hook, Flags = &h0
@@ -46,22 +46,22 @@ Inherits OSXLibView
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event InitControl() As Boolean
+		Event InitControl() As ApplePaintView
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 	#tag EndHook
 
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return mAppleObject
+			  return ApplePaintView(mAppleObject)
 			End Get
 		#tag EndGetter
 		AppleObject As ApplePaintView
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mAppleObject As ApplePaintView
-	#tag EndProperty
 
 
 	#tag ViewBehavior
@@ -74,6 +74,17 @@ Inherits OSXLibView
 		#tag ViewProperty
 			Name="AcceptTabs"
 			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AcceptTouchEvents"
+			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowVibrancy"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

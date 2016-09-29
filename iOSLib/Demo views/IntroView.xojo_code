@@ -12,10 +12,10 @@ Begin iosView IntroView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   Canvas1, 7, <Parent>, 7, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 30, 
+      AutoLayout      =   Canvas1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   Canvas1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
-      AutoLayout      =   Canvas1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 20, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
@@ -26,7 +26,7 @@ Begin iosView IntroView
       ExclusiveTouch  =   False
       Focused         =   False
       HasAmbiguousLayout=   False
-      Height          =   395.0
+      Height          =   385.0
       Hidden          =   False
       Left            =   0
       LockedInPosition=   False
@@ -36,7 +36,7 @@ Begin iosView IntroView
       Scope           =   0
       Tag             =   0
       TintAdjustmentMode=   ""
-      Top             =   85
+      Top             =   95
       TranslatesAutoresizingMaskIntoConstraints=   False
       UserInteractionEnabled=   True
       Visible         =   True
@@ -45,10 +45,10 @@ Begin iosView IntroView
          AccessibilityHint=   ""
          AccessibilityLabel=   ""
          Alpha           =   1.0
-         AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
-         AutoLayout      =   iOSLIbView2, 2, <Parent>, 2, False, +1.00, 2, 1, 0, 
-         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
          AutoLayout      =   iOSLIbView2, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
+         AutoLayout      =   iOSLIbView2, 8, , 0, False, +1.00, 1, 1, 198, 
+         AutoLayout      =   iOSLIbView2, 2, <Parent>, 2, False, +1.00, 2, 1, 0, 
+         AutoLayout      =   iOSLIbView2, 10, <Parent>, 10, False, +1.00, 2, 1, -20, 
          AutoresizesSubviews=   True
          BackgroundColor =   &cFFFFFF00
          CanBecomeFocused=   False
@@ -78,45 +78,81 @@ Begin iosView IntroView
          Width           =   320.0
       End
    End
-   Begin iOSButton MenuButton
+   Begin iOSlibButton MenuButton
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      Alpha           =   1.0
+      AutoLayout      =   MenuButton, 9, <Parent>, 9, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   MenuButton, 8, , 0, False, +1.00, 1, 1, 22, 
+      AutoLayout      =   MenuButton, 3, TopLayoutGuide, 4, False, +1.00, 2, 1, 3, 
       AutoLayout      =   MenuButton, 7, , 0, False, +1.00, 1, 1, 100, 
-      AutoLayout      =   MenuButton, 9, <Parent>, 9, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   MenuButton, 3, <Parent>, 3, False, +1.00, 1, 1, -6, 
-      AutoLayout      =   MenuButton, 8, , 0, False, +1.00, 1, 1, 30, 
-      Caption         =   "Menu"
-      Enabled         =   True
-      Height          =   30.0
+      AutoresizesSubviews=   False
+      BackgroundColor =   &cFFFFFF00
+      CanBecomeFocused=   True
+      ClearsContextBeforeDrawing=   False
+      ClipsToBounds   =   True
+      ContentMode     =   ""
+      ContentScaleFactor=   0.0
+      DisabledTitle   =   ""
+      ExclusiveTouch  =   False
+      Focused         =   False
+      HasAmbiguousLayout=   False
+      Height          =   22.0
+      Hidden          =   False
+      HighlightedTitle=   ""
       Left            =   110
       LockedInPosition=   False
+      MultipleTouchEnabled=   False
+      NormalTitle     =   "Menu"
+      Opaque          =   False
+      PreservesSuperviewLayoutMargins=   False
       Scope           =   2
-      TextColor       =   &c007AFF00
-      TextFont        =   ""
-      TextSize        =   0
-      Top             =   -6
+      SelectedTitle   =   ""
+      Tag             =   0
+      TintAdjustmentMode=   "Automatic"
+      Top             =   68
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      UserInteractionEnabled=   True
       Visible         =   True
       Width           =   100.0
    End
-   Begin iOSButton MenuButton1
+   Begin ioslibinfobutton MenuButton1
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
+      Alpha           =   1.0
       AutoLayout      =   MenuButton1, 2, <Parent>, 2, False, +1.00, 2, 1, -*kStdGapCtlToViewH, 
-      AutoLayout      =   MenuButton1, 7, , 0, False, +1.00, 1, 1, 48, 
-      AutoLayout      =   MenuButton1, 8, , 0, False, +1.00, 1, 1, 30, 
-      AutoLayout      =   MenuButton1, 10, MenuButton, 10, False, +1.00, 1, 1, 0, 
-      Caption         =   "Info"
-      Enabled         =   True
-      Height          =   30.0
-      Left            =   252
+      AutoLayout      =   MenuButton1, 8, , 0, False, +1.00, 1, 1, 22, 
+      AutoLayout      =   MenuButton1, 3, TopLayoutGuide, 4, False, +1.00, 2, 1, 3, 
+      AutoLayout      =   MenuButton1, 7, , 0, False, +1.00, 1, 1, 22, 
+      AutoresizesSubviews=   False
+      BackgroundColor =   &cFFFFFF00
+      CanBecomeFocused=   True
+      ClearsContextBeforeDrawing=   False
+      ClipsToBounds   =   True
+      ContentMode     =   ""
+      ContentScaleFactor=   0.0
+      DisabledTitle   =   ""
+      ExclusiveTouch  =   False
+      Focused         =   False
+      HasAmbiguousLayout=   False
+      Height          =   22.0
+      Hidden          =   False
+      HighlightedTitle=   ""
+      Left            =   278
       LockedInPosition=   False
+      MultipleTouchEnabled=   False
+      NormalTitle     =   ""
+      Opaque          =   False
+      PreservesSuperviewLayoutMargins=   False
       Scope           =   2
-      TextColor       =   &c007AFF00
-      TextFont        =   ""
-      TextSize        =   0
-      Top             =   -6
+      SelectedTitle   =   ""
+      Tag             =   0
+      TintAdjustmentMode=   "Automatic"
+      Top             =   68
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      UserInteractionEnabled=   True
       Visible         =   True
-      Width           =   48.0
+      Width           =   22.0
    End
 End
 #tag EndIOSView
@@ -207,6 +243,13 @@ End
 		Sub Action()
 		  dim iv as new MenuView
 		  self.PushTo iv
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C20686173206D6F766520746F206974732077696E646F772E
+		Sub Shown()
+		  me.AppleObject.layer.BorderWidth = 0.5
+		  me.AppleObject.Layer.CornerRadius = 12
+		  me.AppleObject.layer.BorderColor = me.AppleObject.TintColor
 		End Sub
 	#tag EndEvent
 #tag EndEvents

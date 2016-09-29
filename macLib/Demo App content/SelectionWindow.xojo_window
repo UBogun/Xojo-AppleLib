@@ -126,6 +126,8 @@ Begin Window SelectionWindow
    Begin OSXLibView ImageWell1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False
@@ -154,6 +156,8 @@ Begin Window SelectionWindow
    Begin OSXLibCanvas OSXLibView1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False
@@ -233,7 +237,8 @@ End
 		  case "ScrollView"
 		    SecondaryWindow = new ScrollWindow
 		  case "TableView"
-		    SecondaryWindow = new TableViewWindow
+		    msgbox "Closed for repairs"
+		    // SecondaryWindow = new TableViewWindow
 		  case "OutlineView"
 		    SecondaryWindow = new OutlineViewWindow
 		  case "AVAudio"
@@ -263,8 +268,9 @@ End
 		  dim ac as new AppleAnimationContext (me.AppleObject)
 		  ac.Duration = 8
 		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
-		  me.AppleObject.CenterXAnchor.ConstraintEqualToAnchor(me.AppleObject.SuperView.CenterXAnchor).Active = true
-		  
+		  // dim ma as AppleAutoresizingMask = AppleAutoresizingMask.NoLock
+		  // me.AppleObject.AutoResizingMask = ma
+		  // me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = true
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -280,6 +286,9 @@ End
 		  g.Rotate 0.3
 		  logo = logo.reSize (0.035, 0.035, CoreGraphicsFramework.CGInterpolationQuality.High)
 		  g.DrawTiledImage FoundationFrameWork.NSMakeRect (0,0,logo.Width, logo.Height), logo.CGImage
+		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
+		  g.DrawLinearGradient new AppleCGGradient (&c2C5D3D00, &cAEB0CC00, &cFFF59000, &cFF2EB700), _
+		  FoundationFrameWork.NSMakePoint (0,0), FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height), true, true
 		End Sub
 	#tag EndEvent
 	#tag Event

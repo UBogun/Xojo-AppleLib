@@ -46,13 +46,18 @@ Begin Window OutlineViewWindow
    Begin OSXLibOutlineView OSXLibOutlineView1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowMagnification=   False
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
+      BorderType      =   "None"
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
       Height          =   400
       HelpTag         =   ""
+      HorizontalScroller=   True
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -61,6 +66,7 @@ Begin Window OutlineViewWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
+      Magnification   =   1.0
       Scope           =   2
       TabIndex        =   0
       TabPanelIndex   =   0
@@ -68,6 +74,7 @@ Begin Window OutlineViewWindow
       Top             =   0
       Transparent     =   True
       UseFocusRing    =   True
+      VerticalScroller=   True
       Visible         =   True
       Width           =   600
    End

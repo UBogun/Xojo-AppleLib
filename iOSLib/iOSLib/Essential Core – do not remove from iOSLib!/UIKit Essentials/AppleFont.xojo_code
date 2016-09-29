@@ -9,18 +9,13 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1000, Description = 4372656174657320616E642072657475726E73206120666F6E74206F626A65637420666F72207468652073706563696669656420666F6E74206E616D6520616E642073697A652E
 		Sub Constructor(FontName as CFStringRef, Size as Double)
-		  #if Target64Bit
-		    Declare function fontWithName lib UIKitLibname selector "fontWithName:size:" (id as ptr, Fontname as CFStringRef, Size as double) as Ptr
-		  #elseif Target32Bit
-		    Declare function fontWithName lib UIKitLibname selector "fontWithName:size:" (id as ptr, Fontname as CFStringRef, Size as single) as Ptr
-		  #endif
+		  Declare function fontWithName lib UIKitLibname selector "fontWithName:size:" (id as ptr, Fontname as CFStringRef, Size as cgfloat) as Ptr
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (fontwithName (classptr, FontName, size))
-		  RetainClassObject
+		  Super.Constructor (fontwithName (classptr, FontName, size), true, true)
 		  
 		End Sub
 	#tag EndMethod
@@ -197,22 +192,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static muisize as double
-			  if muisize = 0 then muisize = SystemConstantCGFLoat (UIKitPath, "UIFontWeightRegular")
-			  return muisize
-			End Get
-		#tag EndGetter
-		Shared kUIFontWeightUltraLight As Double
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  #if Target64Bit
-			    Declare Function labelFontSize lib UIKitLibname selector "labelFontSize" (id as ptr) as double
-			  #elseif Target32Bit
-			    Declare Function labelFontSize lib UIKitLibname selector "labelFontSize" (id as ptr) as single
-			  #endif
+			  Declare Function labelFontSize lib UIKitLibname selector "labelFontSize" (id as ptr) as CGFloat
 			  return  LabelFontSize (classptr)
 			  
 			End Get
@@ -238,11 +218,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  #if Target64Bit
-			    Declare Function smallSystemFontSize lib UIKitLibname selector "smallSystemFontSize" (id as ptr) as double
-			  #elseif Target32Bit
-			    Declare Function smallSystemFontSize lib UIKitLibname selector "smallSystemFontSize" (id as ptr) as single
-			  #endif
+			  Declare Function smallSystemFontSize lib UIKitLibname selector "smallSystemFontSize" (id as ptr) as CGFloat
 			  return  smallSystemFontSize (classptr)
 			  
 			End Get
@@ -325,11 +301,6 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="FamilyName"
 			Group="Behavior"
 			Type="Text"
@@ -338,11 +309,6 @@ Inherits AppleObject
 			Name="FontName"
 			Group="Behavior"
 			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -359,11 +325,6 @@ Inherits AppleObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
@@ -373,11 +334,6 @@ Inherits AppleObject
 			Name="PointSize"
 			Group="Behavior"
 			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
-			Group="Behavior"
-			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

@@ -381,7 +381,6 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 5265676973746572732074686520636F6E74726F6C20697473656C662061732061205765616B52656620696E2061207368617265642044696374696F6E6172792E
 		Attributes( hidden )  Sub RegisterIdentity(Identity As object)
-		  if XojoIdentity = nil then XojoIdentity = new xojo.Core.Dictionary
 		  XojoIdentity.Value (id) = xojo.core.WeakRef.Create(Identity)
 		End Sub
 	#tag EndMethod
@@ -723,9 +722,16 @@ Inherits AppleObject
 		UserActivity As AppleUserActivity
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private Shared XojoIdentity As Dictionary
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  static midentity as xojo.Core.Dictionary
+			  if midentity = nil then midentity = new xojo.Core.Dictionary
+			  return midentity
+			End Get
+		#tag EndGetter
+		Protected Shared XojoIdentity As Dictionary
+	#tag EndComputedProperty
 
 
 	#tag ViewBehavior
@@ -740,19 +746,9 @@ Inherits AppleObject
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="hasInited"
 			Group="Behavior"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -774,20 +770,10 @@ Inherits AppleObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
-			Group="Behavior"
-			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

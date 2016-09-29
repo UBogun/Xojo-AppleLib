@@ -31,7 +31,7 @@ Begin Window ColorWindow
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
-      BGColor         =   &c19203500
+      BGColor         =   &c35001920
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
@@ -61,7 +61,7 @@ Begin Window ColorWindow
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
-      BGColor         =   &cDA770000
+      BGColor         =   &c0000DA77
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True

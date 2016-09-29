@@ -1,6 +1,6 @@
 #tag Class
 Protected Class OSXLibResponder
-Inherits canvas
+Inherits Canvas
 	#tag Event
 		Sub DoubleClick(X As Integer, Y As Integer)
 		  #pragma Unused X
@@ -105,203 +105,385 @@ Inherits canvas
 		End Function
 	#tag EndEvent
 
+	#tag Event
+		Sub Open()
+		  dim obj as appleresponder = raiseEvent InitControl
+		  if  obj <> nil then
+		    dim viewobj as appleview = AppleView(obj)
+		    mAppleObject =  obj
+		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
+		    dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		    dim subview as appleview = ViewToReplace(origview)
+		    controller.ReplaceSubview subview, viewobj // and kick out the canvas by replacing it with our view
+		  else
+		    MakeException ("Could not create a custom class – object returned was NIL.")
+		  end if
+		  
+		  RaiseEvent open
+		  
+		  // dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
+		  // dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		  // for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
+		  // dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
+		  // if subview.id = origview.id then // is this our control?
+		  // dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
+		  // mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
+		  // controller.ReplaceSubview origview,mAppleObject // and kick out the canvas by replacing it with our view
+		  // exit 
+		  // end if
+		  // next
+		  
+		End Sub
+	#tag EndEvent
 
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informanimationDidStop(Animation As AppleCAAnimation, Finished as Boolean)
-		  RaiseEvent AnimationStopped (Animation, Finished)
+
+	#tag Method, Flags = &h21
+		Private Sub AttachHandlers(obj as appleresponder)
+		  AddHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  AddHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
+		  AddHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
+		  
+		  AddHandler obj.BeginGesture, Addressof informOnbeginGestureWithEvent
+		  AddHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
+		  AddHandler obj.Rotate, Addressof informOnrotateWithEvent
+		  AddHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  AddHandler obj.Swipe, Addressof informOnswipeWithEvent
+		  AddHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
+		  AddHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis
+		  
+		  
+		  
+		  AddHandler obj.FlagsChanged, Addressof informOnFlagsChanged
+		  AddHandler obj.KeyDown, Addressof informOnKeyDown
+		  AddHandler obj.KeyUp, Addressof informOnKeyUp
+		  
+		  
+		  AddHandler obj.AnimationDidStart, Addressof informOnanimationDidStart
+		  AddHandler obj.AnimationDidStop, Addressof informOnanimationDidStop
+		  AddHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
+		  
+		  
+		  AddHandler obj.MouseDown, Addressof informOnMouseDown
+		  AddHandler obj.MouseEntered, Addressof informOnMouseentered
+		  AddHandler obj.MouseDragged, Addressof informOnMouseDragged
+		  AddHandler obj.MouseExited, Addressof informOnMouseExited
+		  AddHandler obj.MouseMoved, Addressof informOnMouseMoved
+		  AddHandler obj.MouseUp, Addressof informOnMouseUp
+		  
+		  AddHandler obj.RightMouseDown, Addressof informOnRightMouseDown
+		  AddHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
+		  AddHandler obj.RightMouseUp, Addressof informOnRightMouseUp
+		  
+		  AddHandler obj.OtherMouseDown, Addressof informOnOtherMouseDown
+		  AddHandler obj.OtherMouseDragged, Addressof informOnOtherMouseDragged
+		  
+		  AddHandler obj.ScrollWheel, Addressof informOnScrollWheel
+		  
+		  
+		  AddHandler obj.TouchesBegan, Addressof informOntouchesBeganWithEvent
+		  AddHandler obj.TouchesMoved, Addressof informOntouchesMovedWithEvent
+		  AddHandler obj.TouchesCancelled, Addressof informOntouchesCancelledWithEvent
+		  AddHandler obj.TouchesEnded, Addressof informOntouchesEndedWithEvent
+		  
+		  
+		  AddHandler obj.PressureChange, Addressof informOnpressureChangeWithEvent
+		  AddHandler obj.TabletPoint, Addressof informOntabletPoint
+		  AddHandler obj.TabletProximity, Addressof informOntabletProximity
+		  
+		  AddHandler obj.WillPresentError, Addressof informOnwillPresentError
+		  
+		  
+		  // AddHandler obj.DidEvaluateActions, Addressof informOnDidEvaluateActions
+		  // AddHandler obj.DidSimulatePhysics, Addressof MouseenterdinformOnDidSimulatePhysics
+		  // AddHandler obj.didApplyConstraints, Addressof informondidApplyConstraints
+		  // AddHandler obj.FinishedSceneUpdate, Addressof informondidFinishUpdateForScene
+		  // AddHandler obj.SceneSizeChanged, Addressof InformOnSceneSizeChange
+		  // AddHandler obj.SceneDidLoad, Addressof informonSceneDidLoad
+		  // AddHandler obj.SceneWillMoveFromView, Addressof informonSceneWillMoveFromView
+		  // AddHandler obj.SceneDidMoveToView, addressof informOnSceneWillMoveToView
+		  // 
+		  // AddHandler obj.ContactBegan, addressOf informOnDidBeginContact
+		  // AddHandler obj.ContactEnded, addressOf informOnDidEndContact
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informOnAcceptsFirstResponder() As Boolean
+		Attributes( hidden )  Function informOnAcceptsFirstResponder(responder as appleresponder) As Boolean
 		  return me.AcceptFocus
+		  #pragma unused responder
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnanimationDidStart(Animation As AppleCAAnimation)
+		Attributes( hidden )  Sub informOnanimationDidStart(responder as appleresponder, Animation As AppleCAAnimation)
 		  RaiseEvent AnimationStarted (Animation)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informOnbecomeFirstResponder() As Boolean
-		  return not raiseevent DontAcceptFocus
+		Attributes( hidden )  Sub informOnanimationDidStop(responder as appleresponder, Animation As AppleCAAnimation, Finished as Boolean)
+		  RaiseEvent AnimationStopped (Animation, Finished)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informOnbecomeFirstResponder(responder as appleresponder) As Boolean
+		  return not me.AcceptFocus
+		  #pragma unused responder
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnbeginGestureWithEvent(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnbeginGestureWithEvent(responder as appleresponder, anEvent as applensevent)
 		  raiseevent BeginGesture (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnendGestureWithEvent(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnendGestureWithEvent(responder as appleresponder, anEvent as applensevent)
 		  raiseevent EndGesture (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnflagsChanged(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnflagsChanged(responder as appleresponder, anEvent as applensevent)
 		  raiseevent ModifierKeysChange (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnkeyDown(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnkeyDown(responder as appleresponder, anEvent as AppleNSEvent)
 		  raiseevent KeyDown(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnkeyUp(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnkeyUp(responder as appleresponder, anEvent as AppleNSEvent)
 		  raiseevent KeyUp(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnmagnifyWithEvent(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnmagnifyWithEvent(responder as appleresponder, anEvent as applensevent)
 		  raiseevent MagnifyGesture(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnmouseDown(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnmouseDown(responder as appleresponder, anEvent as applensevent)
 		  raiseevent MouseDown (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnmouseDragged(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnmouseDragged(responder as appleresponder, anEvent as applensevent)
 		  raiseevent MouseDrag(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnmouseEntered(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnmouseEntered(responder as appleresponder, anEvent as applensevent)
 		  raiseevent MouseEnter(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnmouseExited(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnmouseExited(responder as appleresponder, anEvent as applensevent)
 		  raiseevent MouseExit(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnmouseMoved(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnmouseMoved(responder as appleresponder, anEvent as applensevent)
 		  raiseevent MouseMove(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnmouseUp(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnmouseUp(responder as appleresponder, anEvent as applensevent)
 		  raiseevent MouseUp (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub InformOnNSAnimationFinished()
+		Attributes( hidden )  Sub InformOnNSAnimationFinished(responder as appleresponder)
 		  RaiseEvent AnimationFinished
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnotherMouseDown(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnotherMouseDown(responder as appleresponder, anEvent as applensevent)
 		  raiseevent OtherMouseDown (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnOthermouseDragged(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnOthermouseDragged(responder as appleresponder, anEvent as applensevent)
 		  raiseevent OtherMouseDrag(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnOthermouseUp(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnOthermouseUp(responder as appleresponder, anEvent as applensevent)
 		  raiseevent OtherMouseUp (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnpressureChangeWithEvent(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnpressureChangeWithEvent(responder as appleresponder, anEvent as applensevent)
 		  raiseevent PressureChange(anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informOnresignFirstResponder() As Boolean
+		Attributes( hidden )  Function informOnresignFirstResponder(responder as appleresponder) As Boolean
 		  return not raiseevent DontLoseFocus
+		  #pragma unused responder
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnrotateWithEvent(anEvent as applensevent)
-		  raiseevent RotationGesture(anEvent)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnscrollWheel(anEvent as applensevent)
-		  raiseevent Mousewheel (anEvent)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnsmartMagnifyWithEvent(anEvent as applensevent)
-		  raiseevent SmartMagnifyGesture (anEvent)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOnswipeWithEvent(anEvent as applensevent)
-		  raiseevent SwipeGesture(anEvent)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOntabletPoint(anEvent as applensevent)
-		  raiseevent TabletPoint (anEvent)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOntabletProximity(anEvent as applensevent)
-		  raiseevent TabletProximity (anEvent)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOntouchesBeganWithEventl(anEvent as applensevent)
-		  raiseevent TouchesBegan(anEvent)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informOnwillPresentError(error as appleerror) As appleerror
-		  return raiseevent customizeError (error)
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOrightMouseDown(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnrightMouseDown(responder as appleresponder, anEvent as applensevent)
 		  raiseevent RightMouseDown (anEvent)
+		  #pragma unused responder
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOrightMouseDragged(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnrightMouseDragged(responder as appleresponder, anEvent as applensevent)
 		  raiseevent RightMouseDragged (anEvent)
+		  #pragma unused responder
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informOrightMouseUp(anEvent as applensevent)
+		Attributes( hidden )  Sub informOnrightMouseUp(responder as appleresponder, anEvent as applensevent)
 		  raiseevent RightMouseUp (anEvent)
+		  #pragma unused responder
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnrotateWithEvent(responder as appleresponder, anEvent as AppleNSEvent)
+		  raiseevent RotationGesture(anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnscrollWheel(responder as appleresponder, anEvent as AppleNSevent)
+		  raiseevent Mousewheel (anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnsmartMagnifyWithEvent(responder as appleresponder, anEvent as applensevent)
+		  raiseevent SmartMagnifyGesture (anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOnswipeWithEvent(responder as appleresponder, anEvent as applensevent)
+		  raiseevent SwipeGesture(anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOntabletPoint(responder as appleresponder, anEvent as applensevent)
+		  raiseevent TabletPoint (anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOntabletProximity(responder as appleresponder, anEvent as applensevent)
+		  raiseevent TabletProximity (anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOntouchesBeganWithEvent(responder as appleresponder, anEvent as applensevent)
+		  raiseevent TouchesBegan(anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOntouchesCancelledWithEvent(responder as appleresponder, anEvent as applensevent)
+		  raiseevent TouchesCancelled(anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOntouchesEndedWithEvent(responder as appleresponder, anEvent as applensevent)
+		  raiseevent TouchesEnded(anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informOntouchesMovedWithEvent(responder as appleresponder, anEvent as applensevent)
+		  raiseevent TouchesMoved(anEvent)
+		  #pragma unused responder
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informOnwantsForwardedScrollEventsForAxis(responder as appleresponder, Axis As AppleNSEvent.NSEventGestureAxis) As Boolean
+		  return raiseevent ForwardElasticScroll(axis)
+		  #pragma unused responder
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informOnwantsScrollEventsForSwipeTrackingOnAxis(responder as appleresponder, Axis As AppleNSEvent.NSEventGestureAxis) As Boolean
+		  return raiseevent TrackSwipes(axis)
+		  #pragma unused responder
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informOnwillPresentError(responder as appleresponder, error as appleerror) As appleerror
+		  return raiseevent customizeError (error)
+		  #pragma unused responder
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Function ViewToReplace(origview as appleview) As AppleView
+		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		  for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
+		    dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
+		    if subview.id = origview.id then // is this our control?
+		      return subview
+		    end if
+		  next
+		End Function
 	#tag EndMethod
 
 
@@ -325,16 +507,20 @@ Inherits canvas
 		Event CustomizeError(Error As AppleError) As AppleError
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520636F6E74726F6C20676574732074686520666F6375732E2052657475726E207472756520746F2064656E7920746869732E
-		Event DontAcceptFocus() As Boolean
-	#tag EndHook
-
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520636F6E74726F6C2073686F756C64206C6F73652074686520666F6375732E2052657475726E207472756520746F2064656E7920746869732E
 		Event DontLoseFocus() As Boolean
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E207468652075736572206861732066696E6973686564206120746F75636820676573747572652E
 		Event EndGesture(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 52657475726E207768657468657220746F20666F727761726420656C6173746963207363726F6C6C696E672067657374757265206576656E74732075702074686520726573706F6E6465722E
+		Event ForwardElasticScroll(Axis As AppleNSEvent.NSEventGestureAxis) As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event InitControl() As AppleResponder
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520757365722068617320707265737365642061206B65792E
@@ -379,6 +565,10 @@ Inherits canvas
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207573657220686173206D6F76656420746865206D6F757365E2809973207363726F6C6C20776865656C2E
 		Event MouseWheel(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Open()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520757365722068617320707265737365642061207465727469617279206D6F75736520627574746F6E2E
@@ -433,12 +623,42 @@ Inherits canvas
 		Event TouchesBegan(anEvent As AppleNSEvent)
 	#tag EndHook
 
+	#tag Hook, Flags = &h0, Description = 547261636B696E67206F6620746F756368657320686173206265656E2063616E63656C6C656420666F7220616E7920726561736F6E2E
+		Event TouchesCancelled(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120736574206F6620746F756368657320686173206265656E2072656D6F7665642E
+		Event TouchesEnded(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E206F6E65206F72206D6F726520746F75636865732068617665206D6F7665642E
+		Event TouchesMoved(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 52657475726E207472756520746F20747261636B2067657374757265207363726F6C6C206576656E7473207375636820617320612073776970652E
+		Event TrackSwipes(Axis As AppleNSEvent.NSEventGestureAxis) As Boolean
+	#tag EndHook
+
 
 	#tag Note, Name = Explanation
 		This is a virtual superclass for implementing NSresponder events into custom controls. 
 		It is not usable by itself.
 		
 	#tag EndNote
+
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mAppleObject
+			End Get
+		#tag EndGetter
+		AppleObject As AppleResponder
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h1
+		Protected mAppleObject As AppleResponder
+	#tag EndProperty
 
 
 	#tag ViewBehavior

@@ -544,11 +544,6 @@ Inherits AppleControl
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Enabled"
 			Group="Behavior"
 			Type="Boolean"
@@ -572,11 +567,6 @@ Inherits AppleControl
 			Name="hasInited"
 			Group="Behavior"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -613,11 +603,6 @@ Inherits AppleControl
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="MultipleTouchEnabled"
 			Group="Behavior"
 			Type="Boolean"
@@ -642,11 +627,6 @@ Inherits AppleControl
 			Name="RestorationIdentifier"
 			Group="Behavior"
 			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
-			Group="Behavior"
-			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Selected"

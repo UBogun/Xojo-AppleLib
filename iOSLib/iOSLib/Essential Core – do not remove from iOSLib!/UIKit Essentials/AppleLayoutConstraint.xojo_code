@@ -331,11 +331,6 @@ Inherits AppleObject
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="FirstAttribute"
 			Group="Behavior"
 			Type="NSLayoutAttribute"
@@ -357,11 +352,6 @@ Inherits AppleObject
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Identifier"
 			Group="Behavior"
 			Type="Text"
@@ -379,11 +369,6 @@ Inherits AppleObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Multiplier"
@@ -421,11 +406,6 @@ Inherits AppleObject
 				"0 - Equal"
 				"1 - GreaterThanOrEqual"
 			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
-			Group="Behavior"
-			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SecondAttribute"

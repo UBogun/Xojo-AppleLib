@@ -29,6 +29,8 @@ Begin Window SpriteKitWindow
    Begin OSXLibSKView OSXLibSKView1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   True
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False
@@ -63,6 +65,7 @@ End
 #tag Events OSXLibSKView1
 	#tag Event
 		Sub Shown()
+		  system.debuglog "SK shown"
 		  me.AppleObject.ShowsFPS = true // show the FPS debug counter. See the warning below.
 		  dim scene as new AppleSKScene (me.AppleObject.Frame.size_) // Create a scene in the size of the current SKView. For a game, you would rather set it to a certain size or give the options to select the resolution. 
 		  // Try running it in full screen and you will see the background Logos still look crips while the Labelnode will suffer from the resolution change.
@@ -116,11 +119,6 @@ End
 		  // OSXLibSKView1.AppleObject.ShowsFields = true
 		  
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function AcceptsTouchEvents() As Boolean
-		  return true
-		End Function
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E207468652074686520757365722068617320626567756E20612070696E636820676573747572652E
 		Sub MagnifyGesture(anEvent As AppleNSEvent)

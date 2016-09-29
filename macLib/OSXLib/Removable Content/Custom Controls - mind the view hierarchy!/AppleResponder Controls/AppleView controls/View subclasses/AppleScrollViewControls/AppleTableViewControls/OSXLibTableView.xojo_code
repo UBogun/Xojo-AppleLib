@@ -2,7 +2,7 @@
 Protected Class OSXLibTableView
 Inherits OSXLibScrollView
 	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
-		Function InitControl() As Boolean
+		Function InitControl() As AppleScrollview
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
 		  // The Xojo engineers always warned that messing with the view hierarchy of Xojo controls could lead to problems in the future.
 		  // Instead of attaching the declared control as a subview to the Xojo canvas, I chose a more radical approach:
@@ -10,35 +10,25 @@ Inherits OSXLibScrollView
 		  // This way no interference with Xoo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
 		  
-		  
-		  if not Raiseevent InitControl then
-		    mAppleObject = new AppleScrollView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		    mAppleObject.registercontrol self // and register this instance so it receives the events.
-		    mTableViewObject = new AppleTableView(mappleobject.frame)
-		    mappleobject.documentview = mTableViewObject
-		    // Please note the internal events of the declared class will not fire anymore.
-		    // This is to avoid confusions where an event expects a return value.
-		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
-		    dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
-		    for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
-		      dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
-		      if subview.id = origview.id then // is this our control?
-		        dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
-		        mAppleObject.AutoResizingMask = mask // … to the autoresizing mask
-		        mAppleObject.TranslatesAutoresizingMaskIntoConstraints = true
-		        controller.ReplaceSubview origview, mAppleObject // and kick out the canvas by replacing it with our view
-		        exit 
-		      end if
-		    next
+		  dim obj as AppleScrollView = raiseevent InitControl
+		  if obj = nil then
+		    obj = new AppleScrollView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
+		    obj.registercontrol self // and register this instance so it receives the events.
+		    mTableViewObject = new AppleTableView(obj.frame)
+		    obj.documentview = mTableViewObject
+		    
+		    dim mask as new AppleAutoresizingMask(self) // Yes: Copy the locks 
+		    obj.AutoResizingMask = mask // … to the autoresizing mask
 		  end if
-		  return true
+		  
+		  return obj
 		  
 		End Function
 	#tag EndEvent
 
 
 	#tag Hook, Flags = &h0
-		Event InitControl() As Boolean
+		Event InitControl() As AppleScrollview
 	#tag EndHook
 
 
@@ -70,6 +60,24 @@ Inherits OSXLibScrollView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AcceptTouchEvents"
+			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowMagnification"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowVibrancy"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AutoDeactivate"
 			Visible=true
 			Group="Appearance"
@@ -82,6 +90,20 @@ Inherits OSXLibScrollView
 			Group="Appearance"
 			Type="Picture"
 			EditorType="Picture"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BorderType"
+			Visible=true
+			Group="Behavior"
+			InitialValue="None"
+			Type="AppleView.NSBordertype"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - None"
+				"1 - Line"
+				"2 - Bezel"
+				"3 - Groove"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"
@@ -117,6 +139,13 @@ Inherits OSXLibScrollView
 			Group="Appearance"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HorizontalScroller"
+			Visible=true
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -165,6 +194,13 @@ Inherits OSXLibScrollView
 			Group="Position"
 			InitialValue="False"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Magnification"
+			Visible=true
+			Group="Behavior"
+			InitialValue="1.0"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
@@ -219,6 +255,13 @@ Inherits OSXLibScrollView
 			Name="UseFocusRing"
 			Visible=true
 			Group="Appearance"
+			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalScroller"
+			Visible=true
+			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty

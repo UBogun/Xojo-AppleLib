@@ -30,16 +30,6 @@ Inherits AppleLayoutAnchor
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="DebugDescription"
-			Group="Behavior"
-			Type="Text"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -54,20 +44,10 @@ Inherits AppleLayoutAnchor
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mHasOwnership"
-			Group="Behavior"
-			Type="boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="RetainCount"
-			Group="Behavior"
-			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
