@@ -7,6 +7,25 @@ Inherits AppleControl
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720696D616765766965772066726F6D20616E20696D6167652E
+		Sub Constructor(anImage as appleimage)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor(aControl as control) -- From AppleView
+		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  if RespondsToSelector("imageViewWithImage:", classptr) then
+		    Super.Constructor(imageViewWithImage (classptr, animage.id), true, true)
+		  else
+		    Constructor (FoundationFrameWork.NSMakeRect (0,0,anImage.Width, anImage.Height))
+		    self.Image = anImage
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub Constructor(Frame as FoundationFrameWork.NSRect)
 		  // Calling the overridden superclass constructor.
@@ -41,6 +60,10 @@ Inherits AppleControl
 		  return new AppleImageView(c)
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function imageViewWithImage Lib AppkitLibName Selector "imageViewWithImage:" (id as ptr, image as ptr) As ptr
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleImageView

@@ -10,6 +10,7 @@ Inherits iOSLIbView
 	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C20636C6F7365732E
 		Sub Close()
 		  RaiseEvent close
+		  // RemoveHandlers
 		  mid = nil
 		End Sub
 	#tag EndEvent
@@ -19,7 +20,6 @@ Inherits iOSLIbView
 		  dim subID as uinteger = raiseEvent CreateView
 		  if  subid = 0 then
 		    dim myview as new AppleButton (AppleButton.UIButtonType.System)
-		    myview.Title (AppleControlState.Normal) = "Test"
 		    mid = myview
 		    mid.UserInteractionEnabled = true
 		    AttachHandlers
@@ -86,15 +86,15 @@ Inherits iOSLIbView
 	#tag EndEvent
 
 
-	#tag Method, Flags = &h21
-		Private Sub AttachHandlers()
+	#tag Method, Flags = &h1
+		Protected Sub AttachHandlers()
 		  // AddHandler mid.DidAddSubview, AddressOf informonDidAddSubview
 		  AddHandler mid.DidMoveToSuperview, AddressOf informonDidMoveToSuperview
 		  AddHandler mid.DidMoveToWindow, AddressOf informOnDidMoveToWindow
 		  // AddHandler mid.DrawRect, AddressOf informOnDrawRect
 		  // AddHandler mid.layoutSubviews, AddressOf informOnlayoutSubviews
 		  AddHandler mid.tintColorDidChange, AddressOf informontintColorDidChange
-		  // AddHandler mid.TraitCollectionDidChange, AddressOf informonTraitCollectionDidChange
+		  AddHandler mid.TraitCollectionDidChange, AddressOf informonTraitCollectionDidChange
 		  AddHandler mid.WillMoveToSuperview, AddressOf informonWillMoveToSuperview
 		  // AddHandler mid.WillMoveToWindow, AddressOf informonWillMoveToWindow
 		  // AddHandler mid.WillRemoveSubview, AddressOf informonWillRemoveSubview
@@ -119,84 +119,20 @@ Inherits iOSLIbView
 		  AddHandler AppleObject.AnimationDidStart, Addressof informonAnimationDidStart
 		  AddHandler AppleObject.animationDidStop, AddressOf informonAnimationDidStop
 		  
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informonDidBeginEditing(view as AppleTextfield)
-		  RaiseEvent EditBegin
-		  
-		  
-		  #pragma unused view
-		  
+		  AddHandler AppleObject.action, AddressOf informonAction
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub informonDidEndEditing(view as appletextfield)
-		  RaiseEvent TextChange
+		Attributes( hidden )  Sub informonAction(view as applebutton)
+		  RaiseEvent Action
+		  
 		  
 		  #pragma unused view
+		  
+		  
 		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informonShouldBeginEditing(view as AppleTextfield) As boolean
-		  return RaiseEvent ShouldNotEdit
-		  
-		  
-		  #pragma unused view
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informonShouldChangeCharactersInRange(view as appletextfield, Start as UInteger, Length as UInteger, Replacement as Text) As boolean
-		  return RaiseEvent ShouldNotChangeCharacters (Start, Length, Replacement)
-		  #pragma unused view
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informonShouldClear(view as appletextfield) As Boolean
-		  return RaiseEvent ShouldNotClear
-		  #pragma unused view
-		  
-		  
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informonShouldEndEditing(view as appletextfield) As Boolean
-		  return RaiseEvent ShouldNotEndEdit
-		  #pragma unused view
-		  
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Function informonShouldReturn(view as appletextfield) As Boolean
-		  return RaiseEvent ShouldNotReturn
-		  
-		  #pragma unused view
-		  
-		  
-		  
-		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
@@ -231,12 +167,17 @@ Inherits iOSLIbView
 		  
 		  RemoveHandler AppleObject.AnimationDidStart, Addressof informonAnimationDidStart
 		  RemoveHandler AppleObject.animationDidStop, AddressOf informonAnimationDidStop
+		  RemoveHandler AppleObject.action, AddressOf informonAction
 		  
 		  
 		  
 		End Sub
 	#tag EndMethod
 
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520627574746F6E20697320746F7563686564
+		Event Action()
+	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event Close()
@@ -247,40 +188,19 @@ Inherits iOSLIbView
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event EditBegin()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
 		Event Resized()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event ShouldNotChangeCharacters(Start as UInteger, Length as UInteger, Replacement as Text) As Boolean
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event ShouldNotClear() As Boolean
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event ShouldNotEdit() As Boolean
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event ShouldNotEndEdit() As Boolean
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event ShouldNotReturn() As Boolean
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event TextChange()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event TraitCollectionChanged(PreviousCollection as AppleTraitCollection)
 	#tag EndHook
+
+
+	#tag Note, Name = Read me
+		
+		Images and colors as well as borderwidth and BackgroundRadius are available through the iOSButton extension.
+		I did not want to place them here to avoid inspector behavior overriding all the presets.
+	#tag EndNote
 
 
 	#tag ComputedProperty, Flags = &h0
@@ -295,6 +215,34 @@ Inherits iOSLIbView
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  return me.AppleObject.Title(AppleControlState.Disabled)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  me.AppleObject.Title(AppleControlState.Disabled) = value
+			End Set
+		#tag EndSetter
+		DisabledTitle As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return me.AppleObject.Title(AppleControlState.Highlighted)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  me.AppleObject.Title(AppleControlState.Highlighted) = value
+			End Set
+		#tag EndSetter
+		HighlightedTitle As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  return me.AppleObject.Title(AppleControlState.Normal)
 			End Get
 		#tag EndGetter
@@ -304,6 +252,29 @@ Inherits iOSLIbView
 			End Set
 		#tag EndSetter
 		NormalTitle As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return me.AppleObject.Title(AppleControlState.Selected)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  me.AppleObject.Title(AppleControlState.Selected) = value
+			End Set
+		#tag EndSetter
+		SelectedTitle As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return me.AppleObject.TitleLabel
+			End Get
+		#tag EndGetter
+		TitleLabel As AppleLabel
 	#tag EndComputedProperty
 
 
@@ -385,6 +356,12 @@ Inherits iOSLIbView
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DisabledTitle"
+			Visible=true
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ExclusiveTouch"
 			Visible=true
 			Group="Behavior"
@@ -413,6 +390,12 @@ Inherits iOSLIbView
 			Group="Appearance"
 			InitialValue="False"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HighlightedTitle"
+			Visible=true
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -456,6 +439,12 @@ Inherits iOSLIbView
 			Name="PreservesSuperviewLayoutMargins"
 			Group="Appearance"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectedTitle"
+			Visible=true
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

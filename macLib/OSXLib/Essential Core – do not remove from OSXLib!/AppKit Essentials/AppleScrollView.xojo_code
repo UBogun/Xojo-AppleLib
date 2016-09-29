@@ -8,14 +8,20 @@ Inherits AppleView
 	#tag EndEvent
 
 	#tag Event
+		Function AcceptsTouchEvents() As Boolean
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Function AllowsVibrancy() As Boolean
 		  
 		End Function
 	#tag EndEvent
 
 	#tag Event
-		Sub DidResize()
-		  
+		Sub DidAddSubview(Subview as appleview)
+		  #PRAGMA UNUSED SUBVIEW
 		End Sub
 	#tag EndEvent
 
@@ -31,6 +37,12 @@ Inherits AppleView
 		End Function
 	#tag EndEvent
 
+	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
+		Sub Magnify(anEvent As AppleNSEvent)
+		  #pragma unused anevent
+		End Sub
+	#tag EndEvent
+
 	#tag Event
 		Function Opaque() As Boolean
 		  
@@ -43,9 +55,9 @@ Inherits AppleView
 		End Sub
 	#tag EndEvent
 
-	#tag Event
-		Sub WillResize()
-		  
+	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
+		Sub SmartMagnify(anEvent As AppleNSEvent)
+		  #pragma unused anevent
 		End Sub
 	#tag EndEvent
 
@@ -75,8 +87,8 @@ Inherits AppleView
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(AppKitFramework.initwithframe(alloc(classptr), frame))
-		  MHasOwnership = true
+		  Super.Constructor(AppKitFramework.initwithframe(alloc(classptr), frame), true)
+		  registerIdentity(self)
 		  
 		  
 		End Sub
@@ -247,44 +259,17 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Shared Sub impl_scrollviewDidEndLiveResize(pid as ptr, sel as ptr)
-		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
-		  if view <> nil then 
-		    if not view.informOnviewDidEndLiveResize() then appkitframework.tile(pid)
-		  end if
-		  #pragma unused sel
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Shared Sub impl_scrollviewWillStartLiveResize(pid as ptr, sel as ptr)
-		  dim view as ApplescrollView = ApplescrollView.MakefromPtr(pid)
-		  if view <> nil then 
-		    if not view.informOnviewWillStartLiveResize() then appkitframework.tile(pid)
-		  end if
-		  #pragma unused sel
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function informOnviewDidEndLiveResize() As Boolean
-		  if parentcontrol <> nil then 
-		    return parentcontrol.informOnviewDidEndLiveResize()
-		  else
-		    return RaiseEvent DidResize()
-		  end if
+		Protected Shared Function Identity(id as ptr) As AppleScrollview
+		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
+		  if wr <> nil then return AppleScrollview(wr.Value)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Function informOnviewWillStartLiveResize() As Boolean
-		  if parentcontrol <> nil then 
-		    return parentcontrol.informOnviewWillStartLiveResize()
-		  else
-		    return RaiseEvent WillResize()
-		  end if
+		Protected Shared Function InformInstance(id as ptr) As AppleScrollView
+		  dim ident as AppleScrollView = AppleScrollView(AppleScrollView.Identity(id))
+		  return if (ident = nil, AppleScrollView.MakeFromPtr (id), ident)
+		  
 		End Function
 	#tag EndMethod
 
@@ -461,15 +446,6 @@ Inherits AppleView
 	#tag EndMethod
 
 
-	#tag Hook, Flags = &h0
-		Event DidResize() As Boolean
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
-		Event WillResize() As Boolean
-	#tag EndHook
-
-
 	#tag Note, Name = Status incomplete
 		
 		missing:
@@ -575,7 +551,8 @@ Inherits AppleView
 			    // methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf impl_acceptsFirstResponder, "c@:")
 			    // methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
 			    // methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
-			    methods.Append new TargetClassMethodHelper("smartMagnifyWithEvent:", AddressOf impl_smartMagnifyWithEvent, "v@:@")
+			    
+			    // methods.Append new TargetClassMethodHelper("smartMagnifyWithEvent:", AddressOf impl_smartMagnifyWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("mouseDown:", AddressOf impl_mouseDown, "v@:@")
 			    methods.Append new TargetClassMethodHelper("mouseDragged:", AddressOf impl_mouseDragged, "v@:@")
 			    methods.Append new TargetClassMethodHelper("mouseUp:", AddressOf impl_mouseUp, "v@:@")
@@ -597,30 +574,35 @@ Inherits AppleView
 			    methods.Append new TargetClassMethodHelper("willPresentError:", AddressOf impl_willPresentError, "@@:@")
 			    methods.Append new TargetClassMethodHelper("beginGestureWithEvent:", AddressOf impl_beginGestureWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("endGestureWithEvent:", AddressOf impl_endGestureWithEvent, "v@:@")
-			    methods.Append new TargetClassMethodHelper("magnifyWithEvent:", AddressOf impl_magnifyWithEvent, "v@:@")
+			    // methods.Append new TargetClassMethodHelper("magnifyWithEvent:", AddressOf impl_magnifyWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("rotateWithEvent:", AddressOf impl_rotateWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf impl_swipeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesBeganWithEvent:", AddressOf impl_touchesBeganWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesMovedWithEvent:", AddressOf impl_touchesMovedWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesCancelledWithEvent:", AddressOf impl_touchesCancelledWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesEndedWithEvent:", AddressOf impl_touchesEndedWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
 			    methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
 			    
 			    // NSView "delegate" methods
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToWindow", AddressOf impl_viewDidMoveToWindow, "v@:")
-			    methods.Append new TargetClassMethodHelper("acceptsTouchEvents", AddressOf impl_acceptsTouchEvents, "c@:")
-			    methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_didAddSubview, "v@:@")
+			    // methods.Append new TargetClassMethodHelper("acceptsTouchEvents", AddressOf impl_acceptsTouchEvents, "c@:")
+			    // methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_didAddSubview, "v@:@")
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToSuperview", AddressOf impl_viewDidMoveToSuperview, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewWillMoveToSuperview:", AddressOf impl_viewWillMoveToSuperview, "v@:@")
 			    methods.Append new TargetClassMethodHelper("viewWillMoveToWindow:", AddressOf impl_viewWillMoveToWindow, "v@:@")
-			    methods.Append new TargetClassMethodHelper("willRemoveSubview:", AddressOf impl_willRemoveSubview, "v@:@")
+			    // methods.Append new TargetClassMethodHelper("willRemoveSubview:", AddressOf impl_willRemoveSubview, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("opaque", AddressOf impl_opaque, "c@:")
 			    // methods.Append new TargetClassMethodHelper("allowsVibrancy", AddressOf impl_allowsVibrancy, "c@:")
-			    methods.Append new TargetClassMethodHelper("viewWillStartLiveResize", AddressOf impl_scrollviewWillStartLiveResize, "v@:")
-			    methods.Append new TargetClassMethodHelper("viewDidEndLiveResize", AddressOf impl_scrollviewDidEndLiveResize, "v@:")
+			    methods.Append new TargetClassMethodHelper("viewWillStartLiveResize", AddressOf impl_viewWillStartLiveResize, "v@:")
+			    methods.Append new TargetClassMethodHelper("viewDidEndLiveResize", AddressOf impl_viewDidEndLiveResize, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewDidHide", AddressOf impl_viewDidHide, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewDidUnhide", AddressOf impl_viewDidUnhide, "v@:")
 			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect, "v@:{CGRect}")
 			    methods.Append new TargetClassMethodHelper("menuForEvent:", AddressOf impl_menuForEvent, "@@:@")
 			    methods.Append new TargetClassMethodHelper("willOpenMenu:withEvent:", AddressOf impl_willOpenMenu, "v@:@@")
+			    
+			    
 			    
 			    mClassPtr = BuildTargetClass ("NSScrollView", "OSXLibScrollView",methods)
 			  end if
@@ -842,56 +824,6 @@ Inherits AppleView
 			End Set
 		#tag EndSetter
 		HorizontalScroller As AppleScroller
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  static mkNSScrollViewDidEndLiveMagnifyNotification as text = "NSScrollViewDidEndLiveMagnifyNotification"
-			  return mkNSScrollViewDidEndLiveMagnifyNotification
-			End Get
-		#tag EndGetter
-		Shared kNSScrollViewDidEndLiveMagnifyNotification As Text
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  static mkNSScrollViewDidEndLiveScrollNotification as text = "NSScrollViewDidEndLiveScrollNotification"
-			  return mkNSScrollViewDidEndLiveScrollNotification
-			End Get
-		#tag EndGetter
-		Shared kNSScrollViewDidEndLiveScrollNotification As Text
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  static mkNSScrollViewDidLiveScrollNotification as text = "NSScrollViewDidLiveScrollNotification"
-			  return mkNSScrollViewDidLiveScrollNotification
-			End Get
-		#tag EndGetter
-		Shared kNSScrollViewDidLiveScrollNotification As Text
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  static mkNSScrollViewWillStartLiveMagnifyNotification as text = "NSScrollViewWillStartLiveMagnifyNotification"
-			  return mkNSScrollViewWillStartLiveMagnifyNotification
-			End Get
-		#tag EndGetter
-		Shared kNSScrollViewWillStartLiveMagnifyNotification As Text
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  static mkNSScrollViewWillStartLiveScrollNotification as text = "NSScrollViewWillStartLiveScrollNotification"
-			  return mkNSScrollViewWillStartLiveScrollNotification
-			End Get
-		#tag EndGetter
-		Shared kNSScrollViewWillStartLiveScrollNotification As Text
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E2809973206C696E65206279206C696E65207363726F6C6C20616D6F756E742E0A53657474696E6720746869732070726F7065727479207365747320626F746820766572746963616C4C696E655363726F6C6C20616E6420686F72697A6F6E74616C4C696E655363726F6C6C20746F207468652073616D652076616C75652E
@@ -1131,6 +1063,22 @@ Inherits AppleView
 		#tag EndSetter
 		VerticalScroller As AppleScroller
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = kNSScrollViewDidEndLiveMagnifyNotification, Type = Text, Dynamic = False, Default = \"NSScrollViewDidEndLiveMagnifyNotification", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSScrollViewDidEndLiveScrollNotification, Type = Text, Dynamic = False, Default = \"NSScrollViewDidEndLiveScrollNotification", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSScrollViewDidLiveScrollNotification, Type = Text, Dynamic = False, Default = \"NSScrollViewDidLiveScrollNotification", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSScrollViewWillStartLiveMagnifyNotification, Type = Text, Dynamic = False, Default = \"NSScrollViewWillStartLiveMagnifyNotification", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSScrollViewWillStartLiveScrollNotification, Type = Text, Dynamic = False, Default = \"NSScrollViewWillStartLiveScrollNotification", Scope = Public
+	#tag EndConstant
 
 
 	#tag Enum, Name = NSScrollElasticity, Type = Integer, Flags = &h0

@@ -29,6 +29,8 @@ Begin Window TableViewWindow
    Begin OSXLibTableView OSXLibTableView1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False

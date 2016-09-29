@@ -43,6 +43,7 @@ End
 		  me.AddRow 0, me.CreateCell("iOSLibSKView", "SceneKit for iOS")
 		  me.AddRow 0, me.CreateCell("iOSLibTextField", "Extensions for Xojo’s textfield  and a custom Textfield control.")
 		  me.AddRow 0, me.CreateCell("iOSLibImageView", "Extensions for Xojo’s ImageWell and a custom ImageView control.")
+		  me.AddRow 0, me.CreateCell("iOSLibButton", "Extensions for Xojo’s iOSButton and a custom iOSLibButton control.")
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -59,6 +60,8 @@ End
 		    v = new TextfieldView
 		  case "iOSLibImageView"
 		    v = new ImageViewView
+		  case "iOSLibButton"
+		    v = new ButtonView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub

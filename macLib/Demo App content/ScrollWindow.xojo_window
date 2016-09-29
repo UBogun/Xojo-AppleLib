@@ -7,7 +7,7 @@ Begin window ScrollWindow
    Composite       =   False
    Frame           =   0
    FullScreen      =   False
-   FullScreenButton=   False
+   FullScreenButton=   True
    HasBackColor    =   False
    Height          =   400
    ImplicitInstance=   False
@@ -29,13 +29,18 @@ Begin window ScrollWindow
    Begin OSXLibScrollView OSXLibScrollView1
       AcceptFocus     =   True
       AcceptTabs      =   False
+      AcceptTouchEvents=   True
+      AllowMagnification=   True
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
+      BorderType      =   "3"
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
       Height          =   400
       HelpTag         =   ""
+      HorizontalScroller=   True
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -44,6 +49,7 @@ Begin window ScrollWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
+      Magnification   =   10.0
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
@@ -51,6 +57,7 @@ Begin window ScrollWindow
       Top             =   0
       Transparent     =   True
       UseFocusRing    =   True
+      VerticalScroller=   True
       Visible         =   True
       Width           =   600
    End
@@ -59,7 +66,7 @@ Begin window ScrollWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFF00FF
+      BackColor       =   &cFF00FFFF
       Bold            =   False
       Border          =   True
       DataField       =   ""
@@ -72,15 +79,15 @@ Begin window ScrollWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   65
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockRight       =   True
+      LockTop         =   False
       Mask            =   ""
       Multiline       =   True
       ReadOnly        =   False
@@ -88,15 +95,15 @@ Begin window ScrollWindow
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
       Styled          =   True
-      TabIndex        =   2
+      TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "This is a first rough scrollview implementation. Try scrolling and gestures. I created the content from the imagewell, but you can do so programmatically only too. And what you see here is a floating view.\nFor a better resizing behavior I probably need Layoutconstraints.\nBelow are some event notifications.\n\n\n"
+      Text            =   "This is a much better, more native implementation. Try scrolling and gestures like Magnify. On 64Bit SmartMagnify (doubleTap) works too. When the magnification factor gets too low, the image is placed in the lower left corner by default. For a better behavior, you should subclass ClipView or add a custom event handler to the LiveMaginficationFinished event (or tell me!).\n\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   -106
+      Top             =   -45
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -111,30 +118,34 @@ End
 #tag Events OSXLibScrollView1
 	#tag Event
 		Sub Shown()
-		  dim i as new AppleImage (OSXLibLogo)
-		  dim v as new AppleImageView(0,0,i.Width, i.Height)
-		  v.Image = i
+		  // The best way to work with a Scrollview is to use a Clipview as contentview. 
+		  // You could as well add any view to its documentView instead.
 		  
-		  me.AppleObject.DocumentView = v
-		  me.AppleObject.HasHorizontalScroller = true
-		  me.AppleObject.HasVerticalScroller = true
-		  me.AppleObject.HasHorizontalRuler = true
+		  dim v as new AppleImageView(new AppleImage (OSXLibLogo)) // create an imageview from an image
+		  dim cv as new AppleClipView(v.frame) // and create a clipview with the same dimensions
+		  cv.DocumentView = v //make the imageciew its documentview
+		  me.AppleObject.ContentView = cv // and the clipview the contentView of the Scrollview
+		  
+		  // Add a floating subview over it. This reduces the Scrollview’s performance a bit!
 		  dim newview as new appleview(TextArea1)
-		  newview.left = 50
-		  newview.top = 100
+		  newview.AutoResizingMask = AppleAutoresizingMask.FullResize
+		  newview.TranslatesAutoresizingMaskIntoConstraints = true
 		  me.AppleObject.AddFloatingSubview(newview, AppleNSEvent.NSEventGestureAxis.None)
+		  // newview.RightAnchor.ConstraintGreaterThanOrEqualToAnchor (me.AppleObject.RightAnchor, 0.1).Active = true
+		  // newview.WidthAnchor.ConstraintEqualToDimension(me.AppleObject.WidthAnchor, 0.1).Priority = AppleLayoutConstraint.NSLayoutPriority.DefaultLow
 		  
+		  
+		  // Item1 as AppleObject, Attribute1 as NSLayoutAttribute, Relation as NSLayoutRelation, Item2 As AppleObject, Attribute2 as NSLayoutAttribute, Multiplier As Double, constant as Double
+		  
+		  // setting the magnification did not end in the scrollview showing the new maginification, only after a magnification gesture was started.
+		  // Im am manually setting the view to 10 times and center it on the mid of the contentview.
+		  me.AppleObject.SetMagnification 10, me.AppleObject.ConvertPointFromView(me.AppleObject.ContentView.Frame.center,  me.AppleObject.ContentView)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
 		Sub AddedSubview(Subview as AppleView)
 		  TextArea1.AppendText "Added Subview "+subview.DebugDescription+EndOfLine
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function AcceptsTouchEvents() As Boolean
-		  return true
-		End Function
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
 		Sub BecameSubview()
@@ -159,7 +170,7 @@ End
 	#tag Event , Description = 4669726573207768656E207468652074686520757365722068617320626567756E20612070696E636820676573747572652E
 		Sub MagnifyGesture(anEvent As AppleNSEvent)
 		  // TextArea1.AppendText "Magnify gesture"+EndOfLine
-		  me.AppleObject.Magnification =me.AppleObject.Magnification+ anEvent.Magnification
+		  // me.AppleObject.Magnification =me.AppleObject.Magnification+ anEvent.Magnification
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
@@ -175,17 +186,28 @@ End
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120726F746174696F6E20676573747572652E
 		Sub RotationGesture(anEvent As AppleNSEvent)
-		  me.AppleObject.DocumentView.FrameRotation = anEvent.Rotation
+		  me.AppleObject.DocumentView.Rotate anEvent.Rotation
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120746F75636820676573747572652E
 		Sub BeginGesture(anEvent As AppleNSEvent)
 		  TextArea1.AppendText "Gesture received, type "+Integer(anEvent.Type).ToText+EndOfLine
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120737769706520676573747572652E
 		Sub SwipeGesture(anEvent As AppleNSEvent)
 		  TextArea1.AppendText "Swipe Gesture received "+Integer(anEvent.type).ToText+EndOfLine
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 54686520757365722066696E697368656420726573697A696E672074686520706172616E657420636F6E74726F6C2E2052657475726E207472756520746F206F76657272696465206175746F6D61746963207363726F6C6C7669657720656C656D656E747320706C6163656D656E742E
+		Sub Resized()
+		  TextArea1.AppendText "Resized"+eol
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 466972657320696620746865207573657220686173207374617274656420726573697A696E672074686520766965772E
+		Sub Resizing()
+		  TextArea1.AppendText "Resizing"+eol
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -36,6 +36,12 @@ Protected Class AppleControlEvent
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Shared Function TouchDown() As AppleControlEvent
+		  return new AppleControlEvent (1)
+		End Function
+	#tag EndMethod
+
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter

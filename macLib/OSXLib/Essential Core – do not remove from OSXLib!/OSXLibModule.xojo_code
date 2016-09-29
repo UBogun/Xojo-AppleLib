@@ -9,6 +9,12 @@ Protected Module OSXLibModule
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Nilptr(obj as appleobject) As Ptr
+		  return if (obj = nil, nil, obj.id)
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Function XojoControlCString() As CString
 		  static mxojocontrol as CString

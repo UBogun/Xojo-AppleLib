@@ -2046,17 +2046,6 @@ Inherits AppleResponder
 		Window As AppleWindow
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  static mxojoidentity as xojo.Core.Dictionary
-			  if mxojoidentity = nil then mxojoidentity = new xojo.Core.Dictionary
-			  return mxojoidentity
-			End Get
-		#tag EndGetter
-		Private Shared XojoIdentity As xojo.Core.Dictionary
-	#tag EndComputedProperty
-
 
 	#tag Enum, Name = UIDynamicItemCollisionBoundsType, Flags = &h0
 		Rectangle

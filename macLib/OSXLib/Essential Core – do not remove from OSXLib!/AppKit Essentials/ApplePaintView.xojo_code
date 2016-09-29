@@ -9,15 +9,14 @@ Inherits AppleView
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
+		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame), true)
+		  RegisterIdentity(self)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_DrawRect(pid as ptr, sel as ptr, rect as FoundationFrameWork.nsrect)
-		  dim view as ApplePaintView = ApplePaintView.MakefromPtr(pid)
+		  dim view as ApplePaintView = applepaintview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnDrawRect(rect)
 		  end if
@@ -27,12 +26,17 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Shared Function InformInstance(id as ptr) As ApplePaintView
+		  dim ident as ApplePaintView = ApplePaintView(Identity(id))
+		  return if (ident = nil, ApplePaintView.MakeFromPtr (id), ident)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnDrawRect(rect as FoundationFrameWork.NSRect)
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnDrawRect(rect)
-		  else
-		    RaiseEvent drawRect(rect)
-		  end if
+		  RaiseEvent drawRect(rect)
+		  
 		End Sub
 	#tag EndMethod
 

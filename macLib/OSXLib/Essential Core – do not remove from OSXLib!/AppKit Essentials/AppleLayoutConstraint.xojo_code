@@ -235,7 +235,7 @@ Inherits AppleObject
 		#tag EndGetter
 		#tag Setter
 			Set
-			  dim val as Single = Integer(value)
+			  dim val as Single = integer(value)
 			  setpriority id, val
 			End Set
 		#tag EndSetter

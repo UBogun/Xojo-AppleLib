@@ -175,9 +175,8 @@ Inherits AppleResponder
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
+		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame), true)
+		  registeridentity(self)
 		End Sub
 	#tag EndMethod
 
@@ -758,8 +757,15 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1
+		Protected Shared Function Identity(id as ptr) As Appleview
+		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
+		  if wr <> nil then return appleview(wr.Value)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_acceptsTouchEvents(pid as ptr, sel as ptr) As Boolean
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    return view.informOnacceptsTouchEvents
 		  end if
@@ -770,10 +776,8 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_allowsVibrancy(pid as ptr, sel as ptr) As Boolean
-		  dim view as AppleView = appleview.MakefromPtr(pid)
-		  if view <> nil then 
-		    return view.informOnAllowsVibrancy()
-		  end if
+		  dim view as AppleView = appleview.InformInstance(pid)
+		  if view <> nil then return view.informOnAllowsVibrancy()
 		  #pragma unused sel
 		  
 		End Function
@@ -781,7 +785,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_didAddSubview(pid as ptr, sel as ptr, subview as ptr) As Boolean
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOndidAddSubview(AppleView.MakefromPtr(subview))
 		  end if
@@ -792,7 +796,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_menuForEvent(pid as ptr, sel as ptr, anevent as ptr) As Ptr
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    dim result as applemenu = view.informOnmenuForEvent(AppleNSEvent.MakeFromPtr(anevent))
 		    return if (result = nil,nil, result.id)
@@ -804,7 +808,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_opaque(pid as ptr, sel as ptr) As Boolean
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    return view.informOnopaque()
 		  end if
@@ -815,7 +819,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_ViewDidEndLiveResize(pid as ptr, sel as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnViewDidEndLiveResize()
 		  end if
@@ -826,7 +830,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewDidHide(pid as ptr, sel as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnViewDidhide()
 		  end if
@@ -837,7 +841,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewDidMoveToSuperview(pid as ptr, sel as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnviewidMoveToSuperview
 		  end if
@@ -848,7 +852,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewDidMoveToWindow(pid as ptr, sel as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnviewDidMoveToWindow
 		  end if
@@ -859,7 +863,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewDidUnhide(pid as ptr, sel as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnViewDidUnhide()
 		  end if
@@ -870,7 +874,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewWillMoveToSuperview(pid as ptr, sel as ptr, superview as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnviewWillMoveToSuperview(appleview.MakefromPtr(superview))
 		  end if
@@ -881,7 +885,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewWillMoveToWindow(pid as ptr, sel as ptr, superview as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView =appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnviewWillMoveToWindow(applewindow.MakefromPtr(superview))
 		  end if
@@ -892,7 +896,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_viewWillStartLiveResize(pid as ptr, sel as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnviewWillStartLiveResize()
 		  end if
@@ -903,7 +907,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_willOpenMenu(pid as ptr, sel as ptr, menu as ptr, anevent as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
 		    view.informOnwillOpenMenu(AppleMenu.MakefromPtr(menu), AppleNSEvent.MakeFromPtr(anevent))
 		  end if
@@ -914,7 +918,8 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_willRemoveSubview(pid as ptr, sel as ptr, subview as ptr)
-		  dim view as AppleView = appleview.MakefromPtr(pid)
+		  dim view as AppleView = appleview.InformInstance(pid)
+		  
 		  if view <> nil then 
 		    view.informOnwillRemoveSubview(appleview.MakefromPtr(subview))
 		  end if
@@ -924,94 +929,73 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Protected Shared Function InformInstance(id as ptr) As AppleView
+		  dim ident as appleview = appleview(Identity(id))
+		  return if (ident = nil, appleview.MakeFromPtr (id), ident)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnacceptsTouchEvents() As Boolean
-		  if parentcontrol <> nil then 
-		    return parentcontrol.informOnacceptsTouchEvents
-		  else
-		    return RaiseEvent AcceptsTouchEvents
-		  end if
+		  return RaiseEvent AcceptsTouchEvents
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnAllowsVibrancy() As Boolean
-		  if parentcontrol <> nil then 
-		    return parentcontrol.informOnAllowsVibrancy()
-		  else
-		    return RaiseEvent AllowsVibrancy()
-		  end if
+		  return RaiseEvent AllowsVibrancy()
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOndidAddSubview(subview as appleview)
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOndidAddSubview (subview)
-		  else
-		    RaiseEvent DidAddSubview (subview)
-		  end if
+		  RaiseEvent DidAddSubview (subview)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnmenuForEvent(anEvent As AppleNSEvent) As AppleMenu
-		  dim result as applemenu
-		  if parentcontrol <> nil then 
-		    result = parentcontrol.informOnmenuForEvent(anEvent)
-		  else
-		    result = RaiseEvent MenuForEvent (anevent)
-		  end if
+		  dim result as applemenu = RaiseEvent MenuForEvent (anevent)
 		  return if (result = nil, me.Menu, result)
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnopaque() As Boolean
-		  if parentcontrol <> nil then 
-		    return parentcontrol.informOnopaque()
-		  else
-		    return RaiseEvent Opaque()
-		  end if
+		  return RaiseEvent Opaque()
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnViewDidEndLiveResize()
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnViewDidEndLiveResize()
-		  else
-		    RaiseEvent DidResize()
-		  end if
+		  RaiseEvent DidResize()
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnViewDidhide()
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnViewDidhide()
-		  else
-		    RaiseEvent ViewDidHide()
-		  end if
+		  RaiseEvent ViewDidHide()
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewDidMoveToWindow()
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnviewDidMoveToWindow
-		  else
-		    RaiseEvent ViewDidMoveToWindow
-		  end if
+		  RaiseEvent ViewDidMoveToWindow
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnViewDidUnhide()
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnViewDidUnhide()
-		  else
-		    RaiseEvent ViewDidUnHide()
-		  end if
+		  RaiseEvent ViewDidUnHide()
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1027,53 +1011,36 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewWillMoveToSuperview(superview as appleview)
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnviewWillMoveToSuperview(superview)
-		  else
-		    RaiseEvent viewWillMoveToSuperview(superview)
-		  end if
+		  RaiseEvent viewWillMoveToSuperview(superview)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewWillMoveToWindow(Window as applewindow)
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnviewWillMoveToWindow(window)
-		  else
-		    RaiseEvent viewWillMoveToWindow(window)
-		  end if
+		  RaiseEvent viewWillMoveToWindow(window)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnviewWillStartLiveResize()
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnviewWillStartLiveResize()
-		  else
-		    RaiseEvent WillResize()
-		  end if
+		  RaiseEvent WillResize()
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnwillOpenMenu(Menu as applemenu, anEvent As AppleNSEvent)
-		  
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnwillOpenMenu(menu, anEvent)
-		  else
-		    RaiseEvent WillOpenMenuForEvent (menu, anevent)
-		  end if
+		  RaiseEvent WillOpenMenuForEvent (menu, anevent)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnwillRemoveSubview(subview as appleview)
-		  if parentcontrol <> nil then 
-		    parentcontrol.informOnwillRemoveSubview(subview)
-		  else
-		    RaiseEvent willRemoveSubview(subview)
-		  end if
+		  RaiseEvent willRemoveSubview(subview)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1540,31 +1507,31 @@ Inherits AppleResponder
 	#tag EndMethod
 
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 52657475726E207472756520746F20656E61626C6520746F756368206576656E74732E
 		Event AcceptsTouchEvents() As Boolean
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 52657475726E207472756520746F2062656C6E6420746865207669657720696E746F20616E20456666656374566965772E
 		Event AllowsVibrancy() As Boolean
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
 		Event DidAddSubview(Subview as appleview)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720726573697A65642E
 		Event DidResize()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 546865206E617469766520696D706C656D656E746174696F6E206F6620636F6E737472756374436F6E7465787475616C4D656E752C20676976696E6720796F7520746865206F7074696F6E20746F20726573706F6E6420696E646976696475616C6C7920746F2061206365727461696E206576656E742E
 		Event MenuForEvent(anEvent As AppleNSEvent) As AppleMenu
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 52657475726E207472756520696620746865207669657720646F6573206E6F7420757365207472616E73706172656E636965732E
 		Event Opaque() As Boolean
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720626563616D6520696E76697369626C652E
 		Event ViewDidHide()
 	#tag EndHook
 
@@ -1572,31 +1539,31 @@ Inherits AppleResponder
 		Event ViewDidMoveToSuperview()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772077696E646F772E
 		Event ViewDidMoveToWindow()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720626563616D652076697369626C65206166746572206120686964652E
 		Event ViewDidUnhide()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077696C6C20626520616464656420746F2061206E65772076696577206869657261726368792E
 		Event ViewWillMoveToSuperview(Superview as AppleView)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720697320676F696E6720746F2062652073686F776E2E
 		Event ViewWillMoveToWindow(Window as AppleWindow)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 54686520766965772069732061626F757420746F206F70656E206120636F6E7465787475616C206D656E752E204865726520697320612077617920746F20696E646976696475616C697A6520697420776974686F75742072656275696C64696E6720697420656163682074696D652E
 		Event WillOpenMenuForEvent(Menu as AppleMenu, anEvent As AppleNSEvent)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720686173206265656E20616464656420746F2061206E65772076696577206869657261726368792E
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772077696C6C2072656D6F7665206120737562766965772E
 		Event willRemoveSubview(Subview as AppleView)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061207669657720726573697A6520737461727465642E
 		Event WillResize()
 	#tag EndHook
 
@@ -1874,6 +1841,8 @@ Inherits AppleResponder
 			  if mClassPtr = Nil then
 			    dim methods() as TargetClassMethodHelper
 			    
+			    
+			    
 			    //NSResponder "delegate" methods
 			    methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf impl_acceptsFirstResponder, "c@:")
 			    methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
@@ -1891,19 +1860,34 @@ Inherits AppleResponder
 			    methods.Append new TargetClassMethodHelper("otherMouseDown:", AddressOf impl_otherMouseDown, "v@:@")
 			    methods.Append new TargetClassMethodHelper("otherMouseDragged:", AddressOf impl_otherMouseDragged, "v@:@")
 			    methods.Append new TargetClassMethodHelper("otherMouseUp:", AddressOf impl_otherMouseUp, "v@:@")
+			    
 			    methods.Append new TargetClassMethodHelper("keyDown:", AddressOf impl_keyDown, "v@:@")
 			    methods.Append new TargetClassMethodHelper("keyUp:", AddressOf impl_keyUp, "v@:@")
+			    
 			    methods.Append new TargetClassMethodHelper("pressureChangeWithEvent:", AddressOf impl_pressureChangeWithEvent, "v@:@")
+			    
 			    methods.Append new TargetClassMethodHelper("flagsChanged:", AddressOf impl_flagsChanged, "v@:@")
 			    methods.Append new TargetClassMethodHelper("tabletPoint:", AddressOf impl_tabletPoint, "v@:@")
+			    methods.Append new TargetClassMethodHelper("tabletProximity:", AddressOf impl_tabletProximity, "v@:@")
 			    methods.Append new TargetClassMethodHelper("scrollWheel:", AddressOf impl_scrollWheel, "v@:@")
+			    
 			    methods.Append new TargetClassMethodHelper("willPresentError:", AddressOf impl_willPresentError, "@@:@")
+			    
 			    methods.Append new TargetClassMethodHelper("beginGestureWithEvent:", AddressOf impl_beginGestureWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("endGestureWithEvent:", AddressOf impl_endGestureWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("magnifyWithEvent:", AddressOf impl_magnifyWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("rotateWithEvent:", AddressOf impl_rotateWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf impl_swipeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesBeganWithEvent:", AddressOf impl_touchesBeganWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesMovedWithEvent:", AddressOf impl_touchesMovedWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesCancelledWithEvent:", AddressOf impl_touchesCancelledWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesEndedWithEvent:", AddressOf impl_touchesEndedWithEvent, "v@:@")
+			    
+			    methods.Append new TargetClassMethodHelper("wantsForwardedScrollEventsForAxis:", AddressOf impl_wantsForwardedScrollEventsForAxis, "v@:i")
+			    methods.Append new TargetClassMethodHelper("wantsScrollEventsForSwipeTrackingOnAxis::", AddressOf impl_wantsScrollEventsForSwipeTrackingOnAxis, "v@:i")
+			    
+			    
+			    // CAAnimation "Delegate" methods
 			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
 			    methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
 			    

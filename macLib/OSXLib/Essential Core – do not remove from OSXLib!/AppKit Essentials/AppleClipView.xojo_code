@@ -45,6 +45,10 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdocumentView Lib appkitlibname Selector "documentView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getdocumentVisibleRect Lib appkitlibname Selector "documentVisibleRect" (id as ptr) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
@@ -66,6 +70,10 @@ Inherits AppleView
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setcopiesOnScroll Lib appkitlibname Selector "setCopiesOnScroll:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setdocumentView Lib appkitlibname Selector "setDocumentView:" (id as ptr, value as Ptr)
 	#tag EndExternalMethod
 
 
@@ -108,7 +116,8 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSClipView")
+			  static mClassPtr as Ptr 
+			  if mclassptr = nil then mclassptr = FoundationFramework.NSClassFromString ("NSClipView")
 			  return mClassPtr
 			End Get
 		#tag EndGetter
@@ -150,6 +159,20 @@ Inherits AppleView
 			End Get
 		#tag EndGetter
 		DocumentRect As FoundationFrameWork.NSRect
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520636C69702076696577E280997320646F63756D656E7420766965772E20417661696C61626C652073696E6365204F5320582031302E31302E
+		#tag Getter
+			Get
+			  if RespondsToSelector ("documentView", classptr) then return appleview.MakefromPtr(getdocumentView(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setdocumentView mid, nilptr(value)
+			End Set
+		#tag EndSetter
+		DocumentView As AppleView
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652072656374616E676C6520646566696E696E672074686520646F63756D656E742076696577E2809973206672616D652C2061646A757374656420746F207468652073697A65206F662074686520636C697020766965772069662074686520646F63756D656E74207669657720697320736D616C6C65722E2028726561642D6F6E6C7929

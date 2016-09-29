@@ -29,6 +29,8 @@ Begin Window NSViewPlayWindow
    Begin OSXLibView ac2
       AcceptFocus     =   True
       AcceptTabs      =   False
+      AcceptTouchEvents=   True
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   250077183
       DoubleBuffer    =   False
@@ -131,7 +133,7 @@ Begin Window NSViewPlayWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   170
+      Left            =   191
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -153,42 +155,13 @@ Begin Window NSViewPlayWindow
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   943
-      Begin PushButton PushButton2
-         AutoDeactivate  =   True
-         Bold            =   False
-         ButtonStyle     =   "0"
-         Cancel          =   False
-         Caption         =   "Button"
-         Default         =   False
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "Label1"
-         Italic          =   False
-         Left            =   170
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   20
-         Underline       =   False
-         Visible         =   True
-         Width           =   132
-      End
+      Width           =   789
    End
    Begin OSXLibView ac3
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False
@@ -512,6 +485,8 @@ Begin Window NSViewPlayWindow
    Begin OSXLibCanvas OSXLibPaintCanvas1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   True
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   250077183
       DoubleBuffer    =   False
@@ -601,11 +576,6 @@ End
 		  me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = false
 		  
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function AcceptsTouchEvents() As Boolean
-		  return true
-		End Function
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2061204E53416E696D6174696F6E436F6E7465787420616E696D6174696F6E2066696E69736865642E
 		Sub AnimationFinished()
@@ -697,18 +667,16 @@ End
 		  Animate
 		End Sub
 	#tag EndEvent
+	#tag Event , Description = 52657475726E207472756520746F20747261636B2067657374757265207363726F6C6C206576656E7473207375636820617320612073776970652E
+		Function TrackSwipes(Axis As AppleNSEvent.NSEventGestureAxis) As Boolean
+		  return true
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
 		  call me.AppleObject.presentError(new appleerror( "Each responder subclass can display a custom error and modify it in the willShowError event", -999999))
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events PushButton2
-	#tag Event
-		Sub Action()
-		  OSXLibPaintCanvas1.AppleObject.ExerciseAmbiguityInLayout
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -790,16 +758,6 @@ End
 		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 		  #pragma unused rect
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function AcceptsTouchEvents() As Boolean
-		  return true
-		End Function
-	#tag EndEvent
-	#tag Event
-		Function AllowsVibrancy() As Boolean
-		  return true
-		End Function
 	#tag EndEvent
 	#tag Event
 		Sub Shown()

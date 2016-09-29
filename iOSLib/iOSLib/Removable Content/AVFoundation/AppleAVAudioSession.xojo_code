@@ -924,17 +924,6 @@ Inherits AppleObject
 		Private Shared SharedInstance As AppleAVAudioSession
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  static mXojoIdentity as xojo.Core.Dictionary
-			  if mXojoIdentity = nil then mXojoIdentity = new xojo.Core.Dictionary
-			  return mXojoIdentity
-			End Get
-		#tag EndGetter
-		Private Shared XojoIdentity As xojo.Core.Dictionary
-	#tag EndComputedProperty
-
 
 	#tag Constant, Name = kAVAudioSessionCategoryAmbient, Type = Text, Dynamic = False, Default = \"AVAudioSessionCategoryAmbient", Scope = Private
 	#tag EndConstant

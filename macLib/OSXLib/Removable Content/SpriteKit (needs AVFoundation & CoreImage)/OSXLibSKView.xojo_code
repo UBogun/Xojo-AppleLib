@@ -10,57 +10,33 @@ Inherits OSXLibView
 	#tag Event
 		Sub Close()
 		  RaiseEvent Close
-		  RemoveHandlers
-		  mAppleObject = nil
-		  
+		  if mAppleObject <> nil then
+		    RemoveHandlers
+		    mAppleObject = nil
+		  end if
 		End Sub
 	#tag EndEvent
 
 	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
-		Function InitControl() As Boolean
+		Function InitControl() As AppleView
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
 		  // The Xojo engineers always warned that messing with the view hierarchy of Xojo controls could lead to problems in the future.
 		  // Instead of attaching the declared control as a subview to the Xojo canvas, I chose a more radical approach:
 		  // I am kicking the Xojo canvas out of the hierarchy completely and replace it ith the declared one. 
 		  // This way no interference with Xojo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
-		  self.LockLeft = false
-		  self.LockRight = false
-		  self.LockBottom = false
-		  self.LockTop = false
+		  // self.LockLeft = false
+		  // self.LockRight = false
+		  // self.LockBottom = false
+		  // self.LockTop = false
 		  
-		  mAppleObject = new AppleSKView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a SKview.
+		  dim obj as new AppleSKView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a SKview.
 		  // Please note the internal events of the declared class will not fire anymore.
-		  mAppleObject.Registercontrol self
-		  // This is to avoid confusions where an event expects a return value.
-		  // mAppleObject.WantsLayer = true // This is the layered version of a canvas where you can use the layer fully but have no paint event available.
-		  // Its subclass ApplePaintView will follow soon!
-		  dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
-		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
-		  for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
-		    dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
-		    if subview.id = origview.id then // is this our control?
-		      mAppleObject.AutoResizingMask = AppleAutoresizingMask.FullResize // … to the autoresizing mask
-		      controller.ReplaceSubview origview, mAppleObject // and kick out the canvas by replacing it with our view
-		      exit 
-		    end if
-		  next
-		  attachHandlers
-		  return true
+		  // obj.Registercontrol self
+		  obj.AutoResizingMask = AppleAutoresizingMask.FullResize // … to the autoresizing mask
+		  attachHandlers(obj)
+		  return obj
 		End Function
-	#tag EndEvent
-
-	#tag Event , Description = 52657475726E207472756520746F20696E646963617465207468617420796F757220636F6E74656E7420636F76657273207468652077686F6C652076696577206672616D6520776974686F7574207472616E73706172656E636965732E
-		Function Opaque() As Boolean
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event
-		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
-		  #pragma unused rect
-		  #pragma unused g
-		End Sub
 	#tag EndEvent
 
 	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
@@ -71,19 +47,107 @@ Inherits OSXLibView
 
 
 	#tag Method, Flags = &h0
-		Sub AttachHandlers()
-		  AddHandler AppleObject.UpdateScene, Addressof InformOnSceneUpdate
-		  AddHandler AppleObject.DidEvaluateActions, Addressof informOnDidEvaluateActions
-		  AddHandler AppleObject.DidSimulatePhysics, Addressof informOnDidSimulatePhysics
-		  AddHandler AppleObject.didApplyConstraints, Addressof informondidApplyConstraints
-		  AddHandler AppleObject.FinishedSceneUpdate, Addressof informondidFinishUpdateForScene
-		  AddHandler AppleObject.SceneSizeChanged, Addressof InformOnSceneSizeChange
-		  AddHandler appleObject.SceneDidLoad, Addressof informonSceneDidLoad
-		  AddHandler AppleObject.SceneWillMoveFromView, Addressof informonSceneWillMoveFromView
-		  AddHandler AppleObject.SceneDidMoveToView, addressof informOnSceneWillMoveToView
+		Sub AttachHandlers(obj as appleskview)
+		  AddHandler obj.UpdateScene, Addressof InformOnSceneUpdate
+		  AddHandler obj.DidEvaluateActions, Addressof informOnDidEvaluateActions
+		  AddHandler obj.DidSimulatePhysics, Addressof informOnDidSimulatePhysics
+		  AddHandler obj.didApplyConstraints, Addressof informondidApplyConstraints
+		  AddHandler obj.FinishedSceneUpdate, Addressof informondidFinishUpdateForScene
+		  AddHandler obj.SceneSizeChanged, Addressof InformOnSceneSizeChange
+		  AddHandler obj.SceneDidLoad, Addressof informonSceneDidLoad
+		  AddHandler obj.SceneWillMoveFromView, Addressof informonSceneWillMoveFromView
+		  AddHandler obj.SceneDidMoveToView, addressof informOnSceneWillMoveToView
 		  
-		  AddHandler AppleObject.ContactBegan, addressOf informOnDidBeginContact
-		  AddHandler AppleObject.ContactEnded, addressOf informOnDidEndContact
+		  AddHandler obj.ContactBegan, addressOf informOnDidBeginContact
+		  AddHandler obj.ContactEnded, addressOf informOnDidEndContact
+		  
+		  
+		  AddHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  AddHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
+		  AddHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
+		  
+		  AddHandler obj.BeginGesture, Addressof informOnbeginGestureWithEvent
+		  AddHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
+		  AddHandler obj.Rotate, Addressof informOnrotateWithEvent
+		  AddHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  AddHandler obj.Swipe, Addressof informOnswipeWithEvent
+		  AddHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
+		  AddHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis
+		  
+		  
+		  
+		  AddHandler obj.FlagsChanged, Addressof informOnFlagsChanged
+		  AddHandler obj.KeyDown, Addressof informOnKeyDown
+		  AddHandler obj.KeyUp, Addressof informOnKeyUp
+		  
+		  
+		  AddHandler obj.AnimationDidStart, Addressof informOnanimationDidStart
+		  AddHandler obj.AnimationDidStop, Addressof informOnanimationDidStop
+		  AddHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
+		  
+		  
+		  AddHandler obj.MouseDown, Addressof informOnMouseDown
+		  AddHandler obj.MouseEntered, Addressof informOnMouseentered
+		  AddHandler obj.MouseDragged, Addressof informOnMouseDragged
+		  AddHandler obj.MouseExited, Addressof informOnMouseExited
+		  AddHandler obj.MouseMoved, Addressof informOnMouseMoved
+		  AddHandler obj.MouseUp, Addressof informOnMouseUp
+		  
+		  AddHandler obj.RightMouseDown, Addressof informOnRightMouseDown
+		  AddHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
+		  AddHandler obj.RightMouseUp, Addressof informOnRightMouseUp
+		  
+		  AddHandler obj.OtherMouseDown, Addressof informOnOtherMouseDown
+		  AddHandler obj.OtherMouseDragged, Addressof informOnOtherMouseDragged
+		  
+		  AddHandler obj.ScrollWheel, Addressof informOnScrollWheel
+		  
+		  
+		  AddHandler obj.TouchesBegan, Addressof informOntouchesBeganWithEvent
+		  AddHandler obj.TouchesMoved, Addressof informOntouchesMovedWithEvent
+		  AddHandler obj.TouchesCancelled, Addressof informOntouchesCancelledWithEvent
+		  AddHandler obj.TouchesEnded, Addressof informOntouchesEndedWithEvent
+		  
+		  
+		  AddHandler obj.PressureChange, Addressof informOnpressureChangeWithEvent
+		  AddHandler obj.TabletPoint, Addressof informOntabletPoint
+		  AddHandler obj.TabletProximity, Addressof informOntabletProximity
+		  
+		  AddHandler obj.WillPresentError, Addressof informOnwillPresentError
+		  
+		  
+		  // NSView events:
+		  AddHandler obj.ViewDidMoveToWindow, Addressof informOnviewDidMoveToWindow
+		  
+		  // AddHandler obj.AllowsVibrancy, Addressof informOnAllowsVibrancy
+		  // AddHandler obj.opaque, Addressof informOnopaque
+		  
+		  AddHandler obj.AcceptsTouchEvents, Addressof informOnAcceptsTouchEvents
+		  
+		  // AddHandler obj.DidAddSubview, Addressof informOnDidAddSubview
+		  AddHandler obj.DidResize, Addressof informOnViewDidEndLiveResize
+		  AddHandler obj.MenuForEvent, Addressof informOnMenuForEvent
+		  AddHandler obj.ViewDidHide, Addressof informOnViewDidHide
+		  AddHandler obj.ViewDidUnHide, Addressof informOnViewDidUnHide
+		  AddHandler obj.ViewWillMoveToSuperview, Addressof informOnViewWillMoveToSuperview
+		  AddHandler obj.ViewWillMoveToWindow, Addressof informOnViewWillMoveToWindow
+		  AddHandler obj.WillOpenMenuForEvent, Addressof informOnWillOpenMenu
+		  // AddHandler obj.willRemoveSubview, Addressof informOnwillRemoveSubview
+		  AddHandler obj.WillResize, Addressof informOnviewWillStartLiveResize
+		  
+		  
+		  
+		  // AddHandler obj.DidEvaluateActions, Addressof informOnDidEvaluateActions
+		  // AddHandler obj.DidSimulatePhysics, Addressof MouseenterdinformOnDidSimulatePhysics
+		  // AddHandler obj.didApplyConstraints, Addressof informondidApplyConstraints
+		  // AddHandler obj.FinishedSceneUpdate, Addressof informondidFinishUpdateForScene
+		  // AddHandler obj.SceneSizeChanged, Addressof InformOnSceneSizeChange
+		  // AddHandler obj.SceneDidLoad, Addressof informonSceneDidLoad
+		  // AddHandler obj.SceneWillMoveFromView, Addressof informonSceneWillMoveFromView
+		  // AddHandler obj.SceneDidMoveToView, addressof informOnSceneWillMoveToView
+		  // 
+		  // AddHandler obj.ContactBegan, addressOf informOnDidBeginContact
+		  // AddHandler obj.ContactEnded, addressOf informOnDidEndContact
 		End Sub
 	#tag EndMethod
 
@@ -268,15 +332,11 @@ Inherits OSXLibView
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return mAppleObject
+			  return appleskview(mAppleObject)
 			End Get
 		#tag EndGetter
 		AppleObject As AppleSKView
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mAppleObject As AppleSKView
-	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private Shared XojoControls As xojo.Core.Dictionary
@@ -294,6 +354,19 @@ Inherits OSXLibView
 			Name="AcceptTabs"
 			Visible=true
 			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AcceptTouchEvents"
+			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowVibrancy"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty

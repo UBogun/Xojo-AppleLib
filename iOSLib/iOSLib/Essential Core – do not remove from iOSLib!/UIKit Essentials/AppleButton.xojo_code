@@ -46,7 +46,8 @@ Inherits AppleControl
 	#tag Method, Flags = &h1000
 		Sub Constructor(Type as UIButtonType)
 		  super.Constructor (buttonWithType(ClassPtr, type), true, true)
-		  
+		  me.registeridentity (self)
+		  me.AddTarget self, FoundationFrameWork.NSSelectorFromString("touched"), AppleControlEvent.TouchDown
 		End Sub
 	#tag EndMethod
 
@@ -92,6 +93,10 @@ Inherits AppleControl
 		Protected Declare Function gettitleShadowColorForState Lib UIKitlibname Selector "titleShadowColorForState:" (id as ptr, state as uinteger) As Ptr
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 4372656174657320616E642072657475726E732061206E657720627574746F6E206F66207468652073706563696669656420747970652E
+		Protected Declare Function gettitleShadowOffset Lib UIKitlibname Selector "titleShadowOffset" (id as ptr) As FoundationFrameWork.NSSize
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520696D616765207573656420666F72206120627574746F6E2073746174652E
 		Function Image(state as AppleControlState) As AppleImage
 		  Declare Function imageForState lib UIKitLibname selector "imageForState:" (id as ptr, state as uinteger) as Ptr
@@ -112,6 +117,21 @@ Inherits AppleControl
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Attributes( hidden ) Private Shared Sub impl_touched(pid as ptr, sel as ptr)
+		  dim ego as AppleButton = AppleButton(InformInstance(pid))
+		  ego.informonTouched
+		  #Pragma Unused  sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Attributes( hidden ) Private Sub informonTouched()
+		  RaiseEvent Action
+		End Sub
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 4372656174657320616E642072657475726E732061206E657720627574746F6E206F66207468652073706563696669656420747970652E
 		Protected Declare Sub setAttributedTitleforState Lib UIKitlibname Selector "setAttributedTitle:forState:" (id as ptr, value as ptr, state as uinteger)
 	#tag EndExternalMethod
@@ -130,6 +150,10 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1, Description = 4372656174657320616E642072657475726E732061206E657720627574746F6E206F66207468652073706563696669656420747970652E
 		Protected Declare Sub settitleShadowColorForState Lib UIKitlibname Selector "setTitleShadowColor:forState:" (id as ptr, value as ptr, state as uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 4372656174657320616E642072657475726E732061206E657720627574746F6E206F66207468652073706563696669656420747970652E
+		Protected Declare Sub settitleShadowOffset Lib UIKitlibname Selector "setTitleShadowOffset:" (id as ptr, value as FoundationFrameWork . NSSize)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320746865207469746C65206173736F636961746564207769746820746865207370656369666965642073746174652E
@@ -173,6 +197,11 @@ Inherits AppleControl
 		  setTitleShadowColorForState (mid, nilptr(ShadowColor), state.id)
 		End Sub
 	#tag EndMethod
+
+
+	#tag Hook, Flags = &h0
+		Event Action()
+	#tag EndHook
 
 
 	#tag Note, Name = Status complete\x2C not modernized
@@ -229,9 +258,53 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr
-			  if mClassPtr = nil then mClassPtr = FoundationFramework.NSClassFromString ("UIButton")
-			  return mClassPtr
+			  static targetID as ptr
+			  if targetID = Nil then
+			    dim methods() as TargetClassMethodHelper
+			    //override UIView methods
+			    // methods.Append new TargetClassMethodHelper("willMoveToWindow:", AddressOf impl_willMoveToWindow, "v@:@")
+			    methods.Append new TargetClassMethodHelper("didMoveToWindow", AddressOf impl_DidMoveToWindow, "v@:")
+			    methods.Append new TargetClassMethodHelper("willMoveToSuperview:", AddressOf impl_willMoveToSuperview, "v@:@")
+			    methods.Append new TargetClassMethodHelper("didMoveToSuperview", AddressOf impl_DidMoveToSuperview, "v@:")
+			    // methods.Append new TargetClassMethodHelper("willRemoveSubview:", AddressOf impl_willRemoveSubview, "v@:@")
+			    // methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_DidAddSubview, "v@:@")
+			    // methods.Append new TargetClassMethodHelper("layoutSubviews", AddressOf impl_layoutSubviews, "v@:")
+			    // methods.Append new TargetClassMethodHelper("layerClass", AddressOf impl_layerclass, "@@:", true, true)
+			    methods.Append new TargetClassMethodHelper("tintColorDidChange", AddressOf impl_tintColorDidChange, "v@:")
+			    
+			    // #if Target64Bit
+			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect64, "v@:{CGRect}")
+			    // #elseif Target32Bit
+			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect32, "v@:{CGRect}")
+			    // #endif
+			    
+			    //TraitEnvironment Protocol
+			    methods.Append new TargetClassMethodHelper("traitCollectionDidChange:", AddressOf impl_traitCollectionDidChange, "v@:@")
+			    
+			    
+			    //Add UIResponder methods too
+			    // methods.Append new TargetClassMethodHelper("touchesBegan:withEvent:", AddressOf impl_TouchesBeganWithEvent, "v@:@@")
+			    // methods.Append new TargetClassMethodHelper("touchesEnded:withEvent:", AddressOf impl_TouchesEndedWithEvent, "v@:@@")
+			    // methods.Append new TargetClassMethodHelper("touchesMoved:withEvent:", AddressOf impl_TouchesMovedWithEvent, "v@:@@")
+			    // methods.Append new TargetClassMethodHelper("touchesCancelled:withEvent:", AddressOf impl_TouchesCancelledWithEvent, "v@:@@")
+			    
+			    methods.Append new TargetClassMethodHelper("motionBegan:withEvent:", AddressOf impl_MotionBeganWithEvent, "v@:i@")
+			    methods.Append new TargetClassMethodHelper("motionEnded:withEvent:", AddressOf impl_MotionEndedWithEvent, "v@:i@")
+			    methods.Append new TargetClassMethodHelper("motionCancelled:withEvent:", AddressOf impl_MotionCancelledWithEvent, "v@:i@")
+			    
+			    methods.Append new TargetClassMethodHelper("touchesEstimatedPropertiesUpdated:", AddressOf impl_touchesEstimatedPropertiesUpdated, "v@:@")
+			    methods.Append new TargetClassMethodHelper("remoteControlReceivedWithEvent:", AddressOf impl_remoteControlReceivedWithEvent, "v@:@")
+			    
+			    methods.Append new TargetClassMethodHelper("pressesBegan:withEvent:", AddressOf impl_pressesBeganWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
+			    
+			    methods.append new TargetClassMethodHelper("touched", AddressOf impl_touched, "v@:")
+			    
+			    targetID = BuildTargetClass ("UIButton", "iOSLibButton",methods)
+			  end if
+			  Return targetID
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr
@@ -422,14 +495,28 @@ Inherits AppleControl
 		TitleLabel As AppleLabel
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 546865206F6666736574206F662074686520736861646F77207573656420746F20646973706C617920746865207265636569766572E2809973207469746C652E20446570656372617465642073696E636520694F5320332E3020627574206E6F207375627374697475746520696E207369676874207965742E
+		#tag Getter
+			Get
+			  return gettitleShadowOffset(mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  settitleShadowOffset mid, value
+			End Set
+		#tag EndSetter
+		TitleShadowOffset As FoundationFrameWork.NSSize
+	#tag EndComputedProperty
+
 
 	#tag Enum, Name = UIButtonType, Type = Integer, Flags = &h0
 		Custom = 0
-		  System
-		  Disclosure
-		  InfoLight
-		  InfoDark
-		  ContactAdd
+		  System = 1
+		  Disclosure = 2
+		  InfoLight = 3
+		  InfoDark = 4
+		  ContactAdd = 5
 		RoundedRect = System
 	#tag EndEnum
 

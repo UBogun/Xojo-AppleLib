@@ -3,13 +3,8 @@ Protected Class AppleResponder
 Inherits AppleObject
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub AnimationContextCompletionBlock()
-		  if me <> Nil then
-		    if parentcontrol <> nil then
-		      parentcontrol.InformOnNSAnimationFinished
-		    else
-		      raiseevent AnimationFinished
-		    end if
-		  end if
+		  raiseevent AnimationFinished
+		  
 		End Sub
 	#tag EndMethod
 
@@ -25,6 +20,16 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub flushBufferedKeyEvents Lib appkitlibname Selector "flushBufferedKeyEvents" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h1, Description = 436C6561727320616E7920756E70726F636573736564206B6579206576656E74732E
+		Protected Sub FlushKeyboardBuffer()
+		  flushBufferedKeyEvents mid
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getanimations Lib appkitlibname Selector "animations" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -36,9 +41,16 @@ Inherits AppleObject
 		Protected Declare Function getnextResponder Lib appkitlibname Selector "nextResponder" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h21
+		Private Shared Function Identity(id as ptr) As AppleResponder
+		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
+		  if wr <> nil then return AppleResponder(wr.Value)
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_acceptsFirstResponder(pid as ptr, sel as ptr) As Boolean
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then return responder.informOnAcceptsFirstResponder
 		  #pragma unused sel
 		  
@@ -47,7 +59,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_animationDidStart(pid as ptr, sel as ptr, animation as ptr) As ptr
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then 
 		    responder.informOnanimationDidStart (AppleCAAnimation.MakeFromPtr(animation))
 		  end if
@@ -58,7 +70,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_animationDidStop(pid as ptr, sel as ptr, animation as ptr, finished as Boolean) As ptr
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then 
 		    responder.informanimationDidStop (AppleCAAnimation.MakeFromPtr(animation), finished)
 		  end if
@@ -69,7 +81,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_becomeFirstResponder(pid as ptr, sel as ptr) As Boolean
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then return responder.informOnbecomeFirstResponder
 		  #pragma unused sel
 		  
@@ -78,7 +90,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_beginGestureWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnbeginGestureWithEvent (AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -87,7 +99,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_endGestureWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnendGestureWithEvent (AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -96,7 +108,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_flagsChanged(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnflagsChanged(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -105,7 +117,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_keyDown(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnkeyDown(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -114,7 +126,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_keyup(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnkeyUp(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -123,7 +135,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_magnifyWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnmagnifyWithEvent (AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -132,8 +144,10 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_mouseDown(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
-		  if responder <> nil then  responder.informOnmouseDown(AppleNSEvent.MakeFromPtr(anevent))
+		  dim responder as AppleResponder = InformInstance(pid)
+		  if responder <> nil then 
+		    responder.informOnmouseDown(AppleNSEvent.MakeFromPtr(anevent))
+		  end if
 		  #pragma unused sel
 		  
 		End Sub
@@ -141,7 +155,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_mouseDragged(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnmouseDragged(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -150,7 +164,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_mouseEntered(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnmouseEntered(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -159,7 +173,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_mouseExited(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnmouseExited(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -168,7 +182,8 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_mouseMoved(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
+		  
 		  if responder <> nil then  responder.informOnmouseMoved(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -177,7 +192,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_mouseUp(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnmouseUp(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -186,7 +201,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_otherMouseDown(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnOtherMouseDown(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -195,7 +210,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_otherMouseDragged(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnOtherMouseDragged(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -204,7 +219,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_otherMouseUp(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnOtherMouseUp (AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -213,7 +228,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_pressureChangeWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnpressureChangeWithEvent(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -222,7 +237,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_resignFirstResponder(pid as ptr, sel as ptr) As Boolean
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then return responder.informOnresignFirstResponder
 		  #pragma unused sel
 		  
@@ -231,7 +246,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_rightMouseDown(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOrightMouseDown(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -240,7 +255,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_rightMouseDragged(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOrightMouseDragged(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -249,7 +264,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_rightMouseUp(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOrightMouseUp (AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -258,7 +273,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_rotateWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnrotateWithEvent(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -267,7 +282,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_scrollWheel(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnscrollWheel(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -276,7 +291,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_smartMagnifyWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnsmartMagnifyWithEvent(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -285,7 +300,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_swipeWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOnswipeWithEvent(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -294,7 +309,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_tabletPoint(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOntabletPoint (AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -303,7 +318,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_tabletProximity(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOntabletProximity(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -312,7 +327,7 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_touchesBeganWithEvent(pid as ptr, sel as ptr, anevent as ptr)
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then  responder.informOntouchesBeganWithEventl(AppleNSEvent.MakeFromPtr(anevent))
 		  #pragma unused sel
 		  
@@ -320,8 +335,53 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_touchesCancelledWithEvent(pid as ptr, sel as ptr, anevent as ptr)
+		  dim responder as AppleResponder = InformInstance(pid)
+		  if responder <> nil then  responder.informOntouchesCancelledWithEventl(AppleNSEvent.MakeFromPtr(anevent))
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_touchesEndedWithEvent(pid as ptr, sel as ptr, anevent as ptr)
+		  dim responder as AppleResponder = InformInstance(pid)
+		  if responder <> nil then  responder.informOntouchesEndedWithEventl(AppleNSEvent.MakeFromPtr(anevent))
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_touchesMovedWithEvent(pid as ptr, sel as ptr, anevent as ptr)
+		  dim responder as AppleResponder = InformInstance(pid)
+		  if responder <> nil then  responder.informOntouchesMovedWithEventl(AppleNSEvent.MakeFromPtr(anevent))
+		  #pragma unused sel
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_wantsForwardedScrollEventsForAxis(pid as ptr, sel as ptr, axis as AppleNSEvent.NSEventGestureAxis) As Boolean
+		  dim responder as AppleResponder = InformInstance(pid)
+		  if responder <> nil then  return responder.informOnwantsForwardedScrollEventsForAxis(Axis)
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_wantsScrollEventsForSwipeTrackingOnAxis(pid as ptr, sel as ptr, axis as AppleNSEvent.NSEventGestureAxis) As Boolean
+		  dim responder as AppleResponder = InformInstance(pid)
+		  if responder <> nil then  return responder.informOnwantsScrollEventsForSwipeTrackingOnAxis(Axis)
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_willPresentError(pid as ptr, sel as ptr, error as ptr) As ptr
-		  dim responder as AppleResponder = appleresponder.MakefromPtr(pid)
+		  dim responder as AppleResponder = InformInstance(pid)
 		  if responder <> nil then 
 		    dim result as appleerror = responder.informOnwillPresentError (AppleError.MakeFromPtr(error))
 		    return if (result = nil, Error, result.id)
@@ -333,321 +393,268 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informanimationDidStop(animation as AppleCAAnimation, finished as Boolean)
-		  if parentcontrol <> nil then
-		    parentcontrol.informanimationDidStop  (animation, finished)
-		  else
-		    RaiseEvent animationDidStop (animation, finished)
-		  end if
+		  RaiseEvent animationDidStop (animation, finished)
+		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Shared Function InformInstance(id as ptr) As AppleResponder
+		  dim ident as AppleResponder = Identity(id)
+		  return if (ident = nil, AppleResponder.MakeFromPtr (id), ident)
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnAcceptsFirstResponder() As Boolean
-		  if parentcontrol <> nil then
-		    return parentcontrol.informOnAcceptsFirstResponder
-		  else
-		    return RaiseEvent AcceptsFirstResponder
-		  end if
+		  return RaiseEvent AcceptsFirstResponder
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnanimationDidStart(animation as AppleCAAnimation)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnanimationdidstart (animation)
-		  else
-		    RaiseEvent animationDidStart (animation)
-		  end if
+		  RaiseEvent animationDidStart (animation)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnbecomeFirstResponder() As Boolean
-		  if parentcontrol <> nil then
-		    return parentcontrol.informOnbecomeFirstResponder
-		  else
-		    return not RaiseEvent DontBecomeFirstResponder
-		  end if
+		  return not RaiseEvent DontBecomeFirstResponder
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnbeginGestureWithEvent(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnbeginGestureWithEvent (anEvent)
-		  else
-		    RaiseEvent BeginGesture(anEvent)
-		  end if
+		  RaiseEvent BeginGesture(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnendGestureWithEvent(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnendGestureWithEvent (anEvent)
-		  else
-		    RaiseEvent EndGesture(anEvent)
-		  end if
+		  RaiseEvent EndGesture(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnflagsChanged(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnflagsChanged (anEvent)
-		  else
-		    RaiseEvent FlagsChanged(anEvent)
-		  end if
+		  RaiseEvent FlagsChanged(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnkeyDown(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnkeyDown (anEvent)
-		  else
-		    RaiseEvent KeyDown(anEvent)
-		  end if
+		  RaiseEvent KeyDown(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnkeyUp(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnkeyUp (anEvent)
-		  else
-		    RaiseEvent KeyUp(anEvent)
-		  end if
+		  RaiseEvent KeyUp(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnmagnifyWithEvent(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnmagnifyWithEvent (anEvent)
-		  else
-		    RaiseEvent Magnify(anEvent)
-		  end if
+		  RaiseEvent Magnify(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnmouseDown(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnmouseDown (anEvent)
-		  else
-		    RaiseEvent MouseDown (anEvent)
-		  end if
+		  RaiseEvent MouseDown (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnmouseDragged(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnmouseDragged (anEvent)
-		  else
-		    RaiseEvent MouseDragged (anEvent)
-		  end if
+		  RaiseEvent MouseDragged (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnmouseEntered(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnmouseEntered (anEvent)
-		  else
-		    RaiseEvent MouseEntered (anEvent)
-		  end if
+		  RaiseEvent MouseEntered (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnmouseExited(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnmouseExited (anEvent)
-		  else
-		    RaiseEvent MouseExited (anEvent)
-		  end if
+		  RaiseEvent MouseExited (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnmouseMoved(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnmouseMoved (anEvent)
-		  else
-		    RaiseEvent MouseMoved (anEvent)
-		  end if
+		  RaiseEvent MouseMoved (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnmouseUp(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnmouseUp (anEvent)
-		  else
-		    RaiseEvent MouseUp (anEvent)
-		  end if
+		  RaiseEvent MouseUp (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnotherMouseDown(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnotherMouseDown (anEvent)
-		  else
-		    RaiseEvent otherMouseDown(anEvent)
-		  end if
+		  RaiseEvent otherMouseDown(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnOtherMouseDragged(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnOtherMouseDragged (anEvent)
-		  else
-		    RaiseEvent OtherMouseDragged(anEvent)
-		  end if
+		  RaiseEvent OtherMouseDragged(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnOtherMouseUp(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnOtherMouseUp (anEvent)
-		  else
-		    RaiseEvent OtherMouseUp(anEvent)
-		  end if
+		  RaiseEvent OtherMouseUp(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnpressureChangeWithEvent(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnpressureChangeWithEvent (anEvent)
-		  else
-		    RaiseEvent PressureChange (anEvent)
-		  end if
+		  RaiseEvent PressureChange (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnresignFirstResponder() As Boolean
-		  if parentcontrol <> nil then
-		    return parentcontrol.informOnresignFirstResponder
-		  else
-		    return not RaiseEvent DontResignFirstResponder
-		  end if
+		  return not RaiseEvent DontResignFirstResponder
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnrotateWithEvent(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnrotateWithEvent (anEvent)
-		  else
-		    RaiseEvent Rotate(anEvent)
-		  end if
+		  RaiseEvent Rotate(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnscrollWheel(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnscrollWheel (anEvent)
-		  else
-		    RaiseEvent ScrollWheel(anEvent)
-		  end if
+		  RaiseEvent ScrollWheel(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnsmartMagnifyWithEvent(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnsmartMagnifyWithEvent (anEvent)
-		  else
-		    RaiseEvent smartMagnify (anEvent)
-		  end if
+		  RaiseEvent smartMagnify (anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOnswipeWithEvent(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOnswipeWithEvent (anEvent)
-		  else
-		    RaiseEvent Swipe(anEvent)
-		  end if
+		  RaiseEvent Swipe(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOntabletPoint(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOntabletPoint (anEvent)
-		  else
-		    RaiseEvent TabletPoint(anEvent)
-		  end if
+		  RaiseEvent TabletPoint(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOntabletProximity(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOntabletProximity (anEvent)
-		  else
-		    RaiseEvent TabletProximity(anEvent)
-		  end if
+		  RaiseEvent TabletProximity(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOntouchesBeganWithEventl(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOntouchesBeganWithEventl (anEvent)
-		  else
-		    RaiseEvent TouchesBegan(anEvent)
-		  end if
+		  RaiseEvent TouchesBegan(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOntouchesCancelledWithEventl(anevent as appleNSevent)
+		  RaiseEvent TouchesCancelled(anEvent)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOntouchesEndedWithEventl(anevent as appleNSevent)
+		  RaiseEvent TouchesEnded(anEvent)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Sub informOntouchesMovedWithEventl(anevent as appleNSevent)
+		  RaiseEvent TouchesMoved(anEvent)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnwantsForwardedScrollEventsForAxis(axis as AppleNSEvent.NSEventGestureAxis) As Boolean
+		  return RaiseEvent ForwardElasticScroll(axis)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnwantsScrollEventsForSwipeTrackingOnAxis(axis as AppleNSEvent.NSEventGestureAxis) As Boolean
+		  return RaiseEvent TrackSwipes(axis)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Function informOnwillPresentError(error as appleerror) As AppleError
-		  if parentcontrol <> nil then
-		    return parentcontrol.informOnwillPresentError (error)
-		  else
-		    return RaiseEvent willPresentError(error)
-		  end if
+		  return RaiseEvent willPresentError(error)
+		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOrightMouseDown(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOrightMouseDown (anEvent)
-		  else
-		    RaiseEvent RightMouseDown(anEvent)
-		  end if
+		  RaiseEvent RightMouseDown(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOrightMouseDragged(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOrightMouseDragged (anEvent)
-		  else
-		    RaiseEvent RightMouseDragged(anEvent)
-		  end if
+		  RaiseEvent RightMouseDragged(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Sub informOrightMouseUp(anevent as appleNSevent)
-		  if parentcontrol <> nil then
-		    parentcontrol.informOrightMouseUp (anEvent)
-		  else
-		    RaiseEvent RightMouseUp(anEvent)
-		  end if
+		  RaiseEvent RightMouseUp(anEvent)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -676,6 +683,12 @@ Inherits AppleObject
 	#tag ExternalMethod, Flags = &h1, Description = 50726573656E747320616E206572726F7220616C65727420746F20746865207573657220617320616E206170706C69636174696F6E2D6D6F64616C206469616C6F672E
 		Protected Declare Function presentError Lib appkitlibname Selector "presentError:" (id as ptr, error as ptr) As Boolean
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 5265676973746572732074686520636F6E74726F6C20697473656C662061732061205765616B52656620696E2061207368617265642044696374696F6E6172792E
+		Attributes( hidden )  Sub RegisterIdentity(Identity As object)
+		  XojoIdentity.Value (id) = xojo.core.WeakRef.Create(Identity)
+		End Sub
+	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setanimations Lib appkitlibname Selector "setAnimations:" (id as ptr, value as ptr)
@@ -726,6 +739,10 @@ Inherits AppleObject
 
 	#tag Hook, Flags = &h0, Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
 		Event FlagsChanged(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 52657475726E207768657468657220746F20666F727761726420656C6173746963207363726F6C6C696E672067657374757265206576656E74732075702074686520726573706F6E6465722E
+		Event ForwardElasticScroll(axis as AppleNSEvent.NSEventGestureAxis) As Boolean
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
@@ -820,6 +837,22 @@ Inherits AppleObject
 		Event TouchesBegan(anEvent As AppleNSEvent)
 	#tag EndHook
 
+	#tag Hook, Flags = &h0, Description = 547261636B696E67206F6620746F756368657320686173206265656E2063616E63656C6C656420666F7220616E7920726561736F6E2E
+		Event TouchesCancelled(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4120736574206F6620746F756368657320686173206265656E2072656D6F7665642E
+		Event TouchesEnded(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4F6E65206F72206D6F726520746F75636865732068617665206D6F7665642E
+		Event TouchesMoved(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 52657475726E207472756520746F20747261636B2067657374757265207363726F6C6C206576656E7473207375636820617320612073776970652E
+		Event TrackSwipes(axis as AppleNSEvent.NSEventGestureAxis) As Boolean
+	#tag EndHook
+
 	#tag Hook, Flags = &h0, Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
 		Event WillPresentError(error As AppleError) As AppleError
 	#tag EndHook
@@ -895,6 +928,12 @@ Inherits AppleObject
 			    methods.Append new TargetClassMethodHelper("rotateWithEvent:", AddressOf impl_rotateWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf impl_swipeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesBeganWithEvent:", AddressOf impl_touchesBeganWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesMovedWithEvent:", AddressOf impl_touchesMovedWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesCancelledWithEvent:", AddressOf impl_touchesCancelledWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("touchesEndedWithEvent:", AddressOf impl_touchesEndedWithEvent, "v@:@")
+			    
+			    methods.Append new TargetClassMethodHelper("wantsForwardedScrollEventsForAxis:", AddressOf impl_wantsForwardedScrollEventsForAxis, "v@:i")
+			    methods.Append new TargetClassMethodHelper("wantsScrollEventsForSwipeTrackingOnAxis::", AddressOf impl_wantsScrollEventsForSwipeTrackingOnAxis, "v@:i")
 			    
 			    
 			    // CAAnimation "Delegate" methods
@@ -950,6 +989,17 @@ Inherits AppleObject
 			End Get
 		#tag EndGetter
 		NextResponder As AppleResponder
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  static midentity as xojo.Core.Dictionary
+			  if midentity = nil then midentity = new xojo.Core.Dictionary
+			  return midentity
+			End Get
+		#tag EndGetter
+		Protected Shared XojoIdentity As xojo.Core.Dictionary
 	#tag EndComputedProperty
 
 

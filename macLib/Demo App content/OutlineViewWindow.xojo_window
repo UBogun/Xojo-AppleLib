@@ -46,6 +46,8 @@ Begin Window OutlineViewWindow
    Begin OSXLibOutlineView OSXLibOutlineView1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False
