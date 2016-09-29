@@ -16,9 +16,7 @@ Here’s the forum discussion about it: https://forum.xojo.com/3586-obj-c-blocks
 Do not be alarmed that newer version warning might appear from tine to time. I check compatibility with the recent beta and it can happen that this version will be used for save accidentally. 
 
 # Very important!
-**Although the connections inside my development projects are ok, you will be prompted for a variety of unfound classes and folders, usually within the shared files or the internal core classes. Very sorry! I am working on removing those wrong links. Seems that Xojo doesn’t like copying the files into internal folders. I’ll post a new version once it seems to be ok. You may just ignore the broken links. The shared classes will be included on Navigator’s main level and everything will run.**
-**A first workaround is to use the fullcontent zip file where I included everything to contain the internal folder structure. It turned out that Xojo is looking for physical folders when I only created an internal one and the files are being shared. so please, until I got it all sorted out (if I do):**
-# Do not open the project files, they will give you unfound sources prompts. Instead, use the fullcontent.zip file.
+**Keeping the external files independent in a higher-level folder wasn’t so easy – I had to edit the project files manually to finally make it work. Please file a short bug report or send me a notice if you should encounter any problems.**
 
 ## Disclaimer
 Written 2016 by Ulrich Bogun, xojoblog.me. You are entitled to use this library AS IS and on your own risk. I do not take responsibility for anything harmful that could happen to your computer, but I can assure you there are no backdoors, traps or intended bugs of this and different kinds and I am using this library myself without my computer blowing up or similar things.
