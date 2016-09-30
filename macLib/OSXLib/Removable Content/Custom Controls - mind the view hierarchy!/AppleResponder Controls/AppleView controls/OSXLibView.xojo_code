@@ -16,23 +16,23 @@ Inherits OSXLibResponder
 		  // I am kicking the Xojo canvas out of the hierarchy completely and replace it ith the declared one. 
 		  // This way no interference with Xojo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
-		  // self.LockLeft = false
-		  // self.LockRight = false
-		  // self.LockBottom = false
-		  // self.LockTop = false
-		  dim obj as appleview =  RaiseEvent InitControl  // already initialized a subclass?
-		  if obj = nil then
-		    obj = new appleview (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		    obj.registercontrol self // and register this instance so it receives the events.
-		    obj.AutoResizingMask = new AppleAutoresizingMask(self)
-		    obj.TranslatesAutoresizingMaskIntoConstraints = true
-		    // Please note the internal events of the declared class will not fire anymore.
-		    // This is to avoid confusions where an event expects a return value.
-		    obj.WantsLayer = true // This is the layered version of a canvas where you can use the layer fully but have no paint event available.
-		    // Its subclass ApplePaintView will follow soon!
-		    AttachHandlers (obj)
+		  
+		  dim obj as AppleView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
+		  if obj = nil then // no!
+		    if mTempObject <> nil then // TempObject became necessary to enable Inspector behavior. 
+		      // This fires earlier than the open event of the canvas, so Inspector hits a nil object when it tries to set its properties.
+		      // That’s why TempObject buffers the Scrollview until the control is really opened.
+		      obj = mTempObject
+		    else // No tempObject: Create a new one!
+		      obj = CreateObject
+		    end if
+		    // and adapt it to the current bounds of the Xojo control.
+		    obj.Frame = FoundationFrameWork.NSMakeRect (0,0,me.Width, me.Height)
+		    obj.AutoResizingMask = AppleAutoresizingMask.FullResize // make it fully resizable
 		  end if
-		  return obj
+		  mTempObject = nil // remove any unwanted retain cycles
+		  return obj // So it will receive its super’s events
+		  
 		  
 		End Function
 	#tag EndEvent
@@ -140,6 +140,16 @@ Inherits OSXLibResponder
 		  // AddHandler obj.ContactBegan, addressOf informOnDidBeginContact
 		  // AddHandler obj.ContactEnded, addressOf informOnDidEndContact
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
+		Private Function CreateObject() As AppleView
+		  dim obj as new AppleView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
+		  
+		  AttachHandlers(obj) // Reroute its events so this Xojo control gets them
+		  
+		  return obj
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -347,10 +357,49 @@ Inherits OSXLibResponder
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleView(mAppleObject)
+			  return AppleObject.Alpha
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.Alpha = value
+			End Set
+		#tag EndSetter
+		Alpha As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  if mAppleObject <> nil then
+			    return appleview(mAppleObject)
+			  else
+			    if mTempObject = nil then mTempObject = CreateObject
+			    return mTempObject
+			  end if
+			  
+			  
 			End Get
 		#tag EndGetter
 		AppleObject As AppleView
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mTempObject As AppleView
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206861732061206261636B7570206C617965722E
+		#tag Getter
+			Get
+			  return AppleObject.WantsLayer
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.WantsLayer = True
+			End Set
+		#tag EndSetter
+		UseLayer As Boolean
 	#tag EndComputedProperty
 
 
@@ -379,6 +428,13 @@ Inherits OSXLibResponder
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Alpha"
+			Visible=true
+			Group="Behavior"
+			InitialValue="1"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AutoDeactivate"
@@ -531,6 +587,13 @@ Inherits OSXLibResponder
 			Name="UseFocusRing"
 			Visible=true
 			Group="Appearance"
+			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseLayer"
+			Visible=true
+			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty

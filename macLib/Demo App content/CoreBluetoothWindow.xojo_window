@@ -28,7 +28,6 @@ Begin Window CoreBluetoothWindow
    Width           =   956
    Begin OSXLibCoreBluetoothController BTLT
       CentralManagerState=   ""
-      Enabled         =   True
       Handle          =   0
       Index           =   -2147483648
       IsAdvertising   =   False
@@ -301,7 +300,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Data log"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -364,7 +362,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c008000FF
@@ -399,7 +396,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   23
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c000000FF
@@ -434,7 +430,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   24
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c80000040
@@ -469,7 +464,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   25
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c80000040
@@ -504,7 +498,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   26
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c80FF0000
@@ -539,7 +532,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   27
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Kickr speed"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -574,7 +566,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   28
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "000"
       TextAlign       =   1
       TextColor       =   &c80FF0000
@@ -609,7 +600,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   29
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Kickr power"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -644,7 +634,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   30
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Cadanze"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -679,7 +668,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   31
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Speed"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -714,7 +702,6 @@ Begin Window CoreBluetoothWindow
       Selectable      =   False
       TabIndex        =   32
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Heart rate"
       TextAlign       =   1
       TextColor       =   &c00000000

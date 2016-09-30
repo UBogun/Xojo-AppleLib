@@ -31,6 +31,7 @@ Begin Window NSViewPlayWindow
       AcceptTabs      =   False
       AcceptTouchEvents=   True
       AllowVibrancy   =   False
+      Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   250077183
       DoubleBuffer    =   False
@@ -162,6 +163,7 @@ Begin Window NSViewPlayWindow
       AcceptTabs      =   False
       AcceptTouchEvents=   False
       AllowVibrancy   =   False
+      Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False
@@ -487,6 +489,7 @@ Begin Window NSViewPlayWindow
       AcceptTabs      =   False
       AcceptTouchEvents=   True
       AllowVibrancy   =   False
+      Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   250077183
       DoubleBuffer    =   False

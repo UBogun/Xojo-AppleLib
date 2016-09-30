@@ -32,6 +32,7 @@ Begin window ScrollWindow
       AcceptTouchEvents=   True
       AllowMagnification=   True
       AllowVibrancy   =   False
+      Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
       BorderType      =   "3"
