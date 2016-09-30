@@ -58,6 +58,7 @@ Begin window ScrollWindow
       Top             =   0
       Transparent     =   True
       UseFocusRing    =   True
+      UseLayer        =   True
       VerticalScroller=   True
       Visible         =   True
       Width           =   600

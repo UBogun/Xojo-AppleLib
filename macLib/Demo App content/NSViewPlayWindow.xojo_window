@@ -26,6 +26,38 @@ Begin Window NSViewPlayWindow
    Title           =   "NSView Demo"
    Visible         =   True
    Width           =   1000
+   Begin OSXLibCanvas OSXLibCanvas1
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
+      Alpha           =   1.0
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   False
+      Height          =   697
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   526
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   0
+      Transparent     =   True
+      UseFocusRing    =   False
+      UseLayer        =   False
+      Visible         =   True
+      Width           =   474
+   End
    Begin OSXLibView ac2
       AcceptFocus     =   True
       AcceptTabs      =   False
@@ -37,25 +69,26 @@ Begin Window NSViewPlayWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   368
+      Height          =   286
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   37
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   2
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   320
+      Top             =   351
       Transparent     =   True
       UseFocusRing    =   True
+      UseLayer        =   True
       Visible         =   True
-      Width           =   943
+      Width           =   269
    End
    Begin Label StaticLabel
       AutoDeactivate  =   True
@@ -79,8 +112,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "This is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Click on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second."
+      Text            =   "This is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Click on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard and try a context click.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second."
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -135,17 +167,16 @@ Begin Window NSViewPlayWindow
       InitialParent   =   ""
       Italic          =   False
       Left            =   191
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
-      LockTop         =   False
+      LockTop         =   True
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -156,234 +187,7 @@ Begin Window NSViewPlayWindow
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   789
-   End
-   Begin OSXLibView ac3
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AcceptTouchEvents=   False
-      AllowVibrancy   =   False
-      Alpha           =   1.0
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   156
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   307
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   False
-      LockTop         =   False
-      Scope           =   0
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   45
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   199
-   End
-   Begin Slider Slider1
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   23
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   620
-      LineStep        =   1
-      LiveScroll      =   False
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Maximum         =   720
-      Minimum         =   0
-      PageStep        =   20
-      Scope           =   2
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickStyle       =   "0"
-      Top             =   73
-      Value           =   360
-      Visible         =   True
-      Width           =   174
-   End
-   Begin Label Label2
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   620
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "FrameCenterRotation"
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   45
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   174
-   End
-   Begin Label FCRotationValueLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   620
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   7
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "0"
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   90
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   174
-   End
-   Begin Label FRotationValueLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   114
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "0"
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   90
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   174
-   End
-   Begin Label Label3
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   114
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "BoundsRotation"
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   45
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   174
-   End
-   Begin Slider Slider2
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   23
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   114
-      LineStep        =   1
-      LiveScroll      =   False
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Maximum         =   720
-      Minimum         =   0
-      PageStep        =   20
-      Scope           =   2
-      TabIndex        =   10
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickStyle       =   "0"
-      Top             =   73
-      Value           =   360
-      Visible         =   True
-      Width           =   174
+      Width           =   505
    End
    Begin CheckBox CheckBox1
       AutoDeactivate  =   True
@@ -404,7 +208,7 @@ Begin Window NSViewPlayWindow
       LockRight       =   False
       LockTop         =   True
       Scope           =   2
-      State           =   0
+      State           =   1
       TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
@@ -413,7 +217,7 @@ Begin Window NSViewPlayWindow
       TextUnit        =   0
       Top             =   122
       Underline       =   False
-      Value           =   False
+      Value           =   True
       Visible         =   True
       Width           =   174
    End
@@ -455,13 +259,13 @@ Begin Window NSViewPlayWindow
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   100
+      Height          =   159
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
       Left            =   37
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
@@ -471,8 +275,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "To the right is a OSXLibPaintCanvas. Currently the paint event delivers no graphics object. This will follow soon.\nThe Paint event fires anyway, as do the Resize and Resized events (not so on the OSXLibCanvas superclass). You can still access a layer but not the layer’s content. Rightklick on it for a simple Menuitem extension!"
+      Text            =   "To the right is a OSXLibPaintCanvas. Its paint event gives access to the CGContext object directly, so you can paint without conversions to and from Xojo classes. It draws a radial gradient from randomized colors using a multiply blend mode.\nIn reality, there a much more efficient ways to create color animations than using a timed paint event. Just for demo purposes!"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -484,47 +287,19 @@ Begin Window NSViewPlayWindow
       Visible         =   True
       Width           =   617
    End
-   Begin OSXLibCanvas OSXLibPaintCanvas1
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AcceptTouchEvents=   True
-      AllowVibrancy   =   False
-      Alpha           =   1.0
-      AutoDeactivate  =   True
-      Backdrop        =   250077183
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   162
-      HelpTag         =   ""
+   Begin xojo.core.timer Timer1
       Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   682
-      LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   15
+      Mode            =   "2"
+      Period          =   50
+      Scope           =   2
       TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   154
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   202
+      Tolerance       =   0
    End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Method, Flags = &h0
-		Sub addconstraints()
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h21
 		Private Sub Animate()
 		  Using xojo.Math
@@ -558,6 +333,30 @@ End
 
 #tag EndWindowCode
 
+#tag Events OSXLibCanvas1
+	#tag Event
+		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
+		  dim colorarray() as Color
+		  for q as integer = 0 to 9
+		    colorarray.Append randomcolor (5, 200)
+		  next
+		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
+		  g.DrawRadialGradient (new AppleCGGradient(colorarray), _
+		  FoundationFrameWork.NSMakePoint(0,0), 5, FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height),rect.size_.height/3, true, true)
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 5573652074686973206576656E7420746F2063726561746520637573746F6D204D656E757320666F7220646966666572656E74206B696E64206F66206576656E74732E
+		Function ConstructContextMenu(AnEvent As AppleNSEvent) As AppleMenu
+		  break
+		End Function
+	#tag EndEvent
+	#tag Event , Description = 4669726573206265666F7265206120636F6E7465787475616C206D656E7520697320646973706C617965642E205573652074686973206576656E7420746F206D6F6466792069742E
+		Sub OpenContextMenu(Menu As AppleMenu, AnEvent As AppleNSEvent)
+		  break
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events ac2
 	#tag Event
 		Sub MouseDown(anEvent As AppleNSEvent)
@@ -575,16 +374,7 @@ End
 		  me.AppleObject.layer.BorderWidth = 5
 		  me.AppleObject.Layer.CornerRadius = 10
 		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cEFFFC900)
-		  me.AppleObject.Layer.Contents = new AppleImage(OSXLibLogo)
-		  me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = false
 		  
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 4669726573207768656E2061204E53416E696D6174696F6E436F6E7465787420616E696D6174696F6E2066696E69736865642E
-		Sub AnimationFinished()
-		  Label1.text ="Animation finished"
-		  ShowLabel
-		  HideLabel
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120737769706520676573747572652E
@@ -638,11 +428,22 @@ End
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865207269676874206D6F75736520627574746F6E2E
 		Sub RightMouseDown(anEvent As AppleNSEvent)
-		  Label1.text ="Right Mouse Down"
-		  ShowLabel
-		  HideLabel
+		  dim mi as new MenuItem("Testmenu")
+		  dim mii as new MenuItem ("A normal menuitem with an AppleImage")
+		  mii.AppleObject.Image = AppleImage.fromPicture(OSXLibLogo)
+		  mii.AppleObject.ToolTip = "There’s more features for menus too!"
+		  mi.Append mii
 		  
-		  #pragma Unused anEvent
+		  dim miii as new MenuItem ("It was attached using the AppleObject property via module.")
+		  miii.AppleObject.IndentationLevel = 5
+		  mi.append miii
+		  miii = new MenuItem ("You can also address several subimages for different states.")
+		  mi.append miii
+		  miii = new MenuItem ("Please note the tooltip on the cell with the big image!")
+		  miii.AppleObject.IndentationLevel = 10
+		  mi.append miii
+		  call mi.PopUp
+		  #pragma unused anevent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2061206E657720736574206F6620746F756368657320686173206265656E207265636F676E697A65642E0A546F206765742074686520736574206F6620746F7563686573207468617420626567616E20666F722074686973207669657720286F722064657363656E64616E7473206F6620746869732076696577292073656E64205B6576656E7420746F75636865734D61746368696E6750686173653A4E53546F7563685068617365426567616E20696E566965773A73656C665D2E
@@ -675,6 +476,23 @@ End
 		  return true
 		End Function
 	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E20746865207573657220706572666F726D6564206120736D617274207A6F6F6D20676573747572652028646F75626C652D746170292E203634626974206F6E6C7921
+		Sub SmartMagnifyGesture(anEvent As AppleNSEvent)
+		  Label1.text ="SmartMagnify"
+		  ShowLabel
+		  HideLabel
+		  
+		  #pragma Unused anEvent
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520766965772069732068696464656E2C20656974686572206469726563746C792C206F7220696E20726573706F6E736520746F20616E20616E636573746F72206265696E672068696464656E2E
+		Sub Hidden()
+		  Label1.text ="Hidden"
+		  ShowLabel
+		  HideLabel
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events PushButton1
 	#tag Event
@@ -683,115 +501,24 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events ac3
-	#tag Event
-		Sub Shown()
-		  me.AppleObject.WantsLayer = true
-		  me.AppleObject.layer.BorderWidth = 2
-		  me.AppleObject.Layer.CornerRadius = 40
-		  me.AppleObject.layer.bordercolor = AppleColor.FromColor (&cBFFFC100)
-		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cB1D9FE00)
-		  me.AppleObject.Layer.Contents = new AppleImage(OSXLibLogo)
-		  me.AppleObject.LayerContentsPlacement = AppleView.NSViewLayerContentsPlacement.TopLeft
-		  me.AppleObject.Layer.MasksToBounds =false
-		  'me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = false
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 4669726573207768656E2074686520766965772069732068696464656E2C20656974686572206469726563746C792C206F7220696E20726573706F6E736520746F20616E20616E636573746F72206265696E672068696464656E2E
-		Sub Hidden()
-		  msgbox "You hid me!"
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Slider1
-	#tag Event
-		Sub ValueChanged()
-		  dim val as double = ( me.value-360)/10
-		  ac3.AppleObject.FrameCenterRotation  = val
-		  FCRotationValueLabel.text = val.ToText
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Slider2
-	#tag Event
-		Sub ValueChanged()
-		  dim val as double = ( me.value-360)/10
-		  ac3.AppleObject.BoundsRotation  = val
-		  FRotationValueLabel.text = val.ToText
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events CheckBox1
 	#tag Event
 		Sub Action()
-		  ac3.AppleObject.layer.MasksToBounds = me.value
+		  ac2.AppleObject.layer.MasksToBounds = me.value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events CheckBox2
 	#tag Event
 		Sub Action()
-		  ac3.AppleObject.layer.Hidden = me.value
+		  ac2.AppleObject.Hidden = me.value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events OSXLibPaintCanvas1
+#tag Events Timer1
 	#tag Event
-		Sub RightMouseDown(anEvent As AppleNSEvent)
-		  dim mi as new MenuItem("Testmenu")
-		  dim mii as new MenuItem ("A normal menuitem with an AppleImage")
-		  mii.AppleObject.Image = AppleImage.fromPicture(OSXLibLogo)
-		  mii.AppleObject.ToolTip = "There’s more features for menus too!"
-		  mi.Append mii
-		  
-		  dim miii as new MenuItem ("It was attached using the AppleObject property via module.")
-		  miii.AppleObject.IndentationLevel = 5
-		  mi.append miii
-		  miii = new MenuItem ("You can also address several subimages for different states.")
-		  mi.append miii
-		  miii = new MenuItem ("Please note the tooltip on the cell with the big image!")
-		  miii.AppleObject.IndentationLevel = 10
-		  mi.append miii
-		  call mi.PopUp
-		  #pragma unused anevent
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
-		  #pragma unused rect
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Shown()
-		  me.AppleObject.WantsLayer = true
-		  dim ar as  AppleAutoresizingMask = AppleAutoresizingMask.FullResize
-		  'ar.RightMargin = true
-		  'ar.TopMargin = True
-		  ar.LeftMargin = True
-		  ar.BottomMargin = true
-		  me.AppleObject.AutoResizingMask = ar
-		  me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = True
-		  'me.AppleObject.RemoveConstraints(OSXLibPaintCanvas1.AppleObject.Constraints)
-		  me.AppleObject.WidthAnchor.ConstraintLessThanOrEqualToConstant(200).Active = true
-		  me.AppleObject.WidthAnchor.ConstraintLessThanOrEqualToConstant(200).Priority = AppleLayoutConstraint.NSLayoutPriority.WindowSizeStayPut
-		  // me.AppleObject.TrailingAnchor.ConstraintGreaterThanOrEqualToAnchor(me.AppleObject.SuperView.RightAnchor).Active = true
-		  me.AppleObject.HeightAnchor.ConstraintLessThanOrEqualToConstant(300).Active = true
-		  me.AppleObject.HeightAnchor.ConstraintLessThanOrEqualToConstant(300).Priority = AppleLayoutConstraint.NSLayoutPriority.WindowSizeStayPut
-		  
-		  // me.AppleObject.LeadingAnchor.ConstraintEqualToAnchor (ac3.AppleObject.rightAnchor,176).active = true
-		  // me.AppleObject.leadinganchor.ConstraintEqualToAnchor(ac3.AppleObject.rightAnchor,176).Priority = AppleLayoutConstraint.NSLayoutPriority.Required
-		  me.AppleObject.TopAnchor.ConstraintLessThanOrEqualToAnchor (ac3.AppleObject.BottomAnchor, -80).active = true
-		  me.AppleObject.TopAnchor.ConstraintLessThanOrEqualToAnchor (ac3.AppleObject.BottomAnchor, -80).Priority = AppleLayoutConstraint.NSLayoutPriority.Required
-		  me.AppleObject.CheckLayout
-		  OSXLibPaintCanvas1.AppleObject.Layer.BackgroundColor = AppleColor.FromColor(&c9D7D3D00)
-		  OSXLibPaintCanvas1.AppleObject.Layer.BorderWidth = 2
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
-		Sub WillBecomeSubview(SuperView as AppleView)
-		  #pragma Unused SuperView
+		Sub Action()
+		  OSXLibCanvas1.Invalidate
 		End Sub
 	#tag EndEvent
 #tag EndEvents

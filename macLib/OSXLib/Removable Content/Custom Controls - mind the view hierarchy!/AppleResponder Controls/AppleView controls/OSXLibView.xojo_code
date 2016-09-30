@@ -27,8 +27,13 @@ Inherits OSXLibResponder
 		      obj = CreateObject
 		    end if
 		    // and adapt it to the current bounds of the Xojo control.
-		    obj.Frame = FoundationFrameWork.NSMakeRect (0,0,me.Width, me.Height)
+		    obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
 		    obj.AutoResizingMask = AppleAutoresizingMask.FullResize // make it fully resizable
+		  end if
+		  // If there’s a Backdrop, make it the layer’s contents: 
+		  if me.Backdrop <> nil then
+		    me.AppleObject.WantsLayer = true // or either it would crash
+		    me.AppleObject.layer.Contents = new AppleImage(me.Backdrop)
 		  end if
 		  mTempObject = nil // remove any unwanted retain cycles
 		  return obj // So it will receive its super’s events
@@ -256,6 +261,12 @@ Inherits OSXLibResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 54656C6C7320746865207669657720746F206669726520697473207061696E74206576656E7420616761696E206F6E20746865206E6578742073637265656E2072656672657368206379636C652E
+		Sub Invalidate()
+		  AppleObject.NeedsDisplay = true
+		End Sub
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
 		Event AddedSubview(Subview as AppleView)
@@ -354,7 +365,7 @@ Inherits OSXLibResponder
 		AllowVibrancy As Boolean
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 54686520416C7068612076616C7565206F66207468652076696577202844656661756C7420312E3029
 		#tag Getter
 			Get
 			  return AppleObject.Alpha
@@ -368,7 +379,16 @@ Inherits OSXLibResponder
 		Alpha As Double
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865204E535669657720616E696D61746F72206F626A6563742028726561642D6F6E6C79292E2055736520697420746F20616E696D6174652070726F7065727479206368616E67657320287772617070656420696E20616E20616E696D6174696F6E436F6E7465787420696E206361736520796F752077616E7420746F206368616E6765206475726174696F6E292E
+		#tag Getter
+			Get
+			  return AppleObject.Animator
+			End Get
+		#tag EndGetter
+		Animator As AppleView
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865204E535669657720697473656C662028726561642D6F6E6C79292E
 		#tag Getter
 			Get
 			  if mAppleObject <> nil then
@@ -382,6 +402,38 @@ Inherits OSXLibResponder
 			End Get
 		#tag EndGetter
 		AppleObject As AppleView
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E63652028696E20706F696E747329206265747765656E2074686520626F74746F6D206F66207468652076696577E280997320616C69676E6D656E742072656374616E676C6520616E642069747320626173656C696E652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleObject.BaselineOffsetFromBottom
+			End Get
+		#tag EndGetter
+		BaselineOffset As Double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520626F74746F6D2065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  return AppleObject.BottomAnchor
+			End Get
+		#tag EndGetter
+		BottomAnchor As AppleLayoutYAxisAnchor
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520616E676C65206F6620726F746174696F6E2C206D6561737572656420696E20646567726565732C206170706C69656420746F207468652076696577E280997320626F756E64732072656374616E676C652072656C617469766520746F20697473206672616D652072656374616E676C652E
+		#tag Getter
+			Get
+			  return AppleObject.BoundsRotation
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.BoundsRotation = value
+			End Set
+		#tag EndSetter
+		BoundsRotation As Double
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -449,6 +501,16 @@ Inherits OSXLibResponder
 			Group="Appearance"
 			Type="Picture"
 			EditorType="Picture"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BaselineOffset"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BoundsRotation"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"
