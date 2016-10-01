@@ -78,6 +78,13 @@ Inherits OSXLibScrollView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Alpha"
+			Visible=true
+			Group="Behavior"
+			InitialValue="1"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AutoDeactivate"
 			Visible=true
 			Group="Appearance"
@@ -106,6 +113,11 @@ Inherits OSXLibScrollView
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BoundsRotation"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DoubleBuffer"
 			Visible=true
 			Group="Behavior"
@@ -125,6 +137,19 @@ Inherits OSXLibScrollView
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FocusRingType"
+			Visible=true
+			Group="Behavior"
+			InitialValue="Default"
+			Type="Appkitframework.NSFocusRingType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - None"
+				"2 - Exterior"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -242,6 +267,19 @@ Inherits OSXLibScrollView
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TrackSwipes"
+			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TranslatesAutoresizingMaskIntoConstraints"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Transparent"

@@ -9,7 +9,7 @@ Begin window ScrollWindow
    FullScreen      =   False
    FullScreenButton=   True
    HasBackColor    =   False
-   Height          =   400
+   Height          =   578
    ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin window ScrollWindow
    Resizeable      =   True
    Title           =   "ScrollView"
    Visible         =   True
-   Width           =   600
+   Width           =   704
    Begin OSXLibScrollView OSXLibScrollView1
       AcceptFocus     =   True
       AcceptTabs      =   False
@@ -35,11 +35,14 @@ Begin window ScrollWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
+      BackgroundColor =   &c000000FF
       BorderType      =   "3"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
-      Height          =   400
+      FocusRingType   =   "Default"
+      Height          =   578
       HelpTag         =   ""
       HorizontalScroller=   True
       Index           =   -2147483648
@@ -56,19 +59,21 @@ Begin window ScrollWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   0
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseCustomColor  =   False
       UseFocusRing    =   True
-      UseLayer        =   True
       VerticalScroller=   True
       Visible         =   True
-      Width           =   600
+      Width           =   704
    End
    Begin TextArea TextArea1
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFF00FFFF
+      BackColor       =   &c00FFFFFF
       Bold            =   False
       Border          =   True
       DataField       =   ""
@@ -105,11 +110,11 @@ Begin window ScrollWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   -45
+      Top             =   133
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   140
+      Width           =   244
    End
 End
 #tag EndWindow

@@ -49,12 +49,15 @@ Begin Window OutlineViewWindow
       AcceptTouchEvents=   False
       AllowMagnification=   False
       AllowVibrancy   =   False
+      Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
       BorderType      =   "None"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      FocusRingType   =   "Default"
       Height          =   400
       HelpTag         =   ""
       HorizontalScroller=   True
@@ -72,6 +75,8 @@ Begin Window OutlineViewWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   0
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseFocusRing    =   True
       VerticalScroller=   True

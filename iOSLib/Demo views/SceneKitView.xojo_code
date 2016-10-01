@@ -9,19 +9,48 @@ Begin iosView SceneKitView
    Title           =   "SceneKit"
    Top             =   0
    Begin iOSLibSKView iOSLibSKView1
-      AutoLayout      =   iOSLibSKView1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibSKView1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibSKView1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AccessibilityHint=   ""
+      AccessibilityLabel=   ""
+      Alpha           =   1.0
+      Asynchronous    =   False
       AutoLayout      =   iOSLibSKView1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
-      Height          =   415
-      Height          =   415
-      Left            =   0
+      AutoLayout      =   iOSLibSKView1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibSKView1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibSKView1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoresizesSubviews=   False
+      BackgroundColor =   &cFFFFFF00
+      CanBecomeFocused=   False
+      ClearsContextBeforeDrawing=   False
+      ClipsToBounds   =   True
+      ContentMode     =   ""
+      ContentScaleFactor=   1.0
+      ExclusiveTouch  =   False
+      Focused         =   False
+      HasAmbiguousLayout=   False
+      Height          =   415.0
+      Hidden          =   False
+      IgnoresSiblingOrder=   False
       Left            =   0
       LockedInPosition=   False
+      MultipleTouchEnabled=   False
+      Opaque          =   False
+      Paused          =   False
+      PreservesSuperviewLayoutMargins=   False
+      Scope           =   0
+      ShouldCullNonVisibleNodes=   True
+      ShowsDrawCount  =   False
+      ShowsFields     =   False
+      ShowsFPS        =   True
+      ShowsNodeCount  =   False
+      ShowsPhysics    =   False
+      ShowsQuadCount  =   False
+      Tag             =   0
+      TintAdjustmentMode=   ""
       Top             =   65
-      Top             =   65
-      Width           =   320
-      Width           =   320
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      UserInteractionEnabled=   True
+      Visible         =   True
+      Width           =   320.0
    End
 End
 #tag EndIOSView

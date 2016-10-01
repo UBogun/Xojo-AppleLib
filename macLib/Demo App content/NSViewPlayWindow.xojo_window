@@ -34,10 +34,13 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      DoubleBuffer    =   False
+      BackgroundColor =   &c000000FF
+      BoundsRotation  =   0.0
+      DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
-      Height          =   697
+      FocusRingType   =   "Default"
+      Height          =   423
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -52,9 +55,11 @@ Begin Window NSViewPlayWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   0
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseCustomColor  =   False
       UseFocusRing    =   False
-      UseLayer        =   False
       Visible         =   True
       Width           =   474
    End
@@ -66,10 +71,13 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   250077183
-      DoubleBuffer    =   False
+      BackgroundColor =   &c000000FF
+      BoundsRotation  =   0.0
+      DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   True
-      Height          =   286
+      FocusRingType   =   "2"
+      Height          =   274
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -83,12 +91,14 @@ Begin Window NSViewPlayWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   351
+      Top             =   270
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseCustomColor  =   False
       UseFocusRing    =   True
-      UseLayer        =   True
       Visible         =   True
-      Width           =   269
+      Width           =   310
    End
    Begin Label StaticLabel
       AutoDeactivate  =   True
@@ -96,7 +106,7 @@ Begin Window NSViewPlayWindow
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   100
+      Height          =   224
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -112,17 +122,17 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
-      Text            =   "This is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Click on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard and try a context click.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second."
+      Text            =   "To the left is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Additionally I put a BlurFilter into its contentFilters array and added a pink shadow.\n\nClick on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard and try a context click.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second.\n\nResize the window and note that the Xojo control locks still do work!\nThe colored circle is another OSXLibCanvas, painting another gradient but clipped into a cgpath circle. Its distance to the animated view is held by using a LayoutAnchor (if you are on OSX 10.11 or higher)."
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   700
+      Top             =   556
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   943
+      Width           =   692
    End
    Begin PushButton PushButton1
       AutoDeactivate  =   True
@@ -189,38 +199,6 @@ Begin Window NSViewPlayWindow
       Visible         =   True
       Width           =   505
    End
-   Begin CheckBox CheckBox1
-      AutoDeactivate  =   True
-      Bold            =   False
-      Caption         =   "MasksToBounds"
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   114
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   2
-      State           =   1
-      TabIndex        =   11
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   122
-      Underline       =   False
-      Value           =   True
-      Visible         =   True
-      Width           =   174
-   End
    Begin CheckBox CheckBox2
       AutoDeactivate  =   True
       Bold            =   False
@@ -233,7 +211,7 @@ Begin Window NSViewPlayWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   114
+      Left            =   37
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -247,7 +225,7 @@ Begin Window NSViewPlayWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   154
+      Top             =   71
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -259,7 +237,7 @@ Begin Window NSViewPlayWindow
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   159
+      Height          =   62
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -275,26 +253,156 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
-      Text            =   "To the right is a OSXLibPaintCanvas. Its paint event gives access to the CGContext object directly, so you can paint without conversions to and from Xojo classes. It draws a radial gradient from randomized colors using a multiply blend mode.\nIn reality, there a much more efficient ways to create color animations than using a timed paint event. Just for demo purposes!"
+      Text            =   "To the right is a OSXLibPaintCanvas. Its paint event gives access to the CGContext object directly, so you can paint without conversions to and from Xojo classes. It draws a radial gradient from randomized colors using a multiply blend mode."
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   213
+      Top             =   103
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   617
    End
-   Begin xojo.core.timer Timer1
+   Begin OSXLibCanvas OSXLibCanvas2
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
+      Alpha           =   1.0
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      BackgroundColor =   &c000000FF
+      BoundsRotation  =   0.0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      FocusRingType   =   "Default"
+      Height          =   100
+      HelpTag         =   ""
       Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   414
+      LockBottom      =   False
       LockedInPosition=   False
-      Mode            =   "2"
-      Period          =   50
-      Scope           =   2
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   16
       TabPanelIndex   =   0
-      Tolerance       =   0
+      TabStop         =   True
+      Top             =   444
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      Transparent     =   True
+      UseCustomColor  =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   100
+   End
+   Begin OSXLibView OSXLibView1
+      AcceptFocus     =   False
+      AcceptTabs      =   True
+      AcceptTouchEvents=   True
+      AllowVibrancy   =   True
+      Alpha           =   1.0
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      BackgroundColor =   &c5777C200
+      BoundsRotation  =   0.0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   False
+      FocusRingType   =   "2"
+      Height          =   100
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   371
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   158
+      TrackSwipes     =   True
+      TranslatesAutoresizingMaskIntoConstraints=   True
+      Transparent     =   True
+      UseCustomColor  =   True
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   100
+      Begin PushButton PushButton3
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Button"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "OSXLibView1"
+         Italic          =   False
+         Left            =   381
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   False
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   203
+         Underline       =   False
+         Visible         =   True
+         Width           =   80
+      End
+   End
+   Begin Label StaticLabel2
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   93
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   37
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   True
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      Text            =   "The small blue square is another OSXLibView, together with backgroundcolor and contents set via Inspector properties and with an automatically embedded Button from the layout."
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   165
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   296
    End
 End
 #tag EndWindow
@@ -305,7 +413,7 @@ End
 		  Using xojo.Math
 		  dim cont as new AppleAnimationContext(ac2.AppleObject)
 		  cont.Duration = 1
-		  ac2.appleobject.Animator.Frame = FoundationFrameWork.NSMakeRect(RandomInt(-0,ac2.Width-10), RandomInt(-0, ac2.Height-100), RandomInt (10, ac2.Width), randomint (10, ac2.Height))
+		  ac2.appleobject.Animator.Frame = FoundationFrameWork.NSMakeRect(RandomInt(-0,self.Width-10), RandomInt(-0, self.Height-100), RandomInt (10, ac2.Width), randomint (10, ac2.Height))
 		  
 		End Sub
 	#tag EndMethod
@@ -342,7 +450,7 @@ End
 		  next
 		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
 		  g.DrawRadialGradient (new AppleCGGradient(colorarray), _
-		  FoundationFrameWork.NSMakePoint(0,0), 5, FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height),rect.size_.height/3, true, true)
+		  FoundationFrameWork.NSMakePoint(10,10), 5, FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height),rect.size_.height/3, true, true)
 		  
 		End Sub
 	#tag EndEvent
@@ -353,6 +461,16 @@ End
 	#tag EndEvent
 	#tag Event , Description = 4669726573206265666F7265206120636F6E7465787475616C206D656E7520697320646973706C617965642E205573652074686973206576656E7420746F206D6F6466792069742E
 		Sub OpenContextMenu(Menu As AppleMenu, AnEvent As AppleNSEvent)
+		  break
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
+		Sub AddedSubview(Subview as AppleView)
+		  break
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Sub WillRemoveSubview(SubView as AppleView)
 		  break
 		End Sub
 	#tag EndEvent
@@ -374,7 +492,15 @@ End
 		  me.AppleObject.layer.BorderWidth = 5
 		  me.AppleObject.Layer.CornerRadius = 10
 		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cEFFFC900)
-		  
+		  dim filter as new AppleCIBlurFilter()
+		  filter.InputRadius = 4
+		  me.AppleObject.AddContentFilter filter
+		  dim shadow as new AppleShadow
+		  shadow.ShadowColor = new AppleColor (&cF31CA100)
+		  shadow.ShadowOffset = FoundationFrameWork.NSMakeSize (10, -14)
+		  shadow.ShadowBlurRadius = 3
+		  me.AppleObject.Shadow =shadow
+		  me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = true
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120737769706520676573747572652E
@@ -382,6 +508,7 @@ End
 		  Label1.text ="That was a swipe gesture of type "+Integer(anEvent.Type).ToText
 		  ShowLabel
 		  HideLabel
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520757365722068617320626567756E206120746F75636820676573747572652E
@@ -389,6 +516,7 @@ End
 		  Label1.text ="You started a gesture of type "+Integer(anEvent.Type).ToText
 		  ShowLabel
 		  HideLabel
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E207468652074686520757365722068617320626567756E20612070696E636820676573747572652E
@@ -415,6 +543,7 @@ End
 		  Label1.text ="Ended gesture of type "+Integer(anEvent.Type).ToText
 		  ShowLabel
 		  HideLabel
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E20746865207573657220686173206D6F76656420746865206D6F757365207769746820746865206C65667420627574746F6E20707265737365642E
@@ -469,11 +598,13 @@ End
 		  ShowLabel
 		  HideLabel
 		  Animate
+		  #pragma Unused anEvent
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 52657475726E207472756520746F20747261636B2067657374757265207363726F6C6C206576656E7473207375636820617320612073776970652E
 		Function TrackSwipes(Axis As AppleNSEvent.NSEventGestureAxis) As Boolean
 		  return true
+		  #pragma Unused axis
 		End Function
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E20746865207573657220706572666F726D6564206120736D617274207A6F6F6D20676573747572652028646F75626C652D746170292E203634626974206F6E6C7921
@@ -493,18 +624,44 @@ End
 		  
 		End Sub
 	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E20746865207669657720697320756E68696464656E2C20656974686572206469726563746C792C206F7220696E20726573706F6E736520746F20616E20616E636573746F72206265696E6720756E68696464656E2E
+		Sub Unhidden()
+		  Label1.text ="Unhidden"
+		  ShowLabel
+		  HideLabel
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E2061207072657373757265206368616E6765206F63637572732061732074686520726573756C74206F662061207573657220696E707574206576656E74206F6E20612073797374656D207468617420737570706F7274732070726573737572652073656E73697469766974792E
+		Sub PressureChange(anEvent As AppleNSEvent)
+		  Label1.text ="Pressure change"
+		  ShowLabel
+		  HideLabel
+		  #pragma Unused anEvent
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E20746865207573657220686173206D6F76656420746865206D6F757365E2809973207363726F6C6C20776865656C2E
+		Sub MouseWheel(anEvent As AppleNSEvent)
+		  Label1.text ="Mouse wheel"
+		  ShowLabel
+		  HideLabel
+		  #pragma Unused anEvent
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E206F6E65206F72206D6F726520746F75636865732068617665206D6F7665642E
+		Sub TouchesMoved(anEvent As AppleNSEvent)
+		  Label1.text ="Touches moved"
+		  ShowLabel
+		  HideLabel
+		  
+		  #pragma Unused anEvent
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events PushButton1
 	#tag Event
 		Sub Action()
 		  call me.AppleObject.presentError(new appleerror( "Each responder subclass can display a custom error and modify it in the willShowError event", -999999))
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events CheckBox1
-	#tag Event
-		Sub Action()
-		  ac2.AppleObject.layer.MasksToBounds = me.value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -515,10 +672,43 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Timer1
+#tag Events OSXLibCanvas2
+	#tag Event
+		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
+		  g.AddEllipse (rect)
+		  g.clip
+		  dim colorarray() as Color
+		  for q as integer = 0 to 3
+		    colorarray.Append randomcolor (50, 250)
+		  next
+		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
+		  g.DrawLinearGradient (new AppleCGGradient(colorarray), _
+		  FoundationFrameWork.NSMakePoint(0,0), FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height),true, true)
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Shown()
+		  me.AppleObject.AutoResizingMask = AppleAutoresizingMask.NoLock
+		  me.AppleObject.TranslatesAutoresizingMaskIntoConstraints = false
+		  if me.CenterXAnchor <> nil then // system ≥ OSX 10.11?
+		    me.AppleObject.LeftAnchor.ConstraintLessThanOrEqualToAnchor(ac2.AppleObject.RightAnchor, 100).Active = true
+		  end if
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OSXLibView1
+	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
+		Sub WillRemoveSubview(SubView as AppleView)
+		  break
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton3
 	#tag Event
 		Sub Action()
-		  OSXLibCanvas1.Invalidate
+		  MsgBox "Yes, the button is available while it’s embedded into an OSXLibView."
 		End Sub
 	#tag EndEvent
 #tag EndEvents

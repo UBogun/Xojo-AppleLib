@@ -647,6 +647,10 @@ Inherits Canvas
 	#tag EndNote
 
 
+	#tag Property, Flags = &h0, Description = 496620746865207669657720697320746F2061636365707420746F756368206576656E74732E
+		AcceptTouchEvents As Boolean
+	#tag EndProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
@@ -671,6 +675,11 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="AcceptTabs"
 			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AcceptTouchEvents"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

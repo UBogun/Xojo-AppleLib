@@ -8,8 +8,7 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor(init(alloc(classptr)))
-		  MHasownership = true
+		  Super.Constructor(init(alloc(classptr)), true)
 		  
 		End Sub
 	#tag EndMethod

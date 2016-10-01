@@ -31,11 +31,14 @@ Begin Window SpriteKitWindow
       AcceptTabs      =   False
       AcceptTouchEvents=   True
       AllowVibrancy   =   False
+      Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      FocusRingType   =   "Default"
       Height          =   400
       HelpTag         =   ""
       Index           =   -2147483648
@@ -51,6 +54,8 @@ Begin Window SpriteKitWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   0
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True

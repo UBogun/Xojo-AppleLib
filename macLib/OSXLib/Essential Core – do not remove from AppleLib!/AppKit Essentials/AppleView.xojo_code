@@ -1,6 +1,15 @@
 #tag Class
 Protected Class AppleView
 Inherits AppleResponder
+	#tag Method, Flags = &h0, Description = 41646473206120434946696C74657220746F20746865204261636B67726F756E6446696C746572732061727261792C206372656174696E67206974206966206E65636573736172792E
+		Sub AddBackgroundFilter(Filter as AppleCIFilter)
+		  dim filters as AppleMutableArray = _
+		  if (me.BackgroundFilters <> nil,  new AppleMutableArray (BackgroundFilters), new AppleMutableArray(1))
+		  Filters.Addobject filter
+		  BackgroundFilters = filters
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 41646473206120636F6E73747261696E74206F6E20746865206C61796F7574206F662074686520726563656976696E672076696577206F72206974732073756276696577732E
 		Sub AddConstraint(Constraint As AppleLayoutConstraint)
 		  AddConstraint mid, Constraint.id
@@ -20,6 +29,15 @@ Inherits AppleResponder
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub addConstraints Lib appkitlibname Selector "addConstraints:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 41646473206120434946696C74657220746F2074686520436F6E74656E7446696C746572732061727261792C206372656174696E67206974206966206E65636573736172792E
+		Sub AddContentFilter(Filter as AppleCIFilter)
+		  dim filters as AppleMutableArray = _
+		  if (me.ContentFilters <> nil,  new AppleMutableArray (ContentFilters), new AppleMutableArray(1))
+		  Filters.Addobject filter
+		  ContentFilters = filters
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 41646473207468652070726F7669646564206C61796F757420677569646520746F2074686520766965772E20417661696C61626C652073696E6365204F5320582031302E3131
 		Sub AddLayoutGuide(Guide As AppleLayoutGuide)
@@ -265,7 +283,7 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function convertPointToView Lib appkitlibname Selector "convertPoint.toView:" (id as ptr, point as FoundationFrameWork . NSPoint, view as ptr) As FoundationFrameWork.NSPoint
+		Attributes( hidden ) Protected Declare Function convertPointToView Lib appkitlibname Selector "convertPoint:toView:" (id as ptr, point as FoundationFrameWork . NSPoint, view as ptr) As FoundationFrameWork.NSPoint
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 436F6E766572747320612072656374616E676C652066726F6D2069747320706978656C20616C69676E6564206261636B696E672073746F726520636F6F7264696E6174652073797374656D20746F207468652076696577E280997320696E746572696F7220636F6F7264696E6174652073797374656D2E
@@ -2521,7 +2539,7 @@ Inherits AppleResponder
 		TopAnchor As AppleLayoutYAxisAnchor
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520746F702065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520747261696C696E672065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
 		#tag Getter
 			Get
 			  if RespondsToSelector("trailingAnchor", classptr) then return AppleLayoutXAxisAnchor.MakeFromPtr(AppKitFramework.gettrailingAnchor(id))

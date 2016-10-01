@@ -3,8 +3,9 @@ Protected Class OSXLibView
 Inherits OSXLibResponder
 	#tag Event
 		Sub Close()
-		  mAppleObject = nil
 		  RaiseEvent Close
+		  mAppleObject = nil
+		  mTempObject = nil
 		End Sub
 	#tag EndEvent
 
@@ -32,10 +33,12 @@ Inherits OSXLibResponder
 		  end if
 		  // If there’s a Backdrop, make it the layer’s contents: 
 		  if me.Backdrop <> nil then
-		    me.AppleObject.WantsLayer = true // or either it would crash
+		    if me.Layer = nil then me.AppleObject.WantsLayer = true // or either it would crash
 		    me.AppleObject.layer.Contents = new AppleImage(me.Backdrop)
 		  end if
-		  mTempObject = nil // remove any unwanted retain cycles
+		  CopyEmbeddedObjects
+		  // mTempObject = nil // remove any unwanted retain cycles
+		  DontDisableLayerDuringInit = false
 		  return obj // So it will receive its super’s events
 		  
 		  
@@ -144,6 +147,35 @@ Inherits OSXLibResponder
 		  // 
 		  // AddHandler obj.ContactBegan, addressOf informOnDidBeginContact
 		  // AddHandler obj.ContactEnded, addressOf informOnDidEndContact
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865206C61796F7574636F6E73747261696E747320617474616368656420746F2074686520766965772E
+		Function Constraints() As AppleLayoutConstraint()
+		  return AppleObject.Constraints.LayoutConstraintsToXojo
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 436F7069657320656D6265646465642073756276696577732066726F6D20746865207772617070657220636F6E74726F6C20696620746865792065786973742E
+		Protected Sub CopyEmbeddedObjects()
+		  dim tempview as new appleview(me)
+		  if tempview.Subviews <> nil then
+		    dim count as integer = tempview.subviews.count -1
+		    if count > -1 then
+		      // me.AppleObject.CanDrawSubviewsIntoLayer = true
+		      // me.AppleObject.WantsLayer = true
+		      me.AppleObject.AutoresizesSubviews = true
+		      me.AppleObject.AutoresizesSubviews = true
+		      for q as integer = 0 to count
+		        dim subview as appleview = appleview.MakefromPtr(tempview.Subviews.PtrAtIndex(q))
+		        subview.AutoResizingMask = AppleAutoresizingMask.NoLock
+		        subview.TranslatesAutoresizingMaskIntoConstraints = true
+		        // subview.RemoveFromSuperview
+		        // subview.FrameOrigin = FoundationFrameWork.NSMakePoint ( 20,40)
+		        me.AppleObject.AddSubview subview
+		      next
+		    end if
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -357,10 +389,6 @@ Inherits OSXLibResponder
 	#tag EndNote
 
 
-	#tag Property, Flags = &h0, Description = 496620746865207669657720697320746F2061636365707420746F756368206576656E74732E
-		AcceptTouchEvents As Boolean
-	#tag EndProperty
-
 	#tag Property, Flags = &h0, Description = 4966207468652076696577E280997320636F6E74656E74732077696C6C20626520626C656E646564207769746820612056696272616E6379566965772E
 		AllowVibrancy As Boolean
 	#tag EndProperty
@@ -404,13 +432,22 @@ Inherits OSXLibResponder
 		AppleObject As AppleView
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 5468652064697374616E63652028696E20706F696E747329206265747765656E2074686520626F74746F6D206F66207468652076696577E280997320616C69676E6D656E742072656374616E676C6520616E642069747320626173656C696E652E2028726561642D6F6E6C7929
+	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.BaselineOffsetFromBottom
+			  if me.layer <> nil then return Layer.BackgroundColor.toColor
 			End Get
 		#tag EndGetter
-		BaselineOffset As Double
+		#tag Setter
+			Set
+			  if me.layer = nil then DoubleBuffer = true
+			  DontDisableLayerDuringInit = true
+			  me.Layer.BackgroundColor = new applecolor(value)
+			  me.layer.AutoResizingMask = AppleCAAutoresizingMask.FullResize
+			  DontDisableLayerDuringInit = true
+			End Set
+		#tag EndSetter
+		BackgroundColor As Color
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520626F74746F6D2065646765206F66207468652076696577E2809973206672616D652E2028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
@@ -436,11 +473,29 @@ Inherits OSXLibResponder
 		BoundsRotation As Double
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520686F72697A6F6E74616C2063656E746572206F66207468652076696577E2809973206672616D652028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  return AppleObject.CenterxAnchor
+			End Get
+		#tag EndGetter
+		CenterXAnchor As AppleLayoutXAxisAnchor
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206C61796F757420616E63686F7220726570726573656E74696E672074686520766572746963616C2063656E746572206F66207468652076696577E2809973206672616D652028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F5320582031302E31312E
+		#tag Getter
+			Get
+			  return AppleObject.CenterYAnchor
+			End Get
+		#tag EndGetter
+		CenterYAnchor As AppleLayoutYAxisAnchor
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h21
-		Private mTempObject As AppleView
+		Private DontDisableLayerDuringInit As Boolean
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206861732061206261636B7570206C617965722E
+	#tag ComputedProperty, Flags = &h0, Description = 49662074686520766965772073686F756C642075736520612043414C417965722E
 		#tag Getter
 			Get
 			  return AppleObject.WantsLayer
@@ -448,10 +503,78 @@ Inherits OSXLibResponder
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppleObject.WantsLayer = True
+			  if not DontDisableLayerDuringInit then AppleObject.WantsLayer = value
 			End Set
 		#tag EndSetter
-		UseLayer As Boolean
+		DoubleBuffer As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652074797065206F6620666F6375732072696E6720647261776E2061726F756E642074686520766965772E
+		#tag Getter
+			Get
+			  return AppleObject.FocusRingType
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.FocusRingType = value
+			End Set
+		#tag EndSetter
+		FocusRingType As Appkitframework.NSFocusRingType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720757365732061206C6179657220617320697473206261636B696E672073746F72652E
+		#tag Getter
+			Get
+			  return AppleObject.layer
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.layer = value
+			End Set
+		#tag EndSetter
+		Layer As AppleCALAyer
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mTempObject As AppleView
+	#tag EndProperty
+
+	#tag Property, Flags = &h0, Description = 4966207468652076696577E280997320636F6E74656E74732077696C6C20626520626C656E646564207769746820612056696272616E6379566965772E
+		TrackSwipes As Boolean
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577E2809973206175746F726573697A696E67206D61736B206973207472616E736C6174656420696E746F20636F6E73747261696E747320666F722074686520636F6E73747261696E742D6261736564206C61796F75742073797374656D2E53657474696E67207468652076616C756520746F207472756520697320746865206571756976616C656E746F66206120586F6A6F20696E76616C69646174652063616C6C2E
+		#tag Getter
+			Get
+			  return AppleObject.TranslatesAutoresizingMaskIntoConstraints
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.TranslatesAutoresizingMaskIntoConstraints = value
+			End Set
+		#tag EndSetter
+		TranslatesAutoresizingMaskIntoConstraints As Boolean
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		UseCustomColor As Boolean
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520766965772069732076697369626C652E
+		#tag Getter
+			Get
+			  return not AppleObject.Hidden
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.Hidden = not value
+			End Set
+		#tag EndSetter
+		Visible As Boolean
 	#tag EndComputedProperty
 
 
@@ -503,9 +626,11 @@ Inherits OSXLibResponder
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="BaselineOffset"
+			Name="BackgroundColor"
+			Visible=true
 			Group="Behavior"
-			Type="Double"
+			InitialValue="&c000000FF"
+			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BoundsRotation"
@@ -532,6 +657,19 @@ Inherits OSXLibResponder
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FocusRingType"
+			Visible=true
+			Group="Behavior"
+			InitialValue="Default"
+			Type="Appkitframework.NSFocusRingType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - None"
+				"2 - Exterior"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -638,6 +776,19 @@ Inherits OSXLibResponder
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="TrackSwipes"
+			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TranslatesAutoresizingMaskIntoConstraints"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Transparent"
 			Visible=true
 			Group="Behavior"
@@ -646,17 +797,15 @@ Inherits OSXLibResponder
 			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="UseFocusRing"
+			Name="UseCustomColor"
 			Visible=true
-			Group="Appearance"
-			InitialValue="True"
+			Group="Behavior"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="UseLayer"
-			Visible=true
-			Group="Behavior"
-			InitialValue="True"
+			Name="UseFocusRing"
+			Group="Appearance"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
