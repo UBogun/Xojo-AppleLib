@@ -29,7 +29,7 @@ Inherits OSXLibResponder
 		    end if
 		    // and adapt it to the current bounds of the Xojo control.
 		    obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
-		    obj.AutoResizingMask = AppleAutoresizingMask.FullResize // make it fully resizable
+		    obj.AutoResizingMask = new AppleAutoresizingMask(self)
 		  end if
 		  // If there’s a Backdrop, make it the layer’s contents: 
 		  if me.Backdrop <> nil then
@@ -133,7 +133,7 @@ Inherits OSXLibResponder
 		  AddHandler obj.WillOpenMenuForEvent, Addressof informOnWillOpenMenu
 		  AddHandler obj.willRemoveSubview, Addressof informOnwillRemoveSubview
 		  AddHandler obj.WillResize, Addressof informOnviewWillStartLiveResize
-		  
+		  AddHandler obj.flipped, AddressOf informonFlipped
 		  
 		  
 		  // AddHandler obj.DidEvaluateActions, Addressof informOnDidEvaluateActions
@@ -156,22 +156,26 @@ Inherits OSXLibResponder
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Function Control(id as ptr) As RectControl
+		  for q as integer = 0 to me.Window.ControlCount -1
+		    dim control as control = me.Window.control(q)
+		    if control.Handle = UInteger(id) then return rectcontrol(control)
+		  next
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1, Description = 436F7069657320656D6265646465642073756276696577732066726F6D20746865207772617070657220636F6E74726F6C20696620746865792065786973742E
 		Protected Sub CopyEmbeddedObjects()
 		  dim tempview as new appleview(me)
 		  if tempview.Subviews <> nil then
 		    dim count as integer = tempview.subviews.count -1
 		    if count > -1 then
-		      // me.AppleObject.CanDrawSubviewsIntoLayer = true
-		      // me.AppleObject.WantsLayer = true
-		      me.AppleObject.AutoresizesSubviews = true
 		      me.AppleObject.AutoresizesSubviews = true
 		      for q as integer = 0 to count
-		        dim subview as appleview = appleview.MakefromPtr(tempview.Subviews.PtrAtIndex(q))
+		        dim subview as appleview = appleview.MakefromPtr(tempview.Subviews.PtrAtIndex(0))
 		        subview.AutoResizingMask = AppleAutoresizingMask.NoLock
 		        subview.TranslatesAutoresizingMaskIntoConstraints = true
-		        // subview.RemoveFromSuperview
-		        // subview.FrameOrigin = FoundationFrameWork.NSMakePoint ( 20,40)
 		        me.AppleObject.AddSubview subview
 		      next
 		    end if
@@ -211,6 +215,13 @@ Inherits OSXLibResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Attributes( hidden )  Function informonFlipped(view as appleview) As Boolean
+		  return FlippedCoordinates
+		  #pragma unused view
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Attributes( hidden )  Function informOnmenuForEvent(view as appleview, AnEvent As AppleNSEvent) As AppleMenu
 		  return RaiseEvent ConstructContextMenu (AnEvent)
 		  #pragma unused view
@@ -240,6 +251,7 @@ Inherits OSXLibResponder
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnviewDidMoveToWindow(view as appleview)
+		  // me.AppleObject.AutoResizingMask = new AppleAutoresizingMask(self)
 		  RaiseEvent Shown
 		  #pragma unused view
 		End Sub
@@ -491,8 +503,8 @@ Inherits OSXLibResponder
 		CenterYAnchor As AppleLayoutYAxisAnchor
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private DontDisableLayerDuringInit As Boolean
+	#tag Property, Flags = &h1
+		Protected DontDisableLayerDuringInit As Boolean
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 49662074686520766965772073686F756C642075736520612043414C417965722E
@@ -508,6 +520,10 @@ Inherits OSXLibResponder
 		#tag EndSetter
 		DoubleBuffer As Boolean
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		FlippedCoordinates As Boolean
+	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652074797065206F6620666F6375732072696E6720647261776E2061726F756E642074686520766965772E
 		#tag Getter
@@ -656,6 +672,12 @@ Inherits OSXLibResponder
 			Visible=true
 			Group="Behavior"
 			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FlippedCoordinates"
+			Visible=true
+			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty

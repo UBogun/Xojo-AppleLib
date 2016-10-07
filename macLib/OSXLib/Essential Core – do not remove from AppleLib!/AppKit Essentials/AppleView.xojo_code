@@ -813,6 +813,17 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_isFlipped(pid as ptr, sel as ptr) As Boolean
+		  dim view as AppleView = appleview.InformInstance(pid)
+		  if view <> nil then 
+		    return view.informOnIsFlipped()
+		  end if
+		  #pragma unused sel
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Function impl_menuForEvent(pid as ptr, sel as ptr, anevent as ptr) As Ptr
 		  dim view as AppleView = appleview.InformInstance(pid)
 		  if view <> nil then 
@@ -973,6 +984,13 @@ Inherits AppleResponder
 		  RaiseEvent DidAddSubview (subview)
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Function informOnIsFlipped() As Boolean
+		  return RaiseEvent Flipped
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
@@ -1541,6 +1559,10 @@ Inherits AppleResponder
 		Event DidResize()
 	#tag EndHook
 
+	#tag Hook, Flags = &h0, Description = 52657475726E207472756520746F20656E61626C65206120766572746963616C6C7920696E76657273656420636F6F7264696E6174652073797374656D2E
+		Event Flipped() As Boolean
+	#tag EndHook
+
 	#tag Hook, Flags = &h0, Description = 546865206E617469766520696D706C656D656E746174696F6E206F6620636F6E737472756374436F6E7465787475616C4D656E752C20676976696E6720796F7520746865206F7074696F6E20746F20726573706F6E6420696E646976696475616C6C7920746F2061206365727461696E206576656E742E
 		Event MenuForEvent(anEvent As AppleNSEvent) As AppleMenu
 	#tag EndHook
@@ -1926,6 +1948,7 @@ Inherits AppleResponder
 			    // methods.Append new TargetClassMethodHelper ("drawRect:", AddressOf impl_DrawRect, "v@:{CGRect}")
 			    methods.Append new TargetClassMethodHelper("menuForEvent:", AddressOf impl_menuForEvent, "@@:@")
 			    methods.Append new TargetClassMethodHelper("willOpenMenu:withEvent:", AddressOf impl_willOpenMenu, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("isFlipped", AddressOf impl_isFlipped, "c@:")
 			    
 			    mClassPtr = BuildTargetClass ("NSView", "OSXLibView",methods)
 			  end if

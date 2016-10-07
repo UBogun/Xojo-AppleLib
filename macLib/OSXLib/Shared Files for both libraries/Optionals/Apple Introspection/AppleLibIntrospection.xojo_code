@@ -18,7 +18,7 @@ Protected Class AppleLibIntrospection
 	#tag Method, Flags = &h0
 		Function IvarList() As ptr()
 		  if mIvarList.Ubound = -1 then
-		    dim count as uinteger
+		    dim count as uint32
 		    dim arrayPtr as ptr = ObjectiveCRuntime.class_copyIvarList (ClassPtr, count)
 		    if arrayPtr <> NIL then
 		      for q as UInteger = 0 to count -1
@@ -71,7 +71,7 @@ Protected Class AppleLibIntrospection
 	#tag Method, Flags = &h0
 		Function MethodList() As ptr()
 		  if mMethodList.Ubound = -1 then
-		    dim count as uinteger
+		    dim count as uint32
 		    dim arrayPtr as ptr = ObjectiveCRuntime.class_copyMethodList (ClassPtr, count)
 		    if arrayPtr <> NIL then
 		      for q as UInteger = 0 to count -1
@@ -131,7 +131,7 @@ Protected Class AppleLibIntrospection
 	#tag Method, Flags = &h0
 		Function PropertyList() As ptr()
 		  if mPropertyList.Ubound = -1 then
-		    dim count as uinteger
+		    dim count as uint32
 		    dim arrayPtr as ptr = ObjectiveCRuntime.class_copyPropertyList (ClassPtr, count)
 		    if arrayPtr <> NIL then
 		      for q as UInteger = 0 to count -1

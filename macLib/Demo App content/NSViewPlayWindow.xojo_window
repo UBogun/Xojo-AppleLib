@@ -39,6 +39,7 @@ Begin Window NSViewPlayWindow
       DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
+      FlippedCoordinates=   True
       FocusRingType   =   "Default"
       Height          =   423
       HelpTag         =   ""
@@ -76,6 +77,7 @@ Begin Window NSViewPlayWindow
       DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   True
+      FlippedCoordinates=   False
       FocusRingType   =   "2"
       Height          =   274
       HelpTag         =   ""
@@ -180,7 +182,7 @@ Begin Window NSViewPlayWindow
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Multiline       =   False
       Scope           =   2
@@ -197,7 +199,7 @@ Begin Window NSViewPlayWindow
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   505
+      Width           =   303
    End
    Begin CheckBox CheckBox2
       AutoDeactivate  =   True

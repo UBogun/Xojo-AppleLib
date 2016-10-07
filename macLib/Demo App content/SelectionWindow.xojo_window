@@ -110,7 +110,6 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -131,10 +130,12 @@ Begin Window SelectionWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
+      BackgroundColor =   &c000000FF
       BoundsRotation  =   0.0
       DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   True
+      FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   500
       HelpTag         =   ""
@@ -154,6 +155,7 @@ Begin Window SelectionWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseCustomColor  =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   750
@@ -166,10 +168,12 @@ Begin Window SelectionWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
+      BackgroundColor =   &c000000FF
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   500
       HelpTag         =   ""
@@ -189,6 +193,7 @@ Begin Window SelectionWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseCustomColor  =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   750
@@ -209,6 +214,7 @@ End
 		Sub Open()
 		  me.AddRow("Color Additions")
 		  me.AddRow("NSView Additions")
+		  me.AddRow("VisualEffectView")
 		  me.AddRow("Notifications")
 		  me.AddRow("CoreBluetooth")
 		  me.AddRow("ScrollView")
@@ -249,6 +255,8 @@ End
 		  case "TableView"
 		    msgbox "Closed for repairs"
 		    // SecondaryWindow = new TableViewWindow
+		  case "VisualEffectView"
+		    SecondaryWindow = new VisualEffectWindow
 		  case "OutlineView"
 		    SecondaryWindow = new OutlineViewWindow
 		  case "AVAudio"
