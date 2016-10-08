@@ -130,7 +130,7 @@ Begin Window SelectionWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BoundsRotation  =   0.0
       DoubleBuffer    =   True
       Enabled         =   True
@@ -168,7 +168,7 @@ Begin Window SelectionWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
@@ -221,6 +221,7 @@ End
 		  me.AddRow("TableView")
 		  me.AddRow("AVAudio")
 		  me.AddRow "SpriteKit"
+		  me.addrow ("Introspection")
 		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
 		  me.ListIndex = 0
@@ -267,6 +268,8 @@ End
 		    #elseif Target32Bit
 		      MsgBox "SpriteKit needs 64Bit to run"
 		    #endif
+		  case "Introspection"
+		    SecondaryWindow = new IntrospectionWindow
 		  end select
 		End Sub
 	#tag EndEvent

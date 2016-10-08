@@ -35,11 +35,13 @@ Begin Window TableViewWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
+      BackgroundColor =   &c000000FF
       BorderType      =   "None"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   394
       HelpTag         =   ""
@@ -61,6 +63,7 @@ Begin Window TableViewWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseCustomColor  =   False
       UseFocusRing    =   True
       VerticalScroller=   True
       Visible         =   True

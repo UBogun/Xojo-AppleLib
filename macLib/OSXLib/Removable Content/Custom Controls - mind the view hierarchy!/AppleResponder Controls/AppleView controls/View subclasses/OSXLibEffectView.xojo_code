@@ -119,6 +119,20 @@ Inherits OSXLibView
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  if AppleObject.Maskimage <> nil then return AppleObject.MaskImage.toPicture
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.MaskImage = if (value = nil, nil, value.toAppleImage)
+			End Set
+		#tag EndSetter
+		Maskimage As Picture
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  return AppleObject.Material
 			End Get
 		#tag EndGetter
@@ -315,6 +329,11 @@ Inherits OSXLibView
 			Group="Position"
 			InitialValue="False"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Maskimage"
+			Group="Behavior"
+			Type="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Material"

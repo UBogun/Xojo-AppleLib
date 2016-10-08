@@ -178,7 +178,7 @@ Inherits AppleObject
 		  dim W as double = me.Width* XScale
 		  dim h as double = me.Height* YScale
 		  dim frame as FoundationFrameWork.nsrect = FoundationFrameWork.NSMakeRect(0,0,w,h)
-		  dim result as new AppleImage (self.toCGIImage( frame), frame.Size_)
+		  dim result as new AppleImage (self.toCGImage( frame), frame.Size_)
 		  return result
 		End Function
 	#tag EndMethod
@@ -204,14 +204,16 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
-		Function toCGIImage(ProposedRect As FoundationFrameWork.NSRect,  Context As AppleGRaphicsContext = nil,  Hints As AppleDictionary = nil) As AppleCGImage
+		Function toCGImage(ProposedRect As FoundationFrameWork.NSRect,  Context As AppleGRaphicsContext = nil,  Hints As AppleDictionary = nil) As AppleCGImage
 		  dim contPtr as Ptr = if (Context = nil, nil, Context.id)
 		  dim hintPtr as Ptr = if (hints = nil, nil, Hints.Id)
 		  dim resptr as ptr = CGImageForProposedRect (mid, ProposedRect, contPtr, hintPtr)
-		  dim result as AppleCGImage = AppleCGImage.MakeFromCFTypeRef(resptr)
+		  dim result as AppleCGImage = AppleCGImage.MakeFromCFTypeRef(resptr, true, true)
 		  // Context = AppleGraphicsContext.MakefromPtr(contptr)
 		  // hints = AppleDictionary.MakeFromPtr(hintptr)
 		  return result
+		  
+		  
 		End Function
 	#tag EndMethod
 
@@ -225,7 +227,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 52657475726E732061204347496D61676520636170747572696E67207468652064726177696E67206F66207468652072656365697665722E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return me.toCGIImage (FoundationFrameWork.NSMakeRect(0,0,me.Width, me.Height), nil, nil)
+			  return me.toCGImage (FoundationFrameWork.NSMakeRect(0,0,me.Width, me.Height), nil, nil)
 			End Get
 		#tag EndGetter
 		CGImage As AppleCGImage

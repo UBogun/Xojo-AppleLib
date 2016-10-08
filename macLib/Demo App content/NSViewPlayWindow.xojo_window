@@ -280,6 +280,7 @@ Begin Window NSViewPlayWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   100
       HelpTag         =   ""
@@ -311,12 +312,13 @@ Begin Window NSViewPlayWindow
       AllowVibrancy   =   True
       Alpha           =   1.0
       AutoDeactivate  =   True
-      Backdrop        =   0
+      Backdrop        =   250077183
       BackgroundColor =   &c5777C200
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   False
+      FlippedCoordinates=   False
       FocusRingType   =   "2"
       Height          =   100
       HelpTag         =   ""

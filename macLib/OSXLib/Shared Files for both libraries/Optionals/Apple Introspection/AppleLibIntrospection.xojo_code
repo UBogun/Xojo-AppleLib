@@ -1,6 +1,20 @@
 #tag Class
 Protected Class AppleLibIntrospection
 	#tag Method, Flags = &h0
+		Shared Function AllProtocols() As AppleLibprotocol()
+		  if mKnownProtocols.Ubound = -1 then
+		    dim count as uinteger
+		    dim arrayptr as ptr = ObjectiveCRuntime.objc_copyProtocolList (count)
+		    for q as uinteger = 0 to count -1
+		      mKnownProtocols.Append new AppleLibProtocol (arrayptr.Ptr(q*IntegerSize))
+		    next
+		    AppleLibSystem.free arrayptr
+		  end if
+		  return mKnownProtocols
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Constructor(anId as Ptr)
 		  mid = anid
 		End Sub
@@ -170,6 +184,37 @@ Protected Class AppleLibIntrospection
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function ProtocolList() As ptr()
+		  if mProtocolList.Ubound = -1 then
+		    dim count as uint32
+		    dim arrayPtr as ptr = ObjectiveCRuntime.class_copyProtocolList (ClassPtr, count)
+		    for q as UInteger = 0 to count -1
+		      mProtocolList.Append Arrayptr.Ptr(q*IntegerSize)
+		    next
+		    AppleLibSystem.free arrayPtr
+		  end if
+		  return mProtocolList
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Protocols() As AppleLibProtocol()
+		  dim myProtos() as ptr = ProtocolList
+		  
+		  if myProtos <> NIL then
+		    dim result() as AppleLibProtocol
+		    for q as uinteger = 0 to myProtos.Ubound
+		      dim Prop as new AppleLibProtocol (myProtos (q))
+		      result.Append prop
+		    next
+		    return result
+		  end if
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Shared Function RegisteredClasses() As text()
 		  dim count as uinteger
 		  dim ArrayPtr as ptr = ObjectiveCRuntime.objc_copyClassList (count)
@@ -182,6 +227,17 @@ Protected Class AppleLibIntrospection
 		  // MacOSLibSystem.Free classptrs
 		  // DeAlloc ArrayPtr // need to clear the memory - see Objective C Runtime Reference
 		  Return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function RegisteredFrameworks() As text()
+		  dim count as uinteger
+		  dim nameptr as ptr = ObjectiveCRuntime.objc_copyImageNames (count)
+		  dim Names as  xojo.core.MemoryBlock = MemoryBlockExtension.fromPtrArray (nameptr , count)
+		  dim result() as text = names.CStringArrayMBToTextArray
+		  // ObjectiveCRuntime.object_dispose nameptr
+		  return result
 		End Function
 	#tag EndMethod
 
@@ -198,7 +254,7 @@ Protected Class AppleLibIntrospection
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return ObjectiveCRuntime.object_getClass (id)
+			  return  (id)
 			End Get
 		#tag EndGetter
 		ClassPtr As Ptr
@@ -272,11 +328,19 @@ Protected Class AppleLibIntrospection
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private Shared mKnownProtocols() As AppleLibProtocol
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Attributes( hidden ) Private mMethodList() As ptr
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Attributes( hidden ) Private mPropertyList() As ptr
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Attributes( hidden ) Private mProtocolList() As ptr
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0

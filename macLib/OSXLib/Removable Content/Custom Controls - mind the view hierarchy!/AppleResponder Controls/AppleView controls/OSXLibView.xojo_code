@@ -452,11 +452,13 @@ Inherits OSXLibResponder
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if me.layer = nil then DoubleBuffer = true
-			  DontDisableLayerDuringInit = true
-			  me.Layer.BackgroundColor = new applecolor(value)
-			  me.layer.AutoResizingMask = AppleCAAutoresizingMask.FullResize
-			  DontDisableLayerDuringInit = true
+			  if me.UseCustomColor then
+			    if me.layer = nil then DoubleBuffer = true
+			    DontDisableLayerDuringInit = true
+			    me.Layer.BackgroundColor = new applecolor(value)
+			    me.layer.AutoResizingMask = AppleCAAutoresizingMask.FullResize
+			    DontDisableLayerDuringInit = true
+			  end if
 			End Set
 		#tag EndSetter
 		BackgroundColor As Color

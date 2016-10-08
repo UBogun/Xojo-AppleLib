@@ -76,7 +76,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr 
+			  static mClassPtr as Ptr
 			  if mClassPtr = nil then mClassPtr = FoundationFramework.NSClassFromString ("NSVisualEffectView")
 			  return mClassPtr
 			End Get
@@ -192,6 +192,16 @@ Inherits AppleView
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BlendingMode"
+			Group="Behavior"
+			Type="NSVisualEffectBlendingMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - BehindWindow"
+				"1 - WithinWindow"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BoundsRotation"
 			Group="Behavior"
 			Type="Double"
@@ -210,6 +220,11 @@ Inherits AppleView
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Emphasized"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FirstBaselineOffsetFromTop"
@@ -268,6 +283,18 @@ Inherits AppleView
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InteriorBackgroundStyle"
+			Group="Behavior"
+			Type="AppleCell.NSBackgroundStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Light"
+				"1 - Dark"
+				"2 - Raised"
+				"3 - Lowered"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsDrawingFindIndicator"
@@ -355,6 +382,24 @@ Inherits AppleView
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Material"
+			Group="Behavior"
+			Type="NSVisualEffectMaterial"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - AppearanceBased"
+				"1 - Light"
+				"2 - Dark"
+				"3 - Titlebar"
+				"4 - Selection"
+				"5 - Menu"
+				"6 - Popover"
+				"7 - Sidebar"
+				"8 - MediumLight"
+				"9 - UltraDark"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="mHasOwnership"
 			Group="Behavior"
 			Type="boolean"
@@ -394,6 +439,17 @@ Inherits AppleView
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="State"
+			Group="Behavior"
+			Type="NSVisualEffectState"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - FollowsWindowActiveState"
+				"1 - Active"
+				"2 - Inactive"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

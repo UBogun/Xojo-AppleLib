@@ -12,7 +12,7 @@ Protected Class TargetClassPropertyHelper
 		Sub Constructor(PropertyName as Text, ClassPtr as Ptr, type as actiontype, Paramarray AddValues() as text)
 		  self.PropertyName = PropertyName
 		  self.Type = type
-		  if type = ActionType.Replace then
+		  if type = ActionType.Append then
 		    PropertyPtr= ObjectiveCRuntime.class_getProperty (classptr, CStringValue(PropertyName)) // get the original class property
 		    if PropertyPtr <> nil then
 		      dim attstring as cstring = ObjectiveCRuntime.property_getAttributes(PropertyPtr) // and its attributes names and values
@@ -127,7 +127,7 @@ Protected Class TargetClassPropertyHelper
 
 
 	#tag Enum, Name = ActionType, Type = Integer, Flags = &h0
-		Replace
+		Append
 		  Add
 		Override
 	#tag EndEnum
