@@ -44,7 +44,8 @@ Protected Class AppleLibProperty
 		  dim myAttributes() as objc_property_attribute_t = AttributeList
 		  for q as uinteger = 0 to myAttributes.Ubound
 		    dim myattval as cstring = myAttributes(q ).Value
-		    myvalues.Append text.FromCString (myattval, StandardTextEncoding)
+		    dim attext as text = text.fromCString(myattval, StandardTextEncoding)
+		    if not attext.Empty then myvalues.Append attext
 		  next
 		  return myvalues
 		End Function

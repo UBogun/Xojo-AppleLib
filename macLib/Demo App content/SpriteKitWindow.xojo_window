@@ -34,10 +34,12 @@ Begin Window SpriteKitWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
+      BackgroundColor =   &c000000FF
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   400
       HelpTag         =   ""
@@ -57,6 +59,7 @@ Begin Window SpriteKitWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseCustomColor  =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   600

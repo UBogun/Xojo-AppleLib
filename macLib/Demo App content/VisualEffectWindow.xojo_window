@@ -34,8 +34,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -52,6 +53,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "2"
       Scope           =   0
       State           =   ""
@@ -63,6 +65,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label4
@@ -108,8 +111,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -126,6 +130,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "1"
       Scope           =   0
       State           =   ""
@@ -137,6 +142,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label3
@@ -182,8 +188,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   True
       Emphasized      =   False
       Enabled         =   True
@@ -200,6 +207,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "0"
       Scope           =   0
       State           =   ""
@@ -211,6 +219,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label1
@@ -452,8 +461,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -470,6 +480,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "3"
       Scope           =   0
       State           =   ""
@@ -481,6 +492,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label5
@@ -526,8 +538,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -544,6 +557,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "4"
       Scope           =   0
       State           =   ""
@@ -555,6 +569,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label6
@@ -600,8 +615,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -618,6 +634,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "5"
       Scope           =   0
       State           =   ""
@@ -629,6 +646,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label7
@@ -674,8 +692,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -692,6 +711,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "6"
       Scope           =   0
       State           =   ""
@@ -703,6 +723,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label8
@@ -748,8 +769,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -766,6 +788,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "7"
       Scope           =   0
       State           =   ""
@@ -777,6 +800,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label9
@@ -822,8 +846,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -840,6 +865,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "8"
       Scope           =   0
       State           =   ""
@@ -851,6 +877,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin Label Label10
@@ -896,8 +923,9 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
@@ -914,6 +942,7 @@ Begin Window VisualEffectWindow
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      Maskimage       =   0
       Material        =   "9"
       Scope           =   0
       State           =   ""
@@ -925,6 +954,7 @@ Begin Window VisualEffectWindow
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
       UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   192
       Begin OSXLibView OSXLibView2
@@ -935,7 +965,8 @@ Begin Window VisualEffectWindow
          Alpha           =   1.0
          AutoDeactivate  =   True
          Backdrop        =   250077183
-         BackgroundColor =   &c000000FF
+         BackgroundColor =   &c0000FF00
+         BoundsRotation  =   0.0
          DoubleBuffer    =   True
          Enabled         =   True
          EraseBackground =   True
@@ -960,6 +991,7 @@ Begin Window VisualEffectWindow
          TranslatesAutoresizingMaskIntoConstraints=   False
          Transparent     =   True
          UseCustomColor  =   False
+         UseFocusRing    =   False
          Visible         =   True
          Width           =   100
       End
@@ -1004,8 +1036,6 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events OSXLibEffectView1
-#tag EndEvents
 #tag Events CheckBox1
 	#tag Event
 		Sub Action()
@@ -1066,24 +1096,24 @@ End
 #tag Events CheckBox4
 	#tag Event
 		Sub Action()
-		  dim image as AppleImage
+		  dim image as picture
 		  if me.value then
-		    image = new AppleImage(osxliblogo)
+		    image = osxliblogo
 		  else
 		    image = nil
 		  end if
-		  OSXLibEffectView2.AppleObject.MaskImage = image
-		  OSXLibEffectView3.AppleObject.MaskImage = image
-		  OSXLibEffectView4.AppleObject.MaskImage = image
-		  OSXLibEffectView5.AppleObject.MaskImage = image
-		  OSXLibEffectView6.AppleObject.MaskImage = image
-		  OSXLibEffectView7.AppleObject.MaskImage = image
-		  OSXLibEffectView8.AppleObject.MaskImage = image
-		  OSXLibEffectView9.AppleObject.MaskImage = image
-		  OSXLibEffectView10.AppleObject.MaskImage = image
+		  OSXLibEffectView2.MaskImage = image
+		  OSXLibEffectView3.MaskImage = image
+		  OSXLibEffectView4.MaskImage = image
+		  OSXLibEffectView5.MaskImage = image
+		  OSXLibEffectView6.MaskImage = image
+		  OSXLibEffectView7.MaskImage = image
+		  OSXLibEffectView8.MaskImage = image
+		  OSXLibEffectView9.MaskImage = image
+		  OSXLibEffectView10.MaskImage = image
 		  
-		  
-		  
+		  dim i as picture = OSXLibEffectView2.Maskimage
+		  break
 		End Sub
 	#tag EndEvent
 #tag EndEvents

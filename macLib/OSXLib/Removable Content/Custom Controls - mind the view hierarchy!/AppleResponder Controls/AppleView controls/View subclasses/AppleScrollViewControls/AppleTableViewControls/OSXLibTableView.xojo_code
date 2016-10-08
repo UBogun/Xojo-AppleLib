@@ -99,6 +99,13 @@ Inherits OSXLibScrollView
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BackgroundColor"
+			Visible=true
+			Group="Behavior"
+			InitialValue="&c000000FF"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BorderType"
 			Visible=true
 			Group="Behavior"
@@ -136,6 +143,12 @@ Inherits OSXLibScrollView
 			Visible=true
 			Group="Behavior"
 			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FlippedCoordinates"
+			Visible=true
+			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -288,6 +301,13 @@ Inherits OSXLibScrollView
 			InitialValue="True"
 			Type="Boolean"
 			EditorType="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseCustomColor"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseFocusRing"

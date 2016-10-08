@@ -452,6 +452,13 @@ Inherits OSXLibView
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BackgroundColor"
+			Visible=true
+			Group="Behavior"
+			InitialValue="&c000000FF"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BorderType"
 			Visible=true
 			Group="Behavior"
@@ -484,6 +491,12 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="EraseBackground"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FlippedCoordinates"
+			Visible=true
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -635,6 +648,13 @@ Inherits OSXLibView
 			Group="Behavior"
 			Type="Boolean"
 			EditorType="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseCustomColor"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseFocusRing"

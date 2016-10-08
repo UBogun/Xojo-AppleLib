@@ -35,12 +35,13 @@ Begin window ScrollWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BorderType      =   "3"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   578
       HelpTag         =   ""
@@ -73,7 +74,7 @@ Begin window ScrollWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   True
-      BackColor       =   &c00FFFFFF
+      BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
       DataField       =   ""

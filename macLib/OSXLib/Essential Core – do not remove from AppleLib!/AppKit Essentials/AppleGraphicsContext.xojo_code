@@ -28,6 +28,13 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 437265617465732061206E657720677261706869637320636F6E746578742066726F6D207468652073706563696669656420436F726520477261706869637320636F6E7465787420616E642074686520696E697469616C20666C69707065642073746174652E
+		Shared Function ContextWithCGContext(Context as AppleCGContext, flipped as boolean = false) As AppleGraphicsContext
+		  return new AppleGraphicsContext (graphicsContextWithCGContext(classptr, Context.CFTypeRef, flipped), true, true)
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 4372656174657320616E642072657475726E732061206E657720677261706869637320636F6E7465787420666F722064726177696E6720696E746F20612077696E646F772E
 		Shared Function ContextWithWindow(Win As AppleWindow) As AppleGraphicsContext
 		  return new AppleGraphicsContext (graphicsContextWithWindow(classptr, win.id), true, true)
@@ -120,7 +127,6 @@ Inherits AppleObject
 		
 		missing:
 		 graphicsContextWithBitmapImageRep 
-		graphicsContextWithCGContext:flipped
 		CGContext
 		CICOntext
 		Dictionary KEys could be added, or a specialized contextAttributeDictionary

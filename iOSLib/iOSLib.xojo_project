@@ -296,6 +296,7 @@ Class=AppleSKTexture;../Shared Files for both libraries/Optionals/SpriiteKit (ne
 Class=AppleSKTransition;../Shared Files for both libraries/Optionals/SpriiteKit (needs AVFoundation & CoreImage)/polished/AppleSKTransition.xojo_binary_code;&h21AE47FF;&h4AAE97FF;false
 Module=SpriteKitFramework;../Shared Files for both libraries/Optionals/SpriiteKit (needs AVFoundation & CoreImage)/SpriteKitFramework.xojo_binary_code;&h239E3FFF;&h30A6AFFF;false
 Class=iOSLibSKView;../Shared Files for both libraries/Optionals/SpriiteKit (needs AVFoundation & CoreImage)/iOSLibSKView.xojo_code;&h4B6CAFFF;&h30A6AFFF;false
+Class=TargetClassPropertyHelper;../Shared Files for both libraries/Core – Don’t remove!/Helper classes/TargetClassPropertyHelper.xojo_binary_code;&h2FEF8FFF;&h47E837FF;false
 DefaultScreen=iPhoneScreen
 DefaultTabletScreen=iPadScreen
 MajorVersion=1
