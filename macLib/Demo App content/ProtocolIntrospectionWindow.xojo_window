@@ -33,7 +33,7 @@ Begin Window ProtocolIntrospectionWindow
       Border          =   True
       ColumnCount     =   3
       ColumnsResizable=   True
-      ColumnWidths    =   "30%, 35%, 35%"
+      ColumnWidths    =   "30%,35%,35%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -83,7 +83,7 @@ Begin Window ProtocolIntrospectionWindow
       Border          =   True
       ColumnCount     =   4
       ColumnsResizable=   True
-      ColumnWidths    =   "*, 30%, 70, 115"
+      ColumnWidths    =   "*,30%,70,115"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1

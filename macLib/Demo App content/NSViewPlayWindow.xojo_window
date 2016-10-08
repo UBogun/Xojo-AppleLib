@@ -124,6 +124,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "To the left is a layer-backed view. It features no paint event, but its CALayer’s content can be used for placing an image like here, while the rest of the content properties – I used backgroundcolor, BorderWidth And CornerSize – are accessible too. Additionally I put a BlurFilter into its contentFilters array and added a pink shadow.\n\nClick on the view or try some gestures. SmartMagnify – a double tap – works on 64Bit only. Or type on the keyboard and try a context click.\nThe animation is achieved by addressing the animator object of the view. I put it inside an AnimationContext so I can change the animation time to 1 second.\n\nResize the window and note that the Xojo control locks still do work!\nThe colored circle is another OSXLibCanvas, painting another gradient but clipped into a cgpath circle. Its distance to the animated view is held by using a LayoutAnchor (if you are on OSX 10.11 or higher)."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -189,6 +190,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -255,6 +257,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "To the right is a OSXLibPaintCanvas. Its paint event gives access to the CGContext object directly, so you can paint without conversions to and from Xojo classes. It draws a radial gradient from randomized colors using a multiply blend mode."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -396,6 +399,7 @@ Begin Window NSViewPlayWindow
       Selectable      =   False
       TabIndex        =   19
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "The small blue square is another OSXLibView, together with backgroundcolor and contents set via Inspector properties and with an automatically embedded Button from the layout."
       TextAlign       =   0
       TextColor       =   &c00000000

@@ -126,6 +126,7 @@ Begin Window IntrospectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Untitled"
       TextAlign       =   2
       TextColor       =   &c00000000
@@ -145,7 +146,7 @@ Begin Window IntrospectionWindow
       Border          =   True
       ColumnCount     =   3
       ColumnsResizable=   True
-      ColumnWidths    =   "30%, *, 100"
+      ColumnWidths    =   "30%,*,100"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -195,7 +196,7 @@ Begin Window IntrospectionWindow
       Border          =   True
       ColumnCount     =   3
       ColumnsResizable=   True
-      ColumnWidths    =   "30%, 35%, 35%"
+      ColumnWidths    =   "30%,35%,35%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -659,7 +660,7 @@ End
 		    PersProtArea.ColumnSortDirection(0) = Listbox.SortAscending
 		    PersProtArea.Sort
 		  end if
-		   
+		  
 		End Sub
 	#tag EndMethod
 
@@ -755,8 +756,6 @@ End
 
 #tag EndWindowCode
 
-#tag Events TextArea1
-#tag EndEvents
 #tag Events PopupMenu1
 	#tag Event
 		Sub Open()
