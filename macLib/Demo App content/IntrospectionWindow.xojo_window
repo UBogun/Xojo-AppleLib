@@ -659,7 +659,7 @@ End
 		    PersProtArea.ColumnSortDirection(0) = Listbox.SortAscending
 		    PersProtArea.Sort
 		  end if
-		  
+		   
 		End Sub
 	#tag EndMethod
 
