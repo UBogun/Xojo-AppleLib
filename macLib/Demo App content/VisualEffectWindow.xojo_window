@@ -26,7 +26,7 @@ Begin Window VisualEffectWindow
    Title           =   "VisualEffectView"
    Visible         =   True
    Width           =   954
-   Begin OSXLibEffectView OSXLibEffectView3
+   Begin OSXLibVisualEffectView OSXLibEffectView3
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -104,7 +104,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView2
+   Begin OSXLibVisualEffectView OSXLibEffectView2
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -182,7 +182,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView1
+   Begin OSXLibVisualEffectView OSXLibEffectView1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -458,7 +458,7 @@ Begin Window VisualEffectWindow
          Width           =   144
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView4
+   Begin OSXLibVisualEffectView OSXLibEffectView4
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -536,7 +536,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView5
+   Begin OSXLibVisualEffectView OSXLibEffectView5
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -614,7 +614,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView6
+   Begin OSXLibVisualEffectView OSXLibEffectView6
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -692,7 +692,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView7
+   Begin OSXLibVisualEffectView OSXLibEffectView7
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -770,7 +770,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView8
+   Begin OSXLibVisualEffectView OSXLibEffectView8
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -848,7 +848,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView9
+   Begin OSXLibVisualEffectView OSXLibEffectView9
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -926,7 +926,7 @@ Begin Window VisualEffectWindow
          Width           =   152
       End
    End
-   Begin OSXLibEffectView OSXLibEffectView10
+   Begin OSXLibVisualEffectView OSXLibEffectView10
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
@@ -1124,8 +1124,7 @@ End
 		  OSXLibEffectView9.MaskImage = image
 		  OSXLibEffectView10.MaskImage = image
 		  
-		  dim i as picture = OSXLibEffectView2.Maskimage
-		  break
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

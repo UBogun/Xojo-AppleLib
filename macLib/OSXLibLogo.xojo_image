@@ -1,42 +1,39 @@
 #tag MultiImage
 Image OSXLibLogo
 	#tag ImageRepresentation
-		SaveInfo = APHRcwECAQAAAAGYAAAAAAGYAAIAAAdGanVzY2huAAAAAAAAAAAAAAAAAAAAAAAAAADQ+wqvSCsAAAWhj1QOT1NYTGliTG9nby5wbmcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABaGPV9NndswAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABkltYWdlcwAQAAgAAND6/J8AAAARAAgAANNnWqwAAAABABAFoY9UBaGPUQWdnFoAIQX0AAIASEZqdXNjaG46QXJiZWl0OgBCaXNjaG9mOgBGdWxsIGNvbnRlbnQuemlwIE9yZG5lcjoASW1hZ2VzOgBPU1hMaWJMb2dvLnBuZwAOAB4ADgBPAFMAWABMAGkAYgBMAG8AZwBvAC4AcABuAGcADwAQAAcARgBqAHUAcwBjAGgAbgASADxBcmJlaXQvQmlzY2hvZi9GdWxsIGNvbnRlbnQuemlwIE9yZG5lci9JbWFnZXMvT1NYTGliTG9nby5wbmcAEwABLwD//wAAAAAAAAAA
-		FullPath = /Arbeit/Bischof/Full content.zip Ordner/Images/OSXLibLogo.png
-		PartialPath = ..\..\..\..\..\..\..\Arbeit\Bischof\Full content.zip Ordner\Images\OSXLibLogo.png
+		SaveInfo = APHRcwECAQAAAAH8AAAAAAH8AAIAAAdGanVzY2huAAAAAAAAAAAAAAAAAAAAAAAAAADQ+wqvSCsAAATWqA4QT1NYTGliTG9nb0AyLnBuZwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABNbDwdNndvIAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABkltYWdlcwAQAAgAAND6/J8AAAARAAgAANNnWtIAAAABABwE1qgOBMqoLgOg4LMDoOCMADLlJAAuVokALDnEAAIAcEZqdXNjaG46VXNlcnM6AHVsaToATGlicmFyeToATW9iaWxlIERvY3VtZW50czoAY29tfmFwcGxlfkNsb3VkRG9jczoAT1NYTGliIERldmVsb3BtZW50OgBJbWFnZXM6AE9TWExpYkxvZ29AMi5wbmcADgAiABAATwBTAFgATABpAGIATABvAGcAbwBAADIALgBwAG4AZwAPABAABwBGAGoAdQBzAGMAaABuABIAYVVzZXJzL3VsaS9MaWJyYXJ5L01vYmlsZSBEb2N1bWVudHMvY29tfmFwcGxlfkNsb3VkRG9jcy9PU1hMaWIgRGV2ZWxvcG1lbnQvSW1hZ2VzL09TWExpYkxvZ29AMi5wbmcAABMAAS8AABUAAgAK//8AAAAAAAAAAA==
+		FullPath = /Users/uli/Library/Mobile Documents/com~apple~CloudDocs/OSXLib Development/Images/OSXLibLogo@2.png
+		PartialPath = ..\Images\OSXLibLogo@2.png
 		#tag ImageSpecification
 			Comment = 
 			Device = 31
-			HSize = -1.00
+			HSize = 8300.00
 			Orientation = Any
 			Platform = 15
 			PPI = 72
-			VSize = -1.00
+			VSize = 10225.00
 		#tag EndImageSpecification
 	#tag EndImageRepresentation
 	#tag ImageRepresentation
-		SaveInfo = APHRcwECAQAAAAGgAAAAAAGgAAIAAAdGanVzY2huAAAAAAAAAAAAAAAAAAAAAAAAAADQ+wqvSCsAAAWhj1QQT1NYTGliTG9nb0AyLnBuZwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABaGPWNNndvIAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABkltYWdlcwAQAAgAAND6/J8AAAARAAgAANNnWtIAAAABABAFoY9UBaGPUQWdnFoAIQX0AAIASkZqdXNjaG46QXJiZWl0OgBCaXNjaG9mOgBGdWxsIGNvbnRlbnQuemlwIE9yZG5lcjoASW1hZ2VzOgBPU1hMaWJMb2dvQDIucG5nAA4AIgAQAE8AUwBYAEwAaQBiAEwAbwBnAG8AQAAyAC4AcABuAGcADwAQAAcARgBqAHUAcwBjAGgAbgASAD5BcmJlaXQvQmlzY2hvZi9GdWxsIGNvbnRlbnQuemlwIE9yZG5lci9JbWFnZXMvT1NYTGliTG9nb0AyLnBuZwATAAEvAP//AAAAAAAAAAA=
-		FullPath = /Arbeit/Bischof/Full content.zip Ordner/Images/OSXLibLogo@2.png
-		PartialPath = ..\..\..\..\..\..\..\Arbeit\Bischof\Full content.zip Ordner\Images\OSXLibLogo@2.png
 		#tag ImageSpecification
 			Comment = 
 			Device = 31
-			HSize = -1.00
+			HSize = 8300.00
 			Orientation = Any
 			Platform = 15
 			PPI = 144
-			VSize = -1.00
+			VSize = 10225.00
 		#tag EndImageSpecification
 	#tag EndImageRepresentation
 	#tag ImageRepresentation
 		#tag ImageSpecification
 			Comment = 
 			Device = 31
-			HSize = -1.00
+			HSize = 8300.00
 			Orientation = Any
 			Platform = 15
 			PPI = 216
-			VSize = -1.00
+			VSize = 10225.00
 		#tag EndImageSpecification
 	#tag EndImageRepresentation
 End Image

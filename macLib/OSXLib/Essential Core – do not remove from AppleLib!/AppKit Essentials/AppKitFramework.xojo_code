@@ -429,6 +429,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub set Lib appkitlibname Selector "set" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setAction Lib appkitlibname Selector "setAction:" (id as ptr, value as Ptr)
 	#tag EndExternalMethod
 
@@ -536,6 +540,10 @@ Protected Module AppKitFramework
 		Protected Declare Sub setenabled Lib appkitlibname Selector "setEnabled:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setFill Lib appkitlibname Selector "setFill" (id as ptr)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setfloatvalue Lib foundationlibname Selector "setFloatValue:" (id as ptr, value as single)
 	#tag EndExternalMethod
@@ -586,6 +594,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setimportsGraphics Lib appkitlibname Selector "setImportsGraphics:" (id as ptr, value as boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setInContext Lib appkitlibname Selector "setInContext:" (id as ptr, context as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -678,6 +690,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setstringValue Lib foundationlibname Selector "setStringValue:" (id as ptr, value as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setStroke Lib appkitlibname Selector "setStroke" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

@@ -26,6 +26,38 @@ Begin Window SelectionWindow
    Title           =   "Welcome to OSXLib · written 2016 by Ulrich Bogun, xojoblog.me"
    Visible         =   True
    Width           =   750
+   Begin OSXLibVisualEffectView OSXLibVisualEffectView1
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      BackgroundColor =   &c00000000
+      BlendingMode    =   "0"
+      Emphasized      =   False
+      Enabled         =   True
+      FlippedCoordinates=   False
+      Height          =   77
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Maskimage       =   0
+      Material        =   "2"
+      Scope           =   0
+      State           =   "1"
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   499
+      Visible         =   True
+      Width           =   750
+   End
    Begin PopupMenu PopupMenu1
       AutoDeactivate  =   True
       Bold            =   False
@@ -110,7 +142,6 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000

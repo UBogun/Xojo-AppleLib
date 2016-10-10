@@ -33,13 +33,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 536574732074686520736861646F77206F662073756273657175656E742064726177696E67206F7065726174696F6E7320746F2074686520736861646F7720726570726573656E746564206279207468652072656365697665722E
 		Sub Set()
-		  set(mid)
+		  AppKitFramework.set(mid)
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Sub set Lib appkitlibname Selector "set" (id as ptr)
-	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
 		Attributes( hidden ) Private Declare Sub setshadowBlurRadius Lib appkitlibname Selector "setShadowBlurRadius:" (id as ptr, value as cgfloat)
