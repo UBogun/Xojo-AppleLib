@@ -52,7 +52,7 @@ Begin Window OutlineViewWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BorderType      =   "None"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False

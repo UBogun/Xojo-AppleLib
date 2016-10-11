@@ -14,6 +14,19 @@ Inherits AppleResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 496E697469616C697A657320616E20616C6C6F63617465642077696E646F77207769746820746865207370656369666965642076616C7565732E
+		Sub Constructor(rect as FoundationFrameWork.NSRect,  Style as AppleWindowStyleMask, type as NSBackingStoreType, DeferCreation as Boolean = false)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
+		  Super.Constructor (initWithContentRect(alloc(classptr), rect, Style.ID, type, DeferCreation, nil), true)
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub Constructor(aWindow as Window)
 		  // Calling the overridden superclass constructor.
@@ -28,6 +41,10 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcontentViewController Lib appkitlibname Selector "contentViewController" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithContentRect Lib appkitlibname Selector "initWithContentRect:styleMask:backing:defer:screen:" (id as ptr, rect as FoundationFrameWork . NSRect, style as Uinteger, type as NSBackingstoreType, deferCreation as boolean, screen as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0
@@ -60,6 +77,12 @@ Inherits AppleResponder
 		contentViewController As AppleViewController
 	#tag EndComputedProperty
 
+
+	#tag Enum, Name = NSBackingStoreType, Type = UInteger, Flags = &h0
+		Retained = 0
+		  NonRetained = 1
+		Bufferd = 2
+	#tag EndEnum
 
 	#tag Enum, Name = NSWindowOrderingMode, Type = Integer, Flags = &h0
 		Above = 1

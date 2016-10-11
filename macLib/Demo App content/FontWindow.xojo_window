@@ -9,7 +9,7 @@ Begin Window FontWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   400
+   Height          =   584
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -21,27 +21,314 @@ Begin Window FontWindow
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
-   Placement       =   0
+   Placement       =   1
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "AppleFontManager"
    Visible         =   True
    Width           =   600
+   Begin AppleFontManager AppleFontManager1
+      Height          =   32
+      Index           =   -2147483648
+      Left            =   0
+      LockedInPosition=   False
+      TabPanelIndex   =   0
+      Top             =   0
+      Width           =   32
+   End
+   Begin Listbox Listbox2
+      AutoDeactivate  =   True
+      AutoHideScrollbars=   True
+      Bold            =   False
+      Border          =   True
+      ColumnCount     =   3
+      ColumnsResizable=   False
+      ColumnWidths    =   "70%,15%,15%"
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      Enabled         =   True
+      EnableDrag      =   False
+      EnableDragReorder=   False
+      GridLinesHorizontal=   0
+      GridLinesVertical=   0
+      HasHeading      =   True
+      HeadingIndex    =   -1
+      Height          =   584
+      HelpTag         =   ""
+      Hierarchical    =   True
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   "Available Font Families	Weight	Traits"
+      Italic          =   False
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      RequiresSelection=   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollBarVertical=   True
+      SelectionType   =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   0
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   430
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
+   Begin PushButton PushButton1
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Open Font Panel"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   454
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Underline       =   False
+      Visible         =   True
+      Width           =   126
+   End
+   Begin PushButton PushButton2
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Open Styles Panel"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   454
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   52
+      Underline       =   False
+      Visible         =   True
+      Width           =   126
+   End
+   Begin TextField TextField1
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      CueText         =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   24
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   454
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Sample Text"
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   149
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   126
+   End
+   Begin PushButton PushButton3
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Modify via Panel:"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   454
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   110
+      Underline       =   False
+      Visible         =   True
+      Width           =   126
+   End
+   Begin Label Label1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   374
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   454
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   True
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      Text            =   "You can use the FontManager to search, load and assign fonts and attributes, but the panel communication (Target-Action) has not been implemented yet into text controls.\n\nAppleFontManager and AppleFont give direct access to many fone metrics."
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   197
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   126
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Sub Open()
-		  dim f as AppleFont = AppleFont.SystemFont(20)
-		  dim c as new AppleColor(new AppleImage(osxliblogo))
-		  dim m() as double = f.Matrix
-		  break
-		End Sub
-	#tag EndEvent
-
-
 #tag EndWindowCode
 
+#tag Events AppleFontManager1
+	#tag Event , Description = 54686520636F6E74726F6C2068617320696E697469616C697A65642E
+		Sub Open()
+		  me.Enabled = true
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Listbox2
+	#tag Event
+		Sub Open()
+		  dim fontnames() as text = AppleFontManager1.AvailableFontFamilies.toTextArray
+		  dim count as integer = fontnames.Ubound
+		  for q as integer = 0 to count
+		    me.AddFolder fontnames(q)
+		  next
+		  count = count + 1
+		  me.Heading(0) = me.Heading(0)+": "+count.ToText
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub ExpandRow(row As Integer)
+		  dim family as text = me.Cell(row, 0).ToText
+		  if not family.Empty then
+		    dim resultarray as AppleFontFamily= AppleFontManager1.AvailableFontFamilyMembers(family)
+		    dim count as integer = resultarray.count -1
+		    for q as integer = 0 to count
+		      dim fontresult as AppleFontDescription =resultarray.Member(q)
+		      me.AddRow fontresult.PostScriptFontName, fontresult.Weight.ToText, fontresult.Traits.Id.totext
+		    next
+		  end if
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
+		  dim fontname as text = me.cell(row, column).totext
+		  if not fontname.Empty then
+		    dim font as new AppleFont (fontname, 20)
+		    AppleFontManager1.SelectedFont(false) = font
+		    TextField1.TextFont = fontname
+		  end if
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  AppleFontManager1.OpenFontPanel
+		  AppleFontManager1.FontPanel(false).BecomeKeyOnlyIfNeeded = false
+		  AppleFontManager1.FontPanel(false).Enabled = true
+		  // AppleFontManager1.Target = AppleFontManager1.FontPanel(false)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton2
+	#tag Event
+		Sub Action()
+		  AppleFontManager1.OpenFontsStylePanel
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton3
+	#tag Event
+		Sub Action()
+		  AppleFontManager1.ModifyFontViaPanel (TextField1.AppleObject)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"

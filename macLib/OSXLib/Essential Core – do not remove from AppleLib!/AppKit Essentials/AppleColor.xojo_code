@@ -1562,6 +1562,11 @@ Implements AppleGeneralColor
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NumberOfComponents"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RedComponent"
 			Group="Behavior"
 			Type="Double"

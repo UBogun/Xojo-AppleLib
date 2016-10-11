@@ -21,6 +21,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getaccessoryView Lib appkitlibname Selector "accessoryView" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getAction Lib appkitlibname Selector "action" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -430,6 +434,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub set Lib appkitlibname Selector "set" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setaccessoryView Lib appkitlibname Selector "setAccessoryView:" (id as ptr, value as Ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

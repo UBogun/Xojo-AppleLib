@@ -30,13 +30,19 @@ Begin Window SelectionWindow
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
+      AllowVibrancy   =   False
+      Alpha           =   0.0
       AutoDeactivate  =   True
       Backdrop        =   0
       BackgroundColor =   &c00000000
       BlendingMode    =   "0"
+      BoundsRotation  =   0.0
+      DoubleBuffer    =   False
       Emphasized      =   False
       Enabled         =   True
+      EraseBackground =   False
       FlippedCoordinates=   False
+      FocusRingType   =   ""
       Height          =   77
       HelpTag         =   ""
       Index           =   -2147483648
@@ -55,6 +61,11 @@ Begin Window SelectionWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   499
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      Transparent     =   False
+      UseCustomColor  =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   750
    End
@@ -253,6 +264,7 @@ End
 		  me.AddRow("TableView")
 		  me.AddRow("AVAudio")
 		  me.AddRow "SpriteKit"
+		  me.AddRow ("FontManager")
 		  me.addrow ("Introspection")
 		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
@@ -302,6 +314,8 @@ End
 		    #endif
 		  case "Introspection"
 		    SecondaryWindow = new IntrospectionWindow
+		  case "FontManager"
+		    SecondaryWindow = new FontWindow
 		  end select
 		End Sub
 	#tag EndEvent

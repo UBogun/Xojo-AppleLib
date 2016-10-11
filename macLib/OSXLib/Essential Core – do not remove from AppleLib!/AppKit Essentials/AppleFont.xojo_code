@@ -48,8 +48,8 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h1, Description = 43726561746573206120666F6E74206F626A65637420666F72207468652073706563696669656420666F6E74206E616D6520616E6420666F6E742073697A652E
-		Protected Sub Constructor(Fontname as CFStringRef, Size As Double)
+	#tag Method, Flags = &h0, Description = 43726561746573206120666F6E74206F626A65637420666F72207468652073706563696669656420666F6E74206E616D6520616E6420666F6E742073697A652E
+		Sub Constructor(Fontname as CFStringRef, Size As Double)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
@@ -566,9 +566,24 @@ Inherits AppleObject
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DisplayName"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FamilyName"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FixedPitch"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FontName"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -581,6 +596,16 @@ Inherits AppleObject
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ItalicAngle"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Leading"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -598,6 +623,33 @@ Inherits AppleObject
 			Name="MostCompatibleStringEncoding"
 			Group="Behavior"
 			Type="FoundationFrameWork.nsstringencoding"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - ASCII"
+				"2 - NEXTSTEP"
+				"3 - JapaneseEUC"
+				"4 - UTF8"
+				"5 - ISOLatin1"
+				"6 - Symbol"
+				"7 - NonLossyASCII"
+				"8 - ShiftJIS"
+				"9 - ISOLatin2"
+				"10 - Unicode"
+				"11 - WindowsCyrillic"
+				"12 - WindowsLatin1"
+				"13 - WindowsGreek"
+				"14 - WindowsTurkish"
+				"15 - WindowsLatin2"
+				"21 - ISO2022JP"
+				"30 - MacOSRoman"
+				"0 - UTF16"
+				"-1879047936 - UTF16BigEndian"
+				"-1811939072 - UTF16LittleEndian"
+				"-1946156800 - UTF32"
+				"-1744830208 - UTF32BigEndian"
+				"-1677721344 - UTF32LittleEndian"
+				"65536 - Proprietary"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
@@ -606,9 +658,26 @@ Inherits AppleObject
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NumberOfGlyphs"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PointSize"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RenderingMode"
 			Group="Behavior"
 			Type="NSFontRenderingMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - Antialiased"
+				"2 - IntegerAdvancements"
+				"3 - AntialiasedIntegerAdvancements"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"
@@ -627,6 +696,21 @@ Inherits AppleObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UnderlinePosition"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UnderlineThickness"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="XHeight"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
