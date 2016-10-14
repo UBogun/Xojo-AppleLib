@@ -140,6 +140,10 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getmonospacedDigitSystemFontOfSize Lib AppkitLibname Selector "monospacedDigitSystemFontOfSize:weight:" (id as ptr, size as cgfloat, weight as cgfloat) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getmostCompatibleStringEncoding Lib AppkitLibname Selector "mostCompatibleStringEncoding" (id as ptr) As FoundationFrameWork.nsstringencoding
 	#tag EndExternalMethod
 
@@ -152,7 +156,15 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getprinterFont Lib AppkitLibname Selector "printerFont" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getrenderingMode Lib AppkitLibname Selector "renderingMode" (id as ptr) As NSFontRenderingMode
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getscreenFont Lib AppkitLibname Selector "screenFont" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -173,6 +185,14 @@ Inherits AppleObject
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getunderlineThickness Lib AppkitLibname Selector "underlineThickness" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getVertical Lib AppkitLibname Selector "isVertical" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getverticalFont Lib AppkitLibname Selector "verticalFont" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -246,6 +266,12 @@ Inherits AppleObject
 		Protected Declare Function messageFontOfSize Lib AppkitLibname Selector "messageFontOfSize:" (id as ptr, size as CGFloat) As Ptr
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865206D6F6E6F7370616365642064696769742073797374656D20666F6E7420776974682061206365727461696E2073697A6520616E64206865696768742E20417661696C61626C652073696E6365206D61634F532031302E31312E205365652074686520466F6E7457656967687420656E756D65726174696F6E206F66204170706C65466F6E744D616E6167657220666F72207479706963616C207765696768742076616C7565732E
+		Shared Function monospacedDigitSystemFontOfSize(Size As Double, weight as double) As AppleFont
+		  return new AppleFont(getmonospacedDigitSystemFontOfSize (classptr, size, weight), true, true)
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520666F6E74207573656420666F722070616C657474652077696E646F77207469746C6520626172732C20696E20746865207370656369666965642073697A652E2055736520612073697A65206F6620E289A4203020746F206765742064656661756C742073697A652E
 		Shared Function PaletteFont(Size As Double = -1) As AppleFont
 		  return new AppleFont(paletteFontOfSize(classptr, size), true, true)
@@ -254,6 +280,16 @@ Inherits AppleObject
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function paletteFontOfSize Lib AppkitLibname Selector "paletteFontOfSize:" (id as ptr, size as CGFloat) As Ptr
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732061206269746D61707065642073637265656E20666F6E742C207768656E2073656E7420746F206120666F6E74206F626A65637420726570726573656E74696E672061207363616C61626C6520506F737453637269707420666F6E742C207769746820746865207370656369666965642072656E646572696E67206D6F64652C206D61746368696E672074686520726563656976657220696E20747970656661636520616E64206D617472697820286F722073697A65292C206F72206E696C2069662073756368206120666F6E742063616EE280997420626520666F756E642E
+		Function ScreenFont(RenderingMode as NSFontRenderingMode) As AppleFont
+		  return AppleFont.MakeFromPtr(screenFontWithRenderingMode(mid, RenderingMode))
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function screenFontWithRenderingMode Lib AppkitLibname Selector "screenFontWithRenderingMode:" (id as ptr, mode as NSFontRenderingMode) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 53657473207468697320666F6E742061732074686520666F6E7420666F72207468652063757272656E7420677261706869637320636F6E746578742E
@@ -268,14 +304,32 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setUserFixedPitchFont Lib AppkitLibname Selector "setUserFixedPitchFont:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setUserFont Lib AppkitLibname Selector "setUserFont:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520417175612073797374656D20666F6E74207573656420666F72207374616E6461726420696E74657266616365206974656D732C207375636820617320627574746F6E206C6162656C732C206D656E75206974656D732C20616E6420736F206F6E2C20696E20746865207370656369666965642073697A652E2055736520612073697A65206F6620E289A4203020746F206765742064656661756C742073697A652E
 		Shared Function SystemFont(Size As Double = -1) As AppleFont
 		  return new AppleFont(systemFontOfSize(classptr, size), true, true)
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520417175612073797374656D20666F6E74207573656420666F72207374616E6461726420696E74657266616365206974656D732C207375636820617320627574746F6E206C6162656C732C206D656E75206974656D732C20616E6420736F206F6E2C20696E20746865207370656369666965642073697A652E2055736520612073697A65206F6620E289A4203020746F206765742064656661756C742073697A652E20417661696C61626C652073696E6365204F53582031302E31312E
+		Shared Function SystemFont(Size As Double, Weight As Double) As AppleFont
+		  return new AppleFont(systemFontOfSizeWeight(classptr, size, weight), true, true)
+		End Function
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function systemFontOfSize Lib AppkitLibname Selector "systemFontOfSize:" (id as ptr, size as CGFloat) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function systemFontOfSizeWeight Lib AppkitLibname Selector "systemFontOfSize:weight:" (id as ptr, size as CGFloat, weightz as cgfloat) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520666F6E742073697A65207573656420666F72207468652073706563696669656420636F6E74726F6C2073697A652E
@@ -305,7 +359,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520666F6E7420757365642062792064656661756C7420666F7220646F63756D656E747320616E64206F74686572207465787420756E646572207468652075736572E280997320636F6E74726F6C2028746861742069732C20746578742077686F736520666F6E742074686520757365722063616E206E6F726D616C6C79206368616E6765292C207768656E207468617420666F6E742073686F756C642062652066697865642D70697463682C20696E20746865207370656369666965642073697A652E2055736520612073697A65206F6620E289A4203020746F206765742064656661756C742073697A652E
-		Shared Function UserFixedPitchFont(Size As Double = -1) As AppleFont
+		Shared Function UserFixedPitchFont(Size As Double) As AppleFont
 		  return new AppleFont(userFixedPitchFontOfSize(classptr, size), true, true)
 		End Function
 	#tag EndMethod
@@ -315,7 +369,7 @@ Inherits AppleObject
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E732074686520666F6E7420757365642062792064656661756C7420666F7220646F63756D656E747320616E64206F74686572207465787420756E646572207468652075736572E280997320636F6E74726F6C2028746861742069732C20746578742077686F736520666F6E742074686520757365722063616E206E6F726D616C6C79206368616E6765292C20696E20746865207370656369666965642073697A652E2055736520612073697A65206F6620E289A4203020746F206765742064656661756C742073697A652E
-		Shared Function UserFont(Size As Double = -1) As AppleFont
+		Shared Function UserFont(Size As Double) As AppleFont
 		  return new AppleFont(userFontOfSize(classptr, size), true, true)
 		End Function
 	#tag EndMethod
@@ -326,7 +380,7 @@ Inherits AppleObject
 
 
 	#tag Note, Name = Status incomplete
-		
+		macOS 10.12:
 		additional constructors missing
 		coveredCharacterset missing - no NSCharacterSet
 		fontdescritor " - NSFontDescriptor
@@ -481,6 +535,15 @@ Inherits AppleObject
 		PointSize As Double
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 546865207363616C61626C6520506F737453637269707420666F6E7420636F72726573706F6E64696E6720746F2063757272656E7420666F6E742E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleFont.MakeFromPtr(getprinterFont(mid))
+			End Get
+		#tag EndGetter
+		PrinterFont As AppleFont
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5468652072656E646572696E67206D6F6465206F662074686520666F6E742E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
@@ -488,6 +551,15 @@ Inherits AppleObject
 			End Get
 		#tag EndGetter
 		RenderingMode As NSFontRenderingMode
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206269746D61707065642073637265656E20666F6E7420666F72207468652063757272656E7420666F6E742E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleFont.MakeFromPtr(getscreenFont(mid))
+			End Get
+		#tag EndGetter
+		ScreenFont As AppleFont
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F6620746865207374616E6461726420736D616C6C20737974656D20666F6E742E2028726561642D6F6E6C7929
@@ -526,6 +598,52 @@ Inherits AppleObject
 		UnderlineThickness As Double
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520666F6E7420757365642062792064656661756C7420666F7220646F63756D656E747320616E64206F74686572207465787420756E646572207468652075736572E280997320636F6E74726F6C20746F207468652073706563696669656420666F6E742C202C207768656E207468617420666F6E742073686F756C642062652066697865642D70697463682E
+		#tag Getter
+			Get
+			  return UserFixedPitchFont (-1)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setUserFixedPitchFont classptr, nilptr(value)
+			End Set
+		#tag EndSetter
+		Shared UserFixedPitchFont As AppleFont
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520666F6E7420757365642062792064656661756C7420666F7220646F63756D656E747320616E64206F74686572207465787420756E646572207468652075736572E280997320636F6E74726F6C20746F207468652073706563696669656420666F6E742E
+		#tag Getter
+			Get
+			  return UserFont (-1)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setUserFont classptr, nilptr(value)
+			End Set
+		#tag EndSetter
+		Shared UserFont As AppleFont
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520666F6E74206973206120766572746963616C20666F6E742E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getVertical (mid)
+			End Get
+		#tag EndGetter
+		Vertical As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 4120766572746963616C2076657273696F6E206F662074686520666F6E742C2069662073756368206578697374732E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleFont.MakeFromPtr(getverticalFont(mid))
+			End Get
+		#tag EndGetter
+		VerticalFont As AppleFont
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 54686520782D686569676874206F662074686520666F6E742E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
@@ -534,6 +652,13 @@ Inherits AppleObject
 		#tag EndGetter
 		XHeight As Double
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = kNSAntialiasThresholdChangedNotification, Type = Text, Dynamic = False, Default = \"NSAntialiasThresholdChangedNotification", Scope = Public, Description = 546865206E6F74696669636174696F6E206E616D6520706F7374656420616674657220746865207468726573686F6C6420666F7220616E74692D616C696173696E67206368616E6765732E
+	#tag EndConstant
+
+	#tag Constant, Name = kNSFontSetChangedNotification, Type = Text, Dynamic = False, Default = \"NSFontSetChangedNotification", Scope = Public, Description = 546865206E6F74696669636174696F6E206E616D6520706F7374656420616674657220746865207468652063757272656E746C792D73657420666F6E74206368616E6765732E
+	#tag EndConstant
 
 
 	#tag Enum, Name = NSFontRenderingMode, Type = Integer, Flags = &h0
