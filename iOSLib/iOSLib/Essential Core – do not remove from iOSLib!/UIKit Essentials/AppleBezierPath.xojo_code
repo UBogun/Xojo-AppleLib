@@ -533,11 +533,23 @@ Inherits AppleObject
 			Name="LineCapStyle"
 			Group="Behavior"
 			Type="CoreGraphicsFramework.CGLineCap"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Butt"
+				"1 - Round"
+				"2 - Square"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LineJoinStyle"
 			Group="Behavior"
 			Type="CoreGraphicsFramework.CGLineJoin"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Miter"
+				"1 - Round"
+				"2 - Bevel"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LineWidth"
