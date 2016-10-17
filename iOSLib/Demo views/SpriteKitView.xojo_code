@@ -13,10 +13,10 @@ Begin iosView SpriteKitView
       AccessibilityLabel=   ""
       Alpha           =   1.0
       Asynchronous    =   False
-      AutoLayout      =   iOSLibSKView1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
-      AutoLayout      =   iOSLibSKView1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibSKView1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
       AutoLayout      =   iOSLibSKView1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibSKView1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibSKView1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibSKView1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False

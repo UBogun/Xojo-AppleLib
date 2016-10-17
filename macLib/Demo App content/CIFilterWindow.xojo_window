@@ -117,6 +117,7 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Untitled"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -172,6 +173,7 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "I could not figure out how to catch changes on the UIViewControl controls below. Therefore I installed a timer. If the app is too laggy, decheck Auto-Refresh and refresh manually."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -289,6 +291,7 @@ Begin Window CIFilterWindow
       Width           =   117
    End
    Begin xojo.core.timer Timer1
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "0"
@@ -367,6 +370,7 @@ Begin Window CIFilterWindow
       Width           =   206
    End
    Begin xojo.core.timer timer2
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "2"
