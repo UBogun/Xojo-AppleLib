@@ -691,7 +691,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420666F72207465787420696E20612073656C656374656420636F6E74726F6C2E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getalternateSelectedControlTextColor(classptr))
+			  return new applecolor( getalternateSelectedControlTextColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared AlternateSelectedControlTextColor As AppleColor
@@ -863,7 +863,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420666F722074686520666C6174207375726661636573206F66206120636F6E74726F6C2E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getcontrolColor(classptr))
+			  return new applecolor( getcontrolColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared ControlColor As AppleColor
@@ -881,7 +881,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420666F722074686520686967686C6967687465642062657A656C73206F6620636F6E74726F6C732E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getcontrolHighlightColor(classptr))
+			  return new applecolor( getcontrolHighlightColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared ControlHighlightColor As AppleColor
@@ -967,7 +967,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 41204E53436F6C6F72206F626A6563742077686F736520677261797363616C652076616C756520697320302E3520616E642077686F736520616C7068612076616C756520697320312E302E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getgrayColor(classptr))
+			  return new applecolor( getgrayColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared GrayColor As AppleColor
@@ -999,7 +999,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420666F7220746865206F7074696F6E616C20677269646C696E657320696E2C20666F72206578616D706C652C2061207461626C6520766965772E28726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getgridColor(classptr))
+			  return new applecolor( getgridColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared GridColor As AppleColor
@@ -1008,7 +1008,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420617320746865206261636B67726F756E6420636F6C6F7220666F72206865616465722063656C6C7320696E207461626C6520766965777320616E64206F75746C696E652076696577732E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getheaderColor(classptr))
+			  return new applecolor( getheaderColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared HeaderColor As AppleColor
@@ -1017,7 +1017,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420666F72207465787420696E206865616465722063656C6C7320696E207461626C6520766965777320616E64206F75746C696E652076696577732E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getheaderTextColor(classptr))
+			  return new applecolor( getheaderTextColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared HeaderTextColor As AppleColor
@@ -1230,7 +1230,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420666F72207363726F6C6C20E2809C62617273E2809DE28094746861742069732C20666F72207468652067726F6F766520696E2077686963682061207363726F6C6C6572E2809973206B6E6F62206D6F7665732E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getscrollBarColor(classptr))
+			  return new applecolor( getscrollBarColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared ScrollBarColor As AppleColor
@@ -1329,7 +1329,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 54686520746572746961727920636F6C6F7220746F2075736520666F72207465787420696E206C6162656C732E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( gettertiaryLabelColor(classptr))
+			  return new applecolor( gettertiaryLabelColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared TertiaryLabelColor As AppleColor
@@ -1375,7 +1375,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F7220746F20757365207768656E2061726561732072657665616C656420626568696E642076696577732E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getunderPageBackgroundColor(classptr))
+			  return new applecolor( getunderPageBackgroundColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared UnderPageBackgroundColor As AppleColor
@@ -1416,7 +1416,7 @@ Implements AppleGeneralColor
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073797374656D20636F6C6F72207573656420666F7220746865207465787420696E2077696E646F77206672616D65732E2028726561642D6F6E6C792920
 		#tag Getter
 			Get
-			   return new applecolor( getwindowFrameTextColor(classptr))
+			  return new applecolor( getwindowFrameTextColor(classptr))
 			End Get
 		#tag EndGetter
 		Shared WindowFrameTextColor As AppleColor

@@ -123,11 +123,6 @@ Inherits AppleArray
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Traits"
-			Group="Behavior"
-			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Weight"
 			Group="Behavior"
 			Type="Integer"

@@ -35,7 +35,7 @@ Begin Window TableViewWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BorderType      =   "None"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False

@@ -34,7 +34,7 @@ Begin Window SpriteKitWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True

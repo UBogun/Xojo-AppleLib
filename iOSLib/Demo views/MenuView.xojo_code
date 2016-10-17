@@ -44,6 +44,7 @@ End
 		  me.AddRow 0, me.CreateCell("iOSLibTextField", "Extensions for Xojo’s textfield  and a custom Textfield control.")
 		  me.AddRow 0, me.CreateCell("iOSLibImageView", "Extensions for Xojo’s ImageWell and a custom ImageView control.")
 		  me.AddRow 0, me.CreateCell("iOSLibButton", "Extensions for Xojo’s iOSButton and a custom iOSLibButton control.")
+		  me.AddRow 0, me.CreateCell("AppleCIFilter", "Allows CIFIlter usage directly or on a view property")
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -55,13 +56,15 @@ End
 		  case "iOSLibNotificationCenter"
 		    v = new NotificationView
 		  case "iOSLibSKView"
-		    v = new SceneKitView
+		    v = new SpriteKitview
 		  case "iOSLibTextField"
 		    v = new TextfieldView
 		  case "iOSLibImageView"
 		    v = new ImageViewView
 		  case "iOSLibButton"
 		    v = new ButtonView
+		  case "AppleCIFilter"
+		    v = new CIFIlterView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub

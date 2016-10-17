@@ -833,6 +833,11 @@ Inherits AppleObject
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Vertical"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="XHeight"
 			Group="Behavior"
 			Type="Double"

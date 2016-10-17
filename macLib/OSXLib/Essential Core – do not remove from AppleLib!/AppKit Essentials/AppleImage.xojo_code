@@ -38,6 +38,8 @@ Inherits AppleObject
 		  dim size as FoundationFrameWork.NSSize = CIImage.Extent.Size_
 		  Constructor(size)
 		  me.LockFocus
+		  CIImage.Draw (FoundationFrameWork.NSMakePoint(0,0), CIImage.Extent, AppKitFramework.NSCompositingOperation.Copy, 1)
+		  me.UnlockFocus
 		  
 		End Sub
 	#tag EndMethod
@@ -98,7 +100,15 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getrepresentations Lib appkitlibname Selector "representations" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getTemplate Lib appkitlibname Selector "isTemplate" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getValid Lib appkitlibname Selector "isValid" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1000, Description = 496E697469616C697A657320616E642072657475726E7320616E20696D616765206F626A656374207573696E6720746865207370656369666965642066696C652E
@@ -172,26 +182,33 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720696D616765207468617420697320726573697A6564207769746820616C6F6E6720746865207820616E64207920617869732077697468207468652076616C75657320796F752070726F766964652E200A5F595363616C655F203D2030206D616B657320746865207363616C652070726F706F74696F6E616C2E0A205F5363616C655F203D20302074616B657320746865206F726967696E616C20696D6167652773207363616C652070726F706572747920666F7220746865207363616C65206F6620746865206E657720696D6167652E2020
-		Function Resize(XScale as double, YScale as Double = 0, interpolationquality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.Default, scale as double = 0) As AppleImage
-		  if YScale = 0 then YScale = XScale
-		  dim W as double = me.Width* XScale
-		  dim h as double = me.Height* YScale
-		  dim frame as FoundationFrameWork.nsrect = FoundationFrameWork.NSMakeRect(0,0,w,h)
-		  dim result as new AppleImage (self.toCGImage( frame), frame.Size_)
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function Resize(NewSize as FoundationFramework.NSSize, proportional as boolean = false, InterpolationQuality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.default, Scale as double = 0) As AppleImage
+	#tag Method, Flags = &h0, Description = 526573697A65732074686520696D61676520746F2061206E65772073697A652C206F7074696F6E616C6C79206B656570696E67207468652070726F706F7274696F6E7320616E642077697468206120736C65637461626C6520696E746572706F6C6174696F6E207175616C6974792E
+		Function Resize(NewSize as FoundationFramework.NSSize, proportional as boolean = false, interpolationQuality as AppKitFramework.NSImageinterpolation = AppKitFramework.NSImageinterpolation.Default, Scale as double = 0) As AppleImage
 		  dim xfactor as double = NewSize.width / Width
 		  dim yfactor as double = NewSize.height/Height
 		  if proportional then
-		    return resize (min(xfactor, yfactor), 0, interpolationquality, scale)
+		    return scale (min(xfactor, yfactor), 0, interpolationquality, scale)
 		  else
-		    return Resize (xfactor, yfactor, interpolationquality, scale)
+		    return scale (xfactor, yfactor, interpolationquality, scale)
 		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720696D616765207468617420697320726573697A6564207769746820616C6F6E6720746865207820616E64207920617869732077697468207468652076616C75657320796F752070726F766964652E200A5F595363616C655F203D2030206D616B657320746865207363616C652070726F706F74696F6E616C2E
+		Function Scale(XScale as double, YScale as Double = 0, interpolationQuality as AppKitFramework.NSImageinterpolation = AppKitFramework.NSImageinterpolation.Default, scale as double = 0) As AppleImage
+		  if scale = 0 then scale = Window(0).ScaleFactor
+		  if YScale = 0 then YScale = XScale
+		  dim W as double = me.Width* XScale
+		  dim h as double = me.Height* YScale
+		  dim frame as FoundationFrameWork.nsrect = FoundationFrameWork.NSMakeRect(0,0,w*scale,h*scale)
+		  dim result as  new AppleImage(frame.Size_)
+		  result.LockFocus
+		  AppleGraphicsContext.CurrentContext.ImageInterpolation = interpolationQuality
+		  me.Draw (frame)
+		  result.UnlockFocus
+		  return result
+		  
+		  
 		End Function
 	#tag EndMethod
 
@@ -223,6 +240,20 @@ Inherits AppleObject
 		End Sub
 	#tag EndMethod
 
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206261636B67726F756E6420636F6C6F7220666F722074686520696D6167652E
+		#tag Getter
+			Get
+			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setbackgroundColor mid, nilptr(value)
+			End Set
+		#tag EndSetter
+		BackgroundColor As AppleColor
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 52657475726E732061204347496D61676520636170747572696E67207468652064726177696E67206F66207468652072656365697665722E2028726561642D6F6E6C7929
 		#tag Getter
@@ -267,6 +298,15 @@ Inherits AppleObject
 		Name As Text
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 416E20617272617920636F6E7461696E696E6720616C6C206F662074686520696D616765E280997320696D61676520726570726573656E746174696F6E732E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleArray.MakeFromPtr(getrepresentations(mid))
+			End Get
+		#tag EndGetter
+		Representations As AppleArray
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F662074686520696D6167652E
 		#tag Getter
 			Get
@@ -293,6 +333,15 @@ Inherits AppleObject
 			End Set
 		#tag EndSetter
 		Template As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220616E20696D61676520726570726573656E746174696F6E2066726F6D207468652072656365697665722063616E20626520647261776E2E2028726561642D6F6E6C79290A49662074686520696D61676520697320696E697469616C697A6564207769746820616E206578697374696E6720696D6167652066696C652C206275742074686520636F72726573706F6E64696E6720696D6167652064617461206973206E6F7420796574206C6F6164656420696E746F206D656D6F72792C2074686973206D6574686F64206C6F61647320746865206461746120616E6420657870616E6473206974206173206E65656465642E2049662074686520696D61676520636F6E7461696E73206E6F20696D61676520726570726573656E746174696F6E7320616E64206E6F206173736F63696174656420696D6167652066696C652C2074686973206D6574686F64206372656174657320612076616C69642063616368656420696D61676520726570726573656E746174696F6E20616E6420696E697469616C697A657320697420746F207468652064656661756C74206269742064657074682E2052657475726E732046616C736520696E206361736573207768657265207468652066696C65206F722055524C2066726F6D2077686963682069742077617320696E697469616C697A6564206973206E6F6E6578697374656E74206F72207768656E20746865206461746120696E20616E206578697374696E672066696C6520697320696E76616C69642E
+		#tag Getter
+			Get
+			  return getvalid (mid)
+			End Get
+		#tag EndGetter
+		Valid As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -368,6 +417,11 @@ Inherits AppleObject
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Valid"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"

@@ -29,10 +29,14 @@ Begin iosView NotificationView
       Width           =   320.0
    End
    Begin ioslibnotificationcenter AppleNotificationCenter1
+      DebugDescription=   ""
+      HasOwnership    =   False
       Left            =   0
       LockedInPosition=   False
+      mHasOwnership   =   False
       PanelIndex      =   -1
       Parent          =   ""
+      RetainCount     =   ""
       Scope           =   0
       Top             =   0
    End

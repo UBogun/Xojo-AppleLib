@@ -34,7 +34,7 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BoundsRotation  =   0.0
       DoubleBuffer    =   True
       Enabled         =   True
@@ -72,7 +72,7 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   250077183
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BoundsRotation  =   0.0
       DoubleBuffer    =   True
       Enabled         =   True
@@ -278,7 +278,7 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c000000FF
+      BackgroundColor =   &c0000FF00
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
@@ -316,7 +316,7 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   250077183
-      BackgroundColor =   &c5777C200
+      BackgroundColor =   &c77C20057
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
@@ -500,8 +500,7 @@ End
 		  me.AppleObject.layer.BorderWidth = 5
 		  me.AppleObject.Layer.CornerRadius = 10
 		  me.AppleObject.Layer.BackgroundColor = AppleColor.FromColor (&cEFFFC900)
-		  dim filter as new AppleCIBlurFilter()
-		  filter.InputRadius = 4
+		  dim filter as new AppleCIGaussianBlurFilter(nil, 4)
 		  me.AppleObject.AddContentFilter filter
 		  dim shadow as new AppleShadow
 		  shadow.ShadowColor = new AppleColor (&cF31CA100)

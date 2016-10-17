@@ -31,7 +31,7 @@ Begin Window IntrospectionWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &c00FFFFFF
+      BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
       DataField       =   ""
@@ -425,7 +425,7 @@ Begin Window IntrospectionWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFF00FF
+      BackColor       =   &cFF00FFFF
       Bold            =   False
       Border          =   True
       CueText         =   "Framework name (without extension or path)"

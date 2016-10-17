@@ -34,7 +34,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -112,7 +112,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -190,7 +190,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   True
@@ -466,7 +466,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -544,7 +544,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -622,7 +622,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -700,7 +700,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -778,7 +778,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -856,7 +856,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -934,7 +934,7 @@ Begin Window VisualEffectWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BlendingMode    =   "0"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -976,7 +976,7 @@ Begin Window VisualEffectWindow
          Alpha           =   1.0
          AutoDeactivate  =   True
          Backdrop        =   250077183
-         BackgroundColor =   &c0000FF00
+         BackgroundColor =   &c00FF0000
          BoundsRotation  =   0.0
          DoubleBuffer    =   True
          Enabled         =   True

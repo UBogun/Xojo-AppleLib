@@ -125,6 +125,11 @@ Inherits ApplePanel
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Enabled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FloatingPanel"
 			Group="Behavior"
 			Type="Boolean"

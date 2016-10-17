@@ -35,7 +35,7 @@ Begin window ScrollWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c00FF0000
+      BackgroundColor =   &cFF000000
       BorderType      =   "3"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
@@ -74,7 +74,7 @@ Begin window ScrollWindow
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFF00FF
+      BackColor       =   &cFF00FFFF
       Bold            =   False
       Border          =   True
       DataField       =   ""

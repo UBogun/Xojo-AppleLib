@@ -289,6 +289,11 @@ Inherits AppleObject
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DebugDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="EstimationUpdateIndex"
 			Group="Behavior"
 			Type="UInteger"
@@ -297,6 +302,11 @@ Inherits AppleObject
 			Name="Force"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasOwnership"
+			Group="Behavior"
+			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -328,6 +338,11 @@ Inherits AppleObject
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="mHasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
@@ -345,6 +360,11 @@ Inherits AppleObject
 				"3 - Ended"
 				"4 - Cancelled"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RetainCount"
+			Group="Behavior"
+			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

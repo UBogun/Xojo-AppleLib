@@ -153,6 +153,7 @@ Begin Window SelectionWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Select a demo:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -173,7 +174,7 @@ Begin Window SelectionWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BoundsRotation  =   0.0
       DoubleBuffer    =   True
       Enabled         =   True
@@ -211,7 +212,7 @@ Begin Window SelectionWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &c00FF0000
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
@@ -266,6 +267,7 @@ End
 		  me.AddRow "SpriteKit"
 		  me.AddRow ("FontManager")
 		  me.addrow ("Introspection")
+		  me.AddRow ("CIFIlter")
 		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
 		  me.ListIndex = 0
@@ -316,6 +318,8 @@ End
 		    SecondaryWindow = new IntrospectionWindow
 		  case "FontManager"
 		    SecondaryWindow = new FontWindow
+		  case "CIFIlter"
+		    SecondaryWindow = new CIFilterWindow
 		  end select
 		End Sub
 	#tag EndEvent
@@ -351,7 +355,7 @@ End
 		  g.FillColor = FillColor.CGColor
 		  g.FillRect rect
 		  g.Rotate 0.3
-		  logo = logo.reSize (0.035, 0.035, CoreGraphicsFramework.CGInterpolationQuality.High)
+		  logo = logo.scale (0.035, 0.035, AppKitFramework.NSImageinterpolation.High)
 		  g.DrawTiledImage FoundationFrameWork.NSMakeRect (0,0,logo.Width, logo.Height), logo.CGImage
 		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
 		  g.DrawLinearGradient new AppleCGGradient (&c2C5D3D00, &cAEB0CC00, &cFFF59000, &cFF2EB700), _

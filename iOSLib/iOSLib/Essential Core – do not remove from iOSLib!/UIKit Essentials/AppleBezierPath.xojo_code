@@ -496,6 +496,11 @@ Inherits AppleObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="DebugDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Empty"
 			Group="Behavior"
 			Type="Boolean"
@@ -504,6 +509,11 @@ Inherits AppleObject
 			Name="Flatness"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasOwnership"
+			Group="Behavior"
+			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -520,9 +530,24 @@ Inherits AppleObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LineCapStyle"
+			Group="Behavior"
+			Type="CoreGraphicsFramework.CGLineCap"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="LineJoinStyle"
+			Group="Behavior"
+			Type="CoreGraphicsFramework.CGLineJoin"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="LineWidth"
 			Group="Behavior"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="mHasOwnership"
+			Group="Behavior"
+			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MiterLimit"
@@ -534,6 +559,11 @@ Inherits AppleObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RetainCount"
+			Group="Behavior"
+			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

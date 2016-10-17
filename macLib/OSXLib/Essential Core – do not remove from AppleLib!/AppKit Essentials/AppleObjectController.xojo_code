@@ -171,6 +171,11 @@ Inherits AppleController
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="AutomaticallyPreparesContent"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DebugDescription"
 			Group="Behavior"
 			Type="Text"
@@ -179,6 +184,11 @@ Inherits AppleController
 			Name="Editing"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EntityName"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasOwnership"
@@ -209,6 +219,11 @@ Inherits AppleController
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ObjectClass"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"
