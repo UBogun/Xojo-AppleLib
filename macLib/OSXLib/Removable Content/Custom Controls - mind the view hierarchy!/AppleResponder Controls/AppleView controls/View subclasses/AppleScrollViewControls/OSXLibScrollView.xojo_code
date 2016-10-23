@@ -3,13 +3,12 @@ Protected Class OSXLibScrollView
 Inherits OSXLibView
 	#tag Event
 		Function CloseControl() As Boolean
-		  if not raiseevent CloseControl then
+		  if mAppleObject <> nil then
 		    RemoveNotifications
-		    RemoveHandlers(AppleObject)
+		    if UsedAddhandler then RemoveHandlers AppleObject
 		    mAppleObject = nil
 		  end if
 		  return true
-		  
 		End Function
 	#tag EndEvent
 
@@ -30,20 +29,10 @@ Inherits OSXLibView
 		  
 		  
 		  
-		  
-		  
-		  
-		  
 		  dim obj as AppleScrollView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
-		  if obj = nil then
-		    obj = AppleObject
-		    obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
-		    obj.AutoResizingMask =  new AppleAutoresizingMask (self)
-		    obj.TranslatesAutoresizingMaskIntoConstraints = true
-		    // obj.WantsLayer = false
-		    // CopyEmbeddedObjects
-		    // mTempObject = nil // remove any unwanted retain cycles
-		    DontDisableLayerDuringInit = false
+		  if obj = nil then // no!
+		    obj = if (mAppleObject = nil, CreateObject, AppleObject)
+		    UsedAddhandler = true
 		  end if
 		  return obj // So it will receive its super’s events
 		  
@@ -53,14 +42,29 @@ Inherits OSXLibView
 	#tag Event , Description = 4669726573207768656E20746865207573657220686173206D6F76656420746865206D6F757365E2809973207363726F6C6C20776865656C2E
 		Sub MouseWheel(anEvent As AppleNSEvent)
 		  #pragma Unused anEvent
-		  break
 		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Function Open() As Boolean
+		  if not raiseevent open then
+		    AppleObject.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
+		    AppleObject.AutoResizingMask = new AppleAutoresizingMask(self)
+		    AppleObject.TranslatesAutoresizingMaskIntoConstraints = true
+		    // If there’s a Backdrop, make it the layer’s contents: 
+		    // mTempObject = nil // remove any unwanted retain cycles
+		    DontDisableLayerDuringInit = false
+		    AppleObject.WantsLayer = false
+		    EmbedAppleObject
+		  end if
+		  return true
+		End Function
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h21
 		Private Sub AttachHandlers(obj as appleScrollview)
-		  AddHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  // AddHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
 		  // AddHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
 		  // AddHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
 		  
@@ -178,14 +182,14 @@ Inherits OSXLibView
 
 	#tag Method, Flags = &h21
 		Private Sub RemoveHandlers(obj as appleScrollview)
-		  RemoveHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
-		  // RemoveHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
-		  // RemoveHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
+		  // AddHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  // AddHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
+		  // AddHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
 		  
 		  RemoveHandler obj.BeginGesture, Addressof informOnbeginGestureWithEvent
 		  RemoveHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
 		  RemoveHandler obj.Rotate, Addressof informOnrotateWithEvent
-		  // RemoveHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  // AddHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
 		  RemoveHandler obj.Swipe, Addressof informOnswipeWithEvent
 		  RemoveHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
 		  RemoveHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis
@@ -216,7 +220,7 @@ Inherits OSXLibView
 		  RemoveHandler obj.OtherMouseDown, Addressof informOnOtherMouseDown
 		  RemoveHandler obj.OtherMouseDragged, Addressof informOnOtherMouseDragged
 		  
-		  // RemoveHandler obj.ScrollWheel, Addressof informOnScrollWheel
+		  // AddHandler obj.ScrollWheel, Addressof informOnScrollWheel
 		  
 		  
 		  RemoveHandler obj.TouchesBegan, Addressof informOntouchesBeganWithEvent
@@ -235,12 +239,12 @@ Inherits OSXLibView
 		  // NSView events:
 		  RemoveHandler obj.ViewDidMoveToWindow, Addressof informOnviewDidMoveToWindow
 		  
-		  // RemoveHandler obj.AllowsVibrancy, Addressof informOnAllowsVibrancy
-		  // RemoveHandler obj.opaque, Addressof informOnopaque
+		  // AddHandler obj.AllowsVibrancy, Addressof informOnAllowsVibrancy
+		  // AddHandler obj.opaque, Addressof informOnopaque
 		  
-		  // RemoveHandler obj.AcceptsTouchEvents, Addressof informOnAcceptsTouchEvents
+		  // AddHandler obj.AcceptsTouchEvents, Addressof informOnAcceptsTouchEvents
 		  
-		  // RemoveHandler obj.DidAddSubview, Addressof informOnDidAddSubview
+		  // AddHandler obj.DidAddSubview, Addressof informOnDidAddSubview
 		  RemoveHandler obj.DidResize, Addressof informOnViewDidEndLiveResize
 		  RemoveHandler obj.MenuForEvent, Addressof informOnMenuForEvent
 		  RemoveHandler obj.ViewDidHide, Addressof informOnViewDidHide
@@ -261,7 +265,6 @@ Inherits OSXLibView
 		  for each o as AppleNotificationObject in NotificationObjects
 		    AppleNotificationCenter.RemoveObserver o
 		  next
-		  redim NotificationObjects (-1)
 		End Sub
 	#tag EndMethod
 
@@ -279,10 +282,6 @@ Inherits OSXLibView
 		End Sub
 	#tag EndMethod
 
-
-	#tag Hook, Flags = &h0
-		Event CloseControl() As Boolean
-	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event InitControl() As AppleScrollview
@@ -308,6 +307,10 @@ Inherits OSXLibView
 		Event LiveScrollStart()
 	#tag EndHook
 
+	#tag Hook, Flags = &h0
+		Event Open() As Boolean
+	#tag EndHook
+
 
 	#tag ComputedProperty, Flags = &h0, Description = 416C6C6F777320746865207573657220746F206D61676E69667920746865207363726F6C6C20766965772E
 		#tag Getter
@@ -327,9 +330,9 @@ Inherits OSXLibView
 		#tag Getter
 			Get
 			  if mAppleObject = nil then
-			    mappleobject = CreateObject
+			     mAppleObject = RaiseEvent InitControl
+			    if mAppleObject = nil then mAppleObject = CreateObject
 			  end if
-			  
 			  return applescrollview(mAppleObject)
 			  
 			End Get
@@ -402,6 +405,7 @@ Inherits OSXLibView
 		#tag ViewProperty
 			Name="AcceptFocus"
 			Group="Behavior"
+			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -438,6 +442,7 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Backdrop"
+			Visible=true
 			Group="Appearance"
 			Type="Picture"
 			EditorType="Picture"
@@ -473,6 +478,7 @@ Inherits OSXLibView
 			Name="Enabled"
 			Visible=true
 			Group="Appearance"
+			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -500,6 +506,7 @@ Inherits OSXLibView
 			Name="Height"
 			Visible=true
 			Group="Position"
+			InitialValue="100"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -524,7 +531,6 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
-			Visible=true
 			Group="Position"
 			Type="String"
 		#tag EndViewProperty
@@ -532,30 +538,35 @@ Inherits OSXLibView
 			Name="Left"
 			Visible=true
 			Group="Position"
+			InitialValue="0"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockBottom"
 			Visible=true
 			Group="Position"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockLeft"
 			Visible=true
 			Group="Position"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockRight"
 			Visible=true
 			Group="Position"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockTop"
 			Visible=true
 			Group="Position"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -581,6 +592,7 @@ Inherits OSXLibView
 			Name="TabIndex"
 			Visible=true
 			Group="Position"
+			InitialValue="0"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -593,12 +605,14 @@ Inherits OSXLibView
 			Name="TabStop"
 			Visible=true
 			Group="Position"
+			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
+			InitialValue="0"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -619,7 +633,9 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseFocusRing"
+			Visible=true
 			Group="Appearance"
+			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty

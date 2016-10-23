@@ -89,6 +89,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Dark"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -165,6 +166,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Light"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -241,6 +243,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "AppearanceBased"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -307,6 +310,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   3
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Switches the layer on which makes the text disappear."
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -373,6 +377,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Available since macOS 10.12"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -513,6 +518,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "TitleBar"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -589,6 +595,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Selection"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -665,6 +672,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Menu"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -741,6 +749,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Popover"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -817,6 +826,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Sidebar"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -893,6 +903,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "MediumLight"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -1006,6 +1017,7 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "UltraDark"
          TextAlign       =   1
          TextColor       =   &c00000000

@@ -43,7 +43,7 @@ Begin window ScrollWindow
       EraseBackground =   True
       FlippedCoordinates=   False
       FocusRingType   =   "Default"
-      Height          =   527
+      Height          =   578
       HelpTag         =   ""
       HorizontalScroller=   True
       Index           =   -2147483648
@@ -66,7 +66,7 @@ Begin window ScrollWindow
       UseFocusRing    =   True
       VerticalScroller=   True
       Visible         =   True
-      Width           =   656
+      Width           =   704
    End
    Begin TextArea TextArea1
       AcceptTabs      =   False
@@ -86,15 +86,15 @@ Begin window ScrollWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   45
+      Left            =   -277
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
+      LockLeft        =   False
       LockRight       =   True
-      LockTop         =   False
+      LockTop         =   True
       Mask            =   ""
       Multiline       =   True
       ReadOnly        =   False
@@ -105,47 +105,16 @@ Begin window ScrollWindow
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "This is a much better, more native implementation. Try scrolling and gestures like Magnify. On 64Bit SmartMagnify (doubleTap) works too. When the magnification factor gets too low, the image is placed in the lower left corner by default. For a better behavior, you should subclass ClipView or add a custom event handler to the LiveMaginficationFinished event (or tell me!).\n\n"
+      Text            =   "This is a much better, more native implementation. Try scrolling and gestures like Magnify. On 64Bit SmartMagnify (doubleTap) works too. When the magnification factor gets too low, the image is placed in the lower left corner by default. For a better behavior, you should subclass ClipView or add a custom event handler to the LiveMagnificationFinished event (or tell me!).\n\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   -91
+      Top             =   283
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   244
-   End
-   Begin PushButton PushButton1
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "OK"
-      Default         =   True
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   604
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   539
-      Underline       =   False
-      Visible         =   True
-      Width           =   80
    End
 End
 #tag EndWindow
@@ -159,8 +128,7 @@ End
 		  // The best way to work with a Scrollview is to use a Clipview as contentview. 
 		  // You could as well add any view to its documentView instead.
 		  
-		  dim v as new AppleImageView(new AppleImage (OSXLibLogo)) // create an imageview from an image
-		  v.RefusesFirstResponder = true
+		  dim v as new AppleImageView(new AppleImage (OSXLibLogo), true) // create a native(!) imageview from an image
 		  dim cv as new AppleClipView(v.frame) // and create a clipview with the same dimensions
 		  
 		  cv.DocumentView = v //make the imageciew its documentview
@@ -168,12 +136,12 @@ End
 		  
 		  // Add a floating subview over it. This reduces the Scrollview’s performance a bit!
 		  dim newview as new appleview(TextArea1)
-		  newview.AutoResizingMask = AppleAutoresizingMask.FullResize
-		  newview.TranslatesAutoresizingMaskIntoConstraints = true
-		  me.AppleObject.AddFloatingSubview(newview, AppleNSEvent.NSEventGestureAxis.None)
+		  TextArea1.AppleObject.Frame =FoundationFrameWork.NSMakerect(50, 50, 200, 300)
+		  // newview.AutoResizingMask = AppleAutoresizingMask.NoLock
+		  newview.TranslatesAutoresizingMaskIntoConstraints = false
+		  me.AppleObject.AddFloatingSubview(newview, AppleNSEvent.NSEventGestureAxis.Vertical)
+		  newview.Frame =FoundationFrameWork.NSMakerect(50, 50, 200, 300)
 		  
-		  dim rs as boolean = self.AppleObject.MakeFirstResponder(me.AppleObject)
-		  break
 		  // newview.RightAnchor.ConstraintGreaterThanOrEqualToAnchor (me.AppleObject.RightAnchor, 0.1).Active = true
 		  // newview.WidthAnchor.ConstraintEqualToDimension(me.AppleObject.WidthAnchor, 0.1).Priority = AppleLayoutConstraint.NSLayoutPriority.DefaultLow
 		  
@@ -182,7 +150,7 @@ End
 		  
 		  // setting the magnification did not end in the scrollview showing the new maginification, only after a magnification gesture was started.
 		  // Im am manually setting the view to 10 times and center it on the mid of the contentview.
-		  me.AppleObject.SetMagnification 1, me.AppleObject.ConvertPointFromView(me.AppleObject.ContentView.Frame.center,  me.AppleObject.ContentView)
+		  me.AppleObject.SetMagnification 0.5, me.AppleObject.ConvertPointFromView(me.AppleObject.ContentView.Frame.center,  me.AppleObject.ContentView)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
@@ -251,13 +219,6 @@ End
 	#tag Event , Description = 466972657320696620746865207573657220686173207374617274656420726573697A696E672074686520766965772E
 		Sub Resizing()
 		  TextArea1.AppendText "Resizing"+eol
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events PushButton1
-	#tag Event
-		Sub Action()
-		  OSXLibScrollView1.AppleObject.FlashScrollers
 		End Sub
 	#tag EndEvent
 #tag EndEvents

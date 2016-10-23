@@ -4,7 +4,7 @@ Inherits OSXLibResponder
 	#tag Event , Description = 496E7465726E616C204576656E7420746861742070726576656E74732072756E6E696E67206F662072656D6F766548616E646C6572207768656E207468697320776173206F766572726964656E
 		Function CloseControl() As Boolean
 		  if not raiseevent CloseControl then
-		    RemoveHandlers(AppleObject)
+		    if UsedAddhandler then RemoveHandlers(AppleObject)
 		    mAppleObject = nil
 		  end if
 		  return true
@@ -23,12 +23,22 @@ Inherits OSXLibResponder
 		  
 		  dim obj as AppleView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
 		  if obj = nil then // no!
-		    obj = if (mAppleObject = nil, CreateObject, appleview(mAppleObject))
-		    
+		    obj = CreateObject
+		    UsedAddhandler = true
+		  end if
+		  return obj // So it will receive its super’s events
+		  
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub Open()
+		  if not RaiseEvent open then
 		    // and adapt it to the current bounds of the Xojo control.
-		    obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
-		    obj.AutoResizingMask = new AppleAutoresizingMask(self)
-		    // If there’s a Backdrop, make it the layer’s contents: 
+		    AppleObject.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
+		    AppleObject.AutoResizingMask = new AppleAutoresizingMask(self)
+		    AppleObject.TranslatesAutoresizingMaskIntoConstraints = true
 		    if me.Backdrop <> nil then
 		      if me.Layer = nil then me.AppleObject.WantsLayer = true // or either it would crash
 		      me.AppleObject.layer.Contents = new AppleImage(me.Backdrop)
@@ -36,11 +46,12 @@ Inherits OSXLibResponder
 		    CopyEmbeddedObjects
 		    // mTempObject = nil // remove any unwanted retain cycles
 		    DontDisableLayerDuringInit = false
+		    EmbedAppleObject
 		  end if
-		  return obj // So it will receive its super’s events
 		  
 		  
-		End Function
+		  
+		End Sub
 	#tag EndEvent
 
 	#tag Event
@@ -189,6 +200,15 @@ Inherits OSXLibResponder
 		  
 		  return obj
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub EmbedAppleObject()
+		  dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
+		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		  dim subview as appleview = ViewToReplace(origview)
+		  controller.ReplaceSubview subview, AppleObject // and kick out the canvas by replacing it with our view
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -389,6 +409,18 @@ Inherits OSXLibResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Function ViewToReplace(origview as appleview) As AppleView
+		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
+		  for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
+		    dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
+		    if subview.id = origview.id then // is this our control?
+		      return subview
+		    end if
+		  next
+		End Function
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
 		Event AddedSubview(Subview as AppleView)
@@ -412,6 +444,10 @@ Inherits OSXLibResponder
 
 	#tag Hook, Flags = &h0, Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
 		Event InitControl() As AppleView
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Open() As Boolean
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573206265666F7265206120636F6E7465787475616C206D656E7520697320646973706C617965642E205573652074686973206576656E7420746F206D6F6466792069742E
@@ -509,22 +545,11 @@ Inherits OSXLibResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865204E535669657720697473656C662028726561642D6F6E6C79292E
 		#tag Getter
 			Get
-			  if mAppleObject <> nil then
-			    return appleview(mAppleObject)
-			  else
-			    select case me
-			    case isa OSXLibScrollView
-			      mAppleObject = OSXLibScrollView(me).CreateObject
-			    case isa OSXLibVisualEffectView
-			      mAppleObject = OSXLibVisualEffectView(me).CreateObject
-			    case isa OSXLibCanvas
-			      mAppleObject = OSXLibCanvas(me).CreateObject
-			    else
-			      mAppleObject = createobject
-			    end select
-			    return appleview(mAppleObject)
+			  if mAppleObject = nil then 
+			    mAppleObject = RaiseEvent InitControl
+			    if mAppleObject = nil then mAppleObject = CreateObject
 			  end if
-			  
+			  return appleview(mAppleObject)
 			  
 			End Get
 		#tag EndGetter

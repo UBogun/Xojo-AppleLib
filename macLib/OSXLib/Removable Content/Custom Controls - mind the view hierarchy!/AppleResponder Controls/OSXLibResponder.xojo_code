@@ -117,18 +117,11 @@ Inherits Canvas
 
 	#tag Event
 		Sub Open()
-		  dim obj as appleresponder = raiseEvent InitControl
-		  if  obj <> nil then
-		    dim viewobj as appleview = AppleView(obj)
-		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
-		    dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
-		    dim subview as appleview = ViewToReplace(origview)
-		    controller.ReplaceSubview subview, viewobj // and kick out the canvas by replacing it with our view
-		  else
-		    MakeException ("Could not create a custom class – object returned was NIL.")
+		  RaiseEvent open
+		  if  AppleObject = nil then
+		    MakeException ("Could not create custom control – object returned was NIL.")
 		  end if
 		  
-		  RaiseEvent open
 		  
 		  // dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
 		  // dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
@@ -533,18 +526,6 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1
-		Protected Function ViewToReplace(origview as appleview) As AppleView
-		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
-		  for q as integer = 0 to controller.Subviews.Count -1 // iterating through its subviews
-		    dim subview as appleview = new appleview(controller.Subviews.PtrAtIndex(q)) // fetching the subviews
-		    if subview.id = origview.id then // is this our control?
-		      return subview
-		    end if
-		  next
-		End Function
-	#tag EndMethod
-
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2061204E53416E696D6174696F6E436F6E7465787420616E696D6174696F6E2066696E69736865642E
 		Event AnimationFinished()
@@ -721,6 +702,7 @@ Inherits Canvas
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  if mAppleObject = nil then mAppleObject = RaiseEvent InitControl
 			  return mAppleObject
 			End Get
 		#tag EndGetter
@@ -729,6 +711,10 @@ Inherits Canvas
 
 	#tag Property, Flags = &h1
 		Protected mAppleObject As AppleResponder
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected UsedAddhandler As Boolean
 	#tag EndProperty
 
 

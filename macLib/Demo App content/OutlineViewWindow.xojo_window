@@ -109,14 +109,14 @@ End
 #tag EndEvents
 #tag Events OSXLibOutlineView1
 	#tag Event
-		Sub Open()
+		Function Open() As Boolean
 		  me.TableViewObject.DataSource= OSXLibTableViewDataSource1.AppleObject
 		  me.TableViewObject.AddTableColumn ("Test")
 		  me.TableViewObject.AddTableColumn ("Test1")
 		  me.TableViewObject.AddTableColumn ("Test3")
 		  
 		  break
-		End Sub
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

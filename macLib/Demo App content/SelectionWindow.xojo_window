@@ -131,6 +131,40 @@ Begin Window SelectionWindow
       Top             =   500
       Visible         =   True
       Width           =   750
+      Begin Label Label1
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "OSXLibVisualEffectView1"
+         Italic          =   False
+         Left            =   20
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   False
+         Multiline       =   False
+         Scope           =   2
+         Selectable      =   False
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         Text            =   "Select a demo:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   509
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   304
+      End
       Begin PushButton PushButton1
          AutoDeactivate  =   True
          Bold            =   False
@@ -151,13 +185,13 @@ Begin Window SelectionWindow
          LockRight       =   True
          LockTop         =   False
          Scope           =   2
-         TabIndex        =   0
+         TabIndex        =   1
          TabPanelIndex   =   0
          TabStop         =   True
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   536
+         Top             =   541
          Underline       =   False
          Visible         =   True
          Width           =   80
@@ -182,50 +216,16 @@ Begin Window SelectionWindow
          LockRight       =   True
          LockTop         =   False
          Scope           =   0
-         TabIndex        =   1
+         TabIndex        =   2
          TabPanelIndex   =   0
          TabStop         =   True
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   536
+         Top             =   541
          Underline       =   False
          Visible         =   True
          Width           =   606
-      End
-      Begin Label Label1
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "OSXLibVisualEffectView1"
-         Italic          =   False
-         Left            =   20
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   False
-         Multiline       =   False
-         Scope           =   2
-         Selectable      =   False
-         TabIndex        =   2
-         TabPanelIndex   =   0
-         Text            =   "Select a demo:"
-         TextAlign       =   0
-         TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   508
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   304
       End
    End
 End

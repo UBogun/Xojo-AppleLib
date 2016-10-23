@@ -174,30 +174,30 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577207669657720696E2074686520737065636966696564206672616D652E
-		Sub Constructor(x as double, y as double, width as double, height as double)
+		Sub Constructor(x as double, y as double, width as double, height as double, DontRegisterEvents as Boolean = False)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Constructor (FoundationFrameWork.NSMakeRect(x,y,width, height))
+		  Constructor (FoundationFrameWork.NSMakeRect(x,y,width, height), DontRegisterEvents)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577207669657720696E2074686520737065636966696564206672616D652E
-		Sub Constructor(Frame as FoundationFrameWork.nsrect, UseEvents as Boolean = true)
+		Sub Constructor(Frame as FoundationFrameWork.nsrect, DontRegisterEvents as Boolean = False)
 		  
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  if UseEvents then
-		    Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame), true)
-		     registeridentity(self)
-		  else
+		  if DontRegisterEvents then
 		    Super.Constructor(AppKitFramework.initWithFrame(alloc(OrigClassPtr), frame), true)
+		  else
+		    Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame), true)
+		    registeridentity(self)
 		  end if
 		  
 		End Sub

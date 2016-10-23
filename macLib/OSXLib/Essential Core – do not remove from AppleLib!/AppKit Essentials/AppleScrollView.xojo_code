@@ -1,6 +1,12 @@
 #tag Class
 Protected Class AppleScrollView
 Inherits AppleView
+	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
+		Function AcceptsFirstResponder() As Boolean
+		  
+		End Function
+	#tag EndEvent
+
 	#tag Event
 		Function AcceptsTouchEvents() As Boolean
 		  
@@ -261,8 +267,15 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Function impl_acceptsFirstResponder(pid as ptr, sel as ptr) As Boolean
+		  return true
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
 		Protected Shared Function InformInstance(id as ptr) As AppleScrollView
-		  dim ident as AppleScrollView = AppleScrollView(AppleScrollView.Identity(id))
+		  // return AppleScrollView.MakefromPtr(id)
+		  dim ident as AppleScrollView = AppleScrollView.Identity(id)
 		  return if (ident = nil, AppleScrollView.MakeFromPtr (id), ident)
 		  
 		End Function
@@ -543,9 +556,9 @@ Inherits AppleView
 			    dim methods() as TargetClassMethodHelper
 			    
 			    //NSResponder "delegate" methods
-			    methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf impl_acceptsFirstResponder, "c@:")
-			    methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
-			    methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
+			    // methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf AppleScrollview.impl_acceptsFirstResponder, "c@:")
+			    // methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
+			    // methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
 			    
 			    // methods.Append new TargetClassMethodHelper("smartMagnifyWithEvent:", AddressOf impl_smartMagnifyWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("mouseDown:", AddressOf impl_mouseDown, "v@:@")
@@ -585,7 +598,7 @@ Inherits AppleView
 			    // methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_didAddSubview, "v@:@")
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToSuperview", AddressOf impl_viewDidMoveToSuperview, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewWillMoveToSuperview:", AddressOf impl_viewWillMoveToSuperview, "v@:@")
-			    // methods.Append new TargetClassMethodHelper("viewWillMoveToWindow:", AddressOf impl_viewWillMoveToWindow, "v@:@")
+			    methods.Append new TargetClassMethodHelper("viewWillMoveToWindow:", AddressOf impl_viewWillMoveToWindow, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("willRemoveSubview:", AddressOf impl_willRemoveSubview, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("opaque", AddressOf impl_opaque, "c@:")
 			    // methods.Append new TargetClassMethodHelper("allowsVibrancy", AddressOf impl_allowsVibrancy, "c@:")

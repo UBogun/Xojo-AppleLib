@@ -47,7 +47,7 @@ Inherits OSXLibView
 	#tag Event
 		Function CloseControl() As Boolean
 		  if not raiseevent CloseControl then
-		    RemoveHandlers(AppleObject)
+		    if UsedAddhandler then RemoveHandlers(AppleObject)
 		    mAppleObject = nil
 		  end if
 		  return true
@@ -133,16 +133,11 @@ Inherits OSXLibView
 		  // This way no interference with Xoo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
 		  
-		  
 		  dim obj as AppleVisualEffectView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
-		  if obj = nil then obj = if (mAppleObject = nil, CreateObject, AppleVisualEffectView(mAppleObject))
-		  // and adapt it to the current bounds of the Xojo control.
-		  obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
-		  obj.AutoResizingMask = new AppleAutoresizingMask(self) // make it fully resizable
-		  // If there’s a Backdrop, make it the layer’s contents: 
-		  CopyEmbeddedObjects
-		  // mTempObject = nil // remove any unwanted retain cycles
-		  DontDisableLayerDuringInit = false
+		  if obj = nil then // no!
+		    obj = if (mAppleObject = nil, CreateObject, AppleObject)
+		    UsedAddhandler = true
+		  end if
 		  return obj // So it will receive its super’s events
 		  
 		  
@@ -213,6 +208,12 @@ Inherits OSXLibView
 		Sub MouseWheel(anEvent As AppleNSEvent)
 		  #pragma unused anEvent
 		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Function Open() As Boolean
+		  return raiseevent open 
+		End Function
 	#tag EndEvent
 
 	#tag Event , Description = 4669726573206265666F7265206120636F6E7465787475616C206D656E7520697320646973706C617965642E205573652074686973206576656E7420746F206D6F6466792069742E
@@ -410,13 +411,19 @@ Inherits OSXLibView
 		Event InitControl() As AppleVisualEffectView
 	#tag EndHook
 
+	#tag Hook, Flags = &h0
+		Event Open() As Boolean
+	#tag EndHook
+
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if mAppleObject = nil then mAppleObject =CreateObject
+			  if mAppleObject = nil then
+			    mAppleObject = RaiseEvent InitControl
+			    if mAppleObject = nil then mAppleObject = CreateObject
+			  end if
 			  return AppleVisualEffectView(mAppleObject)
-			  
 			  
 			End Get
 		#tag EndGetter

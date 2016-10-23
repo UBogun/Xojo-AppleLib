@@ -21,7 +21,7 @@ Inherits AppleControl
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E657720696D616765766965772066726F6D20616E20696D6167652E
-		Sub Constructor(anImage as appleimage)
+		Sub Constructor(anImage as appleimage, DontRegisterEvents as Boolean = false)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
@@ -29,18 +29,20 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  if RespondsToSelector("imageViewWithImage:", classptr) then
-		    Super.Constructor(imageViewWithImage (classptr, animage.id), true, true)
+		  dim mclassptr as ptr = if (DontRegisterEvents, OrigClassPtr, classptr)
+		  if RespondsToSelector("imageViewWithImage:", mclassptr) then
+		    Super.Constructor(imageViewWithImage (mclassptr, animage.id), true, true)
+		    if not DontRegisterEvents then registeridentity(self)
 		  else
-		    Constructor (FoundationFrameWork.NSMakeRect (0,0,anImage.Width, anImage.Height))
+		    Constructor (FoundationFrameWork.NSMakeRect (0,0,anImage.Width, anImage.Height), DontRegisterEvents)
 		    self.Image = anImage
 		  end if
-		  registeridentity(self)
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(Frame as FoundationFrameWork.NSRect)
+		Sub Constructor(Frame as FoundationFrameWork.NSRect, DontRegisterEvents as Boolean = false)
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
@@ -48,8 +50,9 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(AppKitFramework.initwithFrame(alloc(classptr), frame), true)
-		  registeridentity(self)
+		  dim mclassptr as ptr = if (DontRegisterEvents, OrigClassPtr, classptr)
+		  Super.Constructor(AppKitFramework.initwithFrame(alloc(mclassptr), frame), true)
+		  if not DontRegisterEvents then registeridentity(self)
 		End Sub
 	#tag EndMethod
 
@@ -275,6 +278,22 @@ Inherits AppleControl
 			End Set
 		#tag EndSetter
 		ImageScaling As appkitframework.NSImagescaling
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  // static 
+			  // return mClassPtr
+			  
+			  static mClassPtr as ptr
+			  if mClassPtr = Nil then mClassPtr = FoundationFramework.NSClassFromString ("NSImageView")
+			  Return mClassPtr
+			  
+			  
+			End Get
+		#tag EndGetter
+		Protected Shared OrigClassPtr As Ptr
 	#tag EndComputedProperty
 
 

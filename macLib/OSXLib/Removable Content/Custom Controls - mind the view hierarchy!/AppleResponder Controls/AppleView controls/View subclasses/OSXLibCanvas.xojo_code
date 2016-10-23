@@ -4,7 +4,7 @@ Inherits OSXLibView
 	#tag Event
 		Function CloseControl() As Boolean
 		  if not raiseevent CloseControl then
-		    RemoveHandlers(AppleObject)
+		    if UsedAddhandler then RemoveHandlers(AppleObject)
 		    mAppleObject = nil
 		  end if
 		  return true
@@ -21,22 +21,20 @@ Inherits OSXLibView
 		  // This way no interference with Xoo events should occur, but I am mighty sure the engineers won’t recommend this approach as well.
 		  // Let’s hope for a desktop usercontrol soon!
 		  
-		  
-		  
-		  dim obj as AppleView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
+		  dim obj as ApplePaintView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
 		  if obj = nil then // no!
-		    obj = if (mAppleObject = nil, CreateObject, appleview(mAppleObject))
+		    obj = if (mAppleObject = nil, CreateObject, AppleObject)
+		    UsedAddhandler = true
 		  end if
-		  // and adapt it to the current bounds of the Xojo control.
-		  obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
-		  obj.AutoResizingMask = new AppleAutoresizingMask(self)
-		  obj.TranslatesAutoresizingMaskIntoConstraints = true
-		  // If there’s a Backdrop, make it the layer’s contents: 
-		  obj.WantsLayer = false
-		  CopyEmbeddedObjects
-		  // mTempObject = nil // remove any unwanted retain cycles
-		  DontDisableLayerDuringInit = false
 		  return obj // So it will receive its super’s events
+		  
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Function Open() As Boolean
+		  if not RaiseEvent open then AppleObject.WantsLayer = false else return true
 		  
 		End Function
 	#tag EndEvent
@@ -135,7 +133,7 @@ Inherits OSXLibView
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
-		Attributes( hidden )  Function CreateObject() As AppleView
+		Attributes( hidden )  Function CreateObject() As ApplePaintView
 		  dim obj as new ApplePaintView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
 		  AttachHandlers(obj) // Reroute its events so this Xojo control gets them
 		  
@@ -241,6 +239,10 @@ Inherits OSXLibView
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
+		Event Open() As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 	#tag EndHook
 
@@ -248,7 +250,10 @@ Inherits OSXLibView
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if mAppleObject = nil then mAppleObject =CreateObject
+			  if mAppleObject = nil then
+			    mAppleObject = RaiseEvent InitControl
+			    if mAppleObject = nil then mAppleObject = CreateObject
+			  end if
 			  return ApplePaintView(mAppleObject)
 			  
 			End Get
