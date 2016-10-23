@@ -15,6 +15,7 @@ Inherits AppleObject
 		      XojoControls.Remove(id)
 		      if libdebug then System.DebugLog "removed control for" +me.DebugDescription
 		    end if
+		    unregisteridentity(self)
 		  end if
 		End Sub
 	#tag EndMethod
@@ -703,6 +704,12 @@ Inherits AppleObject
 	#tag ExternalMethod, Flags = &h1, Description = 50726573656E747320616E206572726F7220616C65727420746F20746865207573657220617320616E206170706C69636174696F6E2D6D6F64616C206469616C6F672E
 		Protected Declare Function tryToPerform Lib appkitlibname Selector "tryToPerform:with:" (id as ptr, sel as ptr, anobject as ptr) As Boolean
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 5265676973746572732074686520636F6E74726F6C20697473656C662061732061205765616B52656620696E2061207368617265642044696374696F6E6172792E
+		Attributes( hidden )  Sub UnregisterIdentity(Identity As object)
+		  if XojoIdentity.HasKey(id) then XojoIdentity.Remove(id)
+		End Sub
+	#tag EndMethod
 
 
 	#tag Hook, Flags = &h0, Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20

@@ -63,7 +63,7 @@ Begin Window TableViewWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
+      UseCustomColor  =   "False"
       UseFocusRing    =   True
       VerticalScroller=   True
       Visible         =   True

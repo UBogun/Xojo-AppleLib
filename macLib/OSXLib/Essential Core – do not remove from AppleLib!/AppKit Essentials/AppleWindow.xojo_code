@@ -47,6 +47,16 @@ Inherits AppleResponder
 		Protected Declare Function initWithContentRect Lib appkitlibname Selector "initWithContentRect:styleMask:backing:defer:screen:" (id as ptr, rect as FoundationFrameWork . NSRect, style as Uinteger, type as NSBackingstoreType, deferCreation as boolean, screen as ptr) As Ptr
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652073756363657373206F6620676976696E67206120726573706F6E6465722074686520666F637573
+		Function MakeFirstResponder(value as appleresponder) As Boolean
+		  return makeFirstResponder (mid, value.id)
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function makeFirstResponder Lib appkitlibname Selector "makeFirstResponder:" (id as ptr, value as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0
 		Shared Function MakeFromPtr(aPtr as Ptr) As AppleWindow
 		  return if (aptr = nil, nil,new applewindow(aptr))

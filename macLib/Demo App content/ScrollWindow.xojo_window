@@ -43,7 +43,7 @@ Begin window ScrollWindow
       EraseBackground =   True
       FlippedCoordinates=   False
       FocusRingType   =   "Default"
-      Height          =   578
+      Height          =   527
       HelpTag         =   ""
       HorizontalScroller=   True
       Index           =   -2147483648
@@ -54,20 +54,19 @@ Begin window ScrollWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Magnification   =   10.0
+      Magnification   =   1.0
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   0
-      TrackSwipes     =   False
-      TranslatesAutoresizingMaskIntoConstraints=   False
+      TrackSwipes     =   True
+      TranslatesAutoresizingMaskIntoConstraints=   True
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   True
       VerticalScroller=   True
       Visible         =   True
-      Width           =   704
+      Width           =   656
    End
    Begin TextArea TextArea1
       AcceptTabs      =   False
@@ -87,7 +86,7 @@ Begin window ScrollWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   65
+      Left            =   45
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
@@ -111,11 +110,42 @@ Begin window ScrollWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   133
+      Top             =   -91
       Underline       =   False
-      UseFocusRing    =   True
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   244
+   End
+   Begin PushButton PushButton1
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "OK"
+      Default         =   True
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   604
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   539
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
@@ -130,7 +160,9 @@ End
 		  // You could as well add any view to its documentView instead.
 		  
 		  dim v as new AppleImageView(new AppleImage (OSXLibLogo)) // create an imageview from an image
+		  v.RefusesFirstResponder = true
 		  dim cv as new AppleClipView(v.frame) // and create a clipview with the same dimensions
+		  
 		  cv.DocumentView = v //make the imageciew its documentview
 		  me.AppleObject.ContentView = cv // and the clipview the contentView of the Scrollview
 		  
@@ -139,6 +171,9 @@ End
 		  newview.AutoResizingMask = AppleAutoresizingMask.FullResize
 		  newview.TranslatesAutoresizingMaskIntoConstraints = true
 		  me.AppleObject.AddFloatingSubview(newview, AppleNSEvent.NSEventGestureAxis.None)
+		  
+		  dim rs as boolean = self.AppleObject.MakeFirstResponder(me.AppleObject)
+		  break
 		  // newview.RightAnchor.ConstraintGreaterThanOrEqualToAnchor (me.AppleObject.RightAnchor, 0.1).Active = true
 		  // newview.WidthAnchor.ConstraintEqualToDimension(me.AppleObject.WidthAnchor, 0.1).Priority = AppleLayoutConstraint.NSLayoutPriority.DefaultLow
 		  
@@ -147,7 +182,7 @@ End
 		  
 		  // setting the magnification did not end in the scrollview showing the new maginification, only after a magnification gesture was started.
 		  // Im am manually setting the view to 10 times and center it on the mid of the contentview.
-		  me.AppleObject.SetMagnification 10, me.AppleObject.ConvertPointFromView(me.AppleObject.ContentView.Frame.center,  me.AppleObject.ContentView)
+		  me.AppleObject.SetMagnification 1, me.AppleObject.ConvertPointFromView(me.AppleObject.ContentView.Frame.center,  me.AppleObject.ContentView)
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
@@ -177,8 +212,8 @@ End
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E207468652074686520757365722068617320626567756E20612070696E636820676573747572652E
 		Sub MagnifyGesture(anEvent As AppleNSEvent)
-		  // TextArea1.AppendText "Magnify gesture"+EndOfLine
-		  // me.AppleObject.Magnification =me.AppleObject.Magnification+ anEvent.Magnification
+		  TextArea1.AppendText "Magnify gesture"+EndOfLine
+		  me.AppleObject.Magnification =me.AppleObject.Magnification+ anEvent.Magnification
 		End Sub
 	#tag EndEvent
 	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
@@ -216,6 +251,13 @@ End
 	#tag Event , Description = 466972657320696620746865207573657220686173207374617274656420726573697A696E672074686520766965772E
 		Sub Resizing()
 		  TextArea1.AppendText "Resizing"+eol
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  OSXLibScrollView1.AppleObject.FlashScrollers
 		End Sub
 	#tag EndEvent
 #tag EndEvents

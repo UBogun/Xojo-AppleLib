@@ -44,6 +44,17 @@ Inherits OSXLibView
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Function CloseControl() As Boolean
+		  if not raiseevent CloseControl then
+		    RemoveHandlers(AppleObject)
+		    mAppleObject = nil
+		  end if
+		  return true
+		  
+		End Function
+	#tag EndEvent
+
 	#tag Event , Description = 5573652074686973206576656E7420746F2063726561746520637573746F6D204D656E757320666F7220646966666572656E74206B696E64206F66206576656E74732E
 		Function ConstructContextMenu(AnEvent As AppleNSEvent) As AppleMenu
 		  #pragma unused  anevent
@@ -124,18 +135,10 @@ Inherits OSXLibView
 		  
 		  
 		  dim obj as AppleVisualEffectView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
-		  if obj = nil then // no!
-		    if mTempObject <> nil then // TempObject became necessary to enable Inspector behavior. 
-		      // This fires earlier than the open event of the canvas, so Inspector hits a nil object when it tries to set its properties.
-		      // That’s why TempObject buffers the Scrollview until the control is really opened.
-		      obj = mTempObject
-		    else // No tempObject: Create a new one!
-		      obj = CreateObject
-		    end if
-		    // and adapt it to the current bounds of the Xojo control.
-		    obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
-		    obj.AutoResizingMask = AppleAutoresizingMask.FullResize // make it fully resizable
-		  end if
+		  if obj = nil then obj = if (mAppleObject = nil, CreateObject, AppleVisualEffectView(mAppleObject))
+		  // and adapt it to the current bounds of the Xojo control.
+		  obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
+		  obj.AutoResizingMask = new AppleAutoresizingMask(self) // make it fully resizable
 		  // If there’s a Backdrop, make it the layer’s contents: 
 		  CopyEmbeddedObjects
 		  // mTempObject = nil // remove any unwanted retain cycles
@@ -370,22 +373,20 @@ Inherits OSXLibView
 		  if tempview.Subviews <> nil then
 		    dim count as integer = tempview.subviews.count -1
 		    if count > -1 then
-		      dim superview as appleview = tempview.SuperView
+		      me.AppleObject.AutoresizesSubviews = true
 		      for q as integer = 0 to count
 		        dim subview as appleview = appleview.MakefromPtr(tempview.Subviews.PtrAtIndex(0))
-		        dim control as RectControl = me.Control(subview.id)
-		        subview.AutoResizingMask = new AppleAutoresizingMask(control)
-		        subview.FrameOrigin = superview.ConvertPointFromView(subview.FrameOrigin, tempview)
+		        // subview.AutoResizingMask = new AppleAutoresizingMask(subview.
 		        subview.TranslatesAutoresizingMaskIntoConstraints = true
-		        superview.AddSubview subview
+		        me.AppleObject.AddSubview subview
 		      next
 		    end if
 		  end if
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
-		Private Function CreateObject() As AppleVisualEffectView
+	#tag Method, Flags = &h0, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
+		Function CreateObject() As AppleVisualEffectView
 		  dim obj as new AppleVisualEffectView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
 		  
 		  // AttachHandlers(obj) // Reroute its events so this Xojo control gets them
@@ -394,6 +395,16 @@ Inherits OSXLibView
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub RemoveHandlers(obj as AppleVisualEffectView)
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Hook, Flags = &h0
+		Event CloseControl() As Boolean
+	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event InitControl() As AppleVisualEffectView
@@ -403,12 +414,8 @@ Inherits OSXLibView
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if mAppleObject <> nil then
-			    return AppleVisualEffectView(mAppleObject)
-			  else
-			    if mTempObject = nil then mTempObject = CreateObject
-			    return mTempObject
-			  end if
+			  if mAppleObject = nil then mAppleObject =CreateObject
+			  return AppleVisualEffectView(mAppleObject)
 			  
 			  
 			End Get
@@ -753,11 +760,6 @@ Inherits OSXLibView
 			Group="Behavior"
 			Type="Boolean"
 			EditorType="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UseCustomColor"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseFocusRing"

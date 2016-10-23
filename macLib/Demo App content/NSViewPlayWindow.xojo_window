@@ -34,9 +34,9 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &cFFFFFFFF
       BoundsRotation  =   0.0
-      DoubleBuffer    =   True
+      DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   False
       FlippedCoordinates=   True
@@ -47,7 +47,7 @@ Begin Window NSViewPlayWindow
       InitialParent   =   ""
       Left            =   526
       LockBottom      =   True
-      LockedInPosition=   False
+      LockedInPosition=   True
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
@@ -58,8 +58,7 @@ Begin Window NSViewPlayWindow
       Top             =   0
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
-      Transparent     =   True
-      UseCustomColor  =   False
+      Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   474
@@ -84,7 +83,7 @@ Begin Window NSViewPlayWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   37
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
@@ -97,7 +96,6 @@ Begin Window NSViewPlayWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   310
@@ -278,7 +276,7 @@ Begin Window NSViewPlayWindow
       Alpha           =   1.0
       AutoDeactivate  =   True
       Backdrop        =   0
-      BackgroundColor =   &c0000FF00
+      BackgroundColor =   &cFFFFFFFF
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
@@ -303,7 +301,6 @@ Begin Window NSViewPlayWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   100
@@ -341,7 +338,6 @@ Begin Window NSViewPlayWindow
       TrackSwipes     =   True
       TranslatesAutoresizingMaskIntoConstraints=   True
       Transparent     =   True
-      UseCustomColor  =   True
       UseFocusRing    =   False
       Visible         =   True
       Width           =   100

@@ -2,10 +2,14 @@
 Protected Class OSXLibCanvas
 Inherits OSXLibView
 	#tag Event
-		Sub Close()
-		  mAppleObject = nil
-		  RaiseEvent Close
-		End Sub
+		Function CloseControl() As Boolean
+		  if not raiseevent CloseControl then
+		    RemoveHandlers(AppleObject)
+		    mAppleObject = nil
+		  end if
+		  return true
+		  
+		End Function
 	#tag EndEvent
 
 	#tag Event
@@ -18,20 +22,126 @@ Inherits OSXLibView
 		  // Let’s hope for a desktop usercontrol soon!
 		  
 		  
-		  dim obj as ApplePaintView = raiseevent InitControl 
-		  if obj = nil then
-		    obj = new ApplePaintView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		    obj.AutoResizingMask = AppleAutoresizingMask.FullResize
-		    attachhandlers(obj)
-		    AddHandler obj.DrawRect, Addressof informOnDrawRect
-		    
-		    // obj.registercontrol self // and register this instance so it receives the events.
+		  
+		  dim obj as AppleView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
+		  if obj = nil then // no!
+		    obj = if (mAppleObject = nil, CreateObject, appleview(mAppleObject))
 		  end if
-		  return obj
+		  // and adapt it to the current bounds of the Xojo control.
+		  obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
+		  obj.AutoResizingMask = new AppleAutoresizingMask(self)
+		  obj.TranslatesAutoresizingMaskIntoConstraints = true
+		  // If there’s a Backdrop, make it the layer’s contents: 
+		  obj.WantsLayer = false
+		  CopyEmbeddedObjects
+		  // mTempObject = nil // remove any unwanted retain cycles
+		  DontDisableLayerDuringInit = false
+		  return obj // So it will receive its super’s events
 		  
 		End Function
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h1
+		Protected Sub AttachHandlers(obj as applepaintview)
+		  AddHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  AddHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
+		  AddHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
+		  
+		  AddHandler obj.BeginGesture, Addressof informOnbeginGestureWithEvent
+		  AddHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
+		  AddHandler obj.Rotate, Addressof informOnrotateWithEvent
+		  AddHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  AddHandler obj.Swipe, Addressof informOnswipeWithEvent
+		  AddHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
+		  AddHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis
+		  
+		  
+		  
+		  AddHandler obj.FlagsChanged, Addressof informOnFlagsChanged
+		  AddHandler obj.KeyDown, Addressof informOnKeyDown
+		  AddHandler obj.KeyUp, Addressof informOnKeyUp
+		  
+		  
+		  AddHandler obj.AnimationDidStart, Addressof informOnanimationDidStart
+		  AddHandler obj.AnimationDidStop, Addressof informOnanimationDidStop
+		  AddHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
+		  
+		  
+		  AddHandler obj.MouseDown, Addressof informOnMouseDown
+		  AddHandler obj.MouseEntered, Addressof informOnMouseentered
+		  AddHandler obj.MouseDragged, Addressof informOnMouseDragged
+		  AddHandler obj.MouseExited, Addressof informOnMouseExited
+		  AddHandler obj.MouseMoved, Addressof informOnMouseMoved
+		  AddHandler obj.MouseUp, Addressof informOnMouseUp
+		  
+		  AddHandler obj.RightMouseDown, Addressof informOnRightMouseDown
+		  AddHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
+		  AddHandler obj.RightMouseUp, Addressof informOnRightMouseUp
+		  
+		  AddHandler obj.OtherMouseDown, Addressof informOnOtherMouseDown
+		  AddHandler obj.OtherMouseDragged, Addressof informOnOtherMouseDragged
+		  
+		  AddHandler obj.ScrollWheel, Addressof informOnScrollWheel
+		  
+		  
+		  AddHandler obj.TouchesBegan, Addressof informOntouchesBeganWithEvent
+		  AddHandler obj.TouchesMoved, Addressof informOntouchesMovedWithEvent
+		  AddHandler obj.TouchesCancelled, Addressof informOntouchesCancelledWithEvent
+		  AddHandler obj.TouchesEnded, Addressof informOntouchesEndedWithEvent
+		  
+		  
+		  AddHandler obj.PressureChange, Addressof informOnpressureChangeWithEvent
+		  AddHandler obj.TabletPoint, Addressof informOntabletPoint
+		  AddHandler obj.TabletProximity, Addressof informOntabletProximity
+		  
+		  AddHandler obj.WillPresentError, Addressof informOnwillPresentError
+		  AddHandler obj.DrawRect, addressof informOnDrawRect
+		  
+		  
+		  // NSView events:
+		  AddHandler obj.ViewDidMoveToWindow, Addressof informOnviewDidMoveToWindow
+		  
+		  AddHandler obj.AllowsVibrancy, Addressof informOnAllowsVibrancy
+		  AddHandler obj.opaque, Addressof informOnopaque
+		  
+		  AddHandler obj.AcceptsTouchEvents, Addressof informOnAcceptsTouchEvents
+		  
+		  AddHandler obj.DidAddSubview, Addressof informOnDidAddSubview
+		  AddHandler obj.DidResize, Addressof informOnViewDidEndLiveResize
+		  AddHandler obj.MenuForEvent, Addressof informOnMenuForEvent
+		  AddHandler obj.ViewDidHide, Addressof informOnViewDidHide
+		  AddHandler obj.ViewDidUnHide, Addressof informOnViewDidUnHide
+		  AddHandler obj.ViewWillMoveToSuperview, Addressof informOnViewWillMoveToSuperview
+		  AddHandler obj.ViewWillMoveToWindow, Addressof informOnViewWillMoveToWindow
+		  AddHandler obj.WillOpenMenuForEvent, Addressof informOnWillOpenMenu
+		  AddHandler obj.willRemoveSubview, Addressof informOnwillRemoveSubview
+		  AddHandler obj.WillResize, Addressof informOnviewWillStartLiveResize
+		  AddHandler obj.flipped, AddressOf informonFlipped
+		  
+		  
+		  // AddHandler obj.DidEvaluateActions, Addressof informOnDidEvaluateActions
+		  // AddHandler obj.DidSimulatePhysics, Addressof MouseenterdinformOnDidSimulatePhysics
+		  // AddHandler obj.didApplyConstraints, Addressof informondidApplyConstraints
+		  // AddHandler obj.FinishedSceneUpdate, Addressof informondidFinishUpdateForScene
+		  // AddHandler obj.SceneSizeChanged, Addressof InformOnSceneSizeChange
+		  // AddHandler obj.SceneDidLoad, Addressof informonSceneDidLoad
+		  // AddHandler obj.SceneWillMoveFromView, Addressof informonSceneWillMoveFromView
+		  // AddHandler obj.SceneDidMoveToView, addressof informOnSceneWillMoveToView
+		  // 
+		  // AddHandler obj.ContactBegan, addressOf informOnDidBeginContact
+		  // AddHandler obj.ContactEnded, addressOf informOnDidEndContact
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
+		Attributes( hidden )  Function CreateObject() As AppleView
+		  dim obj as new ApplePaintView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
+		  AttachHandlers(obj) // Reroute its events so this Xojo control gets them
+		  
+		  return obj
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnDrawRect(view as appleview, Rect as FoundationFrameWork.NSrect)
@@ -40,9 +150,90 @@ Inherits OSXLibView
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub RemoveHandlers(obj as applePaintview)
+		  RemoveHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  RemoveHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
+		  RemoveHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
+		  
+		  RemoveHandler obj.BeginGesture, Addressof informOnbeginGestureWithEvent
+		  RemoveHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
+		  RemoveHandler obj.Rotate, Addressof informOnrotateWithEvent
+		  RemoveHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  RemoveHandler obj.Swipe, Addressof informOnswipeWithEvent
+		  RemoveHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
+		  RemoveHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis
+		  
+		  
+		  
+		  RemoveHandler obj.FlagsChanged, Addressof informOnFlagsChanged
+		  RemoveHandler obj.KeyDown, Addressof informOnKeyDown
+		  RemoveHandler obj.KeyUp, Addressof informOnKeyUp
+		  
+		  
+		  RemoveHandler obj.AnimationDidStart, Addressof informOnanimationDidStart
+		  RemoveHandler obj.AnimationDidStop, Addressof informOnanimationDidStop
+		  RemoveHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
+		  
+		  
+		  RemoveHandler obj.MouseDown, Addressof informOnMouseDown
+		  RemoveHandler obj.MouseEntered, Addressof informOnMouseentered
+		  RemoveHandler obj.MouseDragged, Addressof informOnMouseDragged
+		  RemoveHandler obj.MouseExited, Addressof informOnMouseExited
+		  RemoveHandler obj.MouseMoved, Addressof informOnMouseMoved
+		  RemoveHandler obj.MouseUp, Addressof informOnMouseUp
+		  
+		  RemoveHandler obj.RightMouseDown, Addressof informOnRightMouseDown
+		  RemoveHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
+		  RemoveHandler obj.RightMouseUp, Addressof informOnRightMouseUp
+		  
+		  RemoveHandler obj.OtherMouseDown, Addressof informOnOtherMouseDown
+		  RemoveHandler obj.OtherMouseDragged, Addressof informOnOtherMouseDragged
+		  
+		  RemoveHandler obj.ScrollWheel, Addressof informOnScrollWheel
+		  
+		  
+		  RemoveHandler obj.TouchesBegan, Addressof informOntouchesBeganWithEvent
+		  RemoveHandler obj.TouchesMoved, Addressof informOntouchesMovedWithEvent
+		  RemoveHandler obj.TouchesCancelled, Addressof informOntouchesCancelledWithEvent
+		  RemoveHandler obj.TouchesEnded, Addressof informOntouchesEndedWithEvent
+		  
+		  
+		  RemoveHandler obj.PressureChange, Addressof informOnpressureChangeWithEvent
+		  RemoveHandler obj.TabletPoint, Addressof informOntabletPoint
+		  RemoveHandler obj.TabletProximity, Addressof informOntabletProximity
+		  
+		  RemoveHandler obj.WillPresentError, Addressof informOnwillPresentError
+		  RemoveHandler obj.DrawRect, addressof informOnDrawRect
+		  
+		  
+		  // NSView events:
+		  RemoveHandler obj.ViewDidMoveToWindow, Addressof informOnviewDidMoveToWindow
+		  
+		  RemoveHandler obj.AllowsVibrancy, Addressof informOnAllowsVibrancy
+		  RemoveHandler obj.opaque, Addressof informOnopaque
+		  
+		  RemoveHandler obj.AcceptsTouchEvents, Addressof informOnAcceptsTouchEvents
+		  
+		  RemoveHandler obj.DidAddSubview, Addressof informOnDidAddSubview
+		  RemoveHandler obj.DidResize, Addressof informOnViewDidEndLiveResize
+		  RemoveHandler obj.MenuForEvent, Addressof informOnMenuForEvent
+		  RemoveHandler obj.ViewDidHide, Addressof informOnViewDidHide
+		  RemoveHandler obj.ViewDidUnHide, Addressof informOnViewDidUnHide
+		  RemoveHandler obj.ViewWillMoveToSuperview, Addressof informOnViewWillMoveToSuperview
+		  RemoveHandler obj.ViewWillMoveToWindow, Addressof informOnViewWillMoveToWindow
+		  RemoveHandler obj.WillOpenMenuForEvent, Addressof informOnWillOpenMenu
+		  RemoveHandler obj.willRemoveSubview, Addressof informOnwillRemoveSubview
+		  RemoveHandler obj.WillResize, Addressof informOnviewWillStartLiveResize
+		  RemoveHandler obj.flipped, AddressOf informonFlipped
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0
-		Event Close()
+		Event CloseControl() As Boolean
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -57,7 +248,9 @@ Inherits OSXLibView
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  if mAppleObject = nil then mAppleObject =CreateObject
 			  return ApplePaintView(mAppleObject)
+			  
 			End Get
 		#tag EndGetter
 		AppleObject As ApplePaintView
@@ -85,6 +278,7 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AllowVibrancy"
+			Visible=true
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -111,9 +305,8 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BackgroundColor"
-			Visible=true
 			Group="Behavior"
-			InitialValue="&c000000FF"
+			InitialValue="&cFFFFFFFF"
 			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -123,7 +316,6 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"
-			Visible=true
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"
@@ -137,9 +329,7 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="EraseBackground"
-			Visible=true
 			Group="Behavior"
-			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -284,13 +474,6 @@ Inherits OSXLibView
 			InitialValue="True"
 			Type="Boolean"
 			EditorType="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UseCustomColor"
-			Visible=true
-			Group="Behavior"
-			InitialValue="False"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseFocusRing"

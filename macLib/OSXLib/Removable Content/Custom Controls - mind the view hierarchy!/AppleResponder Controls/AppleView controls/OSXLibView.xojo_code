@@ -1,12 +1,15 @@
 #tag Class
 Protected Class OSXLibView
 Inherits OSXLibResponder
-	#tag Event
-		Sub Close()
-		  RaiseEvent Close
-		  mAppleObject = nil
-		  mTempObject = nil
-		End Sub
+	#tag Event , Description = 496E7465726E616C204576656E7420746861742070726576656E74732072756E6E696E67206F662072656D6F766548616E646C6572207768656E207468697320776173206F766572726964656E
+		Function CloseControl() As Boolean
+		  if not raiseevent CloseControl then
+		    RemoveHandlers(AppleObject)
+		    mAppleObject = nil
+		  end if
+		  return true
+		  
+		End Function
 	#tag EndEvent
 
 	#tag Event
@@ -20,25 +23,20 @@ Inherits OSXLibResponder
 		  
 		  dim obj as AppleView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
 		  if obj = nil then // no!
-		    if mTempObject <> nil then // TempObject became necessary to enable Inspector behavior. 
-		      // This fires earlier than the open event of the canvas, so Inspector hits a nil object when it tries to set its properties.
-		      // That’s why TempObject buffers the Scrollview until the control is really opened.
-		      obj = mTempObject
-		    else // No tempObject: Create a new one!
-		      obj = CreateObject
-		    end if
+		    obj = if (mAppleObject = nil, CreateObject, appleview(mAppleObject))
+		    
 		    // and adapt it to the current bounds of the Xojo control.
 		    obj.Frame = FoundationFrameWork.NSMakeRect (me.Left, window.height-  (me.top + me.Height), me.Width, me.Height)
 		    obj.AutoResizingMask = new AppleAutoresizingMask(self)
+		    // If there’s a Backdrop, make it the layer’s contents: 
+		    if me.Backdrop <> nil then
+		      if me.Layer = nil then me.AppleObject.WantsLayer = true // or either it would crash
+		      me.AppleObject.layer.Contents = new AppleImage(me.Backdrop)
+		    end if
+		    CopyEmbeddedObjects
+		    // mTempObject = nil // remove any unwanted retain cycles
+		    DontDisableLayerDuringInit = false
 		  end if
-		  // If there’s a Backdrop, make it the layer’s contents: 
-		  if me.Backdrop <> nil then
-		    if me.Layer = nil then me.AppleObject.WantsLayer = true // or either it would crash
-		    me.AppleObject.layer.Contents = new AppleImage(me.Backdrop)
-		  end if
-		  CopyEmbeddedObjects
-		  // mTempObject = nil // remove any unwanted retain cycles
-		  DontDisableLayerDuringInit = false
 		  return obj // So it will receive its super’s events
 		  
 		  
@@ -174,7 +172,7 @@ Inherits OSXLibResponder
 		      me.AppleObject.AutoresizesSubviews = true
 		      for q as integer = 0 to count
 		        dim subview as appleview = appleview.MakefromPtr(tempview.Subviews.PtrAtIndex(0))
-		        subview.AutoResizingMask = AppleAutoresizingMask.NoLock
+		        // subview.AutoResizingMask = new AppleAutoresizingMask(subview.
 		        subview.TranslatesAutoresizingMaskIntoConstraints = true
 		        me.AppleObject.AddSubview subview
 		      next
@@ -186,7 +184,7 @@ Inherits OSXLibResponder
 	#tag Method, Flags = &h21, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
 		Private Function CreateObject() As AppleView
 		  dim obj as new AppleView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
-		  
+		  obj.WantsLayer = true
 		  AttachHandlers(obj) // Reroute its events so this Xojo control gets them
 		  
 		  return obj
@@ -311,6 +309,86 @@ Inherits OSXLibResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub RemoveHandlers(obj as appleview)
+		  RemoveHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  RemoveHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
+		  RemoveHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
+		  
+		  RemoveHandler obj.BeginGesture, Addressof informOnbeginGestureWithEvent
+		  RemoveHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
+		  RemoveHandler obj.Rotate, Addressof informOnrotateWithEvent
+		  RemoveHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  RemoveHandler obj.Swipe, Addressof informOnswipeWithEvent
+		  RemoveHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
+		  RemoveHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis
+		  
+		  
+		  
+		  RemoveHandler obj.FlagsChanged, Addressof informOnFlagsChanged
+		  RemoveHandler obj.KeyDown, Addressof informOnKeyDown
+		  RemoveHandler obj.KeyUp, Addressof informOnKeyUp
+		  
+		  
+		  RemoveHandler obj.AnimationDidStart, Addressof informOnanimationDidStart
+		  RemoveHandler obj.AnimationDidStop, Addressof informOnanimationDidStop
+		  RemoveHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
+		  
+		  
+		  RemoveHandler obj.MouseDown, Addressof informOnMouseDown
+		  RemoveHandler obj.MouseEntered, Addressof informOnMouseentered
+		  RemoveHandler obj.MouseDragged, Addressof informOnMouseDragged
+		  RemoveHandler obj.MouseExited, Addressof informOnMouseExited
+		  RemoveHandler obj.MouseMoved, Addressof informOnMouseMoved
+		  RemoveHandler obj.MouseUp, Addressof informOnMouseUp
+		  
+		  RemoveHandler obj.RightMouseDown, Addressof informOnRightMouseDown
+		  RemoveHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
+		  RemoveHandler obj.RightMouseUp, Addressof informOnRightMouseUp
+		  
+		  RemoveHandler obj.OtherMouseDown, Addressof informOnOtherMouseDown
+		  RemoveHandler obj.OtherMouseDragged, Addressof informOnOtherMouseDragged
+		  
+		  RemoveHandler obj.ScrollWheel, Addressof informOnScrollWheel
+		  
+		  
+		  RemoveHandler obj.TouchesBegan, Addressof informOntouchesBeganWithEvent
+		  RemoveHandler obj.TouchesMoved, Addressof informOntouchesMovedWithEvent
+		  RemoveHandler obj.TouchesCancelled, Addressof informOntouchesCancelledWithEvent
+		  RemoveHandler obj.TouchesEnded, Addressof informOntouchesEndedWithEvent
+		  
+		  
+		  RemoveHandler obj.PressureChange, Addressof informOnpressureChangeWithEvent
+		  RemoveHandler obj.TabletPoint, Addressof informOntabletPoint
+		  RemoveHandler obj.TabletProximity, Addressof informOntabletProximity
+		  
+		  RemoveHandler obj.WillPresentError, Addressof informOnwillPresentError
+		  
+		  
+		  // NSView events:
+		  RemoveHandler obj.ViewDidMoveToWindow, Addressof informOnviewDidMoveToWindow
+		  
+		  RemoveHandler obj.AllowsVibrancy, Addressof informOnAllowsVibrancy
+		  RemoveHandler obj.opaque, Addressof informOnopaque
+		  
+		  RemoveHandler obj.AcceptsTouchEvents, Addressof informOnAcceptsTouchEvents
+		  
+		  RemoveHandler obj.DidAddSubview, Addressof informOnDidAddSubview
+		  RemoveHandler obj.DidResize, Addressof informOnViewDidEndLiveResize
+		  RemoveHandler obj.MenuForEvent, Addressof informOnMenuForEvent
+		  RemoveHandler obj.ViewDidHide, Addressof informOnViewDidHide
+		  RemoveHandler obj.ViewDidUnHide, Addressof informOnViewDidUnHide
+		  RemoveHandler obj.ViewWillMoveToSuperview, Addressof informOnViewWillMoveToSuperview
+		  RemoveHandler obj.ViewWillMoveToWindow, Addressof informOnViewWillMoveToWindow
+		  RemoveHandler obj.WillOpenMenuForEvent, Addressof informOnWillOpenMenu
+		  RemoveHandler obj.willRemoveSubview, Addressof informOnwillRemoveSubview
+		  RemoveHandler obj.WillResize, Addressof informOnviewWillStartLiveResize
+		  RemoveHandler obj.flipped, AddressOf informonFlipped
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
 		Event AddedSubview(Subview as AppleView)
@@ -320,8 +398,8 @@ Inherits OSXLibResponder
 		Event BecameSubview()
 	#tag EndHook
 
-	#tag Hook, Flags = &h0, Description = 54686520766965772069732061626F757420746F20636C6F73652E20417420746869732073746167652C2069747320636F6E6E65637474696F6E20746F20697473204170706C656F626A6563742077617320616C72656164792072656D6F7665642E
-		Event Close()
+	#tag Hook, Flags = &h0
+		Event CloseControl() As Boolean
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 5573652074686973206576656E7420746F2063726561746520637573746F6D204D656E757320666F7220646966666572656E74206B696E64206F66206576656E74732E
@@ -434,8 +512,17 @@ Inherits OSXLibResponder
 			  if mAppleObject <> nil then
 			    return appleview(mAppleObject)
 			  else
-			    if mTempObject = nil then mTempObject = CreateObject
-			    return mTempObject
+			    select case me
+			    case isa OSXLibScrollView
+			      mAppleObject = OSXLibScrollView(me).CreateObject
+			    case isa OSXLibVisualEffectView
+			      mAppleObject = OSXLibVisualEffectView(me).CreateObject
+			    case isa OSXLibCanvas
+			      mAppleObject = OSXLibCanvas(me).CreateObject
+			    else
+			      mAppleObject = createobject
+			    end select
+			    return appleview(mAppleObject)
 			  end if
 			  
 			  
@@ -452,7 +539,7 @@ Inherits OSXLibResponder
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if me.UseCustomColor then
+			  if value <> &cFFFFFF00 then
 			    if me.layer = nil then DoubleBuffer = true
 			    DontDisableLayerDuringInit = true
 			    me.Layer.BackgroundColor = new applecolor(value)
@@ -555,10 +642,6 @@ Inherits OSXLibResponder
 		Layer As AppleCALAyer
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private mTempObject As AppleView
-	#tag EndProperty
-
 	#tag Property, Flags = &h0, Description = 4966207468652076696577E280997320636F6E74656E74732077696C6C20626520626C656E646564207769746820612056696272616E6379566965772E
 		TrackSwipes As Boolean
 	#tag EndProperty
@@ -576,10 +659,6 @@ Inherits OSXLibResponder
 		#tag EndSetter
 		TranslatesAutoresizingMaskIntoConstraints As Boolean
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h0
-		UseCustomColor As Boolean
-	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520766965772069732076697369626C652E
 		#tag Getter
@@ -647,7 +726,7 @@ Inherits OSXLibResponder
 			Name="BackgroundColor"
 			Visible=true
 			Group="Behavior"
-			InitialValue="&c000000FF"
+			InitialValue="&cFFFFFFFF"
 			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -671,9 +750,7 @@ Inherits OSXLibResponder
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="EraseBackground"
-			Visible=true
 			Group="Behavior"
-			InitialValue="True"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -819,13 +896,6 @@ Inherits OSXLibResponder
 			InitialValue="True"
 			Type="Boolean"
 			EditorType="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UseCustomColor"
-			Visible=true
-			Group="Behavior"
-			InitialValue="False"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseFocusRing"

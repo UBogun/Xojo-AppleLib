@@ -2,6 +2,16 @@
 Protected Class OSXLibResponder
 Inherits Canvas
 	#tag Event
+		Sub Close()
+		  RaiseEvent Close
+		  if not raiseevent CloseControl then
+		    RemoveHandlers(AppleObject)
+		    mAppleObject = nil
+		  end if
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub DoubleClick(X As Integer, Y As Integer)
 		  #pragma Unused X
 		  #pragma Unused Y
@@ -110,7 +120,6 @@ Inherits Canvas
 		  dim obj as appleresponder = raiseEvent InitControl
 		  if  obj <> nil then
 		    dim viewobj as appleview = AppleView(obj)
-		    mAppleObject =  obj
 		    dim origview as new appleview(self) // now accessing the view object of the parent canvas we hijack.
 		    dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
 		    dim subview as appleview = ViewToReplace(origview)
@@ -193,17 +202,7 @@ Inherits Canvas
 		  AddHandler obj.WillPresentError, Addressof informOnwillPresentError
 		  
 		  
-		  // AddHandler obj.DidEvaluateActions, Addressof informOnDidEvaluateActions
-		  // AddHandler obj.DidSimulatePhysics, Addressof MouseenterdinformOnDidSimulatePhysics
-		  // AddHandler obj.didApplyConstraints, Addressof informondidApplyConstraints
-		  // AddHandler obj.FinishedSceneUpdate, Addressof informondidFinishUpdateForScene
-		  // AddHandler obj.SceneSizeChanged, Addressof InformOnSceneSizeChange
-		  // AddHandler obj.SceneDidLoad, Addressof informonSceneDidLoad
-		  // AddHandler obj.SceneWillMoveFromView, Addressof informonSceneWillMoveFromView
-		  // AddHandler obj.SceneDidMoveToView, addressof informOnSceneWillMoveToView
-		  // 
-		  // AddHandler obj.ContactBegan, addressOf informOnDidBeginContact
-		  // AddHandler obj.ContactEnded, addressOf informOnDidEndContact
+		  
 		End Sub
 	#tag EndMethod
 
@@ -474,6 +473,66 @@ Inherits Canvas
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub RemoveHandlers(obj as appleresponder)
+		  RemoveHandler obj.AcceptsFirstResponder, Addressof informOnAcceptsFirstResponder
+		  RemoveHandler obj.DontBecomeFirstResponder, Addressof informOnBecomeFirstResponder
+		  RemoveHandler obj.DontResignFirstResponder, Addressof informOnresignFirstResponder
+		  
+		  RemoveHandler obj.BeginGesture, Addressof informOnbeginGestureWithEvent
+		  RemoveHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
+		  RemoveHandler obj.Rotate, Addressof informOnrotateWithEvent
+		  RemoveHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  RemoveHandler obj.Swipe, Addressof informOnswipeWithEvent
+		  RemoveHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
+		  RemoveHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis
+		  
+		  
+		  
+		  RemoveHandler obj.FlagsChanged, Addressof informOnFlagsChanged
+		  RemoveHandler obj.KeyDown, Addressof informOnKeyDown
+		  RemoveHandler obj.KeyUp, Addressof informOnKeyUp
+		  
+		  
+		  RemoveHandler obj.AnimationDidStart, Addressof informOnanimationDidStart
+		  RemoveHandler obj.AnimationDidStop, Addressof informOnanimationDidStop
+		  RemoveHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
+		  
+		  
+		  RemoveHandler obj.MouseDown, Addressof informOnMouseDown
+		  RemoveHandler obj.MouseEntered, Addressof informOnMouseentered
+		  RemoveHandler obj.MouseDragged, Addressof informOnMouseDragged
+		  RemoveHandler obj.MouseExited, Addressof informOnMouseExited
+		  RemoveHandler obj.MouseMoved, Addressof informOnMouseMoved
+		  RemoveHandler obj.MouseUp, Addressof informOnMouseUp
+		  
+		  RemoveHandler obj.RightMouseDown, Addressof informOnRightMouseDown
+		  RemoveHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
+		  RemoveHandler obj.RightMouseUp, Addressof informOnRightMouseUp
+		  
+		  RemoveHandler obj.OtherMouseDown, Addressof informOnOtherMouseDown
+		  RemoveHandler obj.OtherMouseDragged, Addressof informOnOtherMouseDragged
+		  
+		  RemoveHandler obj.ScrollWheel, Addressof informOnScrollWheel
+		  
+		  
+		  RemoveHandler obj.TouchesBegan, Addressof informOntouchesBeganWithEvent
+		  RemoveHandler obj.TouchesMoved, Addressof informOntouchesMovedWithEvent
+		  RemoveHandler obj.TouchesCancelled, Addressof informOntouchesCancelledWithEvent
+		  RemoveHandler obj.TouchesEnded, Addressof informOntouchesEndedWithEvent
+		  
+		  
+		  RemoveHandler obj.PressureChange, Addressof informOnpressureChangeWithEvent
+		  RemoveHandler obj.TabletPoint, Addressof informOntabletPoint
+		  RemoveHandler obj.TabletProximity, Addressof informOntabletProximity
+		  
+		  RemoveHandler obj.WillPresentError, Addressof informOnwillPresentError
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Function ViewToReplace(origview as appleview) As AppleView
 		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
@@ -501,6 +560,14 @@ Inherits Canvas
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520757365722068617320626567756E206120746F75636820676573747572652E
 		Event BeginGesture(anEvent As AppleNSEvent)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event Close()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 496E7465726E616C204576656E7420746861742070726576656E74732072756E6E696E67206F662072656D6F766548616E646C6572207768656E207468697320776173206F766572726964656E
+		Event CloseControl() As Boolean
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520766965772069732061626F757420746F20646973706C617920616E206572726F72206D6573736167652E2055736520697420746F206368616E676520746865206572726F72206F626A6563742E

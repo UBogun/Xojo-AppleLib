@@ -33,7 +33,7 @@ Inherits OSXLibView
 		  dim obj as new AppleSKView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a SKview.
 		  // Please note the internal events of the declared class will not fire anymore.
 		  // obj.Registercontrol self
-		  obj.AutoResizingMask = AppleAutoresizingMask.FullResize // … to the autoresizing mask
+		  obj.AutoResizingMask = new AppleAutoresizingMask(self) // … to the autoresizing mask
 		  attachHandlers(obj)
 		  return obj
 		End Function
@@ -565,13 +565,6 @@ Inherits OSXLibView
 			InitialValue="True"
 			Type="Boolean"
 			EditorType="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UseCustomColor"
-			Visible=true
-			Group="Behavior"
-			InitialValue="False"
-			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseFocusRing"

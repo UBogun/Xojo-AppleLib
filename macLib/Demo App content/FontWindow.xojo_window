@@ -37,6 +37,7 @@ Begin Window FontWindow
       mHasOwnership   =   False
       Multiple        =   False
       RetainCount     =   ""
+      Scope           =   0
       TabPanelIndex   =   0
    End
    Begin Listbox Listbox2

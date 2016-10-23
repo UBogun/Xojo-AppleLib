@@ -186,15 +186,20 @@ Inherits AppleResponder
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E6577207669657720696E2074686520737065636966696564206672616D652E
-		Sub Constructor(Frame as FoundationFrameWork.nsrect)
+		Sub Constructor(Frame as FoundationFrameWork.nsrect, UseEvents as Boolean = true)
 		  
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame), true)
-		  registeridentity(self)
+		  if UseEvents then
+		    Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame), true)
+		     registeridentity(self)
+		  else
+		    Super.Constructor(AppKitFramework.initWithFrame(alloc(OrigClassPtr), frame), true)
+		  end if
+		  
 		End Sub
 	#tag EndMethod
 
@@ -2422,6 +2427,20 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		OpaqueAncestor As AppleView
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  // static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSView")
+			  // return mClassPtr
+			  
+			  static mOrigClassPtr as ptr
+			  if mOrigClassPtr = Nil then mOrigClassPtr = FoundationFrameWork.NSClassFromString("NSView")
+			  Return mOrigClassPtr
+			End Get
+		#tag EndGetter
+		Shared OrigClassPtr As Ptr
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5768656E207468652076616C7565206F6620746869732070726F70657274792069732059455320616E64207468652076696577E280997320626F756E64732072656374616E676C65206368616E67657320746F2061206E65772076616C75652C20746865207669657720706F7374732061204E5356696577426F756E64734469644368616E67654E6F74696669636174696F6E20746F207468652064656661756C74206E6F74696669636174696F6E2063656E7465722E0A43616E2062652063617573656420627920626F756E64732C20736574426F756E64734F726967696E3A2C20736574426F756E647353697A653A2C20626F756E6473526F746174696F6E2C207472616E736C6174654F726967696E546F506F696E743A2C207363616C65556E6974537175617265546F53697A653A2C20726F746174654279416E676C653A

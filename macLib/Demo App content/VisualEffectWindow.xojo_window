@@ -64,7 +64,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -90,7 +89,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Dark"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -142,7 +140,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -168,7 +165,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Light"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -220,7 +216,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -246,7 +241,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "AppearanceBased"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -313,7 +307,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   3
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Switches the layer on which makes the text disappear."
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -380,7 +373,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Available since macOS 10.12"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -496,7 +488,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -522,7 +513,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "TitleBar"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -574,7 +564,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -600,7 +589,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Selection"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -652,7 +640,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -678,7 +665,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Menu"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -730,7 +716,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -756,7 +741,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Popover"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -791,7 +775,7 @@ Begin Window VisualEffectWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   382
+      Left            =   381
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -804,11 +788,10 @@ Begin Window VisualEffectWindow
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   298
+      Top             =   297
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -823,7 +806,7 @@ Begin Window VisualEffectWindow
          Index           =   -2147483648
          InitialParent   =   "OSXLibEffectView8"
          Italic          =   False
-         Left            =   401
+         Left            =   400
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -834,14 +817,13 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Sidebar"
          TextAlign       =   1
          TextColor       =   &c00000000
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   556
+         Top             =   555
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -886,7 +868,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -912,7 +893,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "MediumLight"
          TextAlign       =   1
          TextColor       =   &c00000000
@@ -964,7 +944,6 @@ Begin Window VisualEffectWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   192
@@ -1001,7 +980,6 @@ Begin Window VisualEffectWindow
          TrackSwipes     =   False
          TranslatesAutoresizingMaskIntoConstraints=   False
          Transparent     =   True
-         UseCustomColor  =   False
          UseFocusRing    =   False
          Visible         =   True
          Width           =   100
@@ -1028,7 +1006,6 @@ Begin Window VisualEffectWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "UltraDark"
          TextAlign       =   1
          TextColor       =   &c00000000

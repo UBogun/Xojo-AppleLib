@@ -373,8 +373,20 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Resize(NewSize as FoundationFramework.NSSize, proportional as boolean = false, InterpolationQuality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.default, Scale as double = 0) As AppleImage
+		  dim xfactor as double = NewSize.width / Width
+		  dim yfactor as double = NewSize.height/Height
+		  if proportional then
+		    return scale (min(xfactor, yfactor), 0, interpolationquality, scale)
+		  else
+		    return scale (xfactor, yfactor, interpolationquality, scale)
+		  end if
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720696D616765207468617420697320726573697A6564207769746820616C6F6E6720746865207820616E64207920617869732077697468207468652076616C75657320796F752070726F766964652E200A5F595363616C655F203D2030206D616B657320746865207363616C652070726F706F74696F6E616C2E0A205F5363616C655F203D20302074616B657320746865206F726967696E616C20696D6167652773207363616C652070726F706572747920666F7220746865207363616C65206F6620746865206E657720696D6167652E2020
-		Function Resize(XScale as double, YScale as Double = 0, interpolationquality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.Default, scale as double = 0) As AppleImage
+		Function Scale(XScale as double, YScale as Double = 0, interpolationquality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.Default, scale as double = 0) As AppleImage
 		  if YScale = 0 then YScale = XScale
 		  dim W as double = me.Width* XScale
 		  dim h as double = me.Height* YScale
@@ -386,18 +398,6 @@ Inherits AppleObject
 		  dim result as AppleImage= AppleCGContext.Getimage
 		  AppleCGContext.EndImageContext
 		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function Resize(NewSize as FoundationFramework.NSSize, proportional as boolean = false, InterpolationQuality as coreGraphicsFramework.CGInterpolationQuality = coreGraphicsFramework.CGInterpolationQuality.default, Scale as double = 0) As AppleImage
-		  dim xfactor as double = NewSize.width / Width
-		  dim yfactor as double = NewSize.height/Height
-		  if proportional then
-		    return resize (min(xfactor, yfactor), 0, interpolationquality, scale)
-		  else
-		    return Resize (xfactor, yfactor, interpolationquality, scale)
-		  end if
 		End Function
 	#tag EndMethod
 

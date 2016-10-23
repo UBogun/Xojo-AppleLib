@@ -367,13 +367,6 @@ Inherits OSXLibControl
 			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="UseCustomColor"
-			Visible=true
-			Group="Behavior"
-			InitialValue="False"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="UseFocusRing"
 			Group="Appearance"
 			Type="Boolean"

@@ -661,6 +661,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setopaque Lib appkitlibname Selector "setOpaque:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setowningView Lib appkitlibname Selector "setOwningView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
@@ -866,6 +870,12 @@ Protected Module AppKitFramework
 		  Low = 2
 		  Medium = 4
 		High = 3
+	#tag EndEnum
+
+	#tag Enum, Name = NSImageLayoutDirection, Type = Integer, Flags = &h1
+		LeftToRight = 2
+		  RightToLeft = 3
+		Undefined = -1
 	#tag EndEnum
 
 	#tag Enum, Name = NSImageScaling, Type = UInteger, Flags = &h1

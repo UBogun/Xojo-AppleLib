@@ -19,7 +19,7 @@ Begin Window CIFilterWindow
    MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   650
-   MinimizeButton  =   True
+   MinimizeButton  =   False
    MinWidth        =   850
    Placement       =   1
    Resizeable      =   True
@@ -117,7 +117,6 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Untitled"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -173,7 +172,6 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "I could not figure out how to catch changes on the UIViewControl controls below. Therefore I installed a timer. If the app is too laggy, decheck Auto-Refresh and refresh manually."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -291,7 +289,6 @@ Begin Window CIFilterWindow
       Width           =   117
    End
    Begin xojo.core.timer Timer1
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "0"
@@ -370,7 +367,6 @@ Begin Window CIFilterWindow
       Width           =   206
    End
    Begin xojo.core.timer timer2
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "2"
@@ -458,27 +454,32 @@ End
 		  dim smalllogo as new AppleImage(OSXLibLogo)
 		  smalllogo = smalllogo.Resize (OSXLibView1.AppleObject.FrameSize, true, AppKitFramework.NSImageInterpolation.high, self.ScaleFactor)
 		  smalllogo.Name =kSmallLogo
-		  // filter = new AppleCIWhitePointAdjust (osxliblogo ,&c44228800)
+		  filter = new AppleCIColorCrossPolynomial (smalllogo.toPicture, new AppleLibVector10(3, -20, 4, 5, 6, -3, 0, 3, 1, -5))
 		  // // filter  = myfilter
-		  OSXLibView1.AppleObject.Image = smalllogo
+		  OSXLibView1.AppleObject.Image = filter.OutputImage
 		  ShowAttribues
 		  // dim attdict as CIFilterAttributeDictionary = filter.FilterAttributes
 		  // dim cats() as text = attdict.FilterCategoryKeys
 		  // dim min as double = attdict.MinimumValue
 		  // dim outdict as CIFilterAttributeDictionary =attdict.OutputImageDict
 		  // dim ref as appleurl = attdict.LocalizedReference
-		  // dim v as  AppleIKFilterUIView = filter.ConfigurationView (AppleCIFilter.IKUISizeFlavor.Regular, AppleCIFilter.CIUIParameters.Development)
-		  // v.AutoResizingMask = AppleAutoresizingMask.FullResize
-		  // OSXLibView2.AppleObject.AddSubview v
-		  
+		  if filter <> nil then
+		    dim v as  AppleIKFilterUIView = filter.ConfigurationView (AppleCIFilter.IKUISizeFlavor.Regular, AppleCIFilter.CIUIParameters.Development)
+		    v.AutoResizingMask = AppleAutoresizingMask.FullResize
+		    OSXLibView2.AppleObject.AddSubview v
+		  end if
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h0
-		Sub MakeGrayGradient()
+		Function ColorChangeMethod(Input as color) As color
+		  // an example for usage of the AppleLibColorCube
+		  // simply replaces every color that contains more than 50% blue to transparent
 		  
-		End Sub
+		  return if (input.Blue < 128 and input.Blue > 30 ,  RGB(255,255, 255, 255), Input)
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
@@ -530,16 +531,23 @@ End
 		  me.AddRows (array("___ Distortion Filters ____", "BumpDistortion", "BumpDistortionLinear", "CircleSplashDistortion", "CircularWrap", "Droste", "DisplacementDistortion", "GlassDistortion", _
 		  "GlassLozenge", "HoleDistortion", "Lighttunnel", "PinchDistortion", "StretchCrop", "TorusLensDistortion", "TwirlDistortion", "VortextDistortion"))
 		  me.Addrows(array("____Generators____", "AztecCodeGenerator", "CheckerboardGenerator", "Code128BarcodeGenerator", "ConstantColorGenerator", "LenticularHaloGenerator","QRCodeGenerator", _
-		  "RandomGenerator", "StripesGenerator"))
+		  "RandomGenerator", "StarshineGenerator", "StripesGenerator", "SunbeamsGenerator"))
 		  me.addrows (array("____Gradients____", "GaussianGradient", "LinearGradient", "RadialGradient", "SmoothLinearGradient"))
 		  me.AddRows(array("____ColorAdjustment____", "ColorClamp", "ColorControls", "ColorMatrix", "ColorPolynomial", "ExposureAdjust", "GammaAdjust", _
 		  "HueAdjust", "LinearToSRGBToneCurve", "SRGBToneCurveToLinear", "TemperatureAndTint", "Vibrance", _
 		  "WhitePointAdjust"))
+		  me.AddRows(array("____Color Effects____", "ColorCrossPolynomial","ColorCube", "ColorCubeWithColorSpace", "ColorInvert", "ColorMonochrome", "ColorPosterize", "FalseColor", "MaskToAlpha", _
+		  "MaximumComponent", "MinimumComponent", "PhotoEffectChrome", "PhotoEffectFade", "PhotoEffectInstant", "PhotoEffectMono", _
+		  "PhotoEffectNoir", "PhotoEffectProcess", "PhotoEffectTonal", "PhotoEffectTransfer", "SepiaTone", "Vignette", "VignetteEffect"))
+		  me.addrows(array("____Geometry Adjustment____", "AffineTransform", "Crop", "LanczosScaleTansform", "StraightenFilter"))
+		  me.addrows(array("____Reduction____", "AreaAverage", "AreaHistogram", "HistogramDisplayFilter", "RowAverage", "ColumnAverage", "AreaMaximum", _
+		  "AreaMinimum", "AreaMaximumAlpha", "AreaMinimumAlpha"))
 		  me.ListIndex = 0
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Change()
+		  timer1.Mode = xojo.core.timer.Modes.Off
 		  try
 		    'dim img as new AppleImage(OSXLibLogo)
 		    dim img as AppleImage = AppleImage.ImageNamed (kSmallLogo)
@@ -628,9 +636,12 @@ End
 		      filter = new AppleCIQRCodeGenerator ("AppleLib rulez!", AppleCIQRCodeGenerator.QRCorrectionLevels.Highest)
 		    case "RandomGenerator"
 		      filter = new AppleCIRandomGenerator
+		    case "StarshineGenerator"
+		      filter = new AppleCIStarShineGenerator (osxlibview1.AppleObject.width/2, osxlibview1.AppleObject.height/2, &cFF133D00, 41, 20, 45, -5, 5, -3)
 		    case "StripesGenerator"
 		      filter = new AppleCIStripesGenerator (OSXLibView1.Width/2, OSXLibView1.Height / 2, &cECA55A00, &c5CB66500, 25, 0.8 )
-		      
+		    case "SunbeamsGenerator"
+		      filter = new AppleCISunbeamsGenerator (OSXLibView1.Width/2, OSXLibView1.Height / 2, &cECA55A00, 45, 4.6, 0.22, 2.56, 0.5)
 		      
 		    case "GaussianGradient"
 		      filter = new AppleCIGaussianGradient (OSXLibView1.Width/2, OSXLibView1.Height / 2, &cECA55A00, &c5CB66500, 250 )
@@ -647,9 +658,9 @@ End
 		    case "ColorControls"
 		      filter = new AppleCIColorControls (pic, 4, 0.8, -2 )
 		    case "ColorMatrix"
-		      filter = new AppleCIColorMatrix (pic, &cbb0000FF, &c002200FF, &c448866FF )
+		      filter = new AppleCIColorMatrix (pic, nil, nil, new AppleLibVectorRGBA(-5, 0, 6,1 ),nil , new AppleLibVectorRGBA(-20, 1, -1,0 ))
 		    case "ColorPolynomial"
-		      filter = new AppleCIColorPolynomial (pic, &c00FF00FF, &c99ff22ff, &c00aa00ff )
+		      filter = new AppleCIColorPolynomial (pic, nil, new AppleLibVectorRGBA(1, 200, -400, 1), new AppleLibVectorRGBA(0.2, 0.5, 400, 1) )
 		    case "ExposureAdjust"
 		      filter = new AppleCIExposureAdjust (pic,7.2 )
 		    case "GammaAdjust"
@@ -667,8 +678,91 @@ End
 		    case "WhitePointAdjust"
 		      filter = new AppleCIWhitePointAdjust (pic ,&c44228800)
 		      
+		    case "AffineTransform"
+		      dim transform as new AppleAffineTransform
+		      transform.RotateByDegrees(20)
+		      transform.Scale(5, 1)
+		      filter = new AppleCIAffineTransform(pic, transform)
+		    case "StraightenFilter"
+		      filter = new AppleCIStraightenFilter (pic, 180)
+		    case "Crop"
+		      filter = new AppleCICrop (pic, 200,135,600,150)
+		    case "LanczosScaleTansform"
+		      filter = new AppleCILanczosScaleTransform(pic, 0.12, 0.5)
+		      
+		      
+		    case "ColorCrossPolynomial"
+		      filter = new AppleCIColorCrossPolynomial (pic, new AppleLibVector10(1, -50, 4, 5, 1, 0,0,0,0,0), _
+		      nil, new AppleLibVector10(-1, -1, 2, 1, 0,0,0,0,0,0))
+		    case "ColorCube"
+		      dim cube as new AppleLibColorCube(80, addressof colorchangeMethod)
+		      filter=  new AppleCIColorCube(pic, cube)
+		    case "ColorCubeWithColorSpace"
+		      dim cube as new AppleLibColorCube(80, addressof colorchangeMethod)
+		      filter=  new AppleCIColorCubeWithColorSpace(pic, cube, AppleCGColorSpace.ColorSpaceAdobeRGB1998)
+		    case "ColorInvert"
+		      filter = new AppleCIColorInvert(pic)
+		    case "ColorMonochrome"
+		      filter = new AppleCIColorMonochrome(pic, &cFF972300, 0.95)
+		    case "ColorPosterize"
+		      filter = new AppleCIColorPosterize(pic, 13)
+		    case "FalseColor"
+		      filter = new AppleCIFalseColor(pic, &cECA55A00, &c5CB66500)
+		    case "MaskToAlpha"
+		      filter = new AppleCIMaskToAlpha(pic)
+		    case "MaximumComponent"
+		      filter = new AppleCIMaximumComponent(pic)
+		    case "MinimumComponent"
+		      filter = new AppleCIMinimumComponent(pic)
+		    case "PhotoEffectChrome"
+		      filter = new AppleCIPhotoEffectChrome(pic)
+		    case "PhotoEffectFade"
+		      filter = new AppleCIPhotoEffectFade(pic)
+		    case "PhotoEffectInstant"
+		      filter = new AppleCIPhotoEffectInstant(pic)
+		    case "PhotoEffectMono"
+		      filter = new AppleCIPhotoEffectMono(pic)
+		    case "PhotoEffectNoir"
+		      Filter = new AppleCIPhotoEffectNoir(pic)
+		    case "PhotoEffectProcess"
+		      filter = new AppleCIPhotoEffectProcess(pic)
+		    case "PhotoEffectTonal"
+		      filter = new AppleCIPhotoEffectTonal(pic)
+		    case "PhotoEffectTransfer"
+		      filter = new AppleCIPhotoEffectTransfer (pic)
+		    case "SepiaTone"
+		      filter = new AppleCISepiaTone (pic, 0.94)
+		    case "Vignette"
+		      filter = new AppleCIVignette(pic, 1.7, 1.95)
+		    case "VignetteEffect"
+		      filter = new AppleCIVignetteEffect (pic, pic.Width/2, pic.Height / 2, 257, 0.4, 0.3)
+		      
+		      
+		      // Reduction
+		    case "AreaAverage"
+		      filter = new AppleCIAreaAverage(pic)
+		    case "AreaHistogram"
+		      filter = new AppleCIAreaHistogram(pic,0,0,0,0,10)
+		    case "RowAverage"
+		      filter = new AppleCIRowAverage(pic)
+		    case "ColumnAverage"
+		      filter = new AppleCIColumnAverage(pic)
+		    case "AreaMaximum"
+		      filter = new AppleCIAreaMaximum(pic)
+		    case "AreaMinimum"
+		      filter = new AppleCIAreaMinimum(pic)
+		    case "AreaMaximumAlpha"
+		      filter = new AppleCIAreaMaximumAlpha(pic)
+		    case "AreaMinimumAlpha"
+		      filter = new AppleCIAreaMinimumAlpha(pic)
+		    case "HistogramDisplayFilter"
+		      dim prefilter as new AppleCIAreaHistogram(pic,0,0,0,0,256, 25)
+		      filter = new AppleCIHistogramDisplayFilter (prefilter, 200, 0.98, 0.02)
+		      
+		      
 		      
 		    end select
+		    
 		  catch
 		    MsgBox "The selected filter is not available on this system"
 		  end try
@@ -683,12 +777,9 @@ End
 		    else
 		      osxlibview2.AppleObject.AddSubview configview
 		    end if
-		    configview.ObjectController.AutomaticallyPreparesContent = true
-		    controller = new AppleObjectController (configview.ObjectController.Content)
-		    dim cii as new AppleCIImage (OSXLibLogo)
-		    // filter.Inputciimage = cii
-		    Controller.AutomaticallyPreparesContent = true
-		    OSXLibview1.AppleObject.Image = filter.OutputImage
+		    dim width as double = OSXLibView1.Width
+		    dim height as double = osxlibview1.Height
+		    OSXLibview1.AppleObject.Image = filter.OutputCIImage.toAppleImage(width, height, true)
 		    ShowAttribues
 		  end if
 		  
@@ -722,7 +813,9 @@ End
 		  filter.ValueForKey(CIFilterAttributeDictionary.kciinputtimeKey) = new AppleNumber(TimePos)
 		  'filter.ValueForKey(CIFilterAttributeDictionary.kciinputhaloradius) =  new AppleNumber (xojo.math.RandomInt(0, 300))
 		  'OSXLibView1.AppleObject.ContentFilters.ObjectAtIndex(0).ValueForKey(CIFilterAttributeDictionary.kciinputtimeKey) = new AppleNumber(TimePos)
-		  OSXLibview1.AppleObject.Image = filter.OutputImage
+		  dim width as double = OSXLibView1.Width
+		  dim height as double = osxlibview1.Height
+		  OSXLibview1.AppleObject.Image = filter.OutputCIImage.toAppleImage(width, height, true)
 		  // OSXLibView1.AppleObject.Layer.Invalidate
 		  if TimePos >= 1 then me.Mode = xojo.core.timer.Modes.Off
 		End Sub
@@ -751,18 +844,23 @@ End
 #tag Events timer2
 	#tag Event
 		Sub Action()
-		  if filter <> nil then OSXLibview1.AppleObject.Image = filter.OutputImage
-		  
+		  if filter <> nil and filter.OutputCIImage <> nil then 
+		    dim width as double = OSXLibView1.Width
+		    dim height as double = osxlibview1.Height
+		    app.DoEvents(5)
+		    OSXLibview1.AppleObject.Image = filter.OutputCIImage.toAppleImage(width, height, true)
+		    
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events OSXLibImageWell2
 	#tag Event
 		Sub Shown()
-		  // dim p as new AppleImage(OSXLibLogo)
-		  // p = p.Resize (me.AppleObject.FrameSize, true, AppKitFramework.NSImageinterpolation.High)
-		  dim t as text = "What an amazing easy method to create QR Codes directly from Text and AppleURL. Still need a better way to upscale without artifacts which I try to filter out afterwards."
-		  dim pic as picture = t.GenerateQRCode(AppleCIQRCodeGenerator.QRCorrectionLevels.Medium, me.width, self.ScaleFactor)
+		  
+		  
+		  dim t as text = "What an amazingly easy method to create QR Codes directly from Text and AppleURL. Upscales without blurring now."
+		  dim pic as picture = t.GenerateQRCode(AppleCIQRCodeGenerator.QRCorrectionLevels.Lowest, me.width)
 		  // pic = pic.BlurBox(20)
 		  me.AppleObject.Image = new AppleImage(pic)
 		End Sub

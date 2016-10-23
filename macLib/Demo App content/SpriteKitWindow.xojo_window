@@ -46,10 +46,10 @@ Begin Window SpriteKitWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Scope           =   0
       TabIndex        =   0
@@ -59,7 +59,6 @@ Begin Window SpriteKitWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   600

@@ -235,7 +235,7 @@ Protected Module CIFIlterModule
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 4D756C7469706C69657320736F7572636520636F6C6F722076616C75657320616E6420616464732061206269617320666163746F7220746F206561636820636F6C6F7220636F6D706F6E656E742E
-		Function ChangeColorMatrix(extends p as picture, RedVector As Color = &cff0000ff, GreenVector as Color = &c00FF00FF, BlueVector As Color = &c0000FFFF, AlphaVector As Color = &c00000000, BiasVector As Color = &c000000FF) As Picture
+		Function ChangeColorMatrix(extends p as picture, RedVector As applelibvectorRGBA = nil, GreenVector as applelibvectorRGBA = nil, BlueVector As applelibvectorRGBA = nil, AlphaVector As applelibvectorRGBA = nil, BiasVector As applelibvectorRGBA = nil) As Picture
 		  #if targetmacos
 		    try
 		      dim f as new AppleCIColorMatrix (p, RedVector, GreenVector, BlueVector, AlphaVector, BiasVector)
@@ -255,7 +255,7 @@ Protected Module CIFIlterModule
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 4D6F6469666965732074686520706978656C2076616C75657320696E20616E20696D616765206279206170706C79696E67206120736574206F6620637562696320706F6C796E6F6D69616C732E
-		Function ChangeColorPolynomial(extends p as picture, RedVector As Color = &c00FF00FF, GreenVector as Color = &c00FF00FF, BlueVector As Color = &c00FF00FF, AlphaVector As Color = &c00FF00FF) As Picture
+		Function ChangeColorPolynomial(extends p as picture, RedVector As AppleLibVectorRGBA = nil, GreenVector as AppleLibVectorRGBA = nil, BlueVector As AppleLibVectorRGBA = nil, AlphaVector  As AppleLibVectorRGBA = nil) As Picture
 		  #if targetmacos
 		    try
 		      dim f as new AppleCIColorPolynomial (p, RedVector, GreenVector, BlueVector, AlphaVector)
@@ -377,14 +377,17 @@ Protected Module CIFIlterModule
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 47656E6572617465732061205152436F64652066726F6D20616E2055524C20616E64207363616C657320697420746F2061206365727461696E2077696474682C206B656570696E672070726F706F7274696F6E2E20426520617761726520746861742075707363616C696E6720746F2073697A6573206E7574207265736C7574696E6720696E20612070757265206D756C7469706C69636174696F6E206F6620746865206F726967696E616C2073697A65206D6967687420726573756C7420696E20696E746572706F6C6174696F6E206172746966616374732E
-		Function GenerateQRCode(extends u as appleurl, CorrectionLevel as AppleCIQRCodeGenerator.QRCorrectionLevels = AppleCIQRCodeGenerator.QRCorrectionLevels.Medium, width as Double = 100, ScaleFactor as double = 1) As Picture
+		Function GenerateQRCode(extends u as appleurl, CorrectionLevel as AppleCIQRCodeGenerator.QRCorrectionLevels = AppleCIQRCodeGenerator.QRCorrectionLevels.Medium, width as Double = 100) As Picture
 		  #if targetmacos
 		    try
 		      dim f as new AppleCIQRCodeGenerator (u, CorrectionLevel)
-		      dim result as AppleImage = f.OutputImage
-		      result = result.Resize (FoundationFrameWork.NSMakeSize(width, width), true, AppKitFramework.NSImageInterpolation.None, ScaleFactor)
-		      dim pic as picture = result.toPicture
-		      return pic.ChangeContrast(10).SharpenLuminance(0.5)
+		      dim outpic as AppleCIImage = f.OutputCIImage
+		      dim factor as double = 100/width * outpic.Extent.Size_.width
+		      dim transform as new AppleAffineTransform 
+		      transform.Scale (factor)
+		      dim f1 as new AppleCIAffineTransform(nil, transform)
+		      f1.InputCIImage = outpic
+		      return f1.OutputImage.toPicture
 		    catch
 		      return nil
 		    end try
@@ -393,14 +396,20 @@ Protected Module CIFIlterModule
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 47656E6572617465732061205152436F64652066726F6D207465787420616E64207363616C657320697420746F2061206365727461696E2077696474682C206B656570696E672070726F706F7274696F6E2E20426520617761726520746861742075707363616C696E6720746F2073697A6573206E7574207265736C7574696E6720696E20612070757265206D756C7469706C69636174696F6E206F6620746865206F726967696E616C2073697A65206D6967687420726573756C7420696E20696E746572706F6C6174696F6E206172746966616374732E
-		Function GenerateQRCode(extends t as text,CorrectionLevel as AppleCIQRCodeGenerator.QRCorrectionLevels = AppleCIQRCodeGenerator.QRCorrectionLevels.Medium, width as Double = 100, ScaleFactor as double = 1) As Picture
+		Function GenerateQRCode(extends t as text,CorrectionLevel as AppleCIQRCodeGenerator.QRCorrectionLevels = AppleCIQRCodeGenerator.QRCorrectionLevels.Medium, width as Double = 100) As Picture
 		  #if targetmacos
 		    try
 		      dim f as new AppleCIQRCodeGenerator (t, CorrectionLevel)
-		      dim result as AppleImage = f.OutputImage
-		      result = result.Resize (FoundationFrameWork.NSMakeSize(width, width), true, AppKitFramework.NSImageInterpolation.None, ScaleFactor)
-		      dim pic as picture = result.toPicture
-		      return pic.ChangeContrast(10).SharpenLuminance(0.5)
+		      dim outpic as AppleCIImage = f.OutputCIImage
+		      dim factor as double = 100/width * outpic.Extent.Size_.width
+		      dim transform as new AppleAffineTransform 
+		      transform.Scale (factor)
+		      dim f1 as new AppleCIAffineTransform(nil, transform)
+		      f1.InputCIImage = outpic
+		      return f1.OutputImage.toPicture
+		      // result = result.Resize (FoundationFrameWork.NSMakeSize(width, width), true, AppKitFramework.NSImageInterpolation.None, ScaleFactor)
+		      // dim pic as picture = result.toPicture
+		      // return pic.ChangeContrast(10).SharpenLuminance(0.5)
 		    catch
 		      return nil
 		    end try
@@ -421,6 +430,21 @@ Protected Module CIFIlterModule
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 496E76657274732074686520636F6C6F7273206F662074686520696D6167652E
+		Function InvertColors(extends p as picture) As Picture
+		  #if targetmacos
+		    try
+		      dim f as new AppleCIColorInvert (p)
+		      return f.OutputCIImage.topicture
+		    catch
+		      return p
+		    end try
+		  #else
+		    #pragma unused p
+		  #endif
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 52656475636573206E6F697365207573696E672061207468726573686F6C642076616C756520746F20646566696E65207768617420697320636F6E73696465726564206E6F6973652E
 		Function ReduceNoise(extends p as picture, NoiseLevel as Double = 0.02, Sharpness as Double = 0.4) As Picture
 		  #if targetmacos
@@ -434,6 +458,22 @@ Protected Module CIFIlterModule
 		    #Pragma unused p
 		    #pragma Unused NoiseLevel
 		    #pragma Unused sharpness
+		  #endif
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 526F746174657320616E642063726F707320746865207069637475726520636F6E74656E7420636C6F636B776973652E
+		Function RotateContent(extends p as picture, Angle as Double) As Picture
+		  #if targetmacos
+		    try
+		      dim f as new AppleCIStraightenFilter (p,angle)
+		      return f.OutputCIImage.topicture
+		    catch
+		      return p
+		    end try
+		  #else
+		    #Pragma unused p
+		    #pragma Unused Angle
 		  #endif
 		End Function
 	#tag EndMethod

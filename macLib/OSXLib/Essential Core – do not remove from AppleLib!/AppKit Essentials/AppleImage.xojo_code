@@ -1,6 +1,16 @@
 #tag Class
 Protected Class AppleImage
 Inherits AppleObject
+	#tag Method, Flags = &h0
+		Sub AddRepresentation(Representation as AppleImageRep)
+		  addRepresentation mid, Representation.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub addRepresentation Lib appkitlibname Selector "addRepresentation:" (id as ptr, rep as ptr)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function blendedColorWithFraction Lib appkitlibname Selector "blendedColorWithFraction:ofColor:" (id as ptr, fraction as cgfloat, OtherColor As Ptr) As Ptr
 	#tag EndExternalMethod
@@ -36,10 +46,16 @@ Inherits AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
 		  dim size as FoundationFrameWork.NSSize = CIImage.Extent.Size_
-		  Constructor(size)
-		  me.LockFocus
-		  CIImage.Draw (FoundationFrameWork.NSMakePoint(0,0), CIImage.Extent, AppKitFramework.NSCompositingOperation.Copy, 1)
-		  me.UnlockFocus
+		  // If the Extent has illogical values or is simply too big, we need to catch the error and return an emtpy image
+		  #pragma BreakOnExceptions false
+		  try
+		    Constructor(size)
+		    me.LockFocus
+		    CIImage.Draw (FoundationFrameWork.NSMakePoint(0,0), CIImage.Extent, AppKitFramework.NSCompositingOperation.Copy, 1)
+		    me.UnlockFocus
+		  catch
+		    Constructor(FoundationFrameWork.NSMakeSize(1,1))
+		  end try
 		  
 		End Sub
 	#tag EndMethod
@@ -196,16 +212,18 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52657475726E732061206E657720696D616765207468617420697320726573697A6564207769746820616C6F6E6720746865207820616E64207920617869732077697468207468652076616C75657320796F752070726F766964652E200A5F595363616C655F203D2030206D616B657320746865207363616C652070726F706F74696F6E616C2E
 		Function Scale(XScale as double, YScale as Double = 0, interpolationQuality as AppKitFramework.NSImageinterpolation = AppKitFramework.NSImageinterpolation.Default, scale as double = 0) As AppleImage
-		  if scale = 0 then scale = Window(0).ScaleFactor
+		  if scale = 0 then scale =  if (window(0) <> nil, Window(0).ScaleFactor, 2)
 		  if YScale = 0 then YScale = XScale
 		  dim W as double = me.Width* XScale
 		  dim h as double = me.Height* YScale
 		  dim frame as FoundationFrameWork.nsrect = FoundationFrameWork.NSMakeRect(0,0,w*scale,h*scale)
 		  dim result as  new AppleImage(frame.Size_)
-		  result.LockFocus
-		  AppleGraphicsContext.CurrentContext.ImageInterpolation = interpolationQuality
-		  me.Draw (frame)
-		  result.UnlockFocus
+		  try
+		    result.LockFocus
+		    AppleGraphicsContext.CurrentContext.ImageInterpolation = interpolationQuality
+		    me.Draw (frame)
+		    result.UnlockFocus
+		  end try
 		  return result
 		  
 		  

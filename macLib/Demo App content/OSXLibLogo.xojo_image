@@ -1,0 +1,43 @@
+#tag MultiImage
+Image OSXLibLogo
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIEAAAAAAIEAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADRD1cYSCsAAAHMfV0OT1NYTGliTG9nby5wbmcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeBPn9NndswAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABkltYWdlcwAQAAgAANEPSQgAAAARAAgAANNnWqwAAAABABwBzH1dAcx9CQHMXVQBzF0/AAlIJwAJSCIAApUUAAIAc01hY2ludG9zaCBIRDpVc2VyczoAdWxpOgBMaWJyYXJ5OgBNb2JpbGUgRG9jdW1lbnRzOgBjb21+YXBwbGV+Q2xvdWREb2NzOgBPU1hMaWIgRGV2ZWxvcG1lbnQ6AEltYWdlczoAT1NYTGliTG9nby5wbmcAAA4AHgAOAE8AUwBYAEwAaQBiAEwAbwBnAG8ALgBwAG4AZwAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAF9Vc2Vycy91bGkvTGlicmFyeS9Nb2JpbGUgRG9jdW1lbnRzL2NvbX5hcHBsZX5DbG91ZERvY3MvT1NYTGliIERldmVsb3BtZW50L0ltYWdlcy9PU1hMaWJMb2dvLnBuZwAAEwABLwAAFQACAAr//wAAAAAAAAAA
+		FullPath = /Users/uli/Library/Mobile Documents/com~apple~CloudDocs/OSXLib Development/Images/OSXLibLogo.png
+		PartialPath = ..\..\Images\OSXLibLogo.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 2075.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = 2555.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIMAAAAAAIMAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADRD1cYSCsAAAHMfV0QT1NYTGliTG9nb0AyLnBuZwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeBPntNndvIAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABkltYWdlcwAQAAgAANEPSQgAAAARAAgAANNnWtIAAAABABwBzH1dAcx9CQHMXVQBzF0/AAlIJwAJSCIAApUUAAIAdU1hY2ludG9zaCBIRDpVc2VyczoAdWxpOgBMaWJyYXJ5OgBNb2JpbGUgRG9jdW1lbnRzOgBjb21+YXBwbGV+Q2xvdWREb2NzOgBPU1hMaWIgRGV2ZWxvcG1lbnQ6AEltYWdlczoAT1NYTGliTG9nb0AyLnBuZwAADgAiABAATwBTAFgATABpAGIATABvAGcAbwBAADIALgBwAG4AZwAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAGFVc2Vycy91bGkvTGlicmFyeS9Nb2JpbGUgRG9jdW1lbnRzL2NvbX5hcHBsZX5DbG91ZERvY3MvT1NYTGliIERldmVsb3BtZW50L0ltYWdlcy9PU1hMaWJMb2dvQDIucG5nAAATAAEvAAAVAAIACv//AAAAAAAAAAA=
+		FullPath = /Users/uli/Library/Mobile Documents/com~apple~CloudDocs/OSXLib Development/Images/OSXLibLogo@2.png
+		PartialPath = ..\..\Images\OSXLibLogo@2.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 2075.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = 2555.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 2075.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = 2555.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage
