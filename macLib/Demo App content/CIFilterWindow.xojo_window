@@ -59,7 +59,6 @@ Begin Window CIFilterWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   True
       Transparent     =   True
-      UseCustomColor  =   "False"
       UseFocusRing    =   False
       Visible         =   True
       Width           =   323
@@ -117,7 +116,6 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Untitled"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -173,7 +171,6 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "I could not figure out how to catch changes on the UIViewControl controls below. Therefore I installed a timer. If the app is too laggy, decheck Auto-Refresh and refresh manually."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -291,7 +288,6 @@ Begin Window CIFilterWindow
       Width           =   117
    End
    Begin xojo.core.timer Timer1
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "0"
@@ -333,7 +329,6 @@ Begin Window CIFilterWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   True
       Transparent     =   True
-      UseCustomColor  =   "False"
       UseFocusRing    =   False
       Visible         =   True
       Width           =   418
@@ -370,7 +365,6 @@ Begin Window CIFilterWindow
       Width           =   206
    End
    Begin xojo.core.timer timer2
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "2"
@@ -412,7 +406,6 @@ Begin Window CIFilterWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   "False"
       UseFocusRing    =   False
       Visible         =   True
       Width           =   206
@@ -458,9 +451,9 @@ End
 		  dim smalllogo as new AppleImage(OSXLibLogo)
 		  smalllogo = smalllogo.Resize (OSXLibView1.AppleObject.FrameSize, true, AppKitFramework.NSImageInterpolation.high, self.ScaleFactor)
 		  smalllogo.Name =kSmallLogo
-		  filter = new AppleCIColorCrossPolynomial (smalllogo.toPicture, new AppleLibVector10(3, -20, 4, 5, 6, -3, 0, 3, 1, -5))
+		  // filter = new AppleCIColorCrossPolynomial (smalllogo.toPicture, new AppleLibVector10(3, -20, 4, 5, 6, -3, 0, 3, 1, -5))
 		  // // filter  = myfilter
-		  OSXLibView1.AppleObject.Image = filter.OutputImage
+		  // OSXLibView1.AppleObject.Image = filter.OutputImage
 		  ShowAttribues
 		  // dim attdict as CIFilterAttributeDictionary = filter.FilterAttributes
 		  // dim cats() as text = attdict.FilterCategoryKeys
@@ -579,7 +572,7 @@ End
 		    case "NoiseReduction"
 		      filter = new AppleCINoiseReduction (pic, 0.1, 1.8)
 		    case "ZoomBlur"
-		      Filter = new AppleCIZoomBlurFilter (pic, OSXLibView1.Width/2, OSXLibView1.Height / 2, 50)
+		      Filter = new AppleCIZoomBlurFilter (pic, OSXLibView1.Width/2, OSXLibView1.Height / 2, 10)
 		      
 		      
 		    case "SharpenLuminance"

@@ -212,7 +212,12 @@ Inherits OSXLibView
 
 	#tag Event
 		Function Open() As Boolean
-		  return raiseevent open 
+		  if RaiseEvent open then
+		    return true
+		  else
+		    me.AppleObject.WantsLayer = false
+		  end if
+		  
 		End Function
 	#tag EndEvent
 
@@ -552,6 +557,7 @@ Inherits OSXLibView
 		#tag ViewProperty
 			Name="BackgroundColor"
 			Group="Behavior"
+			InitialValue="&cFFFFFFFF"
 			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -596,7 +602,6 @@ Inherits OSXLibView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FlippedCoordinates"
-			Visible=true
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

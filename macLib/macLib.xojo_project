@@ -463,5 +463,4 @@ UseGDIPlus=False
 UseBuildsFolder=True
 HiDPI=True
 IsWebProject=False
-MacBuildArchitecture=1
 OptimizationLevel=4

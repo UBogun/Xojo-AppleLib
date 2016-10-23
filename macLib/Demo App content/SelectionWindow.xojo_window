@@ -26,6 +26,144 @@ Begin Window SelectionWindow
    Title           =   "Welcome to OSXLib · written 2016 by Ulrich Bogun, xojoblog.me"
    Visible         =   True
    Width           =   750
+   Begin OSXLibVisualEffectView OSXLibEffectView3
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
+      Alpha           =   1.0
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      BackgroundColor =   &c00FF0000
+      BlendingMode    =   "0"
+      BoundsRotation  =   0.0
+      DoubleBuffer    =   False
+      Emphasized      =   False
+      Enabled         =   True
+      EraseBackground =   True
+      FlippedCoordinates=   False
+      FocusRingType   =   "Default"
+      Height          =   77
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Maskimage       =   0
+      Material        =   "2"
+      Scope           =   0
+      State           =   ""
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   499
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      Transparent     =   True
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   750
+      Begin Label Label1
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "OSXLibEffectView3"
+         Italic          =   False
+         Left            =   28
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   False
+         Multiline       =   False
+         Scope           =   2
+         Selectable      =   False
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         Text            =   "Select a demo:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   504
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   104
+      End
+      Begin PopupMenu PopupMenu1
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "OSXLibEffectView3"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   28
+         ListIndex       =   0
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   False
+         Scope           =   0
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   536
+         Underline       =   False
+         Visible         =   True
+         Width           =   606
+      End
+      Begin PushButton PushButton1
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Show"
+         Default         =   True
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "OSXLibEffectView3"
+         Italic          =   False
+         Left            =   659
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   False
+         Scope           =   2
+         TabIndex        =   2
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   536
+         Underline       =   False
+         Visible         =   True
+         Width           =   80
+      End
+   End
    Begin OSXLibCanvas OSXLibView1
       AcceptFocus     =   False
       AcceptTabs      =   False
@@ -100,134 +238,6 @@ Begin Window SelectionWindow
       Visible         =   True
       Width           =   750
    End
-   Begin OSXLibVisualEffectView OSXLibVisualEffectView1
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AcceptTouchEvents=   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      BackgroundColor =   &c00000000
-      BlendingMode    =   "0"
-      Emphasized      =   False
-      Enabled         =   True
-      FlippedCoordinates=   False
-      Height          =   76
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Maskimage       =   0
-      Material        =   "2"
-      Scope           =   0
-      State           =   ""
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   500
-      Visible         =   True
-      Width           =   750
-      Begin Label Label1
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "OSXLibVisualEffectView1"
-         Italic          =   False
-         Left            =   20
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   False
-         Multiline       =   False
-         Scope           =   2
-         Selectable      =   False
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         Text            =   "Select a demo:"
-         TextAlign       =   0
-         TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   509
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   304
-      End
-      Begin PushButton PushButton1
-         AutoDeactivate  =   True
-         Bold            =   False
-         ButtonStyle     =   "0"
-         Cancel          =   False
-         Caption         =   "Show"
-         Default         =   True
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "OSXLibVisualEffectView1"
-         Italic          =   False
-         Left            =   658
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockLeft        =   False
-         LockRight       =   True
-         LockTop         =   False
-         Scope           =   2
-         TabIndex        =   1
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   541
-         Underline       =   False
-         Visible         =   True
-         Width           =   80
-      End
-      Begin PopupMenu PopupMenu1
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "OSXLibVisualEffectView1"
-         InitialValue    =   ""
-         Italic          =   False
-         Left            =   20
-         ListIndex       =   0
-         LockBottom      =   True
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   False
-         Scope           =   0
-         TabIndex        =   2
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   541
-         Underline       =   False
-         Visible         =   True
-         Width           =   606
-      End
-   End
 End
 #tag EndWindow
 
@@ -239,46 +249,24 @@ End
 
 #tag EndWindowCode
 
-#tag Events OSXLibView1
+#tag Events PopupMenu1
 	#tag Event
-		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
+		Sub Open()
+		  me.AddRow("Color Additions")
+		  me.AddRow("NSView Additions")
+		  me.AddRow("VisualEffectView")
+		  me.AddRow("Notifications")
+		  me.AddRow("CoreBluetooth")
+		  me.AddRow("ScrollView")
+		  me.AddRow("TableView")
+		  me.AddRow("AVAudio")
+		  me.AddRow "SpriteKit"
+		  me.AddRow ("FontManager")
+		  me.addrow ("Introspection")
+		  me.AddRow ("CIFIlter")
+		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
-		  dim logo as new AppleImage(OSXLibLogo)
-		  // g.ConcatenateTransform (TransformExtension.CGAffineTransformMake (1,0,0,-1,0,rect.Size_.height)) // flip the graphics to Xojo defaults vertically
-		  dim FillColor as new AppleColor(&c7B609D00)
-		  g.FillColor = FillColor.CGColor
-		  g.FillRect rect
-		  g.Rotate 0.3
-		  logo = logo.scale (0.035, 0.035, AppKitFramework.NSImageinterpolation.High)
-		  g.DrawTiledImage FoundationFrameWork.NSMakeRect (0,0,logo.Width, logo.Height), logo.CGImage
-		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
-		  g.DrawLinearGradient new AppleCGGradient (&c2C5D3D00, &cAEB0CC00, &cFFF59000, &cFF2EB700), _
-		  FoundationFrameWork.NSMakePoint (0,0), FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height), true, true
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Resized()
-		  me.Invalidate
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events ImageWell1
-	#tag Event
-		Sub Shown()
-		  me.AppleObject.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
-		  me.BackgroundColor = &cFFFFFFFF
-		  dim bgpic as AppleImage = AppleImage.fromPicture(OSXLibLogo)
-		  me.AppleObject.Layer.Contents =bgpic
-		  dim shadow as new AppleShadow
-		  shadow.ShadowColor = new applecolor (&c83838300)
-		  shadow.ShadowOffset = FoundationFrameWork.NSMakeSize(4, -4)
-		  shadow.ShadowBlurRadius = 2
-		  me.AppleObject.Shadow = shadow
-		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
-		  dim ac as new AppleAnimationContext (me.AppleObject)
-		  ac.Duration = 8
-		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
-		  
+		  me.ListIndex = 0
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -332,24 +320,46 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events PopupMenu1
+#tag Events OSXLibView1
 	#tag Event
-		Sub Open()
-		  me.AddRow("Color Additions")
-		  me.AddRow("NSView Additions")
-		  me.AddRow("VisualEffectView")
-		  me.AddRow("Notifications")
-		  me.AddRow("CoreBluetooth")
-		  me.AddRow("ScrollView")
-		  me.AddRow("TableView")
-		  me.AddRow("AVAudio")
-		  me.AddRow "SpriteKit"
-		  me.AddRow ("FontManager")
-		  me.addrow ("Introspection")
-		  me.AddRow ("CIFIlter")
-		  // me.AddRow ("OutlineView") // not ready for demo yet
+		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 		  
-		  me.ListIndex = 0
+		  dim logo as new AppleImage(OSXLibLogo)
+		  // g.ConcatenateTransform (TransformExtension.CGAffineTransformMake (1,0,0,-1,0,rect.Size_.height)) // flip the graphics to Xojo defaults vertically
+		  dim FillColor as new AppleColor(&c7B609D00)
+		  g.FillColor = FillColor.CGColor
+		  g.FillRect rect
+		  g.Rotate 0.3
+		  logo = logo.scale (0.035, 0.035, AppKitFramework.NSImageinterpolation.High)
+		  g.DrawTiledImage FoundationFrameWork.NSMakeRect (0,0,logo.Width, logo.Height), logo.CGImage
+		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
+		  g.DrawLinearGradient new AppleCGGradient (&c2C5D3D00, &cAEB0CC00, &cFFF59000, &cFF2EB700), _
+		  FoundationFrameWork.NSMakePoint (0,0), FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height), true, true
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Resized()
+		  me.Invalidate
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ImageWell1
+	#tag Event
+		Sub Shown()
+		  me.AppleObject.Layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
+		  me.BackgroundColor = &cFFFFFFFF
+		  dim bgpic as AppleImage = AppleImage.fromPicture(OSXLibLogo)
+		  me.AppleObject.Layer.Contents =bgpic
+		  dim shadow as new AppleShadow
+		  shadow.ShadowColor = new applecolor (&c83838300)
+		  shadow.ShadowOffset = FoundationFrameWork.NSMakeSize(4, -4)
+		  shadow.ShadowBlurRadius = 2
+		  me.AppleObject.Shadow = shadow
+		  me.AppleObject.Frame  = FoundationFrameWork.NSMakeRect(-1*(me.Width*5),200, me.width * 10, me.height* 10)
+		  dim ac as new AppleAnimationContext (me.AppleObject)
+		  ac.Duration = 8
+		  me.AppleObject.animator.Frame  = FoundationFrameWork.NSMakeRect (0, 50, me.width , me.height)
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
