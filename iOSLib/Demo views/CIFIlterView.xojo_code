@@ -15,10 +15,10 @@ Begin iosView CIFIlterView
       Animating       =   False
       AnimationDuration=   0.0
       AnimationRepeatCount=   0
-      AutoLayout      =   iOSLIbImageView1, 8, <Parent>, 8, False, +0.50, 1, 1, 0, 
-      AutoLayout      =   iOSLIbImageView1, 1, <Parent>, 1, False, +1.00, 1, 1, *kStdGapCtlToViewH, 
-      AutoLayout      =   iOSLIbImageView1, 2, <Parent>, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, 
       AutoLayout      =   iOSLIbImageView1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, *kStdControlGapV, 
+      AutoLayout      =   iOSLIbImageView1, 2, <Parent>, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, 
+      AutoLayout      =   iOSLIbImageView1, 1, <Parent>, 1, False, +1.00, 1, 1, *kStdGapCtlToViewH, 
+      AutoLayout      =   iOSLIbImageView1, 8, <Parent>, 8, False, +0.50, 1, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False

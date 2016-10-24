@@ -453,7 +453,7 @@ End
 		  smalllogo.Name =kSmallLogo
 		  // filter = new AppleCIColorCrossPolynomial (smalllogo.toPicture, new AppleLibVector10(3, -20, 4, 5, 6, -3, 0, 3, 1, -5))
 		  // // filter  = myfilter
-		  // OSXLibView1.AppleObject.Image = filter.OutputImage
+		  OSXLibView1.AppleObject.Image = smalllogo
 		  ShowAttribues
 		  // dim attdict as CIFilterAttributeDictionary = filter.FilterAttributes
 		  // dim cats() as text = attdict.FilterCategoryKeys

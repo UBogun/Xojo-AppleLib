@@ -64,7 +64,7 @@ End
 		  case "iOSLibButton"
 		    v = new ButtonView
 		  case "AppleCIFilter"
-		    v = new CIFIlterView
+		    v = new CiFilterMenu
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub

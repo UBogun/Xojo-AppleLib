@@ -147,7 +147,7 @@ Protected Module iOSTextFieldExtension
 	#tag Method, Flags = &h0
 		Sub LeftImage(extends f as iOSTextField, assigns value as iOSImage)
 		  dim newImage as new AppleImage(value)
-		  dim Scaledimage as AppleImage = newImage.Resize ( f.Height / newImage.Height)
+		  dim Scaledimage as AppleImage = newImage.Scale ( f.Height / newImage.Height)
 		  f.AppleView.LeftView = new AppleimageView(scaledimage)
 		  
 		End Sub
@@ -188,7 +188,7 @@ Protected Module iOSTextFieldExtension
 	#tag Method, Flags = &h0
 		Sub RightImage(extends f as iOSTextField, assigns value as iOSImage)
 		  dim newImage as new AppleImage(value)
-		  dim Scaledimage as AppleImage = newImage.Resize( f.Height / newImage.Height)
+		  dim Scaledimage as AppleImage = newImage.Scale( f.Height / newImage.Height)
 		  f.AppleView.RightView = new AppleimageView(scaledimage)
 		  
 		End Sub

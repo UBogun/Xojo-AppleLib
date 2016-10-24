@@ -180,7 +180,7 @@ End
 		  g.FillColor = FillColor.CGColor
 		  g.FillRect rect.tonsrect
 		  g.Rotate 0.3
-		  logo = logo.Resize (0.005, 0.005, CoreGraphicsFramework.CGInterpolationQuality.High)
+		  logo = logo.SCale (0.005, 0.005, CoreGraphicsFramework.CGInterpolationQuality.High)
 		  g.DrawTiledImage FoundationFrameWork.NSMakeRect (0,0,logo.Width, logo.Height), logo.CGImage
 		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
 		  g.DrawLinearGradient new AppleCGGradient (&c2C5D3D00, &cAEB0CC00, &cFFF59000, &cFF2EB700), _
@@ -215,7 +215,7 @@ End
 		  // me.AppleObject.layer.AddSublayer sublayer
 		  me.AppleObject.Layer.BackgroundColor = AppleColor.ClearColor
 		  me.AppleObject.Layer.Opaque = false
-		  me.AppleObject.layer.Contents = logo.Resize(0.1, 0.1).CGImage
+		  me.AppleObject.layer.Contents = logo.Scale(0.1).CGImage
 		  me.AppleObject.layer.ContentGravity = AppleCALayer.CALayerContentPosition.ResizeProportionally
 		  me.AppleObject.Layer.ShadowColor = AppleColor.WhiteColor
 		  me.AppleObject.layer.ShadowOpacity = 0.91

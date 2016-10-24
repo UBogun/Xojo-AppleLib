@@ -115,8 +115,8 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  Super.Constructor (imageWithCIImage (classptr, animage.id))
-		  RetainClassObject
+		  Super.Constructor (imageWithCIImage (classptr, animage.id), true, true)
+		  
 		End Sub
 	#tag EndMethod
 
