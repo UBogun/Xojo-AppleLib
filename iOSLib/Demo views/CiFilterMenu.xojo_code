@@ -3,7 +3,7 @@ Begin iosView CiFilterMenu
    BackButtonTitle =   "Back"
    Compatibility   =   ""
    Left            =   0
-   NavigationBarVisible=   False
+   NavigationBarVisible=   True
    TabIcon         =   ""
    TabTitle        =   "CIFilter"
    Title           =   ""
@@ -16,14 +16,15 @@ Begin iosView CiFilterMenu
       AutoLayout      =   Table1, 2, <Parent>, 2, False, +1.00, 1, 1, -0, 
       AutoLayout      =   Table1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
       EditingEnabled  =   False
+      EditingEnabled  =   False
       EstimatedRowHeight=   -1
       Format          =   "0"
-      Height          =   212.0
+      Height          =   167.0
       Left            =   0
       LockedInPosition=   False
       Scope           =   0
       SectionCount    =   0
-      Top             =   20
+      Top             =   65
       Visible         =   True
       Width           =   320.0
    End
@@ -34,16 +35,16 @@ Begin iosView CiFilterMenu
       Animating       =   False
       AnimationDuration=   0.0
       AnimationRepeatCount=   0
-      AutoLayout      =   iOSLIbImageView1, 4, BottomLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLIbImageView1, 8, <Parent>, 8, False, +0.50, 2, 1, 0, 
-      AutoLayout      =   iOSLIbImageView1, 1, Table1, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   iOSLIbImageView1, 2, Table1, 2, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLIbImageView1, 1, Table1, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLIbImageView1, 8, <Parent>, 8, False, +0.50, 2, 1, 0, 
+      AutoLayout      =   iOSLIbImageView1, 4, BottomLayoutGuide, 4, False, +1.00, 1, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
       ClearsContextBeforeDrawing=   False
       ClipsToBounds   =   True
-      ContentMode     =   "ScaleAspectFill"
+      ContentMode     =   "0"
       ContentScaleFactor=   0.0
       ExclusiveTouch  =   False
       Focused         =   False
@@ -105,30 +106,30 @@ End
 	#tag Event
 		Sub Open()
 		  me.AddSection("No Filter")
-		  me.AddRow(0, me.CreateCell ("No Filter"))
+		  me.AddRow(0, me.CreateCell ("No Filter", "Some filter parameters still have to be adapted to iOS sizes."))
 		  
 		  me.AddSection("Blur Filters")
 		  AddRowSection (1, array( "BoxBlur", "DiscBlur", "GaussianBlur", "MaskedVariableBlur", "MedianFilter", "MotionBlur", "NoiseReduction", "ZoomBlur"))
 		  me.AddSection("Sharpen Filters")
-		  AddRowSection(2, array("___ Distortion Filters ____", "BumpDistortion", "BumpDistortionLinear", "CircleSplashDistortion", "CircularWrap", "Droste", "DisplacementDistortion", "GlassDistortion", _
+		  AddRowSection(2, array("BumpDistortion", "BumpDistortionLinear", "CircleSplashDistortion", "CircularWrap", "Droste", "DisplacementDistortion", "GlassDistortion", _
 		  "GlassLozenge", "HoleDistortion", "Lighttunnel", "PinchDistortion", "StretchCrop", "TorusLensDistortion", "TwirlDistortion", "VortextDistortion"))
-		  me.AddSection("Generators")
-		  AddRowSection(3, array("____Generators____", "AztecCodeGenerator", "CheckerboardGenerator", "Code128BarcodeGenerator", "ConstantColorGenerator", "LenticularHaloGenerator","QRCodeGenerator", _
+		  me.AddSection("Generators – use a CITransform for upscaling without blur!")
+		  AddRowSection(3, array( "AztecCodeGenerator", "CheckerboardGenerator", "Code128BarcodeGenerator", "ConstantColorGenerator", "LenticularHaloGenerator","QRCodeGenerator", _
 		  "RandomGenerator", "StarshineGenerator", "StripesGenerator", "SunbeamsGenerator"))
 		  me.AddSection("Gradients")
-		  AddRowSection(4, array("____Gradients____", "GaussianGradient", "LinearGradient", "RadialGradient", "SmoothLinearGradient"))
+		  AddRowSection(4, array("GaussianGradient", "LinearGradient", "RadialGradient", "SmoothLinearGradient"))
 		  me.AddSection ("ColorAdjustment")
-		  AddRowSection(5, array("____ColorAdjustment____", "ColorClamp", "ColorControls", "ColorMatrix", "ColorPolynomial", "ExposureAdjust", "GammaAdjust", _
-		   "HueAdjust", "LinearToSRGBToneCurve", "SRGBToneCurveToLinear", "TemperatureAndTint", "Vibrance", _
+		  AddRowSection(5, array("ColorClamp", "ColorControls", "ColorMatrix", "ColorPolynomial", "ExposureAdjust", "GammaAdjust", _
+		  "HueAdjust", "LinearToSRGBToneCurve", "SRGBToneCurveToLinear", "TemperatureAndTint", "Vibrance", _
 		  "WhitePointAdjust"))
 		  me.AddSection ("Color Effects")
-		  AddRowSection(6, array("____Color Effects____", "ColorCrossPolynomial","ColorCube", "ColorCubeWithColorSpace", "ColorInvert", "ColorMonochrome", "ColorPosterize", "FalseColor", "MaskToAlpha", _
+		  AddRowSection(6, array("ColorCrossPolynomial","ColorCube", "ColorCubeWithColorSpace", "ColorInvert", "ColorMonochrome", "ColorPosterize", "FalseColor", "MaskToAlpha", _
 		  "MaximumComponent", "MinimumComponent", "PhotoEffectChrome", "PhotoEffectFade", "PhotoEffectInstant", "PhotoEffectMono", _
 		  "PhotoEffectNoir", "PhotoEffectProcess", "PhotoEffectTonal", "PhotoEffectTransfer", "SepiaTone", "Vignette", "VignetteEffect"))
 		  me.AddSection ("Geometry Adjustment")
-		  AddRowSection(7, array("____Geometry Adjustment____", "AffineTransform", "Crop", "LanczosScaleTansform", "StraightenFilter"))
+		  AddRowSection(7, array( "AffineTransform", "Crop", "LanczosScaleTansform", "StraightenFilter"))
 		  me.AddSection ("Reduction")
-		  AddRowSection(8, array("____Reduction____", "AreaAverage", "AreaHistogram", "HistogramDisplayFilter", "RowAverage", "ColumnAverage", "AreaMaximum", _
+		  AddRowSection(8, array( "AreaAverage", "AreaHistogram", "HistogramDisplayFilter", "RowAverage", "ColumnAverage", "AreaMaximum", _
 		  "AreaMinimum", "AreaMaximumAlpha", "AreaMinimumAlpha"))
 		  
 		  
