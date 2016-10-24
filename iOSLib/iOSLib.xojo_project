@@ -341,7 +341,6 @@ Class=AppleCITemperatureAndTint;../Shared Files for both libraries/Optionals/Cor
 Class=AppleCIToneCurve;../Shared Files for both libraries/Optionals/CoreImage optionals/CIFilters/ColorAdjustment/AppleCIToneCurve.xojo_binary_code;&h41B3FFF;&h217697FF;false
 Class=AppleCIVibrance;../Shared Files for both libraries/Optionals/CoreImage optionals/CIFilters/ColorAdjustment/AppleCIVibrance.xojo_binary_code;&h569AAFFF;&h217697FF;false
 Class=AppleCIWhitePointAdjust;../Shared Files for both libraries/Optionals/CoreImage optionals/CIFilters/ColorAdjustment/AppleCIWhitePointAdjust.xojo_binary_code;&h5A1AEFFF;&h217697FF;false
-iOSView=CIFIlterView;Demo views/CIFIlterView.xojo_code;&h66D96FFF;&h7F4877FF;false
 Folder=Generators;../Shared Files for both libraries/Optionals/CoreImage optionals/CIFilters/Generators;&h6FB7DFFF;&h2D843FFF;false
 Class=AppleCIStarShineGenerator;../Shared Files for both libraries/Optionals/CoreImage optionals/CIFilters/Generators/AppleCIStarShineGenerator.xojo_binary_code;&h95CDFFF;&h6FB7DFFF;false
 Class=AppleCISunbeamsGenerator;../Shared Files for both libraries/Optionals/CoreImage optionals/CIFilters/Generators/AppleCISunbeamsGenerator.xojo_binary_code;&h255E9FFF;&h6FB7DFFF;false

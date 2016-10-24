@@ -307,11 +307,11 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 4C65747320796F752063726561746520616E20696D6167652066726F6D2061206D6574686F6420696E20776869636820796F75207061696E7420746F20746865204170706C654347436F6E746578742028766961205F43757272656E74436F6E746578745F206F7220746865207365766572616C205F447261775F206D6574686F6473207468617420776F726B206F6E206974206469726563746C792E
-		Shared Function ImageFromContext(asize as FoundationFrameWork.nssize, paintmethod as paintmethoddelegate, opaque as boolean = false, scale as double = 1) As AppleImage
+		Shared Function ImageFromContext(asize as FoundationFrameWork.nssize, paintmethod as paintmethoddelegate, opaque as boolean = false, scale as double = 0) As AppleImage
 		  if scale = 0 then scale = AppleScreen.MainScreen.Scale
 		  AppleCGContext.BeginImageContext(asize, opaque, Scale)
 		  // dim sp as new  PaintMethodDelegate (paintmethod)
-		  paintmethod.Invoke (asize.width, asize.height)
+		  paintmethod.Invoke (AppleCGContext.CurrentContext, asize.width, asize.height)
 		  dim result as appleimage = AppleCGContext.Getimage
 		  AppleCGContext.EndImageContext
 		  return result
@@ -343,7 +343,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag DelegateDeclaration, Flags = &h21, Attributes = \"hidden"
-		Attributes( hidden ) Private Delegate Sub PaintMethodDelegate(width as double, height as double)
+		Attributes( hidden ) Private Delegate Sub PaintMethodDelegate(Context as AppleCGContext, width as double, height as double)
 	#tag EndDelegateDeclaration
 
 	#tag Method, Flags = &h0

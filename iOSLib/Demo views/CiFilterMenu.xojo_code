@@ -90,6 +90,13 @@ End
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub MakeLinearGradientImage(Context as AppleCGContext, width as double, height as double)
+		  Context.DrawLinearGradient new AppleCGGradient(&c00000000, &cFFFFFF00, &c00000000), FoundationFrameWork.NSMakePoint(0,0), _
+		  FoundationFrameWork.NSMakePoint(width, height), true, true
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private Filter As AppleCIFilter
@@ -112,7 +119,7 @@ End
 		  AddRowSection (1, array( "BoxBlur", "DiscBlur", "GaussianBlur", "MaskedVariableBlur", "MedianFilter", "MotionBlur", "NoiseReduction", "ZoomBlur"))
 		  me.AddSection("Sharpen Filters")
 		  AddRowSection(2, array("BumpDistortion", "BumpDistortionLinear", "CircleSplashDistortion", "CircularWrap", "Droste", "DisplacementDistortion", "GlassDistortion", _
-		  "GlassLozenge", "HoleDistortion", "Lighttunnel", "PinchDistortion", "StretchCrop", "TorusLensDistortion", "TwirlDistortion", "VortextDistortion"))
+		  "GlassLozenge", "HoleDistortion", "Lighttunnel", "PinchDistortion", "StretchCrop", "TorusLensDistortion", "TwirlDistortion", "VortexDistortion"))
 		  me.AddSection("Generators – use a CITransform for upscaling without blur!")
 		  AddRowSection(3, array( "AztecCodeGenerator", "CheckerboardGenerator", "Code128BarcodeGenerator", "ConstantColorGenerator", "LenticularHaloGenerator","QRCodeGenerator", _
 		  "RandomGenerator", "StarshineGenerator", "StripesGenerator", "SunbeamsGenerator"))
@@ -139,7 +146,7 @@ End
 		Sub Action(section As Integer, row As Integer)
 		  dim img as new AppleImage(iosLibLogo)
 		  img = img.Resize (ioSLIbImageView1.Frame.Size.toNSsize, true, CoreGraphicsFramework.CGInterpolationQuality.High)
-		  dim pic as iOSImage = iosLibLogo
+		  dim pic as iOSImage = img.toiOSImage
 		  try
 		    select  case me.RowData(Section, row).text
 		    case "No Filter"
@@ -151,11 +158,10 @@ End
 		      Filter = new AppleCIDiscBlurFilter(pic, 15)
 		    case "GaussianBlur"
 		      Filter = new AppleCIGaussianBlurFilter(pic, 15)
-		      // case "MaskedVariableBlur"
-		      // dim pic1 as new picture(pic.Width, pic.Height)
-		      // dim g as new AppleCGContext(pic1.Graphics)
-		      // g.DrawLinearGradient new AppleCGGradient (&c00000000, &cFFFFFF00, &c00000000), FoundationFrameWork.NSMakePoint(0,pic1.Height), FoundationFrameWork.NSMakePoint(pic1.Width, 0)
-		      // filter = new AppleCIMaskedVariableBlurFilter (pic, pic1, 20)
+		    case "MaskedVariableBlur"
+		      dim pic1 as  AppleImage = AppleImage.ImageFromContext (img.Size, AddressOf MakeLinearGradientImage)
+		      dim temppic as iOSImage = pic1.toiOSImage
+		      filter = new AppleCIMaskedVariableBlurFilter (pic, temppic, 15)
 		    case "MedianFilter"
 		      Filter = new AppleCIMedianFilter(pic)
 		    case "MotionBlur"
@@ -182,16 +188,14 @@ End
 		      filter = new AppleCICircularWrap  (pic, iOSLibImageView1.Width/2, iOSLibImageView1.Height / 2, 100, 90)
 		    case "Droste"
 		      filter = new AppleCIDroste (pic, 100, 100, 150, 150, 2, 3, 45, 1.8)
-		      // case "DisplacementDistortion"
-		      // dim pic1 as new picture(pic.Width, pic.Height)
-		      // dim g as new AppleCGContext(pic1.Graphics)
-		      // g.DrawLinearGradient new AppleCGGradient (&c00000000, &cFFFFFF00, &c00000000), FoundationFrameWork.NSMakePoint(0,pic1.Height), FoundationFrameWork.NSMakePoint(pic1.Width, 0)
-		      // filter = new AppleCIDisplacementDistortion (pic, pic1, 200)
-		      // case "GlassDistortion"
-		      // dim pic1 as new picture(pic.Width, pic.Height)
-		      // dim g as new AppleCGContext(pic1.Graphics)
-		      // g.DrawLinearGradient new AppleCGGradient (&c00000000, &cFFFFFF00, &c00000000), FoundationFrameWork.NSMakePoint(0,pic1.Height), FoundationFrameWork.NSMakePoint(pic1.Width, 0)
-		      // filter = new AppleCIGlassDistortion (pic, pic1, 200, 200, 450)
+		    case "DisplacementDistortion"
+		      dim pic1 as  AppleImage = AppleImage.ImageFromContext (img.Size, AddressOf MakeLinearGradientImage)
+		      dim temppic as iOSImage = pic1.toiOSImage
+		      filter = new AppleCIDisplacementDistortion (pic, temppic, 100)
+		    case "GlassDistortion"
+		      dim pic1 as  AppleImage = AppleImage.ImageFromContext (img.Size, AddressOf MakeLinearGradientImage)
+		      dim temppic as iOSImage = pic1.toiOSImage
+		      filter = new AppleCIGlassDistortion (pic, temppic, iOSLibImageView1.Width/2, iOSLibImageView1.Height / 2, 200)
 		    case "GlassLozenge"
 		      filter = new AppleCIGlassLozenge(pic, 100, 100, 300, 150, 80, 1.8)
 		    case "HoleDistortion"
@@ -204,9 +208,9 @@ End
 		      filter = new AppleCIStretchCrop (pic, 400, 200, 0.5, 0.5)
 		    case "TorusLensDistortion"
 		      filter = new AppleCITorusLensDistortion (pic, iOSLibImageView1.Width/2, iOSLibImageView1.Height / 2, 150, 100, 1.5)
-		    case "TwirlDistortion"
+		    case "TwirlDistortion" 
 		      filter = new AppleCITwirlDistortion (pic, iOSLibImageView1.Width/2, iOSLibImageView1.Height / 2, 150, 460)
-		    case "VortextDistortion"
+		    case "VortexDistortion"
 		      filter = new AppleCIVortexDistortion (pic, iOSLibImageView1.Width/2, 80, 250)
 		      
 		    case "AztecCodeGenerator"
@@ -268,8 +272,8 @@ End
 		      
 		    case "AffineTransform"
 		      dim transform as  cgAffineTransform
-		      transform = Transform.RotateDegree(20)
-		      transform = transform.Scale(5, 1)
+		      transform = TransformExtension.MakeDegreesRotation(20)
+		      transform = transform.Scale(.2, 1)
 		      filter = new AppleCIAffineTransform(pic, transform)
 		    case "StraightenFilter"
 		      filter = new AppleCIStraightenFilter (pic, 180)
