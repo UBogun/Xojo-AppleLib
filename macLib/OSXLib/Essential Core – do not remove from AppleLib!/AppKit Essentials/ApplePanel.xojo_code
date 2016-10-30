@@ -28,10 +28,6 @@ Inherits AppleWindow
 		Protected Declare Function getFloatingPanel Lib appkitlibname Selector "isFloatingPanel" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getworksWhenModal Lib appkitlibname Selector "worksWhenModal" (id as ptr) As Boolean
-	#tag EndExternalMethod
-
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As ApplePanel
 		  return if (aptr = nil, nil, new ApplePanel(aptr))
@@ -44,10 +40,6 @@ Inherits AppleWindow
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setFloatingPanel Lib appkitlibname Selector "setFloatingPanel:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setworksWhenModal Lib appkitlibname Selector "setWorksWhenModal:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 
@@ -93,12 +85,12 @@ Inherits AppleWindow
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652070616E656C207265636569766573206B6579626F61726420616E64206D6F757365206576656E7473206576656E207768656E20736F6D65206F746865722077696E646F77206973206265696E672072756E206D6F64616C6C792E
 		#tag Getter
 			Get
-			  return getworksWhenModal (mid)
+			  return AppKitFramework.getworksWhenModal (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setworksWhenModal mid, value
+			  AppKitFramework.setworksWhenModal mid, value
 			End Set
 		#tag EndSetter
 		WorksWhenModal As Boolean
@@ -107,7 +99,17 @@ Inherits AppleWindow
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Alpha"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BecomeKeyOnlyIfNeeded"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanHide"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -125,6 +127,11 @@ Inherits AppleWindow
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HidesOnDeactivate"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -152,6 +159,21 @@ Inherits AppleWindow
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="OnActiveSpace"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OneShot"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ReleasedWhenClosed"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
@@ -168,6 +190,11 @@ Inherits AppleWindow
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Visible"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WorksWhenModal"

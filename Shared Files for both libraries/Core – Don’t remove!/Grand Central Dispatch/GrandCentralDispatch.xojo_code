@@ -1,11 +1,11 @@
 #tag Module
 Protected Module GrandCentralDispatch
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function dlopen Lib "/usr/lib/libSystem.dylib" (path As CString, mode As Int32) As Ptr
+		Protected Declare Sub dispatch_async Lib "/usr/lib/libSystem.dylib" (queue as ptr, block as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function dlsym Lib "/usr/lib/libSystem.dylib" (handle As Ptr, name As CString) As Ptr
+		Protected Declare Function dlopen Lib "/usr/lib/libSystem.dylib" (path As CString, mode As Int32) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1
@@ -17,6 +17,9 @@ Protected Module GrandCentralDispatch
 
 
 	#tag Constant, Name = GCDPath, Type = Text, Dynamic = False, Default = \"/usr/lib/system/dispatch.dylib", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = MainQ, Type = Text, Dynamic = False, Default = \"_dispatch_main_q", Scope = Public
 	#tag EndConstant
 
 

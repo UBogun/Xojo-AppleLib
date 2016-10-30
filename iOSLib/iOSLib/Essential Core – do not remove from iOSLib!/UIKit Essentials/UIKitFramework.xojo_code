@@ -224,6 +224,10 @@ Protected Module UIKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getTitle Lib UIKItLibName Selector "title" (id as ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function gettopAnchor Lib uikitlibname Selector "topAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -380,6 +384,10 @@ Protected Module UIKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub settintColor Lib UIKitLibName Selector "setTintColor:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setTitle Lib UIKitLibName Selector "setTitle:" (id as ptr, value as cfstringRef)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

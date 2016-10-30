@@ -545,7 +545,7 @@ Inherits OSXLibResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865204E535669657720697473656C662028726561642D6F6E6C79292E
 		#tag Getter
 			Get
-			  if mAppleObject = nil then 
+			  if mAppleObject = nil then
 			    mAppleObject = RaiseEvent InitControl
 			    if mAppleObject = nil then mAppleObject = CreateObject
 			  end if

@@ -265,6 +265,7 @@ Inherits OSXLibView
 		  for each o as AppleNotificationObject in NotificationObjects
 		    AppleNotificationCenter.RemoveObserver o
 		  next
+		  redim NotificationObjects(-1)
 		End Sub
 	#tag EndMethod
 
@@ -330,7 +331,7 @@ Inherits OSXLibView
 		#tag Getter
 			Get
 			  if mAppleObject = nil then
-			     mAppleObject = RaiseEvent InitControl
+			    mAppleObject = RaiseEvent InitControl
 			    if mAppleObject = nil then mAppleObject = CreateObject
 			  end if
 			  return applescrollview(mAppleObject)

@@ -132,15 +132,7 @@ Inherits AppleView
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getcontentSize Lib appkitlibname Selector "contentSize" (id as ptr) As FoundationFrameWork.NSSize
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcontentSizeForFrameSize Lib appkitlibname Selector "contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:" (id as ptr, framesize as FoundationFrameWork . NSSize, horizontalclass as ptr, verticalclass as ptr, bordertype as NSBorderType, controlsize as AppleControl . NSControlSize, style as AppleScroller . NSScrollerStyle) As FoundationFrameWork.NSSize
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getcontentView Lib appkitlibname Selector "contentView" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -323,10 +315,6 @@ Inherits AppleView
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setautohidesScrollers Lib appkitlibname Selector "setAutohidesScrollers:" (id as ptr, value as Boolean)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setcontentView Lib appkitlibname Selector "setContentView:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -637,7 +625,7 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652073697A65206F6620746865207363726F6C6C2076696577E280997320636F6E74656E7420766965772E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return getcontentSize(id)
+			  return AppKitFramework.getcontentSize(mid)
 			End Get
 		#tag EndGetter
 		Contentsize As FoundationFrameWork.NSSize
@@ -646,12 +634,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320636F6E74656E7420766965772C207468652076696577207468617420636C6970732074686520646F63756D656E7420766965772E
 		#tag Getter
 			Get
-			  return appleclipview.MakefromPtr(getcontentView(id))
+			  return appleclipview.MakefromPtr(AppKitFramework.getcontentView(id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setcontentView id, if (value = nil, nil, value.id)
+			  AppKitFramework.setcontentView id, if (value = nil, nil, value.id)
 			End Set
 		#tag EndSetter
 		ContentView As AppleClipView

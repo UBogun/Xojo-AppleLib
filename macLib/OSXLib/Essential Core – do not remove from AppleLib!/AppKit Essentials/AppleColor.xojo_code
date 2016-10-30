@@ -361,10 +361,6 @@ Implements AppleGeneralColor
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getcolorSpace Lib appkitlibname Selector "colorSpace" (id as ptr) As ptr
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getcolorSpaceName Lib appkitlibname Selector "colorSpaceName" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
@@ -822,7 +818,7 @@ Implements AppleGeneralColor
 		#tag Getter
 			Get
 			  try
-			    dim result as AppleColorSpace = AppleColorSpace.MakeFromPtr(getcolorSpace(id))
+			    dim result as AppleColorSpace = AppleColorSpace.MakeFromPtr(AppKitFramework.getcolorSpace(id))
 			    // result.MHasOwnership = true
 			    return result
 			  catch

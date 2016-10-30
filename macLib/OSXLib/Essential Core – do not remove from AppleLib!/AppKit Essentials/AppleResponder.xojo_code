@@ -901,7 +901,7 @@ Inherits AppleObject
 			  if mClassPtr = Nil then
 			    mClassPtr = FoundationFrameWork.NSClassFromString("NSResponder")
 			    // dim methods() as TargetClassMethodHelper
-			    // 
+			    //
 			    // //NSResponder "delegate" methods
 			    // methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf impl_acceptsFirstResponder, "c@:")
 			    // methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
@@ -919,19 +919,19 @@ Inherits AppleObject
 			    // methods.Append new TargetClassMethodHelper("otherMouseDown:", AddressOf impl_otherMouseDown, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("otherMouseDragged:", AddressOf impl_otherMouseDragged, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("otherMouseUp:", AddressOf impl_otherMouseUp, "v@:@")
-			    // 
+			    //
 			    // methods.Append new TargetClassMethodHelper("keyDown:", AddressOf impl_keyDown, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("keyUp:", AddressOf impl_keyUp, "v@:@")
-			    // 
+			    //
 			    // methods.Append new TargetClassMethodHelper("pressureChangeWithEvent:", AddressOf impl_pressureChangeWithEvent, "v@:@")
-			    // 
+			    //
 			    // methods.Append new TargetClassMethodHelper("flagsChanged:", AddressOf impl_flagsChanged, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("tabletPoint:", AddressOf impl_tabletPoint, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("tabletProximity:", AddressOf impl_tabletProximity, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("scrollWheel:", AddressOf impl_scrollWheel, "v@:@")
-			    // 
+			    //
 			    // methods.Append new TargetClassMethodHelper("willPresentError:", AddressOf impl_willPresentError, "@@:@")
-			    // 
+			    //
 			    // methods.Append new TargetClassMethodHelper("beginGestureWithEvent:", AddressOf impl_beginGestureWithEvent, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("endGestureWithEvent:", AddressOf impl_endGestureWithEvent, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("magnifyWithEvent:", AddressOf impl_magnifyWithEvent, "v@:@")
@@ -941,15 +941,15 @@ Inherits AppleObject
 			    // methods.Append new TargetClassMethodHelper("touchesMovedWithEvent:", AddressOf impl_touchesMovedWithEvent, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("touchesCancelledWithEvent:", AddressOf impl_touchesCancelledWithEvent, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("touchesEndedWithEvent:", AddressOf impl_touchesEndedWithEvent, "v@:@")
-			    // 
+			    //
 			    // methods.Append new TargetClassMethodHelper("wantsForwardedScrollEventsForAxis:", AddressOf impl_wantsForwardedScrollEventsForAxis, "v@:i")
 			    // methods.Append new TargetClassMethodHelper("wantsScrollEventsForSwipeTrackingOnAxis::", AddressOf impl_wantsScrollEventsForSwipeTrackingOnAxis, "v@:i")
-			    // 
-			    // 
+			    //
+			    //
 			    // // CAAnimation "Delegate" methods
 			    // methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
 			    // methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
-			    // 
+			    //
 			    // mClassPtr = BuildTargetClass ("NSResponder", "OSXLibResponder",methods)
 			  end if
 			  Return mClassPtr
@@ -1001,6 +1001,28 @@ Inherits AppleObject
 		NextResponder As AppleResponder
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 412074656D706F7261727920776F726B61726F756E6420666F7220746865206D697373696E67204F776E657257696E646F772070726F7065727479206F6620636F6E74726F6C7320776974686F7574206F70746963616C20726570726573656E746174696F6E2076696120496E74726F737065636F74696F6E
+		#tag Getter
+			Get
+			  using xojo.Introspection
+			  Dim info As TypeInfo = GetType(me)
+			  Dim props() As PropertyInfo = info.Properties
+			  for q as integer =props.Ubound downto 0
+			    dim p as PropertyInfo = props(q)
+			    System.DebugLog q.totext
+			    if p.Name = kownerWindow then
+			      dim wr as weakref = p.Value(me)
+			      if wr <> nil and wr.value <> nil  then
+			        return new AppleWindow(window(wr.Value))
+			      end if
+			    end if
+			  next
+			  
+			End Get
+		#tag EndGetter
+		OwnerAppleWindow As AppleWindow
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
@@ -1011,6 +1033,10 @@ Inherits AppleObject
 		#tag EndGetter
 		Protected Shared XojoIdentity As xojo.Core.Dictionary
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"ownerWindow", Scope = Private
+	#tag EndConstant
 
 
 	#tag ViewBehavior

@@ -77,6 +77,12 @@ Inherits AppleImageRep
 			Name="LayoutDirection"
 			Group="Behavior"
 			Type="Appkitframework.NSImageLayoutDirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"2 - LeftToRight"
+				"3 - RightToLeft"
+				"-1 - Undefined"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"

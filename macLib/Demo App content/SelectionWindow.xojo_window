@@ -264,6 +264,7 @@ End
 		  me.AddRow ("FontManager")
 		  me.addrow ("Introspection")
 		  me.AddRow ("CIFIlter")
+		  me.AddRow ("Popover")
 		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
 		  me.ListIndex = 0
@@ -275,14 +276,15 @@ End
 		Sub Action()
 		  if SecondaryWindow <> nil then 
 		    SecondaryWindow.Close
-		    try
-		      appleobject.release Ptr(SecondaryWindow.Handle)
-		      System.DebugLog "Released Window"
-		      SecondaryWindow = nil
-		    catch
-		      System.DebugLog "Release cause exception"
-		      
-		    end try
+		    SecondaryWindow = nil
+		    // try
+		    // appleobject.release Ptr(SecondaryWindow.Handle)
+		    // System.DebugLog "Released Window"
+		    // SecondaryWindow = nil
+		    // catch
+		    // System.DebugLog "Release cause exception"
+		    
+		    // end try
 		  end if
 		  select case PopupMenu1.Text
 		  case "Color Additions"
@@ -316,6 +318,8 @@ End
 		    SecondaryWindow = new FontWindow
 		  case "CIFIlter"
 		    SecondaryWindow = new CIFilterWindow
+		  case "Popover"
+		    SecondaryWindow = new PopoverWindow
 		  end select
 		End Sub
 	#tag EndEvent

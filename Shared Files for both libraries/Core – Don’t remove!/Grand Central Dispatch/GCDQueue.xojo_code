@@ -43,36 +43,36 @@ Inherits applecfobject
 		End Sub
 	#tag EndMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Function dispatch_get_current_queue Lib libsystem () As ptr
+	#tag ExternalMethod, Flags = &h0
+		Declare Function dispatch_get_current_queue Lib libsystem () As ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Function dispatch_get_global_queue Lib libsystem (Identifier as dispatch_QOS_Class, flags as uint16) As Ptr
+	#tag ExternalMethod, Flags = &h0
+		Declare Function dispatch_get_global_queue Lib libsystem (Identifier as dispatch_QOS_Class, flags as uint16) As Ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Function dispatch_get_global_queue Lib libsystem (Identifier as dispatch_queue_priority_t, flags as uint16) As Ptr
+	#tag ExternalMethod, Flags = &h0
+		Declare Function dispatch_get_global_queue Lib libsystem (Identifier as dispatch_queue_priority_t, flags as uint16) As Ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Function dispatch_get_main_queue Lib libsystem () As ptr
+	#tag ExternalMethod, Flags = &h0
+		Declare Function dispatch_get_main_queue Lib gcdpath () As ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Function dispatch_queue_attr_make_with_qos_class Lib libsystem (attribute as ptr, qos_class as dispatch_QOS_Class, relativePriority as Integer) As ptr
+	#tag ExternalMethod, Flags = &h0
+		Declare Function dispatch_queue_attr_make_with_qos_class Lib libsystem (attribute as ptr, qos_class as dispatch_QOS_Class, relativePriority as Integer) As ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Function dispatch_queue_create Lib libsystem (label as cfstringref, attribute as ptr) As ptr
+	#tag ExternalMethod, Flags = &h0
+		Declare Function dispatch_queue_create Lib libsystem (label as cfstringref, attribute as ptr) As ptr
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Sub dispatch_release Lib libsystem (id as ptr)
+	#tag ExternalMethod, Flags = &h0
+		Declare Sub dispatch_release Lib libsystem (id as ptr)
 	#tag EndExternalMethod
 
-	#tag ExternalMethod, Flags = &h21
-		Attributes( hidden ) Private Declare Sub dispatch_retain Lib libsystem (id as ptr)
+	#tag ExternalMethod, Flags = &h0
+		Declare Sub dispatch_retain Lib libsystem (id as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0

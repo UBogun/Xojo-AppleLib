@@ -115,7 +115,17 @@ Inherits ApplePanel
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Alpha"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BecomeKeyOnlyIfNeeded"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanHide"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -138,6 +148,11 @@ Inherits ApplePanel
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HidesOnDeactivate"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -165,6 +180,21 @@ Inherits ApplePanel
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="OnActiveSpace"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="OneShot"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ReleasedWhenClosed"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
@@ -181,6 +211,11 @@ Inherits ApplePanel
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Visible"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WorksWhenModal"

@@ -1,6 +1,23 @@
 #tag Class
 Protected Class AppleApplication
 Inherits AppleObject
+	#tag Method, Flags = &h0
+		Sub Constructor()
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
+		  Super.Constructor(SharedApplication.id)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getapplicationIconImage Lib appkitlibname Selector "applicationIconImage" (id as ptr) As ptr
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getsharedApplication Lib appkitlibname Selector "sharedApplication" (id as ptr) As ptr
 	#tag EndExternalMethod
@@ -11,6 +28,24 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setapplicationIconImage Lib appkitlibname Selector "setApplicationIconImage:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520696D616765207573656420666F722074686520617070E28099732069636F6E2E
+		#tag Getter
+			Get
+			  return AppleImage.MakeFromPtr(getApplicationIconImage(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setApplicationIconImage mid, nilptr(value)
+			End Set
+		#tag EndSetter
+		ApplicationIconImage As AppleImage
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
@@ -20,6 +55,16 @@ Inherits AppleObject
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206170706C69636174696F6EE280997320446F636B2074696C652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleDockTile.MakeFromPtr(AppKitFramework.getdockTile(mid))
+			  
+			End Get
+		#tag EndGetter
+		DockTile As AppleDockTile
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1

@@ -10,18 +10,18 @@ Begin Window TestWindow
    FullScreenButton=   False
    HasBackColor    =   False
    Height          =   400
-   ImplicitInstance=   True
+   ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
-   MaximizeButton  =   True
+   MaximizeButton  =   False
    MaxWidth        =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
-   Placement       =   0
+   Placement       =   1
    Resizeable      =   True
    Title           =   "Untitled"
    Visible         =   True
@@ -94,68 +94,6 @@ Begin Window TestWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   341
-         Underline       =   False
-         Visible         =   True
-         Width           =   80
-      End
-      Begin PushButton PushButton6
-         AutoDeactivate  =   True
-         Bold            =   False
-         ButtonStyle     =   "0"
-         Cancel          =   False
-         Caption         =   "Button"
-         Default         =   False
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "OSXLibVisualEffectView1"
-         Italic          =   False
-         Left            =   260
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   True
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   1
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   341
-         Underline       =   False
-         Visible         =   True
-         Width           =   80
-      End
-      Begin PushButton PushButton7
-         AutoDeactivate  =   True
-         Bold            =   False
-         ButtonStyle     =   "0"
-         Cancel          =   True
-         Caption         =   "Cancel"
-         Default         =   False
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "OSXLibVisualEffectView1"
-         Italic          =   False
-         Left            =   28
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   2
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   296
          Underline       =   False
          Visible         =   True
          Width           =   80
@@ -465,11 +403,109 @@ Begin Window TestWindow
          Visible         =   True
          Width           =   80
       End
+      Begin PushButton PushButton6
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Wintest"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "OSXLibView2"
+         Italic          =   False
+         Left            =   142
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   287
+         Underline       =   False
+         Visible         =   True
+         Width           =   80
+      End
+   End
+   Begin PushButton PushButton7
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Cancel"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   30
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   244
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton PushButton8
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Wintest"
+      Default         =   False
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   248
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   242
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Property, Flags = &h1
+		Protected W As AppleWindow
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
 #tag Events OSXLibCanvas1
@@ -477,6 +513,51 @@ End
 		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 		  dim tinylogo as new AppleImage (OSXLibLogo)
 		  g.DrawTiledImage(FoundationFrameWork.NSMakeRect(0,0,10,10), tinylogo.CGImage)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton6
+	#tag Event
+		Sub Action()
+		  // dim winc as new AppleViewController
+		  for q as integer = 0 to 100
+		    // if w <> nil then w.Close
+		    w = new AppleWindow(FoundationFrameWork.NSMakeRect (0,300,600,800), new AppleWindowStyleMask (15), AppleWindow.NSBackingStoreType.NonRetained)
+		    w.ReleasedWhenClosed = true
+		    w.Show
+		    w.Close
+		  next
+		  //  w = new AppleWindow(FoundationFrameWork.NSMakeRect (0,300,600,800), new AppleWindowStyleMask (15), AppleWindow.NSBackingStoreType.Bufferd)
+		  // w.Show
+		  // w.ReleasedWhenClosed = true
+		  // rect as FoundationFrameWork.NSRect,  Style as AppleWindowStyleMask, type as NSBackingStoreType, DeferCreation as Boolean = false
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton7
+	#tag Event
+		Sub Action()
+		  dim w as AppleWindow = new AppleWindow(self)
+		  break
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton8
+	#tag Event
+		Sub Action()
+		  // dim winc as new AppleViewController
+		  for q as integer = 0 to 100
+		    dim w as new TestWindow
+		    w.Show
+		    dim ww as new AppleWindow(w)
+		    ww.ReleasedWhenClosed = true
+		    ww.OneShot = true
+		    w.Close
+		    // for p as uinteger = 0 to ww.RetainCount -1
+		    // ww.Release ww.id
+		    // next
+		  next
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

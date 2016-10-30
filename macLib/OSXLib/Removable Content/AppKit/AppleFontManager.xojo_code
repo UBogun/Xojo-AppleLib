@@ -40,6 +40,12 @@ Inherits AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
 		  Super.Constructor (getsharedFontManager (classptr))
+		  dim AppleOwnerwindow as  AppleWindow = me.OwnerAppleWindow
+		  if AppleOwnerwindow <> nil then
+		    NotificationObjects.Append AppleNotificationCenter.AddObserver ("NSWindowWillCloseNotification", AppleOwnerwindow, _
+		    AppleOperationQueue.MainQueue, new appleblock (Addressof informonWindowWillClose))
+		  end if
+		  
 		  // Target= me
 		  xojo.core.timer.CallLater 0, Addressof RaiseOpenEvent
 		  
@@ -214,6 +220,14 @@ Inherits AppleObject
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub informonWindowWillClose()
+		  RaiseEvent Close
+		  RemoveNotifications
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 417474656D70747320746F206C6F6164206120666F6E7420776974682074686520737065636966696564206368617261637465726973746963732E
 		Function LoadFont(Family As CFStringRef, Traits As AppleFontTraitMask, Weight as FontWeight, size as double) As AppleFont
 		  return AppleFont.MakeFromPtr(fontWithFamily(mid,family, Traits.id, integer(Weight), size))
@@ -287,6 +301,15 @@ Inherits AppleObject
 		Protected Declare Sub removeFontTrait Lib appkitlibname Selector "removeFontTrait:" (id as ptr, sender as ptr)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h21
+		Private Sub RemoveNotifications()
+		  for each o as AppleNotificationObject in NotificationObjects
+		    AppleNotificationCenter.RemoveObserver o
+		  next
+		  redim NotificationObjects(-1)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 52657475726E7320616E204E53466F6E74206F626A6563742077697468207468652073616D65207472616974732061732074686520676976656E20666F6E742C2065786365707420666F72207468652074726169747320696E2074686520676976656E20666F6E74207472616974206D61736B2C207768696368206172652072656D6F7665642E0A5573696E67204E53556E626F6C64466F6E744D61736B206F72204E53556E6974616C6963466F6E744D61736B2072656D6F7665732074686520626F6C64206F72206974616C69632074726169742C20726573706563746976656C792E
 		Function RemoveTraitFromFont(Font As AppleFont, Trait as AppleFontTraitMask) As AppleFont
 		  return AppleFont.MakeFromPtr(convertFonttoNotHaveTrait(mid, font.id, trait.Id))
@@ -317,6 +340,10 @@ Inherits AppleObject
 		Protected Declare Sub setSelectedFont Lib appkitlibname Selector "setSelectedFont:isMultiple:" (id as ptr, font as ptr, multiple as Boolean)
 	#tag EndExternalMethod
 
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E2074686520636F6E74726F6C20636C6F7365732E
+		Event Close()
+	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 54686520636F6E74726F6C2068617320696E697469616C697A65642E
 		Event Open()
@@ -428,6 +455,32 @@ Inherits AppleObject
 		Multiple As Boolean
 	#tag EndComputedProperty
 
+	#tag Property, Flags = &h21
+		Private NotificationObjects() As AppleNotificationObject
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 412074656D706F7261727920776F726B61726F756E6420666F7220746865206D697373696E67204F776E657257696E646F772070726F7065727479206F6620636F6E74726F6C7320776974686F7574206F70746963616C20726570726573656E746174696F6E2076696120496E74726F737065636F74696F6E
+		#tag Getter
+			Get
+			  using xojo.Introspection
+			  Dim info As TypeInfo = GetType(me)
+			  Dim props() As PropertyInfo = info.Properties
+			  for q as integer =props.Ubound downto 0
+			    dim p as PropertyInfo = props(q)
+			    System.DebugLog q.totext
+			    if p.Name = kownerWindow then
+			      dim wr as weakref = p.Value(me)
+			      if wr <> nil and wr.value <> nil  then
+			        return new AppleWindow(window(wr.Value))
+			      end if
+			    end if
+			  next
+			  
+			End Get
+		#tag EndGetter
+		OwnerAppleWindow As AppleWindow
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C61737420666F6E74207265636F726465642E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
@@ -450,6 +503,10 @@ Inherits AppleObject
 		#tag EndSetter
 		Target As AppleObject
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"ownerWindow", Scope = Private
+	#tag EndConstant
 
 
 	#tag Enum, Name = FontWeight, Type = Integer, Flags = &h0

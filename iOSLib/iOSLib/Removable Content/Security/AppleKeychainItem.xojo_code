@@ -140,7 +140,7 @@ Inherits AppleMutableDictionary
 			  case KeychainAccessibility.WhenUnlockedThisDeviceOnly
 			    me.PtrForKey(kAttributeAccessible) = kAccessibleWhenUnlockedThisDeviceOnly
 			  else
-			    if me.PtrForKey(kAttributeAccessible) <> nil then 
+			    if me.PtrForKey(kAttributeAccessible) <> nil then
 			      me.RemoveObject (kAttributeAccessible)
 			    end if
 			  end select

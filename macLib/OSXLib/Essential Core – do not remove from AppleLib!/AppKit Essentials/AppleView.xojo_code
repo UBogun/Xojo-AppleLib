@@ -435,7 +435,7 @@ Inherits AppleResponder
 
 	#tag Method, Flags = &h0, Description = 446973706C61797320746865207669657720616E6420616C6C2069747320737562766965777320696620706F737369626C652C20696E766F6B696E672065616368206F6620746865204E5356696577206D6574686F6473206C6F636B466F6375732C2064726177526563743A2C20616E6420756E6C6F636B466F637573206173206E65636573736172792E200A496E2073686F72742C207468697320697320746865206571756976616C656E74206F66206120586F6A6F20726566726573682063616C6C2E
 		Sub Display()
-		  display id
+		  AppKitFramework.display mid
 		End Sub
 	#tag EndMethod
 
@@ -448,10 +448,6 @@ Inherits AppleResponder
 		  end if
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub display Lib appkitlibname Selector "display" (id as ptr)
-	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 446973706C61797320746865207669657720616E6420616C6C2069747320737562766965777320696620616E792070617274206F6620746865207669657720686173206265656E206D61726B6564206173206E656564696E6720646973706C61792E
 		Sub DisplayIfNeeded(IgnoreOpacity as boolean = false)
@@ -541,10 +537,6 @@ Inherits AppleResponder
 
 	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getalignmentRectInsets Lib appkitlibname Selector "alignmentRectInsets" (id as ptr) As appkitframework.NSEdgeInsets
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getalphaValue Lib appkitlibname Selector "alphaValue" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -1356,10 +1348,6 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setalphaValue Lib appkitlibname Selector "setAlphaValue:" (id as ptr, value as CGFloat)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setautoresizesSubviews Lib appkitlibname Selector "setAutoresizesSubviews:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -1685,12 +1673,12 @@ Inherits AppleResponder
 	#tag ComputedProperty, Flags = &h0, Description = 546865206F706163697479206F662074686520766965772E
 		#tag Getter
 			Get
-			  return getalphaValue(id)
+			  return AppKitFramework.getalphaValue(mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setalphaValue id, value
+			  AppKitFramework.setalphaValue mid, value
 			End Set
 		#tag EndSetter
 		Alpha As Double
@@ -1717,6 +1705,21 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		Animator As AppleView
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520617070656172616E6365206F662074686520766965772C20696E20616E204E53417070656172616E6365206F626A6563742E
+		#tag Getter
+			Get
+			  return AppleAppearance.MakeFromPtr(AppKitFramework.getappearance (mid))
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setappearance mid, Nilptr(value)
+			End Set
+		#tag EndSetter
+		Appearance As AppleAppearance
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652076696577206170706C69657320746865206175746F726573697A696E67206265686176696F7220746F20697473207375627669657773207768656E20697473206672616D652073697A65206368616E6765732E
@@ -1995,6 +1998,16 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		Shared DefaultFocusRingType As Appkitframework.NSFocusRingType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520656666656374697665206170706572616E6365206F662074686520766965772028726561642D6F6E6C79292E20417661696C61626C652073696E6365204F53582031302E31302E
+		#tag Getter
+			Get
+			  return AppleAppearance.MakeFromPtr(AppKitFramework.geteffectiveappearance (id))
+			  
+			End Get
+		#tag EndGetter
+		EffectiveAppearance As AppleAppearance
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D656E75206974656D20636F6E7461696E696E67207468652076696577206F7220616E79206F6620697473207375706572766965777320696E207468652076696577206869657261726368792E2028726561642D6F6E6C7929

@@ -283,7 +283,7 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  // static 
+			  // static
 			  // return mClassPtr
 			  
 			  static mClassPtr as ptr

@@ -27,12 +27,6 @@ Protected Module OSXLibModule
 
 
 	#tag Property, Flags = &h0
-		#tag Note
-			
-			481399169
-			486073730
-			490183105
-		#tag EndNote
 		LibDebug As Boolean
 	#tag EndProperty
 
