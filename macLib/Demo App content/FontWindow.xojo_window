@@ -247,6 +247,7 @@ Begin Window FontWindow
       Selectable      =   False
       TabIndex        =   6
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "You can use the FontManager to search, load and assign fonts and attributes, but the panel communication (Target-Action) has not been implemented yet into text controls.\n\nAppleFontManager and AppleFont give direct access to many fone metrics."
       TextAlign       =   0
       TextColor       =   &c00000000

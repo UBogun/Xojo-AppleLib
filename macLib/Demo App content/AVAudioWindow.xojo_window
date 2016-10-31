@@ -21,7 +21,7 @@ Begin Window AVAudioWindow
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
-   Placement       =   0
+   Placement       =   1
    Resizeable      =   True
    Title           =   "AVAudio"
    Visible         =   True
@@ -93,7 +93,7 @@ Begin Window AVAudioWindow
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "This demo uses a few audio features of the AVAudio framework. \n\nYou can record with an AVAudioRecorder when you press ""Start file record"". The sample file will be saved to your desktop.\nAfter that, ""Play recorded file"" allows you to hear a playback of the recorded file.\n\nThe Audio Engine Buttons use an AudioEngine where you can analyze recorded data in (almost) real-time. The demo does not much more than to inform about received sample packages. No analysis included in this demo.\n\n\n"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -119,10 +119,8 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
-      TabIndex        =   "2"
       TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   20
+      Top             =   6
       Value           =   0
       Visible         =   True
       Width           =   553
@@ -134,7 +132,7 @@ Begin Window AVAudioWindow
       Cancel          =   False
       Caption         =   "Stop file record"
       Default         =   False
-      Enabled         =   True
+      Enabled         =   False
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -255,7 +253,7 @@ Begin Window AVAudioWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   310
+      Left            =   431
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -268,7 +266,7 @@ Begin Window AVAudioWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   360
+      Top             =   327
       Underline       =   False
       Visible         =   True
       Width           =   149
@@ -278,7 +276,7 @@ Begin Window AVAudioWindow
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Stop engine"
+      Caption         =   "Stop Audio Engine"
       Default         =   False
       Enabled         =   True
       Height          =   20
@@ -286,7 +284,7 @@ Begin Window AVAudioWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   471
+      Left            =   431
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -299,10 +297,62 @@ Begin Window AVAudioWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
+      Top             =   359
+      Underline       =   False
+      Visible         =   True
+      Width           =   149
+   End
+   Begin PushButton PlayButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Play recorded File"
+      Default         =   False
+      Enabled         =   False
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   278
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   2
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
       Top             =   360
       Underline       =   False
       Visible         =   True
-      Width           =   109
+      Width           =   141
+   End
+   Begin ProgressBar ProgressBar2
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   27
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Maximum         =   100
+      Scope           =   0
+      TabPanelIndex   =   0
+      Top             =   28
+      Value           =   0
+      Visible         =   True
+      Width           =   553
    End
 End
 #tag EndWindow
@@ -314,9 +364,16 @@ End
 		  ProgressBarTimer.Period = 20
 		  addhandler ProgressBarTimer.action, addressof ProgressBarUpdate
 		  
+		  ProgressBarPlayerTimer = new xojo.core.timer
+		  ProgressBarPlayerTimer.Period = 20
+		  addhandler ProgressBarPlayerTimer.action, addressof ProgressBarUpdatePlayer
+		  
+		  
 		  EngineTimer = new xojo.core.timer
 		  EngineTimer.Period = 10
 		  AddHandler EngineTimer.action, AddressOf EngineUpdate
+		  
+		  
 		End Sub
 	#tag EndEvent
 
@@ -349,7 +406,20 @@ End
 		Private Sub FinishedHandler(parent as AppleAVAudioRecorder, success as Boolean)
 		  ProgressBarTimer.Mode = xojo.core.timer.modes.Off
 		  TextArea1.AppendText "Recording stopped"+EndOfLine
+		  ProgressBar1.Value = 0
+		  ProgressBar2.Value = 0
 		  
+		  #pragma unused parent
+		  #pragma unused success
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub FinishedHandlerPlayer(parent as AppleAVAudioPlayer, success as Boolean)
+		  ProgressBarPlayerTimer.Mode = xojo.core.timer.modes.Off
+		  TextArea1.AppendText "Playback stopped "+ if (success, "successfully", "unsuccessfully")+ EndOfLine
+		  ProgressBar1.Value = 0
+		  ProgressBar2.Value = 0
 		  #pragma unused parent
 		  #pragma unused success
 		End Sub
@@ -359,6 +429,17 @@ End
 		Sub ProgressBarUpdate(t as xojo.core.timer)
 		  Recorder.UpdateMeters
 		  ProgressBar1.Value = 100 + 4 * recorder.AveragePower(0)
+		  ProgressBar2.Value = 100 + 4 * recorder.AveragePower(1)
+		  
+		  #pragma unused t
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ProgressBarUpdatePlayer(t as xojo.core.timer)
+		  player.UpdateMeters
+		  ProgressBar1.Value = 100 + 4 * player.AveragePower(0)
+		  ProgressBar2.Value = 100 + 4 * player.AveragePower(1)
 		  #pragma unused t
 		End Sub
 	#tag EndMethod
@@ -374,6 +455,14 @@ End
 
 	#tag Property, Flags = &h0
 		EngineTimer As xojo.Core.Timer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Player As AppleAVAudioPlayer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ProgressBarPlayerTimer As xojo.Core.Timer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -408,12 +497,12 @@ End
 		  recorder.MeteringEnabled = true
 		  
 		  if result = true then 
-		    TextArea1.AppendText "Recording to Testfile.pcm on Desktop"+EndOfLine
+		    TextArea1.AppendText "Recording to Testfile.pcm on Desktop with samplerate "+recorder.Settings.SampleRate.ToText+ EndOfLine
 		    result = recorder.Record
 		    ProgressBarTimer.mode = xojo.core.timer.modes.Multiple
 		  end if
 		  AddHandler recorder.FinishedREcording, addressof FinishedHandler
-		  
+		  PushButton2.Enabled = true
 		  
 		End Sub
 	#tag EndEvent
@@ -424,6 +513,8 @@ End
 		  if recorder <> nil then
 		    recorder.Stop
 		    ProgressBarTimer.mode = xojo.core.timer.modes.off
+		    PlayButton.Enabled = true
+		    me.Enabled = false
 		  end if
 		End Sub
 	#tag EndEvent
@@ -451,6 +542,34 @@ End
 		    Engine.Stop
 		    EngineTimer.mode = xojo.core.timer.modes.off
 		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PlayButton
+	#tag Event
+		Sub Action()
+		  dim f as FolderItem = SpecialFolder.Desktop.Child("Testfile.pcm")
+		  dim error as new AppleError
+		  
+		  player = new AppleAVAudioPlayer(new AppleURL(f), error)
+		  if error =nil then
+		    player.MeteringEnabled = true
+		    dim result as Boolean  = Player.PrepareToPlay
+		    if result then 
+		      result = player.Play
+		      if not result then 
+		        MsgBox "Player does not want to play."
+		      else
+		        ProgressBarPlayerTimer.Mode = xojo.core.timer.modes.Multiple
+		        AddHandler Player.FinishedPlaying, addressof FinishedHandlerPlayer
+		      end if
+		    else
+		      MsgBox "Error praparing playback."
+		    end if
+		  else
+		    MsgBox "Error creating player with URL."
+		  end if
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

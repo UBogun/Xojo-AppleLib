@@ -260,7 +260,7 @@ Inherits AppleResponder
 		  dim AppleOwnerwindow as  AppleWindow = me.OwnerAppleWindow
 		  if AppleOwnerwindow <> nil then
 		    NotificationObjects.Append AppleNotificationCenter.AddObserver ("NSWindowWillCloseNotification", AppleOwnerwindow, _
-		     AppleOperationQueue.MainQueue, new appleblock (Addressof informonWindowWillClose))
+		    AppleOperationQueue.MainQueue, new appleblock (Addressof informonWindowWillClose))
 		  end if
 		  registeridentity (me)
 		  xojo.core.timer.CallLater 0, AddressOf raiseOpen

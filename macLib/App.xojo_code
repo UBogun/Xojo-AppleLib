@@ -8,7 +8,7 @@ Inherits Application
 		  dim ap as new AppleApplication
 		  ap.ApplicationIconImage = new AppleImage(OSXLibLogo)
 		  dim t as AppleDockTile = ap.DockTile
-		  t.BadgeLabel = MajorVersion.ToText+"."+MinorVersion.ToText
+		  t.BadgeLabel = MajorVersion.ToText+"."+MinorVersion.ToText+"."+BugVersion.ToText
 		  t.ShowsApplicationBadge = true
 		  t.Invalidate
 		  

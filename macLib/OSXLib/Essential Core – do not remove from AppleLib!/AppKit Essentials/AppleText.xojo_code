@@ -1,12 +1,66 @@
 #tag Class
 Protected Class AppleText
 Inherits AppleView
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getfieldEditor Lib AppKitLibname Selector "isFieldEditor" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimportsGraphics Lib AppKitLibname Selector "importsGraphics" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getRichText Lib AppKitLibname Selector "isRichText" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getString Lib AppKitLibname Selector "string" (id as ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getusesFontPanel Lib AppKitLibname Selector "usesFontPanel" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleText
 		  Return if (aptr= nil, nil, new AppleText(aptr))
 		End Function
 	#tag EndMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setfieldEditor Lib AppKitLibname Selector "setFieldEditor:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimportsGraphics Lib AppKitLibname Selector "setImportsGraphics:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setRichText Lib AppKitLibname Selector "setRichText:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setString Lib AppKitLibname Selector "setString:" (id as ptr, value as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setusesFontPanel Lib AppKitLibname Selector "setUsesFontPanel:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520636F6C6F72206F66207468652074657874206F626A656374E2809973206261636B67726F756E642E
+		#tag Getter
+			Get
+			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
+			End Set
+		#tag EndSetter
+		BackgroundColor As AppleColor
+	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
@@ -17,6 +71,118 @@ Inherits AppleView
 			End Get
 		#tag EndGetter
 		Protected Shared ClassPtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206F626A656374647261777320697473206261636B67726F756E642E
+		#tag Getter
+			Get
+			  return AppKitFramework.getdrawsBackground(id)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setdrawsBackground id, value
+			End Set
+		#tag EndSetter
+		DrawsBackground As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206F626A656374206973206564697461626C652E
+		#tag Getter
+			Get
+			  return AppKitFramework.geteditable (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.seteditable mid, value
+			End Set
+		#tag EndSetter
+		Editable As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206F626A65637420696E7465727072657473205461622C2053686966742D5461622C20616E642052657475726E2028456E74657229206173206375657320746F20656E642065646974696E6720616E6420706F737369626C7920746F206368616E67652074686520666972737420726573706F6E6465722E
+		#tag Getter
+			Get
+			  return getfieldEditor (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setfieldEditor mid, value
+			End Set
+		#tag EndSetter
+		FieldEditor As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206F626A65637420616C6C6F777320746865207573657220746F20696D706F72742066696C6573206279206472616767696E672E
+		#tag Getter
+			Get
+			  return getimportsGraphics (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setimportsGraphics mid, value
+			End Set
+		#tag EndSetter
+		ImportsGraphics As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206F626A65637420616C6C6F777320746865207573657220746F206170706C79206174747269627574657320746F2073706563696669632072616E676573206F662074686520746578742E
+		#tag Getter
+			Get
+			  return getRichText (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setRichText mid, value
+			End Set
+		#tag EndSetter
+		RichText As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206F626A656374E280997320746578742063616E2062652073656C65637465642E
+		#tag Getter
+			Get
+			  return AppKitFramework.getSelectable (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setSelectable mid, value
+			End Set
+		#tag EndSetter
+		Selectable As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652063686172616374657273206F66207468652074657874206F626A656374E280997320746578742E
+		#tag Getter
+			Get
+			  return getString(mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setString mid, value
+			End Set
+		#tag EndSetter
+		StringRepresentation As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652074657874206F626A65637420757365732074686520466F6E742070616E656C20616E6420466F6E74206D656E752E
+		#tag Getter
+			Get
+			  return getusesFontPanel (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setusesFontPanel mid, value
+			End Set
+		#tag EndSetter
+		UsesFontPanel As Boolean
 	#tag EndComputedProperty
 
 
