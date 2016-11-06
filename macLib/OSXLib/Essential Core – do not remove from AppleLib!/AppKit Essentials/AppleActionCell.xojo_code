@@ -47,7 +47,8 @@ Inherits AppleCell
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSActionCell")
+			  static mClassPtr as Ptr
+			  if mClassPtr = nil then mClassPtr = FoundationFramework.NSClassFromString ("NSActionCell")
 			  return mClassPtr
 			End Get
 		#tag EndGetter

@@ -16,6 +16,7 @@ Inherits AppleResponder
 	#tag Event
 		Sub AnimationDidStop(Animation As AppleCAAnimation, Finished As Boolean)
 		  #pragma unused Animation
+		  #pragma unused Finished
 		End Sub
 	#tag EndEvent
 

@@ -468,7 +468,7 @@ Inherits AppleObject
 			  for q as integer =props.Ubound downto 0
 			    dim p as PropertyInfo = props(q)
 			    System.DebugLog q.totext
-			    if p.Name = kownerWindow then
+			    if p.Name = AppleResponder.kownerWindow then
 			      dim wr as weakref = p.Value(me)
 			      if wr <> nil and wr.value <> nil  then
 			        return new AppleWindow(window(wr.Value))
@@ -503,10 +503,6 @@ Inherits AppleObject
 		#tag EndSetter
 		Target As AppleObject
 	#tag EndComputedProperty
-
-
-	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"ownerWindow", Scope = Private
-	#tag EndConstant
 
 
 	#tag Enum, Name = FontWeight, Type = Integer, Flags = &h0

@@ -771,8 +771,8 @@ Inherits AppleResponder
 		Attributes( hidden ) Protected Declare Function getwidthAdjustLimit Lib appkitlibname Selector "widthAdjustLimit" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
-	#tag Method, Flags = &h1
-		Protected Shared Function Identity(id as ptr) As Appleview
+	#tag Method, Flags = &h21
+		Private Shared Function Identity(id as ptr) As Appleview
 		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
 		  if wr <> nil then return appleview(wr.Value)
 		End Function

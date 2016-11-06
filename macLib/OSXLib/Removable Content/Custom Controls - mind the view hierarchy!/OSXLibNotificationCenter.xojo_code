@@ -34,7 +34,7 @@ Inherits AppleNotificationCenter
 		      RemoveObserver obj, t, nil
 		    end if
 		  next
-		   NotificationObjects = nil
+		  NotificationObjects = nil
 		End Sub
 	#tag EndMethod
 
@@ -83,7 +83,7 @@ Inherits AppleNotificationCenter
 			  for q as integer =props.Ubound downto 0
 			    dim p as PropertyInfo = props(q)
 			    System.DebugLog q.totext
-			    if p.Name = kownerWindow then
+			    if p.Name = AppleResponder.kownerWindow then
 			      dim wr as weakref = p.Value(me)
 			      if wr <> nil and wr.value <> nil  then
 			        return new AppleWindow(window(wr.Value))
@@ -95,10 +95,6 @@ Inherits AppleNotificationCenter
 		#tag EndGetter
 		OwnerAppleWindow As AppleWindow
 	#tag EndComputedProperty
-
-
-	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"ownerWindow", Scope = Private
-	#tag EndConstant
 
 
 	#tag ViewBehavior

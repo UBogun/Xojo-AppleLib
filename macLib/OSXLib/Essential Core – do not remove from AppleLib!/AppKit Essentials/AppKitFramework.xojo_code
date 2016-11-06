@@ -61,11 +61,23 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getalternateImage Lib appkitlibname Selector "alternateImage" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getalternateTitle Lib appkitlibname Selector "alternateTitle" (id as ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getanimates Lib appkitlibname Selector "animates" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getappearance Lib appkitlibname Selector "appearance" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getattributedAlternateTitle Lib appkitlibname Selector "attributedAlternateTitle" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -97,6 +109,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getbezelColor Lib appkitlibname Selector "bezelColor" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getBezeled Lib appkitlibname Selector "isBezeled" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -110,6 +126,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getbounds Lib appkitlibname Selector "bounds" (id as ptr) As FoundationFrameWork.NSRect
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getButtonType Lib appkitlibname Selector "buttonType" (id as ptr) As AppleButton.NSButtonType
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -205,6 +225,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getFont Lib appkitlibname Selector "font" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getframe Lib appkitlibname Selector "frame" (id as ptr) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
 
@@ -225,6 +249,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethighlightsBy Lib appkitlibname Selector "highlightsBy" (id as ptr) As UInteger
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getidentifier Lib appkitlibname Selector "identifier" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
@@ -234,6 +262,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getimageAlignment Lib appkitlibname Selector "imageAlignment" (id as ptr) As NSImageAlignment
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimageDimsWhenDisabled Lib appkitlibname Selector "imageDimsWhenDisabled" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -268,6 +300,10 @@ Protected Module AppKitFramework
 		Protected Declare Function getkeyEquivalent Lib appkitlibname Selector "keyEquivalent" (id as ptr) As CFStringRef
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getkeyEquivalentFont Lib appkitlibname Selector "keyEquivalentFont" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getleadingAnchor Lib appkitlibname Selector "leadingAnchor" (id as ptr) As Ptr
 	#tag EndExternalMethod
@@ -294,6 +330,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getlocalizedName Lib appkitlibname Selector "localizedName" (id as ptr) As cfstringref
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getloops Lib appkitlibname Selector "loops" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -337,6 +377,14 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub getPeriodicDelayInterval Lib appkitlibname Selector "getPeriodicDelay:interval:" (id as ptr, byref delay as single, byref interval as single)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getPlaying Lib AppKitLibname Selector "isPlaying" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getrefusesFirstResponder Lib foundationlibname Selector "refusesFirstResponder" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -361,7 +409,23 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshowsBorderOnlyWhileMouseInside Lib appkitlibname Selector "showsBorderOnlyWhileMouseInside" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getshowsFirstResponder Lib appkitlibname Selector "showsFirstResponder" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getshowsStateBy Lib appkitlibname Selector "showsStateBy" (id as ptr) As UInteger
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getsound Lib appkitlibname Selector "sound" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getSpringLoaded Lib appkitlibname Selector "isSpringLoaded" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -401,6 +465,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getTransparent Lib appkitlibname Selector "isTransparent" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function gettruncatesLastVisibleLine Lib appkitlibname Selector "truncatesLastVisibleLine" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -410,6 +478,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getView Lib appkitlibname Selector "view" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Function getvolume Lib appkitlibname Selector "volume" (id as ptr) As single
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -465,7 +537,19 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub pause Lib AppKitLibname Selector "pause" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub performClick Lib appkitlibname Selector "performClick:" (id as ptr, sender as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub play Lib AppKitLibname Selector "play" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub resume Lib AppKitLibname Selector "resume" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -513,11 +597,23 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setalternateImage Lib appkitlibname Selector "setAlternateImage:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setalternateTitle Lib appkitlibname Selector "setAlternateTitle:" (id as ptr, value as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setanimates Lib appkitlibname Selector "setAnimates:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setappearance Lib appkitlibname Selector "setAppearance:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setattributedAlternateTitle Lib appkitlibname Selector "setAttributedAlternateTitle:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -545,6 +641,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setbezelColor Lib appkitlibname Selector "setBezelColor:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setBezeled Lib appkitlibname Selector "setBezeled:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -554,6 +654,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setbounds Lib appkitlibname Selector "setBounds:" (id as ptr, value as FoundationFrameWork . NSRect)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setButtonType Lib appkitlibname Selector "setButtonType:" (id as ptr, value as AppleButton . NSButtonType)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -625,6 +729,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setFont Lib appkitlibname Selector "setFont:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setframe Lib appkitlibname Selector "setFrame:" (id as ptr, value as FoundationFrameWork . NSRect)
 	#tag EndExternalMethod
 
@@ -633,7 +741,15 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sethighlight Lib appkitlibname Selector "highlight:" (id as ptr, valuea as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setHighlighted Lib appkitlibname Selector "setHighlighted:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sethighlightsBy Lib appkitlibname Selector "setHighlightsBy:" (id as ptr, value as UInteger)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -646,6 +762,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setimageAlignment Lib appkitlibname Selector "setImageAlignment:" (id as ptr, value as NSImageAlignment)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimageDimsWhenDisabled Lib appkitlibname Selector "setImageDimsWhenDisabled:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -684,6 +804,14 @@ Protected Module AppKitFramework
 		Protected Declare Sub setkeyEquivalent Lib appkitlibname Selector "setKeyEquivalent:" (id as ptr, value as CFStringRef)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setkeyEquivalentFont Lib appkitlibname Selector "setKeyEquivalentFont:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setkeyEquivalentFontSize Lib appkitlibname Selector "setKeyEquivalentFont:size:" (id as ptr, value as Ptr, size as CGFloat)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setlineBreakMode Lib appkitlibname Selector "setLineBreakMode:" (id as ptr, value as AppleText . NSLineBreakMode)
 	#tag EndExternalMethod
@@ -698,6 +826,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setlineLength Lib appkitlibname Selector "setLineLength:" (id as ptr, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setloops Lib appkitlibname Selector "setLoops:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
@@ -721,6 +853,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setNextState Lib appkitlibname Selector "setNextState" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setobjectValue Lib foundationlibname Selector "setObjectValue:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
@@ -734,6 +870,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setpatternPhase Lib appkitlibname Selector "setPatternPhase:" (id as ptr, value as FoundationFrameWork . NSPoint)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setPeriodicDelayInterval Lib appkitlibname Selector "setPeriodicDelay:interval:" (id as ptr, delay as single, interval as single)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -757,7 +897,23 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshowsBorderOnlyWhileMouseInside Lib appkitlibname Selector "setShowsBorderOnlyWhileMouseInside:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setshowsFirstResponder Lib appkitlibname Selector "setShowsFirstResponder:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setshowsStateBy Lib appkitlibname Selector "setShowsStateBy:" (id as ptr, value as UInteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setsound Lib appkitlibname Selector "setSound:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setSpringLoaded Lib appkitlibname Selector "setSpringLoaded:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -797,6 +953,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setTransparent Lib appkitlibname Selector "setTransparent:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub settruncatesLastVisibleLine Lib appkitlibname Selector "setTruncatesLastVisibleLine:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -813,6 +973,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
+		Protected Declare Sub setvolume Lib appkitlibname Selector "setVolume:" (id as ptr, value as single)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setWidth Lib foundationlibname Selector "setWidth:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
@@ -826,6 +990,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub sizeToFit Lib appkitlibname Selector "sizeToFit" (id as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub stop Lib AppKitLibname Selector "stop" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

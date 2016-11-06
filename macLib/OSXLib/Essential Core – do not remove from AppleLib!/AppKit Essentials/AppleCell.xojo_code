@@ -81,7 +81,7 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getcellAttribute Lib appkitlibname Selector "cellAttribute" (id as ptr, attribute as NSCellAttribute) As Integer
+		Protected Declare Function getcellAttribute Lib appkitlibname Selector "cellAttribute:" (id as ptr, attribute as NSCellAttribute) As Integer
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -90,6 +90,10 @@ Inherits AppleObject
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function gethasValidObjectValue Lib appkitlibname Selector "hasValidObjectValue" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getimagePosition Lib appkitlibname Selector "imagePosition" (id as ptr) As NSCellImagePosition
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -148,15 +152,15 @@ Inherits AppleObject
 		Protected Declare Sub setCellAttribute Lib appkitlibname Selector "setCellAttribute:to:" (id as ptr, attribute as NSCellAttribute, value as integer)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setimagePosition Lib appkitlibname Selector "setImagePosition:" (id as ptr, value as NSCellImagePosition)
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 4368616E6765732063656C6CE280997320737461746520746F20746865206E6578742076616C756520696E207468652073657175656E63652E
 		Sub SetNextState()
-		  setNextState id
+		  AppKitFramework.setNextState mid
 		End Sub
 	#tag EndMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setNextState Lib appkitlibname Selector "setNextState" (id as ptr)
-	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub settype Lib appkitlibname Selector "setType:" (id as ptr, value as NSCellType)
@@ -264,12 +268,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C20737570706F7274732074687265652073746174657320696E7374656164206F662074776F2E
 		#tag Getter
 			Get
-			  return appkitframework.getallowsMixedState (id)
+			  return appkitframework.getallowsMixedState (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setallowsMixedState id,value
+			  AppKitFramework.setallowsMixedState mid,value
 			End Set
 		#tag EndSetter
 		AllowsMixedState As Boolean
@@ -599,6 +603,20 @@ Inherits AppleObject
 		KeyEquivalent As Text
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 546865206D61736B2073706563696679696E6720746865206D6F646966696572206B65797320666F722074686520627574746F6EE2809973206B6579206571756976616C656E742E
+		#tag Getter
+			Get
+			  return new AppleNSEventModifierFlags(AppleNSMenuItem.getkeyEquivalentModifierMask(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleNSMenuItem.setkeyEquivalentModifierMask mid, value.id
+			End Set
+		#tag EndSetter
+		KeyEquivalentModifierMask As AppleNSEventModifierFlags
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C696E6520627265616B206D6F646520746F20757365207768656E2064726177696E67207465787420696E207468652063656C6C2E
 		#tag Getter
 			Get
@@ -750,12 +768,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6CE28099732063757272656E742073746174652E
 		#tag Getter
 			Get
-			  return NSCellStateValue(AppKitFramework.getState(id))
+			  return NSCellStateValue(AppKitFramework.getState(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setState id, integer(value)
+			  AppKitFramework.setState mid, integer(value)
 			End Set
 		#tag EndSetter
 		State As NSCellStateValue
@@ -900,6 +918,18 @@ Inherits AppleObject
 		  ChangesContents
 		  InsetButton
 		AllowsMixedState
+	#tag EndEnum
+
+	#tag Enum, Name = NSCellImagePosition, Type = Integer, Flags = &h0
+		NoImage = 0
+		  ImageOnly
+		  ImageLeft
+		  ImageRight
+		  ImageBelow
+		  ImageAbove
+		  ImageOverlaps
+		  ImageLeading
+		ImageTrailing
 	#tag EndEnum
 
 	#tag Enum, Name = NSCellStateValue, Type = Integer, Flags = &h0

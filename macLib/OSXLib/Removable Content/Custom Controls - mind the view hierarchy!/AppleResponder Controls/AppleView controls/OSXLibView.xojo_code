@@ -263,7 +263,7 @@ Inherits OSXLibResponder
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnViewDidhide(view as appleview)
 		  RaiseEvent Hidden
-		  #pragma unsued view
+		  #pragma unused view
 		End Sub
 	#tag EndMethod
 

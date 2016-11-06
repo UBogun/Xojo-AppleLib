@@ -1007,9 +1007,8 @@ Inherits AppleObject
 			  using xojo.Introspection
 			  Dim info As TypeInfo = GetType(me)
 			  Dim props() As PropertyInfo = info.Properties
-			  for q as integer =props.Ubound downto 0
+			  for q as integer = props.Ubound downto 0
 			    dim p as PropertyInfo = props(q)
-			    System.DebugLog q.totext
 			    if p.Name = kownerWindow then
 			      dim wr as weakref = p.Value(me)
 			      if wr <> nil and wr.value <> nil  then
@@ -1035,7 +1034,7 @@ Inherits AppleObject
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"ownerWindow", Scope = Private
+	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"ownerWindow", Scope = Public
 	#tag EndConstant
 
 

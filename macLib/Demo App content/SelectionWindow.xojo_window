@@ -261,10 +261,13 @@ End
 		  me.AddRow("TableView")
 		  me.AddRow("AVAudio")
 		  me.AddRow "SpriteKit"
+		  me.AddRow "SceneKit"
 		  me.AddRow ("FontManager")
 		  me.addrow ("Introspection")
 		  me.AddRow ("CIFIlter")
 		  me.AddRow ("Popover")
+		  me.AddRow ("UserDefaults")
+		  me.AddRow "Button Enhancements"
 		  // me.AddRow ("OutlineView") // not ready for demo yet
 		  
 		  me.ListIndex = 0
@@ -312,6 +315,12 @@ End
 		    #elseif Target32Bit
 		      MsgBox "SpriteKit needs 64Bit to run"
 		    #endif
+		  case "SceneKit"
+		    #if Target64Bit
+		      SecondaryWindow = new SceneKitWindow
+		    #elseif Target32Bit
+		      MsgBox "SceneKit needs 64Bit to run"
+		    #endif
 		  case "Introspection"
 		    SecondaryWindow = new IntrospectionWindow
 		  case "FontManager"
@@ -320,6 +329,10 @@ End
 		    SecondaryWindow = new CIFilterWindow
 		  case "Popover"
 		    SecondaryWindow = new PopoverWindow
+		  case "UserDefaults"
+		    SecondaryWindow = new UserDefaultsWindow
+		  case "Button Enhancements"
+		    SecondaryWindow = new ButtonWindow
 		  end select
 		End Sub
 	#tag EndEvent

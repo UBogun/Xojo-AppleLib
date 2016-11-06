@@ -14,6 +14,13 @@ Inherits AppleView
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Shared Function Identity(id as ptr) As Appleview
+		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
+		  if wr <> nil then return appleview(wr.Value)
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Attributes( hidden ) Protected Shared Sub impl_DrawRect(pid as ptr, sel as ptr, rect as FoundationFrameWork.nsrect)
 		  dim view as ApplePaintView = applepaintview.InformInstance(pid)

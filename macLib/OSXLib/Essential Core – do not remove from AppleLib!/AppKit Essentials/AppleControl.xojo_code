@@ -77,6 +77,10 @@ Inherits AppleView
 		Protected Declare Function getsizeThatFits Lib foundationlibname Selector "sizeThatFits:" (id as ptr, size as FoundationFrameWork . NSSize) As FoundationFrameWork.NSSize
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getusesSingleLineMode Lib foundationlibname Selector "usesSingleLineMode" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
 	#tag Method, Flags = &h0, Description = 53696D756C6174657320612073696E676C65206D6F75736520636C69636B206F6E207468652072656365697665722E
 		Sub PerformClick(Sender as appleobject)
 		  AppKitFramework.performClick id, sender.id
@@ -109,6 +113,10 @@ Inherits AppleView
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setignoresMultiClick Lib foundationlibname Selector "setIgnoresMultiClick:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setusesSingleLineMode Lib foundationlibname Selector "setUsesSingleLineMode:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 41736B732074686520636F6E74726F6C20746F2063616C63756C61746520616E642072657475726E207468652073697A6520746861742062657374206669747320746865207370656369666965642073697A652E52657475726E2074727565206966207468657265207761732061206669656C6420656469746F72206173736F63696174656420776974682074686520636F6E7472
@@ -175,7 +183,6 @@ Inherits AppleView
 		missing:
 		
 		cell and cellclass, selectedCell and selectedTag because they are decprecated in OS X 10.10 and 10.11
-		font (NSFont)
 		formatter (NSFormatter)
 		
 	#tag EndNote
@@ -184,12 +191,12 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 5468652064656661756C7420616374696F6E2D6D6573736167652073656C6563746F72206173736F63696174656420776974682074686520636F6E74726F6C2E
 		#tag Getter
 			Get
-			  return appkitframework.getaction (id)
+			  return appkitframework.getaction (mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setAction id,  value
+			  AppKitFramework.setAction mid,  value
 			End Set
 		#tag EndSetter
 		Action As Ptr
@@ -198,13 +205,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 54686520616C69676E6D656E74206D6F6465206F6620746865207465787420696E2074686520636F6E74726F6CE28099732063656C6C2E
 		#tag Getter
 			Get
-			  return AppKitFramework.getalignment (id)
+			  return AppKitFramework.getalignment (mid)
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setalignment id, value
+			  AppKitFramework.setalignment mid, value
 			End Set
 		#tag EndSetter
 		Alignment As AppleText.NSTextAlignment
@@ -345,6 +352,21 @@ Inherits AppleView
 			End Set
 		#tag EndSetter
 		Enabled As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520666F6E74207573656420746F2064726177207465787420696E20746865207265636569766572E28099732063656C6C2E
+		#tag Getter
+			Get
+			  return AppleFont.MakeFromPtr(AppKitFramework.getfont (mid))
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setfont mid, nilptr(value)
+			End Set
+		#tag EndSetter
+		Font As AppleFont
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C20697320686967686C6967687465642E
@@ -493,6 +515,20 @@ Inherits AppleView
 			End Set
 		#tag EndSetter
 		RefusesFirstResponder As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207465787420696E2074686520636F6E74726F6CE28099732063656C6C20757365732073696E676C65206C696E65206D6F64652E
+		#tag Getter
+			Get
+			  return getusesSingleLineMode (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setusesSingleLineMode mid, value
+			End Set
+		#tag EndSetter
+		SingleLineMode As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5468652076616C7565206F6620746865207265636569766572E28099732063656C6C20617320612073696E676C652D707265636973696F6E20666C6F6174696E672D706F696E74206E756D6265722E
@@ -877,6 +913,11 @@ Inherits AppleView
 			Name="RetainCount"
 			Group="Behavior"
 			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SingleLineMode"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SingleValue"

@@ -247,6 +247,21 @@ Inherits AppleView
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DrawsBackground"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Editable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FieldEditor"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FirstBaselineOffsetFromTop"
 			Group="Behavior"
 			Type="Double"
@@ -294,6 +309,11 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Hidden"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImportsGraphics"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -431,6 +451,21 @@ Inherits AppleView
 			Type="UInteger"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="RichText"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Selectable"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StringRepresentation"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
@@ -467,6 +502,11 @@ Inherits AppleView
 				"0 - LeftToRight"
 				"1 - RightToLeft"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UsesFontPanel"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WantsLayer"

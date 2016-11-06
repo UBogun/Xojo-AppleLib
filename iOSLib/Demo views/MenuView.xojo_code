@@ -45,6 +45,7 @@ End
 		  me.AddRow 0, me.CreateCell("iOSLibImageView", "Extensions for Xojo’s ImageWell and a custom ImageView control.")
 		  me.AddRow 0, me.CreateCell("iOSLibButton", "Extensions for Xojo’s iOSButton and a custom iOSLibButton control.")
 		  me.AddRow 0, me.CreateCell("AppleCIFilter", "Allows CIFIlter usage directly or on a view property")
+		  me.AddRow 0, me.CreateCell("TouchID", "Unlock access to a Touch-enabled device")
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -65,6 +66,8 @@ End
 		    v = new ButtonView
 		  case "AppleCIFilter"
 		    v = new CiFilterMenu
+		  case "TouchID"
+		    v = new TouchIDView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub
