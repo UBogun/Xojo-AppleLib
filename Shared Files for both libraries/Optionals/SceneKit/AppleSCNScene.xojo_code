@@ -11,6 +11,29 @@ Inherits AppleSCNObject
 		Protected Declare Sub addParticleSystem Lib SceneKitLibname Selector "addParticleSystem:withTransform:" (id as ptr, particlesystem as ptr, transform as SCNMatrix4)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0
+		Sub Cleanup()
+		  try
+		    RootNode.RemoveAllActions
+		    RootNode.RemoveAllAnimations
+		    RootNode.RemoveAllAudioPlayers
+		    RootNode.RemoveAllParticleSystems
+		    for q as uint64 = 1 to RootNode.ChildNodes.Count
+		      dim c as applescnnode = AppleSCNNode.MakefromPtr (RootNode.ChildNodes.PtrAtIndex(0))
+		      c.RemoveAllActions
+		      c.RemoveAllAnimations
+		      c.RemoveAllAudioPlayers
+		      c.RemoveAllParticleSystems
+		      c.RemoveFromParentNode
+		    next
+		    system.debuglog "scene cleanup done"
+		  catch
+		    system.debuglog "scene cleanup failed"
+		  end try
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1000
 		Sub Constructor()
 		  super.Constructor (SceneKitFrameWork.getScene(ClassPtr), true, true)

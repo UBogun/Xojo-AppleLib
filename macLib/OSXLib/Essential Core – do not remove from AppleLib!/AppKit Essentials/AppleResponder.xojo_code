@@ -1001,19 +1001,17 @@ Inherits AppleObject
 		NextResponder As AppleResponder
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 412074656D706F7261727920776F726B61726F756E6420666F7220746865206D697373696E67204F776E657257696E646F772070726F7065727479206F6620636F6E74726F6C7320776974686F7574206F70746963616C20726570726573656E746174696F6E2076696120496E74726F737065636F74696F6E
+	#tag ComputedProperty, Flags = &h0, Description = 52657475726E7320746865206F776E657257696E646F77206576656E20666F7220636F6E74726F6C7320776974686F757420612056696577202847656E657269634F626A656374732064726F70706564206F6E20746865206C61796F7574292E2028726561642D6F6E6C79292E
 		#tag Getter
 			Get
 			  using xojo.Introspection
 			  Dim info As TypeInfo = GetType(me)
-			  Dim props() As PropertyInfo = info.Properties
-			  for q as integer = props.Ubound downto 0
-			    dim p as PropertyInfo = props(q)
+			  Dim methods() As MethodInfo = info.Methods
+			  for q as integer = methods.Ubound downto 0
+			    dim p as MethodInfo = methods(q)
 			    if p.Name = kownerWindow then
-			      dim wr as weakref = p.Value(me)
-			      if wr <> nil and wr.value <> nil  then
-			        return new AppleWindow(window(wr.Value))
-			      end if
+			      dim w as window = p.Invoke(self)
+			      return new applewindow(w)
 			    end if
 			  next
 			  
@@ -1034,7 +1032,7 @@ Inherits AppleObject
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"ownerWindow", Scope = Public
+	#tag Constant, Name = kownerWindow, Type = Text, Dynamic = False, Default = \"Window", Scope = Public
 	#tag EndConstant
 
 

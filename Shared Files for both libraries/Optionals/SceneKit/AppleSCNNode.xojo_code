@@ -332,7 +332,7 @@ Inherits AppleSCNObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 456E647320616E642072656D6F76657320616C6C20616374696F6E732066726F6D20746865206E6F6465
-		Sub RemoveAllActions(actionkey as text)
+		Sub RemoveAllActions()
 		  SceneKitFrameWork.removeAllActions(mid)
 		End Sub
 	#tag EndMethod

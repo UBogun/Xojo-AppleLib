@@ -257,8 +257,12 @@ Inherits AppleResponder
 		  // If a Popover is placed on the layout, it would never cease to exist because it has no close event like a RectControl.
 		  // We need to install another notification block that enables us to remove the notifications so that the destructor can run.
 		  // We do this here by addressing the private ownerWindow property, but this is of course a dirty hack 
-		  
 		  dim AppleOwnerwindow as  AppleWindow = me.OwnerAppleWindow
+		  for q as integer = 0 to WindowCount -1
+		    dim a as new AppleWindow(window(q))
+		    dim w as window = window(q)
+		    break
+		  next
 		  if AppleOwnerwindow <> nil then
 		    NotificationObjects.Append AppleNotificationCenter.AddObserver ("NSWindowWillCloseNotification", AppleOwnerwindow, _
 		    AppleOperationQueue.MainQueue, new appleblock (Addressof informonWindowWillClose))

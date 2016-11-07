@@ -280,15 +280,17 @@ End
 		  if SecondaryWindow <> nil then 
 		    SecondaryWindow.Close
 		    SecondaryWindow = nil
-		    // try
-		    // appleobject.release Ptr(SecondaryWindow.Handle)
-		    // System.DebugLog "Released Window"
-		    // SecondaryWindow = nil
-		    // catch
-		    // System.DebugLog "Release cause exception"
-		    
-		    // end try
+		    'try
+		    'appleobject.release Ptr(SecondaryWindow.Handle)
+		    'System.DebugLog "Released Window"
+		    'SecondaryWindow = nil
+		    'catch
+		    'System.DebugLog "Release cause exception"
+		    '
+		    'end try
 		  end if
+		  
+		  System.DebugLog WindowCount.ToText + "Windows open"
 		  select case PopupMenu1.Text
 		  case "Color Additions"
 		    SecondaryWindow = new ColorWindow

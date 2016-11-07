@@ -25,7 +25,7 @@ Begin Window ColorWindow
    Resizeable      =   True
    Title           =   "Color Extension Demo"
    Visible         =   True
-   Width           =   827
+   Width           =   1021
    Begin ColorCanvas ColorCanvas1
       AcceptFocus     =   False
       AcceptTabs      =   False
@@ -380,34 +380,6 @@ Begin Window ColorWindow
       Visible         =   True
       Width           =   100
    End
-   Begin Slider Slider4
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   23
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   395
-      LineStep        =   1
-      LiveScroll      =   True
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Maximum         =   255
-      Minimum         =   0
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   13
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickStyle       =   "1"
-      Top             =   97
-      Value           =   0
-      Visible         =   True
-      Width           =   100
-   End
    Begin Label Label1
       AutoDeactivate  =   True
       Bold            =   False
@@ -430,7 +402,6 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Blend"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -438,41 +409,6 @@ Begin Window ColorWindow
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   33
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   100
-   End
-   Begin Label Label2
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   395
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   15
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Alpha"
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   78
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -500,7 +436,6 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   16
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Highlight"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -535,7 +470,6 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Shadow"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -574,7 +508,7 @@ Begin Window ColorWindow
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   827
+      Width           =   1021
    End
    Begin Label Label5
       AutoDeactivate  =   True
@@ -582,12 +516,12 @@ Begin Window ColorWindow
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   337
+      Height          =   304
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   507
+      Left            =   534
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -598,23 +532,68 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Here are some NSColor / AppleColor features that are implemented transparently as new color features for MacOS desktop projects: Color Blending, Alpha value change and two different kinds of brightening and darkening colors that influence the alpha value too.\nBelow I used an image as Color. See how it behaves when you scale the window.\n\nThe module inserted methods are\nColor.BlendWithcolor (AnotherColor As Color, Fraction As Double) As Color\nColor.ChangeAlpha (NewAlpha As Double) As Color\nColor.HightlightColor (Level As Double) As Color and\nColor.ShadowColor (Level As Double) As Color"
+      Text            =   "Here are some NSColor / AppleColor features that are implemented transparently as new color features for MacOS desktop projects: Color Blending, Alpha value change and two different kinds of brightening and darkening colors that influence the alpha value too.\nAt the bottom I used an image as Color. See how it behaves when you resize the window.\nAlpha blending can now done via the AppleColorPanel.\n\nThe module inserted methods are\nColor.BlendWithcolor (AnotherColor As Color, Fraction As Double) As Color\nColor.ChangeAlpha (NewAlpha As Double) As Color\nColor.HightlightColor (Level As Double) As Color and\nColor.ShadowColor (Level As Double) As Color\n\nBelow is an OSXLibView showing the ""pure"" AppleColor (ColorA or ColorB) which has more dynamics than Xojo colors."
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   33
+      Top             =   18
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   300
+      Width           =   467
+   End
+   Begin AppleColorPanel AppleColorPanel1
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin osxlibview ColorCanvas11
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
+      Alpha           =   1.0
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      BackgroundColor =   &cFFFFFFFF
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      FlippedCoordinates=   False
+      FocusRingType   =   "Default"
+      Height          =   70
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   534
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   23
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   302
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   467
    End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Property, Flags = &h0
+		CurrentView As ColorCanvas
+	#tag EndProperty
+
 	#tag Property, Flags = &h1
 		Protected PatternImg As applecolor
 	#tag EndProperty
@@ -625,20 +604,36 @@ End
 #tag Events ColorCanvas1
 	#tag Event
 		Sub ChangeColor()
-		  me.BGColor = me.BGColor.changealpha(Slider4.Value)
+		  // me.BGColor = me.BGColor.changealpha(Slider4.Value)
 		  ColorCanvas4.Invalidate
 		  ColorCanvas7.Invalidate
 		  
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  CurrentView = me
+		  AppleColorPanel1.Show
+		  AppleColorPanel1.CurrentColor = me.bgcolor.toapplecolor
+		  
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events ColorCanvas2
 	#tag Event
 		Sub ChangeColor()
-		  me.BGColor = me.BGColor.changealpha(Slider4.Value)
+		  // me.BGColor = me.BGColor.changealpha(Slider4.Value)
 		  ColorCanvas5.Invalidate
 		  ColorCanvas8.Invalidate
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  CurrentView = me
+		  AppleColorPanel1.Show
+		  AppleColorPanel1.CurrentColor = me.bgcolor.toapplecolor
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events ColorCanvas3
@@ -651,7 +646,6 @@ End
 		Sub ChangeColor()
 		  dim val as double =(Slider1.Value/100)
 		  me.Label =  val.totext
-		  me.BGColor = me.BGColor.changealpha(Slider4.Value)
 		  ColorCanvas6.Invalidate
 		  ColorCanvas9.Invalidate
 		  
@@ -747,16 +741,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Slider4
-	#tag Event
-		Sub ValueChanged()
-		  ColorCanvas1.Invalidate
-		  ColorCanvas2.Invalidate
-		  ColorCanvas3.Invalidate
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events ColorCanvas10
 	#tag Event
 		Sub Open()
@@ -768,6 +752,30 @@ End
 		  av.layer.BackgroundColor = PatternImg // and finally set its layer backgroundcolor to the new color. No Paint event included!
 		End Sub
 	#tag EndEvent
+#tag EndEvents
+#tag Events AppleColorPanel1
+	#tag Event
+		Sub ColorChanged(NewColor As AppleColor)
+		  if CurrentView <> nil then 
+		    CurrentView.BGColor = newcolor.toColor
+		    CurrentView.Invalidate
+		    ColorCanvas3.bgcolor = Colorcanvas1.bgcolor.Blendwithcolor(ColorCanvas2.bgcolor, slider1.Value/100)
+		    colorcanvas3.Invalidate
+		    colorcanvas11.AppleObject.Layer.BackgroundColor = newcolor
+		  end if
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  me.ShowsAlpha = true
+		  me.Show
+		  CurrentView = ColorCanvas1
+		  ColorCanvas11.AppleObject.layer.BackgroundColor = ColorCanvas1.BGColor.toapplecolor
+		  me.CurrentColor = ColorCanvas1.BGColor.toapplecolor
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ColorCanvas11
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty

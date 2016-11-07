@@ -19,18 +19,6 @@ Inherits AppleView
 		End Sub
 	#tag EndEvent
 
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub MouseDown(anEvent As AppleNSEvent)
-		  #pragma unused anEvent
-		End Sub
-	#tag EndEvent
-
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub MouseUp(anEvent As AppleNSEvent)
-		  #pragma unused anEvent
-		End Sub
-	#tag EndEvent
-
 	#tag Event , Description = 52657475726E207472756520696620746865207669657720646F6573206E6F7420757365207472616E73706172656E636965732E
 		Function Opaque() As Boolean
 		  
@@ -78,7 +66,8 @@ Inherits AppleView
 		  
 		  if ClassAvailable then
 		    super.Constructor ( initWithFrameOptions (alloc(ClassPtr), aframe, nilptr(options)), true)
-		    RegisterIdentity(me)
+		    MakeSuper
+		    RegisterIdentity(self)
 		    me.DelegateObject = self
 		  else
 		    MakeException ("SceneKit not available. It needs 64Bit to run.")
@@ -92,6 +81,15 @@ Inherits AppleView
 		  options.ObjectForKey (SceneKitFrameWork.kSCNPreferredRenderingAPIKey) = new AppleNumber(integer(api))
 		  Constructor(aFrame, options)
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub destructor()
+		  System.DebugLog "scn destructor"
+		  me.scene = nil
+		  me.DelegateObject = nil
+		  unregisteridentity(self)
 		End Sub
 	#tag EndMethod
 
@@ -394,6 +392,32 @@ Inherits AppleView
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_mouseDown(pid as ptr, sel as ptr, anevent as ptr)
+		  #pragma StackOverflowChecking false
+		  dim responder as AppleSCNView =identity(pid)
+		  if responder <> nil then 
+		    responder.informOnmouseDown(AppleNSEvent.MakeFromPtr(anevent))
+		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
+		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_mouseUp(pid as ptr, sel as ptr, anevent as ptr)
+		  #pragma StackOverflowChecking false
+		  dim responder as AppleSCNView =identity(pid)
+		  if responder <> nil then 
+		    responder.informOnmouseUp(AppleNSEvent.MakeFromPtr(anevent))
+		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
+		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Shared Sub impl_rendererdidApplyAnimationsAtTime(pid as ptr, sel as ptr, renderer as ptr, attime as double)
 		  #Pragma StackOverflowChecking false
@@ -575,6 +599,15 @@ Inherits AppleView
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleSCNView
 		  return if (aptr = nil, nil, new applescnview(aptr))
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub MakeSuper()
+		  Objc_superObj =  new xojo.Core.MutablememoryBlock(2 * IntegerSize)
+		  Objc_superObj.PtrValue(0) = mid
+		  Objc_superObj.PtrValue( IntegerSize) = me.SuperClass_Ptr
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320616C6C206E6F6465732074686174206D696768742062652076697369626C652066726F6D20612073706563696669656420706F696E74206F6620766965772E20417661696C61626C652073696E636520694F532039202F206D61634F532031302E31312E
@@ -882,9 +915,9 @@ Inherits AppleView
 			      methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
 			      methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
 			      methods.Append new TargetClassMethodHelper("smartMagnifyWithEvent:", AddressOf impl_smartMagnifyWithEvent, "v@:@")
-			      // methods.Append new TargetClassMethodHelper("mouseDown:", AddressOf impl_mouseDown, "v@:@")
+			      methods.Append new TargetClassMethodHelper("mouseDown:", AddressOf applescnview.impl_mouseDown, "v@:@")
 			      methods.Append new TargetClassMethodHelper("mouseDragged:", AddressOf impl_mouseDragged, "v@:@")
-			      // methods.Append new TargetClassMethodHelper("mouseUp:", AddressOf impl_mouseUp, "v@:@")
+			      methods.Append new TargetClassMethodHelper("mouseUp:", AddressOf applescnview.impl_mouseUp, "v@:@")
 			      methods.Append new TargetClassMethodHelper("mouseMoved:", AddressOf impl_mouseMoved, "v@:@")
 			      methods.Append new TargetClassMethodHelper("mouseEntered:", AddressOf impl_mouseEntered, "v@:@")
 			      methods.Append new TargetClassMethodHelper("mouseExited:", AddressOf impl_mouseExited, "v@:@")
@@ -1088,6 +1121,10 @@ Inherits AppleView
 		Loops As Boolean
 	#tag EndComputedProperty
 
+	#tag Property, Flags = &h21
+		Private Objc_superObj As xojo.Core.MutableMemoryBlock
+	#tag EndProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363656E6520697320706C6179696E672E
 		#tag Getter
 			Get
@@ -1147,10 +1184,13 @@ Inherits AppleView
 		#tag EndGetter
 		#tag Setter
 			Set
-			  SceneKitFrameWork.setScene mid, nilptr(value)
-			  if value <> nil then
-			    value.PhysicsWorld.ContactDelegate = self
+			  if scene <> nil then 
+			    scene.PhysicsWorld.ContactDelegate = nil
+			    scene.cleanup
 			  end if
+			  SceneKitFrameWork.setScene mid, nilptr(value)
+			  if value <> nil then value.PhysicsWorld.ContactDelegate = self
+			  
 			End Set
 		#tag EndSetter
 		Scene As AppleSCNScene
@@ -1448,7 +1488,7 @@ Inherits AppleView
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Metal"
-				"1 - Legacy"
+				"1 - OpenGLLegacy"
 				"2 - OpenGLCore32"
 				"3 - OpenGLCore41"
 			#tag EndEnumValues

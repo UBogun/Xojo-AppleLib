@@ -9,15 +9,20 @@ Inherits OSXLibView
 
 	#tag Event
 		Sub Close()
+		  
+		  
 		  RaiseEvent Close
-		  mAppleObject = nil
+		  if mAppleObject <> nil then
+		    RemoveHandlers(appleobject)
+		    mAppleObject = nil
+		  end if
 		  
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Function CloseControl() As Boolean
-		  if not raiseevent CloseControl then RemoveHandlers (me.AppleObject)
+		  'if not raiseevent CloseControl then RemoveHandlers (me.AppleObject)
 		  return true
 		End Function
 	#tag EndEvent
@@ -47,18 +52,6 @@ Inherits OSXLibView
 
 	#tag Event , Description = 4669726573207768656E207468652074686520757365722068617320626567756E20612070696E636820676573747572652E
 		Sub MagnifyGesture(anEvent As AppleNSEvent)
-		  #pragma unused anEvent
-		End Sub
-	#tag EndEvent
-
-	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865206C656674206D6F75736520627574746F6E2E
-		Sub MouseDown(anEvent As AppleNSEvent)
-		  #pragma unused anEvent
-		End Sub
-	#tag EndEvent
-
-	#tag Event , Description = 4669726573207768656E207468652075736572206861732072656C656173656420746865206C656674206D6F75736520627574746F6E2E
-		Sub MouseUp(anEvent As AppleNSEvent)
 		  #pragma unused anEvent
 		End Sub
 	#tag EndEvent
@@ -118,12 +111,12 @@ Inherits OSXLibView
 		  AddHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
 		  
 		  
-		  // AddHandler obj.MouseDown, Addressof informOnMouseDown
+		  AddHandler obj.MouseDown, Addressof informOnMouseDown
 		  AddHandler obj.MouseEntered, Addressof informOnMouseentered
 		  AddHandler obj.MouseDragged, Addressof informOnMouseDragged
 		  AddHandler obj.MouseExited, Addressof informOnMouseExited
 		  AddHandler obj.MouseMoved, Addressof informOnMouseMoved
-		  // AddHandler obj.MouseUp, Addressof informOnMouseUp
+		  AddHandler obj.MouseUp, Addressof informOnMouseUp
 		  
 		  AddHandler obj.RightMouseDown, Addressof informOnRightMouseDown
 		  AddHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
@@ -275,12 +268,12 @@ Inherits OSXLibView
 		  RemoveHandler obj.AnimationFinished, Addressof InformOnNSAnimationFinished
 		  
 		  
-		  // RemoveHandler obj.MouseDown, Addressof informOnMouseDown
+		  RemoveHandler obj.MouseDown, Addressof informOnMouseDown
 		  RemoveHandler obj.MouseEntered, Addressof informOnMouseentered
 		  RemoveHandler obj.MouseDragged, Addressof informOnMouseDragged
 		  RemoveHandler obj.MouseExited, Addressof informOnMouseExited
 		  RemoveHandler obj.MouseMoved, Addressof informOnMouseMoved
-		  // RemoveHandler obj.MouseUp, Addressof informOnMouseUp
+		  RemoveHandler obj.MouseUp, Addressof informOnMouseUp
 		  
 		  RemoveHandler obj.RightMouseDown, Addressof informOnRightMouseDown
 		  RemoveHandler obj.RightMouseDragged, Addressof informOnRightMouseDragged
@@ -324,7 +317,7 @@ Inherits OSXLibView
 		  // RemoveHandler obj.willRemoveSubview, Addressof informOnwillRemoveSubview
 		  RemoveHandler obj.WillResize, Addressof informOnviewWillStartLiveResize
 		  
-		  
+		  System.DebugLog "scn removed Handlers"
 		  
 		  // RemoveHandler obj.DidEvaluateActions, Addressof informOnDidEvaluateActions
 		  // RemoveHandler obj.DidSimulatePhysics, Addressof MouseenterdinformOnDidSimulatePhysics

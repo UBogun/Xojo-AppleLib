@@ -140,37 +140,6 @@ Begin Window TestWindow
       UseFocusRing    =   False
       Visible         =   True
       Width           =   600
-      Begin PushButton PushButton3
-         AutoDeactivate  =   True
-         Bold            =   False
-         ButtonStyle     =   "0"
-         Cancel          =   False
-         Caption         =   "OK"
-         Default         =   True
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "OSXLibVisualEffectView2"
-         Italic          =   False
-         Left            =   20
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   20
-         Underline       =   False
-         Visible         =   True
-         Width           =   80
-      End
       Begin PushButton PushButton4
          AutoDeactivate  =   True
          Bold            =   False
@@ -497,6 +466,43 @@ Begin Window TestWindow
       Visible         =   True
       Width           =   80
    End
+   Begin AppleColorPanel AppleColorPanel1
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin PushButton PushButton3
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "OK"
+      Default         =   True
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   172
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -558,6 +564,21 @@ End
 		    // next
 		  next
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events AppleColorPanel1
+	#tag Event , Description = 4669726573207768656E2074686520636F6C6F725069636B65722070616E656C20636C6F7365732E
+		Sub PanelClose()
+		  break
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton3
+	#tag Event
+		Sub Action()
+		  AppleColorPanel1.ShowsAlpha = true
+		  AppleColorPanel1.Show
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -141,6 +141,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcolor Lib AppKitLibname Selector "color" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcolorRenderingIntent Lib appkitlibname Selector "colorRenderingIntent" (id as ptr) As NSColorRenderingIntent
 	#tag EndExternalMethod
 
@@ -354,6 +358,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getmiterLimit Lib appkitlibname Selector "miterLimit" (id as ptr) As CGFloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getnibBundle Lib appkitlibname Selector "nibBundle" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -658,6 +666,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setButtonType Lib appkitlibname Selector "setButtonType:" (id as ptr, value as AppleButton . NSButtonType)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setcolor Lib appkitlibname Selector "setColor:" (id as ptr, value as Ptr)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
