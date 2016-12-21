@@ -1,12 +1,12 @@
 #tag IOSView
 Begin iosView AVTonePlayerView
-   BackButtonTitle =   ""
+   BackButtonTitle =   "Return"
    Compatibility   =   ""
    Left            =   0
-   NavigationBarVisible=   False
+   NavigationBarVisible=   True
    TabIcon         =   ""
    TabTitle        =   ""
-   Title           =   ""
+   Title           =   "AVTonePlayerNode"
    Top             =   0
    Begin iOSSlider Slider1
       AccessibilityHint=   ""
@@ -22,7 +22,7 @@ Begin iosView AVTonePlayerView
       MaxValue        =   14000.0
       MinValue        =   100.0
       Scope           =   0
-      Top             =   62
+      Top             =   107
       Value           =   440.0
       Visible         =   True
       Width           =   280.0
@@ -39,7 +39,7 @@ Begin iosView AVTonePlayerView
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      Top             =   107
+      Top             =   152
       Value           =   False
       Visible         =   True
       Width           =   51.0
@@ -62,27 +62,21 @@ Begin iosView AVTonePlayerView
       TextColor       =   &c007AFF00
       TextFont        =   ""
       TextSize        =   0
-      Top             =   107
+      Top             =   152
       Visible         =   True
       Width           =   146.0
    End
    Begin AppleAVAudioEngine Engine
       DebugDescription=   ""
       HasOwnership    =   False
-      Height          =   32
-      Height          =   32
-      Left            =   120
-      Left            =   120
+      Left            =   0
       LockedInPosition=   False
       mHasOwnership   =   False
       PanelIndex      =   -1
       Parent          =   ""
       RetainCount     =   ""
       Scope           =   0
-      Top             =   120
-      Top             =   120
-      Width           =   32
-      Width           =   32
+      Top             =   0
    End
    Begin AppleLibAVTonePlayerNode Generator
       Amplitude       =   0.25
@@ -90,10 +84,7 @@ Begin iosView AVTonePlayerView
       DebugDescription=   ""
       Frequency       =   440.0
       HasOwnership    =   False
-      Height          =   32
-      Height          =   32
-      Left            =   140
-      Left            =   140
+      Left            =   0
       LockedInPosition=   False
       MelodyRepeat    =   0
       mHasOwnership   =   False
@@ -112,10 +103,7 @@ Begin iosView AVTonePlayerView
       SampleRate      =   44100.0
       Scope           =   0
       StoponNextNote  =   False
-      Top             =   140
-      Top             =   140
-      Width           =   32
-      Width           =   32
+      Top             =   0
    End
    Begin iOSButton Button1
       AccessibilityHint=   ""
@@ -133,7 +121,7 @@ Begin iosView AVTonePlayerView
       TextColor       =   &c007AFF00
       TextFont        =   ""
       TextSize        =   0
-      Top             =   160
+      Top             =   205
       Visible         =   True
       Width           =   105.0
    End
@@ -157,7 +145,7 @@ Begin iosView AVTonePlayerView
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      Top             =   159
+      Top             =   204
       Visible         =   True
       Width           =   44.0
    End
@@ -179,7 +167,7 @@ Begin iosView AVTonePlayerView
       TextColor       =   &c007AFF00
       TextFont        =   ""
       TextSize        =   0
-      Top             =   159
+      Top             =   204
       Visible         =   True
       Width           =   100.0
    End
@@ -191,17 +179,17 @@ Begin iosView AVTonePlayerView
       AutoLayout      =   TextArea1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, -20, 
       AutoLayout      =   TextArea1, 3, Button1, 4, False, +1.00, 2, 1, 20, 
       Editable        =   False
-      Height          =   250.0
+      Height          =   205.0
       KeyboardType    =   "0"
       Left            =   20
       LockedInPosition=   False
       Scope           =   0
-      Text            =   "AppleLibAVAudioToneGenerator is a custom subclass of on AVAudioPlayerNode incorporating a sine wave tone generator. The tone can be generated continously with the option to influence frequency and amplitude in (almost) real-time, or as a beep with the Sound() method that takes frequency, duration and amplitude.\nAnother option is the PlayMelody method that takes an array of Doubles in the order as above, with an optional MelodyRepeat to repeat the cadence.\nThe math is done with Accelerate framework methods, so the sine gets calculated about twice as fast than with pure Xojo code.\nPlease note that PlayMelody does not perform any fade-in our -out of the notes, so you may hear some unfitting cracks when the tone ends. An alternative could be to calculate the last buffer a bit longer so that it ends on a 0.\n\nKudos to Dave Sisemore for collecting and enhancing the Swift toneGenerator class I took as example."
+      Text            =   "AppleLibAVAudioTonePlayerNode is a custom subclass of an AVAudioPlayerNode incorporating a sine wave tone generator. The tone can be generated continously with the option to influence frequency and amplitude in (almost) real-time, or as a beep with the Sound() method that takes frequency, duration and amplitude.\nAnother option is the PlayMelody method that takes an array of Doubles in the order as above, with an optional MelodyRepeat to repeat the cadence.\nThe math is done with Accelerate framework methods, so the sine gets calculated about twice as fast than with pure Xojo code.\nPlease note that PlayMelody does not perform any fade-in our -out of the notes, so you may hear some unfitting cracks when the tone ends. An alternative could be to calculate the last buffer a bit longer so that it ends on a 0.\n\nKudos to Dave Sisemore for collecting and enhancing the Swift toneGenerator class I took as example."
       TextAlignment   =   "0"
       TextColor       =   &c00000000
       TextFont        =   ""
       TextSize        =   0
-      Top             =   210
+      Top             =   255
       Visible         =   True
       Width           =   280.0
    End
@@ -209,6 +197,17 @@ End
 #tag EndIOSView
 
 #tag WindowCode
+	#tag Event
+		Sub Close()
+		  if Generator.Playing then 
+		    Generator.stop
+		    Generator.reset
+		  end if
+		  Engine.MainMixerNode.Volume = 0
+		  
+		End Sub
+	#tag EndEvent
+
 	#tag Event
 		Sub Open()
 		  Engine.AttachNode (Generator)
@@ -255,8 +254,12 @@ End
 #tag Events Generator
 	#tag Event , Description = 4669726573207768656E206120546F6E6520706C6179656420776974682074686520536F756E64206D6574686F642066696E69736865732E
 		Sub MelodyFinished()
-		  Switch1.Enabled = true
-		  Button1.Enabled = true
+		  try
+		    Switch1.Enabled = true
+		    Button1.Enabled = true
+		  catch NilObjectException // in case the view was closes
+		    
+		  end try
 		End Sub
 	#tag EndEvent
 #tag EndEvents

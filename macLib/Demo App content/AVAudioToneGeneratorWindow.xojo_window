@@ -227,14 +227,29 @@ Begin Window AVAudioToneGeneratorWindow
       Visible         =   True
       Width           =   531
    End
+   Begin AppleAVAudioEngine Engine
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin AppleLibAVTonePlayerNode Generator
+      Amplitude       =   0.25
+      BufferCapacity  =   "512"
+      Frequency       =   440.0
+      Index           =   -2147483648
+      LockedInPosition=   False
+      MelodyRepeat    =   0
+      SampleRate      =   44100.0
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  engine = new AppleAVAudioEngine
-		  Generator = new AppleLibAVTonePlayerNode
 		  engine.attachNode(Generator)  
 		  dim mixer as AppleAVAudioMixerNode = engine.MainMixerNode
 		  Engine.ConnectNodes (Generator, mixer, Generator.AudioFormat)
@@ -244,7 +259,6 @@ End
 		    break
 		  end try
 		  
-		  AddHandler Generator.MelodyFinished, addressof MelodyStop
 		  '    @IBAction func sliderChanged(sender: UISlider) {
 		  '        let freq = 440.0 * pow(2.0, Double(slider.value))
 		  '        tone.frequency = freq
@@ -254,27 +268,6 @@ End
 		  
 		End Sub
 	#tag EndEvent
-
-
-	#tag Method, Flags = &h0
-		Sub MelodyStop(Generator as AppleLibAVTonePlayerNode)
-		  try
-		    CheckBox1.Enabled = true
-		    PushButton1.Enabled = true
-		  catch NilObjectException
-		    // in case the window was closes before
-		  end try
-		End Sub
-	#tag EndMethod
-
-
-	#tag Property, Flags = &h0
-		Engine As AppleAVAudioEngine
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Generator As AppleLibAVTonePlayerNode
-	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -323,6 +316,18 @@ End
 		  generator.melodyRepeat = times
 		  Generator.PlayMelody  array(440, 250, 0.25, 221.5, 250, 0.25, 166, 500, 0.25, 0, 500, 0)
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Generator
+	#tag Event , Description = 4669726573207768656E206120546F6E6520706C6179656420776974682074686520536F756E64206D6574686F642066696E69736865732E
+		Sub MelodyFinished()
+		  try
+		    CheckBox1.Enabled = true
+		    PushButton1.Enabled = true
+		  catch NilObjectException
+		    // in case the window was closes before
+		  end try
 		End Sub
 	#tag EndEvent
 #tag EndEvents
