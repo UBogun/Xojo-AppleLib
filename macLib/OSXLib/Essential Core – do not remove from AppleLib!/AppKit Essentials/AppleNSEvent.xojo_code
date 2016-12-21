@@ -289,7 +289,7 @@ Inherits AppleObject
 	#tag Note, Name = status incomplete
 		
 		missing:
-		
+		constructors
 		EventRef
 		CGEvent
 		associatedEventsMask

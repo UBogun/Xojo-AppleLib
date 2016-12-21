@@ -250,7 +250,7 @@ Inherits ApplePanel
 		  // Here things are becoming a bit complicated: The Blocks created above create a circular reference that would keep the object alive.
 		  // If a Popover is placed on the layout, it would never cease to exist because it has no close event like a RectControl.
 		  // We need to install another notification block that enables us to remove the notifications so that the destructor can run.
-		  // We do this here by addressing the private ownerWindow property, but this is of course a dirty hack 
+		  // We do this here by addressing the private Window method inherited from RectControl
 		  dim AppleOwnerwindow as  AppleWindow = me.OwnerAppleWindow
 		  if AppleOwnerwindow <> nil then
 		    NotificationObjects.Append AppleNotificationCenter.AddObserver (AppleWindow.kNSWindowWillCloseNotification, AppleOwnerwindow, _
@@ -520,7 +520,9 @@ Inherits ApplePanel
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Alpha"
+			Visible=true
 			Group="Behavior"
+			InitialValue="1"
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -535,7 +537,9 @@ Inherits ApplePanel
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Continuous"
+			Visible=true
 			Group="Behavior"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -552,6 +556,13 @@ Inherits ApplePanel
 			Name="HasOwnership"
 			Group="Behavior"
 			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasShadow"
+			Visible=true
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HidesOnDeactivate"
@@ -579,7 +590,9 @@ Inherits ApplePanel
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Mode"
+			Visible=true
 			Group="Behavior"
+			InitialValue="RGB"
 			Type="NSColorPanelMode"
 			EditorType="Enum"
 			#tag EnumValues
@@ -611,6 +624,18 @@ Inherits ApplePanel
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Opaque"
+			Visible=true
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreventsApplicationTerminationWhenModal"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ReleasedWhenClosed"
 			Group="Behavior"
 			Type="Boolean"
@@ -622,7 +647,9 @@ Inherits ApplePanel
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ShowsAlpha"
+			Visible=true
 			Group="Behavior"
+			InitialValue="False"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -640,8 +667,15 @@ Inherits ApplePanel
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
+			Visible=true
 			Group="Behavior"
+			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WindowNumber"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WorksWhenModal"

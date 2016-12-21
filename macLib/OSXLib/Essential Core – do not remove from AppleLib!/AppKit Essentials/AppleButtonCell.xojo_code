@@ -445,6 +445,24 @@ Inherits AppleActionCell
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ButtonType"
+			Group="Behavior"
+			Type="AppleButton.NSButtonType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - MomentaryLight"
+				"1 - PushOnPushOff"
+				"2 - Toggle"
+				"3 - Switch"
+				"4 - Radio"
+				"5 - MomentaryChange"
+				"6 - OnOff"
+				"7 - MomentaryPushIn"
+				"8 - Accelerator"
+				"9 - MultiLevelAccelerator"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Continuous"
 			Group="Behavior"
 			Type="Boolean"

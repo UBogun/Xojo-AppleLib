@@ -222,14 +222,15 @@ End
 		  EngineTimer.Period = 10
 		  AddHandler EngineTimer.action, AddressOf EngineUpdate
 		  
-		  if engine.Start (error) then
+		  try
+		    engine.Start 
 		    EngineTimer.mode = xojo.core.timer.modes.Multiple
-		  else
+		  catch ErrorException
 		    dim m as new iOSMessageBox
 		    m.Title = "AVAudioSession Engine Start Error"
 		    m.Message = error.LocalizedDescription
 		    m.Show
-		  end if
+		  end try
 		End Sub
 	#tag EndEvent
 #tag EndEvents

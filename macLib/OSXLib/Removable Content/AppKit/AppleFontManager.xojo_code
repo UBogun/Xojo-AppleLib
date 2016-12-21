@@ -40,7 +40,7 @@ Inherits AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
 		  Super.Constructor (getsharedFontManager (classptr))
-		  dim AppleOwnerwindow as  AppleWindow = me.OwnerAppleWindow
+		  dim AppleOwnerwindow as  AppleWindow = AppleResponder.getOwnerAppleWindow(me)
 		  if AppleOwnerwindow <> nil then
 		    NotificationObjects.Append AppleNotificationCenter.AddObserver ("NSWindowWillCloseNotification", AppleOwnerwindow, _
 		    AppleOperationQueue.MainQueue, new appleblock (Addressof informonWindowWillClose))
@@ -458,28 +458,6 @@ Inherits AppleObject
 	#tag Property, Flags = &h21
 		Private NotificationObjects() As AppleNotificationObject
 	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0, Description = 412074656D706F7261727920776F726B61726F756E6420666F7220746865206D697373696E67204F776E657257696E646F772070726F7065727479206F6620636F6E74726F6C7320776974686F7574206F70746963616C20726570726573656E746174696F6E2076696120496E74726F737065636F74696F6E
-		#tag Getter
-			Get
-			  using xojo.Introspection
-			  Dim info As TypeInfo = GetType(me)
-			  Dim props() As PropertyInfo = info.Properties
-			  for q as integer =props.Ubound downto 0
-			    dim p as PropertyInfo = props(q)
-			    System.DebugLog q.totext
-			    if p.Name = AppleResponder.kownerWindow then
-			      dim wr as weakref = p.Value(me)
-			      if wr <> nil and wr.value <> nil  then
-			        return new AppleWindow(window(wr.Value))
-			      end if
-			    end if
-			  next
-			  
-			End Get
-		#tag EndGetter
-		OwnerAppleWindow As AppleWindow
-	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C61737420666F6E74207265636F726465642E2028726561642D6F6E6C7929
 		#tag Getter

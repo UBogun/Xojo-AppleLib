@@ -119,7 +119,9 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
+      TabIndex        =   "2"
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   6
       Value           =   0
       Visible         =   True
@@ -348,7 +350,9 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
+      TabIndex        =   "9"
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   28
       Value           =   0
       Visible         =   True
@@ -530,7 +534,7 @@ End
 		  
 		  dim block as new appleblock (addressof CallBackBlock)
 		  input.InstallTap (0,4096, format, block)
-		  call engine.Start (error)
+		  engine.Start 
 		  EngineTimer.mode = xojo.core.timer.modes.Multiple
 		End Sub
 	#tag EndEvent

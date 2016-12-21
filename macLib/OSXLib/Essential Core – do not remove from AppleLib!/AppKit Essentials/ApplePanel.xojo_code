@@ -129,6 +129,11 @@ Inherits AppleWindow
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="HasShadow"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HidesOnDeactivate"
 			Group="Behavior"
 			Type="Boolean"
@@ -169,6 +174,16 @@ Inherits AppleWindow
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Opaque"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreventsApplicationTerminationWhenModal"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ReleasedWhenClosed"
 			Group="Behavior"
 			Type="Boolean"
@@ -195,6 +210,11 @@ Inherits AppleWindow
 			Name="Visible"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WindowNumber"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WorksWhenModal"

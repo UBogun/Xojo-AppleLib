@@ -1,6 +1,18 @@
 #tag Class
 Protected Class AppleWindow
 Inherits AppleResponder
+	#tag Method, Flags = &h0, Description = 496E646963617465732077686574686572207468652077696E646F772063616C63756C617465732074686520746869636B6E657373206F66206120676976656E20626F72646572206175746F6D61746963616C6C792E
+		Function AutorecalculatesContentBorderThicknessForEdge(Edge as FoundationFrameWork.NSRectEdge) As Boolean
+		  Return getautorecalculatesContentBorderThicknessForEdge (mid, edge)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5370656369666965732077686574686572207468652077696E646F772063616C63756C617465732074686520746869636B6E657373206F66206120676976656E20626F72646572206175746F6D61746963616C6C792E
+		Sub AutorecalculatesContentBorderThicknessForEdge(Edge as FoundationFrameWork.NSRectEdge, assigns value as Boolean)
+		  setautorecalculatesContentBorderThicknessForEdge (mid, edge, value)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 656D6F766573207468652077696E646F772066726F6D207468652073637265656E2E
 		Sub Close()
 		  if me.ReleasedWhenClosed then mhasownership = false
@@ -46,12 +58,40 @@ Inherits AppleResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 496E646963617465732074686520746869636B6E657373206F66206120676976656E20626F72646572206F66207468652077696E646F772E
+		Function ContentBorderThicknessForEdge(Edge as FoundationFrameWork.NSRectEdge) As Double
+		  Return getcontentBorderThicknessForEdge (mid, edge)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 536574732074686520746869636B6E657373206F66206120676976656E20626F72646572206F66207468652077696E646F772E
+		Sub ContentBorderThicknessForEdge(Edge as FoundationFrameWork.NSRectEdge, assigns value as double)
+		  setcontentBorderThicknessForEdge (mid, edge, value)
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getautorecalculatesContentBorderThicknessForEdge Lib appkitlibname Selector "autorecalculatesContentBorderThicknessForEdge:" (id as ptr, edge as FoundationFrameWork . NSRectEdge) As Boolean
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcanHide Lib appkitlibname Selector "canHide" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getcollectionBehavior Lib appkitlibname Selector "collectionBehavior" (id as ptr) As Uinteger
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getcontentBorderThicknessForEdge Lib appkitlibname Selector "contentBorderThicknessForEdge:" (id as ptr, edge as FoundationFrameWork . NSRectEdge) As cgfloat
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdefaultDepthLimit Lib appkitlibname Selector "defaultDepthLimit" (id as ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gethasShadow Lib appkitlibname Selector "hasShadow" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -67,6 +107,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getpreventsApplicationTerminationWhenModal Lib appkitlibname Selector "preventsApplicationTerminationWhenModal" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getReleasedWhenClosed Lib appkitlibname Selector "isReleasedWhenClosed" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -79,7 +123,21 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getwindowNumber Lib appkitlibname Selector "windowNumber" (id as ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function initWithContentRect Lib appkitlibname Selector "initWithContentRect:styleMask:backing:defer:screen:" (id as ptr, rect as FoundationFrameWork . NSRect, style as Uinteger, type as NSBackingstoreType, deferCreation as boolean, screen as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 496E76616C696461746573207468652077696E646F7720736861646F7720736F2074686174206974206973207265636F6D7075746564206261736564206F6E207468652063757272656E742077696E646F772073686170652E
+		Sub InvalidateShadow()
+		  invalidateShadow mid
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub invalidateShadow Lib appkitlibname Selector "invalidateShadow" (id as ptr)
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 52657475726E73207468652073756363657373206F6620676976696E67206120726573706F6E6465722074686520666F637573
@@ -103,6 +161,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setautorecalculatesContentBorderThicknessForEdge Lib appkitlibname Selector "setAutorecalculatesContentBorderThicknessForEdge:" (id as ptr, edge as FoundationFrameWork . NSRectEdge, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setCanhide Lib appkitlibname Selector "setCanHide:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -111,11 +173,23 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setcontentBorderThicknessForEdge Lib appkitlibname Selector "setContentBorderThicknessForEdge:" (id as ptr, edge as FoundationFrameWork . NSRectEdge, value as CGFloat)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub sethasShadow Lib appkitlibname Selector "setHasShadow:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub sethidesOnDeactivate Lib appkitlibname Selector "setHidesOnDeactivate:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setOneShot Lib appkitlibname Selector "setOneShot:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setpreventsApplicationTerminationWhenModal Lib appkitlibname Selector "setPreventsApplicationTerminationWhenModal:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -268,7 +342,35 @@ Inherits AppleResponder
 			  return AppleViewController.MakefromPtr(AppKitFramework.getcontentViewController(mid))
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setcontentViewController mid, nilptr(value)
+			End Set
+		#tag EndSetter
 		ContentViewController As AppleViewController
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064656661756C74206465707468206C696D697420666F7220696E7374616E636573206F66204E5357696E646F772E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getdefaultDepthLimit (classptr)
+			End Get
+		#tag EndGetter
+		Shared DefaultDepthLimit As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064656C6567617465206F66207468652077696E646F772E
+		#tag Getter
+			Get
+			  return AppleObject.MakeFromPtr(FoundationFramework.GetDelegate(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  FoundationFramework.setDelegate(mid, if (value = nil, nil, value.id))
+			End Set
+		#tag EndSetter
+		DelegateObject As AppleObject
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206170706C69636174696F6EE280997320446F636B2074696C652E2028726561642D6F6E6C7929
@@ -289,6 +391,20 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		EffectiveAppearance As AppleAppearance
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652077696E646F7720686173206120736861646F772E
+		#tag Getter
+			Get
+			  return gethasShadow (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  sethasShadow mid, value
+			End Set
+		#tag EndSetter
+		HasShadow As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652077696E646F772069732072656D6F7665642066726F6D207468652073637265656E207768656E20697473206170706C69636174696F6E206265636F6D657320696E6163746976652E
@@ -326,6 +442,34 @@ Inherits AppleResponder
 			End Set
 		#tag EndSetter
 		OneShot As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652077696E646F77206973206F70617175652E
+		#tag Getter
+			Get
+			  return appkitframework.getopaque (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setopaque mid, value
+			End Set
+		#tag EndSetter
+		Opaque As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652077696E646F772070726576656E7473206170706C69636174696F6E207465726D696E6174696F6E207768656E206D6F64616C2E
+		#tag Getter
+			Get
+			  return getpreventsApplicationTerminationWhenModal (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setpreventsApplicationTerminationWhenModal mid, value
+			End Set
+		#tag EndSetter
+		PreventsApplicationTerminationWhenModal As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652077696E646F772069732072656C6561736564207768656E2069742072656365697665732074686520636C6F7365206D6573736167652E
@@ -368,6 +512,15 @@ Inherits AppleResponder
 			End Set
 		#tag EndSetter
 		Visible As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652077696E646F77206E756D626572206F66207468652077696E646F77E28099732077696E646F77206465766963652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return getwindowNumber (mid)
+			End Get
+		#tag EndGetter
+		WindowNumber As Integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652077696E646F772069732061626C6520746F2072656365697665206B6579626F61726420616E64206D6F757365206576656E7473206576656E207768656E20736F6D65206F746865722077696E646F77206973206265696E672072756E206D6F64616C6C792E2028726561642D6F6E6C7929
@@ -419,6 +572,11 @@ Inherits AppleResponder
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="HasShadow"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HidesOnDeactivate"
 			Group="Behavior"
 			Type="Boolean"
@@ -459,6 +617,16 @@ Inherits AppleResponder
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Opaque"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreventsApplicationTerminationWhenModal"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ReleasedWhenClosed"
 			Group="Behavior"
 			Type="Boolean"
@@ -485,6 +653,11 @@ Inherits AppleResponder
 			Name="Visible"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WindowNumber"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WorksWhenModal"

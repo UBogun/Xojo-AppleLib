@@ -1360,8 +1360,10 @@ Implements AppleGeneralColor
 			    return col
 			  catch
 			    dim temp as applecolor = me.ChangeColorSpace(AppleColorSpace.GenericRGB)
-			    col = color.rgba (temp.RedComponent * 255, temp.GreenComponent * 255, temp.BlueComponent * 255, 255 - temp.AlphaComponent * 255)
-			    return col
+			    if temp <> nil then
+			      col = color.rgba (temp.RedComponent * 255, temp.GreenComponent * 255, temp.BlueComponent * 255, 255 - temp.AlphaComponent * 255)
+			      return col
+			    end if
 			  end try
 			End Get
 		#tag EndGetter

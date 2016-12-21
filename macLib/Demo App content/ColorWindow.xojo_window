@@ -402,6 +402,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   14
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Blend"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -436,6 +437,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   16
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Highlight"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -470,6 +472,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Shadow"
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -532,6 +535,7 @@ Begin Window ColorWindow
       Selectable      =   False
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Here are some NSColor / AppleColor features that are implemented transparently as new color features for MacOS desktop projects: Color Blending, Alpha value change and two different kinds of brightening and darkening colors that influence the alpha value too.\nAt the bottom I used an image as Color. See how it behaves when you resize the window.\nAlpha blending can now done via the AppleColorPanel.\n\nThe module inserted methods are\nColor.BlendWithcolor (AnotherColor As Color, Fraction As Double) As Color\nColor.ChangeAlpha (NewAlpha As Double) As Color\nColor.HightlightColor (Level As Double) As Color and\nColor.ShadowColor (Level As Double) As Color\n\nBelow is an OSXLibView showing the ""pure"" AppleColor (ColorA or ColorB) which has more dynamics than Xojo colors."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -545,10 +549,31 @@ Begin Window ColorWindow
       Width           =   467
    End
    Begin AppleColorPanel AppleColorPanel1
+      Alpha           =   1.0
+      BecomeKeyOnlyIfNeeded=   False
+      CanHide         =   False
+      Continuous      =   True
+      DebugDescription=   ""
+      Enabled         =   True
+      FloatingPanel   =   False
+      HasOwnership    =   False
+      HasShadow       =   True
+      HidesOnDeactivate=   False
       Index           =   -2147483648
       LockedInPosition=   False
+      mHasOwnership   =   False
+      Mode            =   "1"
+      OnActiveSpace   =   False
+      OneShot         =   False
+      Opaque          =   True
+      PreventsApplicationTerminationWhenModal=   False
+      ReleasedWhenClosed=   False
+      RetainCount     =   ""
       Scope           =   0
+      ShowsAlpha      =   True
       TabPanelIndex   =   0
+      WindowNumber    =   0
+      WorksWhenModal  =   False
    End
    Begin osxlibview ColorCanvas11
       AcceptFocus     =   False
@@ -559,6 +584,7 @@ Begin Window ColorWindow
       AutoDeactivate  =   True
       Backdrop        =   0
       BackgroundColor =   &cFFFFFFFF
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
@@ -767,15 +793,11 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  me.ShowsAlpha = true
-		  me.Show
 		  CurrentView = ColorCanvas1
 		  ColorCanvas11.AppleObject.layer.BackgroundColor = ColorCanvas1.BGColor.toapplecolor
 		  me.CurrentColor = ColorCanvas1.BGColor.toapplecolor
 		End Sub
 	#tag EndEvent
-#tag EndEvents
-#tag Events ColorCanvas11
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty

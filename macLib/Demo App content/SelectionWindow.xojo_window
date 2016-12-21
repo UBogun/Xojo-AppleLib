@@ -254,12 +254,14 @@ End
 		Sub Open()
 		  me.AddRow("Color Additions")
 		  me.AddRow("NSView Additions")
+		  me.AddRow ("NSViewController")
 		  me.AddRow("VisualEffectView")
 		  me.AddRow("Notifications")
 		  me.AddRow("CoreBluetooth")
 		  me.AddRow("ScrollView")
 		  me.AddRow("TableView")
 		  me.AddRow("AVAudio")
+		  me.AddRow "AVAudioToneGenerator"
 		  me.AddRow "SpriteKit"
 		  me.AddRow "SceneKit"
 		  me.AddRow ("FontManager")
@@ -335,6 +337,10 @@ End
 		    SecondaryWindow = new UserDefaultsWindow
 		  case "Button Enhancements"
 		    SecondaryWindow = new ButtonWindow
+		  case "NSViewController"
+		    SecondaryWindow = new ViewControllerWindow
+		  case "AVAudioToneGenerator"
+		    SecondaryWindow = new AVAudioToneGeneratorWindow
 		  end select
 		End Sub
 	#tag EndEvent

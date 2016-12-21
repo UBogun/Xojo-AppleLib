@@ -203,7 +203,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr 
+			  static mClassPtr as Ptr
 			  if mclassptr = nil then mClassPtr = FoundationFramework.NSClassFromString ("SCNPhysicsBody")
 			  return mClassPtr
 			End Get

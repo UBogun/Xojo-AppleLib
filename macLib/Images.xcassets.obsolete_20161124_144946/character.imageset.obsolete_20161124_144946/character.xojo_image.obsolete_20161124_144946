@@ -1,0 +1,40 @@
+#tag MultiImage
+Image character
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIgAAAAAAIgAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADRD1cYSCsAAAI7FroNY2hhcmFjdGVyLnBuZwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjsWu9Ixrg8AAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAEmNoYXJhY3Rlci5pbWFnZXNldAAQAAgAANEPSQgAAAARAAgAANIxke8AAAABABwCOxa6AjsWkgI7FncCOxZyAAlIJQAJSCIAApUUAAIAfE1hY2ludG9zaCBIRDpVc2VyczoAdWxpOgBEb3dubG9hZHM6AEZlYXIgVGhlIERlYWQg0CBGaW5hbDoARmVhciBUaGUgRGVhZDoASW1hZ2VzLnhjYXNzZXRzOgBjaGFyYWN0ZXIuaW1hZ2VzZXQ6AGNoYXJhY3Rlci5wbmcADgAcAA0AYwBoAGEAcgBhAGMAdABlAHIALgBwAG4AZwAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAGpVc2Vycy91bGkvRG93bmxvYWRzL0ZlYXIgVGhlIERlYWQg4oCTIEZpbmFsL0ZlYXIgVGhlIERlYWQvSW1hZ2VzLnhjYXNzZXRzL2NoYXJhY3Rlci5pbWFnZXNldC9jaGFyYWN0ZXIucG5nABMAAS8AABUAAgAK//8AAAAAAAAAAA==
+		FullPath = /Users/uli/Downloads/Fear The Dead – Final/Fear The Dead/Images.xcassets/character.imageset/character.png
+		PartialPath = ..\..\..\..\..\Downloads\Fear The Dead – Final\Fear The Dead\Images.xcassets\character.imageset\character.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

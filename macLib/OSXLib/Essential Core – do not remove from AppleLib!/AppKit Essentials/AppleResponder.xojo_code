@@ -42,6 +42,22 @@ Inherits AppleObject
 		Protected Declare Function getnextResponder Lib appkitlibname Selector "nextResponder" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0
+		Shared Function GetOwnerAppleWindow(Obj as AppleObject) As AppleWindow
+		  using xojo.Introspection
+		  Dim info As TypeInfo = GetType(obj)
+		  Dim methods() As MethodInfo = info.Methods
+		  for q as integer = methods.Ubound downto 0
+		    dim p as MethodInfo = methods(q)
+		    if p.Name = kownerWindow then
+		      dim w as window = p.Invoke(obj)
+		      return new applewindow(w)
+		    end if
+		  next
+		  
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Shared Function Identity(id as ptr) As AppleResponder
 		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
@@ -1004,17 +1020,7 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 52657475726E7320746865206F776E657257696E646F77206576656E20666F7220636F6E74726F6C7320776974686F757420612056696577202847656E657269634F626A656374732064726F70706564206F6E20746865206C61796F7574292E2028726561642D6F6E6C79292E
 		#tag Getter
 			Get
-			  using xojo.Introspection
-			  Dim info As TypeInfo = GetType(me)
-			  Dim methods() As MethodInfo = info.Methods
-			  for q as integer = methods.Ubound downto 0
-			    dim p as MethodInfo = methods(q)
-			    if p.Name = kownerWindow then
-			      dim w as window = p.Invoke(self)
-			      return new applewindow(w)
-			    end if
-			  next
-			  
+			  return getownerAppleWindow(me)
 			End Get
 		#tag EndGetter
 		OwnerAppleWindow As AppleWindow

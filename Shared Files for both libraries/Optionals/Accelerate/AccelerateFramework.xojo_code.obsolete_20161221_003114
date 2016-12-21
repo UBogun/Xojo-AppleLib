@@ -1,0 +1,292 @@
+#tag Module
+Protected Module AccelerateFramework
+	#tag Method, Flags = &h0, Description = 437265617465732061204D656D6F7279626C6F636B207769746820657175616C6C7920646973747269627574656420646F75626C652076616C7565732072616E67696E672066726F6D20737461727420746F20656E642076616C75652E
+		Function CreateRampedVectorDouble(StartValue As Double, EndValue as Double, Stride as Integer, Length as UInteger) As xojo.Core.MutableMemoryBlock
+		  dim result as new xojo.Core.MutableMemoryBlock(8 * length)
+		  vDSP_vgenD (StartValue, EndValue, result.data, Stride, Length)
+		  return result
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061204D656D6F7279626C6F636B207769746820657175616C6C792064697374726962757465642073696E676C652076616C7565732072616E67696E672066726F6D20737461727420746F20656E642076616C75652E
+		Function CreateRampedVectorSingle(StartValue As Single, EndValue as Single, Stride as Integer, Length as UInteger) As xojo.Core.MutableMemoryBlock
+		  dim result as new xojo.Core.MutableMemoryBlock(4 * length)
+		  vDSP_vgen (StartValue, EndValue, result.data, Stride, Length)
+		  return result
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 437265617465732061204D656D6F7279626C6F636B207769746820657175616C6C792064697374726962757465642073696E676C652076616C7565732072616E67696E672066726F6D20737461727420746F20656E642076616C75652E
+		Sub SinusSingle(result as xojo.Core.MutableMemoryBlock, source as xojo.Core.MutableMemoryBlock, Count As Int32)
+		  dim countint as int32 = count
+		  dim dataptr as ptr = result.data
+		  dim sourceptr as ptr = source.Data
+		  vvsinf dataptr, sourceptr, countint
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function vDSP_create_fftsetup Lib AccelerateLibName (Length As Uinteger, Radix As Int32) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h0
+		Declare Sub vDSP_ctoz Lib AccelerateLibName (C As Ptr,  IC As Int32, Z As Ptr,  IZ As Int32, N As UInt32)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h0
+		Declare Sub vDSP_destroy_fftsetup Lib AccelerateLibName (FFT_setup as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h0
+		Declare Sub vDSP_fft_zrip Lib AccelerateLibName (Setup As Ptr, C As Ptr, IC As Int32,  Log2N As Int32, Direction As Integer)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vadd Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as FoundationFrameWork . NSPoint, BStride As Integer, byref c as FoundationFrameWork . NSPoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vadd Lib AccelerateLibName (byref a as single, AStride As Integer, byref b as single, BStride As Integer, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vaddD Lib AccelerateLibName (byref a as double, AStride As Integer, byref b as double, BStride As Integer, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vaddD Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as FoundationFrameWork . NSPoint, BStride As Integer, byref c as FoundationFrameWork . NSPoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vgen Lib AccelerateLibName (byref a as single, byref b as single, c as ptr, Stride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vgenD Lib AccelerateLibName (byref a as double, byref b as double, c as ptr, Stride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vmul Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as FoundationFrameWork . NSPoint, BStride as integer, byref c as FoundationFrameWork . NSPoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vmul Lib AccelerateLibName (a as ptr, AStride As Integer, b as ptr, BStride as integer, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vmulD Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as FoundationFrameWork . NSPoint, BStride as integer, byref c as foundationframework . nspoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vmulD Lib AccelerateLibName (a as ptr, AStride As Integer, b as ptr, BStride as integer, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsmul Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as single, byref c as FoundationFrameWork . NSPoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsmul Lib AccelerateLibName (a as ptr, AStride As Integer, byref b as single, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsmulD Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as double, byref c as FoundationFrameWork . NSPoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsmulD Lib AccelerateLibName (a as ptr, AStride As Integer, byref b as double, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsq Lib AccelerateLibName (byref vDSP_input as foundationframework . Nspoint, vDSP_strideInput as Integer, byref vDSP_Result as foundationframework . Nspoint, vDSP_StrideResult As Integer, vDSP_Size as Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsq Lib AccelerateLibName (vDSP_input as Ptr, vDSP_strideInput as Integer, vDSP_Result as Ptr, vDSP_StrideResult As Integer, vDSP_Size as UInteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsqD Lib AccelerateLibName (byref vDSP_input as foundationframework . Nspoint, vDSP_strideInput as integer, byref vDSP_Result as foundationframework . Nspoint, vDSP_StrideResult As integer, vDSP_Size as UInteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsqD Lib AccelerateLibName (vDSP_input as Ptr, vDSP_strideInput as Integer, vDSP_Result as Ptr, vDSP_StrideResult As Integer, vDSP_Size as UInteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vssq Lib AccelerateLibName (byref vDSP_input as foundationframework . Nspoint, vDSP_strideInput as Integer, byref vDSP_Result as foundationframework . Nspoint, vDSP_StrideResult As Integer, vDSP_Size as Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vssq Lib AccelerateLibName (vDSP_input as Ptr, vDSP_strideInput as Integer, vDSP_Result as Ptr, vDSP_StrideResult As Integer, vDSP_Size as UInteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vssqD Lib AccelerateLibName (byref vDSP_input as foundationframework . Nspoint, vDSP_strideInput as integer, byref vDSP_Result as foundationframework . Nspoint, vDSP_StrideResult As integer, vDSP_Size as UInteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vssqD Lib AccelerateLibName (vDSP_input as Ptr, vDSP_strideInput as Integer, vDSP_Result as Ptr, vDSP_StrideResult As Integer, vDSP_Size as UInteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsub Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as FoundationFrameWork . NSPoint, BStride As Integer, byref c as FoundationFrameWork . NSPoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsub Lib AccelerateLibName (byref a as single, AStride As Integer, byref b as single, BStride As Integer, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsubD Lib AccelerateLibName (byref a as double, AStride As Integer, byref b as double, BStride As Integer, c as ptr, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vDSP_vsubD Lib AccelerateLibName (byref a as FoundationFrameWork . NSPoint, AStride As Integer, byref b as FoundationFrameWork . NSPoint, BStride As Integer, byref c as FoundationFrameWork . NSPoint, CStride As integer, Length As Uinteger)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 416464732074776F204E53506F696E74732E
+		Function Vector_Add(aPoint as FoundationFrameWork.NSPoint, bPoint As FoundationFrameWork.NSPoint) As FoundationFrameWork.NSPoint
+		  dim outpoint as foundationframework.Nspoint
+		  #if Target32Bit
+		    vDSP_vadd (aPoint, 1, bPoint, 1, OutPoint, 1, 2)
+		  #elseif Target64Bit
+		    vDSP_vaddD (aPoint, 1, bPoint, 1, OutPoint, 1, 2)
+		  #endif
+		  return Outpoint
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4D756C7469706C696573207468652070726F70657274696573206F6620616E204E53506F696E7420627920612073706563696669656420666163746F722E
+		Function Vector_Multiply(aPoint as FoundationFrameWork.NSpoint, factor as double) As FoundationFrameWork.NSPoint
+		  dim outpoint as foundationframework.Nspoint
+		  #if Target32Bit
+		    dim singleFactor as single = Factor
+		    vDSP_vsmul (aPoint, 1, singleFactor, outpoint, 1, 2)
+		  #elseif Target64Bit
+		    vDSP_vsmulD (aPoint, 1, Factor, outpoint, 1, 2)
+		  #endif
+		  return Outpoint
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4D756C7469706C696573207468652070726F70657274696573206F6620616E204E53506F696E7420627920612073706563696669656420666163746F722E
+		Function Vector_Multiply(aPoint as FoundationFrameWork.NSpoint, factor as FoundationFrameWork . NSPoint) As FoundationFrameWork.NSPoint
+		  dim outpoint as foundationframework.Nspoint
+		  #if Target32Bit
+		    vDSP_vmul (aPoint, 1, factor, 1, outpoint, 1, 2)
+		  #elseif Target64Bit
+		    vDSP_vmulD (aPoint, 1, Factor, 1, outpoint, 1, 2)
+		  #endif
+		  return Outpoint
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 4D756C7469706C696573207468652070726F70657274696573206F6620616E204E53506F696E7420627920612073706563696669656420666163746F722E
+		Sub Vector_Multiply(input as xojo.core.mutablememoryblock, output as xojo.core.mutablememoryblock, factor as single)
+		  vDSP_vsmul (input.data, 1, factor, output.data, 1, input.Size / 4)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 43616C63756C617465732074686520737175617265206F66207820616E6420792076616C756573206F662061204E53506F696E742E
+		Function Vector_Square(aPoint as FoundationFrameWork.NSPoint) As FoundationFrameWork.NSPoint
+		  dim outpoint as foundationframework.Nspoint
+		  #if Target32Bit
+		    vDSP_vsq (aPoint, 1, OutPoint, 1, 2)
+		  #elseif Target64Bit
+		    vDSP_vsqD (aPoint, 1, OutPoint, 1, 2)
+		  #endif
+		  return Outpoint
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 43616C63756C6174657320746865207369676E656420737175617265206F66207820616E6420792076616C756573206F662061204E53506F696E742E
+		Function Vector_SquareSigned(aPoint as FoundationFrameWork.NSPoint) As FoundationFrameWork.NSPoint
+		  dim outpoint as foundationframework.Nspoint
+		  #if Target32Bit
+		    vDSP_vssq (aPoint, 1, OutPoint, 1, 2)
+		  #elseif Target64Bit
+		    vDSP_vssqD (aPoint, 1, OutPoint, 1, 2)
+		  #endif
+		  return Outpoint
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5375627472616374732062506F696E742066726F6D2061506F696E7420616E642072657475726E732074686520726573756C742E
+		Function Vector_Subtract(aPoint as FoundationFrameWork.NSPoint, bPoint As FoundationFrameWork.NSPoint) As FoundationFrameWork.NSPoint
+		  dim outpoint as foundationframework.Nspoint
+		  #if Target32Bit
+		    vDSP_vsub (bPoint, 1, aPoint, 1, OutPoint, 1, 2)
+		  #elseif Target64Bit
+		    vDSP_vsubD(bPoint, 1, aPoint, 1, OutPoint, 1, 2)
+		  #endif
+		  return Outpoint
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub vvsinf Lib AccelerateLibName (result as ptr, source as ptr, byref Count as Int32)
+	#tag EndExternalMethod
+
+
+	#tag Constant, Name = AccelerateLibName, Type = Text, Dynamic = False, Default = \"Accelerate.framework", Scope = Public
+	#tag EndConstant
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Module
+#tag EndModule

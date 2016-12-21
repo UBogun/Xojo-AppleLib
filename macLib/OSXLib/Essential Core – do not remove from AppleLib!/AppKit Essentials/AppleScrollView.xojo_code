@@ -1,18 +1,6 @@
 #tag Class
 Protected Class AppleScrollView
 Inherits AppleView
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Function AcceptsFirstResponder() As Boolean
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event
-		Function AcceptsTouchEvents() As Boolean
-		  
-		End Function
-	#tag EndEvent
-
 	#tag Event
 		Function AllowsVibrancy() As Boolean
 		  
@@ -25,41 +13,10 @@ Inherits AppleView
 		End Sub
 	#tag EndEvent
 
-	#tag Event , Description = 4669726573207768656E2074686520726573706F6E6465722069732061626F757420746F206265636F6D6520666972737420726573706F6E64657220696E206974732057696E646F772E2052657475726E207472756520746F2070726576656E742069742066726F6D2067657474696E672074686520666F6375732E
-		Function DontBecomeFirstResponder() As Boolean
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event , Description = 4669726573207768656E2074686520726573706F6E6465722069732061626F757420746F206C6F7365206265696E672074686520666972737420726573706F6E64657220696E206974732057696E646F772E2052657475726E207472756520746F2070726576656E742069742066726F6D206C6F73696E672074686520666F6375732E
-		Function DontResignFirstResponder() As Boolean
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub Magnify(anEvent As AppleNSEvent)
-		  #pragma unused anevent
-		End Sub
-	#tag EndEvent
-
 	#tag Event
 		Function Opaque() As Boolean
 		  
 		End Function
-	#tag EndEvent
-
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub ScrollWheel(anEvent As AppleNSEvent)
-		  #pragma unused anevent
-		  break
-		End Sub
-	#tag EndEvent
-
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub SmartMagnify(anEvent As AppleNSEvent)
-		  #pragma unused anevent
-		End Sub
 	#tag EndEvent
 
 
@@ -259,9 +216,55 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Shared Function impl_acceptsFirstResponder(pid as ptr, sel as ptr) As Boolean
-		  return true
-		End Function
+		Attributes( hidden ) Protected Shared Sub impl_magnifyWithEvent(pid as ptr, sel as ptr, anevent as ptr)
+		  dim responder as applescrollview = applescrollview.InformInstance(pid)
+		  if responder <> nil then  
+		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
+		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
+		    responder.informOnmagnifyWithEvent (AppleNSEvent.MakeFromPtr(anevent))
+		  end if
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_scrollWheel(pid as ptr, sel as ptr, anevent as ptr)
+		  dim responder as applescrollview = applescrollview.InformInstance(pid)
+		  if responder <> nil then  
+		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
+		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
+		    responder.informOnscrollWheel (AppleNSEvent.MakeFromPtr(anevent))
+		  end if
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_smartMagnifyWithEvent(pid as ptr, sel as ptr, anevent as ptr)
+		  dim responder as applescrollview = applescrollview.InformInstance(pid)
+		  if responder <> nil then  
+		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
+		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
+		    responder.informOnsmartmagnifyWithEvent (AppleNSEvent.MakeFromPtr(anevent))
+		  end if
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Attributes( hidden ) Protected Shared Sub impl_swipeWithEvent(pid as ptr, sel as ptr, anevent as ptr)
+		  dim responder as applescrollview = applescrollview.InformInstance(pid)
+		  if responder <> nil then  
+		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
+		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
+		    responder.informOnswipeWithEvent (AppleNSEvent.MakeFromPtr(anevent))
+		  end if
+		  
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
@@ -298,6 +301,17 @@ Inherits AppleView
 		  
 		End Function
 	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 41646A7573747320746865207265636569766572E2809973207363726F6C6C65727320746F207265666C656374207468652073697A6520616E6420706F736974696F6E696E67206F662069747320636F6E74656E7420766965772E
+		Sub ReflectScrolledClipView(clipview as appleview = nil)
+		  if clipview = nil then clipview = me.ContentView
+		  reflectScrolledClipView_ id, clipview.id
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1, Description = 41646A7573747320746865207265636569766572E2809973207363726F6C6C65727320746F207265666C656374207468652073697A6520616E6420706F736974696F6E696E67206F662069747320636F6E74656E7420766965772E
+		Protected Declare Sub reflectScrolledClipView_ Lib appkitlibname Selector "reflectScrolledClipView:" (id as ptr, clipview as ptr)
+	#tag EndExternalMethod
 
 	#tag Method, Flags = &h0, Description = 5363726F6C6C7320746865207265636569766572207570206F7220646F776E2C20696E20726573706F6E736520746F207468652075736572206D6F76696E6720746865206D6F757365E2809973207363726F6C6C20776865656C20737065636966696564206279207468654576656E742E
 		Sub ScrollWheel(anEvent As AppleNSEvent)
@@ -451,7 +465,6 @@ Inherits AppleView
 		title (ditto)
 		
 		changes:
-		contentView & documentView must be NSClipView, not NSView
 		rulerviews should be NSRulerview, not NSView
 	#tag EndNote
 
@@ -544,11 +557,11 @@ Inherits AppleView
 			    dim methods() as TargetClassMethodHelper
 			    
 			    //NSResponder "delegate" methods
-			    // methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf AppleScrollview.impl_acceptsFirstResponder, "c@:")
-			    // methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
-			    // methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
+			    methods.Append new TargetClassMethodHelper("acceptsFirstResponder", AddressOf impl_acceptsFirstResponder, "c@:")
+			    methods.Append new TargetClassMethodHelper("becomeFirstResponder", AddressOf impl_becomeFirstResponder, "c@:")
+			    methods.Append new TargetClassMethodHelper("resignFirstResponder", AddressOf impl_resignFirstResponder, "c@:")
 			    
-			    // methods.Append new TargetClassMethodHelper("smartMagnifyWithEvent:", AddressOf impl_smartMagnifyWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("smartMagnifyWithEvent:", AddressOf applescrollview.impl_smartMagnifyWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("mouseDown:", AddressOf impl_mouseDown, "v@:@")
 			    methods.Append new TargetClassMethodHelper("mouseDragged:", AddressOf impl_mouseDragged, "v@:@")
 			    methods.Append new TargetClassMethodHelper("mouseUp:", AddressOf impl_mouseUp, "v@:@")
@@ -566,13 +579,13 @@ Inherits AppleView
 			    methods.Append new TargetClassMethodHelper("pressureChangeWithEvent:", AddressOf impl_pressureChangeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("flagsChanged:", AddressOf impl_flagsChanged, "v@:@")
 			    methods.Append new TargetClassMethodHelper("tabletPoint:", AddressOf impl_tabletPoint, "v@:@")
-			    // methods.Append new TargetClassMethodHelper("scrollWheel:", AddressOf impl_scrollWheel, "v@:@")
+			    methods.Append new TargetClassMethodHelper("scrollWheel:", AddressOf applescrollview.impl_scrollWheel, "v@:@")
 			    methods.Append new TargetClassMethodHelper("willPresentError:", AddressOf impl_willPresentError, "@@:@")
 			    methods.Append new TargetClassMethodHelper("beginGestureWithEvent:", AddressOf impl_beginGestureWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("endGestureWithEvent:", AddressOf impl_endGestureWithEvent, "v@:@")
-			    // methods.Append new TargetClassMethodHelper("magnifyWithEvent:", AddressOf impl_magnifyWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("magnifyWithEvent:", AddressOf applescrollview.impl_magnifyWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("rotateWithEvent:", AddressOf impl_rotateWithEvent, "v@:@")
-			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf impl_swipeWithEvent, "v@:@")
+			    methods.Append new TargetClassMethodHelper("swipeWithEvent:", AddressOf applescrollview.impl_swipeWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesBeganWithEvent:", AddressOf impl_touchesBeganWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesMovedWithEvent:", AddressOf impl_touchesMovedWithEvent, "v@:@")
 			    methods.Append new TargetClassMethodHelper("touchesCancelledWithEvent:", AddressOf impl_touchesCancelledWithEvent, "v@:@")
@@ -582,7 +595,7 @@ Inherits AppleView
 			    
 			    // NSView "delegate" methods
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToWindow", AddressOf impl_viewDidMoveToWindow, "v@:")
-			    // methods.Append new TargetClassMethodHelper("acceptsTouchEvents", AddressOf impl_acceptsTouchEvents, "c@:")
+			    methods.Append new TargetClassMethodHelper("acceptsTouchEvents", AddressOf impl_acceptsTouchEvents, "c@:")
 			    // methods.Append new TargetClassMethodHelper("didAddSubview:", AddressOf impl_didAddSubview, "v@:@")
 			    methods.Append new TargetClassMethodHelper("viewDidMoveToSuperview", AddressOf impl_viewDidMoveToSuperview, "v@:")
 			    methods.Append new TargetClassMethodHelper("viewWillMoveToSuperview:", AddressOf impl_viewWillMoveToSuperview, "v@:@")
@@ -752,7 +765,7 @@ Inherits AppleView
 		HasVerticalScroller As Boolean
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320686F72697A6F6E74616C206C696E65206279206C696E65207363726F6C6C20616D6F756E742E
+	#tag ComputedProperty, Flags = &h0, Description = 546865207363726F6C6C2076696577E280997320686F72697A6F6E74616C206C696E65206279206C696E65207363726F6C6C20616D6F756E742E20546869732076616C75652069732075736564207768656E20746865207573657220636C69636B7320746865207363726F6C6C206172726F7773206F6E2074686520686F72697A6F6E74616C207363726F6C6C2062617220776974686F757420686F6C64696E6720646F776E2061206D6F646966696572206B65792E20
 		#tag Getter
 			Get
 			  return gethorizontalLineScroll(id)

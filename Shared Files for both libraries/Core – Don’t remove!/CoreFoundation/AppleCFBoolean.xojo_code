@@ -20,7 +20,7 @@ Inherits AppleCFObject
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  static truePtr as Ptr 
+			  static truePtr as Ptr
 			  if trueptr = nil then truePtr = SystemConstantPtr (kCFBooleanTrue, CoreFoundationPath)
 			  return new AppleCFBoolean(trueptr)
 			End Get
