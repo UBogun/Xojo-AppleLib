@@ -66,7 +66,6 @@ Inherits AppleView
 		  
 		  if ClassAvailable then
 		    super.Constructor ( initWithFrameOptions (alloc(ClassPtr), aframe, nilptr(options)), true)
-		    MakeSuper
 		    RegisterIdentity(self)
 		    me.DelegateObject = self
 		  else
@@ -601,15 +600,6 @@ Inherits AppleView
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Attributes( hidden )  Sub MakeSuper()
-		  Objc_superObj =  new xojo.Core.MutablememoryBlock(2 * IntegerSize)
-		  Objc_superObj.PtrValue(0) = mid
-		  Objc_superObj.PtrValue( IntegerSize) = me.SuperClass_Ptr
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0, Description = 52657475726E7320616C6C206E6F6465732074686174206D696768742062652076697369626C652066726F6D20612073706563696669656420706F696E74206F6620766965772E20417661696C61626C652073696E636520694F532039202F206D61634F532031302E31312E
 		Function NodesInsideFrustrum(PointofView as AppleSCNNode) As AppleArray
 		  if respondsToSelector ("nodesInsideFrustumWithPointOfView:", classptr) then
@@ -1121,10 +1111,6 @@ Inherits AppleView
 		Loops As Boolean
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private Objc_superObj As xojo.Core.MutableMemoryBlock
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363656E6520697320706C6179696E672E
 		#tag Getter
 			Get
@@ -1184,7 +1170,7 @@ Inherits AppleView
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if scene <> nil then 
+			  if scene <> nil then
 			    scene.PhysicsWorld.ContactDelegate = nil
 			    scene.cleanup
 			  end if

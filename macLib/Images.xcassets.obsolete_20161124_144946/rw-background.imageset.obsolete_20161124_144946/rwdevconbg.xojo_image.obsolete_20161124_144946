@@ -1,0 +1,40 @@
+#tag MultiImage
+Image rwdevconbg
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAI0AAAAAAI0AAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADRD1cYSCsAAAI7FsoPcndkZXZjb24tYmcucG5nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjsWztIUYpMAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAFnJ3LWJhY2tncm91bmQuaW1hZ2VzZXQAEAAIAADRD0kIAAAAEQAIAADSFEZzAAAAAQAcAjsWygI7FpICOxZ3AjsWcgAJSCUACUgiAAKVFAACAIJNYWNpbnRvc2ggSEQ6VXNlcnM6AHVsaToARG93bmxvYWRzOgBGZWFyIFRoZSBEZWFkINAgRmluYWw6AEZlYXIgVGhlIERlYWQ6AEltYWdlcy54Y2Fzc2V0czoAcnctYmFja2dyb3VuZC5pbWFnZXNldDoAcndkZXZjb24tYmcucG5nAA4AIAAPAHIAdwBkAGUAdgBjAG8AbgAtAGIAZwAuAHAAbgBnAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAcFVzZXJzL3VsaS9Eb3dubG9hZHMvRmVhciBUaGUgRGVhZCDigJMgRmluYWwvRmVhciBUaGUgRGVhZC9JbWFnZXMueGNhc3NldHMvcnctYmFja2dyb3VuZC5pbWFnZXNldC9yd2RldmNvbi1iZy5wbmcAEwABLwAAFQACAAr//wAAAAAAAAAA
+		FullPath = /Users/uli/Downloads/Fear The Dead – Final/Fear The Dead/Images.xcassets/rw-background.imageset/rwdevcon-bg.png
+		PartialPath = ..\..\..\..\..\Downloads\Fear The Dead – Final\Fear The Dead\Images.xcassets\rw-background.imageset\rwdevcon-bg.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

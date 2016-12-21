@@ -1874,6 +1874,11 @@ Inherits AppleControl
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SingleLineMode"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="SingleValue"
 			Group="Behavior"
 			Type="Single"

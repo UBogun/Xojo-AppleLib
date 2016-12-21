@@ -1,0 +1,40 @@
+#tag MultiImage
+Image wall_50x400
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAJGAAAAAAJGAAIAAAdGanVzY2huAAAAAAAAAAAAAAAAAAAAAAAAAADUTlZBSCsAAAAnV4oPd2FsbF81MHg0MDAucG5nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACdXjtIxp+kAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAAFHdhbGxfNTB4NDAwLmltYWdlc2V0ABAACAAA1E5IMQAAABEACAAA0jGLyQAAAAEAIAAnV4oAJ1c1ABhewwAVCrkAFQq4AAbFCwAGxQYAApgwAAIAjkZqdXNjaG46VXNlcnM6AHVsaToATGlicmFyeToATW9iaWxlIERvY3VtZW50czoAY29tfmFwcGxlfkNsb3VkRG9jczoAT1NYTGliIERldmVsb3BtZW50OgBJbWFnZXMueGNhc3NldHM6AHdhbGxfNTB4NDAwLmltYWdlc2V0OgB3YWxsXzUweDQwMC5wbmcADgAgAA8AdwBhAGwAbABfADUAMAB4ADQAMAAwAC4AcABuAGcADwAQAAcARgBqAHUAcwBjAGgAbgASAH5Vc2Vycy91bGkvTGlicmFyeS9Nb2JpbGUgRG9jdW1lbnRzL2NvbX5hcHBsZX5DbG91ZERvY3MvT1NYTGliIERldmVsb3BtZW50L0ltYWdlcy54Y2Fzc2V0cy93YWxsXzUweDQwMC5pbWFnZXNldC93YWxsXzUweDQwMC5wbmcAEwABLwAAFQACAAr//wAAAAAAAAAA
+		FullPath = /Users/uli/Library/Mobile Documents/com~apple~CloudDocs/OSXLib Development/Images.xcassets/wall_50x400.imageset/wall_50x400.png
+		PartialPath = ..\Images.xcassets\wall_50x400.imageset\wall_50x400.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

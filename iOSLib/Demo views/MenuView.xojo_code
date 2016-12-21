@@ -39,6 +39,7 @@ End
 		Sub Open()
 		  me.AddSection("Custom Controls")
 		  me.AddRow 0, me.CreateCell("AVAudioSession","The base class for recording and playing audio")
+		  me.addrow 0, me.CreateCell("AVAudioToneGenerator", "A custom class generating beeps and short melodies")
 		  me.AddRow 0, me.CreateCell("iOSLibNotificationCenter","A wrapper class for NSUserNotifications")
 		  me.AddRow 0, me.CreateCell("iOSLibSKView", "SceneKit for iOS")
 		  me.AddRow 0, me.CreateCell("iOSLibTextField", "Extensions for Xojo’s textfield  and a custom Textfield control.")
@@ -68,6 +69,8 @@ End
 		    v = new CiFilterMenu
 		  case "TouchID"
 		    v = new TouchIDView
+		  case "AVAudioToneGenerator"
+		    v = new AVTonePlayerView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub

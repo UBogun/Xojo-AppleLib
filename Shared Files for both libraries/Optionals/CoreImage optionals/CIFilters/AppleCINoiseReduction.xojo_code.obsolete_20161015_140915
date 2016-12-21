@@ -1,0 +1,205 @@
+#tag Class
+Protected Class AppleCINoiseReduction
+Inherits AppleCIFilter
+	#tag Method, Flags = &h1000, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 437265617465732061206E6577204E6F69736520526564756374696F6E2046696C7465722C2073657474696E6720696E707574496D6167652C204E6F69736520616E64205368617270656E696E67206C6576656C2E
+		Sub Constructor(anImage as Picture = nil, Noiselevel as double = 0.2, Sharpen as Double = 0.4)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleCIFilter
+		  // Constructor(FilterName as CFStringRef) -- From AppleCIFilter
+		  // Constructor() -- From AppleObject
+		  // Constructor(AnId as Ptr) -- From AppleObject
+		  dim mytype as text = kCINoiseReduction
+		  if BlurFilterNames.ContainsText(mytype) then
+		    super.Constructor (mytype)
+		  else
+		    MakeCIFIlterNotAvailableException (mytype)
+		  end if
+		  
+		  if anImage <> nil then InputCIImage = new AppleciImage (anImage)
+		  InputNoiseLevel = Noiselevel
+		  InputSharpness = sharpen
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520696E70757420696D61676520696E20697473206E617469766520666F726D2E
+		#tag Getter
+			Get
+			   return minputciimage
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			   mInputCIImage = value
+			End Set
+		#tag EndSetter
+		InputCIImage As AppleCIImage
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520696E70757420696D61676520636F6E76657274656420746F20616E204170706C65496D616765
+		#tag Getter
+			Get
+			  return new appleimage(InputCIImage)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  InputCIImage = new AppleCIImage(value.CGImage)
+			End Set
+		#tag EndSetter
+		InputImage As AppleImage
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F63616C697A6564206465736372697074696F6E20666F722074686520696E70757420696D6167652070726F70657274792E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  if FilterAttributes.InputImageDict <> nil then return FilterAttributes.InputImageDict.LocalizedDescription
+			End Get
+		#tag EndGetter
+		InputImageDescription As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 44657465726D696E6573207468652064656C7461206F66206368616E67657320696E206C756D696E616E63652062656C6F7720746861742076616C7565732061726520636F6E73696465726564206E6F6973652E2044656661756C7420302E322C206D61786D696D756D20302E312E
+		#tag Getter
+			Get
+			  return mInputNoiseLevel
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mInputNoiseLevel = value
+			End Set
+		#tag EndSetter
+		InputNoiseLevel As double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F63616C697A6564206465736372697074696F6E20666F722074686520696E707574206E6F697365206C6576656C2070726F70657274792E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  if FilterAttributes.InputNoiseLevelDict <> nil then return FilterAttributes.InputNoiseLevelDict.LocalizedDescription
+			End Get
+		#tag EndGetter
+		InputNoiseLevelDescription As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 44657465726D696E65732074686520616D6F756E74206F66207368617270656E696E6720746F206170706C61792E2044656661756C7420302E342C206D6178696D756D20322E302E
+		#tag Getter
+			Get
+			  return mInputsharpness
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mInputsharpness = value
+			End Set
+		#tag EndSetter
+		InputSharpness As double
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F63616C697A6564206465736372697074696F6E20666F722074686520696E7075742073686172706E6573732070726F70657274792E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  if FilterAttributes.InputSharpnessDict <> nil then return FilterAttributes.InputSharpnessDict.LocalizedDescription
+			End Get
+		#tag EndGetter
+		InputSharpnessDescription As Text
+	#tag EndComputedProperty
+
+
+	#tag Constant, Name = kCINoiseReduction, Type = Text, Dynamic = False, Default = \"CINoiseReduction", Scope = Private
+	#tag EndConstant
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="DebugDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InputImageDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InputNoiseLevel"
+			Group="Behavior"
+			Type="double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InputNoiseLevelDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InputSharpness"
+			Group="Behavior"
+			Type="double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="InputSharpnessDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="LocalizedFilterName"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="mHasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RetainCount"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

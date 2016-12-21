@@ -1,0 +1,40 @@
+#tag MultiImage
+Image goal
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIWAAAAAAIWAAIAAAdGanVzY2huAAAAAAAAAAAAAAAAAAAAAAAAAADUTlZBSCsAAAAnV2YIZ29hbC5wbmcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACdXatIxp+kAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAADWdvYWwuaW1hZ2VzZXQAABAACAAA1E5IMQAAABEACAAA0jGLyQAAAAEAIAAnV2YAJ1c1ABhewwAVCrkAFQq4AAbFCwAGxQYAApgwAAIAgEZqdXNjaG46VXNlcnM6AHVsaToATGlicmFyeToATW9iaWxlIERvY3VtZW50czoAY29tfmFwcGxlfkNsb3VkRG9jczoAT1NYTGliIERldmVsb3BtZW50OgBJbWFnZXMueGNhc3NldHM6AGdvYWwuaW1hZ2VzZXQ6AGdvYWwucG5nAA4AEgAIAGcAbwBhAGwALgBwAG4AZwAPABAABwBGAGoAdQBzAGMAaABuABIAcFVzZXJzL3VsaS9MaWJyYXJ5L01vYmlsZSBEb2N1bWVudHMvY29tfmFwcGxlfkNsb3VkRG9jcy9PU1hMaWIgRGV2ZWxvcG1lbnQvSW1hZ2VzLnhjYXNzZXRzL2dvYWwuaW1hZ2VzZXQvZ29hbC5wbmcAEwABLwAAFQACAAr//wAAAAAAAAAA
+		FullPath = /Users/uli/Library/Mobile Documents/com~apple~CloudDocs/OSXLib Development/Images.xcassets/goal.imageset/goal.png
+		PartialPath = ..\Images.xcassets\goal.imageset\goal.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

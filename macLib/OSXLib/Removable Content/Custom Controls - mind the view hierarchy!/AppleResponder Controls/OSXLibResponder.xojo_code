@@ -149,6 +149,7 @@ Inherits Canvas
 		  AddHandler obj.EndGesture, Addressof informOnEndGestureWithEvent
 		  AddHandler obj.Rotate, Addressof informOnrotateWithEvent
 		  AddHandler obj.SmartMagnify, Addressof informOnsmartMagnifyWithEvent
+		  AddHandler obj.Magnify, Addressof informOnMagnifyWithEvent
 		  AddHandler obj.Swipe, Addressof informOnswipeWithEvent
 		  AddHandler obj.ForwardElasticScroll, Addressof informOnwantsForwardedScrollEventsForAxis
 		  AddHandler obj.TrackSwipes, Addressof informOnwantsScrollEventsForSwipeTrackingOnAxis

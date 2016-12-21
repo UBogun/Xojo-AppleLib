@@ -544,6 +544,17 @@ Protected Module AppKitFramework
 		Protected Declare Sub lockFocusFlipped Lib appkitlibname Selector "lockFocusFlipped:" (id as ptr, flipped as Boolean)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h1
+		Protected Function NSMakeEdgeInsets(Top as Double, Left as Double,Bottom As Double, Right As Double) As NSEdgeInsets
+		  dim ei as NSEdgeInsets
+		  ei.top = top
+		  ei.left = Left
+		  ei.bottom = Bottom
+		  ei.right = Right
+		  return ei
+		End Function
+	#tag EndMethod
+
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub pause Lib AppKitLibname Selector "pause" (id as ptr)
 	#tag EndExternalMethod

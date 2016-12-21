@@ -430,7 +430,7 @@ Begin Window TestWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   244
+      Top             =   243
       Underline       =   False
       Visible         =   True
       Width           =   80
@@ -467,10 +467,31 @@ Begin Window TestWindow
       Width           =   80
    End
    Begin AppleColorPanel AppleColorPanel1
+      Alpha           =   0.0
+      BecomeKeyOnlyIfNeeded=   False
+      CanHide         =   False
+      Continuous      =   False
+      DebugDescription=   ""
+      Enabled         =   True
+      FloatingPanel   =   False
+      HasOwnership    =   False
+      HasShadow       =   False
+      HidesOnDeactivate=   False
       Index           =   -2147483648
       LockedInPosition=   False
+      mHasOwnership   =   False
+      Mode            =   ""
+      OnActiveSpace   =   False
+      OneShot         =   False
+      Opaque          =   False
+      PreventsApplicationTerminationWhenModal=   False
+      ReleasedWhenClosed=   False
+      RetainCount     =   ""
       Scope           =   0
+      ShowsAlpha      =   False
       TabPanelIndex   =   0
+      WindowNumber    =   0
+      WorksWhenModal  =   False
    End
    Begin PushButton PushButton3
       AutoDeactivate  =   True
@@ -544,25 +565,46 @@ End
 	#tag Event
 		Sub Action()
 		  dim w as AppleWindow = new AppleWindow(self)
-		  break
+		  dim c as new AppleViewController
+		  c.View = w.ContentView
+		  w.ContentView.WantsLayer = true
+		  w.ContentViewController = c
+		  
+		  dim subc as new AppleViewController
+		  subc.View = OSXLibView1.AppleObject
+		  
+		  c.AddChildViewController subc
+		  
+		  dim v as new AppleView (subc.View.Frame)
+		  v.WantsLayer = true
+		  v.Layer.BackgroundColor = applecolor.PurpleColor
+		  dim p as new AppleViewController
+		  p.View = v
+		  c.AddChildViewController p
+		  
+		  dim v1 as new AppleView (subc.View.Frame)
+		  v1.WantsLayer = true
+		  v1.Layer.BackgroundColor = applecolor.CyanColor
+		  dim p1 as new AppleViewController
+		  p1.View = v1
+		  c.AddChildViewController p1
+		  
+		  
+		  c.Transition (subc, p, NSViewControllerTransitionOptions.UpSlideTransition)
+		  c.PresentAsModalWindow p1
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events PushButton8
 	#tag Event
 		Sub Action()
-		  // dim winc as new AppleViewController
-		  for q as integer = 0 to 100
-		    dim w as new TestWindow
-		    w.Show
-		    dim ww as new AppleWindow(w)
-		    ww.ReleasedWhenClosed = true
-		    ww.OneShot = true
-		    w.Close
-		    // for p as uinteger = 0 to ww.RetainCount -1
-		    // ww.Release ww.id
-		    // next
-		  next
+		  dim w as AppleWindow = new AppleWindow(self)
+		  dim c as  AppleViewController = w.ContentViewController
+		  dim child1 as AppleViewController = AppleViewController.MakefromPtr(c.ChildViewControllers.PtrAtIndex(0))
+		  dim child2 as AppleViewController = AppleViewController.MakefromPtr(c.ChildViewControllers.PtrAtIndex(1))
+		  c.Transition child2, child1, NSViewControllerTransitionOptions.CrossfadeTransition
 		  
 		End Sub
 	#tag EndEvent
@@ -577,8 +619,34 @@ End
 #tag Events PushButton3
 	#tag Event
 		Sub Action()
-		  AppleColorPanel1.ShowsAlpha = true
-		  AppleColorPanel1.Show
+		  dim n as FoundationFrameWork.NSPoint = FoundationFrameWork.NSMakePoint (-2, -428.653)
+		  dim o as FoundationFrameWork.NSPoint = FoundationFrameWork.NSMakePoint (5, 3128.17)
+		  dim m as FoundationFrameWork.NSPoint
+		  dim t1 as  xojo.Core.Date = xojo.core.date.now
+		  dim factor as double = 11.11
+		  for q as integer = 1 to 100000
+		    m = AccelerateFramework.Vector_Multiply(n, o)
+		  next
+		  dim dif1 as xojo.Core.DateInterval = xojo.core.date.now - t1
+		  
+		  t1= xojo.core.date.Now
+		  for q as integer = 1 to 100000
+		    m = m.vector_multiply(o)
+		  next
+		  dim dif2 as xojo.Core.DateInterval = xojo.core.date.now - t1
+		  MsgBox dif1.NanoSeconds.ToText+eol + dif2.NanoSeconds.ToText
+		  
+		  dim p as xojo.Core.MemoryBlock
+		  p = AccelerateFramework.CreateRampedVectorDouble (0.0, 15.0, 1, 50)
+		  for q as integer = 0 to 49
+		    dim r as double = p.DoubleValue(q*8)
+		    System.DebugLog r.ToText
+		  next
+		  
+		  'o = AccelerateFramework.Vector_SquareSigned(n)
+		  m = AccelerateFramework.Vector_Multiply(n, factor)
+		  MsgBox m.x.totext+eol+m.y.totext
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

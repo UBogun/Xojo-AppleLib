@@ -32,6 +32,7 @@ Inherits AppleView
 		  // Constructor(aPtr as Ptr) -- From AppleObject
 		  Super.Constructor(AppKitFramework.initwithFrame(alloc(classptr), frame))
 		  MHasOwnership = true
+		  registerIdentity(self)
 		  
 		End Sub
 	#tag EndMethod
@@ -51,6 +52,22 @@ Inherits AppleView
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getdocumentVisibleRect Lib appkitlibname Selector "documentVisibleRect" (id as ptr) As FoundationFrameWork.NSRect
 	#tag EndExternalMethod
+
+	#tag Method, Flags = &h1
+		Protected Shared Function Identity(id as ptr) As AppleClipView
+		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
+		  if wr <> nil then return AppleClipView(wr.Value)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Shared Function InformInstance(id as ptr) As AppleClipView
+		  // return AppleScrollView.MakefromPtr(id)
+		  dim ident as AppleClipView = AppleClipView.Identity(id)
+		  return if (ident = nil, AppleClipView.MakeFromPtr (id), ident)
+		  
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Shared Function MakefromPtr(aPtr as Ptr) As AppleClipView
@@ -117,7 +134,10 @@ Inherits AppleView
 		#tag Getter
 			Get
 			  static mClassPtr as Ptr
-			  if mclassptr = nil then mclassptr = FoundationFramework.NSClassFromString ("NSClipView")
+			  if mclassptr = nil then
+			    mclassptr = FoundationFramework.NSClassFromString ("NSClipView")
+			  end if
+			  
 			  return mClassPtr
 			End Get
 		#tag EndGetter

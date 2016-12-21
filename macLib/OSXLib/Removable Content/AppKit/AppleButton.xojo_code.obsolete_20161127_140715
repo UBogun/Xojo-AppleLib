@@ -745,6 +745,16 @@ Inherits AppleControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ImageHugsTitle"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImageScaling"
+			Group="Behavior"
+			Type="appkitframework.NSImagescaling"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ImportsGraphics"
 			Group="Behavior"
 			Type="Boolean"

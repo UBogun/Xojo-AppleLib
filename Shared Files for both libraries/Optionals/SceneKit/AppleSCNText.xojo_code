@@ -367,6 +367,20 @@ Inherits AppleSCNGeometry
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LineBreakMode"
+			Group="Behavior"
+			Type="AppleText.NSLineBreakMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - WordWrap"
+				"1 - CharacterWrap"
+				"2 - Clip"
+				"3 - TruncateHead"
+				"4 - TruncateTail"
+				"5 - TruncateMiddle"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="mHasOwnership"
 			Group="Behavior"
 			Type="boolean"

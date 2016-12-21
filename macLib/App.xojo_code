@@ -15,12 +15,6 @@ Inherits Application
 		End Sub
 	#tag EndEvent
 
-	#tag Event
-		Function UnhandledException(error As RuntimeException) As Boolean
-		  MsgBox "Unhandled Exception "+error.ErrorNumber.ToText+eol+error.Message+eol+"Please inform the developer!"+eol+join(error.Stack, eol)
-		End Function
-	#tag EndEvent
-
 
 	#tag ViewBehavior
 	#tag EndViewBehavior
