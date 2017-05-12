@@ -59,7 +59,9 @@ Begin Window CGBitmapContextWindow
       AutoDeactivate  =   True
       Backdrop        =   0
       BackgroundColor =   &c000000FF
+      BoundsRotation  =   0.0
       DoubleBuffer    =   False
+      DoubleValue     =   0.0
       Editable        =   False
       Enabled         =   True
       EraseBackground =   True
@@ -73,6 +75,7 @@ Begin Window CGBitmapContextWindow
       ImageScaling    =   "2"
       Index           =   -2147483648
       InitialParent   =   ""
+      Int32Value      =   ""
       IntegerValue    =   0
       Left            =   288
       LockBottom      =   False
@@ -81,6 +84,7 @@ Begin Window CGBitmapContextWindow
       LockRight       =   False
       LockTop         =   True
       Scope           =   0
+      SingleValue     =   0.0
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
@@ -88,6 +92,7 @@ Begin Window CGBitmapContextWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   158
    End
@@ -113,6 +118,7 @@ Begin Window CGBitmapContextWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Quite unspectacular: In the opening event of the window, a GGBitmapContext is created and a red circle is drawn into it.\nThe CGImage representation is retrieved from the context and converted to an AppleImage and a Xojo picture. \nBoth are assigned to the image property of an ImageWell and an OSXLibImageWell, the custom control containing an ImageView. Thus you can have an ImageWell without the strange borders."
       TextAlign       =   0
       TextColor       =   &c00000000

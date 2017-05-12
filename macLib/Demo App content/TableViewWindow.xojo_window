@@ -89,6 +89,7 @@ Begin Window TableViewWindow
    End
    Begin AppleTableViewDataSource AppleTableViewDataSource1
       DebugDescription=   ""
+      Enabled         =   True
       HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
@@ -119,6 +120,7 @@ Begin Window TableViewWindow
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "TableView is still under construction, but TextCells and edit events do work. Try moving or resizing a column, close this window and come back! It’s autosaved!"
       TextAlign       =   0
       TextColor       =   &c00000000

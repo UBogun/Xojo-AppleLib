@@ -141,6 +141,7 @@ Begin Window CoreGraphicsWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Width"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -175,6 +176,7 @@ Begin Window CoreGraphicsWindow
       Selectable      =   False
       TabIndex        =   4
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Lines"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -209,6 +211,7 @@ Begin Window CoreGraphicsWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Miter Limit"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -429,6 +432,7 @@ Begin Window CoreGraphicsWindow
       Selectable      =   False
       TabIndex        =   12
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "This draws just a few lines, but with the AddLines method of CGContext that takes an array of lines and is much faster than separate calls. Drag the corners if you like and tweak the properties. Many more CGContext features are included!"
       TextAlign       =   0
       TextColor       =   &c00000000

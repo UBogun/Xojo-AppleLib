@@ -119,6 +119,7 @@ Begin Window PDFWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -198,6 +199,7 @@ Begin Window PDFWindow
       Selectable      =   False
       TabIndex        =   4
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -294,6 +296,7 @@ Begin Window PDFWindow
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Many CGPDF classes are included now, and AppleCGContext was extended with a DrawPDF method (and several other features). You can use the subclass AppleCGPDFcontext to create own PDFs too.\nAnd there is a OSXLibenhancedLabel class that features a few additional options for labels, like a CueText and backgroundcolor."
       TextAlign       =   0
       TextColor       =   &c00000000

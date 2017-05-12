@@ -30,8 +30,10 @@ Begin Window SceneKitWindow
       AcceptFocus     =   False
       AcceptTabs      =   False
       AcceptTouchEvents=   False
+      AllowsCameraControl=   False
       AllowVibrancy   =   False
       Alpha           =   1.0
+      AntialiasingMode=   "Multi4x"
       AutoDeactivate  =   True
       Backdrop        =   0
       BackgroundColor =   &c000000FF
@@ -51,6 +53,8 @@ Begin Window SceneKitWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
+      PreferredFPS    =   60
+      RenderingAPI    =   "SceneKitFrameWork.SCNRenderingAPImacos.metal"
       Scope           =   2
       TabIndex        =   0
       TabPanelIndex   =   0

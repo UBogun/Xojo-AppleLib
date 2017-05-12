@@ -187,7 +187,7 @@ Inherits OSXLibControl
 		#tag EndGetter
 		#tag Setter
 			Set
-			  If value <> Nil Then 
+			  If value <> Nil Then
 			    AppleObject.Image = New AppleImage(value)
 			  Else
 			    AppleObject.Image = nil
@@ -533,11 +533,6 @@ Inherits OSXLibControl
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="TextValue"
-			Group="Behavior"
-			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

@@ -14,10 +14,10 @@ Begin iosView SceneView
       AllowsCameraControl=   False
       Alpha           =   1.0
       AntialiasingMode=   "None"
-      AutoLayout      =   iOSLibSCNView1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibSCNView1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibSCNView1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
       AutoLayout      =   iOSLibSCNView1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibSCNView1, 4, BottomLayoutGuide, 3, False, +1.00, 2, 1, 0, 
+      AutoLayout      =   iOSLibSCNView1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibSCNView1, 3, TopLayoutGuide, 4, False, +1.00, 1, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False

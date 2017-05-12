@@ -96,6 +96,7 @@ Begin ContainerControl PopoverDemoContainer
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "This is a normal containercontrol serving as the contentview of a Popover. Drag it to detach it (if detachable is checked).\nAlternatively, you can use every RectControl as template for the content or even create a view programmatically."
       TextAlign       =   0
       TextColor       =   &c00000000
