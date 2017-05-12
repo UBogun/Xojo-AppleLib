@@ -10,7 +10,7 @@ Inherits iOSLibResponder
 		End Sub
 	#tag EndEvent
 
-	#tag Event
+	#tag Event , Description = 496E7465726E616C206576656E7420666F7220737562636C61737365732E
 		Function CreateView() As UInteger
 		  dim subID as uinteger = raiseEvent CreateView
 		  if  subid = 0 then

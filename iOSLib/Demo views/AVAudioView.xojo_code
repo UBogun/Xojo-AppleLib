@@ -193,7 +193,7 @@ End
 		  me.RequestRecordPermission
 		End Sub
 	#tag EndEvent
-	#tag Event
+	#tag Event , Description = 4669726573207768656E206120526571756573745265636F72645065726D697373696F6E206D6574686F642072657475726E732E
 		Sub RecordPermissionReceived(Granted as Boolean)
 		  dim m as new iOSMessageBox
 		  m.Title = "AVAudioSession initialized, recording permission  "+if (not granted, "not ", "")+"granted."

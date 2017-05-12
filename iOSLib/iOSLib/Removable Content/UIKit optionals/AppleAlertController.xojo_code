@@ -262,11 +262,56 @@ Inherits AppleViewController
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="AutomaticallyAdjustsScrollViewInsets"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutoRotate"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanBecomeFirstResponder"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanResignFirstResponder"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DebugDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ExtendedLayoutIncludesOpaqueBars"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="hasInited"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IsFirstResponder"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -281,10 +326,54 @@ Inherits AppleViewController
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="mHasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ModalInPopover"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ModalPresentationStyle"
+			Group="Behavior"
+			Type="appleview.UIViewModalPresentationStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - FullScreen"
+				"1 - PageSheet"
+				"2 - FormSheet"
+				"3 - CurrentContext"
+				"4 - Custom"
+				"5 - OverFullScreen"
+				"6 - OverCurrentContext"
+				"7 - PopOver"
+				"-1 - None"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ModalTransitonStyle"
+			Group="Behavior"
+			Type="UIModalTransitionStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - CoverVertical"
+				"1 - FlipHorizontal"
+				"2 - CrossDissolve"
+				"3 - PartialCurl"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NibName"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PreferredStyle"
@@ -297,10 +386,20 @@ Inherits AppleViewController
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="RetainCount"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextInputContextIdentifier"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Title"
@@ -313,6 +412,11 @@ Inherits AppleViewController
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ViewIsLoaded"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

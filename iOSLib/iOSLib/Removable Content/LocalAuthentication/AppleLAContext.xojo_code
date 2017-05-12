@@ -194,7 +194,7 @@ Inherits AppleObject
 		#tag EndGetter
 		#tag Setter
 			Set
-			  If RespondsToSelector("setLocalizedCancelTitle:", classptr) Then 
+			  If RespondsToSelector("setLocalizedCancelTitle:", classptr) Then
 			    setlocalizedCancelTitle Mid, value
 			  End If
 			End Set
@@ -210,7 +210,7 @@ Inherits AppleObject
 		#tag EndGetter
 		#tag Setter
 			Set
-			  If RespondsToSelector("setLocalizedFallbackTitle:", classptr) Then 
+			  If RespondsToSelector("setLocalizedFallbackTitle:", classptr) Then
 			    setlocalizedFallbackTitle mid, value
 			  End If
 			End Set

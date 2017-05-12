@@ -30,7 +30,7 @@ Inherits iOSLIbView
 		End Function
 	#tag EndEvent
 
-	#tag Event
+	#tag Event , Description = 4669726573207768656E20746865207669657720686173206368616E676564206974732073697A652C206C696B65206166746572206120726F746174696F6E2E
 		Sub Resized()
 		  
 		End Sub
@@ -64,7 +64,7 @@ Inherits iOSLIbView
 		End Sub
 	#tag EndEvent
 
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520694F5320696E7465726661636520656E7669726F6E6D656E74206368616E6765642E
 		Sub TraitCollectionChanged(PreviousCollection As AppleTraitCollection)
 		  RaiseEvent TraitCollectionChanged (PreviousCollection)
 		  RaiseEvent Resized
@@ -77,7 +77,7 @@ Inherits iOSLIbView
 		End Sub
 	#tag EndEvent
 
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520766965772069732061626F757420746F2062652073686F776E20696E20612077696E646F772E
 		Sub WillShow(window as applewindow)
 		  me.UserInteractionEnabled = true
 		  me.ExclusiveTouch = false
