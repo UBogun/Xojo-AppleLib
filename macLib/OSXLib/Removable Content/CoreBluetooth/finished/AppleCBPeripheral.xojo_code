@@ -89,7 +89,9 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 526574726965766573207468652076616C7565206F662061207370656369666965642063686172616374657269737469632E
 		Sub ReadValue(forCharacteristic as AppleCBCharacteristic)
-		  'readValueForCharacteristic id, forCharacteristic.id
+		  #If targetmacos
+		    readValueForCharacteristic id, forCharacteristic.id
+		  #EndIf
 		End Sub
 	#tag EndMethod
 

@@ -3,28 +3,30 @@ Protected Class OSXLibEnhancedPushbutton
 Inherits Pushbutton
 	#tag Event
 		Sub Open()
-		  dim mappleobject as AppleButton = me.AppleObject
-		  mappleobject.AlternateTitle = mAlternateCaption
-		  if mimage <> nil then mappleobject.Image = mimage.toappleimage
-		  if malternateimage <> nil then mappleobject.AlternateImage = malternateImage.toappleimage
-		  mappleobject.ImageScaling = mImageScaling
-		  mappleobject.ImagePosition = mImagePosition
-		  mappleobject.BezelStyle = mbezelstyle
-		  mappleobject.ButtonType = mButtonType
-		  if not mKeyEquivalent.empty then mappleobject.KeyEquivalent = mKeyEquivalent
-		  if not msound.empty then mAppleObject.sound = AppleSound.SoundNamed (msound)
-		  mappleobject.SpringLoaded = mSpringLoaded
-		  mappleobject.Bordered = MBordered
-		  mappleobject.Transparent = mTransparent
-		  mappleobject.ShowsBorderOnlyWhileMouseInside = mshowsBorderOnlyWhileMouseInside
-		  mappleobject.allowsMixedState = mallowsMixedState
-		  if mbezelcolor <> &cffffffff then mappleobject.BezelColor = mbezelcolor.toapplecolor
-		  mappleobject.MaxAcceleratorLevel = mMaxAcceleratorLevel
-		  mappleobject.ImageHugsTitle = mImageHugsTitle
-		  
-		  mimage = nil
-		  malternateimage = nil
-		  hasinited = true
+		  #If TargetMacOS
+		    dim mappleobject as AppleButton = me.AppleObject
+		    mappleobject.AlternateTitle = mAlternateCaption
+		    if mimage <> nil then mappleobject.Image = mimage.toappleimage
+		    if malternateimage <> nil then mappleobject.AlternateImage = malternateImage.toappleimage
+		    mappleobject.ImageScaling = mImageScaling
+		    mappleobject.ImagePosition = mImagePosition
+		    mappleobject.BezelStyle = mbezelstyle
+		    mappleobject.ButtonType = mButtonType
+		    if not mKeyEquivalent.empty then mappleobject.KeyEquivalent = mKeyEquivalent
+		    if not msound.empty then mAppleObject.sound = AppleSound.SoundNamed (msound)
+		    mappleobject.SpringLoaded = mSpringLoaded
+		    mappleobject.Bordered = MBordered
+		    mappleobject.Transparent = mTransparent
+		    mappleobject.ShowsBorderOnlyWhileMouseInside = mshowsBorderOnlyWhileMouseInside
+		    mappleobject.allowsMixedState = mallowsMixedState
+		    if mbezelcolor <> &cffffffff then mappleobject.BezelColor = mbezelcolor.toapplecolor
+		    mappleobject.MaxAcceleratorLevel = mMaxAcceleratorLevel
+		    mappleobject.ImageHugsTitle = mImageHugsTitle
+		    
+		    mimage = nil
+		    malternateimage = nil
+		    hasinited = true
+		  #EndIf
 		  RaiseEvent open
 		End Sub
 	#tag EndEvent
@@ -45,16 +47,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.allowsMixedState
+			  #If TargetMacOS
+			    return AppleObject.allowsMixedState
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.allowsMixedState = value
-			  else
-			    mallowsMixedState = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.allowsMixedState = value
+			    else
+			      mallowsMixedState = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		AllowsMixedState As Boolean
@@ -63,16 +69,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.AlternateTitle
+			  #If TargetMacOS
+			    return AppleObject.AlternateTitle
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.AlternateTitle = value
-			  else
-			    mAlternateCaption = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.AlternateTitle = value
+			    else
+			      mAlternateCaption = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		AlternateCaption As Text
@@ -81,7 +91,9 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.AlternateImage.toPicture
+			  #If TargetMacOS
+			    return AppleObject.AlternateImage.toPicture
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
@@ -102,6 +114,7 @@ Inherits Pushbutton
 			  #if targetmacos
 			    return new AppleButton(ptr(me.Handle))
 			  #endif
+			  
 			End Get
 		#tag EndGetter
 		AppleObject As AppleButton
@@ -110,16 +123,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.BezelColor.toColor
+			  #If TargetMacOS
+			    return AppleObject.BezelColor.toColor
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.BezelColor = value.toapplecolor
-			  else
-			    mBezelcolor = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.BezelColor = value.toapplecolor
+			    else
+			      mBezelcolor = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		BezelColor As Color
@@ -128,16 +145,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.BezelStyle
+			  #If TargetMacOS
+			    return AppleObject.BezelStyle
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.BezelStyle = value
-			  else
-			    mBezelstyle = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.BezelStyle = value
+			    else
+			      mBezelstyle = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		BezelStyle As AppleButtonCell.NSBezelStyle
@@ -146,16 +167,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.Bordered
+			  #If TargetMacOS
+			    return AppleObject.Bordered
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.Bordered = value
-			  else
-			    mBordered = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.Bordered = value
+			    else
+			      mBordered = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		Bordered As Boolean
@@ -164,16 +189,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.ButtonType
+			  #If TargetMacOS
+			    return AppleObject.ButtonType
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.ButtonType = value
-			  else
-			    mButtonType = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.ButtonType = value
+			    else
+			      mButtonType = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		ButtonType As AppleButton.NSButtonType
@@ -186,16 +215,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.Image.toPicture
+			  #If TargetMacOS
+			    return AppleObject.Image.toPicture
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.Image = value.toAppleImage
-			  else
-			    mImage = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.Image = value.toAppleImage
+			    else
+			      mImage = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		Image As Picture
@@ -204,16 +237,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.ImageHugsTitle
+			  #If TargetMacOS
+			    return AppleObject.ImageHugsTitle
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.ImageHugsTitle = value
-			  else
-			    mImageHugsTitle = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.ImageHugsTitle = value
+			    else
+			      mImageHugsTitle = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		ImageHugsTitle As Boolean
@@ -222,16 +259,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.ImagePosition
+			  #If TargetMacOS
+			    return AppleObject.ImagePosition
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.ImagePosition = value
-			  else
-			    mImagePosition = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.ImagePosition = value
+			    else
+			      mImagePosition = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		ImagePosition As AppleCell.NSCellImagePosition
@@ -240,17 +281,21 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.ImageScaling
+			  #If TargetMacOS
+			    return AppleObject.ImageScaling
+			  #EndIf
 			  
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.ImageScaling = value
-			  else
-			    mImageScaling = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.ImageScaling = value
+			    else
+			      mImageScaling = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		ImageScaling As Appkitframework.NSImageScaling
@@ -259,16 +304,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.KeyEquivalent
+			  #If TargetMacOS
+			    return AppleObject.KeyEquivalent
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.KeyEquivalent = value
-			  else
-			    mKeyEquivalent = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.KeyEquivalent = value
+			    else
+			      mKeyEquivalent = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		KeyEquivalent As Text
@@ -289,16 +338,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.MaxAcceleratorLevel
+			  #If TargetMacOS
+			    return AppleObject.MaxAcceleratorLevel
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.MaxAcceleratorLevel = value
-			  else
-			    mMaxAcceleratorLevel = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.MaxAcceleratorLevel = value
+			    else
+			      mMaxAcceleratorLevel = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		MaxAcceleratorLevel As Integer
@@ -363,16 +416,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.showsBorderOnlyWhileMouseInside
+			  #If TargetMacOS
+			    return AppleObject.showsBorderOnlyWhileMouseInside
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.showsBorderOnlyWhileMouseInside = value
-			  else
-			    mshowsBorderOnlyWhileMouseInside = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.showsBorderOnlyWhileMouseInside = value
+			    else
+			      mshowsBorderOnlyWhileMouseInside = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		ShowsBorderOnlyWhileMouseInside As Boolean
@@ -381,16 +438,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if AppleObject.Sound <> nil then return AppleObject.Sound.Name
+			  #If TargetMacOS
+			    if AppleObject.Sound <> nil then return AppleObject.Sound.Name
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.sound = AppleSound.SoundNamed (value)
-			  else
-			    msound = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.sound = AppleSound.SoundNamed (value)
+			    else
+			      msound = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		Sound As Text
@@ -399,16 +460,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.SpringLoaded
+			  #If TargetMacOS
+			    return AppleObject.SpringLoaded
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.SpringLoaded = value
-			  else
-			    mSpringLoaded = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.SpringLoaded = value
+			    else
+			      mSpringLoaded = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		SpringLoaded As Boolean
@@ -417,16 +482,20 @@ Inherits Pushbutton
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return AppleObject.Transparent
+			  #If TargetMacOS
+			    return AppleObject.Transparent
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if hasinited then
-			    AppleObject.Transparent = value
-			  else
-			    mTransparent = value
-			  end if
+			  #If TargetMacOS
+			    if hasinited then
+			      AppleObject.Transparent = value
+			    else
+			      mTransparent = value
+			    end if
+			  #EndIf
 			End Set
 		#tag EndSetter
 		Transparent As Boolean

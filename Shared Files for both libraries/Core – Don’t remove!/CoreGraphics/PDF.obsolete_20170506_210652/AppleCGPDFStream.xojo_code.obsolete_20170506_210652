@@ -1,0 +1,102 @@
+#tag Class
+Protected Class AppleCGPDFStream
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFStreamCopyData Lib CoreGraphicsLibName (id as Ptr, byref format as CGPDFDataFormat) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFStreamGetDictionary Lib CoreGraphicsLibName (id as Ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Constructor()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Constructor(id as ptr)
+		  mStreamRef = id
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652064617461206173736F63696174656420776974682061205044462073747265616D2C206368616E67696E6720466F726D617420746F2074686520656E756D6174696F6E2056616C75652E
+		Function GetData(Byref Format as CGPDFDataFormat) As AppleData
+		  return appledata.MakefromPtr(CGPDFStreamCopyData(mStreamRef, Format))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGPDFStream
+		  return if (aCFTypeRef = nil, nil, new AppleCGPDFStream(aCFTypeRef))
+		End Function
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private mStreamRef As Ptr
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652064696374696F6E617279206173736F636961746564207769746820746865205044462073747265616D2E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  Return AppleCGPDFDictionary.MakeFromCFTypeRef(CGPDFStreamGetDictionary(mStreamRef))
+			End Get
+		#tag EndGetter
+		PDFDictionary As AppleCGPDFDictionary
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mStreamRef
+			End Get
+		#tag EndGetter
+		StreamRef As Ptr
+	#tag EndComputedProperty
+
+
+	#tag Enum, Name = CGPDFDataFormat, Type = Integer, Flags = &h0
+		FormatRaw  = 0
+		  FormatJPEG = 1
+		FormatJPEG2000 = 2
+	#tag EndEnum
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

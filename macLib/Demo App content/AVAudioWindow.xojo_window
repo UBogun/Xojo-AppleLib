@@ -119,7 +119,7 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
-      TabIndex        =   "2"
+      TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   6
@@ -350,7 +350,7 @@ Begin Window AVAudioWindow
       LockTop         =   True
       Maximum         =   100
       Scope           =   0
-      TabIndex        =   "9"
+      TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   28
@@ -530,7 +530,6 @@ End
 		  // dim mixer as AppleAVAudioMixerNode = engine.MainMixerNode
 		  dim input as AppleAVAudioInputNode = engine.InputNode
 		  dim format as AppleAVAudioFormat = input.InputFormat(0)
-		  dim error as new AppleError
 		  
 		  dim block as new appleblock (addressof CallBackBlock)
 		  input.InstallTap (0,4096, format, block)

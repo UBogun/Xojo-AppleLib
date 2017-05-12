@@ -10,7 +10,8 @@ Protected Module GrandCentralDispatch
 
 	#tag Method, Flags = &h1
 		Protected Function SysLib() As Ptr
-		  static myPtr as ptr =  dlopen("/usr/lib/libSystem.B.dylib",5)
+		  Static myPtr As ptr 
+		  if myptr = nil then myptr =  dlopen("/usr/lib/libSystem.B.dylib",5)
 		  Return myPtr
 		End Function
 	#tag EndMethod

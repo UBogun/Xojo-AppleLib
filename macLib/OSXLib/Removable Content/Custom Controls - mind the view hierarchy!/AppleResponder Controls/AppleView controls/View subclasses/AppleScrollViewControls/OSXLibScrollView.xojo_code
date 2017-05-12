@@ -152,8 +152,8 @@ Inherits OSXLibView
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
-		Private Function CreateObject() As AppleScrollView
+	#tag Method, Flags = &h1, Description = 496E7465726E616C206D6574686F6420746F2061766F696420496E73706563746F722070726F706572746965732068697474696E672061204E696C20766965772E
+		Protected Function CreateObject() As AppleScrollView
 		  dim obj as new AppleScrollView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
 		  
 		  AttachHandlers(obj) // Reroute its events so this Xojo control gets them
@@ -169,22 +169,22 @@ Inherits OSXLibView
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub endLiveMagnify(notification as ptr)
+	#tag Method, Flags = &h1
+		Protected Sub endLiveMagnify(notification as ptr)
 		  if me <> nil then raiseevent LiveMagnificationFinished
 		  #pragma unused notification
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub endLiveScroll(notification as ptr)
+	#tag Method, Flags = &h1
+		Protected Sub endLiveScroll(notification as ptr)
 		  if me <> nil then raiseevent LiveScrolled
 		  #pragma unused notification
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub finishLiveScroll(notification as ptr)
+	#tag Method, Flags = &h1
+		Protected Sub finishLiveScroll(notification as ptr)
 		  if me <> nil then raiseevent LiveScrollFinished
 		  #pragma unused notification
 		End Sub
@@ -309,15 +309,15 @@ Inherits OSXLibView
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub startLiveMagnify(notification as ptr)
+	#tag Method, Flags = &h1
+		Protected Sub startLiveMagnify(notification as ptr)
 		  if me <> nil then raiseevent LiveMagnificationStart
 		  #pragma unused notification
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub startLiveScroll(notification as ptr)
+	#tag Method, Flags = &h1
+		Protected Sub startLiveScroll(notification as ptr)
 		  if me <> nil then raiseevent LiveScrollStart
 		  #pragma unused notification
 		End Sub
@@ -668,10 +668,6 @@ Inherits OSXLibView
 		#tag EndSetter
 		MinMagnification As Double
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h1
-		Protected NotificationObjects() As AppleNotificationObject
-	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207363726F6C6C20766965772075736573206120707265646F6D696E616E74207363726F6C6C696E67206178697320666F7220636F6E74656E742E
 		#tag Getter

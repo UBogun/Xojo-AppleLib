@@ -858,6 +858,9 @@ End
 		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  dim pW as new ProtocolIntrospectionWindow (me.RowTag(row))
 		  pw.Show
+		  #pragma unused column
+		  #pragma unused x
+		  #pragma unused y
 		End Function
 	#tag EndEvent
 #tag EndEvents
@@ -895,6 +898,9 @@ End
 		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  dim pW as new ProtocolIntrospectionWindow (me.RowTag(row))
 		  pw.Show
+		  #pragma unused column
+		  #pragma unused x
+		  #pragma unused y
 		End Function
 	#tag EndEvent
 #tag EndEvents

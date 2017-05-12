@@ -280,6 +280,11 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="CanDrawinBackground"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="CanDrawSubviewsIntoLayer"
 			Group="Behavior"
 			Type="Boolean"

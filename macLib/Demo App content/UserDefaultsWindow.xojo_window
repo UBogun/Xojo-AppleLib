@@ -48,6 +48,7 @@ Begin Window UserDefaultsWindow
       Selectable      =   False
       TabIndex        =   0
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "AppleUserDefaults is an implementation of NSUserDefaults, the class to save and read app default properties. You can use it either on the fly by addressing the shared default center or drag the class onto your layout, where it will also fire an event each time the defaults changed.\nAny text you type here will be saved into a TestString property of OSXLib’s defaults."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -103,8 +104,13 @@ Begin Window UserDefaultsWindow
       Width           =   560
    End
    Begin AppleUserDefaults AppleUserDefaults1
+      DebugDescription=   ""
+      Enabled         =   True
+      HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
+      mHasOwnership   =   False
+      RetainCount     =   ""
       Scope           =   2
       TabPanelIndex   =   0
    End
@@ -130,6 +136,7 @@ Begin Window UserDefaultsWindow
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Defaults changed"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -237,7 +244,7 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events AppleUserDefaults1
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2061206368616E6765206973206D61646520746F2064656661756C747320696E20612070657273697374656E7420646F6D61696E2E
 		Sub DefaultsChanged()
 		  label2.AppleObject.Hidden = false
 		  Label2.AppleObject.Alpha = 1

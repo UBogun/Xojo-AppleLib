@@ -11,7 +11,7 @@ Inherits AppleObject
 	#tag Method, Flags = &h1
 		Protected Sub Destructor()
 		  if id <> nil and mHasOwnership then
-		    if XojoControls <> nil and XojoControls.HasKey(id) then 
+		    if XojoControls.HasKey(id) then 
 		      XojoControls.Remove(id)
 		      if libdebug then System.DebugLog "removed control for" +me.DebugDescription
 		    end if
@@ -725,7 +725,8 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 5265676973746572732074686520636F6E74726F6C20697473656C662061732061205765616B52656620696E2061207368617265642044696374696F6E6172792E
 		Attributes( hidden )  Sub UnregisterIdentity(Identity As object)
-		  if XojoIdentity.HasKey(id) then XojoIdentity.Remove(id)
+		  If XojoIdentity.HasKey(id) Then XojoIdentity.Remove(id)
+		  #Pragma unused identity
 		End Sub
 	#tag EndMethod
 

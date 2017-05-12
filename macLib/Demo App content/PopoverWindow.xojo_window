@@ -100,6 +100,7 @@ Begin Window PopoverWindow
       DebugDescription=   ""
       Detachable      =   False
       Detached        =   False
+      Enabled         =   True
       HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
@@ -120,6 +121,7 @@ Begin Window PopoverWindow
       HasBackColor    =   False
       Height          =   156
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   50
       LockBottom      =   False
@@ -152,7 +154,9 @@ Begin Window PopoverWindow
       Scope           =   0
       Segments        =   "Left\n\nFalse\rBottom\n\nFalse\rRight\n\nTrue\rTop\n\nFalse"
       SelectionType   =   0
+      TabIndex        =   4
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   185
       Visible         =   True
       Width           =   298
@@ -172,7 +176,9 @@ Begin Window PopoverWindow
       Scope           =   0
       Segments        =   "Aqua\n\nTrue\rVibrantDark\n\nFalse\rVibrantLight\n\nFalse"
       SelectionType   =   0
+      TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   221
       Visible         =   True
       Width           =   298
@@ -199,6 +205,7 @@ Begin Window PopoverWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "This demo uses an ApplePopup control, an implementation of ApplePopover (which is basically NSPopover) plus a few properties for event handling."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -322,7 +329,9 @@ Begin Window PopoverWindow
       Scope           =   0
       Segments        =   "ApplicationDefined\n\nFalse\rTransient\n\nTrue\rSemitransient\n\nFalse"
       SelectionType   =   0
+      TabIndex        =   10
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   257
       Visible         =   True
       Width           =   430

@@ -44,8 +44,10 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0, Description = 52657475726E7320616E204E535573657244656661756C7473206F626A65637420696E697469616C697A65642077697468207468652064656661756C747320666F72207468652063757272656E742075736572206163636F756E742E
 		Sub Constructor()
-		  super.Constructor(StandardUserDefaults.id, true, true)
-		  xojo.core.timer.CallLater 1, addressof raiseopen
+		  #if targetmacos
+		    super.Constructor(StandardUserDefaults.id, true, true)
+		    xojo.core.timer.CallLater 1, addressof raiseopen
+		  #EndIf
 		End Sub
 	#tag EndMethod
 
@@ -56,8 +58,10 @@ Inherits AppleObject
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(AnId as Ptr) -- From AppleObject
-		  super.Constructor(initWithSuiteName(alloc(classptr), SuiteName), true)
-		  xojo.core.timer.CallLater 1, addressof raiseopen
+		  #if targetmacos
+		    super.Constructor(initWithSuiteName(alloc(classptr), SuiteName), true)
+		    xojo.core.timer.CallLater 1, addressof raiseopen
+		  #EndIf
 		End Sub
 	#tag EndMethod
 

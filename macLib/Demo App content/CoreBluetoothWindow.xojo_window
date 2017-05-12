@@ -936,7 +936,9 @@ End
 		      end if
 		    end if
 		    
-		  end if
+		  End If
+		  #pragma unused rssi
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -960,6 +962,8 @@ End
 		  me.Scan(false)
 		  
 		  #pragma Unused errornumber
+		  #pragma unused ErrorDescription
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -967,18 +971,14 @@ End
 		  'TextArea1.AppendText "Failed to connect to "+Peripheral.Name+ " with error "+ErrorDescription+EndOfLine
 		  
 		  #pragma Unused errornumber
+		  #pragma unused Peripheral
+		  #pragma unused ErrorDescription
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Open()
 		  me.Scan(true)
 		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub PeripheralsRetrieved(Peripherals() As AppleCBPeripheral)
-		  'dim count as uinteger = Peripherals.Ubound + 1
-		  'TextArea1.AppendText count.totext + "Peripherals retrieved"
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1006,6 +1006,10 @@ End
 		    Peripheral.DiscoverIncludedServices(uu)
 		  next
 		  //TextArea1.AppendText EndOfLine
+		  #pragma unused errornumber
+		  #pragma unused ErrorDescription
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1034,7 +1038,8 @@ End
 	#tag Event
 		Sub AdvertisingStarted(errornumber as integer, ErrorDescription as Text)
 		  //TextArea1.AppendText "Started advertising with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine+EndOfLine
-		  
+		  #pragma unused errornumber
+		  #pragma unused ErrorDescription
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1085,7 +1090,8 @@ End
 		  
 		  'TextArea1.AppendText EndOfLine
 		  #pragma Unused service
-		  #pragma Unused errornumber
+		  #pragma unused errornumber
+		  #pragma unused ErrorDescription
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1096,8 +1102,6 @@ End
 		  
 		  Dim ad As New AppleData
 		  ad.ByteBlock.Constructor( b)
-		  dim nn as new AppleCBCharacteristic
-		  dim uu as new AppleCBUUID( "2A66" )
 		  
 		  Peripheral.ReadRSSI
 		  Peripheral.ReadValue( Characteristic )
@@ -1162,21 +1166,9 @@ End
 		      Datalog.AppendText "Characteristic: " + Characteristic.UUID.UUIDString + EndOfLine
 		      
 		    End If
-		  end if
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub DiscoveredIncludedServices(Peripheral as AppleCBPeripheral, Service as AppleCBSErvice, errornumber as integer, ErrorDescription as Text)
-		  'dim count as integer
-		  'if Peripheral.Services <> nil then count = Peripheral.Services.Count
-		  
-		  'TextArea1.AppendText EndOfLine
-		  '
-		  'TextArea1.AppendText "Discovered included service from "+Peripheral.Name+ " with"+if (errornumber =  0, "out ", " ")+" error "+ErrorDescription+EndOfLine
-		  'TextArea1.AppendText service.DebugDescription+EndOfLine
-		  'TextArea1.AppendText EndOfLine
-		  
-		  
+		  End If
+		  #pragma unused errornumber
+		  #pragma unused ErrorDescription
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1196,52 +1188,16 @@ End
 		  'TextArea1.AppendText "Subscribed to characteristic "+characteristic.DebugDescription+EndOfLine+EndOfLine
 		  
 		  #pragma Unused central
+		  #pragma unused characteristic
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub DescriptorValueUpdate(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
 		  TextArea1.AppendText "Descriptor value update for "+Descriptor.DebugDescription+ _
 		  " with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub RSSIUpdate(Peripheral as AppleCBPeripheral, errornumber as integer, ErrorDescription as Text)
-		  'TextArea1.AppendText "RSSI update for "+Peripheral.Name+" with"+if (errornumber = 0,"out ", " ")+"error "+ErrorDescription+EndOfLine
-		  'TextArea1.AppendText "RSSI: "+Peripheral.RSSI.ToText+EndOfLine+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub NotificationStateUpdate(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
-		  '
-		  'TextArea1.AppendText "Did update notification state for "+Characteristic.DebugDescription+" with"+if (errornumber = 0,"out ", " ")+ _
-		  '"error "+ErrorDescription+EndOfLine+EndOfLine
-		  'datalog.AppendText Peripheral.Name+" "+Characteristic.DebugDescription+EndOfLine
-		  '#pragma Unused Peripheral
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub ModifiedServices(Peripheral as ApplecBPeripheral, Services() As APpleCBService)
-		  'dim count as Integer = services.Ubound +1
-		  'TextArea1.AppendText "Modified Services for "+count.ToText+" Services"+EndOfLine+EndOfLine
-		  
-		  #pragma Unused Peripheral
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub NameUpdate(Peripheral as AppleCBPeripheral)
-		  'TextArea1.AppendText "Name update for "+Peripheral.Name+EndOfLine+EndOfLine
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub UnsubscribedFromCharacteristic(Central as AppleCBCentral, characteristic as AppleCBCharacteristic)
-		  'TextArea1.AppendText "Unsubscribed from characteristic "+characteristic.DebugDescription+EndOfLine+EndOfLine
-		  #pragma Unused Central
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub ReadRequest(Request as AppleCBATTRequest)
-		  'TextArea1.AppendText "Read Request "+Request.DebugDescription+EndOfLine+EndOfLine
+		  #pragma unused errornumber
+		  #pragma unused ErrorDescription
+		  #pragma unused Peripheral
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1257,25 +1213,11 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub ServiceAdded(Service as AppleCBService, errornumber as integer, ErrorDescription as Text)
-		  'TextArea1.AppendText "service added: "+service.DebugDescription+" with"+if (errornumber = 0,"out ", " ")+ _
-		  '"error "+ErrorDescription+EndOfLine+EndOfLine
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
 		Sub WroteCharacteristicValue(Peripheral as AppleCBPeripheral, Characteristic as AppleCBCharacteristic, errornumber as integer, ErrorDescription as Text)
 		  datalog.AppendText "Wrote Characteristic value with"+if (errornumber = 0,"out ", "") + "error "+ErrorDescription+EndOfLine
 		  datalog.AppendText Characteristic.DebugDescription+EndOfLine+EndOfLine
-		  '#pragma Unused Peripheral
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub WroteDescriptorValue(Peripheral as AppleCBPeripheral, Descriptor as AppleCBDescriptor, errornumber as integer, ErrorDescription as Text)
-		  'TextArea1.AppendText "Wrote Descriptor value for "+Descriptor.DebugDescription+ _
-		  '" with"+if (errornumber =0, "out ", " ")+"error"+EndOfLine+EndOfLine
-		  '#pragma Unused Peripheral
-		  '#pragma Unused ErrorDescription
+		  #pragma Unused Peripheral
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

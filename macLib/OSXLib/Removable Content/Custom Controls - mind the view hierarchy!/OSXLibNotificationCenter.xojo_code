@@ -9,13 +9,15 @@ Inherits AppleNotificationCenter
 
 	#tag Event
 		Sub Open()
-		  NotificationObjects = new xojo.Core.Dictionary
-		  dim AppleOwnerwindow as  AppleWindow = appleresponder.getOwnerAppleWindow(me)
-		  if AppleOwnerwindow <> nil then
-		    dim notificObj as AppleNotificationObject = AppleNotificationCenter.AddObserver (AppleWindow.kNSWindowWillCloseNotification, AppleOwnerwindow, _
-		    AppleOperationQueue.MainQueue, new appleblock (Addressof informonWindowWillClose))
-		    NotificationObjects.value(notificObj) = AppleWindow.kNSWindowWillCloseNotification
-		  end if
+		  #if Targetmacos
+		    NotificationObjects = new xojo.Core.Dictionary
+		    dim AppleOwnerwindow as  AppleWindow = appleresponder.getOwnerAppleWindow(me)
+		    if AppleOwnerwindow <> nil then
+		      dim notificObj as AppleNotificationObject = AppleNotificationCenter.AddObserver (AppleWindow.kNSWindowWillCloseNotification, AppleOwnerwindow, _
+		      AppleOperationQueue.MainQueue, new appleblock (Addressof informonWindowWillClose))
+		      NotificationObjects.value(notificObj) = AppleWindow.kNSWindowWillCloseNotification
+		    end if
+		  #EndIf
 		  
 		  RaiseEvent open
 		End Sub

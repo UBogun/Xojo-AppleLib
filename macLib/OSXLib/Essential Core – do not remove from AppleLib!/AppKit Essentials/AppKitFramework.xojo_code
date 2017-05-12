@@ -29,6 +29,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getacceptsFirstResponder Lib appkitlibname Selector "acceptsFirstResponder" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getaccessoryView Lib appkitlibname Selector "accessoryView" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -41,7 +45,15 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getallowsCharacterPickerTouchBarItem Lib appkitlibname Selector "allowsCharacterPickerTouchBarItem" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getallowsCutCopyPaste Lib appkitlibname Selector "allowsCutCopyPaste" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getallowsDefaultTighteningForTruncation Lib appkitlibname Selector "allowsDefaultTighteningForTruncation" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -57,7 +69,7 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function getalphaValue Lib appkitlibname Selector "alphaValue" (id as ptr) As CGFloat
+		Protected Declare Function getalphaValue Lib appkitlibname Selector "alphaValue" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -97,6 +109,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getAutomaticTextCompletionEnabled Lib appkitlibname Selector "isAutomaticTextCompletionEnabled" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getbackgroundColor Lib appkitlibname Selector "backgroundColor" (id as ptr) As Ptr
 	#tag EndExternalMethod
 
@@ -114,6 +130,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getBezeled Lib appkitlibname Selector "isBezeled" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getbezelStyle Lib appkitlibname Selector "bezelStyle" (id as ptr) As AppleTextField.NSTextFieldBezelStyle
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -344,6 +364,10 @@ Protected Module AppKitFramework
 		Protected Declare Function getmagnification Lib foundationlibname Selector "magnification" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getmaximumNumberOfLines Lib appkitlibname Selector "maximumNumberOfLines" (id as ptr) As Integer
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Function getmaxWidth Lib appkitlibname Selector "maxWidth" (id as ptr) As CGFloat
 	#tag EndExternalMethod
@@ -389,7 +413,19 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getplaceholderAttributedString Lib appkitlibname Selector "PlaceholderAttributedString" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getplaceholderString Lib appkitlibname Selector "placeholderString" (id as ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getPlaying Lib AppKitLibname Selector "isPlaying" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getpreferredMaxLayoutWidth Lib appkitlibname Selector "preferredMaxLayoutWidth" (id as ptr) As CGFloat
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -525,7 +561,7 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Function initWithFrame Lib appkitlibname Selector "initWithFrame:" (id as ptr, frame as foundationframework . nsrect) As ptr
+		Protected Declare Function initWithFrame Lib appkitlibname Selector "initWithFrame:" (id as ptr, frame as foundationframework . nsrect) As ptr
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -572,6 +608,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub selectText Lib appkitlibname Selector "selectText:" (id as ptr, sender as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub sendActionOn Lib foundationlibname Selector "sendActionOn:" (id as ptr, mask as Integer)
 	#tag EndExternalMethod
 
@@ -596,7 +636,15 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setallowsCharacterPickerTouchBarItem Lib appkitlibname Selector "setAllowsCharacterPickerTouchBarItem:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setallowsCutCopyPaste Lib appkitlibname Selector "setAllowsCutCopyPaste:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setallowsDefaultTighteningForTruncation Lib appkitlibname Selector "setAllowsDefaultTighteningForTruncation:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -612,7 +660,7 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Attributes( hidden ) Protected Declare Sub setalphaValue Lib appkitlibname Selector "setAlphaValue:" (id as ptr, value as CGFloat)
+		Protected Declare Sub setalphaValue Lib appkitlibname Selector "setAlphaValue:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -648,6 +696,10 @@ Protected Module AppKitFramework
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setAutomaticTextCompletionEnabled Lib appkitlibname Selector "setAutomaticTextCompletionEnabled:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setbackgroundColor Lib appkitlibname Selector "setBackgroundColor:" (id as ptr, value as ptr)
 	#tag EndExternalMethod
 
@@ -665,6 +717,10 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setBezeled Lib appkitlibname Selector "setBezeled:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setbezelStyle Lib appkitlibname Selector "setBezelStyle:" (id as ptr, value as AppleTextField . NSTextFieldBezelStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -859,6 +915,10 @@ Protected Module AppKitFramework
 		Protected Declare Sub setmagnification Lib foundationlibname Selector "setMagnification:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setmaximumNumberOfLines Lib appkitlibname Selector "setMaximumNumberOfLines:" (id as ptr, value as Integer)
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h1, Description = 416C6C6F6361746573206D656D6F727920666F7220616E206F626A6563742E2043617374206F6E206120436C6173735074722E
 		Protected Declare Sub setMaxWidth Lib appkitlibname Selector "setMaxWidth:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
@@ -897,6 +957,18 @@ Protected Module AppKitFramework
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setPeriodicDelayInterval Lib appkitlibname Selector "setPeriodicDelay:interval:" (id as ptr, delay as single, interval as single)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setplaceholderAttributedString Lib appkitlibname Selector "setPlaceholderAttributedString:" (id as ptr, value as Ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setplaceholderString Lib appkitlibname Selector "setPlaceholderString:" (id as ptr, value as CFStringRef)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setpreferredMaxLayoutWidth Lib appkitlibname Selector "setPreferredMaxLayoutWidth:" (id as ptr, value as CGFloat)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1

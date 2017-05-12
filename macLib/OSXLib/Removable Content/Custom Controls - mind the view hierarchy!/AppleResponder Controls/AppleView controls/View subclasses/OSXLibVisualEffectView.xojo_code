@@ -403,7 +403,7 @@ Inherits OSXLibView
 
 	#tag Method, Flags = &h1
 		Protected Sub RemoveHandlers(obj as AppleVisualEffectView)
-		  
+		  #pragma unused obj
 		End Sub
 	#tag EndMethod
 

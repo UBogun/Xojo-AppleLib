@@ -81,6 +81,12 @@ Inherits AppleView
 		Protected Declare Function getusesSingleLineMode Lib foundationlibname Selector "usesSingleLineMode" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0
+		Shared Function MakefromPtr(aPtr as Ptr) As AppleControl
+		  return if (aptr = nil, nil, new AppleControl(aptr))
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 53696D756C6174657320612073696E676C65206D6F75736520636C69636B206F6E207468652072656365697665722E
 		Sub PerformClick(Sender as appleobject)
 		  AppKitFramework.performClick id, sender.id
@@ -647,6 +653,11 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

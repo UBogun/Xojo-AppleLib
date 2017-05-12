@@ -116,6 +116,7 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Untitled"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -171,6 +172,7 @@ Begin Window CIFilterWindow
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "I could not figure out how to catch changes on the UIViewControl controls below. Therefore I installed a timer. If the app is too laggy, decheck Auto-Refresh and refresh manually."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -288,6 +290,7 @@ Begin Window CIFilterWindow
       Width           =   117
    End
    Begin xojo.core.timer Timer1
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "0"
@@ -307,6 +310,7 @@ Begin Window CIFilterWindow
       BackgroundColor =   &c000000FF
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
+      DoubleValue     =   0.0
       Enabled         =   True
       EraseBackground =   True
       FlippedCoordinates=   False
@@ -315,6 +319,8 @@ Begin Window CIFilterWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
+      Int32Value      =   ""
+      IntegerValue    =   0
       Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -322,9 +328,11 @@ Begin Window CIFilterWindow
       LockRight       =   True
       LockTop         =   True
       Scope           =   2
+      SingleValue     =   0.0
       TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
+      TextValue       =   ""
       Top             =   0
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   True
@@ -365,6 +373,7 @@ Begin Window CIFilterWindow
       Width           =   206
    End
    Begin xojo.core.timer timer2
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   "2"
@@ -384,6 +393,7 @@ Begin Window CIFilterWindow
       BackgroundColor =   &c000000FF
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
+      DoubleValue     =   0.0
       Enabled         =   True
       EraseBackground =   True
       FlippedCoordinates=   False
@@ -392,6 +402,8 @@ Begin Window CIFilterWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
+      Int32Value      =   ""
+      IntegerValue    =   0
       Left            =   798
       LockBottom      =   False
       LockedInPosition=   False
@@ -399,9 +411,11 @@ Begin Window CIFilterWindow
       LockRight       =   True
       LockTop         =   True
       Scope           =   0
+      SingleValue     =   0.0
       TabIndex        =   14
       TabPanelIndex   =   0
       TabStop         =   True
+      TextValue       =   ""
       Top             =   322
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False

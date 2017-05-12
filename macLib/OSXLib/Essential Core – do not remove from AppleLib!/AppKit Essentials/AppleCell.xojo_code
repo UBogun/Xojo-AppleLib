@@ -518,6 +518,21 @@ Inherits AppleObject
 		FocusRingType As Appkitframework.NSFocusRingType
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 54686520666F6E74207573656420746F2064726177207465787420696E20746865207265636569766572E28099732063656C6C2E
+		#tag Getter
+			Get
+			  return AppleFont.MakeFromPtr(AppKitFramework.getfont (mid))
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setfont mid, nilptr(value)
+			End Set
+		#tag EndSetter
+		Font As AppleFont
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 57686574686572207468652063656C6C2068617320612076616C6964206F626A6563742076616C75652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get

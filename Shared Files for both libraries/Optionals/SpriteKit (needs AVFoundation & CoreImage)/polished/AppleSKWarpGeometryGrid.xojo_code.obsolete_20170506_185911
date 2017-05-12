@@ -1,0 +1,232 @@
+#tag Class
+Protected Class AppleSKWarpGeometryGrid
+Inherits AppleSKWarpGeometry
+	#tag Method, Flags = &h0, Description = 43726561746573206120776172702067656F6D6574727920677269642077697468206E6F20736F7572636520616E642064657374696E6174696F6E2076657274696365732E
+		Sub Constructor()
+		  super.Constructor(grid(classptr), true, true)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 43726561746573206120776172702067656F6D657472792067726964206F662061207370656369666965642073697A652E
+		Sub Constructor(Columns as Integer, Rows as Integer)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
+		  Super.Constructor(gridWithColumns(classptr, columns, rows), true, true)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 43726561746573206120776172702067656F6D657472792067726964206F662061207370656369666965642073697A652077697468206120646566696E65642077617270207472616E736C6174696F6E2E20546865206E756D626572206F6620686F72697A6F6E74616C20636F6F7264696E617465732069732074686520636F6C756D6E20636F756E7420706C7573206F6E6520616E6420746865206E756D626572206F6620766572746963616C20636F6F7264696E617465732069732074686520726F7720636F756E7420706C7573206F6E652E20
+		Sub Constructor(Columns as Integer, Rows as Integer, sourcearray() As Vector_Float2, DestArray() as Vector_Float2)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleObject
+		  // Constructor(aPtr as Ptr) -- From AppleObject
+		  // Constructor(aPtr as Ptr, takeOwnership as Boolean, Retain as Boolean = false) -- From AppleObject
+		  Dim sourceA As Xojo.Core.MemoryBlock=Vector_Float2ToMemoryBlock(sourcearray)
+		  dim DestA as Xojo.Core.MemoryBlock= Vector_Float2ToMemoryBlock(DestArray)
+		  Super.Constructor(initWithColumns(alloc(classptr), columns, rows, sourcea.Data, desta.data), true)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F662074686520677269642077697468207468652064657374696E6174696F6E20706F736974696F6E73207265706C616365642062792061207370656369666965642061727261792E
+		Function CopyWithNewDestinations(DestArray() as Vector_Float2) As AppleSKWarpGeometryGrid
+		  Dim DestA As Xojo.Core.MemoryBlock= Vector_Float2ToMemoryBlock(DestArray)
+		  return AppleSKWarpGeometryGrid.MakeFromPtr(gridByReplacingDestPositions(mid, desta.data))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120636F7079206F6620746865206772696420776974682074686520736F7572636520706F736974696F6E73207265706C616365642062792061207370656369666965642061727261792E
+		Function CopyWithNewSources(SourceArray() as Vector_Float2) As AppleSKWarpGeometryGrid
+		  Dim DestA As Xojo.Core.MemoryBlock= Vector_Float2ToMemoryBlock(SourceArray)
+		  return AppleSKWarpGeometryGrid.MakeFromPtr(gridByReplacingSourcePositions(mid, desta.data))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207468652064657374696E6174696F6E20706F736974696F6E206F6620612076657274657820617420612073706563696669656420496E6465782E
+		Function DestinationPosition(Index as Integer) As Vector_Float2
+		  return getdestPositionAtIndex(mid, index)
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdestPositionAtIndex Lib SpriteKitLibName Selector "destPositionAtIndex:" (id as ptr, index as Integer) As Vector_Float2
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getsourcePositionAtIndex Lib SpriteKitLibName Selector "sourcePositionAtIndex:" (id as ptr, index as Integer) As Vector_Float2
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getvertexCount Lib SpriteKitLibName Selector "vertexCount" (id as ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function grid Lib SpriteKitLibName Selector "grid" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gridByReplacingDestPositions Lib SpriteKitLibName Selector "gridByReplacingDestPositions:" (id as ptr, dest as Ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gridByReplacingSourcePositions Lib SpriteKitLibName Selector "gridByReplacingSourcePositions:" (id as ptr, dest as Ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function gridWithColumns Lib SpriteKitLibName Selector "gridWithColumns:rows:" (id as ptr, columns as integer, rows as Integer) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithColumns Lib SpriteKitLibName Selector "initWithColumns:rows:sourcePositions:destPositions:" (id as ptr, columns as integer, rows as Integer, source as ptr, dest as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0
+		Shared Function MakeFromPtr(aPtr as Ptr) As AppleSKWarpGeometryGrid
+		  return if (aptr = nil, nil, new AppleSKWarpGeometryGrid(aptr))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520736F7572636520706F736974696F6E206F6620612076657274657820617420612073706563696669656420496E6465782E
+		Function SourcePosition(Index as Integer) As Vector_Float2
+		  return getsourcePositionAtIndex(mid, index)
+		End Function
+	#tag EndMethod
+
+
+	#tag Note, Name = Status incomplete
+		Available since macOS 10.12, iOS 10.0
+		Coder constructor missing
+	#tag EndNote
+
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return classptr <> nil
+			End Get
+		#tag EndGetter
+		Shared ClassAvailable As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  static mClassPtr as Ptr
+			  if mClassPtr = nil then
+			    if AppleSKView.classavailable then
+			      mClassPtr  =  FoundationFramework.NSClassFromString ("SKWarpGeometryGrid")
+			    end if
+			  end if
+			  return mClassPtr
+			End Get
+		#tag EndGetter
+		Protected Shared ClassPtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652067726964E2809973206E756D626572206F6620636F6C756D6E732E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  Return SpriteKitFramework.getnumberOfColumns(mid)
+			End Get
+		#tag EndGetter
+		NumberOfColumns As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652067726964E2809973206E756D626572206F6620726F77732E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  Return SpriteKitFramework.getnumberOfRows(mid)
+			End Get
+		#tag EndGetter
+		NumberOfRows As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 5468652067726964E2809973206E756D626572206F662076657274696365732E2028726561642D6F6E6C79290A53616D6520617320286E756D6265724F66436F6C756D6E73202B203129202A20286E756D6265724F66526F7773202B2031292E
+		#tag Getter
+			Get
+			  Return getvertexCount(mid)
+			End Get
+		#tag EndGetter
+		VertexCount As Integer
+	#tag EndComputedProperty
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="DebugDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="mHasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NumberOfColumns"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NumberOfRows"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RetainCount"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VertexCount"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

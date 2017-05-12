@@ -524,6 +524,37 @@ Begin Window TestWindow
       Visible         =   True
       Width           =   80
    End
+   Begin PushButton PushButton9
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Button"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   210
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   140
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -540,6 +571,7 @@ End
 		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
 		  dim tinylogo as new AppleImage (OSXLibLogo)
 		  g.DrawTiledImage(FoundationFrameWork.NSMakeRect(0,0,10,10), tinylogo.CGImage)
+		  #pragma unused rect
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -609,13 +641,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events AppleColorPanel1
-	#tag Event , Description = 4669726573207768656E2074686520636F6C6F725069636B65722070616E656C20636C6F7365732E
-		Sub PanelClose()
-		  break
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events PushButton3
 	#tag Event
 		Sub Action()
@@ -647,6 +672,17 @@ End
 		  m = AccelerateFramework.Vector_Multiply(n, factor)
 		  MsgBox m.x.totext+eol+m.y.totext
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton9
+	#tag Event
+		Sub Action()
+		  Dim f As New AppleCGFont("Arial")
+		  Dim a As ApplecfArray = f.TableTags
+		  Dim m As Xojo.Core.MemoryBlock = a.Values(CoreFoundationFramework.CFMakeRange(1, 4))
+		  Dim p As ptr = a.PtrAtIndex(0)
+		  break
 		End Sub
 	#tag EndEvent
 #tag EndEvents

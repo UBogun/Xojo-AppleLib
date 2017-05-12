@@ -33,7 +33,6 @@ Inherits AppleObject
 		    end if
 		    MHasownership = true
 		    release tempid
-		    if XojoControls = nil then XojoControls = new xojo.Core.Dictionary
 		    CBPeripheralManagerDelegate = self
 		  #endif
 		End Sub

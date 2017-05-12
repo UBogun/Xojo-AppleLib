@@ -39,7 +39,7 @@ Begin Window NSViewPlayWindow
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   False
-      FlippedCoordinates=   True
+      FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   423
       HelpTag         =   ""
@@ -455,32 +455,15 @@ End
 		  g.BlendMode = CoreGraphicsFramework.CGBlendMode.Multiply
 		  g.DrawRadialGradient (new AppleCGGradient(colorarray), _
 		  FoundationFrameWork.NSMakePoint(10,10), 5, FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height),rect.size_.height/3, true, true)
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 5573652074686973206576656E7420746F2063726561746520637573746F6D204D656E757320666F7220646966666572656E74206B696E64206F66206576656E74732E
-		Function ConstructContextMenu(AnEvent As AppleNSEvent) As AppleMenu
-		  break
-		End Function
-	#tag EndEvent
-	#tag Event , Description = 4669726573206265666F7265206120636F6E7465787475616C206D656E7520697320646973706C617965642E205573652074686973206576656E7420746F206D6F6466792069742E
-		Sub OpenContextMenu(Menu As AppleMenu, AnEvent As AppleNSEvent)
-		  break
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
-		Sub AddedSubview(Subview as AppleView)
-		  break
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
-		Sub WillRemoveSubview(SubView as AppleView)
-		  break
+		  g.SetFont ("Arial", 5)
+		  g.TextDrawingMode = CoreGraphicsFramework.CGTextDrawingMode.Stroke
+		  g.DrawText("Testtext", 50, 50)
+		  #pragma unused rect
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events ac2
-	#tag Event
+	#tag Event , Description = 4669726573207768656E20746865207573657220686173207072657373656420746865206C656674206D6F75736520627574746F6E2E
 		Sub MouseDown(anEvent As AppleNSEvent)
 		  Label1.text ="Left Mouse Down"
 		  ShowLabel
@@ -698,13 +681,6 @@ End
 		    me.AppleObject.LeftAnchor.ConstraintLessThanOrEqualToAnchor(ac2.AppleObject.RightAnchor, 100).Active = true
 		  end if
 		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events OSXLibView1
-	#tag Event , Description = 4669726573207768656E2074686520766965772077617320616464656420617320612073756276696520746F20616E6F7468657220766965772E
-		Sub WillRemoveSubview(SubView as AppleView)
-		  break
 		End Sub
 	#tag EndEvent
 #tag EndEvents

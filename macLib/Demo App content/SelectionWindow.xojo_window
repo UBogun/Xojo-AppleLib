@@ -254,7 +254,10 @@ End
 		Sub Open()
 		  me.AddRow("Color Additions")
 		  me.AddRow("NSView Additions")
-		  me.AddRow ("NSViewController")
+		  Me.AddRow ("NSViewController")
+		  Me.AddRow ("CoreGraphics")
+		  me.AddRow ("CGBItmapContext")
+		  me.AddRow ("CGPDF")
 		  me.AddRow("VisualEffectView")
 		  me.AddRow("Notifications")
 		  me.AddRow("CoreBluetooth")
@@ -305,8 +308,8 @@ End
 		  case "ScrollView"
 		    SecondaryWindow = new ScrollWindow
 		  case "TableView"
-		    msgbox "Closed for repairs"
-		    // SecondaryWindow = new TableViewWindow
+		    //msgbox "Closed for repairs"
+		    SecondaryWindow = new TableViewWindow
 		  case "VisualEffectView"
 		    SecondaryWindow = new VisualEffectWindow
 		  case "OutlineView"
@@ -340,7 +343,13 @@ End
 		  case "NSViewController"
 		    SecondaryWindow = new ViewControllerWindow
 		  case "AVAudioToneGenerator"
-		    SecondaryWindow = new AVAudioToneGeneratorWindow
+		    SecondaryWindow = New AVAudioToneGeneratorWindow
+		  Case "CGPDF"
+		    SecondaryWindow = New PDFWindow
+		  Case "CoreGraphics"
+		    SecondaryWindow = New CoreGraphicsWindow
+		  Case"CGBItmapContext"
+		    SecondaryWindow = new CGBitmapContextWindow
 		  end select
 		End Sub
 	#tag EndEvent
@@ -362,7 +371,7 @@ End
 		  FoundationFrameWork.NSMakePoint (0,0), FoundationFrameWork.NSMakePoint(rect.Size_.width, rect.size_.height), true, true
 		End Sub
 	#tag EndEvent
-	#tag Event
+	#tag Event , Description = 4669726573207768656E207468652075736572206861732066696E697368656420726573697A696E672074686520766965772E
 		Sub Resized()
 		  me.Invalidate
 		End Sub

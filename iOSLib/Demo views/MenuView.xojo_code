@@ -41,11 +41,12 @@ End
 		  me.AddRow 0, me.CreateCell("AVAudioSession","The base class for recording and playing audio")
 		  me.addrow 0, me.CreateCell("AVAudioToneGenerator", "A custom class generating beeps and short melodies")
 		  me.AddRow 0, me.CreateCell("iOSLibNotificationCenter","A wrapper class for NSUserNotifications")
-		  me.AddRow 0, me.CreateCell("iOSLibSKView", "SceneKit for iOS")
+		  me.AddRow 0, me.CreateCell("iOSLibSKView", "SpriteKit for iOS")
+		  Me.AddRow 0, Me.CreateCell("iOSLibSCNView", "SceneKit for iOS")
 		  me.AddRow 0, me.CreateCell("iOSLibTextField", "Extensions for Xojo’s textfield  and a custom Textfield control.")
 		  me.AddRow 0, me.CreateCell("iOSLibImageView", "Extensions for Xojo’s ImageWell and a custom ImageView control.")
 		  me.AddRow 0, me.CreateCell("iOSLibButton", "Extensions for Xojo’s iOSButton and a custom iOSLibButton control.")
-		  me.AddRow 0, me.CreateCell("AppleCIFilter", "Allows CIFIlter usage directly or on a view property")
+		  me.AddRow 0, me.CreateCell("AppleCIFilter", "Allows CIFilter usage directly or on a view property")
 		  me.AddRow 0, me.CreateCell("TouchID", "Unlock access to a Touch-enabled device")
 		End Sub
 	#tag EndEvent
@@ -70,7 +71,9 @@ End
 		  case "TouchID"
 		    v = new TouchIDView
 		  case "AVAudioToneGenerator"
-		    v = new AVTonePlayerView
+		    v = New AVTonePlayerView
+		  Case "iOSLibSCNView"
+		    v = new SceneView
 		  end select
 		  if v <> nil then self.PushTo v
 		End Sub

@@ -342,9 +342,8 @@ Inherits AppleObject
 	#tag Note, Name = Status incomplete
 		
 		itemChanged not implemented because the standard invokes a NSMenuDidChangeItemNotification
-		submenuAction
-		font
-		popupcontextmenu…withFont:
+		submenuAction (only meant for custom overrides)
+		popupcontextmenu…withFont: (discouraged, better define the font in the property)
 	#tag EndNote
 
 
@@ -398,6 +397,21 @@ Inherits AppleObject
 			End Set
 		#tag EndSetter
 		DelegateObject As AppleObject
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520666F6E74207573656420746F2064726177207465787420696E20746865207265636569766572E28099732063656C6C2E
+		#tag Getter
+			Get
+			  return AppleFont.MakeFromPtr(AppKitFramework.getfont (mid))
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppKitFramework.setfont mid, nilptr(value)
+			End Set
+		#tag EndSetter
+		Font As AppleFont
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865206D656E75206261722068656967687420666F7220746865206D61696E206D656E7520696E20706978656C732E2028726561642D6F6E6C79290A4E6F74653A20576F6E646572206966204170706C65206D65616E7320706F696E747320696E73746561642E

@@ -8,17 +8,31 @@ Inherits AppleObject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(Identifier as CFStringRef)
+		Sub Constructor(Identifier as CFStringRef, Title as CFStringRef = "")
 		  // Calling the overridden superclass constructor.
 		  // Note that this may need modifications if there are multiple constructor choices.
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(initWithIdentifier(alloc(classptr), Identifier))
-		  MHasOwnership = true
+		  Super.Constructor(initWithIdentifier(alloc(classptr), Identifier), true)
+		  me.Title = if (title = "", Identifier, Title)
 		  
 		End Sub
 	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function DataCell(Row as integer) As AppleCell
+		  return AppleCell.MakefromPtr(getdataCellForRow(mid, Row))
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdataCell Lib AppKitLibName Selector "dataCell" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdataCellForRow Lib AppKitLibName Selector "dataCellForRow:" (id as ptr, row as integer) As Ptr
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getheaderCell Lib AppKitLibName Selector "headerCell" (id as ptr) As Ptr
@@ -41,6 +55,10 @@ Inherits AppleObject
 		  return if (aptr = nil,nil, new AppleTableColumn(aptr))
 		End Function
 	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setdataCell Lib AppKitLibName Selector "setDataCell:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setheaderCell Lib AppKitLibName Selector "setHeaderCell:" (id as ptr, value as ptr)
@@ -78,6 +96,20 @@ Inherits AppleObject
 		Protected Shared ClassPtr As Ptr
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6C2070726F746F74797065207573656420627920746865207461626C6520636F6C756D6E20746F206472617720696E646976696475616C2063656C6C732E20446570726563617465642077697468206D61634F532031302E313120627574207374696C6C20616C69766520666F722063656C6C2D6261736564205461626C6576696577732E2044656661756C742069732061205465787463656C6C2E
+		#tag Getter
+			Get
+			  return Applecell.MakefromPtr(getdataCell(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setdataCell id, nilptr(value)
+			End Set
+		#tag EndSetter
+		DataCell As AppleCell
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220612063656C6C2D6261736564207461626C65E280997320636F6C756D6E2063656C6C73206172652075736572206564697461626C652E
 		#tag Getter
 			Get
@@ -95,12 +127,12 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 5468652063656C6C207573656420746F206472617720746865207461626C6520636F6C756D6EE2809973206865616465722E
 		#tag Getter
 			Get
-			  return AppleTableHeaderCell.MakefromPtr(getheadercell(id))
+			  return AppleTableHeaderCell.MakefromPtr(getheadercell(mid))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setheaderCell id, value.id
+			  setheaderCell mid, nilptr(value)
 			End Set
 		#tag EndSetter
 		HeaderCell As AppleTableHeaderCell

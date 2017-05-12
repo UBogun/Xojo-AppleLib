@@ -1,0 +1,475 @@
+#tag Class
+Protected Class AppleSKTileAdjacencyMask
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyAll() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(255)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyDownEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(199)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyLeftEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(31)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyLowerLeftCorner() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(253)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyLowerLeftEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(7)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyLowerRightCorner() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(127)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyLowerRightEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(193)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyRightEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(241)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyUpEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(124)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyUpperLeftCorner() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(247)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyUpperLeftEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(28)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyUpperRightCorner() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(223)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function AdjacencyUpperRightEdge() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(112)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Constructor(value as uinteger)
+		  mid = value
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function HexFlatAdjacencyAll() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(63)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function HexPointyAdjacencyAdd() As AppleSKTileAdjacencyMask
+		  return new AppleSKTileAdjacencyMask(63)
+		End Function
+	#tag EndMethod
+
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 4)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = Changebit (mid, 4, value)
+			End Set
+		#tag EndSetter
+		AdjacencyDown As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 6)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = Changebit (mid, 6, value)
+			End Set
+		#tag EndSetter
+		AdjacencyLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 5)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = Changebit (mid, 5, value)
+			End Set
+		#tag EndSetter
+		AdjacencyLowerLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 3)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 3, value)
+			End Set
+		#tag EndSetter
+		AdjacencyLowerRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 2)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 2, value)
+			  
+			End Set
+		#tag EndSetter
+		AdjacencyRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 0)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 0, value)
+			  
+			End Set
+		#tag EndSetter
+		AdjacencyUp As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 7)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 7, value)
+			  
+			End Set
+		#tag EndSetter
+		AdjacencyUpperLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 1)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 1, value)
+			  
+			End Set
+		#tag EndSetter
+		AdjacencyUpperRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 3)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 3, value)
+			End Set
+		#tag EndSetter
+		HexFlatAdjacencyDown As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 4)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = Changebit (mid, 4, value)
+			End Set
+		#tag EndSetter
+		HexFlatAdjacencyLowerLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 2)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 2, value)
+			  
+			End Set
+		#tag EndSetter
+		HexFlatAdjacencyLowerRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 0)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 0, value)
+			  
+			End Set
+		#tag EndSetter
+		HexFlatAdjacencyUp As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 5)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = Changebit (mid, 5, value)
+			End Set
+		#tag EndSetter
+		HexFlatAdjacencyUpperLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 1)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 1, value)
+			  
+			End Set
+		#tag EndSetter
+		HexFlatAdjacencyUpperRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 5)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = Changebit (mid, 5, value)
+			End Set
+		#tag EndSetter
+		HexPointyAdjacencyLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 4)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = Changebit (mid, 4, value)
+			End Set
+		#tag EndSetter
+		HexPointyAdjacencyLowerLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 3)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 3, value)
+			End Set
+		#tag EndSetter
+		HexPointyAdjacencyLowerRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 2)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 2, value)
+			  
+			End Set
+		#tag EndSetter
+		HexPointyAdjacencyRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 0)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 0, value)
+			  
+			End Set
+		#tag EndSetter
+		HexPointyAdjacencyUpperLeft As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return hasbit (mid, 1)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mid = changebit (mid, 1, value)
+			  
+			End Set
+		#tag EndSetter
+		HexPointyAdjacencyUpperRight As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mId
+			End Get
+		#tag EndGetter
+		Id As UInteger
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mId As UInteger
+	#tag EndProperty
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="AdjacencyDown"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AdjacencyLowerRight"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AdjacencyRight"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AdjacencyUp"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AdjacencyUpperRight"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Id"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MayBegin"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

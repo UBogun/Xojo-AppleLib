@@ -1,0 +1,134 @@
+#tag Class
+Protected Class AppleCGPDFString
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFStringCopyDate Lib CoreGraphicsLibName (id as Ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFStringCopyTextString Lib CoreGraphicsLibName (id as Ptr) As CFStringRef
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFStringGetBytePtr Lib CoreGraphicsLibName (id as Ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFStringGetLength Lib CoreGraphicsLibName (id as Ptr) As Integer
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Constructor()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Constructor(id as ptr)
+		  mStringRef = id
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGPDFString
+		  return if (aCFTypeRef = nil, nil, new AppleCGPDFString(aCFTypeRef))
+		End Function
+	#tag EndMethod
+
+
+	#tag ComputedProperty, Flags = &h0, Description = 4120706F696E74657220746F20746865206279746573206F6620612050444620737472696E672E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return CGPDFStringGetBytePtr(mStringRef)
+			End Get
+		#tag EndGetter
+		BytePtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 52657475726E7320612044617465207468617420726570726573656E7473207468652050444620737472696E672E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return AppleDate.MakefromPtr(CGPDFStringCopyDate(mStringRef))
+			End Get
+		#tag EndGetter
+		DateValue As AppleDate
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206C656E677468206F66207468652050444620737472696E6720696E2042797465732E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return CGPDFStringGetLength(mStringRef)
+			End Get
+		#tag EndGetter
+		Length As Integer
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mStringRef As Ptr
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mStringRef
+			End Get
+		#tag EndGetter
+		StringRef As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 52657475726E7320612054657874207468617420726570726573656E7473207468652050444620737472696E672061732061207465787420737472696E672E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return CGPDFStringCopyTextString(mStringRef)
+			End Get
+		#tag EndGetter
+		TextValue As Text
+	#tag EndComputedProperty
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Length"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextValue"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

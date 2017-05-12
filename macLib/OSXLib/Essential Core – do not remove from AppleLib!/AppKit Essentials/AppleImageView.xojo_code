@@ -88,8 +88,9 @@ Inherits AppleControl
 
 
 	#tag Note, Name = Untitled, Description = 53746174757320636F6D706C6574652062757420657874656E6461626C65
+		With the optional DontRegisterEvents Boolean in the constructur, you can create a pure ImageView created from the original classPtr.
+		This is useful for view hierarchies where you want to keep to the usual behavior without having to control all events on your own
 		
-		Only the pure Classptr, no events integrated yet.
 	#tag EndNote
 
 
@@ -364,6 +365,11 @@ Inherits AppleControl
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

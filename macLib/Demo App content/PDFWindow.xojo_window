@@ -1,0 +1,741 @@
+#tag Window
+Begin Window PDFWindow
+   BackColor       =   &cFFFFFF00
+   Backdrop        =   0
+   CloseButton     =   True
+   Compatibility   =   ""
+   Composite       =   False
+   Frame           =   0
+   FullScreen      =   False
+   FullScreenButton=   False
+   HasBackColor    =   False
+   Height          =   400
+   ImplicitInstance=   True
+   LiveResize      =   True
+   MacProcID       =   0
+   MaxHeight       =   32000
+   MaximizeButton  =   True
+   MaxWidth        =   32000
+   MenuBar         =   0
+   MenuBarVisible  =   True
+   MinHeight       =   64
+   MinimizeButton  =   True
+   MinWidth        =   64
+   Placement       =   0
+   Resizeable      =   True
+   Title           =   "AppleCGPDF"
+   Visible         =   True
+   Width           =   600
+   Begin PushButton PushButton4
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Open PDF"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   13
+      Underline       =   False
+      Visible         =   True
+      Width           =   113
+   End
+   Begin OSXLibCanvas OSXLibCanvas1
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AcceptTouchEvents=   False
+      AllowVibrancy   =   False
+      Alpha           =   1.0
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      BackgroundColor =   &cFFFFFFFF
+      BoundsRotation  =   0.0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   False
+      FlippedCoordinates=   False
+      FocusRingType   =   "Default"
+      Height          =   367
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   235
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   13
+      TrackSwipes     =   False
+      TranslatesAutoresizingMaskIntoConstraints=   False
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   338
+   End
+   Begin OSXLibEnhancedLabel PagesLabel
+      AutoDeactivate  =   True
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      CueText         =   "No document loaded"
+      DataField       =   ""
+      DataSource      =   ""
+      DrawsBackground =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      Text            =   ""
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   45
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   166
+   End
+   Begin TextField Pagenumberfield
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      CueText         =   "Page#"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   50
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   "99999"
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "1"
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   77
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   53
+   End
+   Begin OSXLibEnhancedLabel ArtBoxLabel
+      AutoDeactivate  =   True
+      BackgroundColor =   &cFFFFFF00
+      Bold            =   False
+      CueText         =   "No document loaded"
+      DataField       =   ""
+      DataSource      =   ""
+      DrawsBackground =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      Text            =   ""
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   111
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   186
+   End
+   Begin PushButton PushButton1
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "<"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   78
+      Underline       =   False
+      Visible         =   True
+      Width           =   28
+   End
+   Begin PushButton PushButton2
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   ">"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   105
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   77
+      Underline       =   False
+      Visible         =   True
+      Width           =   28
+   End
+   Begin Label Label1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   217
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   True
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      Text            =   "Many CGPDF classes are included now, and AppleCGContext was extended with a DrawPDF method (and several other features). You can use the subclass AppleCGPDFcontext to create own PDFs too.\nAnd there is a OSXLibenhancedLabel class that features a few additional options for labels, like a CueText and backgroundcolor."
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "SmallSystem"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   163
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   193
+      Begin PushButton PushButton5
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Write PDF"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "Label1"
+         Italic          =   False
+         Left            =   20
+         LockBottom      =   True
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   False
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   360
+         Underline       =   False
+         Visible         =   True
+         Width           =   113
+      End
+   End
+End
+#tag EndWindow
+
+#tag WindowCode
+	#tag Method, Flags = &h0
+		Sub CalculateScale()
+		  If PDFPage <> Nil Then
+		    Dim xscale As Double = OSXLibCanvas1.AppleObject.Width/PDFPage.ArtBox.size_.width
+		    Dim yscale As Double = OSXLibCanvas1.AppleObject.height/PDFPage.ArtBox.size_.height
+		    Scale = Min(xscale, yscale)
+		    System.DebugLog scale.ToText
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private mPDFPage As AppleCGPDFPage
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PDFDocument As AppleCGPDFDocument
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mPDFPage
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mPDFPage = value
+			  If value <> Nil Then
+			    ArtBoxLabel.Text = value.ArtBox.Size_.width.totext+" x "+value.ArtBox.size_.height.totext
+			    CalculateScale
+			  End If
+			End Set
+		#tag EndSetter
+		PDFPage As AppleCGPDFPage
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		Scale As Double = 1
+	#tag EndProperty
+
+
+#tag EndWindowCode
+
+#tag Events PushButton4
+	#tag Event
+		Sub Action()
+		  Dim f As FolderItem = GetOpenFolderItem("application/pdf")
+		  If f <> Nil And f.exists Then
+		    Dim url As New appleurl(f.URLPath)
+		    PDFDocument = New AppleCGPDFDocument (url)
+		    If PDFDocument <> Nil And PDFDocument.NumberOfPages > 0 Then 
+		      PagesLabel.Text = PDFDocument.NumberOfPages.ToText+ " Pages"
+		      PDFPage= PDFDocument.GetPage(1)
+		      OSXLibCanvas1.Invalidate
+		    End If
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OSXLibCanvas1
+	#tag Event
+		Sub Paint(g as applecgcontext, Rect as FoundationFrameWork.NSRect)
+		  If PDFPage <> Nil Then 
+		    g.Scale scale
+		    g.DrawPDFPage PDFPage
+		  End If
+		  #pragma unused rect
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 466972657320696620746865207573657220686173207374617274656420726573697A696E672074686520766965772E
+		Sub Resizing()
+		  CalculateScale
+		  me.Invalidate
+		End Sub
+	#tag EndEvent
+	#tag Event , Description = 4669726573207768656E207468652075736572206861732066696E697368656420726573697A696E672074686520766965772E
+		Sub Resized()
+		  CalculateScale
+		  Me.Invalidate
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Pagenumberfield
+	#tag Event
+		Sub TextChange()
+		  Dim number As Integer = Integer.Parse(Me.Text.ToText)
+		  If PDFDocument <> Nil And PDFDocument.NumberOfPages >= number Then
+		    PDFPage = PDFDocument.GetPage(number)
+		    OSXLibCanvas1.Invalidate
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton1
+	#tag Event
+		Sub Action()
+		  Dim pagenumber As Integer = Integer.Parse(Pagenumberfield.Text.ToText)
+		  If PDFDocument <> Nil And PDFPage <> Nil And _
+		    pagenumber > 1 Then 
+		    pagenumber = pagenumber -1
+		    Pagenumberfield.Text = pagenumber.ToText
+		  End If
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton2
+	#tag Event
+		Sub Action()
+		  dim pagenumber as integer = integer.Parse(Pagenumberfield.text.ToText)
+		  If PDFDocument <> Nil And PDFPage <> Nil And _
+		    pagenumber < PDFDocument.NumberOfPages Then 
+		    pagenumber = pagenumber +1
+		    Pagenumberfield.text = pagenumber.ToText
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PushButton5
+	#tag Event
+		Sub Action()
+		  Dim f As FolderItem 
+		  Dim s As New SaveAsDialog
+		  s.PromptText ="Create PDF file"
+		  s.SuggestedFileName = "TestPDF.pdf"
+		  s.Filter = "application/pdf"
+		  f = s.ShowModal
+		  If f <> Nil Then
+		    Dim MetaDictionary As New AppleMutableDictionary(2) // A new dictionary for the MetaData
+		    // You can add values for the key beginning with AuxDict – see the CGPDFContext documentation at Apple Developer.
+		    MetaDictionary.TextForKey (AppleCGPDFContext.AuxDictPDFContextTitle) = "Test PDF File"
+		    MetaDictionary.TextForKey (AppleCGPDFContext.AuxDictPDFContextCreator) = "macLib by Ulrich Bogun"
+		    Dim Mediabox As FoundationFrameWork.NSRect = FoundationFrameWork.NSMakeRect(0,0,200,200)
+		    // The mediabox is 200 X 200 pts which converts to 2,778 inches or about 7 x 7 cm.
+		    // http://www.convertunits.com/from/points/to/inches
+		    Dim pdfcontext As New AppleCGPDFContext(New appleurl(f), MediaBox, MetaDictionary) // Now create the PDf file
+		    
+		    Dim PageDict As New AppleMutableDictionary(1) // Another dictionary holding page data
+		    //Mediabox must be packaged in a NSData object - see 
+		    // https://developer.apple.com/reference/coregraphics/cgpdfcontext/auxiliary_dictionary_keys
+		    // (Boxkeys)
+		    dim AppleBoxdata as new AppleData(MediaBox.bytevalue)
+		    PageDict.ObjectForKey (AppleCGPDFContext.AuxDictPDFContextMediaBox) = AppleBoxdata
+		    pdfcontext.BeginPDFPage (PageDict)
+		    pdfcontext.SetFillColor (0.3,0.8)
+		    pdfcontext.FillRect (FoundationFrameWork.NSMakeRect(10,10,180,180)) // just a gray box
+		    pdfcontext.FillColor = AppleColor.RedColor.CGColor // and some text:
+		    pdfcontext.SetFont ("Arial", 5)
+		    pdfcontext.TextDrawingMode = CoreGraphicsFramework.CGTextDrawingMode.Fill
+		    pdfcontext.DrawText("A PDF file constructed with the help of an AppleCGPDFContext from macLib", 12, 50, 0)
+		    // Add the logo with a shadow:
+		    pdfcontext.SetShadow (2,2,5)
+		    pdfcontext.DrawImage(OSXLibLogo.toAppleImage.CGImage, FoundationFrameWork.NSMakeRect(20,60,100,100))
+		    // Every Applecgcontext method could be used here additionally!
+		    pdfcontext.EndPDFPage
+		    // PDFcontext is autoreleasing; no need to release it manually!
+		  end if
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag ViewBehavior
+	#tag ViewProperty
+		Name="BackColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Backdrop"
+		Visible=true
+		Group="Background"
+		Type="Picture"
+		EditorType="Picture"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="CloseButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Group="OS X (Carbon)"
+		InitialValue="False"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Frame"
+		Visible=true
+		Group="Frame"
+		InitialValue="0"
+		Type="Integer"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Document"
+			"1 - Movable Modal"
+			"2 - Modal Dialog"
+			"3 - Floating Window"
+			"4 - Plain Box"
+			"5 - Shadowed Box"
+			"6 - Rounded Window"
+			"7 - Global Floating Window"
+			"8 - Sheet Window"
+			"9 - Metal Window"
+			"11 - Modeless Dialog"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreen"
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreenButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Size"
+		InitialValue="400"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		Type="String"
+		EditorType="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LiveResize"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Group="OS X (Carbon)"
+		InitialValue="0"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaxHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximizeButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaxWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBar"
+		Visible=true
+		Group="Menus"
+		Type="MenuBar"
+		EditorType="MenuBar"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBarVisible"
+		Visible=true
+		Group="Deprecated"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimizeButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		Type="String"
+		EditorType="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Placement"
+		Visible=true
+		Group="Behavior"
+		InitialValue="0"
+		Type="Integer"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Default"
+			"1 - Parent Window"
+			"2 - Main Screen"
+			"3 - Parent Window Screen"
+			"4 - Stagger"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Resizeable"
+		Visible=true
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Scale"
+		Group="Behavior"
+		InitialValue="1"
+		Type="Double"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Super"
+		Visible=true
+		Group="ID"
+		Type="String"
+		EditorType="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Title"
+		Visible=true
+		Group="Frame"
+		InitialValue="Untitled"
+		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Visible"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Width"
+		Visible=true
+		Group="Size"
+		InitialValue="600"
+		Type="Integer"
+	#tag EndViewProperty
+#tag EndViewBehavior

@@ -172,7 +172,7 @@ End
 #tag EndWindowCode
 
 #tag Events Canvas1
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520636F6E74656E74206F66207468652076696577206E6565647320746F206265207265647261776E2E
 		Sub Paint(G as AppleCGContext, Rect  as xojo.core.rect)
 		  dim logo as new AppleImage(iosLibLogo)
 		  g.ConcatenateTransform (TransformExtension.CGAffineTransformMake (1,0,0,-1,0,rect.Height)) // flip the graphics to Xojo defaults vertically
@@ -187,7 +187,7 @@ End
 		  FoundationFrameWork.NSMakePoint (0,0), FoundationFrameWork.NSMakePoint(rect.Width, rect.Height), true, true
 		End Sub
 	#tag EndEvent
-	#tag Event
+	#tag Event , Description = 4669726573207768656E20746865207669657720686173206368616E676564206974732073697A652C206C696B65206166746572206120726F746174696F6E2E
 		Sub Resized()
 		  me.Invalidate
 		End Sub
@@ -199,7 +199,7 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events iOSLIbView2
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C20686173206D6F766520746F206974732077696E646F772E
 		Sub Shown()
 		  dim logo as new AppleImage(iosLibLogo)
 		  // dim smallogo as AppleImage = logo.Resize (0.005, 0.005, CoreGraphicsFramework.CGInterpolationQuality.High)
@@ -239,7 +239,7 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events MenuButton
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520627574746F6E20697320746F7563686564
 		Sub Action()
 		  dim iv as new MenuView
 		  self.PushTo iv
@@ -254,7 +254,7 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events MenuButton1
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520627574746F6E20697320746F7563686564
 		Sub Action()
 		  dim iv as new InfoView(InfoText)
 		  self.PushTo iv

@@ -1,19 +1,19 @@
 #tag Class
 Protected Class AppleScrollView
 Inherits AppleView
-	#tag Event
+	#tag Event , Description = 52657475726E207472756520746F2062656C6E6420746865207669657720696E746F20616E20456666656374566965772E
 		Function AllowsVibrancy() As Boolean
 		  
 		End Function
 	#tag EndEvent
 
-	#tag Event
+	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
 		Sub DidAddSubview(Subview as appleview)
 		  #PRAGMA UNUSED SUBVIEW
 		End Sub
 	#tag EndEvent
 
-	#tag Event
+	#tag Event , Description = 52657475726E207472756520696620746865207669657720646F6573206E6F7420757365207472616E73706172656E636965732E
 		Function Opaque() As Boolean
 		  
 		End Function
@@ -1153,6 +1153,11 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

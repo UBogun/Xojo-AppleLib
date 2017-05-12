@@ -1,7 +1,7 @@
 #tag Class
 Protected Class OSXLibOutlineView
 Inherits OSXLibTableView
-	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
+	#tag Event
 		Function InitControl() As AppleScrollview
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
 		  // The Xojo engineers always warned that messing with the view hierarchy of Xojo controls could lead to problems in the future.
@@ -93,6 +93,20 @@ Inherits OSXLibTableView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AutohidesScrollers"
+			Visible=true
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutomaticallyAdjustsContentInsets"
+			Visible=true
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Backdrop"
 			Visible=true
 			Group="Appearance"
@@ -133,6 +147,19 @@ Inherits OSXLibTableView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DrawsBackground"
+			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DynamicScroll"
+			Visible=true
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Enabled"
 			Visible=true
 			Group="Appearance"
@@ -145,6 +172,19 @@ Inherits OSXLibTableView
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FindBarPosition"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="AppleScrollview.NSScrollViewFindBarPosition"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - AboveHorizontalRuler"
+				"1 - AboveContent"
+				"2 - BelowContent"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FlippedCoordinates"
@@ -178,6 +218,40 @@ Inherits OSXLibTableView
 			Group="Appearance"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HorizontalLineScroll"
+			Visible=true
+			Group="Behavior"
+			InitialValue="10"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HorizontalPageScroll"
+			Visible=true
+			Group="Behavior"
+			InitialValue="100"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HorizontalRuler"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HorizontalScrollElasticity"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="AppleScrollview.NSScrollElasticity"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Automatic"
+				"1 - None"
+				"2 - Allowed"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HorizontalScroller"
@@ -242,11 +316,64 @@ Inherits OSXLibTableView
 			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="MaxMagnification"
+			Visible=true
+			Group="Behavior"
+			InitialValue="4"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="MinMagnification"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0.25"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
 			EditorType="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PredominantAxisScrolling"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RulersVisible"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ScrollerKnobStyle"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="AppleScroller.NSScrollerKnobStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - Dark"
+				"2 - Light"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ScrollerStyle"
+			Visible=true
+			Group="Behavior"
+			InitialValue="1"
+			Type="AppleScroller.NSScrollerStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Legacy"
+				"1 - Overlay"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
@@ -309,6 +436,40 @@ Inherits OSXLibTableView
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalLineScroll"
+			Visible=true
+			Group="Behavior"
+			InitialValue="10"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalPageScroll"
+			Visible=true
+			Group="Behavior"
+			InitialValue="100"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalRuler"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalScrollElasticity"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="applescrollview.NSScrollElasticity"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Automatic"
+				"1 - None"
+				"2 - Allowed"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="VerticalScroller"

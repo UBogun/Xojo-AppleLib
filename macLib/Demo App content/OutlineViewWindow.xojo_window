@@ -26,23 +26,6 @@ Begin Window OutlineViewWindow
    Title           =   "AppleOutlineView"
    Visible         =   True
    Width           =   600
-   Begin OSXLibTableViewDataSource OSXLibTableViewDataSource1
-      Enabled         =   True
-      Handle          =   0
-      Index           =   -2147483648
-      LockedInPosition=   False
-      MouseX          =   0
-      MouseY          =   0
-      PanelIndex      =   0
-      Scope           =   2
-      TabPanelIndex   =   0
-      Window          =   "0"
-      _mIndex         =   0
-      _mInitialParent =   ""
-      _mName          =   ""
-      _mPanelIndex    =   0
-      _mWindow        =   "0"
-   End
    Begin OSXLibOutlineView OSXLibOutlineView1
       AcceptFocus     =   False
       AcceptTabs      =   False
@@ -51,17 +34,26 @@ Begin Window OutlineViewWindow
       AllowVibrancy   =   False
       Alpha           =   1.0
       AutoDeactivate  =   True
+      AutohidesScrollers=   True
+      AutomaticallyAdjustsContentInsets=   True
       Backdrop        =   0
       BackgroundColor =   &c00FF0000
       BorderType      =   "None"
       BoundsRotation  =   0.0
       DoubleBuffer    =   False
+      DrawsBackground =   False
+      DynamicScroll   =   True
       Enabled         =   True
       EraseBackground =   True
+      FindBarPosition =   "0"
       FlippedCoordinates=   False
       FocusRingType   =   "Default"
       Height          =   400
       HelpTag         =   ""
+      HorizontalLineScroll=   10.0
+      HorizontalPageScroll=   100.0
+      HorizontalRuler =   False
+      HorizontalScrollElasticity=   "0"
       HorizontalScroller=   True
       Index           =   -2147483648
       InitialParent   =   ""
@@ -72,7 +64,13 @@ Begin Window OutlineViewWindow
       LockRight       =   True
       LockTop         =   True
       Magnification   =   1.0
+      MaxMagnification=   4.0
+      MinMagnification=   0.25
+      PredominantAxisScrolling=   False
+      RulersVisible   =   False
       Scope           =   2
+      ScrollerKnobStyle=   "0"
+      ScrollerStyle   =   "1"
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -80,8 +78,11 @@ Begin Window OutlineViewWindow
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
-      UseCustomColor  =   "False"
       UseFocusRing    =   True
+      VerticalLineScroll=   10.0
+      VerticalPageScroll=   100.0
+      VerticalRuler   =   False
+      VerticalScrollElasticity=   "0"
       VerticalScroller=   True
       Visible         =   True
       Width           =   600
@@ -92,25 +93,10 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events OSXLibTableViewDataSource1
-	#tag Event , Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
-		Function NumberOfRows(TableView As AppleTableView) As Integer
-		  return 10
-		  #pragma unused tableview
-		End Function
-	#tag EndEvent
-	#tag Event , Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
-		Function TextValue(TableView As AppleTableView, column as ptr, row as Integer) As cfstringRef
-		  return row.ToText
-		  #pragma unused tableview
-		  #pragma unused column
-		End Function
-	#tag EndEvent
-#tag EndEvents
 #tag Events OSXLibOutlineView1
 	#tag Event
 		Function Open() As Boolean
-		  me.TableViewObject.DataSource= OSXLibTableViewDataSource1.AppleObject
+		  //me.TableViewObject.DataSource= OSXLibTableViewDataSource1.AppleObject
 		  me.TableViewObject.AddTableColumn ("Test")
 		  me.TableViewObject.AddTableColumn ("Test1")
 		  me.TableViewObject.AddTableColumn ("Test3")

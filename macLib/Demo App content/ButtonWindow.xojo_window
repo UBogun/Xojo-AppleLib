@@ -145,6 +145,7 @@ Begin Window ButtonWindow
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "The Pushbutton above is a normal Xojo Pushbutton subclass: OSXLibEnhancedPushbutton. It wraps many of the NSButton features into a Xojo control. More features are accessible via the AppleObject property of the control.\n\nPlease note that ButtonStyle is overriden by ButtonType and BezelStyle but cannot be deleted from the inspector properties. Accelerator Button types do not work in a subclass, I’d have to build own classes. Please send me a note if you need such.\n\nThe Checkbox below is again a normal Xojo checkbox, wrapped in an OSXLibEnhancedCheckbox control, as well as the RadioButtons being OSXLibEnhancedRadioButtons. All controls have a KeyboardEquivalent set: Use ""i"", ""j"", ""k"" and ""l"" to change their states. Please note that RadioButton1 is delayed in changing its state back to unselected. This changes once it is drawn bordered."
       TextAlign       =   0
       TextColor       =   &c00000000

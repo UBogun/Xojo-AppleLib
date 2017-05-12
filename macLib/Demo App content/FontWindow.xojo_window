@@ -305,7 +305,10 @@ End
 		    dim font as new AppleFont (fontname, 20)
 		    AppleFontManager1.SelectedFont(false) = font
 		    TextField1.TextFont = fontname
-		  end if
+		  End If
+		  #pragma unused column
+		  #pragma unused x
+		  #pragma unused y
 		End Function
 	#tag EndEvent
 #tag EndEvents

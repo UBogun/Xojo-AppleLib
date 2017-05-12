@@ -12,10 +12,10 @@ Begin iosView ButtonView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   iOSLibButton1, 8, , 0, False, +1.00, 1, 1, 51, 
-      AutoLayout      =   iOSLibButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 102, 
-      AutoLayout      =   iOSLibButton1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
       AutoLayout      =   iOSLibButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibButton1, 2, <Parent>, 2, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 102, 
+      AutoLayout      =   iOSLibButton1, 8, , 0, False, +1.00, 1, 1, 51, 
       AutoresizesSubviews=   False
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   True
@@ -72,10 +72,10 @@ Begin iosView ButtonView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   iOSLibInfoButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 52, 
-      AutoLayout      =   iOSLibInfoButton1, 7, , 0, False, +1.00, 1, 1, 22, 
-      AutoLayout      =   iOSLibInfoButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 168, 
       AutoLayout      =   iOSLibInfoButton1, 8, , 0, False, +1.00, 2, 1, 22, 
+      AutoLayout      =   iOSLibInfoButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 168, 
+      AutoLayout      =   iOSLibInfoButton1, 7, , 0, False, +1.00, 1, 1, 22, 
+      AutoLayout      =   iOSLibInfoButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 52, 
       AutoresizesSubviews=   False
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   True
@@ -110,10 +110,10 @@ Begin iosView ButtonView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   iOSLibAddButton1, 8, , 0, False, +1.00, 2, 1, 22, 
-      AutoLayout      =   iOSLibAddButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 117, 
-      AutoLayout      =   iOSLibAddButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 168, 
       AutoLayout      =   iOSLibAddButton1, 7, , 0, False, +1.00, 1, 1, 22, 
+      AutoLayout      =   iOSLibAddButton1, 3, <Parent>, 3, False, +1.00, 1, 1, 168, 
+      AutoLayout      =   iOSLibAddButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 117, 
+      AutoLayout      =   iOSLibAddButton1, 8, , 0, False, +1.00, 2, 1, 22, 
       AutoresizesSubviews=   False
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   True
@@ -148,10 +148,10 @@ Begin iosView ButtonView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   iOSLibDiscosureButton1, 4, iOSLibAddButton1, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibDiscosureButton1, 3, iOSLibAddButton1, 3, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibDiscosureButton1, 7, , 0, False, +1.00, 1, 1, 22, 
       AutoLayout      =   iOSLibDiscosureButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 174, 
+      AutoLayout      =   iOSLibDiscosureButton1, 7, , 0, False, +1.00, 1, 1, 22, 
+      AutoLayout      =   iOSLibDiscosureButton1, 3, iOSLibAddButton1, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibDiscosureButton1, 4, iOSLibAddButton1, 4, False, +1.00, 1, 1, 0, 
       AutoresizesSubviews=   False
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   True
@@ -186,10 +186,10 @@ Begin iosView ButtonView
       AccessibilityHint=   ""
       AccessibilityLabel=   ""
       Alpha           =   1.0
-      AutoLayout      =   iOSLibCustomButton1, 4, iOSLibDiscosureButton1, 4, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibCustomButton1, 3, iOSLibDiscosureButton1, 3, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLibCustomButton1, 7, , 0, False, +1.00, 1, 1, 22, 
       AutoLayout      =   iOSLibCustomButton1, 1, <Parent>, 1, False, +1.00, 1, 1, 234, 
+      AutoLayout      =   iOSLibCustomButton1, 7, , 0, False, +1.00, 1, 1, 22, 
+      AutoLayout      =   iOSLibCustomButton1, 3, iOSLibDiscosureButton1, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibCustomButton1, 4, iOSLibDiscosureButton1, 4, False, +1.00, 1, 1, 0, 
       AutoresizesSubviews=   False
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   True
@@ -243,7 +243,7 @@ End
 		  
 		End Sub
 	#tag EndEvent
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520627574746F6E20697320746F7563686564
 		Sub Action()
 		  System.DebugLog "Touched!"
 		End Sub

@@ -180,6 +180,11 @@ Protected Class ColorPickerModeMask
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Crayon"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="CustomPalette"
 			Group="Behavior"
 			Type="Boolean"
@@ -236,6 +241,11 @@ Protected Class ColorPickerModeMask
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Wheel"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -117,7 +117,7 @@ Inherits AppleTextFieldCell
 		#tag ViewProperty
 			Name="BezelStyle"
 			Group="Behavior"
-			Type="NSTextFieldBezelStyle"
+			Type="appletextfield.NSTextFieldBezelStyle"
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Square"

@@ -33,10 +33,6 @@ Inherits AppleActionCell
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
-		Protected Declare Function getbezelStyle Lib appkitlibname Selector "bezelStyle" (id as ptr) As NSTextFieldBezelStyle
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getplaceholderAttributedString Lib appkitlibname Selector "placeholderAttributedString" (id as ptr) As ptr
 	#tag EndExternalMethod
 
@@ -52,10 +48,6 @@ Inherits AppleActionCell
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setallowedInputSourceLocales Lib appkitlibname Selector "setAllowedInputSourceLocales:" (id as ptr, value as Ptr)
-	#tag EndExternalMethod
-
-	#tag ExternalMethod, Flags = &h1
-		Protected Declare Sub setbezelStyle Lib appkitlibname Selector "setBezelStyle:" (id as ptr, value as NSTextFieldBezelStyle)
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -117,21 +109,22 @@ Inherits AppleActionCell
 	#tag ComputedProperty, Flags = &h0, Description = 5468652062657A656C207374796C6520746F20757365207768656E2064726177696E67207468652074657874206669656C642E
 		#tag Getter
 			Get
-			  return getbezelStyle(id)
+			  return AppKitFramework.getbezelStyle(id)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setbezelStyle id, value
+			  AppKitFramework.setbezelStyle id, value
 			End Set
 		#tag EndSetter
-		BezelStyle As NSTextFieldBezelStyle
+		BezelStyle As appletextfield.NSTextFieldBezelStyle
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  static mClassPtr as Ptr = FoundationFramework.NSClassFromString ("NSTextFieldCell")
+			  Static mClassPtr As Ptr
+			  if mClassPtr = nil then mclassptr = FoundationFramework.NSClassFromString ("NSTextFieldCell")
 			  return mClassPtr
 			End Get
 		#tag EndGetter
@@ -256,7 +249,7 @@ Inherits AppleActionCell
 		#tag ViewProperty
 			Name="BezelStyle"
 			Group="Behavior"
-			Type="NSTextFieldBezelStyle"
+			Type="appletextfield.NSTextFieldBezelStyle"
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Square"

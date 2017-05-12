@@ -536,7 +536,7 @@ Begin Window ColorWindow
       TabIndex        =   22
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Here are some NSColor / AppleColor features that are implemented transparently as new color features for MacOS desktop projects: Color Blending, Alpha value change and two different kinds of brightening and darkening colors that influence the alpha value too.\nAt the bottom I used an image as Color. See how it behaves when you resize the window.\nAlpha blending can now done via the AppleColorPanel.\n\nThe module inserted methods are\nColor.BlendWithcolor (AnotherColor As Color, Fraction As Double) As Color\nColor.ChangeAlpha (NewAlpha As Double) As Color\nColor.HightlightColor (Level As Double) As Color and\nColor.ShadowColor (Level As Double) As Color\n\nBelow is an OSXLibView showing the ""pure"" AppleColor (ColorA or ColorB) which has more dynamics than Xojo colors."
+      Text            =   "Here are some NSColor / AppleColor features that are implemented transparently as new color features for MacOS desktop projects: Color Blending, Alpha value change and two different kinds of brightening and darkening colors that influence the alpha value too.\nAt the bottom I used an image as Color. See how it behaves when you resize the window.\nAlpha blending can now done via the AppleColorPanel. DoubleClick on ColorA or ColorB!\n\nThe module inserted methods are\nColor.BlendWithcolor (AnotherColor As Color, Fraction As Double) As Color\nColor.ChangeAlpha (NewAlpha As Double) As Color\nColor.HightlightColor (Level As Double) As Color and\nColor.ShadowColor (Level As Double) As Color\n\nBelow is an OSXLibView showing the ""pure"" AppleColor (ColorA or ColorB) which has more dynamics than Xojo colors."
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -590,7 +590,7 @@ Begin Window ColorWindow
       EraseBackground =   True
       FlippedCoordinates=   False
       FocusRingType   =   "Default"
-      Height          =   70
+      Height          =   53
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -604,7 +604,7 @@ Begin Window ColorWindow
       TabIndex        =   23
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   302
+      Top             =   319
       TrackSwipes     =   False
       TranslatesAutoresizingMaskIntoConstraints=   False
       Transparent     =   True
@@ -642,6 +642,8 @@ End
 		  AppleColorPanel1.Show
 		  AppleColorPanel1.CurrentColor = me.bgcolor.toapplecolor
 		  
+		  #pragma unused x
+		  #pragma unused y
 		End Function
 	#tag EndEvent
 #tag EndEvents
@@ -658,7 +660,8 @@ End
 		  CurrentView = me
 		  AppleColorPanel1.Show
 		  AppleColorPanel1.CurrentColor = me.bgcolor.toapplecolor
-		  
+		  #pragma unused x
+		  #pragma unused y
 		End Function
 	#tag EndEvent
 #tag EndEvents

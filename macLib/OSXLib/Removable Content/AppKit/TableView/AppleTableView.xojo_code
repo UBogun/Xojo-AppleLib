@@ -83,8 +83,8 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(makeViewWithIdentifier(alloc(classptr),Identifer,if (owner = nil, nil, owner.id)))
-		  MHasOwnership = true
+		  Super.Constructor(makeViewWithIdentifier(alloc(classptr),Identifer,Nilptr (owner)), True)
+		  registeridentity(self)
 		  
 		End Sub
 	#tag EndMethod
@@ -99,8 +99,8 @@ Inherits AppleControl
 		  // Constructor(Frame as FoundationFrameWork.nsrect) -- From AppleView
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(AppKitFramework.initwithframe(alloc(classptr),Rect))
-		  MHasOwnership = true
+		  Super.Constructor(AppKitFramework.initwithframe(alloc(classptr),Rect), true)
+		  registeridentity(Self)
 		  
 		End Sub
 	#tag EndMethod
@@ -135,6 +135,18 @@ Inherits AppleControl
 		Protected Declare Sub deselectRow Lib AppKitLibName Selector "deselectRow:" (id as ptr, row as integer)
 	#tag EndExternalMethod
 
+	#tag Method, Flags = &h0, Description = 52657475726E7320746865206472616767696E67536F757263654F7065726174696F6E4D61736B466F724C6F63616C3A
+		Function DraggingSourceOperationMask(local as Boolean = true) As AppleDragOperation
+		  return new AppleDragOperation (getdraggingSourceOperationMaskForLocal(mid, local))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 53657473207468652064656661756C74206F7065726174696F6E206D61736B2072657475726E6564206279206472616767696E67536F757263654F7065726174696F6E4D61736B466F724C6F63616C3A20746F206D61736B2E204966204C6F63616C2069732074727565202864656661756C74292C206974206D65616E732064657374696E6174696F6E206973207468652073616D65206170706C69636174696F6E2E
+		Sub DraggingSourceOperationMask(local as Boolean = true, assigns value as AppleDragOperation)
+		  setDraggingSourceOperationMask(mid, value.id, local)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0, Description = 436F6D707574657320616E642072657475726E7320616E20696D61676520746F2075736520666F72206472616767696E672E
 		Function DragImage(DragRows as AppleIndexSet, TableColumns as AppleArray, anEvent as AppleNSEvent, Offset as FoundationFrameWork.NSPoint) As AppleImage
 		  return appleimage.MakeFromPtr(dragImageForRowsWithIndexes(id, DragRows.id, TableColumns.id, if (anevent = nil, nil, anEvent.id), offset))
@@ -147,7 +159,7 @@ Inherits AppleControl
 
 	#tag Method, Flags = &h0, Description = 4564697473207468652063656C6C206174207468652073706563696669656420636F6C756D6E20616E6420726F77207573696E672074686520737065636966696564206576656E7420616E642073656C656374696F6E206265686176696F722E
 		Sub EditColumn(column as integer, row as integer, anEvent as appleNSEvent = nil, selectContents as Boolean = False)
-		  editColumn id, column, row, if (anevent = nil, nil, anevent.id), SelectContents
+		  editColumn id, column, row, nilptr (anevent), SelectContents
 		End Sub
 	#tag EndMethod
 
@@ -257,6 +269,10 @@ Inherits AppleControl
 
 	#tag ExternalMethod, Flags = &h1
 		Protected Declare Function getdoubleAction Lib AppKitLibName Selector "doubleAction" (id as ptr) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getdraggingSourceOperationMaskForLocal Lib AppKitLibName Selector "draggingSourceOperationMaskForLocal:" (id as ptr, local as Boolean) As uinteger
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
@@ -664,6 +680,20 @@ Inherits AppleControl
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setDraggingSourceOperationMask Lib AppKitLibName Selector "setDraggingSourceOperationMask:forLocal:" (id as ptr, mask as uinteger, local as Boolean)
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h0, Description = 526574617267657473207468652070726F706F7365642064726F70206F7065726174696F6E2E0A466F72206578616D706C652C20746F207370656369667920612064726F70206F6E20746865207365636F6E6420726F772C207370656369667920726F7720617320312C20616E64206F7065726174696F6E206173204E535461626C655669657744726F704F6E2E20546F207370656369667920612064726F702062656C6F7720746865206C61737420726F772C207370656369667920726F77206173205B73656C66206E756D6265724F66526F77735D20616E64206F7065726174696F6E206173204E535461626C655669657744726F7041626F76652E0A50617373696E6720612076616C7565206F6620E280933120666F7220726F7720616E64204E535461626C655669657744726F704F6E20617320746865206F7065726174696F6E206361757365732074686520656E74697265207461626C65207669657720746F20626520686967686C69676874656420726174686572207468616E206120737065636966696320726F772E20546869732069732075736566756C20696620746865206461746120646973706C6179656420627920746865207461626C65207669657720646F6573206E6F7420616C6C6F7720746865207573657220746F2064726F70206974656D73206174206120737065636966696320726F77206C6F636174696F6E2E
+		Sub SetDropRow(Row as Integer, operation as NSTableViewDropOperation)
+		  setDropRowdropOperation id, row, operation
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setDropRowdropOperation Lib AppKitLibName Selector "setDropRow:dropOperation:" (id as ptr, value as Integer, operation as NSTableViewDropOperation)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Protected Declare Sub setfloatsGroupRows Lib AppKitLibName Selector "setFloatsGroupRows:" (id as ptr, value as Boolean)
 	#tag EndExternalMethod
 
@@ -764,9 +794,10 @@ Inherits AppleControl
 		drawGrid
 		highlightSelection
 		drawBackground
-		setDraggingSourceOperationMask
-		setDropRow
+		
 		sortDescriptors
+		NSDraggingSource protocol
+		
 	#tag EndNote
 
 
@@ -952,7 +983,7 @@ Inherits AppleControl
 		CornerView As AppleView
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0
+	#tag ComputedProperty, Flags = &h0, Description = 546865206F626A65637420746861742070726F766964657320746865206461746120646973706C6179656420627920746865207461626C6520766965772E
 		#tag Getter
 			Get
 			  return AppleTableViewDataSource.MakefromPtr(getdataSource(id))
@@ -965,6 +996,20 @@ Inherits AppleControl
 			End Set
 		#tag EndSetter
 		DataSource As AppleTableViewDataSource
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865207461626C652076696577E28099732064656C65676174652E204F6E6365206974206973207365742C20746865206E6F746966636174696F6E732077696C6C206E6F7420776F726B206F6E20746865207461626C655669657720616E796D6F72652C206576656E206966206C617465722073657420746F206E696C2E205072696F7220746F206D61634F532031302E31322C207468652064656C656761746520776173206E6F742072657461696E656420627920746865205461626C65566965772E
+		#tag Getter
+			Get
+			  return AppleTableViewDelegate.MakefromPtr(FoundationFrameWork.getdelegate(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  FoundationFrameWork.setdelegate (mid, nilptr(value))
+			End Set
+		#tag EndSetter
+		DelegateObject As AppleTableViewDelegate
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 412073656C6563746F7220746861742069732073656E7420746F2074686520746172676574207768656E20746865207573657220646F75626C652D636C69636B7320612063656C6C206F7220636F6C756D6E206865616465722E
@@ -1119,7 +1164,10 @@ Inherits AppleControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  const mNSTableViewColumnDidMoveNotification = "NSTableViewColumnDidMoveNotification"
+			  Static mNSTableViewColumnDidMoveNotification As Text
+			  If mNSTableViewColumnDidMoveNotification.Empty Then
+			    mNSTableViewColumnDidMoveNotification = SystemConstantName ("NSTableViewColumnDidMoveNotification", AppKitPath)
+			  End If
 			  return mNSTableViewColumnDidMoveNotification
 			End Get
 		#tag EndGetter
@@ -1366,6 +1414,11 @@ Inherits AppleControl
 		Gap = 2
 	#tag EndEnum
 
+	#tag Enum, Name = NSTableViewDropOperation, Type = Integer, Flags = &h0
+		DropOn
+		DropAbove
+	#tag EndEnum
+
 	#tag Enum, Name = NSTableViewRowSizeStyle, Type = Integer, Flags = &h0
 		Default = -1
 		  Custom = 0
@@ -1478,6 +1531,11 @@ Inherits AppleControl
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

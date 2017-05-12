@@ -1,0 +1,278 @@
+#tag Class
+Protected Class AppleSKTileDefinition
+Inherits AppleObject
+	#tag Method, Flags = &h1000, Description = 496E697469616C697A65732061206E65772074696C6520646566696E6974696F6E207769746820617272617973206F6620746578747572657320616E64206E6F726D616C20746578747572657320666F7220616E696D6174696F6E2E
+		Sub Constructor(textures as AppleArray, NormalTextures as AppleArray, TimePerFrame As Double)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleSKNode
+		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
+		  // Constructor() -- From AppleResponder
+		  // Constructor() -- From AppleObject
+		  // Constructor(AnId as Ptr) -- From AppleObject
+		  Super.Constructor (initWithTexturesnormalTexturessizetimePerFrame (alloc(classptr), textures.id, NormalTextures.id, Timeperframe), true)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1000, Description = 496E697469616C697A65732061206E65772074696C6520646566696E6974696F6E207769746820616E206172726179206F6620746578747572657320666F7220616E696D6174696F6E2E
+		Sub Constructor(textures as AppleArray, size as FoundationFramework.NSSize, TimePerFrame As Double)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleSKNode
+		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
+		  // Constructor() -- From AppleResponder
+		  // Constructor() -- From AppleObject
+		  // Constructor(AnId as Ptr) -- From AppleObject
+		  Super.Constructor (initWithTexturessizetimerperframe (alloc(classptr), textures.id, size, Timeperframe), true)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1000, Description = 496E697469616C697A65732061206E65772074696C6520646566696E6974696F6E207769746820612073696E676C6520746578747572652E
+		Sub Constructor(texture as AppleSKTexture)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleSKNode
+		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
+		  // Constructor() -- From AppleResponder
+		  // Constructor() -- From AppleObject
+		  // Constructor(AnId as Ptr) -- From AppleObject
+		  Super.Constructor (SpriteKitFramework.initWithTexture (alloc(classptr), texture.id), true)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1000, Description = 496E697469616C697A65732061206E65772074696C6520646566696E6974696F6E207769746820612073696E676C65207465787475726520616E64207365706172617465206E6F726D616C207465787475726520666F722073696D756C6174696E67203344206C69676874696E672E
+		Sub Constructor(texture as AppleSKTexture, NormalTexture as AppleSKTexture, Size as FoundationFrameWork.NSSize)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleSKNode
+		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
+		  // Constructor() -- From AppleResponder
+		  // Constructor() -- From AppleObject
+		  // Constructor(AnId as Ptr) -- From AppleObject
+		  Super.Constructor (initWithTexturenormalTexturesize (alloc(classptr), texture.id, NormalTexture.id, size), true)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1000, Description = 496E697469616C697A65732061206E65772074696C6520646566696E6974696F6E206F662061207370656369666965642073697A65207769746820612073696E676C6520746578747572652E
+		Sub Constructor(texture as AppleSKTexture,  Size as FoundationFrameWork.NSSize)
+		  // Calling the overridden superclass constructor.
+		  // Note that this may need modifications if there are multiple constructor choices.
+		  // Possible constructor calls:
+		  // Constructor() -- From AppleSKNode
+		  // Constructor(SKSFileName as CFStringREf) -- From AppleSKNode
+		  // Constructor() -- From AppleResponder
+		  // Constructor() -- From AppleObject
+		  // Constructor(AnId as Ptr) -- From AppleObject
+		  Super.Constructor (initWithTexturesize (alloc(classptr), texture.id,  size), true)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getflipHorizontally Lib SpriteKitLibName Selector "flipHorizontally" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getflipVertically Lib SpriteKitLibName Selector "flipVertically" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getnormalTextures Lib SpriteKitLibName Selector "normalTextures" (id as ptr) As ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function getplacementWeight Lib SpriteKitLibName Selector "placementWeight" (id as ptr) As UInteger
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithTexturenormalTexturesize Lib SpriteKitLibName Selector "initWithTexture:normalTexture:size:" (id as ptr, textture as ptr, normal as ptr, size as FoundationFrameWork . NSSize) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithTexturesize Lib SpriteKitLibName Selector "initWithTexture:size:" (id as ptr, textture as ptr, size as FoundationFrameWork . NSSize) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithTexturesnormalTexturessizetimePerFrame Lib SpriteKitLibName Selector "initWithTextures:normalTextures:size:timePerFrame:" (id as ptr, texttures as ptr, normals as ptr, TimeFrame as CGFloat) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function initWithTexturessizetimerperframe Lib SpriteKitLibName Selector "initWithTextures:size:timePerFrame:" (id as ptr, texttures as ptr, size as FoundationFrameWork . NSSize, timeframe as cgfloat) As Ptr
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setflipHorizontally Lib SpriteKitLibName Selector "setFlipHorizontally:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setflipVertically Lib SpriteKitLibName Selector "setFlipVertically:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setnormalTextures Lib SpriteKitLibName Selector "setNormalTextures:" (id as ptr, value as ptr)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Sub setplacementWeight Lib SpriteKitLibName Selector "setPlacementWeight:" (id as ptr, value as UInteger)
+	#tag EndExternalMethod
+
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  static mClassPtr as Ptr
+			  if mClassPtr = nil then
+			    if AppleSKView.classavailable then
+			      mClassPtr  =  FoundationFramework.NSClassFromString ("SKTileDefinition")
+			    end if
+			  end if
+			  return mClassPtr
+			End Get
+		#tag EndGetter
+		Protected Shared ClassPtr As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 49662074686520646566696E6974696F6EE280997320696D61676520697320666C697070656420686F72697A6F6E74616C6C792E
+		#tag Getter
+			Get
+			  return getflipHorizontally(mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setflipHorizontally mid, value
+			End Set
+		#tag EndSetter
+		FlipHorizontally As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 49662074686520646566696E6974696F6EE280997320696D61676520697320666C697070656420766572746963616C6C792E
+		#tag Getter
+			Get
+			  return getflipVertically(mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setflipVertically mid, value
+			End Set
+		#tag EndSetter
+		FlipVertically As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 41206E616D65206173736F6369617465642077697468207468652074696C6520646566696E6974696F6E2E
+		#tag Getter
+			Get
+			  return FoundationFrameWork.getName (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  FoundationFrameWork.setname mid, value
+			End Set
+		#tag EndSetter
+		Name As Text
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 416E206172726179206F6620534B54657874757265206F626A65637473207573656420746F2067656E657261746520746865206E6F726D616C7320666F72207468652074696C6520746F2073696D756C617465203344206C69676874696E672E
+		#tag Getter
+			Get
+			  return applearray.MakeFromPtr(getnormalTextures(mid))
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setnormalTextures mid, nilptr(value)
+			End Set
+		#tag EndSetter
+		NormalTextures As AppleArray
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520706C6163656D656E7420776569676874206F66207468652074696C6520646566696E6974696F6E2E
+		#tag Getter
+			Get
+			  return getplacementWeight(mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setplacementWeight mid, value
+			End Set
+		#tag EndSetter
+		PlacementWeight As UInteger
+	#tag EndComputedProperty
+
+
+	#tag Enum, Name = SKTileDefinitionRotation, Type = Integer, Flags = &h0
+		Rotation0 = 0
+		  Rotation90 = 1
+		  Rotation180 = 2
+		Rotation270 = 3
+	#tag EndEnum
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="DebugDescription"
+			Group="Behavior"
+			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="mHasOwnership"
+			Group="Behavior"
+			Type="boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RetainCount"
+			Group="Behavior"
+			Type="UInteger"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

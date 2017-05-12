@@ -179,7 +179,7 @@ Protected Class NSViewControllerTransitionOptions
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="BoundingBoxes"
+			Name="AllowUserInteraction"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -208,23 +208,33 @@ Protected Class NSViewControllerTransitionOptions
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="LightExtents"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="LightInfluences"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SlideBackward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="SlideDown"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SlideForward"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SlideLeft"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SlideRight"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

@@ -546,7 +546,7 @@ End
 #tag EndEvents
 #tag Events OSXLibEnhancedRadiobutton5
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		Function MouseDown(index as Integer, X As Integer, Y As Integer) As Boolean
 		  self.Invalidate
 		  #pragma Unused index
 		  #Pragma Unused x
@@ -554,21 +554,21 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub MouseEnter()
+		Sub MouseEnter(index as Integer)
 		  self.Invalidate
 		  #pragma Unused index
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub MouseExit()
+		Sub MouseExit(index as Integer)
 		  self.Invalidate
 		  #pragma Unused index
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub MouseMove(X As Integer, Y As Integer)
+		Sub MouseMove(index as Integer, X As Integer, Y As Integer)
 		  self.Invalidate
 		  #pragma Unused index
 		  #Pragma Unused x
@@ -576,12 +576,7 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function MouseUp(X As Integer, Y As Integer) As Boolean
-		  
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub Action()
+		Sub Action(index as Integer)
 		  select case index
 		  case 0
 		    Options = NSViewControllerTransitionOptions.CrossfadeTransition

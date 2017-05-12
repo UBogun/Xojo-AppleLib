@@ -18,9 +18,9 @@ Begin iosView TextfieldView
       AutocapitalizationType=   ""
       AutocorrectionType=   "2"
       AutoLayout      =   iOSLibTextfield1, 3, <Parent>, 3, False, +1.00, 1, 1, 83, 
-      AutoLayout      =   iOSLibTextfield1, 2, <Parent>, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, 
-      AutoLayout      =   iOSLibTextfield1, 1, <Parent>, 1, False, +1.00, 2, 1, 20, 
       AutoLayout      =   iOSLibTextfield1, 8, , 0, False, +1.00, 1, 1, 35, 
+      AutoLayout      =   iOSLibTextfield1, 1, <Parent>, 1, False, +1.00, 2, 1, 20, 
+      AutoLayout      =   iOSLibTextfield1, 2, <Parent>, 2, False, +1.00, 1, 1, -*kStdGapCtlToViewH, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       BackgroundImage =   ""
@@ -79,9 +79,9 @@ Begin iosView TextfieldView
       AutocapitalizationType=   "3"
       AutocorrectionType=   ""
       AutoLayout      =   iOSLibTextfield2, 3, <Parent>, 3, False, +1.00, 1, 1, 153, 
-      AutoLayout      =   iOSLibTextfield2, 2, iOSLibTextfield1, 2, False, +1.00, 2, 1, 0, 
-      AutoLayout      =   iOSLibTextfield2, 1, iOSLibTextfield1, 1, False, +1.00, 1, 1, 0, 
       AutoLayout      =   iOSLibTextfield2, 8, , 0, False, +1.00, 1, 1, 35, 
+      AutoLayout      =   iOSLibTextfield2, 1, iOSLibTextfield1, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLibTextfield2, 2, iOSLibTextfield1, 2, False, +1.00, 2, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       BackgroundImage =   ""
@@ -221,7 +221,7 @@ End
 		  
 		End Function
 	#tag EndEvent
-	#tag Event
+	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C20686173206D6F766520746F206974732077696E646F772E
 		Sub Shown()
 		  dim logo as new AppleImage(iosLibLogo)
 		  me.AppleObject.RightView= new AppleImageView(logo.Scale(0.018))

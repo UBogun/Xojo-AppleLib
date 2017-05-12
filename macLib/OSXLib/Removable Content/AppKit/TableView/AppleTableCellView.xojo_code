@@ -15,9 +15,7 @@ Inherits AppleView
 		  // Possible constructor calls:
 		  // Constructor() -- From AppleObject
 		  // Constructor(aPtr as Ptr) -- From AppleObject
-		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame))
-		  MHasOwnership = true
-		  
+		  Super.Constructor(AppKitFramework.initWithFrame(alloc(classptr), frame), true)
 		End Sub
 	#tag EndMethod
 
@@ -140,7 +138,7 @@ Inherits AppleView
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.settextField id, if (value = nil, nil, value.id)
+			  AppKitFramework.settextField id, nilptr (value)
 			End Set
 		#tag EndSetter
 		TextField As AppleTextField
@@ -182,6 +180,11 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

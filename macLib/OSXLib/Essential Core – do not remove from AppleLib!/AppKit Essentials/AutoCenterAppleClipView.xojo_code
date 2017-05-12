@@ -51,7 +51,7 @@ Inherits AppleClipView
 		  'System.DebugLog "x "+proposedRect.Origin.x.totext+" y "+ _
 		  'proposedRect.Origin.y.totext
 		  Return proposedrect
-		  
+		  #pragma unused sel
 		End Function
 	#tag EndMethod
 
@@ -103,6 +103,11 @@ Inherits AppleClipView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

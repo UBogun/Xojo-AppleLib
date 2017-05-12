@@ -1,0 +1,177 @@
+#tag Class
+Protected Class AppleCGPDFObject
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFObjectGetType Lib CoreGraphicsLibName (id as Ptr) As CGPDFObjectType
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Constructor()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Constructor(id as ptr)
+		  mObjRef = id
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732074686520726573756C74206F662072657472696576696E67207468652073656C65637465642076616C756520747970652066726F6D20746865204F626A65637420616E6420746865206F626A65637420696E20612076617269616E742069662073756363657366756C2E
+		Function GetValue(Type as CGPDFObjecttype, byRef Value as Variant) As Boolean
+		  Select Case type
+		  Case CGPDFObjectType.TypeArray
+		    dim val as Ptr
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As Ptr) as Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then value =  AppleCGPDFArray.MakeFromCFTypeRef(Val) Else value = Nil
+		    return result
+		  Case CGPDFObjectType.TypeBoolean
+		    Dim Val As uint8
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As uint8) as Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then  Value = val Else Value = Nil
+		    Return result
+		  Case CGPDFObjectType.TypeDictionary
+		    Dim Val As Ptr
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As Ptr) As Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then value =  AppleCGPDFDictionary.MakeFromCFTypeRef(Val) Else value = Nil
+		    Return result
+		  Case CGPDFObjectType.TypeInteger
+		    Dim Val As Int32
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As Int32) As Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then  Value = Val Else Value = Nil
+		    Return result
+		  Case CGPDFObjectType.TypeName
+		    Dim Val As CString
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As CString) As Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then  Value = Val Else Value = Nil
+		    Return result
+		  Case CGPDFObjectType.TypeNull
+		    Dim Val As Ptr
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As Ptr) As Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then  Value = val Else Value = Nil
+		    Return result
+		  Case CGPDFObjectType.TypeReal
+		    Dim Val As cgfloat
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As cgfloat) As Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then  Value = Val Else Value = Nil
+		    Return result
+		  Case CGPDFObjectType.TypeString
+		    Dim Val As Ptr
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As Ptr) As Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then  Value = AppleCGPDFString.MakeFromCFTypeRef(val) Else Value = Nil
+		    Return result
+		  Case CGPDFObjectType.TypeStream
+		    Dim Val As Ptr
+		    Soft Declare Function CGPDFObjectGetValue Lib CoreGraphicsLibName (objRef As ptr, type As CGPDFObjectType, ByRef value As Ptr) As Boolean
+		    Dim result As Boolean = CGPDFObjectGetValue (mObjRef, Type, Val)
+		    If result Then  Value = AppleCGPDFStream.MakeFromCFTypeRef(Val) Else Value = Nil
+		    Return result
+		  End Select
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGPDFObject
+		  return if (aCFTypeRef = nil, nil, new AppleCGPDFObject(aCFTypeRef))
+		End Function
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private mObjRef As Ptr
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865205044462074797065206964656E746966696572206F6620746865206F626A6563742E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return CGPDFObjectGetType (mObjRef)
+			End Get
+		#tag EndGetter
+		ObjectType As CGPDFObjectType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mObjRef
+			End Get
+		#tag EndGetter
+		ObjRef As Ptr
+	#tag EndComputedProperty
+
+
+	#tag Enum, Name = CGPDFObjectType, Type = Integer, Flags = &h0
+		TypeNull = 1
+		  TypeBoolean = 2
+		  TypeInteger = 3
+		  TypeReal = 4
+		  TypeName = 5
+		  TypeString = 6
+		  TypeArray = 7
+		  TypeDictionary = 8
+		TypeStream = 9
+	#tag EndEnum
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ObjectType"
+			Group="Behavior"
+			Type="CGPDFObjectType"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - TypeNull"
+				"2 - TypeBoolean"
+				"3 - TypeInteger"
+				"4 - TypeReal"
+				"5 - TypeName"
+				"6 - TypeString"
+				"7 - TypeArray"
+				"8 - TypeDictionary"
+				"9 - TypeStream"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

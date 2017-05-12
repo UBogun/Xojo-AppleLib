@@ -4,6 +4,7 @@ Inherits OSXLibResponder
 	#tag Event , Description = 496E7465726E616C204576656E7420746861742070726576656E74732072756E6E696E67206F662072656D6F766548616E646C6572207768656E207468697320776173206F766572726964656E
 		Function CloseControl() As Boolean
 		  if not raiseevent CloseControl then
+		    RemoveNotifications
 		    if UsedAddhandler then RemoveHandlers(AppleObject)
 		    mAppleObject = nil
 		  end if
@@ -198,6 +199,9 @@ Inherits OSXLibResponder
 		  obj.WantsLayer = true
 		  AttachHandlers(obj) // Reroute its events so this Xojo control gets them
 		  
+		  // Install notifications:
+		  NotificationObjects.Append (AppleNotificationCenter.AddObserver (appleview.kNSViewFrameDidChangeNotification, obj, AppleOperationQueue.MainQueue, New appleblock (AddressOf Resizing)))
+		  
 		  return obj
 		End Function
 	#tag EndMethod
@@ -304,7 +308,7 @@ Inherits OSXLibResponder
 
 	#tag Method, Flags = &h0
 		Attributes( hidden )  Sub informOnviewWillStartLiveResize(view as appleview)
-		  RaiseEvent Resizing
+		  RaiseEvent StartResize
 		  #pragma unused view
 		End Sub
 	#tag EndMethod
@@ -409,6 +413,21 @@ Inherits OSXLibResponder
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub RemoveNotifications()
+		  for each o as AppleNotificationObject in NotificationObjects
+		    AppleNotificationCenter.RemoveObserver o
+		  next
+		  redim NotificationObjects(-1)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Attributes( hidden )  Sub Resizing()
+		  if me <> nil then RaiseEvent resizing
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Function ViewToReplace(origview as appleview) As AppleView
 		  dim controller as appleview = origview.SuperView // and jump one point higher in the ciew hierarchy, probably to the window’s content view.
@@ -464,6 +483,10 @@ Inherits OSXLibResponder
 
 	#tag Hook, Flags = &h0
 		Event Shown()
+	#tag EndHook
+
+	#tag Hook, Flags = &h0, Description = 4669726573207768656E206120726573697A696E67206F7065726174696F6E207761732073746172746564
+		Event StartResize()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 4669726573207768656E20746865207669657720697320756E68696464656E2C20656974686572206469726563746C792C206F7220696E20726573706F6E736520746F20616E20616E636573746F72206265696E6720756E68696464656E2E
@@ -666,6 +689,10 @@ Inherits OSXLibResponder
 		#tag EndSetter
 		Layer As AppleCALAyer
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h1
+		Protected NotificationObjects() As AppleNotificationObject
+	#tag EndProperty
 
 	#tag Property, Flags = &h0, Description = 4966207468652076696577E280997320636F6E74656E74732077696C6C20626520626C656E646564207769746820612056696272616E6379566965772E
 		TrackSwipes As Boolean

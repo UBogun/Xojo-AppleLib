@@ -15,9 +15,9 @@ Inherits AppleView
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Shared Function Identity(id as ptr) As Appleview
+		Private Shared Function Identity(id as ptr) As ApplePaintview
 		  dim wr as xojo.Core.WeakRef = XojoIdentity.Lookup(id, Nil)
-		  if wr <> nil then return appleview(wr.Value)
+		  if wr <> nil then return applepaintview(wr.Value)
 		End Function
 	#tag EndMethod
 
@@ -113,6 +113,11 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

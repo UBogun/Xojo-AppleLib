@@ -372,7 +372,6 @@ Inherits AppleObject
 
 	#tag Method, Flags = &h0
 		Sub RegisterControl(ParentControl as iosusercontrol)
-		  if XojoControls = nil then XojoControls = new Dictionary
 		  XojoControls.Value (id) = weakref.create(parentcontrol)
 		  
 		  

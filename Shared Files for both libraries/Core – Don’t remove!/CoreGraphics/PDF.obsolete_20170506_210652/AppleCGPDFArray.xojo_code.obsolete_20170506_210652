@@ -1,0 +1,209 @@
+#tag Class
+Protected Class AppleCGPDFArray
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetArray Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref ArrayPtr as Ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetBoolean Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref Result as uint8) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetCount Lib CoreGraphicsLibName (id as Ptr) As Uint32
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetDictionary Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref DictPtr as Ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetInteger Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref result as integer) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetName Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref Result as cstring) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetNull Lib CoreGraphicsLibName (id as Ptr, index as uint32) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetNumber Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref Num as cGFLoat) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetObject Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref ArrayPtr as Ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetStream Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref ArrayPtr as Ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
+		Protected Declare Function CGPDFArrayGetString Lib CoreGraphicsLibName (id as Ptr, index as uint32, byref ArrayPtr as Ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag Method, Flags = &h21
+		Private Sub Constructor()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Constructor(id as ptr)
+		  mArrayRef = id
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120504446417272617920617420696E64657820696620746865206F626A656374206973206120474350444641727261792C20656C7365204E696C2E
+		Function GetArray(Index As Uint32) As AppleCGPDFArray
+		  Dim ArrayPtr as Ptr
+		  Dim result As Boolean = CGPDFArrayGetArray(mArrayRef, index, ArrayPtr)
+		  if result then return new AppleCGPDFArray(arrayptr) else return nil
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120504446426F6F6C65616E20617420696E64657820696620746865206F626A656374206973206120504446426F6F6C65616E2E20436865636B206973426F6F6C65616E20746F207365652069662074686520726573756C742069732076616C69642E
+		Function GetBoolean(Index As Uint32, byref isBoolean as Boolean) As uint8
+		  Dim BoolResult as uint8
+		  isBoolean = CGPDFArrayGetBoolean(mArrayRef, index, boolResult)
+		  if isBoolean then return  boolresult
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320612050444644696374696F6E61727920617420696E64657820696620746865206F626A656374206973206120474350444644696374696F6E6172792C20656C7365204E696C2E
+		Function GetDictionary(Index As Uint32) As AppleCGPDFDictionary
+		  Dim ArrayPtr as Ptr
+		  Dim result As Boolean = CGPDFArrayGetDictionary(mArrayRef, index, ArrayPtr)
+		  if result then return AppleCGPDFDictionary.MakeFromCFTypeRef(arrayptr) else return nil
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320616E20496E746567657220617420696E64657820696620746865206F626A6563742069732061204743504446496E74656765722C20656C7365202D312E
+		Function GetInteger(Index As Uint32) As Integer
+		  Dim Int as Integer
+		  Dim result As Boolean = CGPDFArrayGetInteger(mArrayRef, index, Int)
+		  if result then return Int else return -1
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320612043537472696E6720617420696E64657820696620746865206F626A656374206973206120504446206E616D652C20656C73652022222E
+		Function GetName(Index As Uint32) As CString
+		  Dim CS as CString
+		  Dim result As Boolean = CGPDFArrayGetName(mArrayRef, index, CS)
+		  if result then return CS else return ""
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73207768657468657220616E206F626A656374206174206120676976656E20696E64657820696E207468652051756172747A20504446206172726179206973206120504446206E756C6C2E
+		Function GetNull(Index As Uint32) As Boolean
+		  Return CGPDFArrayGetNull(mArrayRef, index)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120446F75626C6520617420696E64657820696620746865206F626A6563742069732061205044464E756D6265722E20436865636B206973426F6F6C65616E20746F207365652069662074686520726573756C742069732076616C69642E
+		Function GetNumber(Index As Uint32, byref isBoolean as Boolean) As Double
+		  Dim NumResult as cgfloat
+		  isBoolean = CGPDFArrayGetnumber(ArrayRef, index, NumResult)
+		  if isBoolean then return  NumResult
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E732061205044464F626A65637420617420696E64657820696620746865206F626A65637420697320612047435044464F626A6563742C20656C7365204E696C2E
+		Function GetObject(Index As Uint32) As AppleCGPDFObject
+		  Dim ArrayPtr as Ptr
+		  Dim result As Boolean = CGPDFArrayGetArray(mArrayRef, index, ArrayPtr)
+		  if result then return AppleCGPDFObject.MakeFromCFTypeRef(arrayptr) else return nil
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E7320612050444653747265616D20617420696E64657820696620746865206F626A656374206973206120474350444653747265616D2C20656C7365204E696C2E
+		Function GetStream(Index As Uint32) As AppleCGPDFStream
+		  Dim ArrayPtr as Ptr
+		  Dim result As Boolean = CGPDFArrayGetArray(mArrayRef, index, ArrayPtr)
+		  if result then return  AppleCGPDFStream.makefromCFTypeRef(arrayptr) else return nil
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 52657475726E73206120504446537472696E67617420696E64657820696620746865206F626A6563742069732061204743504446537472696E672C20656C7365204E696C2E
+		Function GetString(Index As Uint32) As AppleCGPDFString
+		  Dim ArrayPtr as Ptr
+		  Dim result As Boolean = CGPDFArrayGetArray(mArrayRef, index, ArrayPtr)
+		  if result then return  AppleCGPDFString.MakeFromCFTypeRef(arrayptr) else return nil
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Shared Function MakeFromCFTypeRef(aCFTypeRef as ptr) As AppleCGPDFArray
+		  return if (aCFTypeRef = nil, nil, new AppleCGPDFArray(aCFTypeRef))
+		End Function
+	#tag EndMethod
+
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mArrayRef
+			End Get
+		#tag EndGetter
+		ArrayRef As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865206E756D626572206F66206974656D7320696E20746865205044462061727261792E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  return CGPDFArrayGetCount (mArrayRef)
+			End Get
+		#tag EndGetter
+		Count As Uint32
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mArrayRef As Ptr
+	#tag EndProperty
+
+
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Count"
+			Group="Behavior"
+			Type="Uint32"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+	#tag EndViewBehavior
+End Class
+#tag EndClass

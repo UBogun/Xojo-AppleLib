@@ -105,27 +105,7 @@ Protected Class NSCellStyleMask
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DocModalWindow"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FullScreen"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FullSizeContentView"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="GrayCell"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HUDWindow"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -155,11 +135,6 @@ Protected Class NSCellStyleMask
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="NonactivatingPanel"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="PushIn"
 			Group="Behavior"
 			Type="Boolean"
@@ -171,26 +146,11 @@ Protected Class NSCellStyleMask
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="TexturedBackground"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UnifiedTitleAndToolbar"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UtilityWindow"
-			Group="Behavior"
-			Type="Boolean"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

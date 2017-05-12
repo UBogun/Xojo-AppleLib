@@ -181,6 +181,7 @@ Begin Window AVAudioToneGeneratorWindow
       Selectable      =   False
       TabIndex        =   4
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "times"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -215,6 +216,7 @@ Begin Window AVAudioToneGeneratorWindow
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "AppleLibAVAudioToneGenerator is a custom subclass of on AVAudioPlayerNode incorporating a sine wave tone generator. The tone can be generated continously with the option to influence frequency and amplitude in (almost) real-time, or as a beep with the Sound() method that takes frequency, duration and amplitude.\nAnother option is the PlayMelody method that takes an array of Doubles in the order as above, with an optional MelodyRepeat to repeat the cadence.\nThe math is done with Accelerate framework methods, so the sine gets calculated about twice as fast than with pure Xojo code.\nPlease note that PlayMelody does not perform any fade-in our -out of the notes, so you may hear some unfitting cracks when the tone ends. An alternative could be to calculate the last buffer a bit longer so that it ends on a 0.\n\nKudos to Dave Sisemore for collecting and enhancing the Swift toneGenerator class I took as example."
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -228,20 +230,40 @@ Begin Window AVAudioToneGeneratorWindow
       Width           =   531
    End
    Begin AppleAVAudioEngine Engine
+      DebugDescription=   ""
+      Enabled         =   True
+      HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
+      mHasOwnership   =   False
+      RetainCount     =   ""
       Scope           =   0
       TabPanelIndex   =   0
    End
    Begin AppleLibAVTonePlayerNode Generator
       Amplitude       =   0.25
       BufferCapacity  =   "512"
+      DebugDescription=   ""
+      Enabled         =   True
       Frequency       =   440.0
+      HasOwnership    =   False
       Index           =   -2147483648
       LockedInPosition=   False
       MelodyRepeat    =   0
+      mHasOwnership   =   False
+      NextAvailableInputBus=   ""
+      NumberOfInputs  =   ""
+      NumberOfOutputs =   ""
+      Obstruction     =   0.0
+      Occlusion       =   0.0
+      Pan             =   0.0
+      Playing         =   False
+      RenderingAlgorithms=   ""
+      RetainCount     =   ""
+      ReverbBlend     =   0.0
       SampleRate      =   44100.0
       Scope           =   0
+      StoponNextNote  =   False
       TabPanelIndex   =   0
    End
 End

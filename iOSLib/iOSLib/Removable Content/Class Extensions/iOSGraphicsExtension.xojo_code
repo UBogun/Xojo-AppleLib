@@ -241,9 +241,9 @@ Protected Module iOSGraphicsExtension
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 447261777320616E20696D61676520696E746F206120677261706869637320636F6E746578742E
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit)), Description = 447261777320616E20696D61676520696E746F206120677261706869637320636F6E746578742E
 		Sub DrawImage(extends g as iosgraphics, image as iOSImage, rect as xojo.core.rect)
-		  g.CGContext.DrawImage (rect.toNSrect, image.toAppleImage.CGImage)
+		  g.CGContext.DrawImage (image.toAppleImage.CGImage,  rect.toNSrect)
 		End Sub
 	#tag EndMethod
 

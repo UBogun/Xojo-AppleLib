@@ -1,44 +1,14 @@
 #tag Class
 Protected Class AppleSCNView
 Inherits AppleView
-	#tag Event , Description = 52657475726E207472756520746F2062656C6E6420746865207669657720696E746F20616E20456666656374566965772E
-		Function AllowsVibrancy() As Boolean
-		  
-		End Function
-	#tag EndEvent
-
 	#tag Event , Description = 4669726573207768656E206120737562766965772077617320616464656420746F2074686520766965772E
-		Sub DidAddSubview(Subview as appleview)
+		Sub DidAddSubview(Subview as AppleView)
 		  #pragma unused Subview
 		End Sub
 	#tag EndEvent
 
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub Magnify(anEvent As AppleNSEvent)
-		  #pragma unused anEvent
-		End Sub
-	#tag EndEvent
-
-	#tag Event , Description = 52657475726E207472756520696620746865207669657720646F6573206E6F7420757365207472616E73706172656E636965732E
-		Function Opaque() As Boolean
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub Rotate(anEvent As AppleNSEvent)
-		  #pragma unused anEvent
-		End Sub
-	#tag EndEvent
-
-	#tag Event , Description = 576865746865722074686520726573706F6E646572206163636570747320666972737420726573706F6E646572207374617475732E20
-		Sub ScrollWheel(anEvent As AppleNSEvent)
-		  #pragma unused anEvent
-		End Sub
-	#tag EndEvent
-
-	#tag Event , Description = 4669726573207768656E2074686520766965772077696C6C2072656D6F7665206120737562766965772E
-		Sub willRemoveSubview(Subview as AppleView)
+	#tag Event , Description = 4669726573207768656E2074686520766965772077696C6C206C6F7365206120737562766965772E
+		Sub WillRemoveSubview(Subview as AppleView)
 		  #pragma unused Subview
 		End Sub
 	#tag EndEvent
@@ -74,10 +44,11 @@ Inherits AppleView
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1000, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 496E697469616C697A657320616E642072657475726E732061206E65776C7920616C6C6F6361746564205363656E654B69742076696577206F626A65637420776974682074686520737065636966696564206672616D652072656374616E676C6520616E64206F7074696F6E732E
-		Sub Constructor(aFrame as FoundationFramework.NSRect, API as SceneKitFrameWork.SCNRenderingAPIMacOS)
-		  dim options as new AppleMutableDictionary(1)
+	#tag Method, Flags = &h1000, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)) or  (TargetIOS and (Target32Bit or Target64Bit)), Description = 496E697469616C697A657320616E642072657475726E732061206E65776C7920616C6C6F6361746564205363656E654B69742076696577206F626A65637420776974682074686520737065636966696564206672616D652072656374616E676C6520616E64206F7074696F6E732E
+		Sub Constructor(aFrame as FoundationFramework.NSRect, API as SceneKitFrameWork.SCNRenderingAPIiOS, uselowPowerDevice As Boolean)
+		  dim options as new AppleMutableDictionary(2)
 		  options.ObjectForKey (SceneKitFrameWork.kSCNPreferredRenderingAPIKey) = new AppleNumber(integer(api))
+		  options.ObjectForKey(SceneKitFrameWork.kSCNPreferLowPowerDeviceKey)= new AppleNumber(uselowPowerDevice)
 		  Constructor(aFrame, options)
 		  
 		End Sub
@@ -85,10 +56,9 @@ Inherits AppleView
 
 	#tag Method, Flags = &h1
 		Protected Sub destructor()
-		  System.DebugLog "scn destructor"
 		  me.scene = nil
 		  me.DelegateObject = nil
-		  unregisteridentity(self)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -340,7 +310,7 @@ Inherits AppleView
 		  AppleMutableArray.ThreadSafeAdd(a,physicsworld)
 		  AppleMutableArray.ThreadSafeAdd(a, contact)
 		  FoundationFrameWork.PerformSelectorOnMainThread (pid, Selector, a, false)
-		  System.DebugLog "Did Begin Contact "
+		  //System.DebugLog "Did Begin Contact "
 		  
 		  
 		  #Pragma Unused Sel
@@ -362,7 +332,7 @@ Inherits AppleView
 		  AppleMutableArray.ThreadSafeAdd(a, contact)
 		  FoundationFrameWork.PerformSelectorOnMainThread (pid, Selector, a, false)
 		  
-		  System.DebugLog "Did End Contact "
+		  //System.DebugLog "Did End Contact "
 		  
 		  #Pragma Unused Sel
 		  
@@ -382,37 +352,11 @@ Inherits AppleView
 		  AppleMutableArray.ThreadSafeAdd(a,physicsworld)
 		  AppleMutableArray.ThreadSafeAdd(a, contact)
 		  FoundationFrameWork.PerformSelectorOnMainThread (pid, Selector, a, false)
-		  System.DebugLog "Did Update Contact "
+		  //System.DebugLog "Did Update Contact "
 		  
 		  
 		  #Pragma Unused Sel
 		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Shared Sub impl_mouseDown(pid as ptr, sel as ptr, anevent as ptr)
-		  #pragma StackOverflowChecking false
-		  dim responder as AppleSCNView =identity(pid)
-		  if responder <> nil then 
-		    responder.informOnmouseDown(AppleNSEvent.MakeFromPtr(anevent))
-		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
-		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
-		  end if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Attributes( hidden ) Protected Shared Sub impl_mouseUp(pid as ptr, sel as ptr, anevent as ptr)
-		  #pragma StackOverflowChecking false
-		  dim responder as AppleSCNView =identity(pid)
-		  if responder <> nil then 
-		    responder.informOnmouseUp(AppleNSEvent.MakeFromPtr(anevent))
-		    soft declare sub  objc_msgSendSuper lib Obj_C (s as ptr, sel as ptr, anevent as ptr)
-		    objc_msgSendSuper(responder.Objc_superObj.data, sel, anevent)
-		  end if
 		  
 		End Sub
 	#tag EndMethod
@@ -790,7 +734,7 @@ Inherits AppleView
 		mssing:
 		openGLContext (macOS)
 		PixelFormat (macOS)
-		metal options
+		metal options, also in constructor
 		overlaySKSCene
 		SCNTechnique
 	#tag EndNote
@@ -868,12 +812,20 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, Description = 546865206261636B67726F756E6420636F6C6F72206F662074686520766965772E
 		#tag Getter
 			Get
-			  return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			  #if targetmacos
+			    Return applecolor.MakefromPtr(AppKitFramework.getbackgroundColor(id))
+			  #elseIf targetios
+			    Return applecolor.MakefromPtr(UIKitFramework.getbackgroundColor(id))
+			  #EndIf
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  AppKitFramework.setbackgroundColor id, if (value = nil, nil, value.id)
+			  #if targetmacos
+			    AppKitFramework.setbackgroundColor id, If (value = Nil, Nil, value.id)
+			  #elseIf targetios
+			    UIKitFramework.setbackgroundColor id, If (value = Nil, Nil, value.id)
+			  #EndIf
 			End Set
 		#tag EndSetter
 		BackgroundColor As AppleColor
@@ -891,9 +843,6 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  //Here's one problem: Apple forwards the event methods on a background thread. It's not easy to catch it with Xojo without a crash, and it's getting unstable once too many fire simultaneously.
-			  // I haven't found a solution yet besides activating only selected events. So please comment and decomment these methods in pairs and run long-time tests to see if the solution is stable enough for you
-			  
 			  
 			  static mClassPtr as ptr
 			  if mClassPtr = nil then
@@ -969,29 +918,29 @@ Inherits AppleView
 			      //TraitEnvironment Protocol
 			      methods.Append new TargetClassMethodHelper("traitCollectionDidChange:", AddressOf impl_traitCollectionDidChange, "v@:@")
 			      
-			      
-			      
-			      methods.Append new TargetClassMethodHelper("touchesBegan:withEvent:", AddressOf impl_TouchesBeganWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("touchesEnded:withEvent:", AddressOf impl_TouchesEndedWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("touchesMoved:withEvent:", AddressOf impl_TouchesMovedWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("touchesCancelled:withEvent:", AddressOf impl_TouchesCancelledWithEvent, "v@:@@")
-			      
-			      methods.Append new TargetClassMethodHelper("motionBegan:withEvent:", AddressOf impl_MotionBeganWithEvent, "v@:i@")
-			      methods.Append new TargetClassMethodHelper("motionEnded:withEvent:", AddressOf impl_MotionEndedWithEvent, "v@:i@")
-			      methods.Append new TargetClassMethodHelper("motionCancelled:withEvent:", AddressOf impl_MotionCancelledWithEvent, "v@:i@")
-			      
-			      methods.Append new TargetClassMethodHelper("touchesEstimatedPropertiesUpdated:", AddressOf impl_touchesEstimatedPropertiesUpdated, "v@:@")
-			      methods.Append new TargetClassMethodHelper("remoteControlReceivedWithEvent:", AddressOf impl_remoteControlReceivedWithEvent, "v@:@")
-			      
-			      methods.Append new TargetClassMethodHelper("pressesBegan:withEvent:", AddressOf impl_pressesBeganWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
-			      methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
-			      
-			      // CAAnimation "Delegate" methods
-			      methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
-			      methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
-			    #endif
+			    #EndIf
+			    
+			    
+			    methods.Append new TargetClassMethodHelper("touchesBegan:withEvent:", AddressOf impl_TouchesBeganWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("touchesEnded:withEvent:", AddressOf impl_TouchesEndedWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("touchesMoved:withEvent:", AddressOf impl_TouchesMovedWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("touchesCancelled:withEvent:", AddressOf impl_TouchesCancelledWithEvent, "v@:@@")
+			    
+			    methods.Append new TargetClassMethodHelper("motionBegan:withEvent:", AddressOf impl_MotionBeganWithEvent, "v@:i@")
+			    methods.Append new TargetClassMethodHelper("motionEnded:withEvent:", AddressOf impl_MotionEndedWithEvent, "v@:i@")
+			    methods.Append new TargetClassMethodHelper("motionCancelled:withEvent:", AddressOf impl_MotionCancelledWithEvent, "v@:i@")
+			    
+			    methods.Append new TargetClassMethodHelper("touchesEstimatedPropertiesUpdated:", AddressOf impl_touchesEstimatedPropertiesUpdated, "v@:@")
+			    methods.Append new TargetClassMethodHelper("remoteControlReceivedWithEvent:", AddressOf impl_remoteControlReceivedWithEvent, "v@:@")
+			    
+			    methods.Append new TargetClassMethodHelper("pressesBegan:withEvent:", AddressOf impl_pressesBeganWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesCancelled:withEvent:", AddressOf impl_pressesCancelledWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesChanged:withEvent:", AddressOf impl_pressesChangedWithEvent, "v@:@@")
+			    methods.Append new TargetClassMethodHelper("pressesEnded:withEvent:", AddressOf impl_pressesEndedWithEvent, "v@:@@")
+			    
+			    // CAAnimation "Delegate" methods
+			    methods.Append new TargetClassMethodHelper("animationDidStart:", AddressOf impl_animationDidStart, "v@:@")
+			    methods.Append new TargetClassMethodHelper("animationDidStop:finished:", AddressOf impl_animationDidStop, "v@:@c")
 			    
 			    
 			    
@@ -1019,7 +968,7 @@ Inherits AppleView
 			    methods.Append new TargetClassMethodHelper("checkDidUpdateContact:", AddressOf ForwardDidUpdateContact, "v@:@")
 			    methods.Append new TargetClassMethodHelper("checkDidEndContact:", AddressOf ForwardDidEndContact, "v@:@")
 			    
-			    mClassPtr = BuildTargetClass("SCNView","OSXLibSCNView",methods)
+			    mClassPtr = BuildTargetClass("SCNView","iOSLibSCNView",methods)
 			  end if
 			  return mClassPtr
 			  
@@ -1070,13 +1019,13 @@ Inherits AppleView
 	#tag ComputedProperty, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit)), Description = 496620796F7520757365204F70656E474C20455320666F7220637573746F6D2072656E646572696E672C20796F752063616E2075736520746869732070726F706572747920746F207368617265204F70656E474C204553207265736F7572636573206265747765656E2074686520636F6E74657874207573656420666F722072656E646572696E6720746865207363656E6520616E64206F74686572204F70656E474C20455320636F6E746578747320796F75722061707020757365732E205363656E654B6974206175746F6D61746963616C6C792073686172657320697473206F776E204F70656E474C204553207265736F7572636573206265747765656E206D756C7469706C652053434E5669657720696E7374616E63657320696E20796F757220617070206173206E65656465642E0A0A
 		#tag Getter
 			Get
-			  Declare function EAGLcontext lib SceneKitLib selector "eaglContext" (id as ptr) as ptr
+			  Declare function EAGLcontext lib SceneKitLibName selector "eaglContext" (id as ptr) as ptr
 			  return AppleEAGLContext.MakefromPtr (EAGLcontext (id))
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Declare sub setcontext lib SceneKitLib selector "setEaglContext:" (id as ptr, value as ptr)
+			  Declare sub setcontext lib SceneKitLibName selector "setEaglContext:" (id as ptr, value as ptr)
 			  setcontext id, value.id
 			End Set
 		#tag EndSetter
@@ -1153,13 +1102,30 @@ Inherits AppleView
 		PreferredFramesPerSecond As Integer
 	#tag EndComputedProperty
 
-	#tag ComputedProperty, Flags = &h0, Description = 54686520677261706869637320746563686E6F6C6F6779205363656E654B6974207573657320746F2072656E64657220746865207363656E652E2028726561642D6F6E6C7929
+	#tag ComputedProperty, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit)), Description = 54686520677261706869637320746563686E6F6C6F6779205363656E654B6974207573657320746F2072656E64657220746865207363656E652E2028726561642D6F6E6C7929
 		#tag Getter
 			Get
-			  return SceneKitFrameWork.SCNRenderingAPIMacOS(SceneKitFrameWork.getrenderingAPI(mid))
+			  #if targetmacos
+			    Return SceneKitFrameWork.SCNRenderingAPIMacOS(SceneKitFrameWork.getrenderingAPI(Mid))
+			  #elseIf targetiOS
+			    Return SceneKitFrameWork.SCNRenderingAPIios(SceneKitFrameWork.getrenderingAPI(Mid))
+			  #EndIf
 			End Get
 		#tag EndGetter
 		RenderingAPI As SceneKitFrameWork.SCNRenderingAPIMacOS
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, CompatibilityFlags = (TargetIOS and (Target32Bit or Target64Bit)), Description = 54686520677261706869637320746563686E6F6C6F6779205363656E654B6974207573657320746F2072656E64657220746865207363656E652E2028726561642D6F6E6C7929
+		#tag Getter
+			Get
+			  #if targetmacos
+			    Return SceneKitFrameWork.SCNRenderingAPIMacOS(SceneKitFrameWork.getrenderingAPI(Mid))
+			  #elseIf targetiOS
+			    Return SceneKitFrameWork.SCNRenderingAPIios(SceneKitFrameWork.getrenderingAPI(Mid))
+			  #EndIf
+			End Get
+		#tag EndGetter
+		RenderingAPIiOS As SceneKitFrameWork.SCNRenderingAPIios
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 546865207363656E6520746F20626520646973706C6179656420696E2074686520766965772E
@@ -1244,24 +1210,66 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="BaselineOffsetFromBottom"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BoundsRotation"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="CanDraw"
+			Name="CanBecomeFirstResponder"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="CanDrawSubviewsIntoLayer"
+			Name="CanBecomeFocused"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanResignFirstResponder"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ClearsContextBeforeDrawing"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ClipsToBounds"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CollisionBoundsType"
+			Group="Behavior"
+			Type="UIDynamicItemCollisionBoundsType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Rectangle"
+				"1 - Ellipse"
+				"2 - Path"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ContentMode"
+			Group="Behavior"
+			Type="UIViewContentMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - ScaleToFill"
+				"1 - ScaleAspectFit"
+				"2 - ScaleAspectFill"
+				"3 - Redraw"
+				"4 - Center"
+				"5 - Top"
+				"6 - Bottom"
+				"7 - Left"
+				"8 - Right"
+				"9 - TopLeft"
+				"10 - TopRight"
+				"11 - BottomLeft"
+				"12 - BottomRight"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ContentScaleFactor"
+			Group="Behavior"
+			Type="Double"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DebugDescription"
@@ -1269,33 +1277,22 @@ Inherits AppleView
 			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="FirstBaselineOffsetFromTop"
+			Name="ExclusiveTouch"
 			Group="Behavior"
-			Type="Double"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="FocusRingType"
+			Name="Focused"
 			Group="Behavior"
-			Type="Appkitframework.NSFocusRingType"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Default"
-				"1 - None"
-				"2 - Exterior"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FrameCenterRotation"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FrameRotation"
-			Group="Behavior"
-			Type="Double"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HasAmbiguousLayout"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="hasInited"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -1306,11 +1303,6 @@ Inherits AppleView
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HeightAdjustLimit"
 			Group="Behavior"
 			Type="Double"
 		#tag EndViewProperty
@@ -1327,85 +1319,12 @@ Inherits AppleView
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="IsDrawingFindIndicator"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="IsFlipped"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="IsHiddenOrHasHiddenAncestor"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="IsInFullScreenMode"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="IsInLiveResize"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="IsRotatedFromBase"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="IsRotatedOrScaledFromBase"
+			Name="IsFirstResponder"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="JitteringEnabled"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="LastBaselineOffsetFromBottom"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="LayerContentsPlacement"
-			Group="Behavior"
-			Type="NSViewLayerContentsPlacement"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - ScaleAxesIndependently"
-				"1 - ScaleProprtionallyToFit"
-				"2 - ScaleProprtionallyToFill"
-				"3 - Center"
-				"4 - Top"
-				"5 - TopRight"
-				"6 - Right"
-				"7 - BottomRight"
-				"8 - Bottom"
-				"9 - BottomLeft"
-				"10 - Left"
-				"11 - TopLeft"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="LayerContentsRedrawPolicy"
-			Group="Behavior"
-			Type="NSViewLayerContentsRedrawPolicy"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Never"
-				"1 - OnSetNeedsDisplay"
-				"2 - DuringResize"
-				"3 - BeforeResize"
-				"4 - Crossfade"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="LayerUsesCoreImageFilters"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -1427,23 +1346,18 @@ Inherits AppleView
 			Type="boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="MultipleTouchEnabled"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="NeedsDisplay"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="NeedsLayout"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="NeedsUpdateConstraints"
+			Name="Opaque"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
@@ -1453,19 +1367,14 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="PostsBoundsChangedNotifications"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="PostsFrameChangedNotifications"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="PreferredFramesPerSecond"
 			Group="Behavior"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreservesSuperviewLayoutMargins"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RenderingAPI"
@@ -1478,6 +1387,21 @@ Inherits AppleView
 				"2 - OpenGLCore32"
 				"3 - OpenGLCore41"
 			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RenderingAPIiOS"
+			Group="Behavior"
+			Type="SceneKitFrameWork.SCNRenderingAPIios"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Metal"
+				"1 - OpenGLES2"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RestorationIdentifier"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RetainCount"
@@ -1506,9 +1430,20 @@ Inherits AppleView
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ToolTip"
+			Name="TextInputContextIdentifier"
 			Group="Behavior"
 			Type="Text"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TintAdjustmentMode"
+			Group="Behavior"
+			Type="UIViewTintAdjustmentMode"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Automatic"
+				"1 - Normal"
+				"2 - Dimmed"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1523,27 +1458,12 @@ Inherits AppleView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="UserInterfaceLayoutdirection"
-			Group="Behavior"
-			Type="Appkitframework.NSUserInterfaceLayoutdirection"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - LeftToRight"
-				"1 - RightToLeft"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="WantsLayer"
+			Name="UserInteractionEnabled"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
-			Group="Behavior"
-			Type="Double"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="WidthAdjustLimit"
 			Group="Behavior"
 			Type="Double"
 		#tag EndViewProperty

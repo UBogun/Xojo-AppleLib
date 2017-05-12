@@ -5,6 +5,7 @@ Inherits OSXLibView
 		Function CloseControl() As Boolean
 		  if not raiseevent CloseControl then
 		    if UsedAddhandler then RemoveHandlers(AppleObject)
+		    removenotifications
 		    mAppleObject = nil
 		  end if
 		  return true
@@ -12,7 +13,7 @@ Inherits OSXLibView
 		End Function
 	#tag EndEvent
 
-	#tag Event
+	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
 		Function InitControl() As AppleView
 		  // Yes, there is no recommend way of inserting own desktop controls via declare.
 		  // The Xojo engineers always warned that messing with the view hierarchy of Xojo controls could lead to problems in the future.
@@ -136,6 +137,8 @@ Inherits OSXLibView
 		Attributes( hidden )  Function CreateObject() As ApplePaintView
 		  dim obj as new ApplePaintView (AppleObject.fromControl(self).Frame) // Declaring the new Applecontrol, in this case a view.
 		  AttachHandlers(obj) // Reroute its events so this Xojo control gets them
+		  // Install notifications:
+		  NotificationObjects.Append (AppleNotificationCenter.AddObserver (appleview.kNSViewFrameDidChangeNotification, obj, AppleOperationQueue.MainQueue, New appleblock (AddressOf Resizing)))
 		  
 		  return obj
 		End Function
@@ -226,6 +229,15 @@ Inherits OSXLibView
 		  RemoveHandler obj.flipped, AddressOf informonFlipped
 		  
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RemoveNotifications()
+		  for each o as AppleNotificationObject in NotificationObjects
+		    AppleNotificationCenter.RemoveObserver o
+		  next
+		  redim NotificationObjects(-1)
 		End Sub
 	#tag EndMethod
 

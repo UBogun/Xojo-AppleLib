@@ -576,6 +576,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Function getcanDrawConcurrently Lib appkitlibname Selector "canDrawConcurrently" (id as ptr) As Boolean
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Function getcanDrawSubviewsIntoLayer Lib appkitlibname Selector "canDrawSubviewsIntoLayer" (id as ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -1376,6 +1380,10 @@ Inherits AppleResponder
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h1
+		Attributes( hidden ) Protected Declare Sub setcanDrawConcurrently Lib appkitlibname Selector "setCanDrawConcurrently:" (id as ptr, value as Boolean)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h1
 		Attributes( hidden ) Protected Declare Sub setcanDrawSubviewsIntoLayer Lib appkitlibname Selector "setCanDrawSubviewsIntoLayer:" (id as ptr, value as boolean)
 	#tag EndExternalMethod
 
@@ -1845,6 +1853,20 @@ Inherits AppleResponder
 			End Get
 		#tag EndGetter
 		CanDraw As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 776865746865722074686520766965772063616E20647261772069747320636F6E74656E7473206F6E2061206261636B67726F756E64207468726561642E
+		#tag Getter
+			Get
+			  return getcanDrawconCurrently (mid)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  setcanDrawconCurrently mid, value
+			End Set
+		#tag EndSetter
+		CanDrawinBackground As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0, Description = 5768657468657220746865207669657720696E636F72706F726174657320636F6E74656E742066726F6D2069747320737562766965777320696E746F20697473206F776E206C617965722E
@@ -2702,6 +2724,18 @@ Inherits AppleResponder
 	#tag Constant, Name = kNSAnimationTriggerOrderOut, Type = Text, Dynamic = False, Default = \"NSAnimationTriggerOrderOut", Scope = Public
 	#tag EndConstant
 
+	#tag Constant, Name = kNSViewBoundsDidChangeNotification, Type = Text, Dynamic = False, Default = \"NSViewBoundsDidChangeNotification", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSViewDidUpdateTrackingAreasNotification, Type = Text, Dynamic = False, Default = \"NSViewDidUpdateTrackingAreasNotification", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSViewFrameDidChangeNotification, Type = Text, Dynamic = False, Default = \"NSViewFrameDidChangeNotification", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = kNSViewGlobalFrameDidChangeNotification, Type = Text, Dynamic = False, Default = \"NSViewGlobalFrameDidChangeNotification", Scope = Public
+	#tag EndConstant
+
 
 	#tag Enum, Name = NSBorderType, Type = UInteger, Flags = &h0
 		None
@@ -2757,6 +2791,11 @@ Inherits AppleResponder
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDraw"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CanDrawinBackground"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

@@ -25,6 +25,7 @@ Inherits AppleObject
 		  CheckTimer = new xojo.core.timer
 		  CheckTimer.Period = 250
 		  AddHandler CheckTimer.action, AddressOf EventRaiser
+		  
 		End Sub
 	#tag EndMethod
 
@@ -193,7 +194,9 @@ Inherits AppleObject
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setlocalizedCancelTitle mid, value
+			  If RespondsToSelector("setLocalizedCancelTitle:", classptr) Then 
+			    setlocalizedCancelTitle Mid, value
+			  End If
 			End Set
 		#tag EndSetter
 		LocalizedCancelTitle As Text
@@ -202,12 +205,14 @@ Inherits AppleObject
 	#tag ComputedProperty, Flags = &h0, Description = 546865206C6F63616C697A6564207469746C6520666F72207468652066616C6C6261636B20627574746F6E20696E20746865206469616C6F672070726573656E74656420746F20746865207573657220647572696E672061757468656E7469636174696F6E2E
 		#tag Getter
 			Get
-			  return getlocalizedFallbackTitle(mid)
+			  If RespondsToSelector("localizedFallbackTitle", classptr) then return getlocalizedFallbackTitle(mid)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  setlocalizedFallbackTitle mid, value
+			  If RespondsToSelector("setLocalizedFallbackTitle:", classptr) Then 
+			    setlocalizedFallbackTitle mid, value
+			  End If
 			End Set
 		#tag EndSetter
 		LocalizedFallbackTitle As Text

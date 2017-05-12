@@ -1,8 +1,8 @@
 #tag Class
 Protected Class OSXLibImageWell
 Inherits OSXLibControl
-	#tag Event , Description = 5573652074686973206576656E7420746F206372656174652043616E76617320737562636C61737365732E2052657475726E207472756520696620796F7520686176652073657420746865206D4170706C654F626A6563742070726F706572747920746F2061206E657720636F6E74726F6C20766965772E
-		Function InitControl() As AppleView
+	#tag Event
+		Function InitControl() As AppleControl
 		  dim obj as AppleImageView = raiseevent InitControl // Let’s see if a subclass wants to establish itself instead
 		  if obj = nil then // no!
 		    if mTempObject <> nil then // TempObject became necessary to enable Inspector behavior. 
@@ -121,6 +121,34 @@ Inherits OSXLibControl
 	#tag EndHook
 
 
+	#tag ComputedProperty, Flags = &h0, Description = 4120426F6F6C65616E2076616C756520696E6469636174696E6720776865746865722074686520696D6167652076696577206C657473207468652075736572206375742C20636F70792C20616E642070617374652074686520696D61676520636F6E74656E74732E
+		#tag Getter
+			Get
+			  return AppleObject.AllowsCutCopyPaste
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.AllowsCutCopyPaste = value
+			End Set
+		#tag EndSetter
+		AllowsCutCopyPaste As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696D6167652076696577206175746F6D61746963616C6C7920706C61797320616E696D6174656420696D616765732E
+		#tag Getter
+			Get
+			  return AppleObject.Animates
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.Animates = value
+			End Set
+		#tag EndSetter
+		Animates As Boolean
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0, Description = 546865205363726F6C6C76696577206F626A65637420697473656C662E20526561642D6F6E6C792E
 		#tag Getter
 			Get
@@ -135,6 +163,80 @@ Inherits OSXLibControl
 			End Get
 		#tag EndGetter
 		AppleObject As Appleimageview
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 576865746865722074686520696D6167652076696577206175746F6D61746963616C6C7920706C61797320616E696D6174656420696D616765732E
+		#tag Getter
+			Get
+			  return AppleObject.Editable
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.Editable = value
+			End Set
+		#tag EndSetter
+		Editable As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520696D61676520646973706C617965642062792074686520696D61676520766965772E
+		#tag Getter
+			Get
+			  return AppleObject.Image.toPicture
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If value <> Nil Then 
+			    AppleObject.Image = New AppleImage(value)
+			  Else
+			    AppleObject.Image = nil
+			  End If
+			End Set
+		#tag EndSetter
+		Image As Picture
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 54686520616C69676E6D656E74206F66207468652063656C6CE280997320696D61676520696E736964652074686520696D61676520766965772E
+		#tag Getter
+			Get
+			  return AppleObject.ImageAlignment
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.ImageAlignment = value
+			End Set
+		#tag EndSetter
+		ImageAlignment As appkitframework.NSImageAlignment
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865207374796C65206F66206672616D65207468617420617070656172732061726F756E642074686520696D6167652E
+		#tag Getter
+			Get
+			  return AppleObject.ImageFrameStyle
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.ImageFrameStyle = value
+			End Set
+		#tag EndSetter
+		ImageFrameStyle As appkitframework.NSImageFrameStyle
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0, Description = 546865207363616C696E67206D6F6465206170706C69656420746F206D616B65207468652063656C6CE280997320696D6167652066697420746865206672616D65206F662074686520696D61676520766965772E
+		#tag Getter
+			Get
+			  return AppleObject.ImageScaling
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  AppleObject.ImageScaling = value
+			End Set
+		#tag EndSetter
+		ImageScaling As appkitframework.NSImagescaling
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -162,6 +264,12 @@ Inherits OSXLibControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AllowsCutCopyPaste"
+			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AllowVibrancy"
 			Visible=true
 			Group="Behavior"
@@ -174,6 +282,13 @@ Inherits OSXLibControl
 			Group="Behavior"
 			InitialValue="1"
 			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Animates"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="AutoDeactivate"
@@ -203,6 +318,18 @@ Inherits OSXLibControl
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DoubleValue"
+			Group="Behavior"
+			Type="Double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Editable"
 			Visible=true
 			Group="Behavior"
 			InitialValue="False"
@@ -256,6 +383,60 @@ Inherits OSXLibControl
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Image"
+			Visible=true
+			Group="Behavior"
+			Type="Picture"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImageAlignment"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="appkitframework.NSImageAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Center"
+				"1 - Top"
+				"2 - TopLeft"
+				"3 - TopRight"
+				"4 - Left"
+				"5 - Bottom"
+				"6 - BottomLeft"
+				"7 - BottomRight"
+				"8 - Right"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImageFrameStyle"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="appkitframework.NSImageFrameStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - None"
+				"1 - Photo"
+				"2 - GrayBezel"
+				"3 - Groove"
+				"4 - Button"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImageScaling"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="appkitframework.NSImagescaling"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - ProportionallyDown"
+				"1 - AxesIndependently"
+				"2 - None"
+				"3 - ProportionallyUpOrDown"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -267,6 +448,16 @@ Inherits OSXLibControl
 			Name="InitialParent"
 			Group="Position"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Int32Value"
+			Group="Behavior"
+			Type="Int32"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IntegerValue"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -311,6 +502,11 @@ Inherits OSXLibControl
 			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SingleValue"
+			Group="Behavior"
+			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
@@ -337,6 +533,11 @@ Inherits OSXLibControl
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextValue"
+			Group="Behavior"
+			Type="Text"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

@@ -24,7 +24,7 @@ Inherits Control
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Attributes( hidden )  Function TextValueForTableColumn(TableView as AppleTableView, column as ptr, row as Integer) As cfstringRef
+		Attributes( hidden )  Function TextValueForTableColumn(TableView as AppleTableView, column as appletablecolumn, row as Integer) As cfstringRef
 		  return RaiseEvent TextValue(TableView, column, row)
 		  
 		End Function
@@ -40,23 +40,13 @@ Inherits Control
 	#tag EndHook
 
 	#tag Hook, Flags = &h0, Description = 52657475726E20746865206E756D626572206F6620726F777320796F7572207461626C65766965772073686F756C6420646973706C617920686572652E
-		Event TextValue(TableView As AppleTableView, column as ptr, row as Integer) As cfstringRef
+		Event TextValue(TableView As AppleTableView, column as appletablecolumn, row as Integer) As cfstringRef
 	#tag EndHook
 
 
 	#tag Note, Name = Status incomplete
 		
 		Pasteboard and drag events not implemented
-	#tag EndNote
-
-	#tag Note, Name = Why two classes? Read me!
-		
-		Basically, two types of TableViews exist: View-based ones (the standard) and cell-based ones. 
-		The Standard tableview uses NSView objects, or rather the subclass Apple/NSTableCellView, to display usually text content. 
-		You set these values with an OXLibTableViewDataSoure Control which returns text values in its TextValue event which is called when you need to set the view textvalue.
-		
-		With a cell-based tableview, for which NSNib has to be ported from iOSLib, the OSXLibTableViewObjectDataSource has to be used  which does not return text but the data to display in the appropriate cell.
-		Also, the latter class delivers this object (as AppleObject) so you can save it during the SetObject event.
 	#tag EndNote
 
 

@@ -35,10 +35,10 @@ Begin iosView CiFilterMenu
       Animating       =   False
       AnimationDuration=   0.0
       AnimationRepeatCount=   0
-      AutoLayout      =   iOSLIbImageView1, 2, Table1, 2, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLIbImageView1, 1, Table1, 1, False, +1.00, 1, 1, 0, 
-      AutoLayout      =   iOSLIbImageView1, 8, <Parent>, 8, False, +0.50, 2, 1, 0, 
       AutoLayout      =   iOSLIbImageView1, 4, BottomLayoutGuide, 3, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLIbImageView1, 8, <Parent>, 8, False, +0.50, 2, 1, 0, 
+      AutoLayout      =   iOSLIbImageView1, 1, Table1, 1, False, +1.00, 1, 1, 0, 
+      AutoLayout      =   iOSLIbImageView1, 2, Table1, 2, False, +1.00, 1, 1, 0, 
       AutoresizesSubviews=   True
       BackgroundColor =   &cFFFFFF00
       CanBecomeFocused=   False
