@@ -17,7 +17,7 @@ Protected Module GrandCentralDispatch
 	#tag EndMethod
 
 
-	#tag Constant, Name = GCDPath, Type = Text, Dynamic = False, Default = \"/usr/lib/system/dispatch.dylib", Scope = Public
+	#tag Constant, Name = GCDPath, Type = Text, Dynamic = False, Default = \"/usr/lib/system/libdispatch.dylib", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = MainQ, Type = Text, Dynamic = False, Default = \"_dispatch_main_q", Scope = Public
